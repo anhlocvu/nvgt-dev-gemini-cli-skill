@@ -18,7 +18,7 @@ NVGT uses the **AngelScript** language, which has a C++/C#/Java-like syntax.
 ## Handles and Object Pointers
 In NVGT, objects are managed using **handles**, denoted by the `@` symbol.
 
-```cpp
+```nvgt
 sound@ s = sound(); // Create a handle and instantiate a sound object
 @s = null;          // Clear the handle
 ```
@@ -37,7 +37,7 @@ NVGT supports standard control flow structures:
 ## Functions
 Functions are declared like in C++:
 
-```cpp
+```nvgt
 int add(int a, int b) {
     return a + b;
 }
@@ -49,7 +49,7 @@ int add(int a, int b) {
 ## Classes
 You can define custom classes:
 
-```cpp
+```nvgt
 class Player {
     int health;
     string name;

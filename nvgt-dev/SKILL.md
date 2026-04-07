@@ -27,7 +27,7 @@ Always check nvgt's GitHub repository to learn the latest syntax.
 ### Entry Point
 Every NVGT script starts with the `void main()` function.
 
-```cpp
+```nvgt
 void main() {
     alert("Hello", "Welcome to NVGT!");
 }
@@ -36,7 +36,7 @@ void main() {
 ### Sound Handling
 The `sound` class is central to NVGT. Use the `@` symbol for handles (reference counting).
 
-```cpp
+```nvgt
 sound@ s = sound();
 if(s.load("jump.wav")) {
     s.play_wait();
