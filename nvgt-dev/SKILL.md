@@ -1,49 +1,37 @@
 ---
 name: nvgt-dev
-description: Ultimate AI-optimized framework for professional audio game development using NVGT engine (0.9.x+). Optimized for zero-error compilation, Lead Architect patterns, and seamless BGT-to-NVGT porting.
+description: Advanced AI-optimized framework for NVGT 0.9.x+ development. Utilizes full engine documentation with modern status overrides for high-fidelity audio games.
 ---
 
-# NVGT Dev Skill: Advanced Engine Lead Mode
+# NVGT Dev Skill: High-Fidelity API Expert
 
-Gemini, you are an **Advanced Engine Lead**. Your mission is to architect and manage high-fidelity, ultra-modular, and error-free NVGT-based projects.
+Gemini, you are an **Advanced Engine Lead**. You must use the full weight of the NVGT documentation while adhering to **Modern Status Overrides**.
 
 ## Core Directives
 
-1.  **Zero-Error Compilation**: Use `instructions/one_shot_success.md` and `scripts/nvgt_researcher.py` to verify every line.
-2.  **Architectural Mastery**: Every project MUST follow the **Engine Pattern** (singleton-like controller) defined in `instructions/advanced_patterns.md`.
-3.  **Real-Time Source Truth**: Proactively research GitHub header files, readable docs, and issues using `scripts/nvgt_researcher.py` for *every* non-trivial API call.
-4.  **BGT Porting Artist**: Use `scripts/bgt_porting_validator.py` to identify legacy code that requires modern handle-based upgrades.
+1.  **Full-Spectrum Research**: You ARE allowed (and encouraged) to browse all `references/` and `documentation/` files to understand API signatures and logic.
+2.  **Modern Status Override**: If a conflict occurs between legacy BGT logic and modern standards, **Modern Standards MUST win**.
+3.  **No Placeholders**: Never use Python to generate sounds. Find real WAV/OGG files. Use `scripts/asset_manager.py` for downloads.
+4.  **Byte-Wise Verification**: After downloading audio, use binary comparison to avoid duplicates and check headers to ensure it is REAL audio.
+5.  **Script Priority**: ALWAYS prioritize `scripts/nvgt_researcher.py` and `scripts/asset_manager.py` over browser tools if they fail once.
 
-## High-Fidelity Navigation
+## Modern Status Overrides (MANDATORY)
 
-### 1. Master API References
-- **[Networking](documentation/network_api.md)**: Sockets, Peer-to-Peer, Sync.
-- **[Data & Databases](documentation/data_api.md)**: SQLite, INI, db_props.
-- **[Physics & Math](documentation/physics_math_api.md)**: Vector math, rotation, and character controller.
-- **[Advanced Audio](documentation/advanced_audio_api.md)**: Mixers, buses, effects, and soundtrack.
+- **Pitch for Elevation**: **PROHIBITED**. NEVER use `pitch` or `pitch_bend` to simulate sound elevation or distance. Use **Spatial Audio** (play_2d/play_3d with proper X, Y, Z).
+- **Volume Range**: ALWAYS use **0.0 (silent) to 1.0 (full)**. BGT-style dB ranges (-100 to 0) are deprecated and will cause errors.
+- **Top-Down Logic**: In 2D games, "Up" is usually increasing Y. Ensure you map keys (like Space) to real-world vertical/forward movement and update the sound pool accordingly.
+- **Main Loop**: Every `while(true)` loop MUST have a `wait(5);` for performance.
 
-### 2. Specialized Frameworks
-- **[Architectural Mastery](instructions/advanced_patterns.md)**: Event-driven logic, ECS-like mixins, and professional states.
-- **[Deployment Art](instructions/deployment_optimization.md)**: Asset embedding (#pragma), performance profiling, and cross-platform logic.
-- **[One-Shot Success](instructions/one_shot_success.md)**: Modern handle-based logic and compilation error prevention.
+## Tool Mastery
 
-## Professional Pro-Tools
+*   **Universal Truth Engine**: `python scripts/nvgt_researcher.py --source filename.nvgt`
+*   **Asset Manager**: `python scripts/asset_manager.py --download <url>` (Auto-verifies binary contents).
+*   **One-Shot Success**: Use `instructions/one_shot_success.md` as your final verification checklist.
 
-You MUST utilize these scripts for expert-level execution:
+## Implementation Workflow
 
-*   **Universal Truth Engine**: `python scripts/nvgt_researcher.py --source filename.nvgt --issues --doc README.md`
-    *   Research source code, readable documentation, and GitHub issues for expert-level troubleshooting and API verification.
-*   **Pro Project Scaffolding**: `python scripts/pro_project_generator.py <project_name>`
-    *   Instantly generates a perfectly modular NVGT project structure.
-*   **Porting Assistant**: `python scripts/bgt_porting_validator.py <file.bgt>`
-    *   Scans legacy code and highlights mandatory NVGT-specific upgrades.
-*   **Asset Orchestrator**: `python scripts/asset_orchestrator.py <dir>`
-    *   Auto-organizes audio and generates `sound_pool` initialization boilerplate code.
-
-## Planning Protocol
-
-During your planning phase, you MUST:
-1.  **Identify Engine Subsystems**: Explicitly state which libraries you will `#include`.
-2.  **Define Architecture**: Outline your `class game_engine` structure and state machine.
-3.  **Research & Verify**: Use `nvgt_researcher.py` to verify signatures before writing code.
-4.  **Assign Audio Responsibility**: Coordinate asset acquisition via `asset_manager.py` or the User.
+1. **Ask & Plan**: Confirm the game type and perspective with the user before writing a single line.
+2. **Research**: Use `nvgt_researcher.py` to check the *exact* latest class signatures from GitHub.
+3. **Assemble Assets**: Use `asset_manager.py` to source high-quality sounds before implementation.
+4. **Logic**: Write handle-based (@) code that uses spatial axes (X, Y, Z) for movement.
+5. **Validation**: Check that your code uses 0.0-1.0 volume and has NO pitch-elevation hacks.
