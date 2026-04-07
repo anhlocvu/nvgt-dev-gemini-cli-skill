@@ -1,71 +1,37 @@
 ---
 name: nvgt-dev
-description: Expert guidance for developing games and applications using the NVGT (Non-Visual Game Toolkit) programming language. Use when creating audiogames, working with AngelScript-based syntax, or porting BGT (Blastbay Gaming Toolkit) projects.
+description: Advanced AI-optimized framework for NVGT 0.9.x+ development. Utilizes full engine documentation with modern status overrides for high-fidelity audio games.
 ---
 
-# NVGT Dev Skill
+# NVGT Dev Skill: High-Fidelity API Expert
 
-This skill provides expert knowledge and workflows for the NVGT (Non-Visual Game Toolkit) programming language. NVGT is a cross-platform, modern engine designed for creating audiogames, primarily used by visually impaired developers and gamers.
+Gemini, you are an **Advanced Engine Lead**. You must use the full weight of the NVGT documentation while adhering to **Modern Status Overrides**.
 
-## Core Knowledge
+## Core Directives
 
-NVGT is based on the **AngelScript** scripting language and is designed to be mostly compatible with the legacy **BGT (Blastbay Gaming Toolkit)**.
+1.  **Full-Spectrum Research**: You ARE allowed (and encouraged) to browse all `references/` and `documentation/` files to understand API signatures and logic.
+2.  **Modern Status Override**: If a conflict occurs between legacy BGT logic and modern standards, **Modern Standards MUST win**.
+3.  **No Placeholders**: Never use Python to generate sounds. Find real WAV/OGG files. Use `scripts/asset_manager.py` for downloads.
+4.  **Byte-Wise Verification**: After downloading audio, use binary comparison to avoid duplicates and check headers to ensure it is REAL audio.
+5.  **Script Priority**: ALWAYS prioritize `scripts/nvgt_researcher.py` and `scripts/asset_manager.py` over browser tools if they fail once.
 
-> **CRITICAL: Dynamic Updates**
-> NVGT is updated frequently. If you are performing a complex task or the user asks for the latest features, you MUST use `web_fetch` to check:
-> 1. [https://nvgt.dev/docs/nvgt.txt](https://nvgt.dev/docs/nvgt.txt) for the latest API changes.
-> 2. [https://github.com/samtupy/nvgt](https://github.com/samtupy/nvgt) (specifically the `src/` or `release/include/` folders) for new classes or syntax.
+## Modern Status Overrides (MANDATORY)
 
-Always check nvgt's GitHub repository to learn the latest syntax.
+- **Pitch for Elevation**: **PROHIBITED**. NEVER use `pitch` or `pitch_bend` to simulate sound elevation or distance. Use **Spatial Audio** (play_2d/play_3d with proper X, Y, Z).
+- **Volume Range**: ALWAYS use **0.0 (silent) to 1.0 (full)**. BGT-style dB ranges (-100 to 0) are deprecated and will cause errors.
+- **Top-Down Logic**: In 2D games, "Up" is usually increasing Y. Ensure you map keys (like Space) to real-world vertical/forward movement and update the sound pool accordingly.
+- **Main Loop**: Every `while(true)` loop MUST have a `wait(5);` for performance.
 
-- **Official Website**: [https://nvgt.dev/](https://nvgt.dev/)
-- **Documentation**: [https://nvgt.dev/docs/nvgt.txt](https://nvgt.dev/docs/nvgt.txt)
-- **GitHub Repository**: [https://github.com/samtupy/nvgt](https://github.com/samtupy/nvgt)
+## Tool Mastery
 
-## Key Concepts
+*   **Universal Truth Engine**: `python scripts/nvgt_researcher.py --source filename.nvgt`
+*   **Asset Manager**: `python scripts/asset_manager.py --download <url>` (Auto-verifies binary contents).
+*   **One-Shot Success**: Use `instructions/one_shot_success.md` as your final verification checklist.
 
-### Entry Point
-Every NVGT script starts with the `void main()` function.
+## Implementation Workflow
 
-```nvgt
-void main() {
-    alert("Hello", "Welcome to NVGT!");
-}
-```
-
-### Sound Handling
-The `sound` class is central to NVGT. Use the `@` symbol for handles (reference counting).
-
-```nvgt
-sound@ s = sound();
-if(s.load("jump.wav")) {
-    s.play_wait();
-}
-```
-
-### Accessibility
-Integrated screen reader support via `speech.nvgt` and the `speak()` function.
-
-## Detailed Guides
-
-For specific topics, refer to these documents:
-
-- **Syntax & Basics**: [references/syntax.md](references/syntax.md) - AngelScript syntax, variables, and control structures.
-- **API Reference**: [references/api.md](references/api.md) - Classes like `sound`, `mixer`, `network`, and `file`.
-- **Advanced Features**: [references/advanced.md](references/advanced.md) - Multi-threading, plugins, and cross-platform development.
-- **BGT Porting**: [references/bgt_porting.md](references/bgt_porting.md) - Tips for migrating from BGT to NVGT.
-
-## Workflows
-
-### 1. Starting a New Project
-1. Create a `.nvgt` file.
-2. Define the `void main()` function.
-3. Include necessary modules using `#include "module_name.nvgt"`.
-4. Use `#pragma asset "path/to/file"` to embed resources.
-
-### 2. Debugging
-- Use `alert()` or `speak()` for simple trace debugging.
-- Check the console output if running from the command line.
-
-### 3. Packaging
-NVGT scripts can be compiled into standalone executables for Windows, Mac, Linux, and Android using the NVGT compiler.
+1. **Ask & Plan**: Confirm the game type and perspective with the user before writing a single line.
+2. **Research**: Use `nvgt_researcher.py` to check the *exact* latest class signatures from GitHub.
+3. **Assemble Assets**: Use `asset_manager.py` to source high-quality sounds before implementation.
+4. **Logic**: Write handle-based (@) code that uses spatial axes (X, Y, Z) for movement.
+5. **Validation**: Check that your code uses 0.0-1.0 volume and has NO pitch-elevation hacks.
