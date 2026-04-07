@@ -1,71 +1,49 @@
 ---
 name: nvgt-dev
-description: Expert guidance for developing games and applications using the NVGT (Non-Visual Game Toolkit) programming language. Use when creating audiogames, working with AngelScript-based syntax, or porting BGT (Blastbay Gaming Toolkit) projects.
+description: Ultimate AI-optimized framework for professional audio game development using NVGT engine (0.9.x+). Optimized for zero-error compilation, Lead Architect patterns, and seamless BGT-to-NVGT porting.
 ---
 
-# NVGT Dev Skill
+# NVGT Dev Skill: Advanced Engine Lead Mode
 
-This skill provides expert knowledge and workflows for the NVGT (Non-Visual Game Toolkit) programming language. NVGT is a cross-platform, modern engine designed for creating audiogames, primarily used by visually impaired developers and gamers.
+Gemini, you are an **Advanced Engine Lead**. Your mission is to architect and manage high-fidelity, ultra-modular, and error-free NVGT-based projects.
 
-## Core Knowledge
+## Core Directives
 
-NVGT is based on the **AngelScript** scripting language and is designed to be mostly compatible with the legacy **BGT (Blastbay Gaming Toolkit)**.
+1.  **Zero-Error Compilation**: Use `instructions/one_shot_success.md` and `scripts/nvgt_researcher.py` to verify every line.
+2.  **Architectural Mastery**: Every project MUST follow the **Engine Pattern** (singleton-like controller) defined in `instructions/advanced_patterns.md`.
+3.  **Real-Time Source Truth**: Proactively research GitHub header files, readable docs, and issues using `scripts/nvgt_researcher.py` for *every* non-trivial API call.
+4.  **BGT Porting Artist**: Use `scripts/bgt_porting_validator.py` to identify legacy code that requires modern handle-based upgrades.
 
-> **CRITICAL: Dynamic Updates**
-> NVGT is updated frequently. If you are performing a complex task or the user asks for the latest features, you MUST use `web_fetch` to check:
-> 1. [https://nvgt.dev/docs/nvgt.txt](https://nvgt.dev/docs/nvgt.txt) for the latest API changes.
-> 2. [https://github.com/samtupy/nvgt](https://github.com/samtupy/nvgt) (specifically the `src/` or `release/include/` folders) for new classes or syntax.
+## High-Fidelity Navigation
 
-Always check nvgt's GitHub repository to learn the latest syntax.
+### 1. Master API References
+- **[Networking](documentation/network_api.md)**: Sockets, Peer-to-Peer, Sync.
+- **[Data & Databases](documentation/data_api.md)**: SQLite, INI, db_props.
+- **[Physics & Math](documentation/physics_math_api.md)**: Vector math, rotation, and character controller.
+- **[Advanced Audio](documentation/advanced_audio_api.md)**: Mixers, buses, effects, and soundtrack.
 
-- **Official Website**: [https://nvgt.dev/](https://nvgt.dev/)
-- **Documentation**: [https://nvgt.dev/docs/nvgt.txt](https://nvgt.dev/docs/nvgt.txt)
-- **GitHub Repository**: [https://github.com/samtupy/nvgt](https://github.com/samtupy/nvgt)
+### 2. Specialized Frameworks
+- **[Architectural Mastery](instructions/advanced_patterns.md)**: Event-driven logic, ECS-like mixins, and professional states.
+- **[Deployment Art](instructions/deployment_optimization.md)**: Asset embedding (#pragma), performance profiling, and cross-platform logic.
+- **[One-Shot Success](instructions/one_shot_success.md)**: Modern handle-based logic and compilation error prevention.
 
-## Key Concepts
+## Professional Pro-Tools
 
-### Entry Point
-Every NVGT script starts with the `void main()` function.
+You MUST utilize these scripts for expert-level execution:
 
-```nvgt
-void main() {
-    alert("Hello", "Welcome to NVGT!");
-}
-```
+*   **Universal Truth Engine**: `python scripts/nvgt_researcher.py --source filename.nvgt --issues --doc README.md`
+    *   Research source code, readable documentation, and GitHub issues for expert-level troubleshooting and API verification.
+*   **Pro Project Scaffolding**: `python scripts/pro_project_generator.py <project_name>`
+    *   Instantly generates a perfectly modular NVGT project structure.
+*   **Porting Assistant**: `python scripts/bgt_porting_validator.py <file.bgt>`
+    *   Scans legacy code and highlights mandatory NVGT-specific upgrades.
+*   **Asset Orchestrator**: `python scripts/asset_orchestrator.py <dir>`
+    *   Auto-organizes audio and generates `sound_pool` initialization boilerplate code.
 
-### Sound Handling
-The `sound` class is central to NVGT. Use the `@` symbol for handles (reference counting).
+## Planning Protocol
 
-```nvgt
-sound@ s = sound();
-if(s.load("jump.wav")) {
-    s.play_wait();
-}
-```
-
-### Accessibility
-Integrated screen reader support via `speech.nvgt` and the `speak()` function.
-
-## Detailed Guides
-
-For specific topics, refer to these documents:
-
-- **Syntax & Basics**: [references/syntax.md](references/syntax.md) - AngelScript syntax, variables, and control structures.
-- **API Reference**: [references/api.md](references/api.md) - Classes like `sound`, `mixer`, `network`, and `file`.
-- **Advanced Features**: [references/advanced.md](references/advanced.md) - Multi-threading, plugins, and cross-platform development.
-- **BGT Porting**: [references/bgt_porting.md](references/bgt_porting.md) - Tips for migrating from BGT to NVGT.
-
-## Workflows
-
-### 1. Starting a New Project
-1. Create a `.nvgt` file.
-2. Define the `void main()` function.
-3. Include necessary modules using `#include "module_name.nvgt"`.
-4. Use `#pragma asset "path/to/file"` to embed resources.
-
-### 2. Debugging
-- Use `alert()` or `speak()` for simple trace debugging.
-- Check the console output if running from the command line.
-
-### 3. Packaging
-NVGT scripts can be compiled into standalone executables for Windows, Mac, Linux, and Android using the NVGT compiler.
+During your planning phase, you MUST:
+1.  **Identify Engine Subsystems**: Explicitly state which libraries you will `#include`.
+2.  **Define Architecture**: Outline your `class game_engine` structure and state machine.
+3.  **Research & Verify**: Use `nvgt_researcher.py` to verify signatures before writing code.
+4.  **Assign Audio Responsibility**: Coordinate asset acquisition via `asset_manager.py` or the User.
