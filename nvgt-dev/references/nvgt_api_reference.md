@@ -506,6 +506,7 @@ This document contains the API definitions automatically extracted from the NVGT
 - `void acquire_shared_lock()`
 - `void android_send_back_button()`
 - `void assert(bool, const string&in = \`
+- `void atomic_thread_fence(memory_order order)`
 - `void c_debug_break()`
 - `void c_debug_break(const string&in message)`
 - `void c_debug_message(const string&in message)`
