@@ -1,6 +1,6 @@
 @echo off
 setlocal
-set "DEST=%USERPROFILE%\.gemini\skills\nvgt-dev"
+set "DEST=%USERPROFILE%\.gemini\config\plugins\nvgt-dev-plugin\skills\nvgt-dev"
 echo Installing nvgt-dev skill to "%DEST%"
 if exist "%DEST%" (
     echo Removing old nvgt-dev installation...
