@@ -1,0 +1,60 @@
+void kill_spam_chars()
+{
+string spams;
+int playerdeld=0;
+string[] chars=find_directories("chars/*");
+for (uint i=0; i<chars.length(); i++)
+{
+bool delete=false;
+if(chars[i].length()>30 )
+{
+spams+=chars[i]+". reason: more than 30 characters. \r\n";
+delete=true;
+}
+else if(string_is_digits(chars[i]))
+{
+spams+=chars[i]+". Reason: only digits. \r\n";
+delete=true;
+}
+else if(file_exists("chars/"+chars[i]+"/compid.usr")==false)
+{
+spams+=chars[i]+". Reason: cant find the computer ID. \r\n";
+delete=true;
+}
+else if(file_exists("chars/"+chars[i]+"/playtime.usr")==false)
+{
+spams+=chars[i]+". Reason: cant find the play time's data. \r\n";
+delete=true;
+}
+else if(file_exists("chars/"+chars[i]+"/playtime.usr"))
+{
+file f;
+f.open("chars/"+chars[i]+"/playtime.usr" , "rb");
+string test=f.read();
+f.close();
+if(stn(test)<=15000)
+{
+spams+=chars[i]+". Reason: played just for "+ms_to_readable_time(stn(test))+". \r\n";
+if(!is_on_server(chars[i])) delete=true;
+}
+}
+
+if (delete==true)
+{
+if(is_on_server(chars[i]))
+{
+remove_player(chars[i]);
+}
+directory_delete("chars/"+chars[i]);
+playerdeld+=1;
+}
+}
+if(!spams.is_empty())
+{
+log("spam_chars",spams);
+admintell("these all the spam characters have been removed from the server: \r\n"+spams);
+send_reliable(0,"notify complete! "+playerdeld+" characters Out of "+chars.length()+", ("+round(percent(playerdeld,chars.length()),0)+"%) of characters was marked as spam, and has been deleted!",0);
+return;
+}
+send_reliable(0,"notify no spam characters has been found in our database!",0);
+}

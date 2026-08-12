@@ -1,0 +1,31 @@
+mapname:lost_city
+maxx:1000
+maxy:1000
+maxz:1000
+tile:0:1000:0:1000:0:0:dirt7
+zone:0:1000:0:1000:0:1000:lost_city
+src:0:1000:0:1000:0:1000:birds12.ogg
+tile:10:50:0:50:0:0:concrete8
+zone:10:50:0:50:0:1000:istek's street but, but, but, oi but, very dangerous this place, be carefull!
+tile:10:15:0:49:0:2:suicide
+tile:17:50:0:49:0:2:teleport
+tile:16:16:3:7:0:2:stun
+tile:16:16:10:20:0:2:suicide
+tile:16:16:23:36:0:2:suicide
+tile:17:50:50:50:0:1000:wallborder
+tile:0:15:50:50:0:1000:wallborder
+src:10:50:0:50:18:18:md7.ogg
+tile:0:100:80:80:0:49:ladder3
+tile:0:100:81:81:0:49:walldebris4
+tile:0:100:80:100:50:50:metal16
+src:0:100:80:100:65:65:md75.ogg
+zone:0:100:80:100:50:65:the  dangerous bridge
+tile:0:0:80:100:50:50:fi
+tile:2:90:80:100:50:50:suicide
+tile:1:1:80:85:50:50:stun
+tile:0:1:100:100:0:49:ladder3
+tile:2:100:100:100:0:49:wallfence7
+zone:0:1:100:100:0:50:stairs
+zone:0:100:80:80:0:49:this bridge looks neat, but it's not cautious!, means, dangerous!
+tile:0:100:82:99:0:0:water4
+tile:0:50:120:150:0:0:suicide

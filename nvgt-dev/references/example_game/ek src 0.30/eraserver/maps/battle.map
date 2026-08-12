@@ -1,0 +1,8 @@
+mapname:battle
+maxx:500
+maxy:500
+maxz:500
+zone:0:500:0:500:0:500:battle
+tile:0:500:0:500:0:0:dirt
+src:0:500:0:500:0:0:b2.ogg
+src:0:500:0:500:0:0:skytopia.ogg

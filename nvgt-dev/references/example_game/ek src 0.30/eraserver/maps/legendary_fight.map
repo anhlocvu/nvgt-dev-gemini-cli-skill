@@ -1,0 +1,24 @@
+mapname:legendary_fight
+maxx:50
+maxy:50
+maxz:50
+tile:0:50:0:50:0:0:deepsand
+zone:0:50:0:50:0:50:fighting_ground
+noitems:0:1000:0:1000:-1000:1000:wirebomb:mine:stun_dart:security_bomb:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censor_bomb:stone:fire_starter:empty_apple_juice:nuclear_bomb:nuclear_bomb:guided_missile:missile_interceptor:mine:hors:boat:tasing_small_projectile:small_projectile:elecboat:censor_bomb:frequency_scrambler:helicopter:fire_extinguisher:sound_grenade:air_canister:shield:motion_bomb:helicopter:wood:police_car_super:tank:aircraft:item_grabber:health_healer:police_motorcycle:metal:dead_wolf:empty_pack:item_grabber:dead_gorillaball_gangster:invisibility_shield:beer_bottle::the_magical_flower:dead_gorilla:Storm_Sniper:m24_sniper_rifle:mlk_207_combat_rifle:m234minigun:bazooka:stp:rpg7:ruger_security_6_revolver:s&w_model66_revolver:taser:sky_429_laser_shotgun:dead_lion:dead_bore:dead_rabbit:dead_bear:music_box:barrett_m82_sniper_rifle
+randtravelpoint:0:5:0:5:10:10:legendary_fight:0:50:0:50:6:6:good luck!
+tile:0:50:0:50:10:10:metal5
+zone:0:50:0:50:10:20:safe_place
+zone:0:5:0:5:10:20:press t to fight.
+amb:0:50:0:50:0:9:swimmingpool.ogg:-10
+safezone:0:50:0:50:10:50
+amb:0:50:0:50:10:50:md62.ogg:-20
+zone:0:0:10:10:10:20:press t to go back to the safe zone:trackme
+randtravelpoint:0:0:10:10:10:10:safe_zone:0:100:0:100:0:0:moved
+tile:0:0:10:10:10:10:metalpipe
+tile:0:5:0:5:10:10:pavement
+zone:0:0:0:0:0:8:leave by pressing t
+tile:1:1000:0:0:0:9:wallglass5
+noitems:0:5000:0:5000:-10000:8:death_free_card:teleporter:arena_card:friendship_sphere:rocket_launcher
+tile:0:0:2:1000:0:9:wallglass5
+tile:0:50000:50:50:0:9:wallglass5
+tile:50:50:0:500000:0:9:wallglass5

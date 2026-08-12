@@ -1,0 +1,11 @@
+mapname:omerefe's_map
+minx:0
+maxx:100
+miny:0
+maxy:100
+minz:0
+maxz:100
+tile:0:100:0:100:0:0:marble2
+zone:0:100:0:100:0:100:omerefe's_map
+reverb:0:100:0:100:0:100:1.0:0.9:0.7:1.0:1.0
+music:private_ice.ogg

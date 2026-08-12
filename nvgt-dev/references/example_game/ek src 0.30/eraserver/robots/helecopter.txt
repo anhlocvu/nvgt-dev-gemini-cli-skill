@@ -1,0 +1,17 @@
+name helecopter
+health 1000000
+defence 1000
+speed 500
+damage 25000,50000
+shoot 1000
+distance 20
+aggro 1000
+spread 1
+angle 90
+steps 2
+loot ammo_Storm_sniper
+amount 1
+shoots 11
+pains 2
+minxp 100
+maxxp 500

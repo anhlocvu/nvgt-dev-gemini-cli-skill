@@ -1,0 +1,62 @@
+zone@[]zones(0);
+class zone{
+double minx,maxx,miny,maxy,minz,maxz;
+string text;
+zone(double mx,double mx2,double my,double my2, double mz,double mz2,string txt)
+{
+minx=mx;
+maxx=mx2;
+miny=my;
+maxy=my2;
+minz=mz;
+maxz=mz2;
+text=txt;
+}
+}
+string get_zone_at(double x,double y,double z)
+{
+string zdata;
+for(uint i=0; i<zones.length(); i++)
+{
+if(zones[i].minx<=x&&zones[i].maxx>=x&&zones[i].miny<=y&&zones[i].maxy>=y&&zones[i].minz<=z&&zones[i].maxz>=z)
+{
+zdata=zones[i].text;
+}
+}
+if(zdata!="") return zdata;
+else return "Unknown Area";
+}
+string gmz()
+{
+return get_zone_at(me.x,me.y,me.z);
+}
+void get_location()
+{
+if(mapname!="" and !doormove)
+{
+string newloc=get_zone_at(me.x,me.y,me.z);
+if(newloc!="Unknown Area")
+{
+if(newloc!=loc)
+{
+speak(newloc,true);
+loc=newloc;
+send("location "+loc,0);
+}
+}
+else
+{
+if(newloc!=loc)
+{
+speak(newloc,true);
+loc=newloc;
+send("location "+loc,0);
+}
+}
+}
+}
+void spawn_zone(double x1,double x2,double y1, double y2,double z1,double z2,string text)
+{
+zone zone1(x1,x2,y1,y2,z1,z2,text);
+zones.insert_last(zone1);
+}

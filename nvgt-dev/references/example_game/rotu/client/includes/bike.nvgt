@@ -1,0 +1,149 @@
+string biketile;
+class bicycle{
+double x,y;
+bool crashed=false;
+bicycle()
+{
+}
+void move_bike(string direction)
+{
+this.x=me.x;
+this.y=me.y;
+if(direction=="Left" and this.x-5>=0)
+{
+check_radar(direction);
+if(string_contains(get_tile_at(this.x-5,this.y),"wall",1)>-1 or get_tile_at(this.x-5,this.y)=="")
+{
+p.play_stationary("bikecrash.ogg",false);
+send("play bikecrash.ogg",0);
+send("takebike",0);
+bike=false;
+crashed=true;
+}
+for(uint i=0; i<5; i++)
+{
+if(string_contains(get_tile_at(this.x-i,this.y),"wall",1)>-1)
+{
+p.play_stationary("bikecrash.ogg",false);
+send("play bikecrash.ogg",0);
+send("takebike",0);
+bike=false;
+crashed=true;
+break;
+}
+}
+if(crashed==false and this.x>0)
+{
+this.x-=5;
+positions();
+//checkwall();
+if(this.x<0)
+this.x=0;
+}
+me.x=this.x;
+me.y=this.y;
+string oldbiketile=biketile;
+biketile=identify_biketile(gmt());
+p.play_stationary("bike"+biketile+".ogg",false);
+send("play bike"+biketile+".ogg",0);
+if(oldbiketile!=biketile)
+{
+p.play_stationary("bikechangetile.ogg",false);
+send("play bikechangetile.ogg",0);
+}
+send("move "+me.x+" "+me.y,0);
+}
+if(direction=="Right" and this.x+5<=maxx)
+{
+check_radar(direction);
+if(string_contains(get_tile_at(this.x+5,this.y),"wall",1)>-1 or get_tile_at(this.x+5,this.y)=="")
+{
+p.play_stationary("bikecrash.ogg",false);
+send("play bikecrash.ogg",0);
+send("takebike",0);
+bike=false;
+crashed=true;
+}
+for(uint i=0; i<5; i++)
+{
+if(string_contains(get_tile_at(this.x+i,this.y),"wall",1)>-1)
+{
+p.play_stationary("bikecrash.ogg",false);
+send("play bikecrash.ogg",0);
+send("takebike",0);
+crashed=true;
+bike=false;
+break;
+}
+}
+if(crashed==false and this.x<maxx)
+{
+this.x+=5;
+positions();
+//checkwall();
+if(this.x>maxx)
+this.x=maxx;
+}
+me.x=this.x;
+me.y=this.y;
+string oldbiketile=biketile;
+biketile=identify_biketile(gmt());
+p.play_stationary("bike"+biketile+".ogg",false);
+send("play bike"+biketile+".ogg",0);
+if(oldbiketile!=biketile)
+{
+p.play_stationary("bikechangetile.ogg",false);
+send("play bikechangetile.ogg",0);
+}
+send("move "+me.x+" "+me.y,0);
+}
+}
+string identify_biketile(string tilename)
+{
+if(string_contains(tilename,"rock",1)>-1)
+{
+return "rock";
+}
+if(string_contains(tilename,"dirt",1)>-1)
+{
+return "dirt";
+}
+if(string_contains(tilename,"water",1)>-1)
+{
+return "water";
+}
+if(string_contains(tilename,"mud",1)>-1)
+{
+return "mud";
+}
+if(string_contains(tilename,"metal",1)>-1)
+{
+return "medal";
+}
+if(string_contains(tilename,"grass",1)>-1)
+{
+return "grass";
+}
+if(string_contains(tilename,"gravel",1)>-1)
+{
+return "gravel";
+}
+else return "misc";
+}
+void check_radar(string dir)
+{
+for(uint i=0; i<25; i++)
+{
+if((string_contains(get_tile_at(this.x+i,this.y),"wall",1)>-1 or get_tile_at(this.x+i,this.y)=="") and dir=="Right")
+{
+p.play_stationary("bikeradar.ogg",false);
+break;
+}
+if((string_contains(get_tile_at(this.x-i,this.y),"wall",1)>-1 or get_tile_at(this.x-i,this.y)=="") and dir=="Left")
+{
+p.play_stationary("bikeradar.ogg",false);
+break;
+}
+}
+}
+}

@@ -1,0 +1,24 @@
+mapname:demon_realm_level4
+maxx:200
+maxy:200
+maxz:500
+tile:0:200:0:200:-150:-150:hardwood
+tile:200:200:200:200:-200:-150:ladder3
+tile:0:200:0:200:-200:-200:hardwood
+
+
+tile:199:199:199:199:-200:-151:wallwood9
+tile:199:199:200:200:-200:-151:wallwood9
+tile:200:200:199:199:-200:-151:wallwood9
+cmusic:0:200:0:200:-140:-150:demon realm5.ogg:-10:100
+cmusic:0:200:0:200:-190:-200:demon realm5.ogg:-10:100
+zone:0:200:0:200:-150:-143:you can feel it. you're close. close to reaching where the demon king slumbers. a strange, foreign pressure descends upon you, causing your mind to go sluggish, your spirit feeling the effects of staying in this realm for so long. slowly and painfully, you feel your soul itself being warped and changing, not able to survive in this nightmarish place. unknown, ancient chants continue to haunt you from your mind itself, as you feel a being of undefeatable force, slowly but surely taking control of your spirit
+zone:200:200:200:200:-199:-150:ladder leading down to the last level
+zone:200:200:200:200:-150:-200:ladder leading down to the last level@trackme@
+zone:150:150:150:150:-200:-200:press shift plus enter to go to the last level@trackme@
+
+travelpoint:150:150:150:150:-200:-200:demon_realm_level5:0:0:-200:for what its worth..after this is just one more left
+noitems:0:3000:0:3000:-55550:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb
+noitems:0:3000:0:3000:-55550:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+robots:0:200:0:200:-150:-150:4:1000:imp,mancubus,wiplash,zombie
+tile:0:200:0:200:-200:-200:hardwood

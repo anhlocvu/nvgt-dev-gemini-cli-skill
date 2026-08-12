@@ -1,0 +1,36 @@
+void dlg(string title, string message, string button)
+{
+    form.create_window("" + title + "", false, false);
+    int list = form.create_list("message", 0);
+form.add_list_item(list,""+message+"",-1);
+    int copy = form.create_button("copy title and message", true, false);
+    int copy2 = form.create_button("copy only title", true, false);
+    int copy3 = form.create_button("copy only message", true, false);
+    int buttonn = form.create_button("" + button + "", true, false);
+
+    while (true)
+    {
+        wait(5);
+        form.monitor();
+        if (form.is_pressed(copy))
+{
+clipboard_copy_text("title "+title+" and dialog message "+message+"");
+speak("Check your clipboard! title and message copied to your clipboard.");
+}
+        if (form.is_pressed(copy2))
+{
+clipboard_copy_text("title "+title+"");
+speak("Check your clipboard! title copied to your clipboard.");
+}
+        if (form.is_pressed(copy3))
+{
+clipboard_copy_text("dialog message "+message+"");
+speak("Check your clipboard! message copied to your clipboard.");
+}
+        if (form.is_pressed(buttonn))
+        {
+            break;
+        }
+        wait(5);
+    }
+}

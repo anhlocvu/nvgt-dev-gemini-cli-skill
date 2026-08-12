@@ -1,0 +1,7 @@
+noitems:0:200:0:200:0:15:death_free_card
+mapname:la_brea
+maxx:200
+maxy:200
+maxz:10
+tile:0:200:0:200:0:0:tile
+zone:0:50:0:50:0:10:la_brea

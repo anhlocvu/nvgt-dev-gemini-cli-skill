@@ -1,0 +1,14 @@
+mapname:the_wolves_forest
+maxx:500
+maxy:500
+maxz:100
+tile:0:500:0:500:0:0:grass
+zone:0:500:0:500:0:100:the_wolves_forest
+src:0:500:0:500:0:100:birds18.ogg
+robots:0:500:0:500:0:6:6:1000:wolf
+zone:0:0:0:0:0:10:go back to city:trackme
+travelpoint:0:0:0:0:0:10:temerial_city:1000:0:0:done
+tile:20:20:200:200:0:20:branch
+zone:20:20:200:200:0:20:tree:trackme
+noitems:0:500:0:500:0:100:elecboat:arena_card
+noitems:0:500:0:500:0:500:hors:boat

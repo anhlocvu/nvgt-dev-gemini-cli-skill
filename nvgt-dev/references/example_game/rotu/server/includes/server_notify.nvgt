@@ -1,0 +1,16 @@
+#include"prowl.nvgt"
+prowl@[]prowl_apis(0);
+void add_prowl_api_keys(string[] ks) {
+for(uint i=0; i<ks.length(); i+=1) {
+prowl temp(ks[i]);
+prowl_apis.insert_last(temp);
+}
+}
+void p_notify(string event, string description, string url="") {
+if(prowl_apis.length()>0) {
+for(uint i=0; i<prowl_apis.length(); i+=1) {
+prowl_apis[i].post("RevengeOfTheUndead", event, description, url);
+wait(250); //Prowl does not like multiple posts.
+}
+}
+}

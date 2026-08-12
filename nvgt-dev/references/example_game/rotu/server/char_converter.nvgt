@@ -1,0 +1,26 @@
+void main()
+{
+show_game_window("Player to Character Converter");
+int success=0;
+string[]players=find_directories("players/*");
+for(uint i=0;i<players.length();i++)
+{
+directory_create("players/"+players[i]+"/"+players[i]);
+if(file_exists("players/"+players[i]+"/data.dat"))
+{
+file_copy("players/"+players[i]+"/data.dat","players/"+players[i]+"/"+players[i]+"/data.dat",true);
+wait(50);
+file_delete("players/"+players[i]+"/data.dat");
+success++;
+}
+if(file_exists("players/"+players[i]+"/inventory.dat"))
+{
+file_copy("players/"+players[i]+"/inventory.dat","players/"+players[i]+"/"+players[i]+"/inventory.dat",true);
+wait(50);
+file_delete("players/"+players[i]+"/inventory.dat");
+success++;
+}
+}
+alert("Done",success+" files out of "+players.length()+" players were converted.");
+exit();
+}

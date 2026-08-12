@@ -1,0 +1,66 @@
+mapname:hell
+maxx:400
+maxy:400
+maxz:500
+tile:0:500:0:500:0:0:carpet
+tile:0:400:0:400:0:0:concrete28
+
+tile:0:400:0:400:0:0:fi
+
+tile:0:400:0:400:4:100	:suicide
+tile:0:0:0:0:0:200:rope
+zone:0:1111:0:1111:0:1111:the flames of hell... there intensity causes your throat to close up. the heat is overwelming, the view terifying beyond belief. your gaze travels across the area, and the only thing which your eyes encounter are the burning flames of afterlife
+zone:0:0:0:0:50:50:pay thirty millian to get out of hell, or if your level is below 100 press shift enter to get out for free@trackme@
+fightingstate:0
+zone:0:400:0:400:198:400:a surprising turn of events, a ray of hope. you feel yourself gaining back you composure, as you gaze upon the sight in front of you. different platforms are built here, with distance from one another. they form a path, and in this hellish nightmare that is the only small hope that remains.
+tile:4:4:5:5:200:200:rope
+tile:12:12:5:5:200:200:generic
+
+tile:20:20:8:8:200:200:rope
+tile:20:20:14:14:200:200:rope
+tile:22:22:20:20:200:200:rope
+
+tile:22:22:22:22:200:204:broken_glass
+tile:32:32:22:22:200:200:debris
+tile:32:32:32:32:200:200:rope
+tile:40:40:40:40:199:200:rope
+tile:50:50:40:40:200:200:debris
+tile:50:50:50:50:200:200:rope
+travelpoint:50:50:50:50:200:200:hell:250:250:200:nice
+tile:250:250:250:250:200:200:rope
+tile:250:250:250:300:200:200:rope
+tile:255:255:300:300:202:202:rope
+tile:260:260:300:300:200:200:rope
+tile:265:300:300:300:205:205:rope
+tile:310:310:301:301:205:205:rope
+tile:310:310:312:312:200:200:concrete27
+tile:314:314:312:312:204:204:ledge2
+tile:314:314:322:322:200:205:rope
+tile:322:322:322:322:201:201:rope
+tile:323:350:322:322:200:200:rope
+tile:350:350:330:330:200:200:rope
+tile:355:355:330:330:200:200:rope
+tile:355:355:340:340:200:200:plywood
+tile:355:355:350:350:200:200:rope
+zone:50:50:50:50:200:220:press shift plus enter to continue@trackme@
+tile:361:361:354:354:199:200:rope
+tile:362:362:254:254:201:201:rope
+tile:363:400:354:354:204:204:rope
+tile:400:400:365:365:200:200:rope
+tile:400:400:375:375:200:200:rope
+tile:400:400:380:380:200:200:rope
+tile:400:400:390:400:200:200:rope
+src:0:400:0:400:10:50:fire.ogg:0:100
+src:0:400:0:400:15:180:halloween.ogg:0:100
+src:0:400:0:400:10:190:generic.ogg:0:100
+tile:40:40:32:32:200:200:dirt8
+tile:400:400:355:400:204:204:suicide
+src:0:400:0:400:200:400:generic.ogg
+zone:400:400:354:400:204:2555:be very careful from now on! there are suicide bombs ahead! if you can reach the end, press shift plus enter and escape this hellish nightmare!
+zone:400:400:400:400:204:250:escape from hell@trackme@
+travelpoint:400:400:400:400:204:250:safe_zone:0:0:0:at last, you have escaped the hell. you feel yourself getting furious at the person who would dair to send you in such a place. perhaps finding him and taking revenge is a good idea
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter
+fightingstate:0
+noitems:0:3000:0:3000:0:5000:ultimate_bomb:poison_dart:field_card:fantasy_pass:teleporter
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb:throwing_star:kings_statue
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb

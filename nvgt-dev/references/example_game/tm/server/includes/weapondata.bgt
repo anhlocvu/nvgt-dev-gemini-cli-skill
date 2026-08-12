@@ -1,0 +1,138 @@
+class playerweapon
+{
+player@p;
+int max_ammo;
+playerweapon(player@pl)
+{
+@p=pl;
+}
+int get_reloadtime()
+{
+if(p.weapon=="bow") return 2470;
+if(p.weapon=="missile_launcher") return 3034;
+if(p.weapon=="s110pistol") return 2834;
+if(p.weapon=="g48pistol") return 1792;
+if(p.weapon=="sp150shotgun") return 3894;
+if(p.weapon=="w912pocket_pistol") return 2172;
+if(p.weapon=="ak47") return 1500;
+if(p.weapon=="ak48") return 4900;
+if(p.weapon=="hk_machinegun") return 1501;
+if(p.weapon=="combat_machinegun") return 2377;
+if(p.weapon=="p90compact_machinegun") return 2534;
+if(p.weapon=="b96machinegun") return 2502;
+if(p.weapon=="m1891") return 2873;
+if(p.weapon=="sp5shotgun") return 2000;
+if(p.weapon=="m116_death_bringer") return 3408;
+if(p.weapon=="flame_thrower") return 3751;
+if(p.weapon=="hand_cannon") return 6000;
+if(p.weapon=="e395_laserbeam") return 1515;
+if(p.weapon=="bolt_sniper") return 1000;
+if(p.weapon=="laser_cannon") return 4638;
+if(p.weapon=="gauss") return 1908;
+if(p.weapon=="throwing_knives") return 1752;
+else return -1;
+}
+int get_max_ammo()
+{
+if(p.weapon=="ak48")
+{
+max_ammo=500;
+}
+if(p.weapon=="hk_machinegun")
+{
+max_ammo=75;
+}
+if(p.weapon=="combat_machinegun")
+{
+max_ammo=100;
+}
+if(p.weapon=="p90compact_machinegun")
+{
+max_ammo=500;
+}
+if(p.weapon=="b96machinegun")
+{
+max_ammo=50;
+}
+if(p.weapon=="ak47")
+{
+max_ammo=150;
+}
+if(p.weapon=="gauss")
+{
+max_ammo=30;
+}
+if(p.weapon=="laser_cannon")
+{
+max_ammo=50;
+}
+if(p.weapon=="throwing_knives")
+{
+max_ammo=50;
+}
+if(p.weapon=="g48pistol")
+{
+max_ammo=60;
+}
+if(p.weapon=="w912pocket_pistol")
+{
+max_ammo=50;
+}
+if(p.weapon=="s110pistol")
+{
+max_ammo=30;
+}
+if(p.weapon=="m1891")
+{
+max_ammo=500;
+}
+if(p.weapon=="sp5shotgun")
+{
+max_ammo=30;
+}
+if(p.weapon=="m116_death_bringer")
+{
+max_ammo=20;
+}
+if(p.weapon=="bow")
+{
+max_ammo=30;
+}
+if(p.weapon=="sp150shotgun")
+{
+max_ammo=15;
+}
+if(p.weapon=="bolt_sniper")
+{
+max_ammo=30;
+}
+if(p.weapon=="flame_thrower")
+{
+max_ammo=10;
+}
+if(p.weapon=="hand_cannon")
+{
+max_ammo=15;
+}
+if(p.weapon=="e395_laserbeam")
+{
+max_ammo=50;
+}
+if(p.weapon=="missile_launcher")
+{
+max_ammo=15;
+}
+return max_ammo;
+}
+void reload()
+{
+int amount;
+if(p.get_item_count("ammo_"+p.weapon)<get_max_ammo()) amount=p.get_item_count("ammo_"+p.weapon);
+else amount=get_max_ammo();
+if(p.get_ammo_count(p.weapon)<amount)
+{
+p.give("ammo_"+p.weapon,-amount);
+p.ammo_give(p.weapon,amount);
+}
+}
+}

@@ -1,0 +1,60 @@
+string changes="
+new in version "+version+"
+Fixes a pretty annoying bug where packets were going to the wrong clients.
+Prices are actually reduced when paid, thanks Vlad for reporting.
+Now properly showing character name when a player dies, thanks Vlad for reporting.
+Fixes the undead sound-hearing functions.
+Saves character data every few seconds to avoid situations like the one from earlier.
+The dragon landing sound is pretty powerful, and its rather ground shaking, so I decided it would be a good idea that when the dragon lands, it hurts any undead within a 10 tile radius. Maybe this will be added to players too, but for now I would like to test it with undead and see how good it works.
+Brings down the damage of the gholion, so that in double gold it doesn't kill you within three hits.
+Undead can now hear noise and will be drawn to it once they hear anything. Be careful! You can also get very creative with this though. Just a hint.
+Undead have a new dodging system that will trigger when an undead has been shot. This is still a work-in-progress and it may be changed or removed.
+Removes CTF for now. It's still there, but the code has been commented out.
+This is an experimental feature, but now when an agawolf howls, it will draw other agawolves towards the same target if they are in a 100 tile radius.
+RTE fixes again.
+Fixes a very bad runtime error that kept throwing the server offline.
+Fixes dragons giving you 0 gold.
+More dragon lag improvements.
+A new command for admins, /serverclear. This clears all undead, bullets, and items off the server at once.
+Now you can type /convertgifts to convert your giftboxes into pure gifts, this should minimize the time it takes to open your gifts.
+Changes the way gifts work. Now there are gifts, and giftboxes. Gifts do not require opening, they are the pure object you are getting and when you hit Enter, the item will be presented to you. Giftboxes are still their original unwrapping process.
+Lag improvements.
+Changes the way the items menu works, it is now called the Game Objects menu. This menu will not only be able to detect items, but also other things  in the future. This may become useful in the case of events, missions, or other future possibilities. As with items however, these objects need to be stationary.
+Slows down undead a little during double gold, they should no longer have speeds of 20ms or lower.
+Fixed players spawning in character lobby regardless of whether your character was new or not.
+Now when double gold starts or dies, the undead will clear accordingly to make room for the advanced or weaker undead.
+This was a change made a long time ago, but I forgot to put it in the changelog. Now undead are stronger during double gold. Speed times 0.1, damage times 2, and health times 2. Example, undead with speed of 300. 300*0.1 equals 30, health times 2 with undead of 500 health is 1000, and damage between 300 and 600 is between 600 and 1200.
+Adds more information to /admins.
+Increases undead a little, please tell me if it goes wrong so I can decrease.
+A lot of server improvements, thanks Ivan and Dallison for the assistance.
+Expands on the builder menu, such as implementing a line editor and toggling features without the need of /rawmap.
+Admins can now recover player passwords, admins use the command /resetpass playername new_password. Common password resets include change_me123, changepass, password, newpass, etc. Just be sure that whatever you reset the pw to is only told to the player.
+A critical bug fix in which you could still use the second fire mode on weapons in safe zones, such as Burst, Scatter, etc.
+I really didn't want to have to do this, but I guess since not many people seem to enjoy rain / nature like I do, I've decided to lower the volume on the rain a bit. Have fun.
+reduced the creature spawning time, undead should spawn once every 1.5 seconds. Feel free to report if there are report issues
+slight change in the attributes of certain undead creatures
+Now /dragons not only tells you the cordinates, but also the health remaining.
+Changes to how your saturn breaks. Now there is a chance that your saturn will be so broken, that you won't even gain a broken auto saturn.
+fixed a very annoying crash which would be triggered after a command. heh, am stupid, sorry.
+this is an experimental, change? modified the spawning algorithm a bit, for builders, in whatever map you wish to have undead creatures spawned, add the directive spawn
+from now on, after death, you will spawn in the safezone of the current map, instead of going back always to the main map's one. Builders, just append the main bit at the end of the safezone directive.
+hopefully builder menu works  correctly now.
+Decreases amount of time you need to play in order to avoid being spam killed, now its 5 minutes instead of 15 minutes.
+Major fixes to the player backup system.
+Adds character descriptions, this should hopefully add some more customization to characters. You can change this by using /setdescription, and you can look at osmeone else's description with /look.
+Now you can only communicate on an mPad with players who are within a 150 tile radius. If a player is farther than 150 tiles, they will receive a damaged version of your message due to weak signals.
+Adds selling, just type a negative quantity into the buying text box.
+Now if you fire the Micro SMG or shotgun, if it goes past its range or hits a wall, a shell will drop to the ground.
+Adds more damage to the Micro SMG.
+Adds more detailed information to spam kills for admins, based on how much a player has played, and how long ago a player has logged in. This helps to see if the information received when a spam kill is performed is accurate. If it is not accurate, then actions can be taken to help recover the suspected spam account.
+Fixes voting not saving when the server is updated or the server crashes.
+Adds rain. May be buggy, but so far in my tests it has been stable.
+Adds a command to clear your mute list, please use /mutelistclear.
+Removes broken admin commands.
+Now the Server message should output to your buffer.
+For those of you saying the dragon was weak, I hope you enjoyed it, because now, guess what? It's back for more destruction, and its much stronger!
+Dragons should no longer stay stuck to the wall, that was a mistake on my part. It was because it was limited to those boundaries.
+If you are an admin, moderator, etc, you can no longer perform punishing actions on yourself. This includes kicking, banning, warning, and jailing.
+Adds mPad client UI support.
+Map engine improvements that should hopefully bring down lag a bit, thanks Paul.
+";

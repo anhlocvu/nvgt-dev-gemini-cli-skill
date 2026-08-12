@@ -1,0 +1,13 @@
+mapname:test_build
+maxx:100
+maxy:100
+maxz:100
+tile:0:100:0:100:0:0:wood
+zone:0:100:0:100:0:100:test_build
+travelpoint:0:0:0:0:0:0:safe_zone:0:0:0:safe_zone:0:nuclear_bomb:10
+zone:0:0:0:0:0:0:safe_zone:trackme
+vending_machine:11:0:0
+tile:11:11:0:0:0:0:metal12
+zone:11:11:0:0:0:8:vending machine:trackme
+music:md19.ogg
+robots:10:100:0:100:0:0:3:3500:chest,metalbox,woodbox lion

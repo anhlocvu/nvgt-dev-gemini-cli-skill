@@ -1,0 +1,14 @@
+mapname:Stainer_room
+maxx:100
+maxy:100
+maxz:100
+tile:0:100:0:100:0:0:0
+zone:0:100:0:100:0:100:Stainer_room
+tile:0:100:0:100:0:0:carpet
+
+tile:0:100:0:0:0:100:wallstone2
+tile:100:100:0:100:0:100:wallstone2
+tile:0:100:100:100:0:100:wallstone2
+tile:0:0:0:100:0:100:wallstone2
+safezone:0:100:0:100:0:100
+noitems:0:100:0:100:0:100:wirebomb:mine:stun_dart:security_bomb:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censor_bomb:stone:fire_starter:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:guided_missile:missile_interceptor:mine:hors:boat:tasing_small_projectile:small_projectile:elecboat:censor_bomb:frequency_scrambler:helicopter:fire_extinguisher:sound_grenade:air_canister:shield:motion_bomb:helicopter:wood:police_car_super:tank:aircraft:item_grabber:fight_inviter

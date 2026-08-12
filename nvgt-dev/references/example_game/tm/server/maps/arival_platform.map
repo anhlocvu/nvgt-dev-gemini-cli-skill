@@ -1,0 +1,20 @@
+mapname:arival_platform
+maxx:400
+maxy:400
+maxz:400
+zone:0:400:0:400:0:400:you've finally reached crystal city. the train has stopped, dropping you on the arival platform. the exit to crystal city is on the right side
+tile:0:400:0:400:0:0:carpet
+tile:0:400:0:400:0:0:dirt2
+src:0:400:0:400:18:50:board.ogg:0:100
+tile:0:500:101:101:0:50:wallbank
+tile:101:150:0:100:0:50:wallbarrel
+zone:50:100:100:100:0:6:press shift plus enter to enter crystal city@trackme@
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter
+fightingstate:0
+
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+travelpoint:50:100:100:100:0:20:crystal_city:800:800:0:whelcome
+noitems:0:55555:0:55555:0:55555:throwing_star
+noitems:0:55555:0:55555:0:55555:kings_statue

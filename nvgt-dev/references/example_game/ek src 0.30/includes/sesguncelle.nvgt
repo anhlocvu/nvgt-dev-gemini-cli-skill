@@ -1,0 +1,140 @@
+bool find_pack_sounds(string name)
+{
+//pack pf;
+bool success=pf.open("sounds.dat", PACK_OPEN_MODE_READ);
+if(success==false)
+{
+alert("alert","pack kud note opend");
+exit();
+}
+pack pf;
+string[] packed_sounds=pf.list_files();
+if(packed_sounds.length()<2)
+{
+alert("alert","pack kud note opend");
+exit();
+
+}
+for(uint i=0; i<packed_sounds.length(); i++)
+{
+if(name==packed_sounds[i])
+{
+return true;
+}
+}
+return false;
+}
+
+string [] fol;
+timer dltimer;
+void sndcheck()
+{
+pack pfile;
+string []snd_list;
+string list="";
+sound update;
+double per=0;
+directory_create("temp");
+dl_file1(webdir+"/ananinlistesi.txt","temp/soundlist.txt",true);
+file f;
+f.open("temp/soundlist.txt","rb");
+snd_list=f.read().split("\r\n",true);
+f.close();
+int nm=0;
+for(uint i=0; i<snd_list.length(); i++)
+{
+if(find_pack_sounds(snd_list[i])==false)
+{
+if(i<snd_list.length()-1) list+=snd_list[i]+"\r\n";
+else list+=snd_list[i];
+}
+}
+int percent=-1;
+double l2;
+double ind;
+int perc=0;
+int number=0;
+string[] lines2=list.split("\r\n",false);
+if(lines2.length()>1)
+{
+uyari("there are "+lines2.length()+" new sounds available press enter to start download");
+update.load("updating.ogg");
+update.play_looped();
+dltimer.restart();
+directory_create("temp");
+for (uint i2=0; i2<lines2.length(); i2++)
+{
+if(lines2[i2].is_empty()) continue;
+if(lines2.length()<1) continue;
+l2=lines2.length();
+ind=i2;
+perc=ind/l2*100.0;
+internet_request r(webdir+"/oyunumunsesleri3169/"+lines2[i2],"temp/"+lines2[i2]);
+while(r.complete!=true)
+{
+wait(5);
+}
+if(perc!=percent)
+{
+percent=perc;
+}
+if(dltimer.elapsed>3000 and is_game_window_active()==true and per!=percent)
+{
+dltimer.restart();
+speak("%"+percent);
+per=percent;
+}
+else if(key_pressed(KEY_SPACE))
+{
+speak("%"+percent);
+}
+else if(key_pressed(KEY_ESCAPE))
+{
+break;
+}
+}
+update.stop();
+set_sound_storage("");
+if(!pfile.open("sounds.dat", PACK_OPEN_MODE_APPEND))
+{
+alert("error", "failed to create pack!");
+exit();
+}
+else
+{
+find_stuff("temp");
+speak( "there are "+fol.length()+" files in the pack. packing files please wait!");
+wait(2000);
+for (uint i=0; i<fol.length(); i++)
+{
+pfile.add_file(fol[i], string_replace(fol[i],"temp/","",true));
+if(i%50==0)
+wait(1);
+}
+
+speak("success! Files were added successfully! restarting client");
+pfile.close();
+file_delete("soundlist.txt");
+directory_delete("temp");
+run("release.exe","",false,false);
+}
+}
+}
+void find_stuff(string path)
+{
+string[] items;
+string[] folders=find_directories(path+"\\*");
+items=folders;
+string[] files=find_files(path+"\\*.*");
+for(uint i=0; i<files.length(); i++)
+{
+fol.insert_last(path+"/"+files[i]);
+}
+if (items.length()>0)
+{
+for(uint i=0; i<items.length(); i++)
+{
+find_stuff(path+"/"+items[i]);
+}
+}
+}

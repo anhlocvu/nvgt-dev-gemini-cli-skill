@@ -1,0 +1,41 @@
+class MarriageSystem {
+
+void marriagecheck(player@ player)
+{
+if(player.married==true)
+{
+if(player.marriagetimer.elapsed>=240000)
+{
+player.marriagetimer.restart();
+player.playsound("heart",false);
+}
+}
+}
+void marry_players(player@ requester, player@ targetPlayer) {
+
+requester.spouse = targetPlayer.name;
+requester.married = true;
+targetPlayer.spouse = requester.name;
+targetPlayer.married = true;
+requester.marriagetimer.restart();
+targetPlayer.marriagetimer.restart();
+send_reliable(requester.peer_id, "You are now married to " + targetPlayer.name + "!", 2);
+send_reliable(targetPlayer.peer_id, "You are now married to " + requester.name + "!", 2);
+send_reliable(0, "player " + requester.nickname + " just married to " + targetPlayer.nickname, 2);
+}
+
+void divorce_players(player@ player) {
+int spouseIndex=get_player_index_from(player.spouse);
+if(spouseIndex>-1)
+{
+player@ spousePlayer=players[spouseIndex];
+spousePlayer.married=false;
+spousePlayer.spouse="";
+}
+send_reliable(player.peer_id, "You have divorced " + player.spouse + ".", 2);
+send_reliable(0,"player "+player.nickname+" just divorced from "+player.spouse,2);
+player.married = false;
+player.spouse = "";
+}
+}
+MarriageSystem marriagesystem;

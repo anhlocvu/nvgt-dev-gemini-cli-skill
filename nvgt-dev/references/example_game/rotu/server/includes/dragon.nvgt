@@ -1,0 +1,182 @@
+dragon@[]dragons(0);
+class dragon{
+double x,y,z;
+int minx,maxx,miny,maxy,minz,maxz;
+double dir=0.0;
+int health=random(60000,120000);
+timer attacktimer;
+int attacktime=2000;
+bool landed=true;
+map_data@mdata;
+dictionary hitlist;
+bool targeting=false;
+bool flying=false;
+bool landing=false;
+string map;
+string lasthit;
+timer movetimer,flylandtimer;
+int movetime=750,flytime=500;
+int r1=random(3000, 5000);
+dragon(double mx,double mx2,double my,double my2, double mz,double mz2,string mp)
+{
+minx=mx;
+maxx=mx2;
+miny=my;
+maxy=my2;
+minz=mz;
+maxz=mz2;
+x=random(minx,maxx);
+y=random(miny,maxy);
+map=mp;
+int map_idx = get_map_index(map);
+if(map_idx == -1) map_idx = get_map_index("main");
+if(map_idx == -1 && maps.length() > 0) map_idx = 0;
+if(map_idx > -1) {
+@this.mdata = maps[map_idx];
+}
+}
+void add_hit(string a, int damage) {
+lasthit=a;
+if(hitlist.exists(a)) {
+int temp;
+hitlist.get(a, temp);
+temp+=damage;
+hitlist.set(a, temp);
+}
+else {
+hitlist.set(a, damage);
+}
+}
+}
+void dragonloop(){
+for(uint i=0; i<dragons.length(); i++){
+if(@dragons[i] == null) continue;
+netloop();
+if(dragons[i].health<=0 /* or dragons[i].mdata.is_sz(dragons[i].x,dragons[i].y,dragons[i].z)*/)
+{
+send_nearby_reliable("play dragondeath.ogg "+dragons[i].x+" "+dragons[i].y+" "+dragons[i].z+" "+dragons[i].map,6,30,dragons[i].x,dragons[i].y,dragons[i].z,dragons[i].map);
+if(dragons[i].z>0) dragons[i].z=0;
+//send_nearby_reliable("play dragonfall.ogg "+dragons[i].x+" "+dragons[i].y+" "+dragons[i].z+" "+dragons[i].map,0);
+bosstimer.restart();
+if(dragons[i].hitlist.is_empty()==false) {
+string[] k=dragons[i].hitlist.get_keys();
+for(uint d=0; d<k.length(); d++)
+{
+int ind=get_player_index_from(k[d], true);
+if(ind>-1 and @players[ind] != null)
+{
+int dam;
+dragons[i].hitlist.get(k[d], dam);
+int goldgive=dam/3;
+players[ind].give("gold",goldgive);
+players[ind].exp+=dam/3;
+}
+}
+}
+string[] hit_list;
+if(dragons[i].hitlist.is_empty()==false) {
+for(uint j=0; j<dragons[i].hitlist.get_keys().length(); j+=1) {
+int a;
+dragons[i].hitlist.get(dragons[i].hitlist.get_keys()[j], a);
+hit_list.insert_last(dragons[i].hitlist.get_keys()[j]+" dealing "+a+" damage");
+}
+}
+int lastkill;
+dragons[i].hitlist.get(dragons[i].lasthit, lastkill);
+send(0,"With a final deafening cry, the dragon falls to the ground, blood flooding from its several wounds. The following players helped kill the dragon: "+lister(hit_list)+". The person that dealt the last blow to the dragon was "+dragons[i].lasthit+" with "+lastkill+" damage.",2);
+bodyfall(dragons[i].x,dragons[i].y,dragons[i].z,"dragonfall",dragons[i].map,5000);
+@dragons[i]=null;
+dragons.remove_at(i);
+break;
+}
+if(dragons[i].flylandtimer.elapsed>dragons[i].r1)
+{
+dragons[i].flylandtimer.restart();
+dragons[i].r1=random(60000, 180000);
+if(dragons[i].flying)
+{
+dragons[i].landing=true;
+}
+else if (!dragons[i].flying)
+{
+dragons[i].landed=false;
+dragons[i].landing=false;
+dragons[i].flying=true;
+send_nearby_reliable("play dragonlaunch.ogg "+dragons[i].x+" "+dragons[i].y+" "+dragons[i].z+" "+dragons[i].map,6,30,dragons[i].x,dragons[i].y,dragons[i].z,dragons[i].map);
+}
+}
+if(dragons[i].movetimer.elapsed>(dragons[i].flying?dragons[i].flytime:dragons[i].movetime)){
+dragons[i].movetimer.restart();
+send_nearby_reliable("play "+(dragons[i].flying or dragons[i].landing?"dragonwings"+random(1,3):"dragonwalk"+random(1,4))+".ogg "+dragons[i].x+" "+dragons[i].y+" "+dragons[i].z+" "+dragons[i].map,6,30,dragons[i].x,dragons[i].y,dragons[i].z,dragons[i].map);
+if(dragons[i].flying and dragons[i].z<dragons[i].maxz)dragons[i].z++;
+if(dragons[i].landing and dragons[i].z>dragons[i].minz){
+dragons[i].z--;
+if(dragons[i].z==dragons[i].minz and dragons[i].landing){
+send(0,"play_distance dragonlanddist.ogg "+dragons[i].x+" "+dragons[i].y+" "+dragons[i].z+" "+dragons[i].map,6);
+send_nearby_reliable("play dragonland.ogg "+dragons[i].x+" "+dragons[i].y+" "+dragons[i].z+" "+dragons[i].map,6,30,dragons[i].x,dragons[i].y,dragons[i].z,dragons[i].map);
+dragons[i].landing=false;
+dragons[i].landed=true;
+dragons[i].flying=false;
+for(uint u=0; u<unds.length(); u++)
+{
+if(@unds[u] == null) continue;
+if(get_3d_distance(dragons[i].x,dragons[i].y,dragons[i].z,unds[u].x,unds[u].y,unds[u].z)<=5 and unds[u].mymap.name==dragons[i].map)
+{
+unds[u].hitby="a dragon";
+unds[u].health-=random(100,500);
+}
+}
+}
+}
+if(dragons[i].y==dragons[i].maxy or dragons[i].y==dragons[i].miny or dragons[i].x==dragons[i].minx or dragons[i].x==dragons[i].maxx)dragons[i].dir=random(0,359);
+if(dragons[i].targeting==false){
+vector dr;
+dr=move(dragons[i].x,dragons[i].y,dragons[i].dir);
+dragons[i].x=round(dragons[i].x,0);
+dragons[i].y=round(dragons[i].y,0);
+}
+bool run=false;
+for(uint i2=0; i2<players.length(); i2++){
+if(@players[i2] == null) continue;
+if(players[i2].devshield or players[i2].hidden) continue;
+if(get_3d_distance(players[i2].x,players[i2].y,players[i2].z,dragons[i].x,dragons[i].y,dragons[i].z)<=300 and dragons[i].map==players[i2].map and players[i2].safe()==false){
+dragons[i].targeting=true;
+run=true;
+if(dragons[i].x<players[i2].x) dragons[i].x++;
+if(dragons[i].y<players[i2].y) dragons[i].y++;
+if(dragons[i].x>players[i2].x) dragons[i].x--;
+if(dragons[i].y>players[i2].y) dragons[i].y--;
+if(dragons[i].z>players[i2].z){
+dragons[i].flying=false;
+dragons[i].landing=true;
+}
+if(dragons[i].z<players[i2].z){
+dragons[i].flying=true;
+dragons[i].landed=false;
+dragons[i].landing=false;
+}
+if(dragons[i].x>dragons[i].maxx) dragons[i].x=dragons[i].maxx;
+if(dragons[i].x<dragons[i].minx) dragons[i].x=dragons[i].minx;
+if(dragons[i].y>dragons[i].maxy) dragons[i].y=dragons[i].maxy;
+if(dragons[i].y<dragons[i].miny) dragons[i].y=dragons[i].miny;
+}
+if(get_3d_distance(players[i2].x,players[i2].y,players[i2].z,dragons[i].x,dragons[i].y,dragons[i].z)<=10 and dragons[i].map==players[i2].map and dragons[i].attacktimer.elapsed>dragons[i].attacktime){
+if(players[i2].safe() or players[i2].newb==1 or players[i2].hidden) continue;
+dragons[i].attacktimer.restart();
+send_nearby_reliable("play dragonattack"+random(1,3)+".ogg "+dragons[i].x+" "+dragons[i].y+" "+dragons[i].z+" "+dragons[i].map,6,30,dragons[i].x,dragons[i].y,dragons[i].z,dragons[i].map);
+play2("hit"+random(1,4),players[i2].x,players[i2].y,players[i2].z,players[i2].map);
+players[i2].hitby="a dragon.";
+players[i2].health-=random(500,1000);
+run=true;
+}
+if(run)break;
+}
+}
+}
+}
+void spawn_dragon(double mx,double mx2,double my,double my2, double mz,double mz2,string map)
+{
+if(!map_exists(map)) map = "main";
+dragon drg1(mx,mx2,my,my2,mz,mz2,map);
+dragons.insert_last(drg1);
+}

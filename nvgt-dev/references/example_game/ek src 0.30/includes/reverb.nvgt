@@ -1,0 +1,239 @@
+reverb@[]reverbs();
+class reverb
+{
+vector min,max;
+double dry=0.0,wet=0.0,roomsize=0.0,damp=0.0,width=0.0;
+reverb(int rminx,int rmaxx, int rminy, int rmaxy,int rminz,int rmaxz,double rdry,double rwet,double rroomsize,double rdamp,double rwidth)
+{
+this.min.x=rminx;
+this.max.x=rmaxx;
+this.min.y=rminy;
+this.max.y=rmaxy;
+this.min.z=rminz;
+this.max.z=rmaxz;
+this.dry=rdry;
+this.wet=rwet;
+this.roomsize=rroomsize;
+this.damp=rdamp;
+this.width=rwidth;
+}
+}
+void reverb_loop()
+{
+for(uint i=0; i<reverbs.length(); i++)
+{
+if(reverbs[i].min.x>mr.x)
+{
+continue;
+}
+if(reverbs[i].min.x<=me.x and reverbs[i].max.x>=me.x and reverbs[i].min.y<=me.y and reverbs[i].max.y>=me.y and reverbs[i].min.z<=me.z and reverbs[i].max.z>=me.z)
+{
+mix.set_fx("$room:freeverb:"+reverbs[i].dry+":"+reverbs[i].wet+":"+reverbs[i].roomsize+":"+reverbs[i].damp+":"+reverbs[i].width);
+
+}
+else
+{
+mix.set_fx("");
+}
+}
+}
+
+string set_fx_parameters ()
+{
+string result;
+int pr1,pr2,pr3,pr4,pr5;
+string list="dry=0.0;wet=0.0;roomsize=0.0;damp=0.0;width=0.0";
+string [] parameters=list.split(";",false);
+double counter=0;
+
+double []values;
+double []amount;
+for(int i=0; i<parameters.length(); i++)
+{
+string []item=string_split(parameters[counter], "=", true);
+values.insert_last(0);
+}
+for(int i=0; i<parameters.length(); i++)
+{
+amount.insert_last(0);
+}
+speak(get_value("Use the right and left arrow keys to navigate through the parameters. Press up or down arrow to set the value of the parameter, press shift + enter to enter the parameter manually, press enter to finish setting, press escape to exit."));
+while(true)
+{
+wait(5);
+ek_loop();
+netloop();
+
+if(key_pressed(KEY_ESCAPE))
+{
+break;
+result="";
+}
+if(key_pressed(KEY_RETURN) or key_pressed(KEY_NUMPADENTER))
+{
+if(shift_is_down())
+{
+string []item=string_split(parameters[counter], "=", true);
+double count=string_to_number(v.input("please enter a rounding number.", ""));
+amount[counter]=count;
+speak(get_value(amount[counter]));
+t.play_stationary(get_tile_at(me.x,me.y,me.z)+"step"+random(1,5)+".ogg", false);
+}
+else
+{
+string pr;
+string []item;
+for(int i=0; i<parameters.length(); i++)
+{
+item=string_split(parameters[i], "=", true);
+if(i<parameters.length()-1)
+{
+pr+=amount[i]+":";
+}
+else
+{
+pr+=amount[i];
+}
+}
+result=pr;
+break;
+}
+}
+if(key_pressed(KEY_LEFT))
+{
+if(parameters.length()==1)
+{
+counter=0;
+string pr;
+for(int i=0; i<parameters.length(); i++)
+{
+if(i<parameters.length()-1)
+{
+pr+=amount[i]+":";
+}
+else
+{
+pr+=amount[i];
+}
+}
+mix.set_fx("$room:freeverb:"+pr);
+string []item=string_split(parameters[counter], "=", true);
+speak(get_value(item[0]+" "+item[1]));
+t.play_stationary(get_tile_at(me.x,me.y,me.z)+"step"+random(1,5)+".ogg", false);
+}
+else if(counter > 0)
+{
+counter--;
+string pr;
+for(int i=0; i<parameters.length(); i++)
+{
+if(i<parameters.length()-1)
+{
+pr+=amount[i]+":";
+}
+else
+{
+pr+=amount[i];
+}
+}
+mix.set_fx("$room:freeverb:"+pr);
+string []item=string_split(parameters[counter], "=", true);
+speak(get_value(item[0]+" "+item[1]));
+t.play_stationary(get_tile_at(me.x,me.y,me.z)+"step"+random(1,5)+".ogg", false);
+}
+}
+if(key_pressed(KEY_RIGHT))
+{
+if(parameters.length()==1)
+{
+counter=0;
+string pr;
+for(int i=0; i<parameters.length(); i++)
+{
+if(i<parameters.length()-1)
+{
+pr+=amount[i]+":";
+}
+else
+{
+pr+=amount[i];
+}
+}
+mix.set_fx("$room:freeverb:"+pr);
+string []item=string_split(parameters[counter], "=", true);
+speak(get_value(item[0]+" "+item[1]));
+t.play_stationary(get_tile_at(me.x,me.y,me.z)+"step"+random(1,5)+".ogg", false);
+}
+else if(counter < parameters.length()-1)
+{
+string pr;
+for(int i=0; i<parameters.length(); i++)
+{
+if(i<parameters.length()-1)
+{
+pr+=amount[i]+":";
+}
+else
+{
+pr+=amount[i];
+}
+}
+mix.set_fx("$room:freeverb:"+pr);
+counter++;
+string []item=string_split(parameters[counter], "=", true);
+speak(get_value(item[0]+" "+item[1]));
+t.play_stationary(get_tile_at(me.x,me.y,me.z)+"step"+random(1,5)+".ogg", false);
+}
+}
+if(key_pressed(KEY_DOWN))
+{
+string []item=string_split(parameters[counter], "=", true);
+amount[counter]+=-0.1;
+values[counter]-=string_to_number(item[1]);
+item[1]=parse_float(amount[counter]);
+parameters[counter]=item[0]+"="+amount[counter];
+speak(amount[counter]);
+string pr;
+for(int i=0; i<parameters.length(); i++)
+{
+if(i<parameters.length()-1)
+{
+pr+=amount[i]+":";
+}
+else
+{
+pr+=amount[i];
+}
+}
+mix.set_fx("$room:freeverb:"+pr);
+t.play_stationary(get_tile_at(me.x,me.y,me.z)+"step"+random(1,5)+".ogg", false);
+}
+if(key_pressed(KEY_UP))
+{
+string []item=string_split(parameters[counter], "=", true);
+values[counter]+=string_to_number(item[1]);
+amount[counter]+=0.1;
+parameters[counter]=item[0]+"="+amount[counter];
+speak(amount[counter]);
+string pr;
+for(int i=0; i<parameters.length(); i++)
+{
+if(i<parameters.length()-1)
+{
+pr+=amount[i]+":";
+}
+else
+{
+pr+=amount[i];
+}
+}
+mix.set_fx("$room:freeverb:"+pr);
+t.play_stationary(get_tile_at(me.x,me.y,me.z)+"step"+random(1,5)+".ogg", false);
+}
+else if(counter > parameters.length())
+{
+counter=parameters.length()-1;
+}
+}
+return result;
+}

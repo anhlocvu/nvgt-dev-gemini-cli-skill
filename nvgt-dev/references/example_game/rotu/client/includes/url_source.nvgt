@@ -1,0 +1,102 @@
+int playmusic=1;
+url@[] urls(0);
+class url
+{
+int retrytimes=0;
+int checktime=5000;
+bool retry=false;
+int retrytime=30000;
+long handle;
+string url;
+int minx,maxx,miny,maxy, minz, maxz, one_shot;
+bool playing=false;
+timer checktimer, retrytimer;
+url(string uurl, int uminx, int umaxx, int uminy, int umaxy, int uminz, int umaxz, int uone_shot=2)
+{
+one_shot=uone_shot;
+url=uurl;
+minx=uminx;
+maxx=umaxx;
+miny=uminy;
+maxy=umaxy;
+minz=uminz;
+maxz=umaxz;
+}
+void update_volume()
+{
+set_volume(musvol);
+}
+void loop()
+{
+if (playmusic==1)
+{
+if (me.x>=minx and me.x<=maxx and me.y>=miny and me.y<=maxy and me.z>=minz and me.z<=maxz and playing==false and (retry==false or one_shot==2 and retry==true and retrytimer.elapsed>=retrytime))
+{
+retrytimer.restart();
+retry=false;
+retrytimes=0;
+handle=load_stream_url(url);
+if (handle>=0 and retrytimes<20)
+{
+if (retry==false and one_shot==2)
+speak("This stream is offline. I'll try to reconnect periodically to see if I can get connected.");
+retrytimer.restart();
+retry=true;
+retrytimes++;
+}
+else
+{
+playing=true;
+set_volume(musvol);
+play_file(handle);
+}
+}
+if (playing==true and me.x>=minx and me.x<=maxx and me.y>=miny and me.y<=maxy and me.z>=minz and me.z<=maxz and checktimer.elapsed>=checktime)
+{
+checktimer.restart();
+bool check=is_playing(handle);
+if (check==false)
+{
+playing=false;
+if (one_shot==2)
+{
+speak("This stream just lost connection. I'll try to reconnect periodically to see if I can get connected again.");
+retry=true;
+retrytimer.restart();
+}
+}
+}
+if (playing==true and (me.x>maxx or me.x<minx or me.y>maxy or me.y<miny))
+{
+playing=false;
+stop_file(handle);
+}
+}
+}
+}
+void spawn_url_source(string uurl, int minx, int maxx, int miny, int maxy, int minz, int maxz, int one_shot)
+{
+urls.insert_last(url(uurl,minx,maxx,miny,maxy, minz, maxz, one_shot));
+}
+void urlloop()
+{
+for (uint i=0; i<urls.length(); i++)
+urls[i].loop();
+}
+void destroy_all_urls()
+{
+for (uint i=0; i<urls.length(); i++)
+{
+if (urls[i].playing==true)
+stop_file(urls[i].handle);
+}
+urls.resize(0);
+}
+void update_urls()
+{
+for (uint i=0; i<urls.length(); i++)
+urls[i].update_volume();
+}
+void set_url_volume(double v) {
+set_volume(v);
+}

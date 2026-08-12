@@ -1,0 +1,24 @@
+mapname:the_beach
+maxx:400
+maxy:400
+maxz:400
+tile:0:400:0:400:0:0:sand
+tile:0:400:100:400:0:0:shallow
+tile:0:400:100:400:-100:-1:underwater
+src:0:400:100:400:10:10:ocean2.ogg:0:100
+
+
+src:0:400:0:99:0:50:amb.ogg:0:100
+zone:0:400:0:400:0:400:you find yourself on a large, sandy beach. the air is fresh and warm, and the people can be seen enjoying the beautiful day. in the distance you see the water, and a path leading to a great ocean
+zone:250:250:250:250:0:11:a strange portal glowing with an electric blue light. press shift plus enter to activate it@trackme@
+zone:0:400:100:400:0:11:the water@trackme@
+zone:0:400:100:400:0:11:the water is cold and saulty. the ocean continues as far as the eye can see. you look around, mesmorised by the beauty of the scene. the ocean glows beautifully while the sun shines brightly in the sky.
+zone:0:0:0:0:0:11:go back to the city@trackme@
+travelpoint:0:0:0:0:0:0:evermore_city:1200:1200:0: 
+zone:250:255:250:255:0:11:from up close, the portal looks larger than you thought. going through it could lead you to various adventures, as well as dangerous encounters. press shift plus enter to activate the portal if you're brave enough
+travelpoint:250:255:250:255:0:0:path_to_fantasy_island:0:0:500:you jump through the portal. you feel yourself spinning and whirling around in various directions. at first it is manajable, but then you feel yourself being disorientated as the spinning increases drasticly. as the spinning comes to a gradual stop, you are left amazed at your surroundings.
+zone:0:400:0:400:-100:-1:underwater
+src:0:400:0:400:15:400:ocean2.ogg:0:100
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+tile:0:400:90:99:0:0:clay

@@ -1,0 +1,45 @@
+const string mciSendString="int mciSendStringA(char*, char*, int, int);";
+const string mciGetErrorString="int mciGetErrorStringA(int, char*, int);";
+class ultrarec
+{
+
+	int channels=2;
+		string filename=DIRECTORY_TEMP+"/vc.wav";
+		library mci;
+		void record()
+		{
+				string result="";
+				result+=send_command("open new type waveaudio alias voice wait");
+				result+="\r\n"+send_command("set voice time format ms bitspersample 16 channels 2 samplespersec 44100 format tag pcm wait");
+				result+="\r\n"+send_command("record voice");
+			}
+			void stop(bool convert=false, string convertfilename="")
+			{
+					string result;
+					result+="\r\n"+send_command("stop voice wait");
+					result+="\r\n"+send_command("save voice "+filename+" wait");
+					result+="\r\n"+send_command("close voice wait");
+					if (convert==true)
+					{
+							if (channels==2)
+							run("oggenc2.exe","-q3 --resample 32000 -s0 \""+this.filename+"\" -o \""+convertfilename+"\"",true,true);
+							else
+							run("oggenc2.exe","-q3 --downmix --resample 32000 -s0 \""+this.filename+"\" -o \""+convertfilename+"\"",true,true);
+						}
+						file_delete(filename);
+					}
+					private string send_command(string command)
+					{
+							if(!dll.active)
+							{
+									if(!dll.load("winmm.dll"))
+									{
+											return "DLL load failure";
+									}
+							}
+							dll.call(mciSendString, command, "", 0, 0);
+							return "";
+					}
+									
+									private library dll;
+							}

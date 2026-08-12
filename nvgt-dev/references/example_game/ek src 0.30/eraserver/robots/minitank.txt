@@ -1,0 +1,13 @@
+name minitank
+health 500000
+defence 10000
+speed 1800
+damage 35000
+shoot 5000
+distance 40
+aggro 1000
+spread 1
+angle 360
+steps 2
+loot grenade
+amount 5

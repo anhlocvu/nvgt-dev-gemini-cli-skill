@@ -1,0 +1,301 @@
+#include "dlfile.bgt"
+#include "hip.bgt"
+void check_game_update()
+{
+sound update;
+speak("checking for updates");
+string current_version=version;
+string latest_version=url_get("http://darkness-king.duckdns.org/games/sb/version.txt");
+string description=url_get("http://darkness-king.duckdns.org/games/sb/description.txt");
+string update_error_reason=url_get("http://darkness-king.duckdns.org/games/sb/update_error_reason.txt");
+if(latest_version=="" or string_contains(latest_version," ",1)!=-1 or string_contains(latest_version,"html",1)!=-1 or latest_version.length()<2 or latest_version.length()>5)
+{
+update.stream("update_error.ogg");
+speak("unable to check the update, reason, "+update_error_reason+".");
+update_menu();
+}
+if(latest_version==current_version)
+{
+update.stream("update_latest.ogg");
+speak("this is the latest version of the game, version "+latest_version+".");
+update_menu();
+}
+if(current_version<latest_version)
+{
+update.stream("update_found.ogg");
+dlg("There is a new update available for the game, your version, "+current_version+", latest version, "+latest_version+", description, "+description+"");
+game_update_ask();
+}
+}
+void game_update_ask()
+{
+sound updating;
+setupmenu(true,true);
+string latest_version=url_get("http://darkness-king.duckdns.org/games/sb/version.txt");
+m.add_item_tts("download the update","download");
+m.add_item_tts("don't download","don't_download");
+m.add_item_tts("copy download link to clipboard","copy");
+m.add_item_tts("go back","back");
+int mres=m.run("would you like to download it",true);
+if(m.get_item_name(mres)=="download")
+{
+show_game_window("updating game from version "+version+", to version "+latest_version+", please wait");
+updating.stream("updatemus.ogg");
+speak("update starting");
+string status=dl_file("http://darkness-king.duckdns.org/games/sb/sb.zip","sb.zip");
+if(status=="finished")
+{
+updating.stream("update_complete.ogg");
+dlg("update complete, press enter to continue");
+exit();
+}
+}
+if(m.get_item_name(mres)=="don't_download")
+{
+speak("ok");
+update_menu();
+}
+if(m.get_item_name(mres)=="copy")
+{
+updating.stream("copyed.ogg");
+speak("the link of the game now been copied to your clipboard");
+clipboard_copy_text("http://darkness-king.duckdns.org/games/sb/sb.zip");
+update_menu();
+}
+if(m.get_item_name(mres)=="back" or mres==0)
+{
+mainmenu();
+}
+}
+void check_sounds_update()
+{
+sound update;
+speak("checking sounds update");
+string current_sounds_version=sounds_version;
+string new_sounds_version=url_get("http://darkness-king.duckdns.org/games/sb/sounds_version.txt");
+string update_error_reason=url_get("http://darkness-king.duckdns.org/games/sb/update_error_reason.txt");
+if(new_sounds_version=="" or string_contains(new_sounds_version," ",1)!=-1 or string_contains(new_sounds_version,"html",1)!=-1 or new_sounds_version.length()<2 or new_sounds_version.length()>5)
+{
+update.stream("update_error.ogg");
+speak("unable to check the update, reason, "+update_error_reason+".");
+update_menu();
+}
+if(new_sounds_version==current_sounds_version)
+{
+update.stream("update_latest.ogg");
+speak("this is the latest version of the sounds, version "+new_sounds_version+".");
+update_menu();
+}
+if(current_sounds_version<new_sounds_version)
+{
+update.stream("update_found.ogg");
+dlg("There is a new update available for sounds, your version, "+current_sounds_version+", latest version, "+new_sounds_version+".");
+sounds_update_ask();
+}
+}
+void sounds_update_ask()
+{
+sound updating;
+setupmenu(true,true);
+string new_sounds_version=url_get("http://darkness-king.duckdns.org/games/sb/sounds_version.txt");
+m.add_item_tts("download the sounds","download");
+m.add_item_tts("don't download","don't_download");
+m.add_item_tts("copy download link to clipboard","copy");
+m.add_item_tts("go back","back");
+int mres=m.run("would you like to download it",true);
+if(m.get_item_name(mres)=="download")
+{
+show_game_window("updating sounds from version "+sounds_version+", to "+new_sounds_version+", please wait");
+updating.stream("updatemus.ogg");
+speak("update starting");
+string status=dl_file("http://darkness-king.duckdns.org/games/sb/sounds.dat","sounds.dat");
+if(status=="finished")
+{
+updating.stream("update_complete.ogg");
+speak("update completed");
+run("sb.exe","",false,false);
+exit();
+}
+}
+if(m.get_item_name(mres)=="don't_download")
+{
+speak("ok");
+update_menu();
+}
+if(m.get_item_name(mres)=="copy")
+{
+updating.stream("copyed.ogg");
+speak("the link of the sounds now been copied to your clipboard");
+clipboard_copy_text("http://darkness-king.duckdns.org/games/sb/sounds.dat");
+update_menu();
+}
+if(m.get_item_name(mres)=="back" or mres==0)
+{
+mainmenu();
+}
+}
+void check_change_log_update()
+{
+sound update;
+speak("checking change log update");
+string current_change_log_version=change_log_version;
+string new_change_log_version=url_get("http://darkness-king.duckdns.org/games/sb/change_log_version.txt");
+string update_error_reason=url_get("http://darkness-king.duckdns.org/games/sb/update_error_reason.txt");
+if(new_change_log_version=="" or new_change_log_version=="0" or string_contains(new_change_log_version," ",1)!=-1 or string_contains(new_change_log_version,"html",1)!=-1 or new_change_log_version.length()<2 or new_change_log_version.length()>5)
+{
+update.stream("update_error.ogg");
+speak("unable to check the update, reason, "+update_error_reason+".");
+update_menu();
+}
+if(new_change_log_version==current_change_log_version)
+{
+update.stream("update_latest.ogg");
+speak("this is the latest version of the change log, version "+new_change_log_version+"");
+update_menu();
+}
+if(current_change_log_version<new_change_log_version)
+{
+update.stream("update_found.ogg");
+dlg("There is a new update available for change log, your version, "+current_change_log_version+", latest version, "+new_change_log_version+".");
+change_log_update_ask();
+}
+}
+void change_log_update_ask()
+{
+sound updating;
+setupmenu(true,true);
+string new_change_log_version=url_get("http://darkness-king.duckdns.org/games/sb/change_log_version.txt");
+m.add_item_tts("download the change log","download");
+m.add_item_tts("don't download","don't_download");
+m.add_item_tts("copy download link to clipboard","copy");
+m.add_item_tts("go back","back");
+int mres=m.run("would you like to download it",true);
+if(m.get_item_name(mres)=="download")
+{
+show_game_window("updating change log, from "+change_log_version+" to, "+new_change_log_version+", please wait");
+updating.stream("updatemus.ogg");
+speak("update starting");
+string status=dl_file("http://darkness-king.duckdns.org/games/sb/changelog.txt","changelog.txt");
+if(status=="finished")
+{
+updating.stream("update_complete.ogg");
+speak("update completed");
+run("sb.exe","",false,false);
+exit();
+}
+}
+if(m.get_item_name(mres)=="don't_download")
+{
+speak("ok");
+update_menu();
+}
+if(m.get_item_name(mres)=="copy")
+{
+updating.stream("copyed.ogg");
+speak("the link of the change log now been copied to your clipboard");
+clipboard_copy_text("http://darkness-king.duckdns.org/games/sb/changelog.txt");
+update_menu();
+}
+if(m.get_item_name(mres)=="back" or mres==0)
+{
+mainmenu();
+}
+}
+void check_readme_update()
+{
+sound update;
+speak("checking readme update");
+string current_readme_version=readme_version;
+string new_readme_version=url_get("http://darkness-king.duckdns.org/games/sb/readme_version.txt");
+string update_error_reason=url_get("http://darkness-king.duckdns.org/games/sb/update_error_reason.txt");
+if(new_readme_version=="" or string_contains(new_readme_version," ",1)!=-1 or string_contains(new_readme_version,"html",1)!=-1 or new_readme_version.length()<2 or new_readme_version.length()>5)
+{
+update.stream("update_error.ogg");
+speak("unable to check the update, reason, "+update_error_reason+".");
+update_menu();
+}
+if(new_readme_version==current_readme_version)
+{
+update.stream("update_latest.ogg");
+speak("this is the latest version of the readme, version "+new_readme_version+".");
+update_menu();
+}
+if(current_readme_version<new_readme_version)
+{
+update.stream("update_found.ogg");
+dlg("There is a new update available for readme, your version, "+current_readme_version+", latest version, "+new_readme_version+".");
+readme_update_ask();
+}
+}
+void readme_update_ask()
+{
+sound updating;
+setupmenu(true,true);
+string new_readme_version=url_get("http://darkness-king.duckdns.org/games/sb/readme_version.txt");
+m.add_item_tts("download the readme","download");
+m.add_item_tts("don't download","don't_download");
+m.add_item_tts("copy download link to clipboard","copy");
+m.add_item_tts("go back","back");
+int mres=m.run("would you like to download it",true);
+if(m.get_item_name(mres)=="download")
+{
+show_game_window("updating readme, please wait");
+updating.stream("updatemus.ogg");
+speak("update starting");
+string status=dl_file("http://darkness-king.duckdns.org/games/sb/readme.html","readme.html");
+if(status=="finished")
+{
+updating.stream("update_error.ogg");
+speak("update completed");
+run("sb.exe","",false,false);
+exit();
+}
+}
+if(m.get_item_name(mres)=="don't_download")
+{
+speak("ok");
+update_menu();
+}
+if(m.get_item_name(mres)=="copy")
+{
+updating.stream("update_complete.ogg");
+speak("the link of the readme now been copied to your clipboard");
+clipboard_copy_text("http://darkness-king.duckdns.org/games/sb/readme.html");
+update_menu();
+}
+if(m.get_item_name(mres)=="back" or mres==0)
+{
+mainmenu();
+}
+}
+void update_menu()
+{
+setupmenu(true,true);
+m.add_item_tts("check updates for the game","update_check_for_game");
+m.add_item_tts("check updates for the sounds","check_updates_for_sounds");
+m.add_item_tts("check updates for the change log","check_updates_for_change_log");
+m.add_item_tts("check updates for the readme","check_updates_for_readme");
+m.add_item_tts("go back","back");
+int mres=m.run("update menu, please select an option",true);
+if(m.get_item_name(mres)=="back" or mres==0)
+{
+mainmenu();
+}
+
+if(m.get_item_name(mres)=="check_updates_for_game")
+{
+check_game_update();
+}
+if(m.get_item_name(mres)=="check_updates_for_sounds")
+{
+check_sounds_update();
+}
+if(m.get_item_name(mres)=="check_updates_for_change_log")
+{
+check_change_log_update();
+}
+if(m.get_item_name(mres)=="check_updates_for_readme")
+{
+check_readme_update();
+}
+}

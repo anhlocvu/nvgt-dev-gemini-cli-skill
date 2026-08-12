@@ -1,0 +1,47 @@
+mapname:battlefield
+maxx:1000
+maxy:1000
+maxz:1000
+tile:0:1000:0:1000:0:0:dirt7
+zone:0:1000:0:1000:0:1000:battlefield
+src:0:1000:0:1000:0:1000:sky.ogg
+src:0:1000:0:1000:0:1000:skytopia.ogg
+tile:0:0:0:0:0:0:concrete27
+zone:0:0:0:0:0:10:Back to the safe zone.:trackme
+tile:200:250:200:250:50:50:roof3
+tile:225:225:225:225:0:50:metal3
+zone:200:250:200:250:50:60:Tower.
+zone:225:225:225:225:0:60:Stairs to tower.
+tile:475:525:200:250:50:50:roof4
+zone:475:525:200:250:50:60:A small tower.
+tile:500:500:225:225:0:50:metal3
+zone:500:500:225:225:0:60:Stairs to a small tower.
+tile:400:600:400:600:-3:0:water3
+zone:400:600:400:600:-6:100:A small pond.:trackme
+src:400:600:400:600:0:28:lake.ogg
+tile:400:600:400:600:-6:-4:deepwater
+tile:400:600:400:600:-25:-7:underwater
+zone:400:600:400:600:-25:-7:Under the pond.:trackme
+amb:400:600:400:600:-25:-7:underwater.ogg
+tile:399:601:399:399:-26:-1:wallunderwater
+tile:399:399:399:601:-26:-1:wallunderwater
+tile:399:601:601:601:-26:-1:wallunderwater
+tile:601:601:399:601:-26:-1:wallunderwater
+tile:530:570:400:600:30:30:bridge
+tile:529:529:399:601:30:50:wallfence2
+tile:571:571:399:601:30:50:wallfence2
+zone:530:570:400:600:30:50:Bridge.
+tile:545:555:399:399:0:30:bridge2
+zone:545:555:399:399:0:50:Stairs to the bridge.
+tile:530:544:399:399:30:50:wallfence4
+tile:556:570:399:399:30:50:wallfence4
+tile:545:555:601:601:0:30:bridge2
+zone:545:555:601:601:0:50:Stairs to the bridge.
+tile:530:544:601:601:30:50:wallfence4
+tile:556:570:601:601:30:50:wallfence4
+
+noitems:0:1000:0:1000:0:1000:tasing_small_projectile:elecboat:arena_card:death_free_card
+tile:2:1000:0:0:0:1000:wallstone2
+tile:1000:1000:0:1000:0:1000:wallstone2
+tile:0:1000:1000:1000:0:1000:wallstone2
+tile:0:0:2:1000:0:1000:wallstone2

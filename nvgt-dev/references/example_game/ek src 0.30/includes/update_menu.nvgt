@@ -1,0 +1,33 @@
+void update_menu()
+{
+setupmenu(true,true);
+m.add_item_tts("check updates for the game","update_check_for_game");
+m.add_item_tts("check updates for the sounds","check_updates_for_sounds");
+m.add_item_tts("check updates for the language","lu");
+m.add_item_tts("check updates for the readme","check_updates_for_readme");
+m.add_item_tts("go back","back");
+int mres=m.run("update menu, please select an option",true);
+if(m.get_item_name(mres)=="back" or mres==0)
+{
+//addmitems();
+}
+
+if(m.get_item_name(mres)=="update_check_for_game")
+{
+check_game_update();
+}
+if(m.get_item_name(mres)=="check_updates_for_sounds")
+{
+check_sound_update();
+}
+if(m.get_item_name(mres)=="lu")
+{
+check_lang_update();
+}
+
+if(m.get_item_name(mres)=="check_updates_for_readme")
+{
+check_readme_update();
+}
+
+}

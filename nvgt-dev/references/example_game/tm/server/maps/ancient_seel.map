@@ -1,0 +1,11 @@
+mapname:ancient_seel
+maxx:300
+maxy:300
+maxz:300
+tile:0:300:0:300:0:0:shortgrass
+zone:0:300:0:300:0:300:a fairly sized jungle, glowing with wildlife. everywhere you look you see creatures which could only exist in dreems or imaginations. the very site of these creatures fills you with respect and wonder. their every action is graceful, their appearance only able to be defined as magistic. the sheere beauty and magisty of these creatures can only be rivaled by their fantastic powers. each of them could destroy you, or any other human with only a few strikes. you know they are deadly, you know they have been seeled here for a reason. yet you are entranced, almost enchanted
+zone:0:0:0:0:0:6:go back@trackme@
+travelpoint:0:0:0:0:0:0:land_of_the_seeled:100:100:0:you know if you had stayed there for even a minute longer, you couldn't get away from such a magical place. thus you decide to leave while you can, realising that mortality still has not ascended the limits
+robots:0:300:0:300:0:0:7:1000:warthog:ancient_bird:cyclops:hellhound:spider_queen:assasson
+cmusic:0:500:0:500:0:500:fantasy.ogg:1:100
+tile:0:500:0:500:0:0:grass3

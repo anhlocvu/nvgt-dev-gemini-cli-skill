@@ -1,0 +1,50 @@
+song@[]songs(0);
+class song{
+string filename;
+sound track;
+double volume;
+song(string fn, double v)
+{
+filename=fn;
+volume=v;
+track.stream(fn);
+track.volume=v;
+track.play_looped();
+}
+}
+void adjust_music_volume(string direction)
+{
+if(direction=="up")
+{
+for(uint i=0; i<songs.length(); i++)
+{
+if(songs[i].track.volume<0) songs[i].track.volume=songs[i].track.volume+1;
+musvol=songs[i].track.volume;
+addprefs();
+}
+}
+if(direction=="down")
+{
+for(uint i=0; i<songs.length(); i++)
+{
+if(songs[i].track.volume>-50) songs[i].track.volume=songs[i].track.volume-1;
+musvol=songs[i].track.volume;
+addprefs();
+}
+}
+set_url_volume(musvol);
+}
+void destroy_songs()
+{
+for(uint i=0; i<songs.length(); i++)
+{
+songs[i].track.stop();
+songs[i].track.close();
+}
+songs.resize(0);
+}
+void add_map_music(string filename, double vol)
+{
+song song1(filename, vol);
+songs.insert_last(song1);
+}

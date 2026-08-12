@@ -1,0 +1,49 @@
+void add_note()
+{
+string notename=input("name","type the name of the note, no spaces");
+if(notename=="") return;
+if(string_contains(notename," ",1)>-1)
+{
+speak("please do not contain special characters include spaces");
+return;
+}
+string text=input("text","type the text for the note "+notename+". support multilines","","",0,false,true);
+if(text=="") return;
+int q=qa("are you sure that you want to add this note "+notename+"?");
+if(q==1) send_reliable(0,"addnote "+notename+" "+text,0);
+else speak("canceled");
+return;
+}//function.addnote
+void edit_note(string notename,string text)
+{
+form.create_window("edit note "+notename,false,true);
+int a=form.create_input_box("text",text,"",0,false,true);
+int ok=form.create_button("&ok",false,false,true,true);
+int cancel=form.create_button("&cancel",false,true,true,true);
+form.focus(a);
+while(true)
+{
+wait(5);
+form.monitor();
+cwloop();
+if(form.is_pressed(cancel))
+{
+form.reset();
+speak("canceled");
+break;
+}
+if(form.is_pressed(ok))
+{
+string get=form.get_text(a);
+if(get=="")
+{
+form.reset();
+speak("no text");
+return;
+}
+form.reset();
+send_reliable(0,"editnote "+notename+" "+get,0);
+break;
+}
+}//while
+}//done

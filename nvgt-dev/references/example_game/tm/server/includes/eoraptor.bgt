@@ -1,0 +1,150 @@
+eoraptor@[] eoraptors(0);
+class eoraptor
+{
+int x;
+int y;
+int z;
+string map;
+string zone;
+string mid;
+timer noisetimer;
+string slayer;
+string alliancename;
+timer stimer;
+timer mtimer;
+int mtime=300;
+timer xtimer;
+int health=40000000;
+int id=random(1,100);
+string hitby;
+eoraptor(int sx,int sy,int sz,string smap)
+{
+x=sx;
+y=sy;
+z=sz;
+map=smap;
+//mid=spawn_moving_sound("eoraptorstep+random(1, 2)1.ogg",x,y,z,map);
+}
+}
+void eoraptorloop()
+{
+for(uint i=0; i<eoraptors.length(); i++)
+{
+if(eoraptors[i].xtimer.elapsed>2000000000)
+{
+destroy_moving_sound(eoraptors[i].mid);
+eoraptors[i].health=-1;
+eoraptors[i].hitby="sunlight";
+eoraptors.remove_at(i);
+i--;
+continue;
+}
+else if(eoraptors[i].map=="safe_zone")
+{
+eoraptors[i].health=-1;
+eoraptors[i].hitby="cheating detecter";
+eoraptors.remove_at(i);
+i--;
+continue;
+}
+if(eoraptors[i].noisetimer.elapsed>4000)
+{
+play("eoraptorvoice"+random(1, 5), eoraptors[i].x, eoraptors[i].y,eoraptors[i].z,eoraptors[i].map);
+eoraptors[i].noisetimer.restart();
+}
+//for (uint i2=0; i2<players.length(); i2++)
+int i2=get_player_index_from(eoraptors[i].slayer);
+{
+if(i2>-1)
+{
+if(eoraptors[i].health<=0)
+{
+if(eoraptors[i].slayer==players[i2].name)
+{
+if(players[i2].map=="creature_arena")
+{
+players[i2].creaturehunted=true;
+eoraptorspawntimer.restart();
+}
+else
+//players[i2].give("reptyles_tail",1);
+//send(players[i2].peer_id,"you got a reptyles tail for killing the eoraptor. perhaps now you might want to cross the invisible barior in the valley.",2);
+play("eoraptorkill"+random(1, 3),eoraptors[i].x,eoraptors[i].y,eoraptors[i].z,eoraptors[i].map);
+eoraptors.remove_at(i);
+i--;
+continue;
+}
+}
+}
+}
+int index=get_nearest_player(eoraptors[i].x,eoraptors[i].y,eoraptors[i].z,eoraptors[i].map);
+if(index>-1)
+{
+if(in_vehicle(players[index].name)>-1 or players[index].newb==1 or players[index].is_dead or players[index].invinsible) continue;
+int miss=random(1,30);
+int dist=get_3d_distance(eoraptors[i].x,eoraptors[i].y,eoraptors[i].z,players[index].x,players[index].y,players[index].z);
+if(dist<15 and eoraptors[i].stimer.elapsed>1500 and players[index].z==eoraptors[i].z)
+{
+eoraptors[i].stimer.restart();
+play("eoraptorhit"+random(1, 3),eoraptors[i].x,eoraptors[i].y,eoraptors[i].z,eoraptors[i].map);
+send(0,"distsound eoraptor_hit "+eoraptors[i].x+" "+eoraptors[i].y+" "+eoraptors[i].z+" "+eoraptors[i].map,0);
+if(miss<30)
+{
+if(players[index].shielded)
+{
+players[index].playsound("shieldhit"+random(1,4));
+players[index].shieldshots-=random(10000,10000);
+}
+else
+{
+players[index].hit(4000000,5000000);
+players[index].hitby="eoraptor";
+players[index].playsound("eoraptor_hit"+random(1, 3));
+players[index].playsound("hit"+random(1, 3));
+}
+}
+}
+if(eoraptors[i].mtimer.elapsed>eoraptors[i].mtime)
+{
+eoraptors[i].mtimer.restart();
+play("eoraptorstep"+random(1,2), eoraptors[i].x, eoraptors[i].y, eoraptors[i].z, eoraptors[i].map, -1, true, false);
+if(eoraptors[i].x<players[index].x)
+eoraptors[i].x++;
+else if(eoraptors[i].x>players[index].x)
+eoraptors[i].x--;
+if(eoraptors[i].y<players[index].y)
+eoraptors[i].y++;
+if(eoraptors[i].y>players[index].y)
+eoraptors[i].y--;
+if(eoraptors[i].z<players[index].z)
+eoraptors[i].z++;
+if(eoraptors[i].z>players[index].z)
+eoraptors[i].z--;
+//update_moving_sound(eoraptors[i].mid,eoraptors[i].x,eoraptors[i].y,eoraptors[i].z);
+}
+}
+}
+}
+int eoraptorcount=0;
+void spawn_eoraptor(int x,int y,int z,string map)
+{
+//if(eoraptorcount>=1) return;
+eoraptor s(x,y,z,map);
+eoraptors.insert_last(s);
+//eoraptorcount++;
+}
+timer eoraptorspawntimer;
+void eoraptorspawnloop()
+{
+if(eoraptorspawntimer.elapsed>=60000)
+{
+//while(eoraptors.length()<1)
+spawn_eoraptor(50,50,0,"eoraptors_cave");
+}
+}
+int ceoraptors=0;
+void eoraptorsmash()
+{
+eoraptors.resize(0);
+ceoraptors=0;
+}

@@ -1,0 +1,790 @@
+// gang_menu.nvgt - Client Side Gang Menu and Option Menu Online
+// Written for ROTU (NVGT)
+
+string temp_gang_info = "";
+string temp_gang_list = "";
+string temp_gang_requests = "";
+string temp_gang_invites = "";
+
+// Synchronous gang info fetch
+string get_gang_info_sync() {
+    temp_gang_info = "";
+    send("gang_request_info", 0);
+    timer t;
+    while(temp_gang_info == "") {
+        wait(5);
+        netloop();
+        if(t.elapsed > 2000) break;
+    }
+    return temp_gang_info;
+}
+
+// Synchronous gang list fetch
+string get_gang_list_sync() {
+    temp_gang_list = "";
+    send("gang_request_list", 0);
+    timer t;
+    while(temp_gang_list == "") {
+        wait(5);
+        netloop();
+        if(t.elapsed > 2000) break;
+    }
+    return temp_gang_list;
+}
+
+// Synchronous gang requests fetch
+string get_gang_requests_sync() {
+    temp_gang_requests = "";
+    send("gang_request_requests", 0);
+    timer t;
+    while(temp_gang_requests == "") {
+        wait(5);
+        netloop();
+        if(t.elapsed > 2000) break;
+    }
+    return temp_gang_requests;
+}
+
+// Synchronous pending invites fetch
+string get_gang_invites_sync() {
+    temp_gang_invites = "";
+    send("gang_request_invites", 0);
+    timer t;
+    while(temp_gang_invites == "") {
+        wait(5);
+        netloop();
+        if(t.elapsed > 2000) break;
+    }
+    return temp_gang_invites;
+}
+
+// Show Detailed Gang Info Menu
+void show_gang_info_menu(string gname, string gleader, string gslogan, int glevel, int gexp, int gkills, string online_mems, string offline_mems) {
+    while(true) {
+        dynamic_menu_pro m;
+        m.reset(false);
+        m.click_sound = "menuclick.ogg";
+        m.enter_sound = "menuenter.ogg";
+        m.edge_sound = "menuedge.ogg";
+        m.wrap_sound = "menuwrap.ogg";
+        m.open_sound = "menuopen.ogg";
+        m.enable_first_letter_navigation = true;
+        m.enable_up_and_down = true;
+        m.set_callback(staff_menu_callback, "");
+
+        m.add_item_tts("Gang Name: " + gname, "gname");
+        m.add_item_tts("Leader: " + gleader, "leader");
+        m.add_item_tts("Slogan: " + gslogan, "slogan");
+        m.add_item_tts("Level: " + glevel, "level");
+        m.add_item_tts("Experience: " + gexp + " / " + (glevel * 1000), "exp");
+        m.add_item_tts("Undead Kills: " + gkills, "kills");
+
+        // Parse online members
+        string[] onlines = string_split(online_mems, ",", false);
+        uint online_count = 0;
+        for(uint i = 0; i < onlines.length(); i++) {
+            if (onlines[i].is_empty() == false) {
+                online_count++;
+            }
+        }
+        m.add_item_tts("--- Online Members (" + online_count + ") ---", "online_header");
+        for(uint i = 0; i < onlines.length(); i++) {
+            if (onlines[i].is_empty() == false) {
+                m.add_item_tts(onlines[i], "online_mem_" + i);
+            }
+        }
+
+        // Parse offline members
+        string[] offlines = string_split(offline_mems, ",", false);
+        uint offline_count = 0;
+        for(uint i = 0; i < offlines.length(); i++) {
+            if (offlines[i].is_empty() == false) {
+                offline_count++;
+            }
+        }
+        m.add_item_tts("--- Offline Members (" + offline_count + ") ---", "offline_header");
+        for(uint i = 0; i < offlines.length(); i++) {
+            if (offlines[i].is_empty() == false) {
+                m.add_item_tts(offlines[i], "offline_mem_" + i);
+            }
+        }
+
+        m.add_item_tts("Go Back", "back");
+
+        int res = m.run("Gang Info Menu for " + gname, true);
+        string opt = m.get_item_name(res);
+        if (opt == "back" or res <= 0) {
+            break;
+        }
+    }
+}
+
+// Online Option Menu (Shift + O)
+void account_options_menu() {
+    while(true) {
+        dynamic_menu_pro m;
+        m.reset(false);
+        m.click_sound = "menuclick.ogg";
+        m.enter_sound = "menuenter.ogg";
+        m.edge_sound = "menuedge.ogg";
+        m.wrap_sound = "menuwrap.ogg";
+        m.open_sound = "menuopen.ogg";
+        m.enable_first_letter_navigation = true;
+        m.enable_up_and_down = true;
+        m.set_callback(staff_menu_callback, "");
+
+        m.add_item_tts("Set Character Description", "desc");
+        m.add_item_tts("Change Password", "password");
+        m.add_item_tts("Change Email", "email");
+        m.add_item_tts("Go Back", "back");
+
+        int res = m.run("Account and Character Options", true);
+        string opt = m.get_item_name(res);
+        if (opt == "back" or res <= 0) {
+            break;
+        }
+        else if (opt == "desc") {
+            string desc = txt.input("Enter character description", true);
+            if (desc != "") send("/setdescription " + desc, 1);
+        }
+        else if (opt == "password") {
+            string old_pass = txt.input("Enter old password", true);
+            if (old_pass != "") {
+                string new_pass = txt.input("Enter new password", true);
+                if (new_pass != "") send("/changepass " + old_pass + " " + new_pass, 1);
+            }
+        }
+        else if (opt == "email") {
+            string new_email = txt.input("Enter new email address", true);
+            if (new_email != "") send("/changemail " + new_email, 1);
+        }
+    }
+}
+
+void mutelist_management_menu() {
+    while(true) {
+        dynamic_menu_pro m;
+        m.reset(false);
+        m.click_sound = "menuclick.ogg";
+        m.enter_sound = "menuenter.ogg";
+        m.edge_sound = "menuedge.ogg";
+        m.wrap_sound = "menuwrap.ogg";
+        m.open_sound = "menuopen.ogg";
+        m.enable_first_letter_navigation = true;
+        m.enable_up_and_down = true;
+        m.set_callback(staff_menu_callback, "");
+
+        m.add_item_tts("View Muted Players", "view");
+        m.add_item_tts("Clear Mute List", "clear");
+        m.add_item_tts("Go Back", "back");
+
+        int res = m.run("Mute List Management", true);
+        string opt = m.get_item_name(res);
+        if (opt == "back" or res <= 0) {
+            break;
+        }
+        else if (opt == "view") {
+            send("/mutelist", 1);
+        }
+        else if (opt == "clear") {
+            int conf = yesno("Are you sure you want to clear your mute list?", "Yes", "No");
+            if (conf == 1) {
+                send("/mutelistclear", 1);
+            }
+        }
+    }
+}
+
+void social_options_menu() {
+    while(true) {
+        dynamic_menu_pro m;
+        m.reset(false);
+        m.click_sound = "menuclick.ogg";
+        m.enter_sound = "menuenter.ogg";
+        m.edge_sound = "menuedge.ogg";
+        m.wrap_sound = "menuwrap.ogg";
+        m.open_sound = "menuopen.ogg";
+        m.enable_first_letter_navigation = true;
+        m.enable_up_and_down = true;
+        m.set_callback(staff_menu_callback, "");
+
+        m.add_item_tts("Toggle Emotes", "emotes");
+        m.add_item_tts("Mute List Management", "mutelist");
+        m.add_item_tts("Send Feedback to BQT", "feedback");
+        m.add_item_tts("Show Admins Online", "admins");
+        m.add_item_tts("Show Builders Online", "builders");
+        m.add_item_tts("Show All Players Online", "players");
+        m.add_item_tts("Go Back", "back");
+
+        int res = m.run("Social and Interaction Options", true);
+        string opt = m.get_item_name(res);
+        if (opt == "back" or res <= 0) {
+            break;
+        }
+        else if (opt == "emotes") {
+            send("/emotes", 1);
+        }
+        else if (opt == "mutelist") {
+            mutelist_management_menu();
+        }
+        else if (opt == "feedback") {
+            string title = txt.input("Enter feedback title", true);
+            if (title != "") {
+                string content = txt.input("Enter feedback details", true);
+                if (content != "") send("/feedback " + title + " " + content, 1);
+            }
+        }
+        else if (opt == "admins") {
+            send("/admins", 1);
+        }
+        else if (opt == "builders") {
+            send("/builders", 1);
+        }
+        else if (opt == "players") {
+            send("viewplayers", 0);
+        }
+    }
+}
+
+void game_modes_menu() {
+    while(true) {
+        dynamic_menu_pro m;
+        m.reset(false);
+        m.click_sound = "menuclick.ogg";
+        m.enter_sound = "menuenter.ogg";
+        m.edge_sound = "menuedge.ogg";
+        m.wrap_sound = "menuwrap.ogg";
+        m.open_sound = "menuopen.ogg";
+        m.enable_first_letter_navigation = true;
+        m.enable_up_and_down = true;
+        m.set_callback(staff_menu_callback, "");
+
+        m.add_item_tts("Join Battle Royale", "join_br");
+        m.add_item_tts("Leave Battle Royale", "leave_br");
+        m.add_item_tts("View Battle Royale Players", "players_br");
+        m.add_item_tts("View Current Voting Info", "voting_info");
+        m.add_item_tts("View Vote Details", "vote_details");
+        m.add_item_tts("Cast a Vote", "cast_vote");
+        m.add_item_tts("Go Back", "back");
+
+        int res = m.run("Game Modes and Events", true);
+        string opt = m.get_item_name(res);
+        if (opt == "back" or res <= 0) {
+            break;
+        }
+        else if (opt == "join_br") {
+            send("/join_royale", 1);
+        }
+        else if (opt == "leave_br") {
+            send("/leave_royale", 1);
+        }
+        else if (opt == "players_br") {
+            send("/royaleplayers", 1);
+        }
+        else if (opt == "voting_info") {
+            send("/voting", 1);
+        }
+        else if (opt == "vote_details") {
+            send("/votes", 1);
+        }
+        else if (opt == "cast_vote") {
+            string option = txt.input("Enter option to vote for", true);
+            if (option != "") send("/vote " + option, 1);
+        }
+    }
+}
+
+void help_info_menu() {
+    while(true) {
+        dynamic_menu_pro m;
+        m.reset(false);
+        m.click_sound = "menuclick.ogg";
+        m.enter_sound = "menuenter.ogg";
+        m.edge_sound = "menuedge.ogg";
+        m.wrap_sound = "menuwrap.ogg";
+        m.open_sound = "menuopen.ogg";
+        m.enable_first_letter_navigation = true;
+        m.enable_up_and_down = true;
+        m.set_callback(staff_menu_callback, "");
+
+        m.add_item_tts("Read Server Rules", "rules");
+        m.add_item_tts("View Game Changelog", "changes");
+        m.add_item_tts("Go Back", "back");
+
+        int res = m.run("Help and Server Information", true);
+        string opt = m.get_item_name(res);
+        if (opt == "back" or res <= 0) {
+            break;
+        }
+        else if (opt == "rules") {
+            send("/rules", 1);
+        }
+        else if (opt == "changes") {
+            send("/changes", 1);
+        }
+    }
+}
+
+void gameplay_settings_menu() {
+    while(true) {
+        dynamic_menu_pro m;
+        m.reset(false);
+        m.click_sound = "menuclick.ogg";
+        m.enter_sound = "menuenter.ogg";
+        m.edge_sound = "menuedge.ogg";
+        m.wrap_sound = "menuwrap.ogg";
+        m.open_sound = "menuopen.ogg";
+        m.enable_first_letter_navigation = true;
+        m.enable_up_and_down = true;
+        m.set_callback(staff_menu_callback, "");
+
+        m.add_item_tts("Toggle AFK Mode", "afk");
+        m.add_item_tts("Toggle Events Notice", "events");
+        m.add_item_tts("Go Back", "back");
+
+        int res = m.run("Gameplay Settings", true);
+        string opt = m.get_item_name(res);
+        if (opt == "back" or res <= 0) {
+            break;
+        }
+        else if (opt == "afk") {
+            send("/afk", 1);
+        }
+        else if (opt == "events") {
+            send("toggle_events", 0);
+        }
+    }
+}
+
+// Online Option Menu (Shift + O)
+void prefsmenu_online() {
+    while(true) {
+        dynamic_menu_pro m;
+        m.reset(false);
+        m.click_sound = "menuclick.ogg";
+        m.enter_sound = "menuenter.ogg";
+        m.edge_sound = "menuedge.ogg";
+        m.wrap_sound = "menuwrap.ogg";
+        m.open_sound = "menuopen.ogg";
+        m.enable_first_letter_navigation = true;
+        m.enable_up_and_down = true;
+        m.set_callback(staff_menu_callback, "");
+
+        m.add_item_tts("Gang Options", "gang");
+        m.add_item_tts("Account and Character Options", "account");
+        m.add_item_tts("Social and Interaction Options", "social");
+        m.add_item_tts("Game Modes and Events", "modes");
+        m.add_item_tts("Help and Server Information", "help");
+        m.add_item_tts("Gameplay Settings", "gameplay");
+        
+        if (my_newb == 1) {
+            m.add_item_tts("Disable Newbie Status", "newbie");
+        }
+
+        m.add_item_tts("Go Back", "back");
+
+        int res = m.run("Option Menu. Select a category.", true);
+        string opt = m.get_item_name(res);
+        if (opt == "back" or res <= 0) {
+            break;
+        }
+        else if (opt == "gang") {
+            gang_menu_online();
+        }
+        else if (opt == "account") {
+            account_options_menu();
+        }
+        else if (opt == "social") {
+            social_options_menu();
+        }
+        else if (opt == "modes") {
+            game_modes_menu();
+        }
+        else if (opt == "help") {
+            help_info_menu();
+        }
+        else if (opt == "gameplay") {
+            gameplay_settings_menu();
+        }
+        else if (opt == "newbie") {
+            int conf = yesno("Are you sure you want to disable newbie status? Once disabled, you cannot re-enable this option.", "Yes", "No");
+            if (conf == 1) {
+                send("/newbie", 1);
+            }
+        }
+    }
+}
+
+// Main Gang System Menu
+void gang_menu_online() {
+    while(true) {
+        string info = get_gang_info_sync();
+        
+        if(info == "none" or info.is_empty()) {
+            // State 1: Lone Wolf (No Gang)
+            dynamic_menu_pro m;
+            m.reset(false);
+            m.click_sound = "menuclick.ogg";
+            m.enter_sound = "menuenter.ogg";
+            m.edge_sound = "menuedge.ogg";
+            m.wrap_sound = "menuwrap.ogg";
+            m.open_sound = "menuopen.ogg";
+            m.enable_first_letter_navigation = true;
+            m.enable_up_and_down = true;
+            m.set_callback(staff_menu_callback, "");
+
+            m.add_item_tts("Create New Gang", "create");
+            m.add_item_tts("Join Existing Gang", "join");
+            m.add_item_tts("Pending Invitations", "invites");
+            m.add_item_tts("Go Back", "back");
+
+            int res = m.run("Gang menu. You are a lone wolf.", true);
+            string opt = m.get_item_name(res);
+            if (opt == "back" or res <= 0) {
+                break;
+            }
+            else if (opt == "create") {
+                string gname = txt.input("Enter gang name to create (alphanumeric only, no spaces or special characters)", true);
+                if (gname != "") {
+                    string slogan = txt.input("Enter gang slogan", true);
+                    if (slogan == "") slogan = "A gang in the world of ROTU.";
+                    send("gang_create " + gname + "|" + slogan, 0);
+                    wait(300);
+                }
+            }
+            else if (opt == "join") {
+                gang_join_list_menu();
+            }
+            else if (opt == "invites") {
+                gang_my_invites_menu();
+            }
+        }
+        else {
+            // Already in a gang
+            string[] parts = string_split(info, "|", true);
+            if(parts.length() < 6) {
+                speak("Error parsing gang info from server.");
+                break;
+            }
+            
+            string gname = parts[0];
+            string gleader = parts[1];
+            string gslogan = parts[2];
+            int glevel = stn(parts[3]);
+            int gexp = stn(parts[4]);
+            int gkills = stn(parts[5]);
+            string online_mems = "";
+            if(parts.length() >= 7) online_mems = parts[6];
+            string offline_mems = "";
+            if(parts.length() >= 8) offline_mems = parts[7];
+            
+            bool is_leader = (gleader == username);
+            
+            dynamic_menu_pro m;
+            m.reset(false);
+            m.click_sound = "menuclick.ogg";
+            m.enter_sound = "menuenter.ogg";
+            m.edge_sound = "menuedge.ogg";
+            m.wrap_sound = "menuwrap.ogg";
+            m.open_sound = "menuopen.ogg";
+            m.enable_first_letter_navigation = true;
+            m.enable_up_and_down = true;
+            m.set_callback(staff_menu_callback, "");
+
+            if(is_leader) {
+                // State 2: You are the Leader
+                m.add_item_tts("View Gang Info & Members", "view_info");
+                m.add_item_tts("Invite Player", "invite");
+                m.add_item_tts("Review Join Requests", "review_reqs");
+                m.add_item_tts("Kick Member", "kick");
+                m.add_item_tts("Change Slogan", "change_slogan");
+                m.add_item_tts("Broadcast Announcement", "broadcast");
+                m.add_item_tts("Disband Gang", "disband");
+                m.add_item_tts("Go Back", "back");
+
+                int res = m.run("Gang management menu for " + gname + ", Level " + glevel + ". You are the Leader.", true);
+                string opt = m.get_item_name(res);
+                if (opt == "back" or res <= 0) {
+                    break;
+                }
+                else if (opt == "view_info") {
+                    show_gang_info_menu(gname, gleader, gslogan, glevel, gexp, gkills, online_mems, offline_mems);
+                }
+                else if (opt == "invite") {
+                    string target = txt.input("Enter username to invite", true);
+                    if (target != "") {
+                        send("gang_invite " + target, 0);
+                        wait(300);
+                    }
+                }
+                else if (opt == "review_reqs") {
+                    gang_review_requests_menu();
+                }
+                else if (opt == "kick") {
+                    gang_kick_member_menu(online_mems, offline_mems);
+                }
+                else if (opt == "change_slogan") {
+                    string new_slg = txt.input("Enter new gang slogan", true);
+                    if(new_slg != "") {
+                        send("gang_slogan " + new_slg, 0);
+                        wait(300);
+                    }
+                }
+                else if (opt == "broadcast") {
+                    string msg = txt.input("Enter broadcast message", true);
+                    if(msg != "") {
+                        send("gang_broadcast " + msg, 0);
+                        wait(300);
+                    }
+                }
+                else if (opt == "disband") {
+                    int yn = yesno_online("Are you sure you want to disband " + gname + "? This action cannot be undone!", "Yes, disband", "Cancel");
+                    if (yn == 1) {
+                        send("gang_disband", 0);
+                        wait(300);
+                        break;
+                    }
+                }
+            }
+            else {
+                // State 3: You are a Member
+                m.add_item_tts("View Gang Info & Members", "view_info");
+                m.add_item_tts("Leave Gang", "leave");
+                m.add_item_tts("Go Back", "back");
+
+                int res = m.run("Gang menu for " + gname + ", Level " + glevel + ". You are a Member.", true);
+                string opt = m.get_item_name(res);
+                if (opt == "back" or res <= 0) {
+                    break;
+                }
+                else if (opt == "view_info") {
+                    show_gang_info_menu(gname, gleader, gslogan, glevel, gexp, gkills, online_mems, offline_mems);
+                }
+                else if (opt == "leave") {
+                    int yn = yesno_online("Are you sure you want to leave " + gname + " and become a lone wolf?", "Yes, leave", "Cancel");
+                    if(yn == 1) {
+                        send("gang_leave", 0);
+                        wait(300);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Join list menu
+void gang_join_list_menu() {
+    while(true) {
+        string glist = get_gang_list_sync();
+        if(glist.is_empty()) {
+            dlg("There are no gangs currently created on the server.");
+            break;
+        }
+
+        dynamic_menu_pro m;
+        m.reset(false);
+        m.click_sound = "menuclick.ogg";
+        m.enter_sound = "menuenter.ogg";
+        m.edge_sound = "menuedge.ogg";
+        m.wrap_sound = "menuwrap.ogg";
+        m.open_sound = "menuopen.ogg";
+        m.enable_first_letter_navigation = true;
+        m.enable_up_and_down = true;
+        m.set_callback(staff_menu_callback, "");
+
+        string[] gangs_raw = string_split(glist, "|", false);
+        for(uint i = 0; i < gangs_raw.length(); i++) {
+            string[] gparts = string_split(gangs_raw[i], ":", true);
+            if(gparts.length() >= 4) {
+                m.add_item_tts("Gang " + gparts[0] + " (Leader: " + gparts[1] + ", " + gparts[2] + " players, Level " + gparts[3] + ")", gangs_raw[i]);
+            }
+        }
+        m.add_item_tts("Go Back", "back");
+
+        int res = m.run("Select a gang to view info or apply to join.", true);
+        string name = m.get_item_name(res);
+        if(name == "back" or res <= 0) {
+            break;
+        }
+
+        string[] gparts = string_split(name, ":", true);
+        string target_gang = gparts[0];
+        string target_leader = gparts[1];
+        string target_members = gparts[2];
+        string target_level = gparts[3];
+        string target_slogan = "";
+        if(gparts.length() >= 5) target_slogan = gparts[4];
+
+        dynamic_menu_pro sub;
+        sub.reset(false);
+        sub.click_sound = "menuclick.ogg";
+        sub.enter_sound = "menuenter.ogg";
+        sub.edge_sound = "menuedge.ogg";
+        sub.wrap_sound = "menuwrap.ogg";
+        sub.open_sound = "menuopen.ogg";
+        sub.enable_first_letter_navigation = true;
+        sub.enable_up_and_down = true;
+        sub.set_callback(staff_menu_callback, "");
+
+        sub.add_item_tts("View Details", "info");
+        sub.add_item_tts("Apply to Join", "request");
+        sub.add_item_tts("Go Back", "back");
+
+        int sub_res = sub.run("Gang " + target_gang, true);
+        string sub_opt = sub.get_item_name(sub_res);
+        if(sub_opt == "info") {
+            show_gang_details_menu(target_gang, target_leader, target_slogan, target_level, target_members);
+        }
+        else if(sub_opt == "request") {
+            send("gang_join_request " + target_gang, 0);
+            wait(300);
+            break;
+        }
+    }
+}
+
+// Pending invites menu
+void gang_my_invites_menu() {
+    while(true) {
+        string ginvs = get_gang_invites_sync();
+        if(ginvs.is_empty()) {
+            dlg("You have no pending invitations.");
+            break;
+        }
+
+        dynamic_menu_pro m;
+        m.reset(false);
+        m.click_sound = "menuclick.ogg";
+        m.enter_sound = "menuenter.ogg";
+        m.edge_sound = "menuedge.ogg";
+        m.wrap_sound = "menuwrap.ogg";
+        m.open_sound = "menuopen.ogg";
+        m.enable_first_letter_navigation = true;
+        m.enable_up_and_down = true;
+        m.set_callback(staff_menu_callback, "");
+
+        string[] invites = string_split(ginvs, ",", false);
+        for(uint i = 0; i < invites.length(); i++) {
+            m.add_item_tts("Invite to join gang: " + invites[i], invites[i]);
+        }
+        m.add_item_tts("Go Back", "back");
+
+        int res = m.run("Pending invites. Select one to respond.", true);
+        string name = m.get_item_name(res);
+        if(name == "back" or res <= 0) {
+            break;
+        }
+
+        int yn = yesno_online("Would you like to accept the invite and join gang " + name + "?", "Accept", "Reject");
+        if(yn == 1) {
+            send("gang_accept_invite " + name, 0);
+            wait(300);
+            break;
+        }
+        else if(yn == 2) {
+            send("gang_reject_invite " + name, 0);
+            wait(300);
+        }
+    }
+}
+
+// Leader request review menu
+void gang_review_requests_menu() {
+    while(true) {
+        string greqs = get_gang_requests_sync();
+        if(greqs.is_empty()) {
+            dlg("No pending join requests.");
+            break;
+        }
+
+        dynamic_menu_pro m;
+        m.reset(false);
+        m.click_sound = "menuclick.ogg";
+        m.enter_sound = "menuenter.ogg";
+        m.edge_sound = "menuedge.ogg";
+        m.wrap_sound = "menuwrap.ogg";
+        m.open_sound = "menuopen.ogg";
+        m.enable_first_letter_navigation = true;
+        m.enable_up_and_down = true;
+        m.set_callback(staff_menu_callback, "");
+
+        string[] requests = string_split(greqs, ",", false);
+        for(uint i = 0; i < requests.length(); i++) {
+            m.add_item_tts("Player " + requests[i] + " requested to join", requests[i]);
+        }
+        m.add_item_tts("Go Back", "back");
+
+        int res = m.run("Review join requests.", true);
+        string name = m.get_item_name(res);
+        if(name == "back" or res <= 0) {
+            break;
+        }
+
+        int yn = yesno_online("Accept " + name + " into the gang?", "Accept", "Reject");
+        if(yn == 1) {
+            send("gang_accept_request " + name, 0);
+            wait(300);
+        }
+        else if(yn == 2) {
+            send("gang_reject_request " + name, 0);
+            wait(300);
+        }
+    }
+}
+
+// Leader kick menu
+void gang_kick_member_menu(string online_mems, string offline_mems) {
+    while(true) {
+        dynamic_menu_pro m;
+        m.reset(false);
+        m.click_sound = "menuclick.ogg";
+        m.enter_sound = "menuenter.ogg";
+        m.edge_sound = "menuedge.ogg";
+        m.wrap_sound = "menuwrap.ogg";
+        m.open_sound = "menuopen.ogg";
+        m.enable_first_letter_navigation = true;
+        m.enable_up_and_down = true;
+        m.set_callback(staff_menu_callback, "");
+
+        int count = 0;
+        
+        string[] onlines = string_split(online_mems, ",", false);
+        for(uint i = 0; i < onlines.length(); i++) {
+            if (onlines[i].is_empty()) continue;
+            if (string_contains(onlines[i], "(Leader", 1) > -1) continue;
+            string raw_name = string_split(onlines[i], " ", false)[0];
+            m.add_item_tts(onlines[i], raw_name);
+            count++;
+        }
+
+        string[] offlines = string_split(offline_mems, ",", false);
+        for(uint i = 0; i < offlines.length(); i++) {
+            if (offlines[i].is_empty()) continue;
+            if (string_contains(offlines[i], "(Leader", 1) > -1) continue;
+            string raw_name = string_split(offlines[i], " ", false)[0];
+            m.add_item_tts(offlines[i], raw_name);
+            count++;
+        }
+
+        if(count == 0) {
+            dlg("Your gang has no members to kick.");
+            break;
+        }
+
+        m.add_item_tts("Go Back", "back");
+
+        int res = m.run("Select member to kick.", true);
+        string name = m.get_item_name(res);
+        if(name == "back" or res <= 0) {
+            break;
+        }
+
+        int yn = yesno_online("Are you sure you want to kick " + name + " from the gang?", "Yes, kick", "Cancel");
+        if(yn == 1) {
+            send("gang_kick " + name, 0);
+            wait(300);
+            break;
+        }
+    }
+}

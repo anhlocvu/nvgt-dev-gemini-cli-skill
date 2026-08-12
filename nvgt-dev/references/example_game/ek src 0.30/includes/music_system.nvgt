@@ -1,0 +1,79 @@
+sound_pool musicpool;
+mapmusic@[]mapmusics(0);
+int music_volume;
+int music_pitch=100;
+class mapmusic
+{
+sound snd;
+vector min,max;
+int music_volume;
+int music_pitch;
+string soundfile;
+bool playing=false,inrange;
+bool is_in_range()
+{
+return (min.x<=mr.x&&max.x>=mr.x&&min.y<=mr.y&&max.y>=mr.y&&min.z<=me.z&&max.z>=me.z);
+}
+void check()
+{
+bool r=is_in_range();
+if(r==true&&inrange==false)
+{
+inrange=true;
+this.playing=true;
+this.snd.volume=this.music_volume; // Doğru değişkeni kullan
+this.snd.pitch=this.music_pitch;   // Doğru değişkeni kullan
+this.snd.play_looped();
+}
+else if(r==false&&inrange==true)
+{
+inrange=false;
+this.playing=false;
+this.snd.pause();
+}
+else if(r==true&&inrange==true) // Ses çalmaya devam ederken volume ve pitch güncellensin
+{
+this.snd.volume=this.music_volume;
+this.snd.pitch=this.music_pitch;
+}
+}
+mapmusic(int minx1,int maxx1,int miny1,int maxy1,int minz1,int maxz1,int music_volume1,int music_pitch1,string soundfile1)
+{
+this.min.x=minx1;
+this.max.x=maxx1;
+this.min.y=miny1;
+this.max.y=maxy1;
+this.min.z=minz1;
+this.max.z=maxz1;
+this.music_volume=music_volume1;
+this.music_pitch=music_pitch1;
+this.soundfile=soundfile1;
+this.snd.load(this.soundfile);
+this.snd.volume=this.music_volume; // Volume yüklemeden sonra ayarlanmalı
+this.snd.pitch=this.music_pitch;   // Pitch yüklemeden sonra ayarlanmalı
+}
+}
+void clear_musics()
+{
+for(uint i=0;i<mapmusics.length();i++)
+{
+mapmusics[i].snd.stop();
+mapmusics[i].snd.close();
+mapmusics.remove_at(i);
+i=0;
+}
+}
+void change_music_volume(int volume) {
+music_volume=volume;
+for(uint i = 0; i < mapmusics.length(); i++) {
+mapmusics[i].music_volume = music_volume; // Her müzik objesinin volume değeri güncelleniyor
+mapmusics[i].snd.volume = music_volume + mapmusics[i].music_volume; // Müzik ses seviyesi güncelleniyor
+    }
+}
+void music_loop()
+{
+for(uint i=0;i<mapmusics.length();i++)
+{
+mapmusics[i].check();
+}
+}

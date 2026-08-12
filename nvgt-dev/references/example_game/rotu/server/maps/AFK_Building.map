@@ -1,0 +1,14 @@
+name AFK_Building
+maxx 75
+maxy 75
+zone 0 75 0 575 0 50 AFK Building
+travelpoint 0 75 75 75 0 100 165 375 0 main
+zone 0 75 75 75 0 100 Exit
+safezone 0 75 0 75 0 1000
+beacon 0 0 75 75 0 0 Exit
+viewpoint inside
+platform 0 75 0 75 0 0 carpet7
+no_fights
+door 69 69 3 69 69 72 -1 none.ogg none.ogg none.ogg none.ogg
+door 69 69 72 69 69 3 -1 none.ogg none.ogg none.ogg none.ogg
+platform 0 75 0 75 69 69 carpet7

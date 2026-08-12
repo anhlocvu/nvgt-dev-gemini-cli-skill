@@ -1,0 +1,14 @@
+mapname:sky_of_the_mighty
+maxx:400
+maxy:400
+maxz:400
+tile:0:400:0:400:0:0:gravel6
+zone:0:500:0:500:0:5555:the land of the mighty. it is a structure build in the middle of the sky. from such a hight the ground is not even visible. the wind houles in to your ears, the air striking against you in fury
+src:0:550:0:550:0:5555:desert wind night.ogg:-10:100
+cmusic:0:550:0:550:0:5555:melody13.ogg:-10:100
+robots:0:400:0:400:0:0:6:1000:griffin,phoenix,wyvern,ancient_dragon,megadragon
+travelpoint:0:0:0:0:0:0:fantasy_island:200:200:200:moved
+zone:0:0:0:0:0:0:go back@trackme@
+noitems:0:55555:0:55555:0:55555:
+noitems:0:5555:0:5555:0:5555555:grenade
+noitems:0:5555:0:5555:0:55555:grenade:grenade_launcher:bazooka:stp429:thunderstorm

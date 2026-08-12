@@ -1,0 +1,27 @@
+double stn(string the_string) { return string_to_number(the_string); }
+string linear(string[] a)
+{
+string final;
+for(uint i=0; i<a.length(); i++)
+{
+final+=(a[i]+"\r\n");
+}
+return final;
+}
+string[] delinear(string a)
+{
+return string_split(a, "\r\n", false);
+}
+string get_script_path()
+{
+string scriptpath;
+if(SCRIPT_COMPILED==false)
+{
+scriptpath="rotu.bgt";
+}
+else
+{
+scriptpath="rotu.exe";
+}
+return scriptpath;
+}

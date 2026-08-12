@@ -1,0 +1,26 @@
+class hand{
+string equipped;
+bool drawn=false;
+hand()
+{
+}
+bool equip_item(string name)
+{
+if(!equipped.is_empty()) return false;
+equipped=name;
+return true;
+}
+bool use()
+{
+if(equipped.is_empty()) return false;
+drawn=true;
+//More function code coming.
+return true;
+}
+bool unequip()
+{
+if(equipped.is_empty()) return false;
+equipped="";
+return true;
+}
+}

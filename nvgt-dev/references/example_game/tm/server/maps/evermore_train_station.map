@@ -1,0 +1,60 @@
+mapname:evermore_train_station
+maxx:400
+maxy:400
+maxz:200
+zone:0:400:0:400:0:400:the train station has been newly built, however it is filled with hundreds of people. the trains can be seen in the distance, waiting for the passengers to board. up stares is the ticket counter, from where the tickets to go to crystal city can be bought
+tile:0:200:0:200:0:0:carpet
+tile:0:400:0:400:0:0:concrete
+tile:0:20:10:0:0:4:chair
+zone:0:20:20:20:0:10:some benches@trackme@
+tile:0:20:20:20:0:4:chair
+zone:0:20:20:20:0:10:bench@trackme@
+tile:0:200:101:200:0:20:wallglass5
+tile:0:200:100:100:0:21:ladder
+tile:0:200:101:200:21:21:concrete2
+tile:150:150:150:150:21:25:carpet2
+zone:0:200:100:100:0:20:stairs leading up to the ticket counter@trackme@
+zone:15:15:50:50:0:0:stairs leading up to the platform@trackme@
+zone:15:15:50:50:0:87:stairs leading up to the platform
+zone:150:150:150:150:21:25:tikit counter@trackme@
+tile:145:150:151:155:24:24:wood4
+tile:145:150:151:160:21:23:walltable
+src:150:150:150:150:21:25:hum4.ogg
+tile:0:400:201:400:21:50:wallglass5
+tile:0:400:201:400:0:0:cement2
+tile:0:200:201:300:0:0:concrete15
+tile:0:400:301:500:0:400:wallglass6
+zone:15:15:210:210:88:88:stairs leading down. in the distance you see a train, waiting for the passengers to board@trackme@
+
+src:0:400:301:400:5:500:train+station.ogg
+zone:150:150:300:300:0:5:press shift plus enter to board the train@trackme@
+zone:0:0:0:0:0:0:go back@trackme@
+travelpoint:0:0:0:0:0:0:evermore_city:1300:1300:0:maybe you'll want to travel later
+src:0:500:0:500:10:500:convivio1.ogg:-10:100
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter
+fightingstate:0
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+noitems:0:55555:0:55555:0:55555:throwing_star
+noitems:0:55555:0:55555:0:55555:demon_king
+noitems:0:55555:0:55555:0:55555:kings_statue
+tile:0:20:101:210:88:88:concrete15
+tile:0:20:50:100:88:88:cement2
+tile:15:15:50:50:1:87:cement2
+tile:15:15:51:51:1:87:wallbank
+tile:14:14:50:50:1:87:wallbeaulon
+tile:16:16:50:50:1:87:wallbeaulon
+tile:0:20:49:49:87:100:wallair
+tile:15:15:49:49:1:86:wallbeaulon
+tile:21:21:49:210:88:150:wallglass5
+tile:201:201:100:200:21:34:wallglass5
+tile:15:15:210:210:0:88:cement2
+tile:0:21:211:211:88:150:wallglass5
+tile:15:15:211:211:1:87:wallbank
+tile:14:14:210:210:1:87:wallbeaulon
+tile:16:16:210:210:1:87:wallbeaulon
+tile:15:15:209:209:1:87:wallbeaulon
+tile:0:200:98:99:1:30:wall
+
+zone:15:15:210:210:0:88:stairs leading down. in the distance you see a train, waiting for the passengers to board

@@ -1,0 +1,5 @@
+mapname:safe_area
+maxx:400
+maxy:400
+maxz:400
+tile:0:400:0:400:0:0:carpet

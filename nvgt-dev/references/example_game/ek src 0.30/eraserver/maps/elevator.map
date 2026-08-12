@@ -1,0 +1,29 @@
+mapname:elevator
+maxx:5
+maxy:5
+maxz:100
+tile:0:5:0:5:0:0:marble2
+tile:0:5:0:5:50:50:marble2
+zone:0:5:0:5:0:100:elevator
+src:0:5:0:5:0:100:elevator_inside.ogg
+zone:0:0:0:0:0:10:skip the elevator:trackme
+travelpoint:0:0:0:0:0:0:safe_zone:100:50:0:safe zone
+zone:0:0:0:0:50:60:skip the elevator:trackme
+travelpoint:0:0:0:0:50:50:safe_zone:100:50:50:store
+tile:4:4:5:5:1:49:wallrail
+tile:5:5:5:5:0:49:air
+tile:5:5:5:5:1:49:wallscreen
+tile:5:5:5:5:0:0:marble2
+door:5:0:50:5:0:0:200:silence.ogg:doormove12.ogg:dooropen77.ogg:doorclose77.ogg
+//amb:5:5:5:5:10:49:elevator.ogg
+zone:5:5:5:5:0:0:lift up:trackme
+tile:4:4:0:0:1:49:wallrail
+tile:5:5:0:0:1:50:air
+tile:5:5:0:0:1:49:wallspaceshipreverb
+tile:5:5:0:0:50:50:marble2
+door:5:5:0:5:5:50:200:silence.ogg:doormove12.ogg:dooropen77.ogg:doorclose77.ogg
+//amb:5:5:0:0:1:40:elevator.ogg
+zone:5:5:0:0:50:50:Lift down:trackme
+fightingstate:0
+jump:0:100:0:100:0:100:0
+noitems:0:100:0:100:-100:100:wirebomb:nuclear_bomb:mine:stun_dart:security_bomb:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:rocket_launcher:bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censor_bomb:stone:fire_starter:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:guided_missile:missile_interceptor:mine:hors:boat:tasing_small_projectile:small_projectile:elecboat:censor_bomb:frequency_scrambler:helicopter:fire_extinguisher:wood:sound_grenade:air_canister:gas_mask:shield:motion_bomb:police_motorcycle:speed_drink:arena_card:tank:aircraft:police_car:police_car_super:dogan_slx:sorento:old_car:m24_sniper_rifle:Storm_Sniper:Storm_Sniper:mlk_207_combat_rifle:barrett_m82_sniper_rifle:the_legendary_sword:ball_gangster:sky_429_laser_shotgun:s&w_model66_revolver:stp:kalashnikov_rifle:ruger_security_6_revolver:rpg7

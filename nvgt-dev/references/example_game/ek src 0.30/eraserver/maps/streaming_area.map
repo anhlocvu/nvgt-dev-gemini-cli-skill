@@ -1,0 +1,8 @@
+mapname:streaming_area
+maxx:100
+maxy:100
+maxz:100
+tile:0:100:0:100:0:0:concrete3
+zone:0:100:0:100:0:100:streaming_area
+//url:http://ep128.streamr.ru
+url:http://kralpopwmp.radyotvonline.com:80/;

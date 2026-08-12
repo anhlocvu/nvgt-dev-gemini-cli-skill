@@ -1,0 +1,19 @@
+mapname:melee_arena
+maxx:100
+maxy:100
+maxz:100
+tile:0:100:0:100:0:0:carpet
+zone:0:100:0:100:0:100:melee arena
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+noitems:0:1000:0:10000:0:10000:m116_death_bringer
+noitems:0:100000:0:100000:0:100000:s110pistol
+noitems:0:100000:0:100000:0:100000:m1891
+noitems:0:100000:0:100000:0:100000:sp150shotgun
+noitems:0:10000:0:10000:0:10000:missile_launcher
+noitems:0:10000:0:10000:0:10000:g521_laser_cannon
+noitems:0:100000:0:100000:0:100000:invisibility_shield
+noitems:0:100000:0:100000:0:100000:pistol:ak47:ak48:hand_cannon:sp5shotgun:sp150shotgun:b96machinegun
+cmusic:0:100:0:100:0:500:anime181.ogg:-14:100
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb:throwing_star:kings_statue:demon_king
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb

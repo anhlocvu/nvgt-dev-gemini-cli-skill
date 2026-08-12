@@ -1,0 +1,18 @@
+mapname:land_of_the_fallen
+maxx:500
+maxy:500
+maxz:500
+tile:0:500:0:500:0:0:grass
+zone:0:500:0:500:0:500:the land of the fallen. a beautiful forest. you see a lot of greenry. by the looks you think it might be a peaceful place, however often looks can be deceiving...
+tile:250:300:250:300:0:0:shallow
+zone:250:300:250:300:0:7:a small streem.
+tile:250:300:0:300:0:0:shallow
+tile:0:300:250:300:0:0:shallow
+zone:250:300:0:300:0:7:a small streem.
+zone:0:300:250:300:0:7:a small streem.
+src:0:500:0:500:0:1000:melody55.ogg:-10:100
+zone:0:0:0:0:0:0:go back to fantasy island@trackme@
+travelpoint:0:0:0:0:0:0:fantasy_island:100:100:0:you leave the land, however you can never forget your experiences there
+robots:0:500:0:500:0:0:5:1000:godzilla,orc,balor,giant_worm,basilisk,mammoth
+noitems:0:4444:0:4444:0:4444:
+noitems:0:5555:0:5555:0:55555:grenade:grenade_launcher:bazooka:stp429:thunderstorm

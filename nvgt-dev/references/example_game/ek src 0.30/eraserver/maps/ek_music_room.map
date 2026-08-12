@@ -1,0 +1,17 @@
+mapname:ek_music_room
+maxx:30
+maxy:30
+maxz:30
+tile:0:30:0:30:0:0:concrete18
+zone:0:30:0:30:0:30:Music room.
+src:0:30:0:30:0:30:shelteramb.ogg
+tile:0:0:0:0:0:0:carpet4
+zone:0:0:0:0:0:10:Entrance to the safe zone.:trackme
+travelpoint:0:0:0:0:0:0:safe_zone:50:100:0:Done.
+tile:15:15:15:15:0:0:metalpipe
+zone:15:15:15:15:0:10:Music player.:trackme
+tile:25:25:0:0:0:0:metalpipe
+vending_machine:25:0:0
+zone:25:25:0:0:0:10:Press t to buy this vending machine.:trackme
+fightingstate:0
+noitems:0:100:0:100:-100:100:wirebomb:nuclear_bomb:mine:stun_dart:security_bomb:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:rocket_launcher:bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censor_bomb:stone:fire_starter:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:guided_missile:missile_interceptor:mine:hors:boat:tasing_small_projectile:small_projectile:elecboat:censor_bomb:frequency_scrambler:helicopter:fire_extinguisher:wood:sound_grenade:air_canister:gas_mask:shield:speed_drink:police_motorcycle:tank:police_car:police_car_super:sorento:armored_tank:wood:motion_bomb:arena_card:the_magical_flower

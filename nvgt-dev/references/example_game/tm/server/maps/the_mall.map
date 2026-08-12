@@ -1,0 +1,104 @@
+mapname:the_mall
+maxx:500
+maxy:500
+maxz:500
+tile:0:51:0:51:0:0:dirt6
+door:50:50:50:50:0:0:52:52:0:1000:doors.ogg:door2movings.ogg:dooropen31.ogg:doorclose34.ogg
+tile:51:51:0:300:0:7:wallbeaulon
+tile:0:300:51:51:0:7:wallbeaulon
+zone:0:50:0:50:0:7:the parking area of the mall. it seems crowded with cars, indicating that it is a popular place of the city
+zone:50:50:50:50:0:7:door leading inside the mall. press shift enter to enter@trackme@
+zone:52:500:52:500:0:7:being the primary place to shop goods, it is obvious that the city's main mall would be bustling with people. however, even knowing that, you are left astonished at how many people seem to be here. everywhere you look you find different people, pulling along their shopping carts. there seems to be a new person entering the mall whenever you blink your eyes. you can see several shops and stores around you, which are there to caytre to various needs of the people living in the city
+door:52:52:52:52:0:0:50:50:0:1000:doors.ogg:door2movings.ogg:dooropen31.ogg:doorclose34.ogg
+tile:52:500:52:500:0:0:concrete7
+zone:100:100:100:100:0:0:elevator to the second floor@trackme@
+zone:150:150:150:150:0:7:a transparent, glass door. on the top you see a sign labling it as the weapons store. press shift enter to open it@trackme@
+door:152:152:152:152:0:0:150:150:0:1000:doors.ogg:door2movings.ogg:dooropen31.ogg:doorclose34.ogg
+door:150:150:150:150:0:0:152:152:0:1000:doors.ogg:door2movings.ogg:dooropen31.ogg:doorclose34.ogg
+zone:151:152:151:152:0:7:exit
+tile:0:170:171:171:0:7:wallglass5
+tile:171:171:150:171:0:7:wallglass5
+tile:0:250:151:151:0:7:wallglass5
+tile:151:151:130:250:0:7:wallglass5
+zone:151:152:151:152:0:7:exit
+zone:152:170:152:170:0:8:the inside of the weapon store. it is not a large area, however it is an ideal place for those who wish to equip themselves with deadly weapons
+zone:170:170:170:170:0:10:to sea a list of weapons which can be bought, press shift plus enter@trackme@
+door:250:250:250:250:0:0:252:252:0:1000:doors.ogg:door2movings.ogg:dooropen31.ogg:doorclose34.ogg
+door:252:252:252:252:0:0:250:250:0:1000:doors.ogg:door2movings.ogg:dooropen31.ogg:doorclose34.ogg
+tile:0:350:251:251:0:7:wallglass5
+tile:251:251:230:350:0:7:wallglass5
+tile:301:301:253:301:0:7:wallglass5
+tile:0:300:301:301:0:7:wallglass5
+zone:250:250:250:250:0:7:entrence to the Pharmacy. through the door you can see different people making their perchases@trackme@
+zone:252:300:252:300:0:7:the city's most relyable Pharmacy. here you can bye different items and meddisens to heal your health or to cure yourself from a particular status
+zone:251:252:251:252:0:7:exit
+zone:300:300:300:300:0:11:press shift plus enter to see a list of available items@trackme@
+door:400:400:400:400:0:0:402:402:0:1000:doors.ogg:door2movings.ogg:dooropen31.ogg:doorclose34.ogg
+door:402:402:402:402:0:0:400:400:0:1000:doors.ogg:door2movings.ogg:dooropen31.ogg:doorclose34.ogg
+zone:400:400:400:400:0:7:a picture of a large explosion occuring hangs outside. seeing this, it is clear that it is the explosive store@trackme@
+tile:0:450:401:401:0:7:wallglass5
+tile:401:401:370:450:0:7:wallglass5
+tile:451:451:402:451:0:7:wallglass5
+tile:402:451:451:451:0:7:wallglass5
+zone:402:450:402:450:0:7:the best place to perchase bombs. from suicide bombs to nuclear bombs, this store has everything. it even has the latest bombs in the market, the ultimate bombs
+zone:450:450:450:450:0:11:to see a list of our bomb collection, pres shift plus enter@trackme@
+door:100:100:100:100:0:0:100:100:100:40:doors.ogg:elevator.ogg:door2opens.ogg:door2closes.ogg
+tile:0:500:0:500:100:100:concrete6
+tile:100:100:100:100:7:98:concrete6
+zone:500:500:500:500:0:99:stairs to the second floor@trackme@
+zone:100:100:100:100:100:100:elevator to first floor@trackme@
+door:100:100:100:100:100:100:100:100:0:40:doors.ogg:elevator.ogg:door2opens.ogg:door2closes.ogg
+zone:100:100:100:100:1:99:elevator
+tile:500:500:500:500:0:100:stairs
+zone:0:500:0:500:100:107:mall, second floor
+zone:150:150:150:150:100:107:entrence to the ammo store@trackme@
+door:150:150:150:150:100:100:152:152:100:1000:doors.ogg:door2movings.ogg:dooropen31.ogg:doorclose34.ogg
+door:152:152:152:152:100:100:150:150:100:1000:doors.ogg:door2movings.ogg:dooropen31.ogg:doorclose34.ogg
+zone:152:200:152:200:100:1007:ammo store
+zone:200:200:200:200:100:110:to brouze through the list of different gun bullets, press shift plus enter@trackme@
+zone:151:152:151:152:100:107:exit
+tile:151:151:130:250:100:107:wallglass5
+tile:0:250:151:151:100:107:wallglass5
+tile:201:201:152:250:100:107:wallglass5
+tile:0:250:201:201:100:107:wallglass5
+tile:301:301:270:351:100:107:wallglass5
+tile:0:351:301:301:100:107:wallglass5
+tile:351:351:302:366:100:107:wallglass5
+tile:0:366:351:351:100:107:wallglass5
+tile:401:401:370:466:100:107:wallglass5
+tile:0:466:401:401:100:107:wallglass5
+tile:451:451:402:466:100:107:wallglass5
+tile:0:466:451:451:100:107:wallglass5
+tile:500:500:500:500:100:200:stairs
+zone:500:500:500:500:101:199:stairs to the third floor of the mall@trackme@
+tile:0:500:0:500:200:200:concrete7
+zone:0:500:0:500:200:207:the third floor of the mall. it is a quiet area, only a single store being located here. you can see several other stores which are not open for public. perhaps they will be open at a later time in the future
+door:50:50:50:50:100:100:50:50:200:40:doors.ogg:elevator.ogg:door2opens.ogg:door2closes.ogg
+zone:50:50:50:50:100:100:elevator to the third floor@trackme@
+door:50:50:50:50:200:200:50:50:100:40:doors.ogg:elevator.ogg:door2opens.ogg:door2closes.ogg
+tile:50:50:50:50:107:198:concrete6
+zone:50:50:50:50:101:199:elevator
+zone:50:50:50:50:200:206:elevator to the second floor
+door:400:400:400:400:200:200:402:402:200:1000:doors.ogg:door2movings.ogg:dooropen31.ogg:doorclose34.ogg
+door:402:402:402:402:200:200:400:400:200:1000:doors.ogg:door2movings.ogg:dooropen31.ogg:doorclose34.ogg
+tile:401:401:370:480:200:207:wallglass5
+tile:0:480:401:401:200:207:wallglass5
+tile:0:480:451:451:200:207:wallglass5
+tile:451:451:451:480:200:207:wallglass5
+tile:451:451:370:466:200:207:wallglass5
+zone:400:400:400:400:200:207:entrence to misk store@trackme@
+zone:402:450:402:450:200:207:here you can buy various useful items. from turning invisible to protecting yourself from different weapons, this store can equip you with items which will make your fighting style interesting, as well as deadly
+zone:450:450:450:450:200:210:to see a list of available items, press shift plus enter@trackme@
+zone:401:402:401:402:200:207:exit
+zone:51:52:51:52:0:7:exit back to the parking area@trackme@
+zone:0:0:0:0:0:0:go back to the city@trackme@
+zone:401:402:401:402:0:11:exit
+zone:401:402:401:402:100:110:exit
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:throwing_star
+zone:152:152:152:152:0:0:exit
+tile:500:500:0:500:0:0:concrete7
+cmusic:0:500:0:500:0:500:anime21.ogg:-10:100
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+fightingstate:0
+noitems:0:55555:0:55555:0:55555:kings_statue

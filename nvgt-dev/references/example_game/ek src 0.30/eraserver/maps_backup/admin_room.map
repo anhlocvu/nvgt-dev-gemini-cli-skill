@@ -1,0 +1,16 @@
+//reverb:0:100:0:100:0:100:0.7:0.2:0.70:0.9:0.8
+mapname:admin_room
+maxx:100
+maxy:100
+maxz:200
+tile:0:100:0:100:0:0:marble2
+zone:0:100:0:100:-100000:100000:admin room
+//fightingstates:1
+music:0:100:0:100:-18:-18:md20.ogg
+zone:0:0:0:0:0:10:press shift enter to go back to safe zone:trackme
+travelpoint:0:0:0:0:0:0:safe_zone:50:50:0:moved you, go safely!
+//safezone:0:100:0:100:0:100
+//noitems:0:1000:0:1000:-1000:1000:wirebomb:mine:stun_dart:security_bomb:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censor_bomb:stone:fire_starter:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:guided_missile:missile_interceptor:mine:hors:boat:tasing_small_projectile:small_projectile:elecboat:censor_bomb:frequency_scrambler:helicopter:fire_extinguisher:sound_grenade:air_canister:shield:motion_bomb:helicopter:wood:police_car_super:tank:aircraft:item_grabber:fight_inviter
+//robots:0:100:0:54:0:0:4:2000:santa
+//tile:0:100:56:56:0:10000000:wallwood15
+music:music1.ogg

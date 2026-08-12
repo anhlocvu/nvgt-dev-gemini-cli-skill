@@ -1,0 +1,716 @@
+name main
+maxx 500
+maxy 500
+zone 0 500 0 500 0 500 A ruined and abandoned city
+beacon 300 300 300 300 0 0 Olivia avenue
+beacon 300 300 410 410 0 0 Denver street
+platform 0 500 0 500 0 0 cement3
+zone 0 500 467 500 0 500 City outskirts
+platform 0 500 467 500 0 0 gravel
+platform 215 230 430 445 0 0 marble
+platform 231 232 430 445 0 30 wallbuilding
+platform 213 214 430 445 0 30 wallbuilding
+platform 213 232 446 446 0 30 wallbuilding
+platform 215 230 430 445 30 30 wallbuilding
+zone 210 235 425 450 0 15 Near the safe zone
+beacon 222 222 428 428 0 0 safe zone entrance
+beacon 222 222 457 457 0 0 safe zone walk in workshop
+zone 215 230 430 445 0 30 Inside the safe zone
+platform 231 231 429 429 0 31 metal
+platform 214 214 429 429 0 31 metal
+platform 213 232 429 446 31 31 tile
+zone 213 232 429 446 31 40 Safe zone roof
+zone 214 214 429 429 0 38 west ladder
+zone 231 231 429 429 0 38 east ladder
+platform 217 227 447 457 0 0 tile
+platform 228 228 447 457 0 10 wallwood
+platform 216 216 447 457 0 10 wallwood
+zone 217 227 447 457 0 15 Safe zone walk-in workshop
+platform 217 227 447 457 10 10 wallwood
+platform 216 228 447 457 11 11 tile
+zone 216 228 447 457 11 17 walk in safe zone workshop roof
+platform 215 215 447 447 11 31 stairs
+zone 215 215 447 447 11 40 west stairs to the safe zone roof from the workshop roof
+platform 222 222 447 447 0 11 stairs
+zone 222 222 447 447 0 20 workshop roof stairs
+platform 229 229 447 447 11 31 stairs
+zone 229 229 447 447 11 40 east stairs from the workshop roof to the safe zone roof
+platform 210 234 353 377 -30 -30 concrete
+platform 209 235 352 352 -30 -1 wallstone
+platform 209 209 352 378 -30 -1 wallstone
+platform 235 235 352 378 -30 -1 wallstone
+platform 209 235 378 378 -30 -1 wallstone
+platform 222 222 365 365 -30 0 metal
+zone 210 234 353 377 -30 -1 a small bunk with low ceilings
+zone 222 222 365 365 -30 10 a metal staircase leading into a bunker
+platform 215 215 447 447 11 31 stairs
+zone 215 215 447 447 11 40 west stairs to the safe zone roof from the workshop roof
+platform 222 222 447 447 0 11 stairs
+zone 222 222 447 447 0 20 workshop roof stairs
+platform 229 229 447 447 11 31 stairs
+zone 229 229 447 447 11 40 east stairs from the workshop roof to the safe zone roof
+zone 217 221 447 447 0 10 press shift enter to pass through the workshop doors to the safe zone
+zone 217 221 445 445 0 10 press shift enter to go through the workshop doors into the workshop
+zone 221 223 413 415 5 5 tunnel entrance, press shift enter then climb down to go through
+platform 209 235 352 352 -30 -1 wallstone
+platform 209 209 352 378 -30 -1 wallstone
+platform 235 235 352 378 -30 -1 wallstone
+platform 209 235 378 378 -30 -1 wallstone
+zone 210 234 353 377 -30 -1 a small bunk with low ceilings
+zone 214 230 363 381 0 8 near a ruined shed like structure
+zone 222 222 365 365 -30 10 a metal staircase leading into a bunker
+platform 221 223 416 429 1 11 air
+platform 209 235 352 378 -29 -1 wallrocks2
+platform 222 222 365 365 -30 0 metal
+platform 215 221 365 365 0 8 walldoor
+platform 223 229 365 365 0 8 walldoor
+platform 215 229 364 364 0 8 walldoor
+platform 216 228 366 380 0 0 concrete
+zone 216 228 366 380 0 8 an old shed like hut, it has a smashed down wall and is in disrepair, there is a bed and a stair case in the south wall
+platform 215 229 380 380 0 8 walldebris
+platform 229 229 364 380 0 8 walldoor
+zone 215 215 364 380 0 8 the ruined wall, one beam remains, it's probably climbable
+platform 215 229 364 380 8 8 wallbrick
+platform 215 215 372 372 0 8 metal
+platform 215 229 364 380 9 9 tile
+zone 215 229 364 380 9 20 the shed's unstable roof
+zone 215 215 372 372 0 20 the unstable beam leading up to the roof
+platform 226 228 366 370 0 0 walltable
+platform 226 228 366 370 1 1 snow
+zone 225 228 366 371 0 8 the old, dirty bed, looking it for long might make you sick
+platform 228 228 379 379 0 0 grass
+zone 228 228 379 379 0 8 a piece of paper, it looks like it has been wripped from a book, perhaps a diary, any way, it is soking wet and the writing is hard to make out
+sign 228 379 0 finally, the undead are finally following my orders, i can cause pain to the world.
+platform 0 50 50 50 0 3 wallfence
+platform 50 50 0 50 0 3 wallfence
+platform 0 50 50 50 4 4 metal
+platform 50 50 0 50 4 4 metal
+zone 0 51 0 51 0 50 a fence surrounding a large crumbling building, some kind of temple
+zone 0 48 0 48 0 50 the grounds of the large building
+beacon 215 229 364 380 0 20 the wrecked hut
+platform 0 49 0 49 0 0 concrete
+zone 25 25 49 51 0 10 a gate, jumpable
+platform 25 25 50 50 0 3 walldoor
+platform 0 40 40 40 0 10 wallstone
+platform 40 40 0 40 0 10 wallstone
+platform 0 40 0 40 10 10 tile
+platform 16 16 41 41 0 4 metal
+platform 16 41 41 41 4 4 metal
+platform 41 41 0 41 4 4 metal
+platform 34 34 41 41 4 10 metal
+zone 0 41 0 41 0 9 near the building
+zone 16 41 0 41 4 9 fire escape walk way
+zone 16 16 41 41 0 9 fire escape ladder
+zone 34 34 41 41 4 20 fire escape ladder
+beacon 0 50 0 50 0 100 the abandoned temple
+beacon 16 16 41 41 0 4 the lower fire escape ladder of the abandoned temple
+beacon 34 34 41 41 4 10 the higher fire escape ladder of the abandoned temple
+zone 0 40 0 40 10 20 the temple roof
+zone 25 25 41 41 0 3 the entrance to the temple, it is broken down, as though someone was trying to escape in a hurry
+door 25 49 0 25 51 0 500 .ogg .ogg door5.ogg door6.ogg
+door 25 51 0 25 49 0 500 .ogg .ogg door5.ogg door6.ogg
+zone 222 222 430 430 0 5 a sign concerning new players. please read by pressing shift enter
+beacon 25 25 50 50 0 0 temple gateway
+zone 25 25 40 40 0 0 you hear the howl of undead
+platform 25 209 364 366 -31 -29 wallrocks3
+platform 26 209 365 365 -30 -30 concrete
+zone 25 209 -30 365 -30 -30 a long tunnel heading west
+platform 25 27 25 366 -31 -29 wallrocks3
+platform 26 26 26 365 -30 -30 concrete
+zone 26 26 365 365 -30 -30 the tunnel heads south now
+zone 26 26 0 364 -30 -30 a long tunnel heading south
+platform 25 27 25 27 -29 -1 wallrocks2
+platform 26 26 26 26 -30 0 metal
+zone 26 26 26 26 -30 9 a rusty ladder heading upwards
+platform 27 27 365 365 -30 -30 concrete
+platform 221 223 414 414 5 10 wallstone
+door 222 413 5 222 415 5 500 .ogg .ogg door11.ogg door12.ogg
+door 222 415 5 222 413 5 500 .ogg .ogg door11.ogg door12.ogg
+door 221 413 5 221 415 5 500 .ogg .ogg door11.ogg door12.ogg
+door 221 415 5 221 413 5 500 .ogg .ogg door11.ogg door12.ogg
+door 223 413 5 223 415 5 500 .ogg .ogg door11.ogg door12.ogg
+door 223 415 5 223 413 5 500 .ogg .ogg door11.ogg door12.ogg
+platform 1 1 45 45 0 0 wallfence
+zone 15 45 65 95 0 15 Outside the outpost
+platform 15 45 65 95 0 0 dirt
+platform 25 35 75 85 0 0 wood
+platform 24 24 74 86 0 15 wallbrick
+platform 25 35 74 74 0 15 wallbrick
+platform 36 36 74 86 0 15 wallbrick
+platform 25 35 86 86 0 15 wallbrick
+zone 25 35 75 85 0 15 An old abandoned outpost. The bricks appear to be very loose and cracked in some areas, but otherwise it is still standing
+platform 36 36 80 80 0 10 walldebris2
+platform 24 24 80 80 0 10 walldebris2
+zone 25 25 80 80 0 10 A very cracked and banged up window
+zone 35 35 80 80 0 10 A very cracked and banged up window
+zone 30 30 73 75 0 10 The outpost doors, press Shift Enter to go through
+beacon 30 30 73 75 0 10 Outpost doors, this is also the store
+door 30 75 0 30 73 0 1500 none.ogg none.ogg door3.ogg door4.ogg
+door 30 73 0 30 75 0 1500 none.ogg none.ogg door3.ogg door4.ogg
+zone 30 30 85 87 0 10 The back door, which has been barricaded
+platform 30 30 86 86 0 10 walldebris3
+platform 213 213 429 429 0 30 wallwood
+platform 213 232 428 428 0 30 wallwood
+platform 232 232 429 429 0 30 wallwood
+platform 215 230 429 429 0 0 carpet6
+platform 213 232 428 430 31 31 tile
+zone 213 232 428 428 31 40 Safe zone roof
+zone 213 213 429 430 31 40 Safe zone roof
+zone 232 232 429 430 31 40 Safe zone roof
+zone 215 230 429 429 0 10 Entryway
+zone 222 222 429 429 0 10 the exit of the safe zone, press shift enter
+door 222 429 0 222 427 0 500 .ogg none.ogg door5.ogg door6.ogg
+door 222 427 0 222 429 0 500 .ogg none.ogg door5.ogg door6.ogg
+zone 222 222 427 427 0 10 the entrance to the safe zone, press shift enter
+platform 24 36 74 86 15 15 wallrail
+platform 24 36 74 86 16 16 metal
+platform 25 35 75 85 15 15 hardwood
+platform 25 35 75 85 16 16 air
+zone 24 36 74 86 15 25 the out post watch point railings
+zone 25 35 75 85 15 25 the outpost watch point
+platform 29 31 79 81 6 14 wallglass
+platform 30 30 80 80 0 15 hardwood3
+zone 30 30 80 80 0 20 the stairs to the watch point
+platform 200 205 375 380 0 7 wallcar2
+zone 199 206 374 381 0 10 An abandoned vehicle
+platform 57 61 100 107 0 2 wallcloth
+platform 58 60 101 106 0 0 carpet5
+zone 56 62 99 108 0 10 an abandoned tent, there is a large rip in one side and a torn up body lays inside.
+platform 57 61 100 107 3 3 carpet6
+platform 61 61 103 103 0 0 grass
+zone 57 61 100 107 0 2 a rip in the tent, blood is all over it, the body lays half through it.
+zone 58 60 101 106 0 2 the inside of the tent, it is filled with dirt and appears to have been here a while
+zone 59 59 99 101 0 2 the tent entrance, press shift enter to pass through
+zone 57 61 100 107 3 10 the unstable top of the damaged tent.
+door 59 101 0 59 99 0 500 none.ogg grassstep1.ogg jump.ogg fall.ogg
+door 59 99 0 59 101 0 500 none.ogg grassstep1.ogg .ogg jump.ogg fall.ogg
+beacon 59 59 100 100 0 0 abandoned tent
+zone 59 59 106 106 0 0 a knocked over radio,
+platform 59 59 106 106 0 0 metal
+door 59 106 0 59 105 0 10000 none.ogg musicmisc3.ogg door11.ogg door11.ogg
+platform 0 39 0 39 0 0 carpet3
+zone 0 39 0 39 0 9 a large ruined temple, oil lamps lay on the floor and there are paintings of deamends torned on the floor
+platform 9 19 9 15 0 7 wallplastic
+zone 8 20 8 16 0 10 A pew which has been turned upside down
+zone 25 25 41 41 0 3 The doors of the temple, which are partially open. Press Shift Enter to go inside
+door 25 39 0 25 41 0 1400 none.ogg none.ogg door5.ogg door6.ogg
+door 25 41 0 25 39 0 1400 none.ogg none.ogg door5.ogg door6.ogg
+zone 25 25 39 39 0 7 Press Shift Enter to exit the temple
+platform 20 30 20 30 0 3 wallgeneric
+platform 20 30 20 30 4 4 wood
+zone 20 30 20 30 4 9 A wooden alter. It seems as if someone has been here recently, and with bad intentions. You see animal bones and oils scattered everywhere, as well as a prayer book
+platform 37 37 0 5 0 7 tile
+zone 37 37 0 5 0 7 a holi statue, surprisingly it's still in perfect shape
+platform 3 7 35 39 0 2 wallmetal
+platform 3 7 35 39 3 3 metal
+platform 38 38 0 5 0 7 wallobject
+zone 39 39 0 5 0 7 behind the statue
+platform 26 26 26 26 0 3 metal
+zone 26 26 26 26 0 3 the ladder seems to lead up to a trapdoor in some kind of alter
+platform 26 26 26 26 3 3 wallgeneric
+door 26 26 4 26 26 2 500 none.ogg none.ogg door3.ogg door4.ogg
+door 26 26 2 26 26 4 500 none.ogg none.ogg door3.ogg door4.ogg
+platform 200 205 375 380 7 7 metal
+zone 200 205 375 380 7 20 the vehicle's damagd roof, there is a hole in it
+sign 234 353 -30 they turned on me, i am hiding down here for the time being, but i will have to move soon
+zone 234 234 353 353 -30 -30 a piece of paper, it looks as though it has been wripped from a book, perhaps a diary? any way, it is soking wet and the writing is hard to read
+zone 27 27 29 29 4 4 the prayer book, it is soking wet
+sign 27 29 4 oh lost, oh dead, oh tortured, oh pained, come forth. oh obey me, oh see me, oh know me, come forth. ye mighty come forth, ye powerful come forth, ye deadly. come forth. do my bidding, do as your lord commands.
+platform 15 15 65 65 0 10 wallcar
+zone 14 16 64 66 0 10 An abandoned vehicle
+platform 45 45 65 65 0 10 wallcar
+zone 44 46 64 66 0 10 An abandoned vehicle
+platform 45 45 95 95 0 10 wallcar
+zone 44 46 94 96 0 10 An abandoned vehicle
+platform 15 15 95 95 0 10 wallcar
+zone 14 16 94 96 0 10 An abandoned vehicle
+platform 222 222 430 430 0 0 hardwood3
+door 222 430 0 222 430 0 -1 none.ogg none.ogg none.ogg developer.ogg
+platform 234 234 353 353 -30 -30 grass
+sign 26 365 -30 congratulations, you have found one of the easter eggs of the Revenge of the undead main map, have fun looking for more
+platform 204 234 377 377 7 7 air
+platform 201 204 376 379 0 6 air
+platform 201 204 376 379 0 0 carpet
+zone 201 204 376 379 0 6 the inside of the burned out car
+zone 201 201 379 379 0 6 there is a bent door against the ground here
+door 201 379 0 199 379 0 1000 none.ogg none.ogg carhit2.ogg carhit1.ogg
+door 217 445 0 217 447 0 1000 none.ogg none.ogg elevator1open.ogg elevator1close.ogg
+door 217 447 0 217 445 0 1000 none.ogg none.ogg elevator1open.ogg elevator1close.ogg
+door 218 445 0 218 447 0 1000 none.ogg none.ogg elevator1open.ogg elevator1close.ogg
+door 218 447 0 218 445 0 1000 none.ogg none.ogg elevator1open.ogg elevator1close.ogg
+door 219 445 0 219 447 0 1000 none.ogg none.ogg elevator1open.ogg elevator1close.ogg
+door 219 447 0 219 445 0 1000 none.ogg none.ogg elevator1open.ogg elevator1close.ogg
+door 220 445 0 220 447 0 1000 none.ogg none.ogg elevator1open.ogg elevator1close.ogg
+door 220 447 0 220 445 0 1000 none.ogg none.ogg elevator1open.ogg elevator1close.ogg
+door 221 445 0 221 447 0 1000 none.ogg none.ogg elevator1open.ogg elevator1close.ogg
+door 221 447 0 221 445 0 1000 none.ogg none.ogg elevator1open.ogg elevator1close.ogg
+platform 41 41 470 480 0 10 wallcar2
+platform 40 40 471 471 0 0 metal
+platform 40 40 479 479 0 0 metal
+platform 41 46 481 487 0 10 wallcar
+platform 40 40 486 486 0 0 metal
+platform 41 46 470 487 10 10 metal
+platform 42 46 470 480 10 10 air
+platform 42 45 482 486 0 0 metal
+platform 42 45 48 486 1 9 air
+door 47 485 0 45 485 0 2000 none.ogg grassstep2.ogg carhit2.ogg carhit3.ogg
+door 45 485 0 47 485 0 2000 none.ogg grassstep1.ogg carhit1.ogg carhit4.ogg
+platform 42 44 485 486 0 9 wallplastic
+platform 44 44 485 486 0 9 metal
+zone 39 48 468 489 0 20 an abandoned truck on its side that was carrying a grave stone, the engine is still running some how and the allarm is going
+platform 41 46 481 481 1 9 wallcar
+source 41 43 485 486 0 9 carloopext.ogg
+zone 40 47 480 488 0 20 the cabin, the alarm is on the top and there is a hole in the side where you can climb out from the dash board
+zone 44 44 485 486 0 9 the dash board, climb here
+zone 40 42 469 479 0 20 the back of the truck, the grave stone has fallen off
+zone 40 40 471 471 0 5 one of the wheels, it is tireless and dented badly
+zone 40 40 479 479 0 5 one of the wheels, it is tireless and dented badly
+zone 40 40 486 486 0 5 one of the wheels, it is tireless and dented badly
+zone 45 47 485 485 0 0 the hole, press shift enter
+platform 50 50 473 477 0 7 wallstone
+platform 50 55 474 476 1 6 wallstone
+zone 49 56 472 478 0 20 a large grave stone that has fallen off the truck bed
+zone 50 55 474 476 0 0 under the the grave stone, you can see that there is a note taped to the stone, perhaps it is where the graving will go
+sign 51 475 0 emerly was a fantastic sister to kyl, keeping him sain through his siveer depression. you see next to the writing a symbol, for bones in a square with a fire in the middle
+platform 50 50 473 477 7 7 concrete
+platform 51 55 474 476 6 6 concrete
+zone 50 55 473 477 6 20 on top of the knocked over grave stone
+platform 38 38 0 5 8 9 wallobject
+platform 0 40 0 40 9 9 walldoor
+platform 25 25 41 49 0 0 dirt
+door 35 80 0 37 80 0 100 none.ogg none.ogg axe.ogg walldebris2.ogg
+door 37 80 0 35 80 0 100 none.ogg none.ogg axe.ogg walldebris2.ogg
+door 25 80 0 23 80 0 100 none.ogg none.ogg axe.ogg walldebris2.ogg
+door 23 80 0 25 80 0 100 none.ogg none.ogg axe.ogg walldebris2.ogg
+platform 25 35 75 85 6 14 wallstone
+platform 30 30 80 80 6 15 hardwood3
+zone 26 26 26 26 4 4 a carving is here, it is of four bones with a fire in the middle, you wander what it means
+platform 100 500 471 500 0 100 wallrocks2
+platform 100 500 470 470 0 100 dirt
+zone 100 500 470 500 0 200 an extremely high, steep hill
+platform 100 500 471 500 100 100 grass
+zone 100 500 471 500 100 200 the top of the hill, it looks over the the dark landscape below
+platform 300 310 470 480 29 31 air
+platform 300 310 470 480 28 28 concrete
+zone 300 310 470 480 28 31 a small cave
+beacon 305 305 470 470 28 28 a cave opening
+zone 300 300 480 480 28 28 a symbol is carved cruedly into the wall here, it is a fire surrounded by four bones.
+platform 300 310 482 484 29 31 air
+platform 300 310 482 484 28 28 concrete
+door 300 480 28 300 482 28 2000 none.ogg wallrocks.ogg walstone.ogg walldirt.ogg
+door 300 482 28 300 480 28 2000 none.ogg wallrocks.ogg wallstone.ogg walldirt.ogg
+zone 300 310 481 484 28 31 a small ledge over looking a huge chasm
+platform 300 310 485 490 0 31 air
+platform 300 310 485 490 0 0 concrete
+zone 300 400 472 490 0 19 a huge cave, light filters through cracks in the wall and you can't see from one side to the other
+zone 300 300 490 490 0 0 a wet, piece of paper, it appears to be wripped from a book, perhaps a diary?
+sign 300 490 0 i am stuck down here, and they are coming, it is so huge down here, i don't know where they are, please, help me
+zone 300 310 485 490 20 31 a gaping hole
+platform 300 400 472 490 1 19 air
+platform 300 400 472 490 0 0 concrete
+zone 100 500 467 469 6 200 you tumble from the cliff
+platform 300 400 472 472 4 4 concrete
+platform 300 400 472 472 8 8 concrete
+source 0 500 0 500 0 500 birds6.ogg
+zone 290 310 5 460 0 15 Deserted main road
+platform 290 310 5 460 0 0 concrete8
+platform 210 212 290 294 0 0 concrete
+zone 210 212 290 294 0 10 the entrance to the super market carpark
+platform 214 216 290 294 0 0 concrete
+zone 214 216 290 294 0 10 the exit of the super market carpark
+platform 189 237 249 268 0 15 wallbrick
+zone 188 238 248 268 0 15 near the abandoned super market
+zone 190 236 269 269 0 15 in front of the super market
+platform 0 500 466 466 0 49 wallborder
+zone 0 500 465 467 0 49 City wall
+zone 300 300 465 467 0 15 The city's rusted gates. Press Shift Enter to go through
+beacon 300 300 465 467 0 15 City gates
+door 300 467 0 300 465 0 1400 none.ogg none.ogg door1.ogg door2.ogg
+door 300 465 0 300 467 0 1400 none.ogg none.ogg door1.ogg door2.ogg
+platform 0 500 466 466 50 50 wood
+zone 0 500 466 466 50 75 Atop the city wall. You don't really think its safe up here, but it is a great view nonetheless
+zone 300 300 472 472 8 8 a small crack in the wall
+door 300 472 8 300 467 30 500 none.ogg wallrocks.ogg none.ogg none.ogg
+platform 350 370 480 500 100 100 carpet2
+platform 349 349 479 500 100 130 wallbuilding
+platform 371 371 479 500 100 130 wallbuilding
+platform 350 370 479 479 100 130 wallgeneric
+platform 350 370 480 500 130 130 wallbuilding
+platform 360 360 479 479 100 110 wallwood
+zone 350 370 480 500 100 130 Emily's house
+zone 360 360 478 480 100 110 The wooden door in and out of Emily's house. Press Shift Enter to walk through
+platform 190 236 250 267 0 0 marble
+source 0 500 467 500 0 500 birds30.ogg
+door 360 480 100 360 478 100 1200 none.ogg none.ogg door9.ogg door10.ogg
+door 360 478 100 360 480 100 1200 none.ogg none.ogg door9.ogg door10.ogg
+door 213 269 0 213 267 0 1000 none.ogg none.ogg elevator1open.ogg elevator1close.ogg
+door 213 267 0 213 269 0 1000 none.ogg none.ogg elevator1open.ogg elevator1close.ogg
+zone 190 236 250 267 0 15 Inside the dirty abandoned super market
+zone 213 213 267 269 0 5 the smashed doors
+beacon 360 360 478 480 100 110 Entrance to Emily's house
+platform 350 370 480 485 100 100 carpet
+platform 191 235 268 268 0 10 wallglass
+platform 360 360 485 500 100 110 wallgeneric2
+platform 350 359 486 500 100 100 carpet7
+platform 190 236 250 267 1 14 air
+platform 350 359 485 485 100 110 wallgeneric2
+beacon 213 213 269 269 0 0 the entrance to the abandoned super market
+platform 360 360 493 493 100 106 walldoor
+zone 350 359 486 500 100 119 Emily's small bedroom
+platform 195 195 250 265 0 6 wallobject
+platform 200 200 250 265 0 6 wallobject
+platform 205 205 250 265 0 6 wallobject
+platform 210 210 250 265 0 6 wallobject
+platform 215 215 250 265 0 6 wallobject
+platform 220 220 250 265 0 6 wallobject
+platform 225 225 250 265 0 6 wallobject
+platform 230 230 250 265 0 6 wallobject
+zone 190 195 250 265 0 6 isle 1
+zone 195 200 250 265 0 6 isle 2
+zone 361 370 486 500 100 115 A small corridor
+zone 200 205 250 265 0 6 isle 3
+zone 205 210 250 265 0 6 isle 4
+zone 210 215 250 265 0 6 isle 5
+zone 215 220 250 265 0 6 isle 6
+zone 359 361 493 493 100 106 The door of Emily's bedroom, press Shift Enter to walk through
+zone 220 225 250 265 0 6 isle 7
+door 361 493 100 359 493 100 1200 none.ogg none.ogg door11.ogg door12.ogg
+door 359 493 100 361 493 100 1200 none.ogg none.ogg door11.ogg door12.ogg
+zone 225 230 250 265 0 6 isle 8
+zone 230 236 250 265 0 6 isle 9
+platform 350 350 480 480 100 120 hardwood2
+zone 350 350 480 480 100 129 A wooden staircase
+platform 350 370 480 500 120 120 carpet3
+zone 350 370 480 500 120 130 Emily's living room covers almost the entire second floor. The area where it doesn't cover, however, is taken up by a small kitchen
+platform 350 352 498 500 100 106 wallwood
+platform 351 351 499 499 100 100 hardwood
+platform 350 370 490 490 120 129 wallglass
+door 351 499 100 351 497 100 500 none.ogg none.ogg door3.ogg door2.ogg
+door 351 497 100 351 499 100 500 none.ogg none.ogg door3.ogg door2.ogg
+platform 355 365 482 485 120 122 wallcloth
+zone 350 352 498 500 100 106 a small closate on the cheeper side, dresses, skirts and other clothing of the female gender hang from cheep hangers, press shift enter to leave
+zone 351 351 497 497 100 106 a small closite door
+platform 355 365 482 485 123 123 carpet6
+platform 351 351 499 499 101 105 air
+platform 355 365 481 481 120 128 wallbank
+platform 353 355 494 500 101 101 metal
+platform 353 355 495 500 102 102 carpet2
+zone 353 355 495 500 101 108 a small camp bed, it looks like it is about to collaps, perhaps get off? and what is in this matress, a matress, or uncut logs?
+platform 354 354 481 485 120 125 wallcone
+zone 353 355 495 500 100 100 under the weak looking bed, be careful, it might crush you
+platform 366 366 481 485 120 125 wallcone
+zone 353 367 280 286 120 128 Emily's small sofa
+zone 350 350 480 480 120 125 the top of the staircase, it is in the living room of the second floor
+platform 351 351 480 481 106 119 wallrail
+platform 350 351 481 481 106 119 wallrail
+zone 353 367 480 486 120 128 Emily's small sofa
+platform 366 366 482 485 126 126 carpet5
+platform 354 354 482 485 126 126 carpet5
+platform 354 354 481 481 126 128 walltable
+platform 366 366 481 481 126 128 walltable
+platform 350 370 491 500 120 120 tile
+platform 350 370 491 500 120 120 tile
+platform 355 365 490 490 120 120 metal
+platform 355 365 490 490 121 125 air
+zone 350 370 491 500 120 128 Emily's small kitchen
+zone 355 365 490 490 120 125 a wide doorless entrance into a small kitchen
+platform 355 365 495 500 120 123 wallcounter
+platform 355 365 495 500 123 123 marble
+zone 355 365 495 500 123 128 The marble kitchen counter
+platform 371 371 483 487 120 120 carpet2
+platform 357 363 498 500 123 123 water
+zone 357 363 498 500 123 127 The sink, which is still filled with dirty water and dishes
+platform 371 371 483 487 121 125 air
+platform 360 360 499 499 123 123 wood
+zone 371 371 483 487 120 125 a broken window. mysteriously, there are no shards of glass around the edge, it is almost as though someone removed it from its frame, and obviously without any effort
+zone 360 360 499 499 123 127 A mixing bowl floating in the dirty water. Flour sticks to the sides of the bowl
+platform 350 351 499 500 120 123 walldebris2
+platform 356 356 496 496 123 123 hardwood
+zone 350 352 498 500 120 128 a bin, it is full of smashed dishes, almost as though the owner just chucked them in there.
+platform 350 351 499 500 124 124 metal
+zone 356 356 496 496 123 127 A semi-smart microwave. It seems Emily could afford something at least more modern
+zone 364 364 496 496 123 127 A toaster sitting directly opposite of the microwave
+platform 364 364 496 496 123 123 metal
+door 356 496 123 356 496 120 500 none.ogg none.ogg door1.ogg carloopext.ogg
+door 356 496 120 356 496 123 500 none.ogg none.ogg door1.ogg none.ogg
+zone 356 356 496 496 120 120 oh dam, don't get in there, what if someone turned it on? Press shift enter... Oh, it is on! Fire! Someone left there store-bought sausage in there for too long
+source 356 356 496 496 120 120 fire.ogg
+platform 222 222 428 428 0 5 walldoor
+sign 222 430 0 Welcome to Revenge of the Undead. I appreciate you taking the time to try out this game. If you have any questions, do not hesitate to contact an available admin, or me. Please keep in mind that when asking for help, be sure to check if what you are asking for is mentioned in the readme. If you do not understand what the readme entails, or you still need help, or you cannot find your answer in the readme, then feel free to ask for assistance. For in-depth commands, type /help in the chat box. This will bring up the help menu in which you can find all the available commands. Enjoy the game. Regards, tunmi13
+212 233 427 457 0 30
+platform 0 0 0 40 0 9 wallstone
+platform 0 40 0 0 0 9 wallstone
+zone 25 25 42 48 0 10 a dirt path leading to the temple doors
+platform 25 25 51 60 0 0 gravel
+platform 25 30 60 60 0 0 gravel
+platform 30 30 60 73 0 0 gravel
+zone 25 25 52 60 0 10 a gravel path
+zone 25 30 60 60 0 10 a gravel path
+zone 30 30 60 72 0 10 a gravel path
+25 35 75 85 0 14
+zone 50 75 500 500 0 10 To continue north, press Shift Enter
+source 50 75 500 500 0 10 forest1.ogg
+beacon 50 75 500 500 0 0 Entrance to the second main map
+source 0 500 0 500 0 99 desert2.ogg -10
+platform 0 75 234 274 0 0 stairs2
+platform 0 0 234 275 0 15 wallbrick
+platform 0 76 275 275 0 15 wallbrick
+platform 76 76 233 275 0 15 wallbrick
+platform 0 76 233 233 0 15 wallbrick
+platform 0 76 233 275 15 15 wallcar2
+platform 37 37 275 275 0 10 walldoor
+zone 0 76 233 275 0 15 Inside the large abandoned cafeteria
+zone 37 37 274 276 0 10 The doors of the cafeteria, press Shift Enter to go through
+door 37 276 0 37 274 0 1200 none.ogg none.ogg door1.ogg door2.ogg
+door 37 274 0 37 276 0 1200 none.ogg none.ogg door1.ogg door2.ogg
+platform 5 15 240 243 0 2 wallbank
+platform 5 15 240 243 3 3 carpet5
+platform 5 15 244 249 0 3 walltable
+platform 5 15 244 249 4 4 hardwood3
+platform 5 15 250 253 0 2 wallbank
+platform 5 15 250 253 3 3 carpet5
+zone 4 16 239 254 0 10 Table 1
+platform 25 35 240 243 0 2 wallbank
+platform 25 35 240 243 3 3 carpet5
+platform 25 35 244 249 0 3 walltable
+platform 25 35 244 249 4 4 hardwood3
+platform 25 35 250 253 0 2 wallbank
+platform 25 35 250 253 3 3 carpet5
+zone 24 36 239 254 0 10 Table 2
+platform 45 55 240 243 0 2 wallbank
+platform 45 55 240 243 3 3 carpet5
+platform 45 55 244 249 0 3 walltable
+platform 45 55 244 249 4 4 hardwood3
+platform 45 55 250 253 0 2 wallbank
+platform 45 55 250 253 3 3 carpet5
+zone 44 56 239 254 0 10 Table 3
+platform 5 15 260 263 0 2 wallbank
+platform 5 15 260 263 3 3 carpet5
+platform 5 15 264 269 0 3 walltable
+platform 5 15 264 269 4 4 hardwood3
+platform 5 15 270 273 0 2 wallbank
+platform 5 15 270 273 3 3 carpet5
+zone 4 16 259 274 0 10 Table 4
+platform 25 35 260 263 0 2 wallbank
+platform 25 35 260 263 3 3 carpet5
+platform 25 35 264 269 0 3 walltable
+platform 25 35 264 269 4 4 hardwood3
+platform 25 35 270 273 0 2 wallbank
+platform 25 35 270 273 3 3 carpet5
+zone 24 36 259 274 0 10 Table 5
+platform 45 55 260 263 0 2 wallbank
+platform 45 55 260 263 3 3 carpet5
+platform 45 55 264 269 0 3 walltable
+platform 45 55 264 269 4 4 hardwood3
+platform 45 55 270 273 0 2 wallbank
+platform 45 55 270 273 3 3 carpet5
+zone 44 56 259 274 0 10 Table 6
+platform 60 75 234 274 0 0 carpet2
+zone 60 75 234 274 0 13 Ordering area
+platform 63 73 245 255 0 3 walltable
+platform 63 73 245 255 4 4 hardwood2
+zone 63 73 245 255 4 10 Ordering table
+beacon 37 37 274 276 0 10 The doors of the large abandoned cafeteria
+platform 0 76 233 275 16 16 wood2
+zone 0 76 233 275 16 26 On the roof of the large cafeteria
+latform 0 0 276 276 0 16 metal2
+zone 0 0 276 276 0 16 A maintenance ladder left leaning against the building
+platform 1 75 234 274 8 8 tile
+platform 1 75 234 274 7 7 wallmedal4
+platform 74 75 234 235 6 6 wallrail
+platform 75 75 234 234 0 8 hardwood
+zone 1 75 234 274 8 15 a large industrial kitchen, the work surfaces are covered in moldy meals
+zone 74 75 234 235 0 15 the small staircase leading between the ground floor and the kitchen
+platform 5 70 240 245 8 9 wallcounter
+platform 5 70 240 245 9 9 marble
+zone 4 71 239 246 8 15 a long work serfice where muldy ccakes lay
+platform 5 70 265 270 8 9 wallcounter
+platform 5 70 265 270 10 10 metal2
+zone 4 71 264 271 9 15 a long work serfice covered in hobs with burning bolls of paster, the only thing stopping them from spreading is the pots, i would back away it sounds like there is a lot of gass
+source 6 69 266 269 9 9 gasloop.ogg
+source 6 69 266 269 9 9 fire.ogg
+beacon 500 500 295 305 0 0 Entrance to the city's main warehouse (main4)
+zone 500 500 295 305 0 10 To enter the loading dock of the abandoned warehouse, press Shift Enter
+zone 0 0 295 305 0 10 To continue into the empty desert, press Shift Enter
+beacon 0 0 295 305 0 0 Entrance to the sprawling desert (main3)
+platform 0 0 276 276 0 15 metal2
+platform 222 222 429 429 0 0 carpet4
+source 0 500 0 500 0 100 desert2.ogg
+platform 400 400 473 473 0 8 metal2
+zone 400 400 473 473 0 8 a small ladder leaning up ledges on the wall
+platform 30 30 74 74 0 5 walldoor
+zone 213 242 446 446 31 41 Edge Of The Roof
+zone 213 232 428 428 31 41 Edge Of The Roof
+zone 213 213 429 445 31 41 Edge Of The Roof
+zone 232 232 429 445 31 41 Edge Of The Roof
+platform 5 495 295 305 0 0 concrete26
+zone 5 495 295 305 0 30 Olivia avenue
+zone 290 310 295 305 0 15 Intersection between Olivia avenue and main road
+platform 5 289 290 294 0 0 cement
+zone 5 289 290 294 0 15 Sidewalk
+platform 311 495 290 294 0 0 cement
+zone 311 495 290 294 0 15 Sidewalk
+platform 5 289 306 310 0 0 cement
+zone 5 289 306 310 0 15 Sidewalk
+platform 311 495 306 310 0 0 cement
+zone 311 495 306 310 0 15 Sidewalk
+platform 5 495 405 415 0 0 cement3
+zone 5 495 405 415 0 30 Denver street
+zone 290 310 405 415 0 15 Intersection between Denver street and main road
+platform 5 289 400 404 0 0 cement
+zone 5 289 400 404 0 15 Sidewalk
+platform 311 495 400 404 0 0 cement
+zone 311 495 400 404 0 15 Sidewalk
+platform 5 289 416 420 0 0 cement
+zone 5 289 416 420 0 15 Sidewalk
+platform 311 495 416 420 0 0 cement
+zone 311 495 416 420 0 15 Sidewalk
+platform 496 500 295 305 0 0 concrete4
+platform 0 4 295 305 0 0 sand3
+platform 215 215 455 455 0 7 wallbigmetal
+platform 215 215 455 455 8 8 metal3
+zone 214 215 454 456 0 10 Gas pump
+platform 229 229 455 455 0 7 wallbigmetal
+platform 229 229 455 455 8 8 metal3
+zone 229 230 454 456 0 10 Gas pump
+platform 269 289 340 360 0 0 concrete2
+platform 311 331 340 360 0 0 concrete2
+zone 269 289 340 360 0 15 City square
+zone 311 331 340 360 0 15 City square
+platform 120 150 275 294 0 0 concrete10
+zone 120 150 275 294 0 15 Nuggeteer fast food parking lot
+platform 120 150 234 274 0 30 wallbrick
+platform 121 149 235 273 0 13 air
+platform 121 149 235 273 15 24 air
+platform 121 149 235 273 0 0 marble
+platform 121 149 235 273 15 15 marble
+zone 121 149 235 273 0 25 Inside the Nuggeteer fast food building
+zone 135 135 273 275 0 10 The doors of the Nuggeteer fast food building. Press Shift Enter to activate
+platform 135 135 274 274 0 10 walldoor
+door 135 275 0 135 273 0 1200 none.ogg none.ogg door11.ogg door12.ogg
+door 135 273 0 135 275 0 1200 none.ogg none.ogg door11.ogg door12.ogg
+platform 130 140 213 233 0 0 concrete4
+zone 130 140 213 233 0 15 Nuggeteer Drive-through lane
+platform 125 129 234 234 0 7 wallglass
+zone 125 129 233 235 0 7 Service window
+platform 127 127 233 233 3 3 wallbigmetal
+platform 127 127 233 233 4 4 metal3
+zone 127 127 233 233 4 9 Service window speaker and microphone
+platform 141 145 234 234 0 7 wallglass
+zone 141 145 233 235 0 7 Take-out window
+platform 125 129 236 240 0 3 walltable
+platform 125 129 236 240 4 4 steel5
+zone 125 129 236 240 4 10 Service window desk
+platform 127 127 241 241 0 2 chair
+zone 127 127 241 241 0 10 Chair
+platform 141 145 236 240 0 0 carpet2
+zone 141 145 236 240 0 10 Near the take-out window
+platform 125 145 260 270 0 2 wallgeneric
+platform 125 145 260 270 3 3 hardwood
+zone 124 146 259 271 0 10 Ordering counter
+platform 121 125 250 255 0 2 wallplastic
+platform 121 125 250 255 3 3 steel2
+zone 121 126 249 256 0 10 Beverage machine
+platform 121 122 272 273 6 14 wallrail
+platform 121 149 235 273 15 15 stairs2
+zone 121 149 235 273 15 24 Row of booths and tables
+platform 121 121 273 273 0 15 carpet7
+zone 121 121 273 273 0 24 Stairs
+platform 125 135 255 265 15 17 wallbank
+platform 125 135 255 257 17 17 carpet5
+platform 125 135 258 262 18 18 hardwood3
+platform 125 135 263 265 17 17 carpet5
+zone 124 136 254 266 15 24 Booth
+platform 140 144 255 259 15 16 walltable
+platform 140 144 255 259 17 17 hardwood2
+platform 141 141 254 254 15 16 chair
+platform 143 143 254 254 15 16 chair
+platform 139 139 256 256 15 16 chair
+platform 139 139 258 258 15 16 chair
+platform 141 141 260 260 15 16 chair
+platform 143 143 260 260 15 16 chair
+platform 145 145 256 256 15 16 chair
+platform 145 145 258 258 15 16 chair
+zone 139 145 254 260 15 24 Table
+platform 125 135 235 245 15 17 wallbank
+platform 125 135 235 237 17 17 carpet5
+platform 125 135 238 242 18 18 hardwood3
+platform 125 135 243 245 17 17 carpet5
+zone 124 136 235 246 15 24 Booth
+platform 140 144 245 249 15 16 walltable
+platform 140 144 245 249 17 17 hardwood2
+platform 141 141 244 244 15 16 chair
+platform 143 143 244 244 15 16 chair
+platform 139 139 246 246 15 16 chair
+platform 139 139 248 248 15 16 chair
+platform 141 141 250 250 15 16 chair
+platform 143 143 250 250 15 16 chair
+platform 145 145 246 246 15 16 chair
+platform 145 145 248 248 15 16 chair
+zone 139 145 244 250 15 24 Table
+beacon 135 135 275 275 0 0 Entrance to Nuggeteer fast food
+platform 126 128 237 238 3 4 wallcloth
+platform 126 128 237 238 5 5 carpet6
+zone 126 128 237 238 5 10 A wireless headset for communicating with the customer on the opposite side
+platform 141 145 234 234 4 5 steel5
+zone 141 145 234 234 4 6 The take-out window sill. Where a customer would usually grab their order. But what seems to have been grabbed is dried blood, and the outer window pane is missing
+platform 141 145 233 233 6 10 walldebris2
+platform 150 175 375 405 0 0 dirt2
+zone 149 176 349 399 0 15 Outside the AFK building
+zone 150 175 375 404 0 20 AFK building driveway
+platform 150 175 350 374 0 20 wallbrick
+platform 160 170 374 374 0 7 walldoor
+travelpoint 160 170 375 375 0 7 0 75 0 AFK_Building
+zone 150 175 375 385 0 20 the AFK building parking lot
+platform 150 175 375 385 0 0 pavement
+zone 160 170 375 375 0 7 To enter the AFK Building, press Shift Enter
+beacon 160 170 375 375 0 0 AFK building
+platform 149 149 350 350 0 21 metal
+platform 150 175 350 374 21 21 tile
+zone 149 149 350 350 0 30 A Latter Leaning Up Against The Wall Of The AFK Building
+zone 150 175 350 374 21 30 Roof Of The AFK Building
+platform 299 301 299 301 -21 -1 wallmedal4
+platform 300 300 300 300 -20 0 metal2
+zone 300 300 300 300 -19 10 A small metal ladder leading downward. Just where could it go?
+source 300 300 300 300 -20 -20 river1.ogg -10
+zone 300 300 300 300 -20 -20 To continue, press Shift Enter
+travelpoint 300 300 300 300 -20 -20 300 300 0 main6
+platform 0 0 410 410 0 0 metal
+zone 0 0 410 410 0 10 a grate, a pipe is below it
+beacon 300 300 300 300 -20 -20 entrance to main6, the city sewers
+zone 1 39 1 39 -15 -1 Temple basement
+zone 39 39 1 1 -15 10 A hidden set of steps leading downward
+platform 0 40 0 40 -15 -1 wallchain
+platform 1 39 1 39 -15 -15 concrete5
+platform 39 39 1 1 -15 0 concrete2
+zone 1 1 1 1 -15 -14 Steps that continue even further down. To continue, press Shift Enter
+platform 1 1 1 1 -15 -15 cement
+travelpoint 1 1 1 1 -15 -15 1 1 5 main6
+beacon 1 1 1 1 -15 -15 the temple's entrance to main6, the city sewers
+safezone 213 232 427 457 0 29
+platform 213 232 416 427 0 0 pavement
+zone 213 232 416 426 0 10 Safe zone parking lot
+zone 213 232 405 415 0 10 south of the safe zone on Denver street
+zone 130 150 295 305 0 20 north of Nuggateer Fast Food on Olivia Avenue.
+platform 190 236 269 294 0 0 concrete
+zone 190 236 269 294 0 10 the silent car park, no cars are here.
+platform 25 50 275 290 4 0 concrete
+zone 25 50 275 294 0 15 Cafeteria parking lot
+zone 25 50 295 305 0 15 north of the cafeteria on Olivi Avenue.
+zone 190 236 295 305 0 10 north of the super market on Olivia Avenue
+zone 270 289 295 305 0 10 to the east is the intersection between Olivia Avenue and the main road
+zone 311 330 295 305 0 10 to the west is the intersection between Olivia Avenue and the main road
+zone 290 310 306 325 0 10 to the south is the intersection between Olivia Avenue and the main road
+zone 290 310 275 294 0 10 to the north is the intersection between Olivia Avenue and the main road
+zone 270 289 405 415 0 10 to the east is the intersection between denver street and the main road
+zone 311 330 405 415 0 10 to the west is the intersection between denver street and the main road
+zone 290 310 416 435 0 10 to the south is the intersection between denver street and the main road
+zone 290 310 385 404 0 10 to the north is the intersection between denver street and the main road
+zone 150 175 405 415 0 10 north of the AFK building on denver street
+safezone 23 37 73 87 0 35
+spawn
+music musicmisc2.ogg -19
+zone 230 230 445 445 0 0 LCBoy, press shift enter to talk to him
+sign 230 445 0 Out there is very dangerous, there are many wild animals hunting and threatening your life, be well prepared for this journey. Good luck.
+platform 230 230 445 445 0 0 carpet2
+

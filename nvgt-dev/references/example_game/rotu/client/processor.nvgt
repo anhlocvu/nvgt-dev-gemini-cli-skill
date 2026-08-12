@@ -1,0 +1,29 @@
+#include "speech.nvgt"
+void main()
+{
+show_game_window("update processor 1.0");
+extract_update();
+}
+void extract_update()
+{
+speak("Extracting the new ZIP archive. Please do not close the application, it may be inactive for some time.");
+bool res=run("unzip.exe","-o -qq -j rotu.zip",true,true);
+if(res==false)
+{
+alert("Error","I couldn't extract the archive for you. Try doing it yourself and see if it works.");
+exit();
+}
+speak("Complete.");
+wait(1000);
+speak("Copying new directory into the current directory...");
+string[]dirfiles=find_files("rotu/*");
+for(uint i=0; i<dirfiles.length(); i++)
+{
+file_copy("rotu/"+dirfiles[i],dirfiles[i],true);
+}
+speak("Complete.");
+alert("Update complete","Press Enter or Space to restart.");
+run("rotu.exe","",false,false);
+wait(5);
+exit();
+}

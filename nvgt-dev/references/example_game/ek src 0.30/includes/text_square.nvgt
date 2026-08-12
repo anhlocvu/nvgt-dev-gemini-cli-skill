@@ -1,0 +1,48 @@
+/*
+text square class
+by technology production
+this class allows to speak the text in the double x,y,and z coordinates If the player is in. this class contain the full all functions, again, please do not use into your project If you do not agree the rules.
+rules:
+1. make sure not to decide to remove the credits or other files partof in this script. If we found you that you are doing so, we may not give you access to use this script anymore. If you do not accept this rule, do not use this script into your project.
+2. this is not allowed, repeat, this is not allowed to remove credits or using credit yourself, this is not allowed under any circumstances. also do not use this script If you do not accept this rule.
+3. If you modified the codes from this script, we will not take that responsibility for any you may of rong. If you have modified the codes, you need to take responsibility for yourself for using it. don't share anyone elses that file that you have modified, because we said that we will not take that responsibility for everything, accept modified by us.
+*/
+tsquare@[] tsquares;
+class tsquare
+{
+double minx,maxx,miny,maxy,minz,maxz; //coordinates
+string text; //the text to speak.
+tsquare(double a,double b,double c,double d,double e,double f,string t)
+{
+minx=a;
+maxx=b;
+miny=c;
+maxy=d;
+minz=e;
+maxz=f;
+text=t;
+}
+}
+void tsquarecheck()
+{
+for(uint i=0; i<tsquares.length(); i++)
+{
+if((tsquares[i].minx<=mr.x and tsquares[i].maxx>=mr.x) and (tsquares[i].miny<=mr.y and tsquares[i].maxy>=mr.y) and (tsquares[i].minz<=me.z and tsquares[i].maxz>=me.z))
+{
+speak(tsquares[i].text);
+}
+}
+}
+void spawn_tsquare(double a,double b,double c,double d,double e,double f,string t)
+{
+tsquare s1(a,b,c,d,e,f,t);
+tsquares.insert_last(s1);
+}
+void destroy_tsquare(int d)
+{
+tsquares.remove_at(d);
+}
+void destroy_all_tsquares()
+{
+tsquares.resize(0);
+}

@@ -1,0 +1,134 @@
+string[]categories={"All","Weapons","Ammo","Armor and Clothing","Medical Items","Currency","Technology","Vehicles","Misc/Unsorted"};
+//inventory class.
+//written: July 9, 2020 Ivan Soto (IMS-Productions).
+inventory inv;
+class inventory {
+inventory_item@[]items(0);
+//constructor.
+int invpos=-1;
+inventory() {
+reset();
+}
+int get_item_index(const string a) {
+for(uint i=0; i<this.items.length(); i+=1) {
+if(this.items[i].name==a) return i;
+}
+return -1;
+}
+string getitem() {
+if(this.invpos<0 or this.invpos>this.items.length()-1) {
+return "";
+}
+return this.items[this.invpos].name;
+}
+/*
+void invmenu(int id,string category="All")
+{
+server_menu m;
+m.intro=category+" Inventory:";
+m.initial_packet="invselect";
+for(uint i=0; i<this.items.length(); i++)
+{
+if(get_item_category(this.items[i].name)!=category and category!="All")continue;
+m.add(this.items[i].name+": "+this.items[i].amount,i);
+}
+m.send(id);
+}
+*/
+int search_inv(string search_term) {
+int result=-1;
+for(uint i=0; i<this.items.length(); i+=1) {
+if(string_contains(this.items[i].name, search_term, 1)>-1) {
+result=i;
+}
+}
+return result;
+}
+void cycle(const int direction=1) {
+if(this.items.length()<=0) 
+{
+speak("Empty");
+return;
+}
+int newpos=(direction==1?invpos+1:invpos-1);
+if(newpos<0) newpos=this.items.length()-1;
+if(newpos>=this.items.length()) newpos=0;
+invpos=newpos;
+speak(this.items[this.invpos].name+": "+this.items[this.invpos].amount+". Item "+(invpos+1)+" of "+this.items.length());
+}
+inventory_item@get_inv_item_handle(const string a) {
+for(uint i=0; i<this.items.length(); i+=1) {
+if(this.items[i].name==a) return this.items[i];
+}
+return null;
+}
+void reset() {
+//this will remove all items in the inventory.
+this.items.resize(0);
+}
+void import_from_serial(string serial) {
+reset();
+dictionary@dict=deserialize(serial);
+if(dict.get_size()==0) return;
+string[] k=dict.get_keys();
+for(uint i=0; i<k.length(); i+=1) {
+int temp;
+dict.get(k[i], temp);
+this.give(k[i], temp);
+}
+}
+string export(const string del="=", const string del2="\r\n") {
+//This prints a human-friendly version of your inventory. It will return in ini format by default, but you can change this by changing the del and del2 strings to something else.
+if(this.items.length()<=0) //nothing here.
+return "";
+string output;
+for(int i=0; i<this.items.length(); i+=1) {
+output+=items[i].name+del+items[i].amount+del2;
+}
+return output;
+}
+void give(const string what, const int amount) {
+inventory_item@temp=get_inv_item_handle(what);
+if(@temp==null) {
+@temp=inventory_item(what, amount);
+this.items.insert_last(temp);
+if(temp.amount<=0){
+this.items.remove_at(this.get_item_index(temp.name));
+}
+}
+else {
+temp.amount+=amount;
+if(temp.amount<=0)
+this.items.remove_at(this.get_item_index(temp.name));
+}
+}
+int get_item_amount(const string a) {
+for(int i=0; i<items.length(); i+=1) {
+if(items[i].name==a) return items[i].amount;
+}
+return -1;
+}
+}
+//end of inventory class.
+class inventory_item {
+string name;
+int amount;
+bool usable=true,droppable=true;
+inventory_item(string a, int b,bool c=true,bool d=true) {
+this.name=a;
+this.amount=b;
+usable=c;
+droppable=d;
+}
+}
+string get_item_category(string i)
+{
+string[] list;
+//string[]list=string_split(get_file("item_categories.dat"),"\r\n",false);
+for(uint e=0; e<list.length(); e++)
+{
+string[]finder=string_split(list[e],"=",false);
+if(finder[0]==i and finder.length()>1) return finder[1];
+}
+return "Misc/Unsorted";
+}

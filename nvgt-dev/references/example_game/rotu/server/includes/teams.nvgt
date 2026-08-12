@@ -1,0 +1,22 @@
+team@[]teams(0);
+class team {
+string[] members;
+string flag;
+int points;
+dictionary kills;
+string owner;
+team(string flag, string owner) {
+this.flag=flag;
+this.owner=owner;
+}
+void send_packet(string packet, int channel, bool reliable=true) {
+for(uint i=0; i<this.members.length(); i+=1) {
+int x=get_player_index_from(this.members[i]);
+if(x>-1) {
+if(reliable) send(players[x].peer_id, packet, channel);
+else
+send_unreliable(players[x].peer_id, packet, channel);
+}
+}
+}
+}

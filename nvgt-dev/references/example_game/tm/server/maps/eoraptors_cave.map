@@ -1,0 +1,11 @@
+mapname:eoraptors_cave
+maxx:50
+maxy:50
+maxz:50
+tile:0:50:0:50:0:0:carpet
+tile:0:50:0:50:0:0:cave
+cmusic:0:50:0:50:0:50:fantasy18.ogg:-15:100
+
+travelpoint:0:0:0:0:0:50:dinosaurs_valley:150:150:0:you have come back to the  land of the dinosaurs. good luck killing them!
+zone:0:500:0:500:0:500:the cave is dark, echoing with tarifying, haunting calls. you have entered in to the home of the legendary eoraptor, from where survival may not be even possible. as you prepare yourself for one of the tuffest fights of your life, you realise that this ancient creature may finally put an end to your existence
+zone:0:0:0:0:0:50:go back to the  dinosaurs valley!@trackme@

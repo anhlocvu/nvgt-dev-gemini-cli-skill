@@ -1,0 +1,53 @@
+mapname:icy_area
+maxx:1000
+maxy:1000
+maxz:1500
+zone:0:1000:0:1000:0:1222:a frozen land, covered in a blankit of snow. the air is cold, the wind houling in your ears. you stand atop one of the higher platforms, and looking down from such a hight, you think the view is beautiful.
+tile:0:200:0:200:0:0:ice
+
+src:0:1000:0:1000:515:1100:src6.ogg
+tile:0:0:0:0:500:500:deepsnow
+tile:0:200:0:200:0:0:icef
+tile:5:5:10:10:498:502:snow_wet
+tile:5:5:24:24:500:500:snow_wet
+tile:10:10:32:32:498:498:snow_wet
+tile:20:20:36:36:500:500:snow_wet
+tile:28:28:42:42:500:500:snow_wet
+tile:35:35:50:50:500:500:deepsnow
+tile:36:36:64:64:500:500:snow
+tile:44:44:73:73:500:500:snow2
+tile:55:55:75:75:503:503:snow_wet
+tile:65:65:85:85:502:502:snow2
+tile:75:75:90:90:502:502:snow2
+tile:85:85:94:94:500:500:snow_wet
+tile:96:96:96:96:500:500:snow_wet
+tile:100:100:100:100:504:504:snow_wet
+travelpoint:100:100:100:100:504:504:icy_area:500:500:1000:nice
+tile:500:500:500:500:1000:1040:mountain
+tile:500:550:501:550:1030:1030:icef
+tile:507:507:507:507:1041:1041:snow_wet
+fightingstate:0
+tile:520:520:507:507:1040:1040:deepsnow
+tile:524:524:515:515:1041:1041:snow_wet
+tile:525:525:528:528:1038:1038:deepsnow
+tile:530:530:530:530:1040:1040:snow_wet
+tile:530:530:544:545:1039:1041:snow2
+tile:533:533:551:551:1044:1044:snow_wet
+tile:545:545:551:551:1040:1040:snow_wet
+tile:555:555:555:555:1041:1041:deepsnow
+tile:565:565:560:560:1040:1040:deepsnow
+tile:570:570:570:570:1041:1100:mountain
+tile:570:1100:571:1100:1046:1121:icef
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:health_booster:health_healer:health_box
+src:0:600:0:600:524:1025:icepath.ogg
+tile:0:600:0:600:0:400:icef
+src:0:600:0:600:1055:1085:icepath.ogg
+zone:570:570:570:570:1100:1120:press shift plus enter to claim your reward@trackme@
+noitems:0:3000:0:3000:0:55555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+tile:0:0:0:0:490:500:ice
+zone:0:0:0:0:490:490:go back to the safe zone@trackme@
+travelpoint:0:0:0:0:490:490:safe_zone:0:0:0:you decide to give up. perhaps you'll continue at a later date
+noitems:0:55555:0:55555:0:55555:warp_box
+noitems:0:44444:0:44444:0:44444:skateboard
+noitems:0:55555:0:55555:0:55555:warp_box

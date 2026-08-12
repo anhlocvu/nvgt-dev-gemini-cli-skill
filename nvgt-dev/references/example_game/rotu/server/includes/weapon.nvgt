@@ -1,0 +1,399 @@
+weapon@[]weapons(0);
+class weapon
+{
+double x;
+double y;
+double z;
+bool dropshell=false;
+timer reloadtimer;
+int reloadtime;
+int max_ammo;
+double dir;
+int vertical_dir=0;
+int vertical_range;
+int remcount=1;
+int rem=0;
+bool prepare_for_removal=false;
+bool has_dist=true;
+bool automatic=false;
+int spread;
+int wepspeed;
+timer weptimer;
+map_data@wepmap;
+player@owner;
+string map;
+string ammotype;
+int dist;
+string name;
+int damage;
+int range;
+timer firetimer;
+int firetime;
+bool is_melee;
+weapon(double lx, double ly, double lz, string wname, int ddir,string ow, string mmap,int vd=0)
+{
+name=wname;
+x=lx;
+y=ly;
+z=lz;
+dir=ddir;
+map=mmap;
+vertical_dir=vd;
+@wepmap=get_map_handle(map);
+@owner=get_player_handle(ow);
+if(name=="pistol")
+{
+spread=4;
+range=30;
+damage=random(100,320);
+wepspeed=20;
+}
+if(name=="toy_nerf_gun")
+{
+damage=random(100,200);
+range=15;
+spread=2;
+wepspeed=25;
+}
+if(name=="kyles_crossbow")
+{
+has_dist=false;
+damage=random(250,400);
+range=60;
+spread=4;
+wepspeed=31;
+}
+
+if(name=="kyles_crossbow2")
+{
+has_dist=false;
+damage=random(350,500);
+range=75;
+spread=4;
+wepspeed=31;
+}
+if(name=="grenade")
+{
+spread=10;
+range=16;
+damage=random(500,1500);
+wepspeed=75;
+}
+if(name=="barrett_sniper_rifle")
+{
+range=100;
+spread=6;
+damage=random(1000,2000);
+wepspeed=40;
+}
+if(name=="shotgun")
+{
+spread=6;
+range=24;
+damage=335;
+wepspeed=36;
+dropshell=true;
+}
+if(name=="shotgun2")
+{
+spread=6;
+range=24;
+damage=170;
+wepspeed=36;
+remcount=3;
+dropshell=true;
+}
+if(name=="benelli")
+{
+spread=6;
+range=27;
+damage=random(150,210);
+wepspeed=36;
+remcount=3;
+dropshell=true;
+}
+if(name=="cannon_launcher")
+{
+spread=20;
+range=130;
+damage=10000;
+wepspeed=50;
+dropshell=false;
+}
+if(name=="rifle")
+{
+spread=5;
+range=35;
+damage=random(90,180);
+wepspeed=33;
+}
+if(name=="rifle2")
+{
+spread=5;
+range=35;
+damage=random(110,210);
+wepspeed=28;
+}
+if(name=="micro_smg")
+{
+spread=3;
+range=25;
+damage=random(60,180);
+wepspeed=25;
+dropshell=true;
+}
+if(name=="micro_smg2")
+{
+spread=3;
+range=25;
+damage=random(100,210);
+wepspeed=25;
+dropshell=true;
+}
+if(name=="energy_saber")
+{
+has_dist=false;
+spread=2;
+range=6;
+damage=random(175,250);
+wepspeed=120;
+}
+if(name=="energy_saber_plus")
+{
+has_dist=false;
+spread=3;
+range=8;
+damage=random(250,400);
+wepspeed=80;
+}
+if(name=="axe")
+{
+has_dist=false;
+spread=3;
+range=8;
+damage=random(100,150);
+wepspeed=35;
+}
+if(this.has_dist)
+send_nearby_unreliable("play_distance "+this.name+"dist.ogg "+this.x+" "+this.y+" "+this.z+" "+this.map,6, 30, this.x, this.y, this.z, this.map);
+}
+string get_wtile(const int ix=this.x, const int iy=this.y, const int iz=this.z) {
+if(@this.wepmap==null) return "";
+else return this.wepmap.get_tile_at(ix, iy, iz);
+}
+}
+void weaponloop()
+{
+for(int i=weapons.length()-1; i>=0; i--)
+{
+netloop();
+if(weapons[i].prepare_for_removal)
+{
+@weapons[i]=null;
+weapons.remove_at(i);
+continue;
+}
+if(@weapons[i].owner==null or @weapons[i].wepmap==null)
+{
+weapons[i].prepare_for_removal=true;
+}
+if(weapons[i].weptimer.elapsed>weapons[i].wepspeed)
+{
+weapons[i].weptimer.restart();
+vector w;
+w=move(weapons[i].x,weapons[i].y,weapons[i].dir);
+weapons[i].x=w.x;
+weapons[i].y=w.y;
+int wx=round(weapons[i].x,0);
+int wy=round(weapons[i].y,0);
+if(weapons[i].vertical_dir!=0){
+weapons[i].z+=weapons[i].vertical_dir;
+weapons[i].dist++;
+}
+weapons[i].dist++;
+if(weapons[i].dist>weapons[i].range)
+{
+weapons[i].prepare_for_removal=true;
+}
+if(string_left(weapons[i].get_wtile(wx,wy,weapons[i].z),4)=="wall")
+{
+play(weapons[i].name+"wall",wx,wy,weapons[i].z,weapons[i].map);
+weapons[i].prepare_for_removal=true;
+}
+bool png=false;
+if(weapons[i].owner.paid==1) {
+for(uint i3=0; i3<players.length(); i3++)
+{
+if(players[i3].paid==0) continue;
+if(get_3d_distance(wx,wy,weapons[i].z,players[i3].x,players[i3].y,players[i3].z)<=weapons[i].spread and players[i3].map==weapons[i].map)
+{
+if(players[i3].name==weapons[i].owner.name or players[i3].safe()) continue;
+if(weapons[i].owner.ctfteam==players[i3].ctfteam and !weapons[i].owner.ctfteam.is_empty() and !players[i3].ctfteam.is_empty()) continue;
+if(!weapons[i].owner.gang.is_empty() and weapons[i].owner.gang == players[i3].gang) continue;
+if(weapons[i].wepmap.fights==false) continue;
+if(players[i3].crouching)
+{
+int hit_chance=random(1,100);
+if(hit_chance>=50)
+{
+players[i3].hitby=weapons[i].owner.name+"'s "+weapons[i].owner.weapon;
+players[i3].health-=weapons[i].damage*2;
+png=true;
+}
+else{
+play(weapons[i].name+"wall",wx,wy,weapons[i].z,weapons[i].map);
+weapons[i].prepare_for_removal=true;
+}
+continue;
+}
+if(!players[i3].crouching)
+{
+players[i3].hitby=weapons[i].owner.name+"'s "+weapons[i].owner.weapon;
+players[i3].health-=weapons[i].damage*2;
+png=true;
+}
+if(weapons[i].name=="grenade")
+{
+send(0,"play_distance "+weapons[i].name+"hitdist.ogg "+players[i3].x+" "+players[i3].y+" "+players[i3].z+" "+players[i3].map,6);
+attract_undead(weapons[i].x, weapons[i].y, weapons[i].z, weapons[i].wepmap.name);
+}
+play2(weapons[i].name+"hit",players[i3].x,players[i3].y,players[i3].z,players[i3].map,i3);
+weapons[i].rem++;
+if(weapons[i].rem>=weapons[i].remcount){
+weapons[i].prepare_for_removal=true;
+}
+}
+}
+}
+for(uint i3=0; i3<dragons.length(); i3++)
+{
+if(get_3d_distance(wx,wy,weapons[i].z,dragons[i3].x,dragons[i3].y,dragons[i3].z)<=weapons[i].spread and dragons[i3].map==weapons[i].map)
+{
+if(weapons[i].name=="grenade"){
+send_nearby_unreliable("play_distance grenadehitdist.ogg "+dragons[i3].x+" "+dragons[i3].y+" "+dragons[i3].z+" "+dragons[i3].map,6, 30, dragons[i3].x, dragons[i3].y, dragons[i3].z, dragons[i3].mdata.name);
+attract_undead(weapons[i].x, weapons[i].y, weapons[i].z, weapons[i].wepmap.name);
+}
+send_nearby_unreliable("play "+weapons[i].name+"hit.ogg "+dragons[i3].x+" "+dragons[i3].y+" "+dragons[i3].z+" "+dragons[i3].map, 6, 30, dragons[i3].x, dragons[i3].y, dragons[i3].z, dragons[i3].mdata.name);
+dragons[i3].add_hit(weapons[i].owner.name, weapons[i].damage);
+dragons[i3].health-=weapons[i].damage;
+png=true;
+weapons[i].rem++;
+if(weapons[i].rem>=weapons[i].remcount){
+weapons[i].prepare_for_removal=true;
+}
+}
+}
+for(uint i2=0; i2<unds.length(); i2++)
+{
+if(get_3d_distance(wx,wy,weapons[i].z,unds[i2].x,unds[i2].y,unds[i2].z)<=weapons[i].spread and unds[i2].mymap.name==weapons[i].map)
+{
+if(weapons[i].name=="grenade")
+{
+send_nearby_unreliable("play_distance "+weapons[i].name+"explodedist.ogg "+unds[i2].x+" "+unds[i2].y+" "+unds[i2].z+" "+unds[i2].mymap.name,6, 30, unds[i2].x, unds[i2].y, unds[i2].z, unds[i2].mymap.name);
+attract_undead(weapons[i].x, weapons[i].y, weapons[i].z, weapons[i].wepmap.name);
+}
+if(weapons[i].name=="cannon_launcher") {
+place_cannon(weapons[i].x, weapons[i].y, weapons[i].z, weapons[i].owner.name, weapons[i].map);
+}
+send_nearby_reliable("play "+weapons[i].name+"hit.ogg "+unds[i2].x+" "+unds[i2].y+" "+unds[i2].z+" "+unds[i2].mymap.name,6, 30, unds[i2].x, unds[i2].y, unds[i2].z, unds[i2].mymap.name);
+unds[i].abtimer.restart();
+unds[i2].hit(get_player_index_from(weapons[i].owner.name, true),weapons[i].damage);
+png=true;
+weapons[i].rem++;
+if(@weapons[i].owner.myquest!=null) {
+int t=0;
+if(weapons[i].owner.working_quest_dict.exists(weapons[i].name))
+weapons[i].owner.working_quest_dict.get(weapons[i].name, t);
+t+=1;
+weapons[i].owner.working_quest_dict.set(weapons[i].name, t);
+weapons[i].owner.checkquest();
+}
+if(weapons[i].rem>=weapons[i].remcount){
+weapons[i].prepare_for_removal=true;
+}
+}
+}
+if(png) send(weapons[i].owner.peer_id, "play_s wping.ogg", 6);
+}
+}
+}
+void spawn_weapon(int x,int y, int z, string name,int direction,string owner, string map,int vertical_direction=0)
+{
+weapon wep1(x,y,z,name,direction,owner,map,vertical_direction);
+weapons.insert_last(wep1);
+}
+
+int get_max_ammo(string w)
+{
+if(w=="pistol") return 12;
+else if(w=="rifle") return 45;
+else if(w=="micro_smg") return 30;
+else if(w=="cannon_launcher") return 7;
+else if(w=="shotgun2") return 8;
+else if(w=="shotgun") return 5;
+else if(w=="benelli") return 4;
+else if(w=="kyles_crossbow") return 5;
+else if(w=="barrett_sniper_rifle") return 10;
+else if(w=="toy_nerf_gun") return 1;
+return 0;
+}
+
+bool is_melee(string wname)
+{
+if(melees.find(wname)>-1)
+{
+return true;
+}
+else return false;
+}
+
+int get_reloadtime(string w)
+{
+if(w=="pistol") return 4211;
+else if(w=="micro_smg") return 2800;
+else if(w=="rifle") return 1900;
+else if(w=="shotgun") return 3300;
+else if(w=="shotgun2") return 3300;
+else if(w=="benelli") return 6900;
+else if(w=="cannon_launcher") return 1800;
+else if(w=="kyles_crossbow") return 2500;
+else if(w=="barrett_sniper_rifle") return 3000;
+else if(w=="toy_nerf_gun") return 1100;
+return 0;
+}
+shell@[]shells(0);
+class shell{
+string type;
+double x,y,z;
+string map;
+timer droptimer;
+int droptime;
+shell(string shtype,double shx,double shy,double shz,string shmap,int shdroptime)
+{
+type=shtype;
+x=shx;
+y=shy;
+z=shz;
+map=shmap;
+droptime=shdroptime;
+}
+}
+void shellloop()
+{
+for(uint i=0; i<shells.length(); i++)
+{
+if(shells[i].droptimer.elapsed>shells[i].droptime)
+{
+send_nearby_reliable("play "+shells[i].type+"shell.ogg "+shells[i].x+" "+shells[i].y+" "+shells[i].z+" "+shells[i].map,6,30,shells[i].x,shells[i].y,shells[i].z,shells[i].map);
+@shells[i]=null;
+shells.remove_at(i);
+i--;
+continue;
+}
+}
+}
+void drop_shell(string type,double x,double y,double z,string map,int droptime=1500)
+{
+shell shell1(type,x,y,z,map,droptime);
+shells.insert_last(shell1);
+}

@@ -1,0 +1,36 @@
+txt@[] txts(0);
+class txt
+{
+string text;
+int dx;
+int dy;
+txt(int txtx, int txty, string tx)
+{
+dx=txtx;
+dy=txty;
+text=tx;
+}
+}
+void destroy_txt(int d)
+{
+txts.remove_at(d);
+}
+void destroy_all_txts()
+{
+txts.resize(0);
+}
+void spawn_txt(int txtx, int txty, string text)
+{
+txt txt1(txtx, txty, text);
+txts.insert_last(txt1);
+}
+void checktxt()
+{
+for (uint i=0; i<txts.length(); i++)
+{
+if (txts[i].dx==me.x and txts[i].dy==me.y)
+{
+speak(txts[i].text);
+}
+}
+}

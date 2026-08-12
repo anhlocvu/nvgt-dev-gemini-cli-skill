@@ -1,0 +1,34 @@
+these are the server commands.
+to use the server commands, press /, then type / one more time, and you can use the commands below!
+/help: show the list of the server commands. you've probably already used this.
+/rules: to see rules for all players.
+/mute <playername>: mutes a player. warning! If you have muted someone, you will not receive notifications from him/her unless you have unmuted!
+/unmute <playername>: unmutes a player. you will now receive notifications from him/her unless you have muted them again.
+/changes: views a list of changes to the server. This displays in a menu.
+/events: Sends you a message with all the events on the server.
+/joinevent <ID:  joins an event in progress.
+/leaveevent: leaves the current event if you joined any.
+/nickfind <nickname>: Finds players(if any) with that nickname. Not case sensative. Prints out each player on it's own packet in the misc buffer, since multiple people can have the same nickname.
+/teamcreate: create a team. Just press enter and it will ask you for your team name.
+/members: Lists your team's members.
+/teampass <password>: updates your team's password. Only works if you are leader of the team.
+/teamremove <playername>: removes a player from your team.
+/teamcancel: cancels your team
+/teamleave: leaves a team you are in, if you're not the leader. If you are the leader use cancel.
+/t <message>: sends a message to your team.
+/jointeam <teamname> <teampassword>: Joins a team. If a player wants you in their team they will probably pm you with the info to join it.
+/admins or /staff: lists the current staff members, even if they are not online.
+/devtell <message>: sends message to the developers. please note that in order for this to work, the devtell feature must not be restricted.
+/admintell <message>: sends message to the admins. please note that in order for this to work, the admintell feature must not be restricted.
+/sell: opens a menu to sell items to the store. please note that in order for this to work, the giving items feature must not be restricted.
+/give <playername> <itemname> <amount>: transfer amount of item to playername. please note that in order for this to work, the giving items feature must not be restricted.
+/auction <amount> <itemname> <bidamount>: auctions amount of a certain item with a minimum bid of bid. Note that you can also do this by hitting left or right shift in your inventory menu. If this command is followed by no parameters, I.E. /auction, it will tell you about the current auction in progress. please note that in order for this to work, the giving items feature must not be restricted.
+/bid number: bids number of dollars on an active auction. If the bid is too low it will tell you. please note that in order for this to work, the giving items feature must not be restricted.
+/cancelbid: cancels your previous bid, mainly useful if you added one too many digits or whatever. It will revert to the state it was previously in.
+/leave: leaves the arena.
+/pm <playername> <message>: sends a private message to the player. note: you can't send that yourself!
+/reply or /r <message>: replys the last message you received.
+/nickname <new_name>: changes your nickname. note: you can't change your nickname for 2 minutes and a half after you changed once.
+/changepassword <oldpassword> <newpassword> <confirmpassword>: changes your account password.
+/teamkills: check how many kills and points in your team have.
+/time: check the date and time. not the realtime, it's only the time of the game.

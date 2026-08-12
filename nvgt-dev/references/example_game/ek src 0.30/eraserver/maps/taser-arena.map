@@ -1,0 +1,19 @@
+mapname:taser-arena
+maxx:200
+maxy:200
+maxz:100
+tile:0:200:0:200:0:0:mud
+zone:0:200:0:200:0:100:taser-arena
+tile:0:100:0:100:0:0:dirt7-10
+
+tile:0:200:0:200:0:0:dirt7
+zone:0:200:0:200:0:50:taser arena
+tile:0:0:0:0:0:50:wood2
+tile:0:20:0:20:50:50:concrete27
+tile:21:30:0:21:50:100:wallwood15
+tile:0:21:21:31:50:100:wallwood15
+zone:0:0:0:0:0:49:izleme bölmesine çýkan merdivenler:trackme
+zone:0:21:0:21:50:100:izleme platformu
+
+amb:0:200:0:200:0:100:menumus3.ogg
+src:0:30:0:30:60:70:college.ogg

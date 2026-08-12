@@ -1,0 +1,112 @@
+mapname:bff_city
+maxx:1000
+maxy:1000
+maxz:1000
+tile:0:1000:0:1000:0:0:0
+tile:0:1000:0:500:0:0:dirt2
+noitems:0:1000:0:1000:-100:1000:tasing_small_projectile:elecboat:arena_card:grenade
+zone:0:1000:0:1000:0:1000:bff_city
+tile:100:200:0:500:0:0:concrete2
+tile:400:500:0:500:0:0:concrete
+tile:600:700:0:500:0:0:concrete4
+tile:800:900:0:500:0:0:concrete3
+zone:100:200:0:500:0:7:General Stainer road
+zone:400:500:0:500:0:7:General Istek road
+zone:600:700:0:500:0:7:General banana road
+zone:800:900:0:500:0:7:General Elijah road
+src:100:200:0:490:-15:-15:street2.ogg
+src:400:500:0:490:-15:-15:street2.ogg
+src:600:700:0:490:-15:-15:street2.ogg
+src:800:900:0:490:-15:-15:street2.ogg
+tile:280:320:100:400:0:0:cement2
+src:280:320:100:400:-8:-8:street3.ogg
+zone:280:320:100:400:0:0:superhero street
+tile:540:560:100:400:0:0:cement3
+src:540:560:100:400:-8:-8:street3.ogg
+zone:540:560:100:400:0:0:astsubay street
+tile:740:760:100:400:0:0:cement
+src:740:760:100:400:-8:-8:street3.ogg
+zone:740:760:100:400:0:0:SuperAttacker street
+
+tile:0:1000:501:700:-3:0:swimming
+tile:0:1000:501:700:-100:-3:underwater
+tile:0:1000:701:701:-100:-1:wallwater
+tile:0:1000:501:501:-100:-1:wallwater
+src:0:1000:501:700:0:3:background3.ogg
+src:0:1000:501:700:-3:-3:water2.ogg
+src:0:1000:501:700:-100:-20:underwater.ogg
+zone:0:1000:501:700:-100:9:AnujSharma river
+
+tile:100:200:500:500:0:10:stairs
+tile:100:200:501:701:10:10:bridge
+tile:100:200:501:501:0:9:wallstone
+tile:100:100:500:701:10:13:wallwoodpile
+tile:200:200:500:701:10:13:wallwoodpile
+zone:100:200:500:500:0:10:Gemsel stairs bridge:trackme
+zone:100:200:501:700:10:20:Gemsel bridge
+
+tile:800:900:500:500:0:10:stairs
+tile:800:900:501:701:10:10:bridge
+tile:800:900:501:501:0:9:wallstone
+tile:800:800:500:701:10:13:wallwoodpile
+tile:900:900:500:701:10:13:wallwoodpile
+zone:800:900:500:500:0:10:Hakimi stairs bridge:trackme
+zone:800:900:501:700:10:20:Hakimi bridge
+
+tile:0:99:500:500:0:10:wallrocks2
+tile:201:799:500:500:0:10:wallrocks2
+tile:901:1000:500:500:0:10:wallrocks2
+tile:0:99:501:501:0:10:dirt
+tile:201:799:501:501:0:10:dirt
+tile:901:1000:501:501:0:10:dirt
+tile:100:900:700:700:0:9:wallrocks2
+tile:0:100:701:701:0:10:wallrocks2
+tile:900:1000:701:701:0:10:wallrocks2
+tile:0:99:700:700:0:9:dirt
+tile:901:1000:700:700:0:9:dirt
+
+tile:100:900:700:1000:0:50:mountain
+tile:101:899:701:1000:0:49:wallrocks3
+tile:100:900:700:700:10:50:grass2
+tile:100:100:702:1000:0:50:grass2
+tile:900:900:702:1000:0:50:grass2
+tile:100:900:701:1000:50:50:snow
+tile:200:800:701:701:50:60:wallbrush
+src:100:900:700:1000:30:600:Desert Wind Day.ogg
+zone:100:900:700:1000:0:60:Gurindersingh mountain
+
+tile:0:100:702:1000:0:0:grass
+src:0:1000:701:1000:-5:-5:birds12.ogg
+zone:0:99:702:1000:0:10:green city:trackme
+travelpoint:0:0:702:702:0:0:bff_farm:110:62:0:welcome to farm
+zone:0:0:702:702:0:10:farm, press t here:trackme
+travelpoint:0:0:1000:1000:0:0:green_forest:75:11:0:green_city
+zone:0:0:1000:1000:0:10:green_forest, press t here :trackme
+
+tile:900:1000:702:1000:0:0:grass4
+zone:901:1000:702:1000:0:10:red city:trackme
+travelpoint:1000:1000:1000:1000:0:0:bff_dragon_city:83:173:0:dragon_city
+zone:1000:1000:1000:1000:0:10:Dragons_city:trackme
+
+tile:0:0:0:0:0:0:glass2
+travelpoint:0:0:0:0:0:0:safe_zone:50:50:0:safe_zone
+zone:0:0:0:0:0:10:press T here to go to safe zone :trackme
+tile:250:250:250:250:0:0:wood3
+travelpoint:250:250:250:250:0:0:bff_safe_house:0:0:0:bff_safe_house
+zone:250:250:250:250:0:0:bff safe house:trackme
+
+tile:486:514:400:403:0:300:wallbuilding3
+tile:487:513:400:400:0:300:stairs
+zone:487:513:400:400:0:300:stairs of bff tower:trackme
+
+tile:400:600:400:600:300:300:metal6
+tile:400:400:400:600:300:303:wallglass5
+tile:400:485:400:400:300:303:wallglass5
+tile:515:600:400:400:300:303:wallglass5
+tile:600:600:400:600:300:303:wallglass5
+tile:400:600:600:600:300:303:wallglass5
+src:0:1000:520:899:70:285:helecopter.ogg
+src:0:1000:0:485:25:285:helecopter.ogg
+zone:400:600:400:600:300:310:bff tower:trackme
+
+noitems:0:1000:0:1000:-1000:1000:death_free_card

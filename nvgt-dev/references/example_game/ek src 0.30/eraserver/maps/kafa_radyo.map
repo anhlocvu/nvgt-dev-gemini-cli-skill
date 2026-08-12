@@ -1,0 +1,11 @@
+mapname:kafa_radyo
+maxx:0
+maxy:0
+maxz:0
+tile:0:0:0:0:0:0:carpet2
+zone:0:0:0:0:0:0:kafa_radyo
+url:http://37.247.98.17/;
+travelpoint:0:0:0:0:0:0:radios_room:25:0:0:welcome back!
+zone:0:0:0:0:0:0:enjoy, if you want to go, press t!
+fightingstate:0
+noitems:0:0:0:0:0:suicide_bomb_nuclear_bomb:timebomb:small_projectile:tasing_small_projectile:mine:stun_grenade

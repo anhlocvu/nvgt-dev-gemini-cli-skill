@@ -1,0 +1,39 @@
+space@[]spaces(0);
+class space{
+reverb3d rev;
+double minx,maxx,miny,maxy,minz,maxz;
+double gain,density,decaytime,rolloff;
+space(double mx,double mx2,double my,double my2,double mz,double mz2,double ga,double de,double dt,int rlf)
+{
+minx=mx;
+maxx=mx2;
+miny=my;
+maxy=my2;
+minz=mz;
+maxz=mz2;
+gain=ga;
+density=de;
+decaytime=dt;
+rolloff=rlf;
+rev.set_gain(gain);
+rev.set_reverb_density(density);
+rev.set_decay_time(decaytime);
+rev.set_room_rolloff_factor(rolloff);
+}
+}
+void spacecheckloop()
+{
+for(uint i=0; i<spaces.length(); i++)
+{
+if(spaces[i].minx<=me.x and spaces[i].maxx>=me.x and spaces[i].miny<=me.y and spaces[i].maxy>=me.y and spaces[i].minz<=me.z and spaces[i].maxz>=me.z)
+{
+if(revb.current_reverb==spaces[i].rev.handle) continue;
+revb.current_reverb=spaces[i].rev.handle;
+}
+}
+}
+void create_reverb_space(double x,double x2,double y,double y2,double z,double z2,double gain,double density,double decaytime,double rolloff)
+{
+space space1(x,x2,y,y2,z,z2,gain,density,decaytime,rolloff);
+spaces.insert_last(space1);
+}

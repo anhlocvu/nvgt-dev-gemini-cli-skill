@@ -1,0 +1,253 @@
+
+void helpMenu() {
+string[] mainMenuItems;
+mainMenuItems.insert_last("Browse Help Categories");
+mainMenuItems.insert_last("Search a Topic");
+int counter = 0;
+speak("Help Menu");
+while (true) {
+wait(5);
+ek_loop();
+netloop();
+if (key_pressed(KEY_UP) && counter > 0) {
+counter--;
+speak(mainMenuItems[counter]);
+}
+if (key_pressed(KEY_DOWN) && counter < mainMenuItems.length() - 1) {
+counter++;
+speak(mainMenuItems[counter]);
+}
+if (key_pressed(KEY_RETURN)) {
+if (counter == 0) {
+browseHelp();
+} else if (counter == 1) {
+searchHelp();
+}
+}
+if (key_pressed(KEY_ESCAPE)) {
+speak("Exiting Help Menu");
+return;
+}
+}
+}
+
+void browseHelp() {
+string[] categories;
+string site = url_get("http://ice-master.duckdns.org/help/");
+if (isError(site)) {
+speak("The site reported an error, probably there are no help categories or topics to read, try again later.");
+return;
+}
+categories = parseDirectory(site);
+categories.insert_last("Go Back");
+int counter = 0;
+speak("Browse Help Categories");
+if (categories.length() == 0) {
+speak("There are no help categories available on the site.");
+}
+while (true) {
+wait(5);
+ek_loop();
+netloop();
+if (key_pressed(KEY_UP) && counter > 0) {
+counter--;
+speak(categories[counter]);
+}
+if (key_pressed(KEY_DOWN) && counter < categories.length() - 1) {
+counter++;
+speak(categories[counter]);
+}
+if (key_pressed(KEY_RETURN)) {
+if (counter == categories.length() - 1) {
+return;
+} else {
+browseTopics(categories[counter]);
+}
+}
+if (key_pressed(KEY_ESCAPE)) {
+return;
+}
+}
+}
+
+bool isError(string content) {
+if (content.length() < 25) {
+return true;
+}
+return false;
+}
+
+void browseTopics(string category) {
+string[] topics;
+string categoryUrl = "http://ice-master.duckdns.org/help/" + category;
+string topicsPage = url_get(categoryUrl);
+if (isError(topicsPage)) {
+speak("The site reported an error, probably there are no help categories or topics to read, try again later.");
+return;
+}
+topics = parseTopics(topicsPage);
+topics.insert_last("Go Back");
+int counter = 0;
+speak("Browse Topics in " + category);
+if (topics.length() == 0) {
+speak("There are no topics available in this category.");
+}
+while (true) {
+wait(5);
+ek_loop();
+netloop();
+if (key_pressed(KEY_UP) && counter > 0) {
+counter--;
+speak(topics[counter]);
+}
+if (key_pressed(KEY_DOWN) && counter < topics.length() - 1) {
+counter++;
+speak(topics[counter]);
+}
+if (key_pressed(KEY_RETURN)) {
+if (counter == topics.length() - 1) {
+return;
+} else {
+readTopic(topics[counter], category);
+}
+}
+if (key_pressed(KEY_ESCAPE)) {
+return;
+}
+}
+}
+
+void readTopic(string topic, string category) {
+string topicUrl = "http://ice-master.duckdns.org/help/" + category + "/" + topic + ".txt";
+string content = url_get(topicUrl);
+string[] lines = split(content, "\n");
+int counter = 0;
+if (lines.length() == 0) {
+speak("The topic content is not available.");
+return;
+}
+speak("Reading " + topic);
+while (true) {
+wait(5);
+ek_loop();
+netloop();
+if (key_pressed(KEY_UP) && counter > 0) {
+counter--;
+speak(lines[counter]);
+}
+if (key_pressed(KEY_DOWN) && counter < lines.length() - 1) {
+counter++;
+speak(lines[counter]);
+}
+if (key_pressed(KEY_ESCAPE)) {
+return;
+}
+}
+}
+
+void searchHelp() {
+string msg = input("message", "Enter the topic to search", "", "", 500, false, true, "&search");
+if (msg == "") {
+speak("No input received. Returning to help menu.");
+return;
+}
+string searchUrl = "http://ice-master.duckdns.org/help/search?q=" + msg;
+string searchResult = url_get(searchUrl);
+if (searchResult == "") {
+speak("There are no help files or topics matching your search.");
+return;
+}
+string[] results = split(searchResult, "\n");
+int counter = 0;
+speak("Search Results");
+while (true) {
+wait(5);
+ek_loop();
+netloop();
+if (key_pressed(KEY_UP) && counter > 0) {
+counter--;
+speak(results[counter]);
+}
+if (key_pressed(KEY_DOWN) && counter < results.length() - 1) {
+counter++;
+speak(results[counter]);
+}
+if (key_pressed(KEY_RETURN)) {
+readTopic(results[counter], "searchResults");
+}
+if (key_pressed(KEY_ESCAPE)) {
+return;
+}
+}
+}
+
+string[] parseDirectory(string content) {
+string[] directories;
+string[] lines = split(content, "\n");
+for (int i = 0; i < lines.length(); i++) {
+if (lines[i] != "") {
+int start = find_first(lines[i], ">", 0);
+int end = find_first(lines[i], "<", start + 1);
+if (start != -1 && end != -1) {
+string category = mid(lines[i], start + 1, end - start - 1);
+directories.insert_last(category);
+}
+}
+}
+return directories;
+}
+
+string[] parseTopics(string content) {
+string[] topics;
+string[] lines = split(content, "\n");
+for (int i = 0; i < lines.length(); i++) {
+if (lines[i] != "") {
+int start = find_first(lines[i], ">", 0);
+int end = find_first(lines[i], "<", start + 1);
+if (start != -1 && end != -1) {
+string topic = mid(lines[i], start + 1, end - start - 1);
+topics.insert_last(topic);
+}
+}
+}
+return topics;
+}
+
+int find_first(string content, string delimiter, int start) {
+int contentLen = content.length();
+int delimLen = delimiter.length();
+for (int i = start; i <= contentLen - delimLen; i++) {
+bool found = true;
+for (int j = 0; j < delimLen; j++) {
+if (content[i + j] != delimiter[j]) {
+found = false;
+break;
+}
+}
+if (found) {
+return i;
+}
+}
+return -1;
+}
+
+string mid(string content, int start, int length) {
+string result = "";
+for (int i = start; i < start + length && i < content.length(); i++) {
+result = result + content[i];
+}
+return result;
+}
+
+string[] split(string content, string delimiter) {
+string[] result;
+int start = 0;
+int end = find_first(content, delimiter, start);
+while (end != -1) {
+result.insert_last(mid(content, start, end - start));
+start = end + delimiter.length();
+end = find_first(content, delimiter, start);
+}
+result.insert_last(mid(content, start, content.length() - start));
+return result;
+}

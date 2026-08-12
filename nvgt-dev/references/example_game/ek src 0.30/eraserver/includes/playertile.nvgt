@@ -1,0 +1,66 @@
+player_tile@[] player_tiles;
+
+class player_tile
+{
+    int x, y, z;
+    string map;
+    string tile = "wallcloth";
+
+    player_tile(int x, int y, int z, string map)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.map = map;
+        send_reliable(0, "spawn_platform " + x + " " + x + " " + y + " " + y + " " + (z+0) + " " + (z+2) + " " + map + " wallcloth", 0);
+    }
+     void update_position(int newX, int newY, int newZ,string newMap)
+    {
+         this.x = newX;
+        this.y = newY;
+        this.z = newZ;
+        this.map = newMap;
+        send_reliable(0, "move_platform " + newX + " " + newX + " " + newY + " " + newY + " " + (newZ+0) + " " + (newZ+2) + " " + newMap , 0);
+    }
+
+     void remove_tile()
+    {
+        send_reliable(0,"remove_platform "+this.x+" "+this.x+" "+this.y+" "+this.y+" "+(this.z+0)+" "+(this.z+2)+" "+this.map,0);
+    }
+}
+
+void player_tileloop()
+{
+     for (uint i = 0; i < player_tiles.length(); i++)
+    {
+    }
+}
+void spawn_player_tile(int x, int y, int z, string map)
+{
+    player_tile h1(x, y, z, map);
+    player_tiles.insert_last(h1);
+}
+void update_player_tile(int x, int y, int z, string map)
+{
+      for (int i=0; i<player_tiles.length(); i++)
+    {
+        if (player_tiles[i].map == map && player_tiles[i].x == x && player_tiles[i].y == y )
+        {
+            player_tiles[i].update_position(x,y,z,map);
+              return;
+        }
+    }
+}
+void remove_player_tile(int x,int y, int z, string map)
+{
+    for (int i=0; i<player_tiles.length(); i++)
+    {
+        if (player_tiles[i].map == map && player_tiles[i].x == x && player_tiles[i].y == y && player_tiles[i].z == z)
+        {
+             player_tiles[i].remove_tile();
+             @player_tiles[i]=null;
+             player_tiles.remove_at(i);
+            return;
+        }
+    }
+}

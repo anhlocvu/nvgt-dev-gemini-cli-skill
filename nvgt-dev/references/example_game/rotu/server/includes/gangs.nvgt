@@ -1,0 +1,725 @@
+gang@[] gangs(0);
+
+class gang {
+    string name;
+    string leader;
+    string slogan;
+    string[] members;
+    string[] invited;
+    string[] requests;
+    int level = 1;
+    int exp = 0;
+    int kills = 0;
+
+    savedata gd;
+
+    gang(string nm, string ld, string slg = "A gang in the world of ROTU.") {
+        name = nm;
+        leader = ld;
+        slogan = slg;
+        gd.fn = "gangs/" + name + ".dat";
+        gd.key = plkey;
+    }
+
+    gang() {}
+
+    void save() {
+        gd.add("name", name);
+        gd.add("leader", leader);
+        gd.add("slogan", slogan);
+        gd.add("members", string_join(members, ","));
+        gd.add("invited", string_join(invited, ","));
+        gd.add("requests", string_join(requests, ","));
+        gd.add("level", level);
+        gd.add("exp", exp);
+        gd.add("kills", kills);
+        gd.save();
+    }
+
+    void load(string nm) {
+        name = nm;
+        gd.fn = "gangs/" + name + ".dat";
+        gd.key = plkey;
+        gd.load();
+        if(gd.d.exists("leader")) leader = gd.read("leader");
+        if(gd.d.exists("slogan")) slogan = gd.read("slogan");
+        if(gd.d.exists("members")) {
+            string mems = gd.read("members");
+            if (!mems.is_empty()) members = string_split(mems, ",", false);
+            else members.resize(0);
+        } else {
+            members.resize(0);
+        }
+        if(gd.d.exists("invited")) {
+            string invs = gd.read("invited");
+            if (!invs.is_empty()) invited = string_split(invs, ",", false);
+            else invited.resize(0);
+        } else {
+            invited.resize(0);
+        }
+        if(gd.d.exists("requests")) {
+            string reqs = gd.read("requests");
+            if (!reqs.is_empty()) requests = string_split(reqs, ",", false);
+            else requests.resize(0);
+        } else {
+            requests.resize(0);
+        }
+        if(gd.d.exists("level")) level = gd.readn("level");
+        else level = 1;
+        if(gd.d.exists("exp")) exp = gd.readn("exp");
+        else exp = 0;
+        if(gd.d.exists("kills")) kills = gd.readn("kills");
+        else kills = 0;
+    }
+
+    bool is_member(string p_name) {
+        if(p_name == leader) return true;
+        return (members.find(p_name) > -1);
+    }
+}
+
+int get_gang_index(string gname) {
+    for(uint i = 0; i < gangs.length(); i++) {
+        if(gangs[i].name == gname) return i;
+    }
+    return -1;
+}
+
+gang@ get_gang_handle(string gname) {
+    int idx = get_gang_index(gname);
+    if(idx > -1) return gangs[idx];
+    return null;
+}
+
+void load_all_gangs() {
+    gangs.resize(0);
+    if(!directory_exists("gangs")) {
+        directory_create("gangs");
+        return;
+    }
+    string[] files = find_files("gangs/*.dat");
+    for(uint i = 0; i < files.length(); i++) {
+        string gname = string_replace(files[i], ".dat", "", true);
+        gang g;
+        g.load(gname);
+        gangs.insert_last(g);
+    }
+    print("Loaded " + gangs.length() + " gangs.");
+}
+
+bool create_new_gang(string gname, string leader_name, string slogan = "A gang in the world of ROTU.") {
+    if(gname.is_empty() or get_gang_index(gname) > -1) return false;
+    gang g(gname, leader_name, slogan);
+    g.save();
+    gangs.insert_last(g);
+    return true;
+}
+
+void set_offline_player_gang(string char_name, string gang_name) {
+    string[] acc_dirs = find_directories("players/*");
+    for(uint i = 0; i < acc_dirs.length(); i++) {
+        string acc_name = acc_dirs[i];
+        if(directory_exists("players/" + acc_name + "/" + char_name)) {
+            savedata c_data("players/" + acc_name + "/" + char_name + "/data.dat", plkey);
+            c_data.load();
+            c_data.add("gang", gang_name);
+            c_data.save();
+            return;
+        }
+    }
+}
+
+void disband_gang(string gname) {
+    int idx = get_gang_index(gname);
+    if(idx <= -1) return;
+
+    gang@ g = gangs[idx];
+    
+    // Notify Leader
+    int leader_idx = get_player_index_from(g.leader);
+    if(leader_idx > -1) {
+        players[leader_idx].gang = "";
+        players[leader_idx].save();
+        send(players[leader_idx].peer_id, "gang_myname ", 0);
+        send(players[leader_idx].peer_id, "The gang " + gname + " has been disbanded!", 10);
+    } else {
+        set_offline_player_gang(g.leader, "");
+    }
+
+    // Notify members
+    for(uint i = 0; i < g.members.length(); i++) {
+        string m_name = g.members[i];
+        int p_idx = get_player_index_from(m_name);
+        if(p_idx > -1) {
+            players[p_idx].gang = "";
+            players[p_idx].save();
+            send(players[p_idx].peer_id, "gang_myname ", 0);
+            send(players[p_idx].peer_id, "The gang " + gname + " has been disbanded!", 10);
+        } else {
+            set_offline_player_gang(m_name, "");
+        }
+    }
+
+    // Delete gang file
+    file_delete("gangs/" + gname + ".dat");
+    gangs.remove_at(idx);
+}
+
+void gang_notify(string gname, string message, int channel = 10) {
+    gang@ g = get_gang_handle(gname);
+    if(g == null) return;
+
+    // Leader
+    int leader_idx = get_player_index_from(g.leader);
+    if(leader_idx > -1) {
+        send(players[leader_idx].peer_id, message, channel);
+    }
+
+    // Members
+    for(uint i = 0; i < g.members.length(); i++) {
+        int p_idx = get_player_index_from(g.members[i]);
+        if(p_idx > -1) {
+            send(players[p_idx].peer_id, message, channel);
+        }
+    }
+}
+
+void gang_broadcast_sound(string gname, string sound_name) {
+    gang@ g = get_gang_handle(gname);
+    if(g == null) return;
+
+    // Leader
+    int leader_idx = get_player_index_from(g.leader);
+    if(leader_idx > -1) {
+        send(players[leader_idx].peer_id, "play_stationary " + sound_name, 0);
+    }
+
+    // Members
+    for(uint i = 0; i < g.members.length(); i++) {
+        int p_idx = get_player_index_from(g.members[i]);
+        if(p_idx > -1) {
+            send(players[p_idx].peer_id, "play_stationary " + sound_name, 0);
+        }
+    }
+}
+
+void add_gang_exp(string gname, int amount) {
+    gang@ g = get_gang_handle(gname);
+    if(g == null) return;
+
+    g.exp += amount;
+    int next_level_exp = g.level * 1000;
+    if(g.exp >= next_level_exp) {
+        g.exp -= next_level_exp;
+        g.level += 1;
+        g.save();
+        gang_notify(g.name, "[Gang] Congratulations! The gang has leveled up to Level " + g.level + "!", 10);
+        gang_broadcast_sound(g.name, "level_up.ogg");
+    } else {
+        g.save();
+    }
+}
+
+void add_gang_kill(string gname, int amount = 1) {
+    gang@ g = get_gang_handle(gname);
+    if(g == null) return;
+
+    g.kills += amount;
+    g.save();
+}
+
+// Handle client requests for Gang features
+void handle_gang_packets(int index, string[]@ parsed, string event_msg, uint peer_id) {
+    if(index <= -1) return;
+    
+    players[index].afktimer.restart();
+    if(players[index].afk) {
+        send(0, players[index].name + " is no longer AFK.", 2);
+        players[index].afk = false;
+    }
+
+    if(parsed[0] == "gang_get_player_gang" and parsed.length() > 1) {
+        string target = parsed[1];
+        int t_idx = get_player_index_from(target, true);
+        string t_gang = "";
+        if (t_idx > -1) {
+            t_gang = players[t_idx].gang;
+        }
+        if (t_gang == "") {
+            send(peer_id, "player_gang_res " + target + " none", 0);
+        } else {
+            send(peer_id, "player_gang_res " + target + " " + t_gang, 0);
+        }
+        return;
+    }
+
+    if(parsed[0] == "gang_create") {
+        if(players[index].gang != "") {
+            send(peer_id, "You are already in a gang.", 10);
+            return;
+        }
+        string raw_data = string_replace(event_msg, "gang_create ", "", true);
+        string[] parts = string_split(raw_data, "|", false);
+        if(parts.length() < 1) {
+            send(peer_id, "Syntax error creating gang.", 10);
+            return;
+        }
+        string gname = parts[0].trim_whitespace();
+        string slogan = "A gang in the world of ROTU.";
+        if(parts.length() >= 2) slogan = parts[1];
+
+        if(gname.is_empty()) {
+            send(peer_id, "Gang name cannot be empty.", 10);
+            return;
+        }
+        if(string_contains(gname, "/", 1) > -1 or string_contains(gname, "\\", 1) > -1 or string_contains(gname, ".", 1) > -1 or string_contains(gname, ",", 1) > -1) {
+            send(peer_id, "Gang name cannot contain special characters.", 10);
+            return;
+        }
+        if(get_gang_index(gname) > -1) {
+            send(peer_id, "This gang name already exists.", 10);
+            return;
+        }
+
+        if(create_new_gang(gname, players[index].char, slogan)) {
+            players[index].gang = gname;
+            players[index].save();
+            send(peer_id, "gang_myname " + gname, 0);
+            send(peer_id, "Gang " + gname + " created successfully! You are now the Leader.", 10);
+            send(peer_id, "play_stationary gang_create.ogg", 0);
+        } else {
+            send(peer_id, "Failed to create gang.", 10);
+        }
+    }
+    else if(parsed[0] == "gang_join_request") {
+        if(players[index].gang != "") {
+            send(peer_id, "You are already in a gang.", 10);
+            return;
+        }
+        string gname = string_replace(event_msg, "gang_join_request ", "", true);
+        gang@ g = get_gang_handle(gname);
+        if(g == null) {
+            send(peer_id, "Gang does not exist.", 10);
+            return;
+        }
+        if(g.requests.find(players[index].char) > -1) {
+            send(peer_id, "You have already sent a request to join this gang.", 10);
+            return;
+        }
+
+        g.requests.insert_last(players[index].char);
+        g.save();
+        send(peer_id, "Sent request to join gang " + gname + ". Awaiting leader approval.", 10);
+        
+        // Notify Leader
+        int leader_idx = get_player_index_from(g.leader);
+        if(leader_idx > -1) {
+            send(players[leader_idx].peer_id, "[Gang] Lone wolf " + players[index].char + " wants to join your gang. Please check requests menu.", 10);
+            send(players[leader_idx].peer_id, "play_stationary notification.ogg", 0);
+        }
+    }
+    else if(parsed[0] == "gang_accept_request") {
+        string target = string_replace(event_msg, "gang_accept_request ", "", true);
+        gang@ g = get_gang_handle(players[index].gang);
+        if(g == null or g.leader != players[index].char) {
+            send(peer_id, "You are not the gang leader.", 10);
+            return;
+        }
+        int req_idx = g.requests.find(target);
+        if(req_idx <= -1) {
+            send(peer_id, "Could not find a join request from this player.", 10);
+            return;
+        }
+
+        g.requests.remove_at(req_idx);
+        
+        // Check if target is in another gang
+        int t_idx = get_player_index_from(target);
+        string t_gang = "";
+        if(t_idx > -1) {
+            t_gang = players[t_idx].gang;
+        } else {
+            // Offline check
+            string[] acc_dirs = find_directories("players/*");
+            for(uint i = 0; i < acc_dirs.length(); i++) {
+                if(directory_exists("players/" + acc_dirs[i] + "/" + target)) {
+                    savedata c_data("players/" + acc_dirs[i] + "/" + target + "/data.dat", plkey);
+                    c_data.load();
+                    if(c_data.d.exists("gang")) t_gang = c_data.read("gang");
+                    break;
+                }
+            }
+        }
+
+        if(t_gang != "") {
+            g.save();
+            send(peer_id, target + " has already joined another gang.", 10);
+            return;
+        }
+
+        g.members.insert_last(target);
+        g.save();
+
+        if(t_idx > -1) {
+            players[t_idx].gang = g.name;
+            players[t_idx].save();
+            send(players[t_idx].peer_id, "gang_myname " + g.name, 0);
+            send(players[t_idx].peer_id, "Congratulations! Leader " + players[index].char + " has accepted you into the gang " + g.name + "!", 10);
+            send(players[t_idx].peer_id, "play_stationary gang_join.ogg", 0);
+        } else {
+            set_offline_player_gang(target, g.name);
+        }
+
+        gang_notify(g.name, "[Gang] Welcome the new member " + target + " to the gang!", 10);
+        gang_broadcast_sound(g.name, "gang_join.ogg");
+    }
+    else if(parsed[0] == "gang_reject_request") {
+        string target = string_replace(event_msg, "gang_reject_request ", "", true);
+        gang@ g = get_gang_handle(players[index].gang);
+        if(g == null or g.leader != players[index].char) {
+            send(peer_id, "You are not the gang leader.", 10);
+            return;
+        }
+        int req_idx = g.requests.find(target);
+        if(req_idx > -1) {
+            g.requests.remove_at(req_idx);
+            g.save();
+            send(peer_id, "Rejected join request from " + target + ".", 10);
+            int t_idx = get_player_index_from(target);
+            if(t_idx > -1) {
+                send(players[t_idx].peer_id, "Your request to join gang " + g.name + " has been rejected.", 10);
+            }
+        }
+    }
+    else if(parsed[0] == "gang_invite") {
+        string target = string_replace(event_msg, "gang_invite ", "", true);
+        gang@ g = get_gang_handle(players[index].gang);
+        if(g == null or g.leader != players[index].char) {
+            send(peer_id, "You are not the gang leader.", 10);
+            return;
+        }
+        if(target == players[index].char) {
+            send(peer_id, "You cannot invite yourself.", 10);
+            return;
+        }
+
+        int t_idx = get_player_index_from(target);
+        string t_gang = "";
+        bool exists = false;
+        if(t_idx > -1) {
+            t_gang = players[t_idx].gang;
+            exists = true;
+        } else {
+            string[] acc_dirs = find_directories("players/*");
+            for(uint i = 0; i < acc_dirs.length(); i++) {
+                if(directory_exists("players/" + acc_dirs[i] + "/" + target)) {
+                    savedata c_data("players/" + acc_dirs[i] + "/" + target + "/data.dat", plkey);
+                    c_data.load();
+                    if(c_data.d.exists("gang")) t_gang = c_data.read("gang");
+                    exists = true;
+                    break;
+                }
+            }
+        }
+
+        if(!exists) {
+            send(peer_id, "Could not find a player named " + target + ".", 10);
+            return;
+        }
+        if(t_gang != "") {
+            send(peer_id, target + " is already in another gang.", 10);
+            return;
+        }
+
+        if(t_idx > -1) {
+            // Online invite pop up
+            send(players[t_idx].peer_id, "gang_invite_pop " + players[index].char + " " + g.name, 0);
+            send(peer_id, "Sent direct invite to " + target + ".", 10);
+        } else {
+            // Offline invite queue
+            if(g.invited.find(target) <= -1) {
+                g.invited.insert_last(target);
+                g.save();
+                send(peer_id, "Player " + target + " is currently offline. The invitation has been added to the pending list.", 10);
+            } else {
+                send(peer_id, "An invite for this player is already pending.", 10);
+            }
+        }
+    }
+    else if(parsed[0] == "gang_accept_invite") {
+        if(players[index].gang != "") {
+            send(peer_id, "You already have a gang.", 10);
+            return;
+        }
+        string gname = string_replace(event_msg, "gang_accept_invite ", "", true);
+        gang@ g = get_gang_handle(gname);
+        if(g == null) {
+            send(peer_id, "Gang does not exist.", 10);
+            return;
+        }
+
+        g.members.insert_last(players[index].char);
+        int inv_idx = g.invited.find(players[index].char);
+        if(inv_idx > -1) g.invited.remove_at(inv_idx);
+        g.save();
+
+        players[index].gang = gname;
+        players[index].save();
+        send(peer_id, "gang_myname " + gname, 0);
+
+        send(peer_id, "Welcome to the gang " + gname + "!", 10);
+        send(peer_id, "play_stationary gang_join.ogg", 0);
+
+        gang_notify(gname, "[Gang] New member " + players[index].char + " joined the gang via invitation!", 10);
+        gang_broadcast_sound(gname, "gang_join.ogg");
+    }
+    else if(parsed[0] == "gang_reject_invite") {
+        string gname = string_replace(event_msg, "gang_reject_invite ", "", true);
+        gang@ g = get_gang_handle(gname);
+        if(g != null) {
+            int inv_idx = g.invited.find(players[index].char);
+            if(inv_idx > -1) {
+                g.invited.remove_at(inv_idx);
+                g.save();
+            }
+            send(peer_id, "Rejected invitation to join gang " + gname + ".", 10);
+            int leader_idx = get_player_index_from(g.leader);
+            if(leader_idx > -1) {
+                send(players[leader_idx].peer_id, "[Gang] " + players[index].char + " rejected the gang invitation.", 10);
+            }
+        }
+    }
+    else if(parsed[0] == "gang_kick") {
+        string target = string_replace(event_msg, "gang_kick ", "", true);
+        gang@ g = get_gang_handle(players[index].gang);
+        if(g == null or g.leader != players[index].char) {
+            send(peer_id, "You are not the gang leader.", 10);
+            return;
+        }
+        int m_idx = g.members.find(target);
+        if(m_idx <= -1) {
+            send(peer_id, target + " is not in your gang.", 10);
+            return;
+        }
+
+        g.members.remove_at(m_idx);
+        g.save();
+
+        int t_idx = get_player_index_from(target);
+        if(t_idx > -1) {
+            players[t_idx].gang = "";
+            players[t_idx].save();
+            send(players[t_idx].peer_id, "gang_myname ", 0);
+            send(players[t_idx].peer_id, "You have been kicked from the gang " + g.name + " by leader " + players[index].char + ".", 10);
+            send(players[t_idx].peer_id, "play_stationary gang_kick.ogg", 0);
+        } else {
+            set_offline_player_gang(target, "");
+        }
+
+        gang_notify(g.name, "[Gang] Member " + target + " has been kicked from the gang.", 10);
+        gang_broadcast_sound(g.name, "gang_kick.ogg");
+    }
+    else if(parsed[0] == "gang_leave") {
+        gang@ g = get_gang_handle(players[index].gang);
+        if(g == null) {
+            send(peer_id, "You are not in any gang.", 10);
+            return;
+        }
+        if(g.leader == players[index].char) {
+            send(peer_id, "The Leader cannot leave the gang. Please disband or transfer leadership first.", 10);
+            return;
+        }
+        int m_idx = g.members.find(players[index].char);
+        if(m_idx > -1) {
+            g.members.remove_at(m_idx);
+            g.save();
+        }
+
+        players[index].gang = "";
+        players[index].save();
+        send(peer_id, "gang_myname ", 0);
+
+        send(peer_id, "You have left the gang " + g.name + ".", 10);
+        send(peer_id, "play_stationary gang_leave.ogg", 0);
+
+        gang_notify(g.name, "[Gang] Member " + players[index].char + " has left the gang.", 10);
+        gang_broadcast_sound(g.name, "gang_leave.ogg");
+    }
+    else if(parsed[0] == "gang_disband") {
+        gang@ g = get_gang_handle(players[index].gang);
+        if(g == null or g.leader != players[index].char) {
+            send(peer_id, "You are not the gang leader.", 10);
+            return;
+        }
+
+        disband_gang(g.name);
+    }
+    else if(parsed[0] == "gang_slogan") {
+        gang@ g = get_gang_handle(players[index].gang);
+        if(g == null or g.leader != players[index].char) {
+            send(peer_id, "You are not the gang leader.", 10);
+            return;
+        }
+        string new_slg = string_replace(event_msg, "gang_slogan ", "", true);
+        if(new_slg.is_empty()) new_slg = "A gang in the world of ROTU.";
+        g.slogan = new_slg;
+        g.save();
+        send(peer_id, "Changed gang slogan successfully.", 10);
+        gang_notify(g.name, "[Gang] The Leader changed the gang slogan to: \"" + g.slogan + "\"", 10);
+    }
+    else if(parsed[0] == "gang_broadcast") {
+        gang@ g = get_gang_handle(players[index].gang);
+        if(g == null or g.leader != players[index].char) {
+            send(peer_id, "You are not the gang leader.", 10);
+            return;
+        }
+        string msg = string_replace(event_msg, "gang_broadcast ", "", true);
+        if(msg.is_empty()) return;
+        gang_notify(g.name, "[GANG BROADCAST] Leader " + players[index].char + ": " + msg, 10);
+        gang_broadcast_sound(g.name, "gang_alarm.ogg");
+    }
+    else if(parsed[0] == "gang_chat") {
+        gang@ g = get_gang_handle(players[index].gang);
+        if(g == null) {
+            send(peer_id, "You are not in a gang to chat.", 10);
+            return;
+        }
+        if(players[index].disabled.find("chat") > -1) {
+            send(peer_id, "You are muted from chatting.", 10);
+            return;
+        }
+        string text = string_replace(event_msg, "gang_chat ", "", true);
+        if(text.is_empty()) return;
+
+        string role = "Member";
+        if(g.leader == players[index].char) role = "Leader";
+
+        string chat_str = "[Gang] " + role + " " + players[index].char + ": " + text;
+        gang_notify(g.name, chat_str, 10);
+        gang_broadcast_sound(g.name, "gang_chat.ogg");
+    }
+    else if(parsed[0] == "gang_request_info") {
+        gang@ g = get_gang_handle(players[index].gang);
+        if(g == null) {
+            send(peer_id, "gang_info_res none", 0);
+            return;
+        }
+        
+        string online_mems = "";
+        string offline_mems = "";
+        
+        // Leader status
+        int l_idx = get_player_index_from(g.leader);
+        if(l_idx > -1) online_mems += g.leader + " (Leader - Online),";
+        else offline_mems += g.leader + " (Leader - Offline),";
+
+        for(uint i = 0; i < g.members.length(); i++) {
+            string name = g.members[i];
+            int p_idx = get_player_index_from(name);
+            if(p_idx > -1) online_mems += name + " (Online),";
+            else offline_mems += name + " (Offline),";
+        }
+
+        if(online_mems.length() > 0) online_mems = string_left(online_mems, online_mems.length() - 1);
+        if(offline_mems.length() > 0) offline_mems = string_left(offline_mems, offline_mems.length() - 1);
+
+        string res_str = "gang_info_res " + g.name + "|" + g.leader + "|" + g.slogan + "|" + g.level + "|" + g.exp + "|" + g.kills + "|" + online_mems + "|" + offline_mems;
+        send(peer_id, res_str, 0);
+    }
+    else if(parsed[0] == "gang_request_list") {
+        string list_str = "gang_list_res ";
+        for(uint i = 0; i < gangs.length(); i++) {
+            list_str += gangs[i].name + ":" + gangs[i].leader + ":" + (gangs[i].members.length() + 1) + ":" + gangs[i].level + ":" + gangs[i].slogan + "|";
+        }
+        if(gangs.length() > 0) list_str = string_left(list_str, list_str.length() - 1);
+        send(peer_id, list_str, 0);
+    }
+    else if(parsed[0] == "gang_request_requests") {
+        gang@ g = get_gang_handle(players[index].gang);
+        if(g == null or g.leader != players[index].char) return;
+
+        string req_str = "gang_requests_res " + string_join(g.requests, ",");
+        send(peer_id, req_str, 0);
+    }
+    else if(parsed[0] == "gang_request_invites") {
+        string invites_str = "gang_invites_res ";
+        for(uint i = 0; i < gangs.length(); i++) {
+            if(gangs[i].invited.find(players[index].char) > -1) {
+                invites_str += gangs[i].name + ",";
+            }
+        }
+        if(invites_str.length() > 17) invites_str = string_left(invites_str, invites_str.length() - 1);
+        send(peer_id, invites_str, 0);
+    }
+    
+    // Admin features
+    else if(parsed[0] == "gang_admin_disband") {
+        if(!players[index].admin and !players[index].dev and !players[index].mod) {
+            send(peer_id, "You do not have permission.", 10);
+            return;
+        }
+        string target_gang = string_replace(event_msg, "gang_admin_disband ", "", true);
+        gang@ g = get_gang_handle(target_gang);
+        if(g == null) {
+            send(peer_id, "Gang does not exist.", 10);
+            return;
+        }
+
+        gang_notify(g.name, "[System] Gang " + g.name + " has been forcefully disbanded by administrator " + players[index].char + "!", 10);
+        gang_broadcast_sound(g.name, "gang_kick.ogg");
+
+        disband_gang(g.name);
+        send(peer_id, "Forcefully disbanded gang " + target_gang + " successfully.", 10);
+    }
+    else if(parsed[0] == "gang_admin_slogan") {
+        if(!players[index].admin and !players[index].dev and !players[index].mod) {
+            send(peer_id, "You do not have permission.", 10);
+            return;
+        }
+        string raw_data = string_replace(event_msg, "gang_admin_slogan ", "", true);
+        string[] parts = string_split(raw_data, "|", false);
+        if(parts.length() < 2) return;
+        string target_gang = parts[0];
+        string new_slg = parts[1];
+
+        gang@ g = get_gang_handle(target_gang);
+        if(g != null) {
+            g.slogan = new_slg;
+            g.save();
+            gang_notify(g.name, "[Gang] Administrator changed gang slogan to: \"" + g.slogan + "\"", 10);
+            send(peer_id, "Slogan changed successfully.", 10);
+        }
+    }
+    else if(parsed[0] == "gang_admin_leader") {
+        if(!players[index].admin and !players[index].dev and !players[index].mod) {
+            send(peer_id, "You do not have permission.", 10);
+            return;
+        }
+        string raw_data = string_replace(event_msg, "gang_admin_leader ", "", true);
+        string[] parts = string_split(raw_data, "|", false);
+        if(parts.length() < 2) return;
+        string target_gang = parts[0];
+        string new_leader = parts[1];
+
+        gang@ g = get_gang_handle(target_gang);
+        if(g == null) {
+            send(peer_id, "Gang does not exist.", 10);
+            return;
+        }
+        int m_idx = g.members.find(new_leader);
+        if(m_idx <= -1) {
+            send(peer_id, new_leader + " is not a member of gang " + target_gang + ".", 10);
+            return;
+        }
+
+        string old_leader = g.leader;
+        g.members.remove_at(m_idx);
+        g.members.insert_last(old_leader);
+        g.leader = new_leader;
+        g.save();
+
+        gang_notify(g.name, "[Gang] Administrator designated new gang leader: " + new_leader + " (Old Leader: " + old_leader + ")!", 10);
+        gang_broadcast_sound(g.name, "gang_join.ogg");
+        send(peer_id, "Designated " + new_leader + " as the new leader successfully.", 10);
+    }
+}

@@ -1,0 +1,20 @@
+beacon@[]beacons(0);
+class beacon{
+double minx,maxx,miny,maxy,minz,maxz;
+string text;
+beacon(double mx,double mx2,double my,double my2, double mz,double mz2,string txt)
+{
+minx=mx;
+maxx=mx2;
+miny=my;
+maxy=my2;
+minz=mz;
+maxz=mz2;
+text=txt;
+}
+}
+void create_beacon(double x,double x2,double y,double y2,double z,double z2,string text)
+{
+beacon beacon1(x,x2,y,y2,z,z2,text);
+beacons.insert_last(beacon1);
+}

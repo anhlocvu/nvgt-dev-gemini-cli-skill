@@ -1,0 +1,27 @@
+string chang=url_get("http://ice-master.duckdns.org/senihicalakadar.txt");
+string rules2=url_get("http://ice-master.duckdns.org/rules.txt");
+string read=url_get("http://ice-master.duckdns.org/readme.txt");
+string readtr=url_get("http://ice-master.duckdns.org/benioku.txt");
+void docmenu()
+{
+form.create_window("document menu: here you can find most things about the game", false, false);
+int list=form.create_list("client changes",0);
+form.add_list_item(list,""+chang+"",-1);
+int list2=form.create_list("game rules",0);
+form.add_list_item(list2,""+rules2+"",-1);
+int list3=form.create_list("game guide",0);
+form.add_list_item(list3,"english: "+read+"",-1);
+form.add_list_item(list3,"turkish: "+readtr+"",-1);
+    int buttonn = form.create_button("close", false, true);
+while(true)
+{
+wait(5);
+form.monitor();
+        if (form.is_pressed(buttonn))
+        {
+form.reset();
+speak("closed");
+return;
+    }
+}
+}

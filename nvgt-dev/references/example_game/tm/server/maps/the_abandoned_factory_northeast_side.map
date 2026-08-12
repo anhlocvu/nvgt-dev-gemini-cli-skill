@@ -1,0 +1,12 @@
+mapname:the_abandoned_factory_northeast_side
+maxx:100
+maxy:100
+maxz:100
+tile:0:100:0:100:0:0:concrete4
+zone:0:100:0:100:0:100:abandoned factory, northeast side
+cmusic:0:100:0:100:0:100:anime179.ogg:-10:100
+zone:100:100:100:100:0:6:press shift plus enter to complete this quest@trackme@
+zone:0:0:0:0:0:56:go back@trackme@
+travelpoint:0:0:0:0:0:0:the_abandoned_factory:200:200:0:running away? how disappointing
+noitems:0:5555:0:5555:0:5555:stp429:grenade
+robots:0:100:0:100:0:0:1:1000:unseelers_agent

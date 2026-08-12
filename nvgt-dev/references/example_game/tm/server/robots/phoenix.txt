@@ -1,0 +1,17 @@
+name phoenix
+health 17000000
+defence 9800
+speed 400
+damage 3000000
+shieldhits 5000,5000
+shieldchance 100
+shoot 1000
+distance 20
+aggro 1000
+spread 6
+angle 360
+steps 0
+loot air_canister
+amount 10
+voices 6
+xp 30000,40000

@@ -1,0 +1,13 @@
+mapname:mythical_seel
+maxx:300
+maxy:300
+maxz:300
+tile:0:300:0:300:0:0:shortgrass
+src:0:300:0:300:0:20:mythical seel.ogg:-10:100
+robots:0:300:0:300:0:0:5:500:werewolf,thunderbird,wendigo,chimera,cockatrice
+zone:0:300:0:300:0:300:the shadows are strong here, enveloping the place in eery darkness. the creatures living here are cruel and deadly. your previous encounters with the creatures made you think of them as graceful as magestic, however now? now as you stand in a jungle which seems the harbenger of darkness even in day time, you feel wary. a shiver of terror goes down your spine as you here the spine chilling houls of the creatures living here, causing you to realise that you might have stepped in to a land for which you can never be ready for
+zone:0:0:0:0:0:0:go back@trackme@
+travelpoint:0:0:0:0:0:0:land_of_the_seeled:200:200:0:you decide to leave, the place too much for you to handel
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb:throwing_star:kings_statue
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+tile:0:500:0:500:0:0:grass3

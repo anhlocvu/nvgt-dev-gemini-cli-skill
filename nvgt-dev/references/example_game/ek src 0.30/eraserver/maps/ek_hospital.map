@@ -1,0 +1,33 @@
+mapname:ek_hospital
+maxx:100
+maxy:100
+maxz:100
+tile:0:100:0:100:0:0:concrete7
+zone:0:100:0:100:0:100:ek hospital
+src:0:100:0:100:0:100:hospital.ogg
+tile:100:100:100:100:0:50:cement
+tile:0:100:0:100:50:50:concrete6
+tile:0:100:75:75:50:55:wallstone2
+tile:0:100:76:76:50:55:cement
+tile:0:100:0:75:55:55:concrete2
+tile:0:45:50:50:50:100:wallstone2
+tile:55:100:50:50:55:100:wallstone2
+tile:45:45:0:50:50:100:wallstone2
+tile:55:55:5:50:50:100:wallstone2
+tile:55:70:5:5:50:100:wallstone2
+tile:80:100:5:5:50:100:wallstone2
+//zone:0:100:0:100:0:100:ek hospital
+zone:100:100:100:100:0:0:stairs to second floor:trackme
+zone:100:100:100:100:1:49:hospital_stairs
+zone:0:100:0:100:50:100:ek hospital second floor
+zone:100:100:100:100:50:50:stairs to first floor:trackme
+travelpoint:0:0:0:0:0:0:ek_services:100:0:5:ek services
+zone:0:0:0:0:0:0:go out of the hospital:trackme
+fightingstate:0
+tile:100:100:49:49:55:55:concrete18
+zone:100:100:49:49:55:65:Press t to increase your health to 15000000, warning, you need a healthy_card first:trackme
+tile:100:100:49:49:55:55:glass2
+tile:100:100:49:49:55:55:metal16
+ispawn:0:100:0:100:0:0:1000:6:1,5:health_box:chocolate:apple_juice:milk:cola:health_healer
+
+music:md23.ogg

@@ -1,0 +1,984 @@
+home@[] homes;
+class home
+{
+int x,y,z, level;
+string map,map1,map2;
+string name;
+string code;
+string compsound;
+string soundloop;
+bool opening=false;
+bool power=false;
+bool unlocked=false;
+timer unlocktimer;
+timer openingtimer;
+string acs="off";
+string[] aplayers(0);
+home(int hx,int hy,int hz,string hname,string hmap, string c, string acs1, int level1)
+{
+x=hx;
+y=hy;
+z=hz;
+name=hname;
+map=hmap;
+code=c;
+acs=acs1;
+level=level1;
+map1="
+mapname:"+name+"'s_house
+maxx:30
+maxy:30
+maxz:500
+safezone:0:30:0:30:0:500
+tile:0:30:0:30:0:0:carpet
+zone:0:30:0:30:0:19:ground floor of the house
+zone:15:15:0:0:20:5:exit door:trackme
+tile:10:10:0:10:0:19:wall2
+tile:0:10:10:10:0:19:wall2
+zone:0:9:0:9:0:19:home study room
+door:9:7:0:11:7:0:1000:silence.ogg:silence.ogg:dooropen122.ogg:doorclose110.ogg
+door:11:7:0:9:7:0:1000:silence.ogg:silence.ogg:dooropen124.ogg:doorclose1.ogg
+zone:9:9:7:7:0:5:door to corridor
+zone:11:19:0:30:0:19:hallway
+zone:11:11:7:7:0:5:study room entrance
+zone:0:30:11:19:0:19:hallway
+tile:0:5:3:7:0:2:walltable
+zone:0:6:2:8:0:5:table
+tile:7:9:0:1:0:17:wallmetal5
+zone:6:9:0:2:0:10:a metal cabinet. It looks like it's locked.
+tile:20:20:20:30:0:19:wall2
+tile:20:30:20:20:0:19:wall2
+door:27:19:0:27:21:0:1000:silence.ogg:silence.ogg:dooropen1.ogg:doorclose1.ogg
+door:27:21:0:27:19:0:1000:silence.ogg:silence.ogg:dooropen1.ogg:doorclose1.ogg
+zone:21:30:21:30:0:19:rest area
+zone:27:27:19:19:0:5:rest area entrance
+zone:27:27:21:21:0:5:exit door
+tile:28:30:28:30:0:3:wallsofa
+tile:28:30:28:30:4:4:mat
+zone:27:30:27:30:0:16:a bed
+amb:21:30:21:30:0:19:windchimes2.ogg
+tile:0:10:20:20:0:19:wall2
+tile:10:10:20:30:0:19:wall2
+door:2:19:0:2:21:0:1000:silence.ogg:silence.ogg:dooropen1.ogg:doorclose1.ogg
+door:2:21:0:2:19:0:1000:silence.ogg:silence.ogg:dooropen124.ogg:doorclose1.ogg
+zone:0:9:21:30:0:19:living room
+zone:2:2:21:21:0:5:exit door
+zone:2:2:19:19:0:6:living room entrance
+zone:0:0:23:26:0:5:100 screen led tv
+tile:0:0:24:25:0:7:wallscreen
+tile:4:9:30:30:0:0:mat
+zone:4:9:30:30:0:5:a comfortable seating group
+zone:20:30:0:9:0:19:entree
+tile:0:30:0:30:20:20:carpet1
+tile:30:30:0:0:0:19:carpet5
+zone:0:30:0:30:20:50:second floor
+tile:16:30:11:30:20:20:concrete13
+tile:15:15:0:30:19:50:wall2
+tile:16:30:10:10:19:50:wall2
+zone:29:30:0:1:0:25:near the stairs
+zone:30:30:0:0:0:25:stairs
+door:27:9:20:27:11:20:1000:silence.ogg:silence.ogg:dooropen1.ogg:doorclose82.ogg
+door:27:11:20:27:9:20:1000:silence.ogg:silence.ogg:dooropen10.ogg:doorclose9.ogg
+zone:16:30:11:30:20:50:bath room
+zone:27:27:11:11:20:50:exit door
+zone:27:27:9:9:20:50:bathroom entrance:trackme
+tile:25:25:25:30:20:50:wallglass6
+tile:25:30:25:25:20:50:wallglass6
+door:28:24:20:28:26:21:1000:silence.ogg:silence.ogg:dooropen45.ogg:doorclose61.ogg
+tile:26:30:26:30:20:20:wallstone
+tile:26:30:26:30:21:21:wetconcrete
+zone:26:30:26:30:20:50:shower cabin
+door:28:26:21:28:24:20:1000:silence.ogg:silence.ogg:dooropen45.ogg:doorclose61.ogg
+zone:28:28:24:24:20:50:cabin entrance:trackme
+zone:2:28:26:26:21:50:exit of the cabin
+zone:19:19:30:30:20:20:Toilet
+zone:16:16:30:30:20:25:washbasin with mirror.
+door:16:5:20:14:5:20:2000:silence.ogg:silence.ogg:dooropen22.ogg:doorclose94.ogg
+door:14:5:20:16:5:20:2000:silence.ogg:silence.ogg:dooropen22.ogg:doorclose3.ogg
+zone:0:14:0:30:20:50:bedroom
+zone:16:16:5:5:20:50:bedroom entrance:trackm
+zone:14:14:5:5:20:50:exit door
+zone:15:15:0:2:0:5:exit door:trackme
+noitems:0:30:0:30:0:500:nuclear_bomb:stone:bike
+tile:0:5:25:30:20:21:wallsofa
+tile:0:5:25:30:22:22:carpet3
+zone:0:6:24:30:20:25:a double bed
+tile:0:0:15:15:20:20:walldoor2
+zone:0:1:14:16:20:25:a locked gar dlop
+zone:0:0:5:5:20:25:a locked chest
+tile:0:0:0:0:20:24:walltable
+zone:0:1:0:1:20:25:computer desk
+tile:1:1:0:0:20:20:chair
+zone:1:1:0:0:20:23:chair in front of computer desk
+tile:29:29:0:0:1:19:wallbarrel:0:100
+tile:29:30:1:1:1:19:wallbarrel:0:100
+washbasin:16:30:20
+toilet:19:30:20
+shower:30:30:21
+zone:30:30:30:30:21:25:shower
+";
+map2="
+mapname:"+name+"'s_house
+maxx:50
+maxy:50
+maxz:500
+zone:0:50:0:50:0:20:first floor of the "+name+" 's house
+tile:0:50:0:50:0:0:carpet
+safezone:0:50:0:50:0:500
+thirstzone:0:50:0:50:0:1000:0
+hungerzone:0:50:0:50:0:500:0
+healthzone:0:50:0:50:0:500:0
+tile:0:50:0:10:0:0:grass5
+zone:0:50:0:10:0:500:backyard of the house
+zone:5:5:7:7:0:10:a beautiful lemon tree
+zone:16:16:7:7:0:11:a magnificent orange tree
+zone:15:15:0:2:0:5:exit door
+zone:40:40:7:7:0:11:a beautiful apple tree
+zone:30:35:7:9:0:5:this is a beautiful water fountain
+tile:33:34:7:9:0:4:wallstone1
+tile:33:34:2:5:5:5:concrete26
+tile:33:33:4:4:5:5:water
+src:32:33:3:5:-15:-15:fonteagua.ogg
+tile:0:50:11:11:0:10:wallstone
+tile:12:15:10:12:0:10:concrete1
+zone:12:15:10:12:0:15:stairs to house
+tile:0:50:10:35:10:10:carpet1
+tile:0:10:10:10:10:100:wallstone
+tile:13:15:12:12:0:9:wallstone
+tree:5:7:0:10
+tree:16:7:0:10
+tree:40:7:0:10
+tile:16:50:10:10:10:50:wallstone
+tile:11:11:10:13:10:19:wallstone
+tile:15:15:10:13:10:50:wallstone
+zone:16:39:11:19:10:19:"+name+" 's living room
+tile:11:15:14:14:10:50:wallstone
+zone:12:14:10:14:10:15:entrance the house:trackme
+tile:11:15:11:11:0:9:wallstone
+door:12:13:10:12:15:10:1000:silence.ogg:silence.ogg:dooropen22.ogg:doorclose124.ogg
+zone:12:14:15:19:10:15:hallway
+door:12:15:10:12:13:10:1000:silence.ogg:silence.ogg:dooropen129.ogg:doorclose.ogg
+zone:12:13:15:15:10:15:exit door
+amb:0:50:0:10:0:500:birds12.ogg
+amb:12:14:10:10:10:500:birds12.ogg
+src:32:32:10:10:15:15:birds12.ogg
+zone:29:32:11:11:12:15:a window
+tile:29:32:10:10:12:15:wallglass5
+tile:11:11:15:20:10:20:wall2
+tile:0:11:20:20:10:20:wall2
+tile:15:15:10:20:10:20:wall2
+tile:0:50:35:35:0:9:wallstone
+amb:0:50:36:50:0:500:birds12.ogg
+tile:0:50:35:35:10:50:wallstone
+tile:16:40:20:20:0:20:wall2
+tile:40:40:10:20:10:20:wall2
+tile:39:39:11:17:10:11:mat
+zone:39:39:11:17:10:12:couch
+zone:30:35:19:19:10:12:lcd screen tv
+zone:29:36:11:11:10:12:near the window
+zone:16:16:19:19:10:12:exit door:trackme
+door:16:19:10:16:21:10:1000:silence.ogg:silence.ogg:dooropen89.ogg:doorclose95.ogg
+zone:16:16:21:21:10:12:living room entrance:trackme
+door:16:21:10:16:19:10:1000:silence.ogg:silence.ogg:dooropen99.ogg:doorclose94.ogg
+zone:10:15:34:34:10:13:door to garden:trackme
+src:13:13:36:36:-1:-1:birds12.ogg
+tile:0:50:36:50:0:0:grass
+tile:10:15:36:36:0:10:concrete
+zone:13:13:34:34:10:12:door:trackme
+door:13:34:10:13:36:10:1000:silence.ogg:silence.ogg:dooropen97.ogg:doorclose97.ogg
+door:13:36:10:13:34:10:1000:silence.ogg:silence.ogg:dooropen97.ogg:doorclose97.ogg
+tile:9:16:37:37:1:18:wallrail
+tile:9:9:36:36:1:18:wallrail
+tile:16:16:36:36:1:18:wallrail
+zone:0:50:36:50:0:500:a beautiful garden you can have a good time in the small pool while smelling the beautiful flowers here
+zone:9:16:36:36:0:18:stairs
+zone:13:13:36:36:10:17:Entrance Door:trackme
+tile:0:10:40:50:-20:-1:wallunderwater1
+tile:0:8:41:50:-18:-1:underwater
+tile:0:8:41:50:0:0:water
+tile:0:9:40:40:0:0:mud1
+tile:9:9:40:50:0:0:mud1
+amb:0:10:40:50:-20:-1:underwater.ogg
+zone:0:8:40:50:-20:-1:under the pool
+zone:0:9:40:50:0:6:"+name+" 's swimming pool
+zone:9:9:40:50:0:8:poolside
+zone:0:9:40:40:0:0:poolside
+zone:12:12:13:13:10:17:door
+tile:12:14:13:13:0:9:wallstone
+tile:0:50:10:35:20:20:carpet
+tile:9:15:9:9:1:16:wallfence
+tile:15:16:10:10:0:10:wallpole
+tile:11:11:10:10:0:10:wallpole
+door:10:21:10:10:20:10:1000:silence.ogg:silence.ogg:dooropen11.ogg:doorclose110.ogg
+door:10:19:10:10:21:10:1000:silence.ogg:silence.ogg:dooropen11.ogg:doorclose111.ogg
+zone:0:11:11:19:10:19:"+name+" 's office
+zone:10:10:19:19:10:16:office exit door:trackme
+zone:10:10:21:21:10:15:office entrance
+tile:3:8:13:16:10:12:walltable
+zone:2:9:12:17:10:13:study desk
+tile:0:1:33:34:11:19:wallbarrel
+tile:0:0:34:34:10:20:hardwood
+tile:0:50:35:35:20:40:wallstone
+silence:10:15:11:11:20:40
+tile:0:50:10:10:20:60:wallstone
+tile:15:15:10:35:20:40:wall2
+door:14:11:20:16:11:20:1000:silence.ogg:silence.ogg:dooropen125.ogg:doorclose120.ogg
+door:16:11:20:14:11:20:1000:silence.ogg:silence.ogg:dooropen120.ogg:doorclose120.ogg
+zone:16:50:11:34:20:40:"+name+" 's kitchen
+tile:16:50:30:34:20:22:wallcone1
+tile:16:50:30:34:23:23:tile4
+zone:16:50:29:34:20:25:kitchen countertops
+tile:21:24:32:33:21:23:wetconcrete
+zone:21:24:32:33:21:23:sink
+zone:45:50:29:29:20:22:chest of drawers
+zone:44:44:29:29:20:22:dishwasher
+src:44:44:29:29:20:20:amb4.ogg
+zone:35:43:29:29:20:21:chest of drawers
+zone:34:34:29:29:20:21:microwave oven
+src:34:34:29:29:20:20:a6.ogg
+zone:24:33:29:29:20:21:chest of drawers
+zone:16:24:29:29:20:29:a large refrigerator
+tile:16:24:30:34:20:29:wallgrate
+src:20:20:29:29:20:24:freezer2.ogg
+zone:16:16:11:11:20:25:exit the kitchen:trackme
+zone:0:14:11:34:20:30:"+name+" 's dining room
+zone:14:14:11:11:20:25:kitchen entrance:trackme
+tile:6:9:15:18:20:22:walltable
+tile:5:10:14:19:23:23:glass4
+zone:5:10:14:19:20:22:under the table
+tile:4:4:16:16:20:21:chair
+zone:4:4:16:16:20:21:"+name+" 's chair:trackme
+tile:8:8:20:20:20:22:chair
+zone:8:8:20:20:20:22:chair:trackme
+tile:11:11:16:16:20:22:chair
+zone:11:11:16:16:20:22:chair:trackme
+zone:0:0:34:34:10:20:stairs to upper floor
+tile:0:50:11:34:50:50:carpet
+tile:0:1:11:12:21:49:wallbarrel
+tile:0:0:11:11:20:50:hardwood4
+tile:0:50:35:35:50:80:wallstone
+silence:11:16:11:11:50:60
+zone:0:50:11:34:50:60:"+name+" 's bedroom
+zone:0:0:11:11:20:50:stairs to upper floor
+tile:30:30:11:34:50:80:wallglass6
+door:29:20:50:31:20:50:1000:silence.ogg:silence.ogg:dooropen120.ogg:doorclose117.ogg
+door:31:20:50:29:20:50:1000:silence.ogg:silence.ogg:dooropen120.ogg:doorclose119.ogg
+zone:29:29:20:20:50:55:bathroom entrance:trackme
+zone:31:50:11:34:50:70:"+name+" 's bath
+zone:31:31:20:20:50:55:exit the bathroom:trackme
+tile:31:50:11:34:50:50:tile4
+tile:45:45:29:34:50:80:wallglass6
+tile:45:50:29:29:50:70:wallglass6
+tile:46:50:30:34:50:50:bathtub1
+zone:46:50:30:34:50:70:shower cabin
+zone:50:50:34:34:50:55:shower
+zone:46:46:30:30:50:55:shower exit door:trackme
+door:46:30:50:46:28:50:1000:silence.ogg:silence.ogg:dooropen133.ogg:doorclose105.ogg
+door:46:28:50:46:30:50:1000:silence.ogg:silence.ogg:dooropen133.ogg:doorclose105.ogg
+zone:46:46:28:28:50:57:shower entrance:trackme
+zone:40:40:34:34:50:50:toilet:t
+zone:31:31:34:34:50:50:washbasin with mirror.:trackme
+zone:0:0:22:22:50:51:a locked chest:trackme
+tile:0:0:16:18:50:52:wallcone1
+zone:0:1:15:19:50:55:computer desk
+tile:1:1:16:16:50:50:chair
+zone:1:1:16:16:50:50:chair in front of computer desk:trackme
+tile:0:5:32:34:50:51:wallsofa
+tile:0:5:32:34:52:52:mat
+zone:0:6:31:34:50:58:"+name+" 's double bed:trackme
+interior:2
+washbasin:31:34:50
+toilet:40:34:50
+shower:50:34:50
+zone:0:0:11:11:50:55:descending stairs:trackme
+zone:0:0:34:34:20:20:stairs to lower floor:trackme
+zone:0:0:11:11:20:20:stairs to upper floor:trackme
+";
+}
+bool players_nearby()
+{
+bool found=false;
+for(uint i=0; i<players.length(); i++)
+{
+if(is_allowed(players[i].name)) continue;
+if(players[i].distancecheck(x,y,z)<=25 and players[i].map==map)
+{
+found=true;
+}
+}
+return found;
+}
+string get_allowed_players(bool output=false)
+{
+string outs;
+if(aplayers.length()<=0)
+{
+if(output) return "nobody but you can enter this home";
+else return "";
+}
+for(uint i=0; i<aplayers.length(); i++)
+{
+outs+=aplayers[i]+",";
+if(output) outs+=" ";
+}
+return outs;
+}
+void set_allowed_players(string input)
+{
+aplayers.resize(0);
+if(input=="") return;
+string[] data=string_split(input,",",false);
+for(uint i=0; i<data.length(); i++)
+{
+aplayers.insert_last(data[i]);
+}
+}
+bool is_allowed(string playername)
+{
+return (aplayers.find(playername)>-1);
+}
+int add_allowed_player(string playername)
+{
+int index=get_player_index_from(playername);
+if(index>-1)
+{
+if(aplayers.find(playername)<0&&playername!=name)
+{
+aplayers.insert_last(playername);
+send_reliable(players[index].peer_id,"You have been granted access to the "+name+" home! home is located at "+x+", "+y+", "+z,2);
+return 0;
+}
+return 2;
+}
+return 1;
+}
+bool remove_allowed_player(string playername)
+{
+if(aplayers.find(playername)>-1)
+{
+aplayers.remove_at(aplayers.find(playername));
+return true;
+}
+return false;
+}
+}
+void homeloop()
+{
+
+for(uint i=0; i<homes.length(); i++)
+{
+if(homes[i].openingtimer.elapsed>15000 and homes[i].opening==true)
+{
+homes[i].openingtimer.restart();
+homes[i].opening=false;
+homes[i].power=true;
+}
+if(homes[i].unlocktimer.elapsed>1000 and homes[i].unlocked==true)
+{
+homes[i].unlocked=false;
+play("home_lock_ext.ogg",homes[i].x,homes[i].y,homes[i].z,homes[i].map);
+play("home_lock_int.ogg",15,0,0,homes[i].name+"'s_home");
+play("home_comp_locked.ogg",15,0,0,homes[i].name+"'s_house");
+}
+}
+}
+void spawn_home(int hx,int hy,int hz,string hname,string hmap,string hcode, string acs, int level)
+{
+home h(hx,hy,hz,hname,hmap, hcode, acs, level);
+homes.insert_last(h);
+save_homes();
+}
+bool has_home(player@p)
+{
+bool ret=false;
+for(uint s=0; s<homes.length(); s+=1)
+{
+if(homes[s].is_allowed(p.name) or p.name==homes[s].name)
+{
+ret=true;
+}
+}
+return ret;
+}
+void save_homes()
+{
+file homefile;
+if(directory_exists("homes")==false)
+directory_create("homes");
+for(uint i=0; i<homes.length(); i++)
+{
+homefile.open("homes/"+homes[i].name+".hm","wb");
+homefile.write("name:"+homes[i].name+
+"\r\nhomex:"+homes[i].x+
+"\r\nhomey:"+homes[i].y+
+"\r\nz:"+homes[i].z+
+"\r\nhomemap:"+homes[i].map+
+"\r\npass:"+homes[i].code+
+"\r\nacs:"+homes[i].acs+
+"\r\nlevel:"+homes[i].level);
+if(homes[i].aplayers.length()>0) homefile.write("\r\naplayers:"+homes[i].get_allowed_players());
+homefile.close();
+}
+}
+void load_home(string n)
+{
+if(n=="") return;
+string name, map, aplayers, code, acs;
+int x,y,z, level;
+if(string_contains(n,".",1)>-1)
+{
+return;
+}
+file f;
+f.open("homes/"+n+".hm","rb");
+string[] hdata=string_split(f.read(),"\r\n",false);
+f.close();
+for(uint i=0; i<hdata.length(); i++)
+{
+string[] parsed=string_split(hdata[i],":",false);
+if(parsed[0]=="name" and parsed.length()>1)
+{
+name=parsed[1];
+}
+if(parsed[0]=="homemap" and parsed.length()>1)
+{
+map=parsed[1];
+}
+if(parsed[0]=="acs" and parsed.length()>1)
+{
+acs=parsed[1];
+}
+if(parsed[0]=="homex" and parsed.length()>1)
+{
+x=stn(parsed[1]);
+}
+if(parsed[0]=="homey" and parsed.length()>1)
+{
+y=stn(parsed[1]);
+}
+if(parsed[0]=="z" and parsed.length()>1)
+{
+z=stn(parsed[1]);
+}
+if(parsed[0]=="aplayers"&&parsed.length()>1)
+{
+aplayers=parsed[1];
+}
+if(parsed[0]=="level" and parsed.length()>1)
+{
+level=stn(parsed[1]);
+}
+if(parsed[0]=="pass"&&parsed.length()>1)
+{
+code=parsed[1];
+}
+}
+home h(x,y,z,map,name,code,acs, level);
+h.x=x;
+h.y=y;
+h.z=z;
+h.name=name;
+h.map=map;
+h.code=code;
+h.acs=acs;
+h.level=level;
+h.set_allowed_players(aplayers);
+homes.insert_last(h);
+}
+int home_index(string name)
+{
+for(uint i=0; i<homes.length(); i++)
+{
+if(homes[i].name==name) return i;
+}
+return -1;
+}
+void create_home(int level)
+{
+int index=get_player_index(e.peer_id);
+if(index>-1)
+{
+if(file_exists("homes/"+players[index].name+".hm")==true)
+{
+send_reliable(players[index].peer_id,"you already have a house",2);
+return;
+}
+vector max;
+int x=0;
+int y=1;
+file f;
+max=get_max_values("residential_area");
+f.open("prefs/homecords.txt","rb");
+string []xy=string_split(f.read(), " ", true);
+f.close();
+if (stn(xy[0])<max.x-1) x=stn(xy[0])+2;
+y=stn(xy[1]);
+if (stn(xy[0])>max.x-2)
+{
+x=1;
+y=stn(xy[1])+2;
+}
+f.open("prefs/homecords.txt","wb");
+f.write(x+" "+y);
+f.close();
+spawn_home(x,y,0,players[index].name, "residential_area",randomstring(12),"off", level);
+int h=home_index(players[index].name);
+send_reliable(0,"label_spawn "+x+" "+x+" "+y+" "+y+" 0 0 home(_owner_"+players[index].name+") residential_area",0);
+send_reliable(players[index].peer_id,"Wonderful. You bought a new house. Location of his house: on the residential_area map, at coordinate"+x+", "+y+", 0 home 's password"+homes[h].code,2);
+if(level==1)
+{
+players[index].give("dollar",-50000);
+file f;
+f.open("maps/"+players[index].name+"'s_house.map","wb");
+f.write(homes[h].map1);
+f.close();
+}
+if(level==2)
+{
+players[index].give("dollar",-250000);
+file f;
+f.open("maps/"+players[index].name+"'s_house.map","wb");
+f.write(homes[h].map2);
+f.close();
+}
+}
+}
+void remove_home(string name)
+{
+for(uint i=0; i<homes.length(); i++)
+{
+if (homes[i].name==name)
+{
+file_delete("homes/"+homes[i].name+".hm");
+file_delete("maps/"+homes[i].name+"'s_house.map");
+send_reliable(0,"label_remove "+homes[i].x+" "+homes[i].x+" "+homes[i].y+" "+homes[i].y+" 0 0 "+homes[i].map,0);
+@homes[i]=null;
+homes.remove_at(i);
+}
+}
+}
+void changepass(string owner, string pass)
+{
+int index=get_player_index(e.peer_id);
+int h=home_index(owner);
+if( h>-1)
+{
+if (players[index].name!=owner)
+{
+send_reliable(players[index].peer_id,"cheat attempt failed",2);
+return;
+}
+else
+{
+homes[h].code=pass;
+//save_homes();
+send_reliable(players[index].peer_id,"Your password has been successfully changed. New password: "+homes[h].code,2);
+}
+}
+}
+void change_home_name(string oldname, string newname)
+{
+int h=home_index(oldname);
+homes[h].name=newname;
+if(homes[h].level==1)
+{
+file f;
+f.open("maps/"+newname+"'s_house.map","wb");
+f.write(homes[h].map1);
+f.close();
+}
+if(homes[h].level==2)
+{
+file f;
+f.open("maps/"+newname+"'s_house.map","wb");
+f.write(homes[h].map2);
+f.close();
+}
+file_delete("maps/"+oldname+"'s_house.map");
+file_delete("homes/"+oldname+".hm");
+save_homes();
+}
+int in_home(string pname)
+{
+int index=get_player_index_from(pname);
+if(index<0) return -1;
+for(uint x=0; x<homes.length(); x++)
+{
+if(players[index].map==homes[x].name+"'s_house") return x;
+}
+return -1;
+}
+void compitermenu()
+{
+int index=get_player_index(e.peer_id);
+if(index>-1)
+{
+string finaltext="compitermenu ";
+finaltext+="change password\r\n";
+finaltext+="kick someone out of the house.\r\n";
+finaltext+="open the door for 15 seconds\r\n";
+for(int i=0; i<homes.length(); i++)
+{
+if (homes[i].name==players[index].name) finaltext+="Anyone can open the chest.:"+homes[i].acs+"\r\n";
+}
+send_reliable(e.peer_id, finaltext, 0);
+}
+}
+void open_home_door()
+{
+int index=get_player_index(e.peer_id);
+if(index>-1)
+{
+int s=in_home(players[index].name);
+if (homes[s].name!=players[index].name)
+{
+send_reliable(players[index].peer_id,"you do not own this house",2);
+return;
+}
+else
+{
+homes[s].unlocktimer.restart();
+homes[s].unlocked=false;
+}
+}
+}
+void updateacs()
+{
+int index=get_player_index(e.peer_id);
+if(index>-1)
+{
+int s=in_home(players[index].name);
+if (homes[s].name!=players[index].name)
+{
+send_reliable(players[index].peer_id,"you do not own this house",2);
+return;
+}
+else
+{
+if(homes[s].acs=="off")
+{
+homes[s].acs="on";
+send_reliable(players[index].peer_id,"chest can be opened by anyone",2);
+}
+else
+{
+homes[s].acs="off";
+send_reliable(players[index].peer_id,"Only you can open the chest.",2);
+}
+compitermenu();
+}
+}
+}
+/*
+void update_home(int level)
+{
+int index=get_player_index(e.peer_id);
+if(index>-1)
+{
+file f;
+if(level==1)
+{
+f.open("maps/"+players[index].name+"'s_house.map","wb");
+f.write("mapname:"+players[index].name+"'s_house
+maxx:30
+maxy:30
+maxz:500
+safezone:0:30:0:30:0:500
+tile:0:30:0:30:0:0:carpet
+zone:0:30:0:30:0:19:ground floor of the house
+zone:15:15:0:0:20:5:exit door:trackme
+tile:10:10:0:10:0:19:wall2
+tile:0:10:10:10:0:19:wall2
+zone:0:9:0:9:0:19:home study room
+door:9:7:0:11:7:0:1000:silence.ogg:silence.ogg:dooropen122.ogg:doorclose110.ogg
+door:11:7:0:9:7:0:1000:silence.ogg:silence.ogg:dooropen124.ogg:doorclose1.ogg
+zone:9:9:7:7:0:5:door to corridor
+zone:11:19:0:30:0:19:hallway
+zone:11:11:7:7:0:5:study room entrance
+zone:0:30:11:19:0:19:hallway
+tile:0:5:3:7:0:2:walltable
+zone:0:6:2:8:0:5:table
+tile:7:9:0:1:0:17:wallmetal5
+zone:6:9:0:2:0:10:a metal cabinet. It looks like it's locked.
+tile:20:20:20:30:0:19:wall2
+tile:20:30:20:20:0:19:wall2
+door:27:19:0:27:21:0:1000:silence.ogg:silence.ogg:dooropen1.ogg:doorclose1.ogg
+door:27:21:0:27:19:0:1000:silence.ogg:silence.ogg:dooropen1.ogg:doorclose1.ogg
+zone:21:30:21:30:0:19:rest area
+zone:27:27:19:19:0:5:rest area entrance
+zone:27:27:21:21:0:5:exit door
+tile:28:30:28:30:0:3:wallsofa
+tile:28:30:28:30:4:4:mat
+zone:27:30:27:30:0:16:a bed
+amb:21:30:21:30:0:19:windchimes2.ogg
+tile:0:10:20:20:0:19:wall2
+tile:10:10:20:30:0:19:wall2
+door:2:19:0:2:21:0:1000:silence.ogg:silence.ogg:dooropen1.ogg:doorclose1.ogg
+door:2:21:0:2:19:0:1000:silence.ogg:silence.ogg:dooropen124.ogg:doorclose1.ogg
+zone:0:9:21:30:0:19:living room
+zone:2:2:21:21:0:5:exit door
+zone:2:2:19:19:0:6:living room entrance
+zone:0:0:23:26:0:5:100 screen led tv
+tile:0:0:24:25:0:7:wallscreen
+tile:4:9:30:30:0:0:mat
+zone:4:9:30:30:0:5:a comfortable seating group
+zone:20:30:0:9:0:19:entree
+tile:0:30:0:30:20:20:carpet1
+tile:30:30:0:0:0:19:carpet5
+zone:0:30:0:30:20:50:second floor
+tile:16:30:11:30:20:20:concrete13
+tile:15:15:0:30:19:50:wall2
+tile:16:30:10:10:19:50:wall2
+zone:29:30:0:1:0:25:near the stairs
+zone:30:30:0:0:0:25:stairs
+door:27:9:20:27:11:20:1000:silence.ogg:silence.ogg:dooropen1.ogg:doorclose82.ogg
+door:27:11:20:27:9:20:1000:silence.ogg:silence.ogg:dooropen10.ogg:doorclose9.ogg
+zone:16:30:11:30:20:50:bath room
+zone:27:27:11:11:20:50:exit door
+zone:27:27:9:9:20:50:bathroom entrance:trackme
+tile:25:25:25:30:20:50:wallglass6
+tile:25:30:25:25:20:50:wallglass6
+door:28:24:20:28:26:21:1000:silence.ogg:silence.ogg:dooropen45.ogg:doorclose61.ogg
+tile:26:30:26:30:20:20:wallstone
+tile:26:30:26:30:21:21:wetconcrete
+zone:26:30:26:30:20:50:shower cabin
+door:28:26:21:28:24:20:1000:silence.ogg:silence.ogg:dooropen45.ogg:doorclose61.ogg
+zone:28:28:24:24:20:50:cabin entrance:trackme
+zone:2:28:26:26:21:50:exit of the cabin
+zone:19:19:30:30:20:20:Toilet
+toilet:19:30:20
+washbasin:16:30:20
+zone:16:16:30:30:20:25:washbasin with mirror.
+door:16:5:20:14:5:20:2000:silence.ogg:silence.ogg:dooropen22.ogg:doorclose94.ogg
+door:14:5:20:16:5:20:2000:silence.ogg:silence.ogg:dooropen22.ogg:doorclose3.ogg
+zone:0:14:0:30:20:50:bedroom
+zone:16:16:5:5:20:50:bedroom entrance:trackm
+zone:14:14:5:5:20:50:exit door
+zone:15:15:0:2:0:5:exit door:trackme
+noitems:0:30:0:30:0:500:nuclear_bomb:stone:bike
+tile:0:5:25:30:20:21:wallsofa
+tile:0:5:25:30:22:22:carpet3
+zone:0:6:24:30:20:25:a double bed
+tile:0:0:15:15:20:20:walldoor2
+zone:0:1:14:16:20:25:a locked gar dlop
+zone:0:0:5:5:20:25:a locked chest
+tile:0:0:0:0:20:24:walltable
+zone:0:1:0:1:20:25:computer desk
+tile:1:1:0:0:20:20:chair
+zone:1:1:0:0:20:23:chair in front of computer desk
+");
+f.close();
+}
+if(level==2)
+{
+f.open("maps/"+players[index].name+"'s_house.map","wb");
+f.write("mapname:"+players[index].name+"'s_house
+maxx:50
+maxy:50
+maxz:500
+zone:0:50:0:50:0:20:first floor of the house
+noitems:0:50:0:58:0:500:nuclear_bomb:stone:bike
+tile:0:50:0:50:0:0:carpet
+safezone:0:50:0:50:0:500
+thirstzone:0:50:0:50:0:1000:0
+hungerzone:0:50:0:50:0:500:0
+healthzone:0:50:0:50:0:500:0
+tile:0:50:0:10:0:0:grass5
+zone:0:50:0:10:0:500:backyard of the house
+zone:5:5:7:7:0:10:a beautiful lemon tree
+zone:16:16:7:7:0:11:a magnificent orange tree
+zone:15:15:0:2:0:5:exit door
+zone:40:40:7:7:0:11:a beautiful apple tree
+zone:30:35:7:9:0:5:this is a beautiful water fountain
+tile:33:34:7:9:0:4:wallstone1
+tile:33:34:2:5:5:5:concrete26
+tile:33:33:4:4:5:5:water
+src:32:33:3:5:-15:-15:fonteagua.ogg
+tile:0:50:11:11:0:10:wallstone
+tile:12:15:10:12:0:10:concrete1
+zone:12:15:10:12:0:15:stairs to house
+tile:0:50:10:35:10:10:carpet1
+tile:0:10:10:10:10:100:wallstone
+tile:13:15:12:12:0:9:wallstone
+tree:5:7:0:10
+tree:16:7:0:10
+tree:40:7:0:10
+tile:16:50:10:10:10:50:wallstone
+tile:11:11:10:13:10:19:wallstone
+tile:15:15:10:13:10:50:wallstone
+zone:16:39:11:19:10:19:living room
+tile:11:15:14:14:10:50:wallstone
+zone:12:14:10:14:10:15:entrance the house
+tile:11:15:11:11:0:9:wallstone
+door:12:13:10:12:15:10:1000:silence.ogg:silence.ogg:dooropen22.ogg:doorclose124.ogg
+zone:12:14:15:19:10:15:hallway
+door:12:15:10:12:13:10:1000:silence.ogg:silence.ogg:dooropen129.ogg:doorclose.ogg
+zone:12:13:15:15:10:15:exit door
+amb:0:50:0:10:0:500:birds12.ogg
+amb:12:14:10:14:10:500:birds12.ogg
+src:32:32:10:10:15:15:birds12.ogg
+zone:29:32:11:11:12:15:a window
+tile:29:32:10:10:12:15:wallglass5
+tile:11:11:15:20:10:20:wall2
+tile:0:11:20:20:10:20:wall2
+tile:15:15:10:20:10:20:wall2
+tile:0:50:35:35:0:9:wallstone
+amb:0:50:36:50:0:500:birds12.ogg
+tile:0:50:35:35:10:50:wallstone
+tile:16:40:20:20:0:20:wall2
+tile:40:40:10:20:10:20:wall2
+tile:39:39:11:17:10:11:mat
+zone:39:39:11:17:10:12:couch
+zone:30:35:19:19:10:12:lcd screen tv
+zone:29:36:11:11:10:12:near the window
+zone:16:16:19:19:10:12:exit door
+door:16:19:10:16:21:10:1000:silence.ogg:silence.ogg:dooropen89.ogg:doorclose95.ogg
+zone:16:16:21:21:10:12:living room entrance:trackme
+door:16:21:10:16:19:10:1000:silence.ogg:silence.ogg:dooropen99.ogg:doorclose94.ogg
+zone:10:15:34:34:10:13:door to garden
+src:13:13:36:36:-1:-1:birds12.ogg
+tile:0:50:36:50:0:0:grass
+tile:10:15:36:36:0:10:concrete
+zone:13:13:34:34:10:12:door
+door:13:34:10:13:36:10:1000:silence.ogg:silence.ogg:dooropen97.ogg:doorclose97.ogg
+door:13:36:10:13:34:10:1000:silence.ogg:silence.ogg:dooropen97.ogg:doorclose97.ogg
+tile:9:16:37:37:1:18:wallrail
+tile:9:9:36:36:1:18:wallrail
+tile:16:16:36:36:1:18:wallrail
+zone:0:50:36:50:0:500:a beautiful garden you can have a good time in the small pool while smelling the beautiful flowers here
+zone:9:16:36:36:0:18:stairs
+zone:13:13:36:36:10:17:Entrance Door
+tile:0:10:40:50:-20:-1:wallunderwater1
+tile:0:8:41:50:-18:-1:underwater
+tile:0:8:41:50:0:0:water
+tile:0:9:40:40:0:0:mud1
+tile:9:9:40:50:0:0:mud1
+amb:0:10:40:50:-20:-1:underwater.ogg
+zone:0:8:40:50:-20:-1:under the pool
+zone:0:9:40:50:0:6:swimming pool
+zone:9:9:40:50:0:8:poolside
+zone:0:9:40:40:0:0:poolside
+zone:12:12:13:13:10:17:door
+tile:12:14:13:13:0:9:wallstone
+tile:0:50:10:35:20:20:carpet
+tile:9:15:9:9:1:16:wallfence
+tile:15:16:10:10:0:10:wallpole
+tile:11:11:10:10:0:10:wallpole
+door:10:21:10:10:20:10:1000:silence.ogg:silence.ogg:dooropen11.ogg:doorclose110.ogg
+door:10:19:10:10:21:10:1000:silence.ogg:silence.ogg:dooropen11.ogg:doorclose111.ogg
+zone:0:11:11:19:10:19:office
+zone:10:10:19:19:10:16:office exit door
+zone:10:10:21:21:10:15:office entrance
+tile:3:8:13:16:10:12:walltable
+zone:2:9:12:17:10:13:study desk
+tile:0:1:33:34:11:19:wallbarrel
+tile:0:0:34:34:10:20:hardwood
+tile:0:50:35:35:20:40:wallstone
+silence:10:15:11:11:20:40
+tile:0:50:10:10:20:60:wallstone
+tile:15:15:10:35:20:40:wall2
+door:14:11:20:16:11:20:1000:silence.ogg:silence.ogg:dooropen125.ogg:doorclose120.ogg
+door:16:11:20:14:11:20:1000:silence.ogg:silence.ogg:dooropen120.ogg:doorclose120.ogg
+zone:16:50:11:34:20:40:kitchen
+tile:16:50:30:34:20:22:wallcone1
+tile:16:50:30:34:23:23:tile4
+zone:16:50:29:34:20:25:kitchen countertops
+tile:21:24:32:33:21:23:wetconcrete
+zone:21:24:32:33:21:23:sink
+zone:45:50:29:29:20:22:chest of drawers
+zone:44:44:29:29:20:22:dishwasher
+src:44:44:29:29:20:20:amb4.ogg
+zone:35:43:29:29:20:21:chest of drawers
+zone:34:34:29:29:20:21:microwave oven
+src:34:34:29:29:20:20:a6.ogg
+zone:24:33:29:29:20:21:chest of drawers
+zone:16:24:29:29:20:29:a large refrigerator
+tile:16:24:30:34:20:29:wallgrate
+src:20:20:29:29:20:24:freezer2.ogg
+zone:16:16:11:11:20:25:exit the kitchen
+zone:0:14:11:34:20:30:dining room
+zone:14:14:11:11:20:25:kitchen entrance
+tile:6:9:15:18:20:22:walltable
+tile:5:10:14:19:23:23:glass4
+zone:5:10:14:19:20:22:under the table
+tile:4:4:16:16:20:21:chair
+zone:4:4:16:16:20:21:chair
+tile:8:8:20:20:20:22:chair
+zone:8:8:20:20:20:22:chair
+tile:11:11:16:16:20:22:chair
+zone:11:11:16:16:20:22:chair
+zone:0:0:34:34:10:20:stairs to upper floor
+tile:0:50:11:34:50:50:carpet
+tile:0:1:11:12:21:49:wallbarrel
+tile:0:0:11:11:20:50:hardwood4
+tile:0:50:35:35:50:80:wallstone
+silence:11:16:11:11:50:60
+zone:0:50:11:34:50:60:bedroom
+zone:0:0:11:11:20:50:stairs to upper floor
+tile:30:30:11:34:50:80:wallglass6
+door:29:20:50:31:20:50:1000:silence.ogg:silence.ogg:dooropen120.ogg:doorclose117.ogg
+door:31:20:50:29:20:50:1000:silence.ogg:silence.ogg:dooropen120.ogg:doorclose119.ogg
+zone:29:29:20:20:50:55:bathroom entrance
+zone:31:50:11:34:50:70:bath
+zone:31:31:20:20:50:55:exit the bathroom:trackme
+tile:31:50:11:34:50:50:tile4
+tile:45:45:29:34:50:80:wallglass6
+tile:45:50:29:29:50:70:wallglass6
+tile:46:50:30:34:50:50:bathtub1
+zone:46:50:30:34:50:70:shower cabin
+zone:50:50:34:34:50:55:shower
+zone:46:46:30:30:50:55:shower exit door
+door:46:30:50:46:28:50:1000:silence.ogg:silence.ogg:dooropen133.ogg:doorclose105.ogg
+door:46:28:50:46:30:50:1000:silence.ogg:silence.ogg:dooropen133.ogg:doorclose105.ogg
+zone:46:46:28:28:50:57:shower entrance:t
+zone:40:40:34:34:50:50:toilet:t
+toilet:40:34:50
+washbasin:31:34:50
+zone:31:31:34:34:50:50:washbasin with mirror.:trackme
+zone:0:0:22:22:50:51:a locked chest:trackme
+tile:0:0:16:18:50:52:wallcone1
+zone:0:1:15:19:50:55:computer desk
+tile:1:1:16:16:50:50:chair
+zone:1:1:16:16:50:50:chair in front of computer desk:trackme
+tile:0:5:32:34:50:51:wallsofa
+tile:0:5:32:34:52:52:mat
+zone:0:6:31:34:50:58:double bed:trackme");
+}
+}
+}
+*/
+void homekicklist()
+{
+int index=get_player_index(e.peer_id);
+int s=in_home(players[index].name);
+if(index>-1 and s>-1)
+{
+if (homes[s].name!=players[index].name)
+{
+send_reliable(players[index].peer_id,"you do not own this house",2);
+return;
+}
+server_menu m;
+m.intro="select the user you want to remove from your home";
+m.initial_packet="kick_hp";
+//m.channel=0;
+string []user;
+for(int i=0; i<players.length(); i++)
+{
+if(players[index].name!=players[i].name and players[index].map==players[i].map)
+{
+user.insert_last(players[i].name);
+}
+}
+if(user.length()>0)
+{
+for(int i=0; i<user.length(); i++)
+{
+m.add(user[i],user[i]);
+}
+m.send(players[index].peer_id);
+return;
+}
+send_reliable(players[index].peer_id,"there is only you in this house",2);
+}
+}

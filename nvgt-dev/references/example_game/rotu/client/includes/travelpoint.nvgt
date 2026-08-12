@@ -1,0 +1,37 @@
+travelpoint@[]travelpoints(0);
+class travelpoint{
+double minx,maxx,miny,maxy,destx,desty,minz,maxz,destz;
+string destmap;
+string reward;
+int reward_a;
+travelpoint(double mx,double mx2,double my,double my2,double mz,double mz2,double dx,double dy,double dz,string dm, string re="", int re_am=-1)
+{
+minx=mx;
+maxx=mx2;
+miny=my;
+maxy=my2;
+minz=mz;
+maxz=mz2;
+destx=dx;
+desty=dy;
+destz=dz;
+destmap=dm;
+reward=re;
+reward_a=re_am;
+}
+}
+void checktravelpoints()
+{
+for(uint i=0; i<travelpoints.length(); i++)
+{
+if(travelpoints[i].minx<=me.x and travelpoints[i].maxx>=me.x and travelpoints[i].miny<=me.y and travelpoints[i].maxy>=me.y and travelpoints[i].minz<=me.z and travelpoints[i].maxz>=me.z)
+{
+send("travelto "+travelpoints[i].destx+" "+travelpoints[i].desty+" "+travelpoints[i].destz+" "+travelpoints[i].destmap+(!travelpoints[i].reward.is_empty() and travelpoints[i].reward_a>-1?" "+travelpoints[i].reward+" "+travelpoints[i].reward_a:""), 0);
+}
+}
+}
+void create_travelpoint(double minx,double maxx,double miny,double maxy,double minz,double maxz,double destination_x,double destination_y,double destination_z,string map, string reward="", int reward_amount=-1)
+{
+travelpoint tp(minx,maxx,miny,maxy,minz,maxz,destination_x,destination_y,destination_z,map, reward, reward_amount);
+travelpoints.insert_last(tp);
+}

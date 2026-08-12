@@ -1,0 +1,85 @@
+string[]objtypes={"micro_smg_ammo_pack","rifle_ammo_pack","pistol_ammo_pack","can_of_nectar","shotgun_ammo_pack","barrett_sniper_rifle_ammo_pack","rifle","barrett_sniper_Rifle","shotgun","micro_smg","hand_grenade","giftbox","energy_saber"};
+item@[]items(0);
+class item{
+double x,y,z;
+string map;
+int amount;
+timer pickuptimer;
+timer breaktimer;
+int breaktime=50000;
+string type;
+string itemid=randomstring(6);
+item(double itx,double ity,double itz,string tpe,int iamount,string itmap)
+{
+x=itx;
+y=ity;
+z=itz;
+amount=iamount;
+type=tpe;
+map=itmap;
+//send(0,"create_item "+x+" "+y+" "+z+" "+itemid+" "+map,0);
+}
+}
+void itemsloop()
+{
+for(uint i=0; i<items.length(); i++)
+{
+if(items.length()==0 or items.length()>=300) break;
+/*
+if(items[i].x>214 and items[i].x<231 and items[i].y>429 and items[i].y<446 and items[i].map=="main")
+{
+items.remove_at(i);
+return;
+}
+*/
+/*
+for(uint p=0; p<players.length(); p++)
+{
+if(items[i].pickuptimer.elapsed<3000) continue;
+if(get_3d_distance(players[p].x,players[p].y,players[p].z,items[i].x,items[i].y,items[i].z)<=3 and items[i].map==players[p].map)
+{
+send(0,"destroy_item "+items[i].itemid,0);
+play2(items[i].type+"draw",players[p].x,players[p].y,players[p].z,players[p].map);
+if(string_contains(items[i].type,"_ammo",1)>-1)
+{
+players[p].am.ammogive(items[i].type,items[i].amount);
+send(players[p].peer_id,items[i].amount+" "+items[i].type,2);
+}
+else
+{
+players[p].give(items[i].type,items[i].amount);
+send(players[p].peer_id,items[i].amount+" "+items[i].type,2);
+}
+items.remove_at(i);
+return;
+}
+}
+*/
+}
+}
+void spawn_item(double x,double y,double z,string type,int amount,string map)
+{
+if(spawned_total(type)<10)
+{
+if(string_left(get_tile_at(x, y, z, map), 4)=="wall") return;
+item item1(x,y,z,type,amount,map);
+items.insert_last(item1);
+}
+}
+int get_item_index(string id)
+{
+for(uint i=0; i<items.length(); i++)
+{
+if(items[i].itemid==id) return i;
+}
+return -1;
+}
+int spawned_total(string name)
+{
+int count=0;
+for(uint i=0; i<items.length(); i++)
+{
+if(items[i].type==name) count++;
+}
+return count;
+}

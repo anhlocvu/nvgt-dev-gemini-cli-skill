@@ -1,0 +1,25 @@
+mapname:jail
+maxx:50
+maxy:50
+maxz:5055555
+tile:0:50:0:50:0:0:wood
+src:0:50:0:50:0:50:hum.ogg:-1
+zone:0:50:0:50:0:1555555:Jail
+tile:0:50:6:10:0:10:wallmetal22
+tile:6:10:0:50:0:10:wallmetal19
+tile:0:50:16:20:0:10:wallmetal22
+tile:0:50:26:30:0:10:wallmetal21
+tile:0:50:43:46:0:10:wallmetal16
+tile:0:50:34:37:0:10:wallmetal14
+tile:0:50:0:50:10:100:wallmetal21
+tile:0:50:0:50:-100:-1:wallmetal10
+tile:16:20:0:50:0:10:wallmedaldebris
+tile:26:30:0:50:0:10:wallwood2
+tile:36:40:0:50:0:10:wallmetal19
+tile:44:46:0:50:0:10:wallwood8
+door:0:0:0:0:0:7:500:silence.ogg:silence.ogg:horsedooropen.ogg:.ogg
+tile:0:1000:0:1000:100:100:concrete6
+tile:5:5:0:0:0:99:stairs
+zone:0:10000:0:10000:100:10000:second floor of the jail
+zone:5:5:0:0:0:100:stairs to the floors If you would rather go to a floor
+amb:0:100:0:100:0:110:halloween.ogg:400:100

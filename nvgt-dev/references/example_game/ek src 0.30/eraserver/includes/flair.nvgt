@@ -1,0 +1,44 @@
+flair@[]flairs(0);
+class flair {
+double x,y,z;
+int dir=0;
+timer explodetimer;
+bool explode=false;
+int range=300000;
+int distance=0;
+int mindammage=0;
+int maxdammage=0;
+string map;
+string owner;
+int spread=50;
+player@p;
+flair(double gx, double gy, double gz, double gdir, string gmap, string gowner)
+{
+x=gx;
+y=gy;
+z=gz;
+dir=gdir;
+map=gmap;
+owner=gowner;
+} // constructor.
+} // class.flair.
+
+void flairloop()
+{
+for(uint j=0; j<flairs.length(); j++)
+{
+if (flairs[j].explodetimer.elapsed>=8000)
+{
+flairs[j].explodetimer.restart();
+//send_reliable(0,"distsound flairfire "+flairs[j].x+" "+flairs[j].y+" "+flairs[j].z+" "+flairs[j].map,0);
+@flairs[j]=null;
+flairs.remove_at(j);
+continue;
+}
+}
+}
+void spawn_flair(double x, double y, double z, double dir, string map, string owner)
+{
+flair f1(x, y, z, dir, map, owner);
+flairs.insert_last(f1);
+}

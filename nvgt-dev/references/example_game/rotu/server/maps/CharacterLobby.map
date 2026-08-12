@@ -1,0 +1,40 @@
+name CharacterLobby
+maxx 10
+maxy 10
+safezone 0 10 0 10 0 15
+platform 0 10 0 10 0 0 carpet3
+zone 0 10 0 10 0 50 CharacterLobby
+source 0 10 0 10 0 25 warehouse.ogg -10
+
+zone 10 10 10 10 0 10 When you are ready to enter the game, press Shift Enter. Note that you cannot come back to this place after you leave, this is only a starting area for new characters.
+travelpoint 10 10 10 10 0 10 222 430 1 main
+platform 3 7 3 7 0 0 carpet5
+zone 3 7 3 7 0 2 Under the granite table
+platform 3 3 3 3 0 2 walltable
+platform 7 7 3 3 0 2 walltable
+platform 3 3 7 7 0 2 walltable
+platform 7 7 7 7 0 2 walltable
+platform 5 5 5 5 0 2 walltable
+platform 3 7 3 7 2 2 wallcar2
+platform 3 7 3 7 3 3 stairs2
+zone 3 7 3 7 3 10 A small granite table
+platform 4 4 2 2 0 2 chair
+zone 4 4 2 2 0 10 Chair
+platform 6 6 2 2 0 2 chair
+zone 6 6 2 2 0 10 Chair
+platform 2 2 4 4 0 2 chair
+zone 2 2 4 4 0 10 Chair
+platform 2 2 6 6 0 2 chair
+zone 2 2 6 6 0 10 Chair
+platform 4 4 8 8 0 2 chair
+zone 4 4 8 8 0 10 Chair
+platform 6 6 8 8 0 2 chair
+zone 6 6 8 8 0 10 Chair
+platform 8 8 4 4 0 2 chair
+zone 8 8 4 4 0 10 Chair
+platform 8 8 6 6 0 2 chair
+zone 8 8 6 6 0 10 Chair
+beacon 10 10 10 10 0 0 When you are ready to enter the game, press Shift Enter. Note that you cannot come back to this place after you leave, this is only a starting area for new characters.
+platform 0 10 0 10 15 15 wallbrick
+viewpoint inside
+sign 0 0 0 Welcome to revenge of the undead. Remember to type /help to get a list of commands and make sure to read the readme for the best knowledge of how to play the game. To exit this map, go to 10 10 0 and then press shift enter. Thank you, and have fun playing the game

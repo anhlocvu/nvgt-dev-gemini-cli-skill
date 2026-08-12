@@ -1,0 +1,116 @@
+platform@[]platforms(0);
+class platform{
+double minx,maxx,miny,maxy,minz,maxz;
+string type;
+timer vanishtimer;
+bool vanish=false;
+int vanishstatus=1;
+int vanishtime, appeartime;
+int vsound=-1;
+platform(double mx,double mx2,double my,double my2,double mz,double mz2,string t, bool v=false, int vt=-1, int vt2=-1)
+{
+minx=mx;
+maxx=mx2;
+miny=my;
+maxy=my2;
+minz=mz;
+maxz=mz2;
+type=t;
+if(v==true) this.set_vanish_behavior(v, vt, (vt2>-1?vt2:vt));
+if(this.vanish and this.vanishstatus==1) this.vsound=spawn_source(this.minx, this.maxx, this.miny, this.maxy, this.minz, this.maxz, "vanishing.ogg");
+}
+void toggle_vanish() {
+if(this.vanishstatus==0 and this.vsound>-1) {
+destroy_source(this.vsound);
+}
+else
+this.vsound=spawn_source(this.minx, this.maxx, this.miny, this.maxy, this.minz, this.maxz, "vanishing.ogg");
+}
+void set_vanish_behavior(bool v, int time, int time2=-1) {
+this.vanish=v;
+this.vanishtime=time;
+if(time2>-1) this.appeartime=time2;
+else this.appeartime=this.vanishtime;
+}
+}
+void platformloop() {
+for(uint i=0; i<platforms.length(); i+=1) {
+if(platforms[i].vanish==false) continue;
+if(platforms[i].vanishtimer.elapsed>=(platforms[i].vanishstatus==0?platforms[i].appeartime:platforms[i].vanishtime)) {
+platforms[i].vanishtimer.restart();
+platforms[i].vanishstatus=(platforms[i].vanishstatus==1?0:1);
+platforms[i].toggle_vanish();
+}
+}
+}
+string get_tile_at(double x,double y, double z)
+{
+string pdata;
+for(uint i=0; i<platforms.length(); i++)
+{
+if(platforms[i].vanish==true and platforms[i].vanishstatus==0) continue;
+if(platforms[i].minx<=x&&platforms[i].maxx>=x&&platforms[i].miny<=y&&platforms[i].maxy>=y&&platforms[i].minz<=z&&platforms[i].maxz>=z)
+{
+pdata=platforms[i].type;
+}
+}
+return pdata;
+}
+string gmt()
+{
+return get_tile_at(me.x,me.y,me.z);
+}
+string gmc()
+{
+return get_tile_at(cam.x,cam.y,cam.z);
+}
+void playstep()
+{
+if(!gmt().is_empty()) p.play_stationary(gmt()+"step"+random(1,5)+".ogg",false);
+walled=false;
+}
+void playcam()
+{
+if(gmc()=="")
+{
+if(mfwc==1) p.play_stationary("cameraair.ogg",false);
+else p.play_extended_3d("cameraair.ogg",me.x,me.y,me.z,cam.x,cam.y,cam.z,dir,0,0,0,0,0,0,false,0,0,0,100,false);
+}
+else
+{
+if(string_contains(gmc(),"wall",1)>-1)
+{
+if(mfwc==1) p.play_stationary_extended(gmc()+".ogg",false,0,0,0,250);
+else p.play_extended_3d(gmc()+".ogg",me.x,me.y,me.z,cam.x,cam.y,cam.z,dir,0,0,0,0,0,0,false,0,0,0,250,false);
+}
+else
+{
+if(mfwc==1) p.play_stationary_extended(gmc()+"step"+random(1,5)+".ogg",false,0,0,0,250);
+else p.play_extended_3d(gmc()+"step"+random(1,5)+".ogg",me.x,me.y,me.z,cam.x,cam.y,cam.z,dir,0,0,0,0,0,0,false,0,0,0,250,false);
+}
+}
+camwalled=false;
+}
+void playland()
+{
+if(string_contains(gmt(),"wall",1)>-1) p.play_stationary(gmt()+".ogg",false);
+else p.play_stationary(gmt()+"land.ogg",false);
+}
+void playfall()
+{
+p.play_stationary(gmt()+"fall.ogg",false);
+}
+void spawn_platform(double x1,double x2,double y1,double y2,double z1,double z2,string tilename, bool will_vanish=false, int vtime=-1, int vtime2=-1)
+{
+//debug. if(will_vanish) alert("vanishing platforms", "min x: "+x1+". Max x: "+x2+". Min y: "+y1+". Max y: "+y2+". Min Z: "+z1+". Max z: "+z2+". Platform: "+tilename+". Time per vanish: "+vtime+" milliseconds. Appearing in: "+vtime2+" milliseconds");
+platform platform1(x1,x2,y1,y2,z1,z2,tilename, will_vanish, vtime, vtime2);
+platforms.insert_last(platform1);
+}
+void destroy_all_platforms() {
+for(uint i=0; i<platforms.length(); i+=1) {
+if(platforms[i].vanish) {
+destroy_source(platforms[i].vsound);
+}
+}
+platforms.resize(0);
+}

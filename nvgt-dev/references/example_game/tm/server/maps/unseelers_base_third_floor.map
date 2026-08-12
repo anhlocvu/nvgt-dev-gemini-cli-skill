@@ -1,0 +1,14 @@
+mapname:unseelers_base_third_floor
+maxx:300
+maxy:300
+maxz:300
+tile:0:300:0:300:0:0:concrete4
+zone:0:300:0:300:0:300:unseelers base, 3rd floor
+tile:300:300:300:300:0:50:concrete4
+zone:300:300:300:300:0:50:stairs to the last floor@trackme@
+zone:300:300:300:300:50:50:press shift plus enter to continue
+zone:300:300:300:300:50:56:press shift plus enter to continue
+cmusic:0:300:0:300:0:25:anime178.ogg:-10:100
+robots:0:300:0:300:0:0:5:500:thug_boss,mercenary,guard
+travelpoint:300:300:300:300:50:50:unseelers_base_last_floor:0:0:0:prepare yourself!
+noitems:0:5555:0:5555:0:5555:grenade:stp429

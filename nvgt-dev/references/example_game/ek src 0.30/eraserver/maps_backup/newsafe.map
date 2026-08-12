@@ -1,0 +1,12 @@
+mapname:newsafe
+maxx:50
+maxy:50
+maxz:50
+tile:0:50:0:50:0:0:carpet2
+zone:0:50:0:50:0:50:Safe zone.
+src:0:50:0:50:0:50:calm.ogg
+fightingstate:0
+noitems:0:50:0:50:0:50:ak47
+zone:50:50:50:50:0:50:entrance to the safe zone's garden:trackme
+
+travelpoint:50:50:50:50:0:50:safe_zone_garden:0:0:0:welcome to the safe zone's garden!

@@ -1,0 +1,80 @@
+announcement@[]announcements(0);
+class announcement
+{
+double pyear,pmonth,pday,phour,pminute,psecond,lyear,lmonth,lday,lhour,lminute,lsecond;
+string title,text;
+announcement(double py,double pm,double pd,double ph,double pmn,double ps,double ly,double lm,double ld,double lh,double lmn,double ls,string tt,string at)
+{
+pyear=py; pmonth=pm; pday=pd; phour=ph; pminute=pmn; psecond=ps;
+lyear=ly; lmonth=lm; lday=ld; lhour=lh; lminute=lmn; lsecond=ls;
+title=tt;
+text=at;
+}
+}
+double announcement_exists(string titlename)
+{
+for(uint i=0; i<announcements.length(); i++)
+{
+if(announcements[i].title==titlename) return i;
+}
+return -1;
+}
+void add_announcement(double py,double pm,double pd,double ph,double pmn,double ps,double ly,double lm,double ld,double lh,double lmn,double ls,string tt,string at,double per=-1)
+{
+if(announcement_exists(tt)>-1) return;
+if(tt=="" or at=="") return;
+announcement ant1(py,pm,pd,ph,pmn,ps,ly,lm,ld,lh,lmn,ls,tt,at);
+if(per>-1) announcements.insert_at(per,ant1);
+else announcements.insert_last(ant1);
+}
+void remove_announcement(string title_to_remove)
+{
+double d=announcement_exists(title_to_remove);
+if(d<0) return;
+announcements.remove_at(d);
+}
+void save_announcements()
+{
+if(!directory_exists("announcements")) directory_create("announcements");
+if(announcements.length()<1) return;
+string input="";
+for(uint i=0; i<announcements.length(); i++)
+{
+file f;
+f.open("announcements/"+announcements[i].title+".announcement","wb");
+f.write(announcements[i].pyear+"-----====="+announcements[i].pmonth+"-----====="+announcements[i].pday+"-----====="+announcements[i].phour+"-----====="+announcements[i].pminute+"-----====="+announcements[i].psecond+"-----====="+announcements[i].lyear+"-----====="+announcements[i].lmonth+"-----====="+announcements[i].lday+"-----====="+announcements[i].lhour+"-----====="+announcements[i].lminute+"-----====="+announcements[i].lsecond+"-----====="+announcements[i].text);
+f.close();
+}
+}
+void load_announcements()
+{
+string[] gines=find_files("announcements/*.announcement");
+if(gines.length()<1) return;
+for(uint j=0; j<gines.length(); j++)
+{
+file f;
+f.open("announcements/"+gines[j],"rb");
+string[] lines=string_split(f.read(),"-----=====",true);
+if(lines.length()<1) return;
+string title,text;
+double pyear,pmonth,pday,phour,pminute,psecond,lyear,lmonth,lday,lhour,lminute,lsecond;
+pyear=string_to_number(lines[0]);
+if(lines.length()>1)
+{
+pmonth=string_to_number(lines[1]);
+pday=string_to_number(lines[2]);
+phour=string_to_number(lines[3]);
+pminute=string_to_number(lines[4]);
+psecond=string_to_number(lines[5]);
+lyear=string_to_number(lines[6]);
+lmonth=string_to_number(lines[7]);
+lday=string_to_number(lines[8]);
+lhour=string_to_number(lines[9]);
+lminute=string_to_number(lines[10]);
+lsecond=string_to_number(lines[11]);
+}
+title=string_replace(gines[j],".announcement","",false);
+if(lines.length()>12) text=lines[12];
+add_announcement(pyear,pmonth,pday,phour,pminute,psecond,lyear,lmonth,lday,lhour,lminute,lsecond,title,text);
+}
+}

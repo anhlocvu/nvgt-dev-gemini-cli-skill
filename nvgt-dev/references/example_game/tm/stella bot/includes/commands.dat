@@ -1,0 +1,12 @@
+string contents="collect garbage=/garbage
+backup data=/backup
+kill spam maps=/spam_maps
+kill spam players=/spam_players
+open the arena=/arena_open
+close the arena=/arena_close
+reset the arena=/arena_reset
+double xp=/double_xp
+super xp=/super_xp
+killall=/killall
+maps=/intmaps
+";

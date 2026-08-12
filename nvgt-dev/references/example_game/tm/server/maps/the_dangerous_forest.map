@@ -1,0 +1,14 @@
+mapname:the_dangerous_forest
+maxx:300
+maxy:300
+maxz:300
+tile:0:300:0:300:0:0:shortgrass
+zone:0:300:0:300:0:300:the predators of the land reside here. you should be alurt ant all the time
+robots:0:300:0:300:0:0:5:1000:elephant,lion,leopard,tiger
+src:0:300:0:300:0:300:src19.ogg:0:100
+zone:0:0:0:0:0:0:go back@trackme@
+travelpoint:0:0:0:0:0:0:the_jungle:300:300:0:welcome back
+noitems:0:4444:0:4444:0:4444:
+noitems:0:100000:0:100000:0:10000:grenade
+noitems:0:5555:0:5555:-4444:55555:grenade:grenade_launcher:bazooka:stp429:thunderstorm
+tile:0:300:0:300:0:0:grass

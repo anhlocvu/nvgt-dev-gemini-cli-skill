@@ -1,0 +1,335 @@
+4.2
+changed server locations.
+4.1
+added a pellet_gun
+4.0
+builders rejoice, as you now have more tiles to work with.
+3.1
+made it so that you can set weapons as favorites, press enter on the weapon and press shift 1 through 0 to set it as a favorite.
+3.0
+added a rocket_launcher and laser_gun. also modified a few sounds, and changed the logo.
+2.9
+added a chainsaw looping sound. you can turn on and off the chainsaw with s while it is wielded.
+2.8
+added new weapons, and they are as follows. chainsaw, throwing_knives, and hammer
+2.7
+added more tiles.
+2.6
+hopefully fixed the updater for good this time, and added new tiles.
+2.5
+fixed the updater for a staff member.
+2.4
+added more tiles.
+2.3
+removed speedhacking
+2.0.2
+changed the dark blue cape sound.
+2.0.1
+changed more sounds.
+2.0.0
+modified a lot of sounds, and fixed the builder again.
+1.0.7
+changed the hit sounds when undead hit you.
+1.0.6
+fixed a bug with the builder.
+1.0.5
+changed a couple more sounds.
+1.0.4
+changed a lot of sounds. forgot to log the change for 1.0.3, sorry about that.
+1.0.2
+changed the inventory open and close sound.
+1.0.1
+lowered the volume of the chat sound, as it was a player's request.
+1.0.0
+changed a tunn of sounds, and changed a few weapon firing timers.
+0.5.6
+officially fixed the updater.
+0.5.5
+attempted to fix the updater
+0.5.4
+Fixes network events in online menus.
+Fixes translation files not working.
+Fixes F12 key copies last spoken item to clipboard.
+0.5.3
+Codes new inventory menu.
+Adds search function to inventory. Press space while you are in this menu and search for an item. Press return, and you'll jump straight to that item!
+Beacons for players will play at different pitches to distinguishe them.
+0.5.2 Patch
+Switches the way the inventory is handled in the game entirely. This should take a huge load off the server, and will allow us to recode a new inventory menu with proper navigation.
+Starts enforcing paid characters in pvp areas.
+Undead spawn in all 6 maps now!
+0.5.1
+Adds client-side team support, will be available after server update.
+Redesigned the pistol, thanks ironcross.
+Because the car is paid, you will always get a broken vehicle in return. More gold is required to repair it, however.
+Enables updater again.
+You can no longer get into a car if you're facing a wall. This should fix the bug where players were crashing their cars right after starting them up.
+Adds a weapon ping noise when you hit certain undead.
+Adds more undead to the server.
+Fixes voicechat.
+Changes voicechat key to alt D.
+0.4.25
+Fixed beacons not working when pressing N.
+
+Joystick setup.exe changes (1.1):
+Now the joystick setup uses your screen reader, unless it detects that none is active.
+Game changes (0.4.24):
+Changes activated map elements to Enter instead of Shift Enter.
+Removes CTF for now, since there is already player PVP. However if more players want it back then it may come back, but for now since it's not being used, it may be better to keep it out.
+Safe zone menu is gone due to the CTF options not existing.
+0.4.23
+Reverts to server-side player beacons for now until the client ones are fixed.
+0.4.22
+Patch update for server.
+0.4.21
+Fixes joystick commands causing keyboard ones to function incorrectly.
+Tries to fix a critical issue with moving packets not sending correctly.
+Adds an extra packet for playing which has the option of controlling the pitch at which sounds play on the server, this will be useful for altering undead footsteps and such.
+0.4.2
+Adds joystick support, only basic controls right now but planning on expanding. I've only tested it on an Xbox One controller, meaning that other joysticks may not work as expected. Please use the configuration files (joystick.config, joystick_setup.exe) to configure things to your liking.
+Adds D as a shortcut for checking for dragons.
+Adds dropping items, use Shift Backspace. The reason I added Shift is for some sort of confirmation, so that you don't accidentally drop things.
+Fixed translations not being included in the last version.
+Adds a new weapon, energy saber plus, a stronger version of its little sibling.
+0.4.1
+Fixes a  bug in which crouching or sitting would end up saving upon client exit, thanks Isuck.
+Fixes some settings not saving hopefully.
+Adds a new weapon, energy saber.
+Adds a couple of ambiences (vents, crowds, room tones, waves) and one new surface (dirt2).
+0.4
+Fixes a bug with the camera, in which reaching the minimum or maximum border of the map would allow the camera to keep moving.
+Adds rain.
+Changes the way items are tracked, this will be useful for quests and stuff in the future. For more details see the readme, as well as the Learn Game sounds section.
+There are now two methods of viewing the server message. If you press F2 on its own, you will receive the server message in its regular single text format. If you combine F2 with shift, however, you can view the server message as a post board format.
+Adds Dexterity Camera Mode, or DCM, for people with dexterity issues. By pressing the Grave key (to the left of 1 on the number row), your G key will be held down automatically.
+Changes the way accounts are created. Now with every account, you can create characters. This means you can have different plans for each character, or different progress rates.
+Adds first letter navigation support.
+Adds inventory categories, using the Semicolon and Apostrophe keys. This will change what is displayed in the inventory menu.
+Adds keyboard typing sound themes. If you would like a theme of your own to be included into the game let me know. Right now there are 2 to choose from.
+Fixes HTTPS links not being detected in buffers, as well as counting the word HTTPs and HTTP as links.
+Fixes the right control key feature from beta 0.2.3, should now work properly without any conflicts. You can find it in the UI section under settings.
+Adds several new surfaces.
+Fixes readme and several missing keystrokes that weren't covered, either in vague detail or no detail at all.
+Changes the filename of some sounds, such as hand grenades, to remove unnecessary code.
+Sources should now only update once and not in a loop. This was unnecessary and should hopefully bring some client lag down a bit.
+The mPad now comes with a client side UI, allowing for apps to be manipulated using actual keystrokes in the game and not serverside menus.
+Adjusts the minimum character limit for usernames to 3.
+Adds the undead sounds to the learn game sounds menu.
+Adds standing, crouching and sitting. Crouching allows you to dodge bullets (sometimes) and also allows for use of other weapons. Sitting is just there to provide some realism. Standing is the default.
+Adds a setting in the UI section to toggle menu side scrolling sounds.
+Adds a setting in the UI section to toggle keyboar sounds when editting input boxes.
+Adds a barrett sniper rifle.
+Adds a Music Box to the main menu. This isn't really game related, but I've heard some people really like some of the music in the game, so I've made a place for it.
+Beta 0.4
+Patches some last-minute bugs in preparation for 0.4.
+Fixed character screen bug in which you would select Create new character, but if you tried to cancel the creation the client would freeze. You can now press Escape twice.
+Adjusts rain fading timer to be a bit more dramatic.
+0.3.242
+Changes the updater to a seperate exe file, and creates a Python script for unzipping ROTU correctly. This should hopefully make the update process smoother.
+0.3.241
+Adds a couple new surfaces.
+Adds item beep client code for future use with items.
+Fixes platforms that weren't appearing in the builder menu.
+Fixes a bug in which the location sent to the server at player spawning would always be Unknown Area, even though the location on the client was different.
+Makes menu click sounds pitch up and down across the stereo field upon request by a couple individuals.
+0.3.24
+Adds two more undead types (both are flying), one is called the seaghoul, and the other is called the graven. The seaghoul is a seagull, and the graven is a raven from the grave.
+Adds burst fire to the rifle.
+Fixes a bug with beacons not saving.
+The settings menu now uses my sub menu system. If you don't like it please tell me so I can revert back to the old one.
+0.3.23
+Changes to a more stable server hopefully.
+Now when the server changes its IP or domain, you don't have to update your client to be aware of it.
+Gives more information on the desert.
+0.3.221
+A critical bug fix with the movement packet not being sent correctly.
+0.3.22
+Fixes a bug in which sounds wouldn't update when you are inside an input box or a menu.
+Now your current location is sent to the server.
+Fixes with the move focus with camera feature.
+Tries to fix the jumping lag by making moving unreliable.
+0.3.21
+Improves SAPI support, and adds options for users of SAPI under a new category called TTS settings.
+You can now use the O key to transmit a message on your walkie talkie without having to type /m in chat.
+Tries to fix more lag by separating heavier traffic into new channels.
+You can now access the inventory using the I key to open the inventory menu.
+Updates the readme.
+Moves map descriptions into a seperate file called "map_descriptions.html."
+0.3.2
+Adds a new feature to the camera, move Focus with Camera, or MFWC. Basically what this does is it allows your perspective to follow the camera as you move it around. You can enable / disable it by holding down G and pressing the Backslash key. Keep in mind when releasing G the MFWC feature is forced off.
+You can now toggle on and off player events with F6. Player events include level-ups, online and offline connections, and deaths.
+Now if virtualizer doesn't notice any text on your clipboard, or you try to copy text from virtualizer and virtualizer is empty, you will be told so.
+Tries to fix more lag by limiting the amount of packets sent for moving and jumping, thanks Hamad.
+Makes distance sounds more defined. Now the volume should change more drastically the farther you are away from the shots.
+Adds a learn game sounds menu.
+Adds volume adjustment to sound sources for builders. If you add one extra parameter after the source file name, the volume on the source will be decreased. Available volumes are between -40 and 0, with -40 being the quietest and 0 being the loudest.
+0.3.12
+Fixes to the car not going up in pitch, thanks Mohamed for the assistance.
+0.3.11
+The camera now only hits walls once.
+Adds French translation.
+You can no longer spam doors.
+Changes jump sounds.
+You can now generate a one time password for your account, you must have an e-mail associated with your account for this to work.
+Adds scatter mode for shotgun.
+Adds several new ambiences for future use.
+Adds a garbage collect packet.
+0.3.1
+Adds Portuguese translation.
+Adds clothes.
+Fixes a bug in which the client would continue pinging even after the ping was lost.
+If your ping is greater than 999 milliseconds, it will be spoken in seconds as well as milliseconds.
+Adds ALT F4 to force quit the game.
+You can now use translations in the game without needing to run them by me first.
+Updates new account and level up sounds to be less intrusive.
+
+0.3
+A couple small patches here and there, but otherwise this is the first public release.
+Beta 0.2.93
+This is the last beta version!
+Changes how I update the game. Now if there are new sounds, the sounds.dat will be included with the new zip archive. If not, the updater will simply download the other files.
+Fixes a bug in which creating an account would still allow you to hear ongoing events on the server.
+Adds update descriptions.
+Adds an option to disable or enable distance sounds. Keep in mind this only applies to sounds such as weapons, and not to actual sounds intentionally played at a distance.
+You can no longer drive your car in the air, it will simply just crash.
+Now when you jump and land on a wall, it will play the wall sound.
+Adds a new surface, tile2.
+Readme is now in HTML. Also significatly modifies it, it should be fully up to date now.
+Beta 0.2.92
+Removes builder keyboard shortcuts, and moves builder menu shortcut to B instead of Alt B.
+Adds a packet that allows the server to copy text to your clipboard.
+Changes the way distance sounds work. They will now only play if you are within a 200 tile radius. Also, if you are less than 30 tiles away from the sound, the distance sound will not play. I made this client side instead of server side so this should hopefully eliminate a bit, if not a lot, of lag.
+Fixes a bug in which the safe zone menu, or any menu in general, would activate when going through a door or travelpoint.
+Now if the map updates and you are in your car, you will automatically be taken out of the car to prevent issues.
+Beta 0.2.91
+Changes how the game settings are layed out for easier organization. Settings are now split into categories, which can be toggled at the top of the menu to show options based on that category. For example, UI settings are for menus, checking for updates at startup, etc, while game settings are for mouse support, buffers, sign sounds, etc.
+Adds hand grenades.
+Sources should no longer update in a loop.
+Adds a translations readme.
+Adds buffer logging, you can toggle it under settings, located under Gameplay settings category. However it is recommended you leave it on, in case you want to report something happening in PM, chats, etc, when I'm not available at that time.
+Fixes weapons going past the number 0, so you would have weapon slots activating when you tried to adjust the master volume of the game.
+Beta 0.2.9
+If a sign is located in an area where there is already a menu or travelpoint, the sign will now be the only one to activate.
+Changes some sounds.
+Adds a new surface, gravel. It was a lucky find.
+Adds dragons.
+The default volume for music is now -15 instead of -5. This should make it easier for players to adjust the volume without being blasted in the face with music.
+You can now adjust the game master volume (the whole entire volume of the game) using the Minus and Equals keys.
+Now if you are in a prompt dialog, you can press the first letter of option 1, or the first letter of option 2, to quickly activate either option. For example, If the options were Download, and Cancel, I could either press D or C.
+Fixes broken keyboard shortcuts.
+Adds signs to builder menu.
+Beta 0.2.84
+Adds credits section to readme.
+Adds behind pitch decrease for map sound sources. You can toggle under settings.
+Adds signs.
+Fixes a runtime with translations.
+Fixes a bug in which you couldn't access beacons while driving.
+Beta 0.2.83
+Adds carpets and hardwoods to platforms list.
+Adds car repair support.
+Removes ghost settings from the game, such as browser selection, etc.
+Fixes doors not working in the builder menu.
+Adds Malay translation, thanks Marry.
+If you input -1 as the door's speed, it will now move the user there instantly.
+Zones are no longer spoken when moving through a door to prevent the user from being spammed with zones in areas where zones are popular.
+Fixes a bug in which people could hear you open a door, but couldn't hear you close it.
+Thought about it for awhile, but now you can only bump into walls once.
+Beta 0.2.82
+Adds Romanian translation, thanks Emanuel.
+Adds a music list to the music option in the builder menu.
+Changes keyboard typing sounds.
+Removes passengers for now. They are causing some very interesting bugs that even I am questioning, and for the stability of the game I believe we could try this again in the future once I can stabalize the system more.
+Adds map beacons, for more details see the readme.
+Adds player tracking. Use keys T and W.
+Adds doors.
+Changes W key for checking facing to F.
+Beta 0.2.81
+As we near the end of this beta, I'm trying to add less features and work harder on the bugs. So if you know any client side / serverside bugs, let me know.
+Starts implementing translations into the game. Please let me know if there are bugs with this. If you have any translations of your own, refer to the already translated Spanish file and make it into your own translation.
+You are no longer able to turn with Q and E while in your car, as the car should now turn you automatically.
+Now when you toggle an option under settings, it will speak "enabled" or "disabled" accordingly.
+Adds check for updates at startup to setttings.
+Adds a packet to allow the car to set your direction while also setting its direction.
+Beta 0.2.8
+Adds air as a surface, useful for creating gaps or spaces.
+Increases walk speed while jumping a little. Before it was 120ms, now it is 110ms.
+Changes to a brand new jumping and falling system that should hopefully be better.
+Fixes the Alt Z command not working for admins and builders.
+Adds passenger support. You are allowed to have one other passenger in your car.
+Updates the readme.
+Fixes a critical bug in which you could jump onto a staircase, then quickly press Page down, and achieve higher walking speed.
+You can no longer hold Page up or Page down while jumping.
+Now using my website to host the game. Please note that a normal link is not being used for this process.
+Adds an auto updater. Usually I would use Mason's, but this time I've created my own.
+Changes one of the dirt step sounds.
+Beta 0.2.7
+Removes player typing message notifications, was not a very good idea.
+Adds support for hitting Alt Enter on WWW links.
+The builder menu is now ready to use. Admins, hit Alt B. Players, don't try, doesn't work for you guys. Lmao.
+Changes menu sounds slightly. Wrap, click, enter, and edge sounds are now different. Open sound is untouched.
+Adds car support.
+
+Beta 0.2.6
+Changes Control F4 to Shift Escape due to key conflicts.
+Adds player beacons. Press Shift F4 to toggle.
+You can now press Alt Enter to activate links directly from the game. For example, if someone types https://www.google.com into the chat, pressing Alt Enter on the chat message will open the link. Note: There may be bugs with this.
+Fixes an issue where people could hover in the air by activating menus. I know this was fixed with text boxes but I forgot to fix it with menus as well.
+You will now be notified if someone is typing a message. You can disable this feature under settings.
+You can now hold down the Spacebar to continuously jump.
+When you spawn on the map you should no longer glitch through the platform, then end up respawning on top of it. This is the land sound you were hearing when you were switching a map or logging on to the server.
+Adds some more surfaces and ambiences. I believe we should have enough soon to actually start constructing a decent main map, as the map right now is sort of blank excluding the safe zone building.
+Beta 0.2.5
+You can now press the Home and End keys in menus to jump to the top or bottom of a menu.
+You can no longer open more than one instance of the game.
+Burst fire should now take three bullets as it should.
+Adds Capture the Flag. Whichever team reaches 10 points wins. I will soon be adding support for adjusting the score, but for now it is capped at 10.
+Adds some more music tracks making a total of 7.
+Adds buffer beeps, you can disable them in preferences.
+You can now hold down the Comma and Period keys to rapidly move through buffers.
+Beta 0.2.4
+Changes the current Micro SMG setting to a secondary fire, and adds a single shot to the regular fire.
+You are now able to take fall damage. This will be measured by how much you fall times 20. For example, falling 50 tiles will make you lose 1000 health. Falling 100 tiles will make you lose 1500 health. Falling 250 tiles will make you lose all your health. Etc etc.
+Changes the safe zone to the main map. It is located at 215, 430, 0. It's a 15x15y building guarded by two cannons in front and two cannons at back. You can hear the cannons going off and follow them to reach the safe zone, as the cannons have distance sounds.
+Now if you are lagging, you can press Control F4 to reconnect to the server, without having to exit the server and come back.
+Fixes an issue in which logging in would sometimes result in a player being placed at 0, 0, 0, even though the server tried to send a packet to move the player to their last cordinates.
+Fixes a bug in which people would hear a player walking when instead they were hitting a wall.
+Fixes a bug with the camera not recognizing walls.
+Fixes other bugs relating to the camera, such as being able to go past the edge of the map, etc.
+Beta 0.2.3
+Adds a camera system, hold down the G key, then use the arrows / page up and down keys.
+Improves the readme significantly.
+Now when you create an account, you will be asked whether you would like to login or not after the process is complete.
+Removes the Right Control key option in the Game settings menu due to key conflicting issues.
+Adds an option to Game settings to toggle menu wrapping.
+Changes impact sounds, they should be way less intrusive now.
+Adds mouse support. Left click to fire, Right click to move, move mouse horizontally to change direction, and click scroll wheel inward to reload.
+Adds some new surfaces.
+Beta 0.2.2
+Reduces the speed hack system a tad.
+Adds a way for the server to create client-side text fields.
+Adds the store in the safe zone at 25, 25, 0.
+Adds some new weapons, Micro SMG, rifle.
+Beta 0.2.1
+Adds a way for the game to handle map music, I took this code from Battle of the Hunter's map system so its quite new and stable.
+Adds speed hack protection.
+You can now press the F12 key to copy the last spoken text by your screen reader to your clipboard. NVDA users who have SpeechHistory or ClipCopy shouldn't have to do this, but for the people using JAWS this should help.
+Fixes a bug in which activating a serverside menu would cause the connection to the server to become inactive until the user closes the menu. This would cause the user to be flooded with server activity.
+Fixes a bug in which you were able to be placed past the boundaries of a map.
+Fixes a bug in which you could ping the server multiple times by repeatedly pressing F3.
+Adds distance sounds when someone fires a weapon.
+Fixes pistol reload sound, I had to do some trimming but it should now be much faster.
+Adds 4 music tracks, note: the game is now about 8MB bigger due to this change.
+Trims some sounds to make lag less hopefully.
+Changes how the game handles music by streaming instead of loading. This should speed up map load times a little.
+You can now adjust music with the Home and End keys.
+Beta 0.2
+Adds JAWS SUPPORT.
+Adds a Game settings menu.
+Adds Right control key action support. You can either make the Right control key mute speech, or act as another alternative for firing a weapon.
+Changes Control Slash to Shift Slash due to key conflicts.
+Adds P to check if players are near you.
+Fixes settings not saving upon game closing.
+Adds a PM buffer for private messages.
+Adds a ranked buffer for administrators and developers.
+Beta 0.1
+First beta release. Please do not share this beta with anyone else!

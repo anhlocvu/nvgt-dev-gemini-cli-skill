@@ -1,0 +1,547 @@
+#include"i.bgt"
+const string serverkey="+-";
+const string serverkey2="..";
+bool varified=false;
+bool fireon;
+bool wanddisabled=false;
+timer wandtimer;
+bool bstarted=false;
+timer butimer;
+timer autotimer;
+bool explosives=true;
+bool shots=true;;
+timer vtimer;
+timer vannouncetimer;
+timer quakespawntimer;
+timer quakeannouncetimer;
+string ammo_store;
+string explosive_store;
+string vehicle_store;
+string misc_store;
+string healthy_store;
+string repair_store;
+string coffee_store;
+string food_store;
+string drinks_store;
+string combat_store;
+string bombs_store;
+string bullets_store;
+string cure_store;
+string random_store;
+string magical_store;
+string drincs_store;
+string snak_store;
+string fruit_store;
+string ticket_store;
+string crystal_ticket_store;
+bool earthquakebegins=false;
+bool volcanobegins=false;
+timer creaturearenatimer;
+timer meleearenatimer;
+bool meleearena_opend=false;
+bool creaturearena_opend=false;
+bool creaturearenastarted=false;
+bool tossing=false;
+bool hunting=false;
+bool tossstarted=false;
+bool huntstarted=false;
+string weapon_store;
+string cafe;
+timer hunttimer;
+int hunttime;
+timer tosstimer;
+int tosstime;
+int tossers=0;
+int hunters=0;
+file f;
+int storex=0,storey=100,storez=0,fstorex=0,fstorey=100,fstorez=0;
+string storesound;
+timer spawn_chesttimer;
+int packetlogging=0; //only turn this on if you want chan_0 to be logged with player.
+string[] skateboardtiles={"dirt","grass","gravel","metal","mud","rock","water","weed","wood"};
+timer fighttimer;
+int fighttime;
+int fighiters=0;
+timer clenetimer;
+timer arenatimer;
+timer storemovetimer;
+timer bid_timer;
+int currentlyonline;
+int writeprefs=1;
+int super;
+int chatting=1;
+int serverchats=0,serversteps=0,serverkillr=0,servercommands=0,serverbans=0,serverkicks=0,servershots=0,serverlogins=0;
+int double_xp=0;
+int custom_xp=0;
+int speaktime=1;
+int guessthenumber_active=0;
+double gntarget=random(1,50);
+int[] guessthenumber_guesses;
+int guessthenumber_minutes=5;
+string adminlog;
+string guessthenumber_winner;
+timer guessthenumbertimer, gnstarttimer;
+int gnstart_auto=0;
+int pmreceiving;
+int storemovestage=0;
+int redwins, bluewins;
+bool redflag=true, blueflag=true;
+int login_disabled=0;
+int disable_account_creation=0;
+bool storemoving=false,fstorecoords=false;
+uint storemovetime=10*60000;
+int storeopened=1;
+int objtime=800;
+int maxobjs=500;
+bool enablebombs=false;
+bool disablebombs=false;
+bool notify=false,public_uploading=false;
+int voting=0;
+bool netsetup;
+int filterstuff=1;
+bool spawnobj=true;
+double voteyes=0,voteno=0;
+double minversion=3.4;
+string[] newbitems={"antibiotic","health_drink","antibiotic_pack","mini_antibiotic_pack","antibiotic_pack","tk_ultra_health_potion"};
+string minverstring="3.4";
+timer garbagetimer;
+timer objectspawntimer;
+timer gifttimer;
+timer versiontimer;
+int connections=0, disconnections=0;
+int gifting=1;
+int fakeadmining=0;
+int objgrabs=0, objspawns=0;
+int can_upload_files=1;
+int objspawntime=1200;
+timer reboottimer;
+bool allowspawningrobots=true;
+bool rebooting=false;
+bool arena_opend=false;
+bool fighting=false;
+bool fightstarted=false;
+bool ftime=false;
+bool beta=false;
+bool spawnai=false;
+int port=6789;
+int activations=0;
+int peak;
+string peakreached;
+network n;
+network_event e;
+double file_size_limit_kb=2000;
+string[] guns={"bow","m116_death_bringer","throwing_knives","hk_machinegun","combat_machinegun","p90compact_machinegun","laser_cannon","gauss","missile_launcher","g48pistol","w912pocket_pistol","s110pistol","b96machinegun","sp150shotgun","flame_thrower","e395_laserbeam","hand_cannon","ML7TinyMG","mk48","s&w_model66_revolver","famas","cannon","FRNTAssaultRifle","barrett_m82_sniper_rifle","cannon","mp5_machine_pistol","dragunovp_sniper","s&w_model66_revolver","s110pistol","barrett_m82_sniper_rifle","stp106_long_barreled_pistol","m2browning","strong_machinegun","m29_sniper_rifle","sp5shotgun","ak47_assault_rifle","beretta_m9_pistol","beretta_m1951_machine_pistol","beretta_nano_pocket_pistol","blz83_portable_machine_gun","browning_high_power_bda_handgun","browning_m2_heavy_50_cal_machinegun","colt_ar_15_assault_rifle","colt_python_revolver","cop_357_derringer_pistol","crt43_automatic_shotgun","glock_17_pistol","m4a1_assault_rifle","ak48","m24_sniper_rifle","m134_minigun","m1208_shotgun","mlk_207_combat_rifle","modern_sub_machine_gun_carbine","nak_nk1000_decimater","ruger_security_6_revolver","saiga_12_5_round_shotgun","sig_p226_combat_pistol","sky_28_laser","sky_127_laser_handgun","stp_s84q_automatic_suppressed_pistol","stp21_handgun","str_32_pump_action_shotgun","poison_dagger","str_301_long_barreled_machine_pistol","walther_p99_handgun","glock","sks","m4","m8a7","m16","m1891","m1921a1","glock","pistol","mp5","sniper","rpg7","rocketlauncher","bazooka","revolver","svd","kalashnikov_rifle","grenade_launcher","taser","dart_launcher","taser","ML420HuntingRifle","mossberg500","ml7tinymg","bolt_sniper","stp","ak47"};
+timer uptimer, accumulated_uptimer;
+timer announcertimer;
+timer timetimer;
+timer savetimer;
+int eattime=10000;
+timer eattimer;
+int hour=0, minute=1, day=1, month=1, year=2000;
+int timetime=1500;
+savedata sd("prefs/server_state.dat","server_data");
+string[] killmsgs;
+string[] gifts;
+string[] store_items;
+string[] descriptions;
+double[] amounts;
+int auctiontime=30000;
+string auctionwho,auctionwho2,auctionwhotemp;
+bool auctionbidder;
+bool auction;
+string auctionitem;
+double auctionamount;
+double auctionbid,auctionbidtemp;
+timer sheltersavetimer;
+timer updatingtimer, auctiontimer;
+bool updatingsvr=false,updatevstopped=false,updatevkilled=false,updatenotified=false,updatergkilled=false;
+dictionary passresets;
+file fl;
+dictionary sellitems;
+string sellsend;
+int missiletime=4000, missilemax=5,subtract=1,storefight=1;
+bool admingun=false;
+http httpn;
+bool svrmon=false;
+string helpdir;
+void main()
+{
+if(false)
+{
+int q=question("hello","You are running the server from source. Is this just a compilation check?");
+if(q==1)
+{
+alert("okay","it works. Exiting");
+exit();
+}
+else
+{
+alert("okay","proceeding with normal execution");
+}
+}
+if(false)
+{
+alert("error","There are missing files. Please check filter.dll and file.dll.");
+exit();
+}
+// filelib.load("libs/file.dll");
+httpn.user_agent="tksvr";
+weapons.reserve(200);
+players.reserve(20);
+start_profiling();
+loaddata();
+setupserver();
+show_game_window("the massacre server");
+load_compids();
+load_all_alliances();
+load_all_lockers();
+string[] stuff=find_files("shelters/*.shelter");
+if(stuff.length()>0)
+for(uint i=0; i<stuff.length(); i++)
+{
+load_shelter(string_replace(stuff[i],".shelter","",false));
+}
+load_bombs();
+if(!file_exists("prefs/motd.svr"))
+{
+file mfile;
+mfile.open("prefs/motd.svr","wb");
+mfile.write("greetings, and welcome to the massacre!");
+mfile.close();
+}
+	if(!file_exists("prefs/adminmotd.svr"))
+	{
+		file mfile;
+		mfile.open("prefs/adminmotd.svr","wb");
+		mfile.write("Welcome");
+		mfile.close();
+	}
+if(file_exists("maps/.map"))
+file_delete("maps/.map");
+if(file_exists("shelters/.shelter"))
+file_delete("shelters/.shelter");
+netsetup=n.setup_server(port, 50, 16);
+if(netsetup==false)
+file_put_contents("Errors.log","error in starting server. "+get_last_error()+"\r\n",255);
+init_mapsystem();
+speak("active");
+server_log("svr","The massacre server started.");
+file f;
+f.open("prefs/death_messages.svr","rb");
+string[] lines=string_split(f.read(),"\r\n",false);
+f.close();
+for(uint i=0; i<lines.length(); i++)
+{
+killmsgs.insert_last(lines[i]);
+}
+if(file_exists("real_offline.txt")) file_delete("real_offline.txt");
+while(true)
+{
+wait(5);
+loops();
+if(guessthenumber_active==1)
+{
+if(guessthenumbertimer.elapsed>60000)
+{
+guessthenumbertimer.restart();
+guessthenumber_minutes++;
+}
+if(guessthenumber_minutes>4||get_paid_online().length()<=guessthenumber_guesses.length())
+{
+guessthenumber_active=0;
+send(0,"play_s gnfinished.ogg",0);
+int windex=get_gnwinner();
+int bestnum=get_closest_value(gntarget,guessthenumber_guesses);
+string result;
+if(windex>-1)
+result=players[windex].name+" is the winner! congratulations!";
+else
+result="There was no winner in this game";
+result+="\r\nThe best number entered was "+bestnum+" and the number was "+gntarget+". Numbers entered were: "+convert_to_list(guessthenumber_guesses);
+send(0,result,2);
+if(windex>-1)
+players[windex].give("tk_dollar",4);
+for(uint i=0; i<players.length(); i++)
+{
+players[i].gnplaying=0;
+file_delete("chars/"+players[i].name+"/gn.usr");
+}
+}
+}
+if(gnstarttimer.elapsed>60000*30)
+{
+gnstarttimer.restart();
+if(guessthenumber_active==0 and gnstart_auto==1 and get_paid_online().length()>=4)
+{
+send(0,"The guess the number minigame has started. Everyone has 5 minutes to enter a number in to the box. Press shift g and tipe your number to submit your guess, no less than 1 and no higher than 50. The cloesest person to the number gets 2 tk dollars. Go!",2);
+send(0, "play_s gnstart.ogg", 0);
+gnstart();
+}
+}
+if(players.length()!=currentlyonline&&svrmon==true)
+{
+currentlyonline=players.length();
+string stuffage="There are ";
+if(players.length()<=0)
+{
+stuffage+="currently no connected players on the server";
+write_to_webfile("tk/playerlist.db",stuffage);
+}
+else
+{
+stuffage+="currently "+players.length()+" players online. They are: ";
+for(uint i=0; i<players.length(); i++)
+{
+netloop();
+if(i==players.length()-1)
+stuffage+="and "+players[i].name+" with "+players[i].kills+" kills and "+players[i].deaths+" deaths.";
+else
+stuffage+=players[i].name+" with "+players[i].kills+" kills and "+players[i].deaths+" deaths, ";
+}
+write_to_webfile("tk/playerlist.db",stuffage);
+}
+}
+if(savetimer.elapsed>=45000 and writeprefs==1)
+{
+savetimer.restart();
+for(uint i=0; i<players.length(); i++)
+{
+scd(i);
+}
+for(uint i=0; i<alliances.length(); i++)
+{
+alliances[i].alliance_save();
+}
+saveshelters();
+save_lockers();
+writedata();
+save_shipments();
+}
+if(garbagetimer.elapsed>=25000)
+{
+garbagetimer.restart();
+garbage_collect();
+}
+if(players.length()==0) {
+objs.resize(0);
+remguns.resize(0);
+}
+if(sheltersavetimer.elapsed>=5000)
+{
+sheltersavetimer.restart();
+saveshelters();
+}
+if(key_pressed(KEY_H))
+hide_game_window();
+if(key_pressed(KEY_ESCAPE))
+exitsvr();
+}
+}
+void loaddata()
+{
+file pr;
+if(file_exists("prefs/admin_log.svr"))
+{
+adminlog=file_get_contents("prefs/admin_log.svr");
+}
+if(file_exists("prefs/passresets.dat"))
+{
+pr.open("prefs/passresets.dat","rb");
+passresets=deserialize(string_decrypt(pr.read(),"ultrafuckyou"));
+pr.close();
+}
+if(file_exists("prefs/compbans.svr"))
+{
+pr.open("prefs/compbans.svr","rb");
+string bandata=pr.read();
+pr.close();
+bandata=string_decrypt(bandata,"ultrafuckyou");
+compbans=deserialize(bandata);
+}
+if(file_exists("prefs/ipbans.svr"))
+{
+pr.open("prefs/ipbans.svr","rb");
+string bandata=pr.read();
+pr.close();
+ipbans=deserialize(bandata);
+}
+if(file_exists("prefs/tempbans.svr")) load_all_tempbans();
+if(file_exists("prefs/shipments.svr")) load_shipments();
+sd.load();
+if(sd.d.exists("gnstart_auto")) gnstart_auto=sd.readn("gnstart_auto");
+if(sd.d.exists("peak"))
+peak=sd.readn("peak");
+if(sd.d.exists("login_disabled"))
+login_disabled=sd.readn("login_disabled");
+if(sd.d.exists("disable_account_creation"))
+disable_account_creation=sd.readn("disable_account_creation");
+if(sd.d.exists("pmreceiving"))
+pmreceiving=sd.readn("pmreceiving");
+if(sd.d.exists("voting"))
+voting=sd.readn("voting");
+if(sd.d.exists("chatting"))
+chatting=sd.readn("chatting");
+if(sd.d.exists("activations"))
+activations=sd.readn("activations");
+if(sd.d.exists("super"))
+super=sd.readn("super");
+if(sd.d.exists("minute"))
+minute=sd.readn("minute");
+if(sd.d.exists("hour"))
+hour=sd.readn("hour");
+if(sd.d.exists("day"))
+day=sd.readn("day");
+if(sd.d.exists("month"))
+month=sd.readn("month");
+if(sd.d.exists("year"))
+year=sd.readn("year");
+if(sd.d.exists("peakreached"))
+peakreached=sd.read("peakreached");
+if(sd.d.exists("gifting"))
+gifting=sd.readn("gifting");
+if(sd.d.exists("voteyes"))
+voteyes=sd.readn("voteyes");
+if(sd.d.exists("voteno"))
+voteno=sd.readn("voteno");
+if(sd.d.exists("storeopened"))
+storeopened=sd.readn("storeopened");
+if(sd.d.exists("missiletime"))
+missiletime=sd.readn("missiletime");
+if(sd.d.exists("missilemax"))
+missilemax=sd.readn("missilemax");
+if(sd.d.exists("storefight"))
+storefight=sd.readn("storefight");
+load_robots();
+}
+void writedata(string fv="", int fvv=-55555)
+{
+sd.add("activations",activations);
+sd.add("gnstart_auto", gnstart_auto);
+sd.add("voteyes",voteyes);
+sd.add("voteno",voteno);
+sd.add("voting",voting);
+sd.add("gifting",gifting);
+sd.add("peak",peak);
+sd.add("peakreached",peakreached);
+sd.add("login_disabled",login_disabled);
+sd.add("disable_account_creation",disable_account_creation);
+sd.add("storeopened",storeopened);
+sd.add("pmreceiving",pmreceiving);
+sd.add("super",super);
+sd.add("chatting",chatting);
+sd.add("missiletime",missiletime);
+sd.add("minute",minute);
+sd.add("hour",hour);
+sd.add("day",day);
+sd.add("month",month);
+sd.add("year",year);
+sd.add("storefight",storefight);
+sd.add("missilemax",missilemax);
+if(fv!=""&&fvv!=-55555)
+sd.add(fv,fvv);
+print_store();
+save_store_registers();
+file_put_contents("prefs/admin_log.svr",adminlog,250);
+file pr;
+string bandata=serialize(compbans);
+bandata=string_encrypt(bandata,"ultrafuckyou");
+pr.open("prefs/compbans.svr","wb");
+pr.write(bandata);
+pr.close();
+bandata=serialize(ipbans);
+pr.open("prefs/ipbans.svr","wb");
+pr.write(bandata);
+pr.close();
+bandata=serialize(passresets);
+pr.open("prefs/passresets.dat","wb");
+pr.write(string_encrypt(bandata,"ultrafuckyou"));
+pr.close();
+sd.save();
+save_tempbans();
+}
+void send_nearby_reliable(string mess,uint channel,int distance,double x,double y,double z,string map)
+{
+mess=string_encrypt(mess, serverkey+"loltrytodecryptthis"+serverkey2);
+for(uint i=0; i<players.length(); i++)
+{
+if(get_3d_distance(x,y,z,players[i].x,players[i].y,players[i].z)<=distance and players[i].map==map)
+{
+n.send_reliable(players[i].peer_id,mess,channel);
+}
+}
+}
+
+void send_u_x(uint peer, string mess, uint channel, int tx, int ty, int tz, string tmap)
+{
+mess=string_encrypt(mess, serverkey+"loltrytodecryptthis"+serverkey2);
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].x > tx-50 and players[i].x < tx+50 and players[i].y > ty-50 and players[i].y < ty+50 and players[i].z > tz-50 and players[i].z < tz+50 and players[i].map==tmap)
+{
+n.send_unreliable(players[i].peer_id, mess, channel);
+}
+}
+}
+void send_x(uint peer, string mess, uint channel, int tx, int ty, int tz,string tmap,int range=50)
+{
+mess=string_encrypt(mess, serverkey+"loltrytodecryptthis"+serverkey2);
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].x > tx-range and players[i].x < tx+range and players[i].y > ty-range and players[i].y < ty+range and players[i].z > tz-range and players[i].z < tz+range and players[i].map==tmap)
+{
+n.send_reliable(players[i].peer_id, mess, channel);
+}
+}
+}
+void send(uint peer, string mess, uint channel, int index=-1)
+{
+mess=string_encrypt(mess, serverkey+"loltrytodecryptthis"+serverkey2);
+if(index>-1)
+{
+int x=players[index].x;
+int y=players[index].y;
+int z=players[index].z;
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].x > x-50 and players[i].x < x+50 and players[i].y > y-50 and players[i].y < y+50 and players[i].z > z-50 and players[i].z < z+50 and players[i].map==players[index].map and i!=index)
+{
+n.send_reliable(players[i].peer_id, mess, channel);
+}
+}
+}
+else
+{
+n.send_reliable(peer, mess, channel);
+}
+}
+void send_u(uint peer, string mess, uint channel, int index=-1)
+{
+mess=string_encrypt(mess, serverkey+"loltrytodecryptthis"+serverkey2);
+if(index>-1)
+{
+int x=players[index].x;
+int y=players[index].y;
+int z=players[index].z;
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].x > x-50 and players[i].x < x+50 and players[i].y > y-50 and players[i].y < y+50 and players[i].z > z-50 and players[i].z < z+50 and players[i].map==players[index].map and i!=index)
+{
+n.send_unreliable(players[i].peer_id, mess, channel);
+}
+}
+}
+else
+{
+n.send_unreliable(peer, mess, channel);
+}
+}
+string get_event_message()
+{
+string r=e.message;
+if(r=="")
+{
+return "";
+}
+r=string_decrypt(r, serverkey+"loltrytodecryptthis"+serverkey2);
+return r;
+}

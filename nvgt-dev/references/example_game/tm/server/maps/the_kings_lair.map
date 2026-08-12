@@ -1,0 +1,12 @@
+mapname:the_kings_lair
+maxx:200
+maxy:200
+maxz:300
+tile:0:200:0:200:0:0:hardwood
+tile:0:200:0:200:-300:-300:hardwood2
+zone:0:200:0:200:-300:-200:the place where the demon king resides. use everything you got, because even that might fail you against a fow so powerful!
+zone:200:200:200:200:-300:-300:press shift plus enter to exit and claim your reward@trackme@
+cmusic:0:300:0:300:-290:-290:demon realm4.ogg:-12:100
+noitems:0:3000:0:3000:-55550:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb
+noitems:0:3000:0:3000:-55550:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+robots:0:200:0:200:-300:-300:1:5000:demon_king

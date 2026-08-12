@@ -1,0 +1,37 @@
+jumper@[] jumpers(0);
+class jumper
+{
+double minx,maxx,miny,maxy,minz,maxz;
+int type=1;
+jumper(double a,double b,double c,double d,double e,double f,int t)
+{
+minx=a;
+maxx=b;
+miny=c;
+maxy=d;
+minz=e;
+maxz=f;
+type=t;
+}
+}
+bool is_able_jump(double x,double y,double z)
+{
+bool read=true;
+for(uint i=0; i<jumpers.length(); i++)
+{
+if((jumpers[i].minx<=x and jumpers[i].maxx>=x) and (jumpers[i].miny<=y and jumpers[i].maxy>=y) and (jumpers[i].minz<=z and jumpers[i].maxz>=z) and jumpers[i].type>-1)
+{
+read=int_to_bool(jumpers[i].type);
+}
+}
+return read;
+}
+void destroy_all_jumpers()
+{
+jumpers.resize(0);
+}
+void spawn_jumper(double a,double b,double c,double d,double e,double f,int t)
+{
+jumper j1(a,b,c,d,e,f,t);
+jumpers.insert_last(j1);
+}

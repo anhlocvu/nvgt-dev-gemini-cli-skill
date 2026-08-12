@@ -1,0 +1,89 @@
+mapname:frozen_world
+maxx:100
+maxy:150
+maxz:150
+tile:0:98:100:150:0:0:icef
+zone:0:100:0:150:-200:150:frozen_world
+tile:100:100:100:150:0:0:concrete15
+tile:0:0:105:105:0:0:deepsnow
+tile:0:0:105:105:0:0:snow_wet
+tile:0:0:110:110:0:0:snow_wet
+tile:5:5:110:110:0:0:snow_wet
+tile:5:5:113:113:0:0:snow_wet
+tile:7:7:113:113:0:0:snow_wet
+tile:7:7:115:115:0:0:snow_wet
+tile:12:12:115:115:0:0:snow_wet
+tile:22:22:115:115:0:0:snow_wet
+tile:23:23:115:115:0:10:wallborder
+tile:22:22:120:120:0:0:snow_wet
+tile:32:32:120:120:0:0:snow_wet
+tile:33:33:120:120:0:10:wallborder
+tile:32:32:125:125:0:0:snow_wet
+tile:42:42:125:125:0:0:snow_wet
+tile:43:43:125:125:0:10:wallborder
+tile:42:42:120:120:0:0:snow_wet
+tile:52:52:120:120:0:0:snow_wet
+tile:53:53:120:120:0:10:wallborder
+tile:52:52:130:130:0:0:snow_wet
+tile:52:52:131:131:0:10:wallborder
+tile:57:57:130:130:0:0:snow_wet
+tile:57:57:140:140:0:0:snow_wet
+tile:57:57:141:141:0:10:wallborder
+tile:60:60:140:140:0:0:snow_wet
+tile:60:60:150:150:0:0:snow_wet
+tile:65:65:150:150:0:0:snow_wet
+src:0:100:0:150:0:500:snowwind.ogg
+tile:65:65:150:150:5:5:deepsnow
+tile:0:100:0:100:0:0:ice
+tile:65:65:150:150:5:5:rope
+tile:70:75:150:150:5:5:rope
+tile:80:95:150:150:5:5:rope
+tile:84:84:150:150:5:10:rope
+tile:84:84:150:150:13:13:rope
+tile:84:84:150:150:20:25:rope
+tile:84:84:150:150:16:25:rope
+tile:87:98:150:150:25:25:rope
+tile:98:98:150:150:25:50:rope
+tile:98:90:150:150:45:45:rope
+tile:90:98:150:150:45:45:rope
+tile:90:90:150:150:45:60:rope
+tile:90:90:150:150:65:70:rope
+tile:98:98:150:150:70:100:rope
+tile:90:94:150:150:100:100:rope
+tile:50:85:150:150:100:100:rope
+tile:65:65:150:150:70:100:rope
+tile:0:65:150:150:74:74:rope
+tile:0:0:150:150:74:100:rope
+tile:0:0:100:150:100:100:rope
+tile:0:0:130:130:100:125:rope
+tile:0:0:130:130:70:100:rope
+tile:0:0:129:129:70:70:rope
+tile:0:0:100:124:70:70:rope
+tile:0:0:100:100:70:80:rope
+tile:0:0:50:100:80:80:rope
+tile:0:0:50:50:85:100:rope
+tile:0:0:0:44:100:100:rope
+zone:100:100:101:150:0:100:the pass
+tile:100:100:150:150:-100:100:ladder2
+src:100:100:150:150:-100:0:Corrupted Area Ambience.ogg
+travelpoint:100:100:150:150:-100:-100:the_ocean:0:0:-100:done
+zone:0:0:100:100:0:20:be ready,your adventure will start from here.
+zone:100:100:101:149:0:0:the pass
+zone:100:100:150:150:0:0:choose your way
+zone:100:100:150:150:-100:-100:fantastic its the_ocean,Realize your dream and follow your ambition
+zone:0:0:0:0:0:10:back to the safe zone
+travelpoint:0:0:0:0:0:10:safe_zone:0:100:0:done
+zone:0:0:0:0:100:100:great,you reached to the box,take your key
+noitems:0:100:0:150:-100:1005:wirebomb:motion_bomb:nuclear_bomb:mine:stun_dart:remote_timebomb:security_bomb:remote_gun:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:rocket_launcher,bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:wood:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censorbomb:stone:fire_starter:censor_bomb:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:ford:mine:guided_missile:missile_interceptor
+fightingstate:0
+tile:0:100:0:150:-101:-101:icef
+zone:0:0:0:0:100:100:the key:trackme
+zone:100:100:150:150:-100:-100:the ocean:trackme
+noitems:0:100:0:150:-100:1505:elecboat
+noitems:0:100:0:150:-100:1005:police_motorcycle
+noitems:0:100:0:150:-100:1005:hors:boat
+tile:99:99:99:150:0:160:wallstone
+noitems:0:100:0:150:-100:1005:tasing_small_projectile
+noitems:0:100:0:150:-100:1005:small_projectile
+noitems:0:100:0:150:-100:1006:helicopter:wood:fuel:invisibility_shield:speed:nuclear_bomb:suicide_bomb
+safezone:0:10000:0:100000:0:100000

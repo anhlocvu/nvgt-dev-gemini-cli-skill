@@ -1,0 +1,15 @@
+mapname:the_boars_forest
+maxx:500
+maxy:500
+maxz:100
+tile:0:500:0:500:0:0:shortgrass
+zone:0:500:0:500:0:100:The boars forest.
+src:0:500:0:500:0:100:birds16.ogg
+robots:0:500:0:500:0:0:5:1000:boar
+randtravelpoint:0:0:0:0:0:0:ek_main:0:500:0:500:0:0:done
+zone:0:0:0:0:0:10:ek main:trackme
+tile:100:100:200:200:0:30:branch
+zone:100:100:200:200:0:40:The safe tree.:trackme
+tile:200:200:300:300:0:30:branch
+zone:200:200:300:300:0:40:Another safe tree.:trackme
+noitems:0:500:0:500:0:100:elecboat:boat:hors:wood

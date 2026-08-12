@@ -1,0 +1,123 @@
+#include"dlfile.bgt"
+#include"hip.bgt"
+string motdhash;
+string webdir="http://darkserver.ru/tm";
+void cfu(string name, string zipname, bool silent)
+{
+sound updating;
+speak("checking for updates...");
+string l=get_from_url(webdir+"/version.txt");
+string[] latest=string_split(l,".",true);
+double version=string_to_number(latest[0]);
+double subversion;
+if(latest.length()>1) subversion=stn(latest[1]);
+double build;
+if(latest.length()>2) build=stn(latest[2]);
+string[] yourversion=string_split(ver,".",true);
+double yv=stn(yourversion[0]);
+double sb;
+if(yourversion.length()>1) sb=stn(yourversion[1]);
+double b;
+if(yourversion.length()>2) b=stn(yourversion[2]);
+if ((yv>version or sb>subversion or b>build) and silent==false)
+{
+dlg("Alert. You are running a version newer than the one on the site. This could mean either you are running a beta, or there was an error contacting the page. Your version: "+yv+"."+sb+"."+b+". Latest version: "+version+"."+subversion+"."+build);
+mainmenu();
+}
+else if (yv==version and b==build and sb==subversion and silent==false)
+{
+dlg("Alert. Your "+name+" is up to date. Your version: "+yv+"."+sb+"."+b+". Latest version: "+version+"."+subversion+"."+build);
+mainmenu();
+}
+else if (yv<version or sb<subversion or b<build)
+{
+string description=get_from_url(webdir+"/description.txt");
+updating.stream("updating.ogg");
+updating.volume=-15;
+p.play_stationary("update.ogg",false);
+wait(20);
+form.create_window("New update",false);
+string text="New update has been found!\r\nYour version: "+ver+"\r\nLatest version: "+l+"\r\nDescription: ";
+string[] d=string_split(description,"\r\n",false);
+for(int i=0; i<d.length(); i++) text+=d[i]+"\r\n";
+text+="Would you like to download it?";
+int txt=form.create_input_box("&Update details",text,"",0,true,true);
+int y=form.create_button("&Yes");
+int n=form.create_button("&No");
+form.focus(0);
+while(true)
+{
+form.monitor();
+switch_layout_monitor();
+wait(5);
+if(form.is_pressed(y))
+{
+form.reset();
+updating.play_looped();
+string status=dl_file(webdir+"/"+zipname, zipname);
+if(status=="finished")
+{
+updating.stop();
+p.play_stationary("updated.ogg", true);
+exit();
+}
+}
+if(form.is_pressed(n))
+{
+form.reset();
+mainmenu();
+}
+}
+}
+}
+void sndcheck()
+{
+string latest=get_from_url(webdir+"/soundsver.txt");
+double lv=string_to_number(latest);
+string[] yourversion=string_split(sndver," ",true);
+double yv=string_to_number(yourversion[0]);
+if (yv<lv or !file_exists("sounds.dat"))
+{
+dlg("New sounds available. Press enter to download now");
+string status=dl_file(webdir+"/sounds.dat", "sounds.dat", "Downloading new sounds version "+lv+"...");
+if (status=="finished")
+{
+if(!SCRIPT_COMPILED)
+run("c:\\windows\\explorer.exe","\""+get_script_path()+"\"",false,false);
+else
+run(get_script_path(),"",false,false);
+exit();
+}
+}
+}
+void getmotd()
+{
+string mode=url_get(webdir+"/motd/mode.txt");
+if(mode!="t"&&mode!="a") return;
+if(mode=="t")
+{
+string motd=url_get(webdir+"/motd/text.txt");
+if(string_hash(motd,2,false)!=motdhash)
+{
+motdhash=string_hash(motd,2,false);
+p.play_stationary("motdstart.wav",false);
+dlg("Message of the day: "+motd);
+sound m;
+m.load("motdend.wav");
+m.play_wait();
+m.close();
+return;
+}
+}
+if(mode=="a")
+{
+speak("loading audio message of the day...");
+string motd=url_get(webdir+"/motd/audio.ogg");
+string hash=string_hash(motd,2,false);
+if(hash!=motdhash)
+{
+motdhash=hash;
+dlgplay(motd,true,15, false);
+}
+}
+}

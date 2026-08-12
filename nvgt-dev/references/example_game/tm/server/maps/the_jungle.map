@@ -1,0 +1,16 @@
+mapname:the_jungle
+maxx:300
+maxy:300
+maxz:300
+tile:0:300:0:300:0:0:grass3
+zone:0:300:0:300:0:300:a large jungle. you can hear the call of different animals. various paths lead to different places. which one will you choose?
+zone:150:150:150:150:0:11:a path leading to a small forest. chances are you'll find a lot of animals here. a good area to train and gain levels for newbies@trackme@
+src:0:300:0:300:0:300:src17.ogg:0:100
+zone:300:300:300:300:0:300:a path leading to a large jungle. dangerous animals reside here. be careful@trackme@
+zone:0:0:0:0:0:0:go back to the city@trackme@
+travelpoint:0:0:0:0:0:0:evermore_city:1600:1600:0: 
+noitems:0:4444:0:4444:0:4444:
+noitems:0:500:0:500:0:10000:grenade
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+fightingstate:1

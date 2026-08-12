@@ -1,0 +1,13 @@
+ new in version yet to be decided.
+added a creature arena! this arena is a lot different than the previous two arenas. while you can fight other players, your main goal remains to hunt a creature called the eoraptor and kill it. the player who first kills it completes the hunt, and wins a resurrection.
+decreased the range of the wand spells to fifty. now you only can use the spells on other players if they are fifty tiles away from you. a few unique spells are excluded from this however.
+added arena gifts! now, if you win ten times in the arena or the melee arena, a menu will pop in front of you, from which you will be able to select a gift! current gifts are bomb defuser, mega missile, demention bomb, restoration orb, sourcerer's crown, and crystal teleporters.
+added an item called the sourcerer's crown. by using it the wand gets disabled on the entire server for thirty minutes, leaving the player who used the item  to remain the only one who can use wand for that duration.
+added a bomb defuser. allows you to defuse all bombs on a map.
+added an item called mega missile. it has the ability to travel from one map to another, and killing every player on the selected map. in other words, you can do target killing on the game now!
+added an item called the restoration orb. instently charges your wand energy to 100%.
+added demention bombs. once you activate them everyone on the game dies.
+added crystal teleporters. allow you to be teleported throughout the maps of crystal city.
+fixed a strange bug which was causing a player to be stuck in multiple maps at the same time.
+stores are back to their previous form for the time being.
+removed dollar boxes as well as the bank, as after the termination of the two billian limit they don't play a role anyway.

@@ -1,0 +1,49 @@
+void alertmenu()
+{
+form.create_window("notifications menu",false,true);
+int a=form.create_checkbox("&reading messages",int_to_bool(readmessages));
+int spz=form.create_checkbox("speak the &zone name as you move around",int_to_bool(speakzone));
+int pm=form.create_button("toggle &private messages");
+int b=form.create_checkbox("speak &online and offline messages",int_to_bool(speakonlinemsgs));
+int c=form.create_checkbox("enable the &level up alerts",int_to_bool(levelsound));
+int d=form.create_checkbox("enable the player deat&h messages",int_to_bool(deathmsgs));
+int e=form.create_checkbox("enable the channel &join notifications",int_to_bool(chanjoin));
+int f=form.create_checkbox("enable the channel lea&ve notifications",int_to_bool(chanleave));
+int g=form.create_checkbox("enable ro&bot death messages",int_to_bool(rdmsg));
+int ok=form.create_button("&save",true,false);
+int cancel=form.create_button("&go back",false,true);
+form.focus(a);
+while(true)
+{
+wait(5);
+if(n.connected_peers>0) ek_loop();
+form.monitor();
+if(form.is_pressed(ok))
+{
+readmessages=bool_to_int(form.is_checked(a));
+speakzone=bool_to_int(form.is_checked(spz));
+speakonlinemsgs=bool_to_int(form.is_checked(b));
+levelsound=bool_to_int(form.is_checked(c));
+deathmsgs=bool_to_int(form.is_checked(d));
+chanjoin=bool_to_int(form.is_checked(e));
+chanleave=bool_to_int(form.is_checked(f));
+rdmsg=bool_to_int(form.is_checked(g));
+writeprefs();
+form.reset();
+speak("options saved");
+settingsmenu();
+return;
+}
+if(form.is_pressed(cancel))
+{
+form.reset();
+speak("canceled");
+settingsmenu();
+return;
+}
+if(form.is_pressed(pm))
+{
+send_reliable(0,"/pmreceive",1);
+}
+}
+}

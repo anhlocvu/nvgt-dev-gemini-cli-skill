@@ -1,0 +1,43 @@
+void kick(int index=-1,string reason="no one")
+{
+if(index<=-1) return;
+notify(players[index].name+" was just kicked from the server by "+reason,"kick.ogg");
+send(players[index].peer_id,"exitclient",0);
+@players[index]=null;
+players.remove_at(index);
+}
+
+void admintell(string message,bool only_for_devs=false)
+{
+if(only_for_devs)
+{
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].dev)
+{
+send(players[i].peer_id,"play_s admintell.ogg",6);
+send(players[i].peer_id,message,5);
+}
+}
+}
+else
+{
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].dev or players[i].admin)
+{
+send(players[i].peer_id,"play_s admintell.ogg",6);
+send(players[i].peer_id,message,5);
+}
+}
+}
+log_entry("admintells",message);
+}
+
+bool is_banned(string ban,string ip)
+{
+bool check=is_compbanned(ban);
+bool check2=is_ipbanned(ip);
+if(check==true or check2==true) return true;
+else return false;
+}

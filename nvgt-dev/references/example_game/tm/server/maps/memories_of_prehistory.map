@@ -1,0 +1,19 @@
+mapname:memories_of_prehistory
+maxx:100
+maxy:100
+maxz:100
+tile:0:100:0:100:0:0:carpet
+zone:0:500:0:500:0:500:memories of prehistory
+zone:10:10:10:10:0:100:talk to the old man and receive your first quest@trackme@
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter
+fightingstate:0
+noitems:0:3000:0:3000:0:5000:ultimate_bomb:poison_dart:cosmic_bomb:field_card:fantasy_pass
+cmusic:0:400:0:400:0:400:anime162.ogg:-10:100
+zone:30:30:30:30:0:6:get your second quest@trackme@
+zone:50:50:50:50:0:6:press shift plus enter to receive your third quest@trackme@
+zone:80:80:80:80:0:6:press shift plus enter to receive your forth quest@trackme@
+zone:100:100:100:100:0:6:press shift plus enter to receive your last quest@trackme@
+travelpoint:0:0:0:0:0:0:story_mode:100:100:0:hope to see you another time!
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+zone:0:0:0:0:0:6:go back@trackme@

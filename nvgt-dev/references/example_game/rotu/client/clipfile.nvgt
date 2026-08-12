@@ -1,0 +1,12 @@
+string[]filelist;
+void main()
+{
+string ret;
+show_game_window("clip file");
+filelist=find_files("sounds/*.*");
+for(uint i=0; i<filelist.length(); i++)
+{
+ret+=filelist[i]+"\r\n";
+}
+clipboard_copy_text(ret);
+}

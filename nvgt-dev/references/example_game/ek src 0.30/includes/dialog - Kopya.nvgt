@@ -1,0 +1,49 @@
+/*
+dialog class
+by technology production.
+this is the dialog function. this is not the best function, therefore, only recommended for those who needed.
+*/
+dialog@[] dialogs(0);
+class dialog
+{
+double x,y,z;
+string message;
+dialog(double dlgx,double dlgy,double dlgz,string mess)
+{
+x=dlgx;
+y=dlgy;
+z=dlgz;
+message=mess;
+}
+}
+void dialogcheck()
+{
+for(uint i=0; i<dialogs.length(); i++)
+{
+if(mr.x==dialogs[i].x and mr.y==dialogs[i].y and me.z==dialogs[i].z)
+{
+string[] messages=string_split(dialogs[i].message,"[===]",true);
+for(uint i2=0; i2<messages.length(); i2++)
+{
+p.play_stationary("toggleon.ogg",false);
+dlg(messages[i2],true,"notify4.ogg");
+p.play_stationary("toggleoff.ogg",false);
+}
+}
+}
+}
+void destroy_all_dialogs()
+{
+dialogs.resize(0);
+}
+void spawn_dialog(double x,double y,double z,string text)
+{
+dialog d1(x,y,z,text);
+dialogs.insert_last(d1);
+}
+string get_dialog_text_by_text()
+{
+string g=input("text","type the text of the dialog. If you want to seperate by a line, press shift+enter to add a new line","","",0,false,true,"&finish","cancel",true);
+g=string_replace(g,"\r\n","[===]",true);
+return g;
+}

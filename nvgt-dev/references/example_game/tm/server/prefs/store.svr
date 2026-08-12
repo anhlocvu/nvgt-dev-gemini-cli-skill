@@ -1,0 +1,132 @@
+s110pistol=2000000= a perfect starter, with a range of sixty=weapon_store
+m1891=5000000= a deadly weapon, with a fantastic range of 140=weapon_store
+stp429=6000000= a stp429 now range 200=weapon_store
+sp5shotgun=22000000= the best shotgun around, with a range of 75, and a damage of three to four millian=weapon_store
+sp150shotgun=20000000= excelent for close range fighting. range50, dammage four to five millian=weapon_store
+bolt_sniper=35000000=the strongest sniper there is, perfect for an assassonation. range180, dammage four to five millian=weapon_store
+g521_laser_cannon=100000000=reduce your enemies to dust with this closed range laser. range 75, dammage five to six millian=weapon_store
+flame_thrower=150000000=burn them alive! with a fantastic range of 200, and a dammage of six millian to six millian five hundred thousand, noone can survive this=weapon_store
+missile_launcher=85000000=with an amazing range of 205, from vehicles to shelters to humans, this missile launcher will destroy everything. a dammage of five millian=weapon_store
+hand_cannon=100000000=the 2nd most powerful weapon which is sold here, the hand cannon can dominate them all. ranged 210 =weapon_store
+m116_death_bringer=40000000=the most powerful weapon in the entire game, with the range of 250 and dammage of eight to nine millian=weapon_store
+ammo_m116_death_bringer=100000=  =ammo_store
+ammo_s110pistol=4000= =ammo_store
+ammo_missile_launcher=60000=ammo for the missile launcher=ammo_store
+ammo_flame_thrower=85000=ammo for the flame_thrower=ammo_store
+ammo_hand_cannon=90000=ammo for the hand cannon=ammo_store
+ammo_bolt_sniper=25000=ammo for the bolt sniper=ammo_store
+ammo_m1891=8000=ammo for the m1891=ammo_store
+ammo_sp5shotgun=15000=ammo for the sp5 shotgun=ammo_store
+ammo_sp150shotgun=15000=ammo for the sp150 shotgun=ammo_store
+skateboard=5000000=yeah...its self explanotory. not gonna say anything else=misc_store
+carrier_missile=2000=used to send items to another player=misc_store
+wood=50000=go to buy=misc_store
+shield=20000=go to buy=misc_store
+air_canister=1000000=provides you the air to put in the gas masc=misc_store
+gas_mask=1000=allows you to breathe underwater, needs air canister=misc_store
+speed_drink=100000=drink this, and be able to run with lightening speeds=misc_store
+jump_drink=500000=after drinking this, the time you can stay in the air increases expenencially. at once you can only keep five in your invitory=misc_store
+fight_inviter=20=a challenge call, an invitation to duell. use this to call other players to fight you=misc_store
+health_healer=6000=heals a small portion of one's health. useful in a messy situation=healthy_store
+poison_cure=55000=cures poison=healthy_store
+burn_cure=55000=cures burn=healthy_store
+health_box=100000=restores health to full=healthy_store
+suicide_bomb=2500000=kills your opponent if in close range=explosive_store
+nuclear_bomb=1000000=causes great damage to your opponents. range wise better than the suicide bomb=explosive_store
+grenade=5000000=a powerful explosive item=explosive_store
+ultimate_bomb=50000000=kills all players on the map on which its launched=explosive_store
+guided_missile=10000000=a missile which can be used to target a specific player or coordinates. deals 15 millian dammage=explosive_store
+missile_interceptor=500000=can be used to intercept an enemy's missile. if intercepted the missile can be kept in your own inventory=explosive_store
+ford=2000000=one of the coolest vehicles around=vehicle_store
+sorento=5000000=another cool vehicle=vehicle_store
+spaceship=50000000=a vehicle kapeable of going in to spase=vehicle_store
+aircraft=15000000=a vehicle kapeable of flight=vehicle_store
+tank=7000000=a vehicle used for combat. might come useful in a dangerous place=vehicle_store
+armored_tank=9000000=an upgrade to the tank. better and stronger=vehicle_store
+police_car=6000000=well, that's self explanotory, isn't it?=vehicle_store
+police_car_super=8000000=an upgrade to the policecar=vehicle_store
+dogan_slx=7000000=a vehicle dominating the ground=vehicle_store
+Truck=6000000=  =vehicle_store
+fuel_tank=10000=refuel your vehicle with this=fuel_store
+metal_pack=1000000=repair your vehicle=repair_store
+toolbox=1000000=needed to repair vehicles=repair_store
+milkshake=100=   =coffee_store
+coffee=50=   =coffee_store
+donut=25=   =coffee_store
+fried_chicken=150=   =food_store
+burger=100=   =food_store
+fries=25=   =food_store
+vodka_bottle=100=  =drinks_store
+wine_bottle=100=  =drinks_store
+whiskey_bottle=100=  =drinks_store
+scotch_bottle=100=  =drinks_store
+g48pistol=2000000=a perfect weapon for beginners, ranged 30 with a damage of two millian=combat_store
+w912pocket_pistol=2000000=another weapon for beginners. range 50, damage 1500000=combat_store
+bow=12000000=a definit must for an archer. ranged 60, with a damage of three millian=combat_store
+gauss=90000000=a strong, deadly laser, with a range of 100 and seven millian damage=combat_store
+laser_cannon=30000000=a laser ranged 175, with a damage of five millian=combat_store
+sky_429_laser_shotgun=60000000=this one is self explanotory, isn't it? =combat_store
+throwing_star=100000=a deadly, ninja weapon. throw it at people and kill them with only a few shots. can go through shields=combat_store
+throwing_knives=20000000=a weapon which can throw sharp, deadly knives. range 150 with a damage of four millian=combat_store
+baseball_bat=100000=one of the many melee weapons, useful for close combat. range 10, dammage 1000000=combat_store
+nunchaku=100000=a melee weapon, often used by martial artists. range 10, dammage one millian one hundred thousand.=combat_store
+brass_knuckles=350000= range 10, dammage 3000000=combat_store
+crow_bar=300000= range ten, dammage one millian to three millian=combat_store
+crt17_combat_knife=3000000= range 15, dammage 3500000=combat_store
+golden_war_axe=100000= range 10, dammage 1100000=combat_store
+hammer=600000= range 10, dammage two to three millian=combat_store
+small_sabre=700000= range 10, dammage 3 to four millian=combat_store
+small_dagger=6000000= range 20, dammage three to four millian=combat_store
+tm_sword=15000000=the strongest melee weapon. range 10, dammage six to seven millian=combat_store
+health_healer=6000=heals a small portion of one's health. useful in a messy situation=cure_store
+poison_cure=55000=cures poison=cure_store
+burn_cure=55000=cures burn=cure_store
+health_box=100000=restores health to full=cure_store
+ammo_g48pistol=4000= =bullets_store
+ammo_w912pocket_pistol=4000= =bullets_store
+ammo_gauss=50000= =bullets_store
+ammo_laser_cannon=30000= =bullets_store
+ammo_throwing_knives=28000= =bullets_store
+ammo_bow=10000=  =bullets_store
+mine=5000000=bombs which can be placed on different areas. when people step on them they explode. note that you can only place five mines on a single tile=bomb_store
+sat_bomb=5000000=remote bombs. place them, set a code, then use the remote to enter the code. then its boomtime=bomb_store
+sat_bomb_remote=100000000=the device to detinate the sat bombs=bomb_store
+cosmic_bomb=60000000=a bomb which kills everyone on the map, however it does not kill the person who launches it=bomb_store
+explosion=5000000=a bomb which explodes instently, no timer at all=bomb_store
+censor_bomb=3000000=place them, and whenever people are in the range they will explode=bomb_store
+fishing_net=1000=used for fishing=random_store
+skateboard=5000000=yeah...its self explanotory. not gonna say anything else=random_store
+carrier_missile=2000=used to send items to another player=random_store
+wood=50000=go to buy=random_store
+shield=20000=go to buy=random_store
+air_canister=1000000=provides you the air to put in the gas masc=random_store
+gas_mask=1000=allows you to breathe underwater, needs air canister=random_store
+speed_drink=100000=drink this, and be able to run with lightening speeds=random_store
+jump_drink=500000=after drinking this, the time you can stay in the air increases expenencially. at once you can only keep five in your invitory=random_store
+fight_inviter=20=a challenge call, an invitation to duell. use this to call other players to fight you=random_store
+wand=3000000000=a magical stick, able to cast deadly and useful spells=magical_store
+seeled_key=500000000=a magical key, able to take you to the land of the seeled=magical_store
+deception_mist=100000=let's you fake your death=magical_store
+teleporter=500000=a magical means of transportation, able to take you almost anywhere=magical_store
+aura_pack=10000000=contains one thousand aura, the enerjy which is used for spell casting=magical_store
+warp_box=100000=a magical device kapeable of moving you a hundred feet forward from your current location in a second=magical_store
+crystal_ticket=100=the ticket which allows you to bord the train going to crystal city=ticket_store
+evermore_ticket=100=the ticket which allows you to bord the train going to evermore city=crystal_ticket_store
+chips=5=  =snak_store
+biscuit=10= =snak_store
+popcorn=20= =snak_store
+chocolate_bar=5= =snak_store
+candy=1=  =snak_store
+protein_bar=30=  =snak_store
+nut=1=  =snak_store
+cracker=5=  =snak_store
+mint=1=  =snak_store
+pretzel=5=  =snak_store
+soda=10=  =drincs_store
+cola=30=  =drincs_store
+water_bottle=5=  =drincs_store
+juce_box=15=  =drincs_store
+banana_bread=5=  =fruits_store
+melon=5=  =fruits_store
+berry=5=  =fruits_store
+apple=5=  =fruits_store

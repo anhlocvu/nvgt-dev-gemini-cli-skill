@@ -1,0 +1,33 @@
+mapname:main_street
+maxx:500
+maxy:500
+maxz:500
+tile:0:500:0:500:0:0:concrete12
+zone:0:500:0:500:0:500:main_street
+src:0:500:0:500:0:500:b1.ogg
+travelpoint:0:0:0:0:0:0:safe_zone:50:0:0:Done, you are back to safe zone.
+zone:0:0:0:0:0:10:Safe zone.:trackme
+travelpoint:0:0:250:250:0:0:challenge_city:0:0:0:Done
+zone:0:0:250:250:0:10:challenge city:trackme
+travelpoint:0:0:500:500:0:0:ek_services:50:0:0:Done.
+zone:0:0:500:500:0:10:ek services:trackme
+travelpoint:100:100:100:100:0:0:store:0:0:0:done
+zone:100:100:100:100:0:10:store:trackme
+travelpoint:250:250:500:500:0:0:frozen_world:0:0:0:done
+zone:250:250:500:500:0:10:The other world:trackme
+travelpoint:500:500:0:0:0:0:mini_fighting_room:0:0:0:done
+zone:500:500:0:0:0:10:mini fighting room:trackme
+travelpoint:500:500:500:500:0:0:bff_safe_house:25:25:0:welcome to bff safe house
+zone:500:500:500:500:0:10:bff safe house:trackme
+tile:240:260:240:260:10:10:wood10
+tile:250:250:250:250:0:10:stairs
+zone:250:250:250:250:0:10:Stairs to music player!:trackme
+tile:255:255:255:255:10:10:diamond
+zone:255:255:255:255:10:20:Music player.:trackme
+jplayer:255:255:10
+tile:239:239:240:260:10:50:wallcloth
+tile:261:261:240:260:10:50:wallcloth
+tile:240:260:260:260:10:50:wallcloth
+tile:240:260:240:240:10:50:wallcloth
+fightingstate:0
+noitems:0:1000:0:1000:-1000:1000:wirebomb:mine:stun_dart:security_bomb:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censor_bomb:stone:fire_starter:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:guided_missile:missile_interceptor:mine:hors:boat:tasing_small_projectile:small_projectile:elecboat:censor_bomb:frequency_scrambler:helicopter:fire_extinguisher:sound_grenade:air_canister:shield:motion_bomb:helicopter:wood:police_car_super:tank:aircraft:item_grabber:fight_inviter

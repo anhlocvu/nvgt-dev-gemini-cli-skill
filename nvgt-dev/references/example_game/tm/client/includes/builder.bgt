@@ -1,0 +1,731 @@
+cmusic@[] cmusics(0);
+int cmusic_volume;
+int cmusic_pitch;
+class cmusic
+{
+	int cmusic_sound;
+	int lx;
+	int rx;
+	int miny;
+	int maxy;
+	int minz;
+	int maxz;
+	int volume;
+int pitch;
+	string soundfile;
+	bool paused=false;
+	int id=-1;
+	bool p2;
+	string vetype;
+	cmusic(int cmusic_lx, int cmusic_rx, int cmusic_miny, int cmusic_maxy, int cmusic_minz, int cmusic_maxz, string file, int vol, int spitch , bool cmusic_paused=false, int cmusic_id=-1)
+	{
+pitch=spitch;
+if(pitch<=60)
+pitch=60;
+		volume=vol;
+		if (volume<=-30)
+		volume=-30;
+		lx=cmusic_lx;
+		rx = cmusic_rx;
+		miny=cmusic_miny;
+		maxy= cmusic_maxy;
+		minz=cmusic_minz;
+		maxz=cmusic_maxz;
+		soundfile=file;
+		 cmusic_sound=p.play_3d(soundfile, me.x, me.y, me.z, lx, miny, minz, facing, true);
+		id=cmusic_id;
+		p.update_sound_3d(cmusic_sound, lx, miny, minz);
+		p.update_sound_start_values(cmusic_sound,0,cmusic_volume+volume,cmusic_pitch+pitch);
+		paused=cmusic_paused;
+		if(paused)
+		{
+			p.pause_sound(cmusic_sound);
+		}
+		p2=paused;
+		p.update_sound_range_3d(cmusic_sound, 0, rx-lx, 0, maxy-miny, 0, maxz-minz);
+	}
+}
+void cmusiccheckloop()
+{
+	for (uint i=0; i<cmusics.length(); i++)
+	{
+		if(cmusics[i].paused!=cmusics[i].p2)
+		{
+			if(cmusics[i].paused==true and cmusics[i].p2==false)
+			{
+				p.pause_sound(cmusics[i].cmusic_sound);
+				cmusics[i].p2=true;
+			}
+			else if(cmusics[i].paused==false and cmusics[i].p2==true)
+			{
+				p.resume_sound(cmusics[i].cmusic_sound);
+				cmusics[i].p2=false;
+			}
+		}
+	}
+}
+void destroy_all_cmusics()
+{
+	for(uint i=0; i<cmusics.length(); i++)
+	{
+		p.destroy_sound(cmusics[i].cmusic_sound);
+	}
+	cmusics.resize(0);
+}
+void pause_all_cmusics()
+{
+	for(uint i=0; i<cmusics.length(); i++)
+	{
+		cmusics[i].paused=true;
+	}
+}
+void resume_all_cmusics()
+{
+	for(uint i=0; i<cmusics.length(); i++)
+	{
+		cmusics[i].paused=false;
+	}
+}
+void spawn_cmusic(int cmusic_lx, int cmusic_rx, int cmusic_miny, int cmusic_maxy, int cmusic_minz, int cmusic_maxz, string soundfile, int volume=0, int pitch=100, bool paused=false, int id=-1)
+{
+	cmusic cmusic1(cmusic_lx, cmusic_rx, cmusic_miny, cmusic_maxy, cmusic_minz, cmusic_maxz, soundfile, volume, pitch, paused, id);
+	cmusics.insert_last(cmusic1);
+}
+void destroy_cmusic(int id)
+{
+	for(uint i=0; i<cmusics.length(); i++)
+	{
+		if(cmusics[i].id==id and id > -1)
+		{
+			p.destroy_sound(cmusics[i].cmusic_sound);
+			cmusics.remove_at(i);
+		}
+	}
+}
+void change_cmusic_volume(int volume)
+{
+	cmusic_volume=volume;
+	for (uint i=0; i<cmusics.length(); i++)
+	p.update_sound_start_values(cmusics[i].cmusic_sound,0,cmusic_volume+cmusics[i].volume,100);
+}
+void change_cmusic_volume_and_pitch(int volume, int pitch)
+{
+	cmusic_volume=volume;
+cmusic_pitch=pitch;
+	for (uint i=0; i<cmusics.length(); i++)
+	p.update_sound_start_values(cmusics[i].cmusic_sound,0,cmusic_volume+cmusics[i].volume,cmusic_pitch+cmusics[i].pitch);
+}
+piano@[] pianos(0);
+class piano
+{
+	int px;
+	int py;
+	int pz;
+	piano(int pianox, int pianoy, int pianoz)
+	{
+		px=pianox;
+		py=pianoy;
+		pz=pianoz;
+	}
+}
+void destroy_piano(int p)
+{
+	pianos.remove_at(p);
+}
+void destroy_all_pianos()
+{
+	pianos.resize(0);
+}
+void spawn_piano(int pianox, int pianoy, int pianoz)
+{
+	piano piano1(pianox, pianoy, pianoz);
+	pianos.insert_last(piano1);
+}
+
+calander@[]calanders(0);
+class calander
+{
+	double x,y,z;
+	string text;
+	calander(double cx,double cy,double cz,string ctext)
+	{
+		x=cx;
+		y=cy;
+		z=cz;
+		text=ctext;
+	}
+}
+void what_is_the_date()
+{
+	for(uint i=0; i<calanders.length(); i++)
+	{
+		if(calanders[i].x==mr.x and calanders[i].y==mr.y and calanders[i].z==me.z)
+		{
+			speak(calanders[i].text+get_date(true, true));
+		}
+	}
+}
+void new_calander(int x, int y, int z, string t)
+{
+	calander s1(x, y, z, t);
+	calanders.insert_last(s1);
+}
+void kill_all_calanders()
+{
+	calanders.resize(0);
+}
+
+timer all_devs_are_stupid;
+checkpoint@[]cppoints(0);
+class checkpoint {
+	int x, y, z;
+int cp_sound;
+	int cpsound=-1;
+
+	checkpoint(int init_x, int init_y, int init_z) {
+		x=init_x;
+		y=init_y;
+		z=init_z;
+		cpsound=		p.play_3d("cpget.ogg", me.x, me.y, me.z,x, y, z, calculate_theta(facing), false);
+cp_sound=p.play_3d("cp.ogg", me.x, me.y, me.z,init_x, init_y, init_z, calculate_theta(facing), true);
+	}
+}
+
+void checkpoint_new(int x, int y,  int z)
+{
+		checkpoint cp1(x, y, z);
+		cppoints.insert_last(cp1);
+	}
+int checkpoint_at(int x, int y, int z)
+{
+	for(uint i=0; i<cppoints.length(); i++)
+	{
+		if(cppoints[i].x==x and cppoints[i].y==y and cppoints[i].z==z)
+		{
+			return i;
+		}
+	}
+	return -1;
+}
+void checkpointloop()
+{
+	for(uint i=0; i<cppoints.length(); i++)
+	{
+		p.update_sound_3d(cppoints[i].cp_sound, cppoints[i].x, cppoints[i].y,cppoints[i].z);
+if(me.x==cppoints[i].x and me.y==cppoints[i].y and me.z==cppoints[i].z)
+	{
+		p.play_3d("cpget.ogg", me.x, me.y, me.z, cppoints[i].x, cppoints[i].y, cppoints[i].z, calculate_theta(facing), false);
+		p.play_3d("notice.ogg", me.x, me.y, me.z, cppoints[i].x, cppoints[i].y, cppoints[i].z, calculate_theta(facing), false);
+		cpx=cppoints[i].x;
+		cpy=cppoints[i].y;
+		cpz=cppoints[i].z;
+		send(0,"cpdata "+cppoints[i].x+" "+cppoints[i].y+" "+cppoints[i].z+" "+mapname,0);
+		if(all_devs_are_stupid.elapsed>=50)
+		{
+			all_devs_are_stupid.restart();
+cppoints[i].cpsound=-1;
+		p.destroy_sound(cppoints[i].cp_sound);
+					@cppoints[i]=null;
+					cppoints.remove_at(i);
+			}
+		}
+	}
+}
+void fuck_cppoints()
+{
+	for(uint i=0; i<cppoints.length(); i++)
+	{
+		p.destroy_sound(cppoints[i].cp_sound);
+	}
+	cppoints.resize(0);
+}
+clock@[]clocks(0);
+class clock
+{
+	double x,y,z;
+	string text;
+	clock(double sx,double sy,double sz,string stext)
+	{
+		x=sx;
+		y=sy;
+		z=sz;
+		text=stext;
+	}
+}
+void what_time_is_it()
+{
+	for(uint i=0; i<clocks.length(); i++)
+	{
+		if(clocks[i].x==mr.x and clocks[i].y==mr.y and clocks[i].z==me.z)
+		{
+			speak(clocks[i].text+get_time(true, true));
+		}
+	}
+}
+void new_clock(int x, int y, int z, string t)
+{
+	clock s1(x, y, z, t);
+	clocks.insert_last(s1);
+}
+void kill_all_clocks()
+{
+	clocks.resize(0);
+}
+bool dmoving;
+door@[] doors(0);
+class door
+{
+	string ds, ds2, ds3, ds4;
+	int doorsound, doorsound2;
+int minx,maxx,miny,maxy,minz,maxz;
+bool locked;
+string passcode;
+	int fx;
+	int fy;
+	int fz;
+	int movetime=200;
+	bool moving;
+	bool aimoving;
+	timer movetimer;
+door(int dminx, int dmaxx, int dminy, int dmaxy, int dminz, int dmaxz, int doorfx, int doorfy, int doorfz,int speed, string doorsnd, string doorsnd2, string doorsnd3, string doorsnd4,bool lc=false,string pscode="")
+	{
+		ds=doorsnd;
+		ds2=doorsnd2;
+		ds3=doorsnd3;
+		ds4=doorsnd4;
+minx=dminx;maxx=dmaxx;miny=dminy;maxy=dmaxy;minz=dminz;maxz=dmaxz;
+		fx=doorfx;
+		fy=doorfy;
+		fz=doorfz;
+		movetime=speed;
+		doorsound=p.play_3d(ds, me.x, me.y, me.z,minx,miny,minz,calculate_theta(facing),true);
+locked=lc;
+if(locked) passcode=pscode;
+	}
+}
+void doorcheckloop()
+{
+	for (uint i=0; i<doors.length(); i++)
+	{
+		p.update_sound_3d(doors[i].doorsound, doors[i].minx, doors[i].miny,doors[i].minz);
+		p.update_sound_range_3d(doors[i].doorsound, 0, doors[i].maxx-doors[i].minx, 0, doors[i].maxy-doors[i].miny, 0, doors[i].maxz-doors[i].minz);
+		if (doors[i].moving==true and doors[i].movetimer.elapsed>=doors[i].movetime)
+		{
+			doors[i].movetimer.restart();
+			if(doors[i].movetime==-1)
+			{
+				me.x=doors[i].fx;
+				me.y=doors[i].fy;
+				me.z=doors[i].fz;
+			}
+			if (me.x>doors[i].fx)
+			{
+				me.x-=1;
+			}
+			else if (me.x<doors[i].fx)
+			{
+				me.x+=1;
+			}
+			if (me.y>doors[i].fy)
+			{
+				me.y-=1;
+			}
+			else if (me.y<doors[i].fy)
+			{
+				me.y+=1;
+			}
+			if (me.z>doors[i].fz)
+			{
+				me.z-=1;
+			}
+			else if (me.z<doors[i].fz)
+			{
+				me.z+=1;
+			}
+		}
+		if (doors[i].fx==me.x and doors[i].fy==me.y and doors[i].fz==me.z and doors[i].moving==true)
+		{
+			if (doors[i].ds2!="none.ogg")
+			{
+				p.destroy_sound(doors[i].doorsound2);
+			}
+			send(0,"xplay "+doors[i].ds4,0);
+			p.play_3d(doors[i].ds4, me.x, me.y, me.z, doors[i].fx, doors[i].fy, doors[i].fz, calculate_theta(facing),false);
+			can_move=true;
+dmoving=false;
+			doors[i].moving=false;
+			send(0,"iamnotdmoving",0);
+			send(0,"move_to "+me.x+" "+me.y+" "+me.z,0);
+		}
+	}
+}
+void destroy_door(int d)
+{
+	p.destroy_sound(doors[d].doorsound);
+	doors.remove_at(d);
+}
+void destroy_all_doors()
+{
+	for(uint i=0; i<doors.length(); i++)
+	{
+		p.destroy_sound(doors[i].doorsound);
+	}
+	doors.resize(0);
+}
+void spawn_door(int minx, int maxx, int miny, int maxy, int minz, int maxz, int fx, int fy, int fz, int speed, string doorsnd, string doorsnd2, string doorsnd3, string doorsnd4,bool locked=false,string passcode="")
+{
+door door1(minx,maxx,miny,maxy,minz,maxz,fx, fy, fz, speed, doorsnd, doorsnd2, doorsnd3, doorsnd4,locked,passcode);
+	doors.insert_last(door1);
+}
+sign@[]signs(0);
+class sign
+{
+	double x,y,z;
+	string text;
+int signsound;
+	sign(double sx,double sy,double sz,string stext)
+	{
+		x=sx;
+		y=sy;
+		z=sz;
+		text=stext;
+signsound=p.play_3d("sign.ogg", me.x, me.y, me.z, sx, sy, sz, calculate_theta(facing), true);
+	}
+}
+void sloop()
+{
+	for(uint i=0; i<signs.length(); i++)
+	{
+		p.update_sound_3d(signs[i].signsound, signs[i].x, signs[i].y,signs[i].z);
+			}
+		}
+void sign_check()
+{
+	for(uint i=0; i<signs.length(); i++)
+	{
+		if(signs[i].x==mr.x and signs[i].y==mr.y and signs[i].z==me.z)
+		{
+			speak(signs[i].text);
+			p.play_stationary("signpress.ogg",false);
+		}
+	}
+}
+void new_sign(int x, int y, int z, string t)
+{
+	signs.insert_last(sign(x, y, z, t));
+}
+void kill_all_signs()
+{
+	for(uint i=0; i<signs.length(); i++)
+	{
+		p.destroy_sound(signs[i].signsound);
+	}
+	signs.resize(0);
+}
+source@[] sources(0);
+int source_volume;
+int source_pitch;
+class source
+{
+	int source_sound;
+	int lx;
+	int rx;
+	int miny;
+	int maxy;
+	int minz;
+	int maxz;
+	int volume;
+int pitch;
+	string soundfile;
+	bool paused=false;
+	int id=-1;
+	bool p2;
+	string vetype;
+	source(int source_lx, int source_rx, int source_miny, int source_maxy, int source_minz, int source_maxz, string file, int vol, int spitch , bool source_paused=false, int source_id=-1)
+	{
+pitch=spitch;
+if(pitch<=60)
+pitch=60;
+		volume=vol;
+		if (volume<=-30)
+		volume=-30;
+		lx=source_lx;
+		rx = source_rx;
+		miny=source_miny;
+		maxy= source_maxy;
+		minz=source_minz;
+		maxz=source_maxz;
+		soundfile=file;
+		 source_sound=p.play_3d(soundfile, me.x, me.y, me.z, lx, miny, minz, facing, true);
+		id=source_id;
+		p.update_sound_3d(source_sound, lx, miny, minz);
+		p.update_sound_start_values(source_sound,0,source_volume+volume,source_pitch+pitch);
+		paused=source_paused;
+		if(paused)
+		{
+			p.pause_sound(source_sound);
+		}
+		p2=paused;
+		p.update_sound_range_3d(source_sound, 0, rx-lx, 0, maxy-miny, 0, maxz-minz);
+	}
+}
+class amb
+{
+	double minx,maxx,miny,maxy,minz,maxz;
+	sound loop;
+	int volume=0;
+int pitch=100;
+	bool inrange=false,force_paused=false;
+	amb(double c1, double c2, double c3, double c4, double c5, double c6, string so, int vo, int p)
+	{
+		minx=c1; maxx=c2; miny=c3; maxy=c4; minz=c5; maxz=c6; loop.stream(so); volume=vo; pitch=p;
+	}
+	bool is_in_range()
+	{
+		return (minx<=mr.x&&maxx>=mr.x&&miny<=mr.y&&maxy>=mr.y&&minz<=me.z&&maxz>=me.z);
+	}
+	void check()
+	{
+		if(force_paused or !in_map) return;
+		if(volume==0)
+		{
+			loop.volume=source_volume;
+			
+		}
+		if(volume<=-1)
+		{
+			loop.volume=volume;
+			
+		}
+		if(pitch==100)
+		{
+			loop.pitch=source_pitch;
+			
+		}
+		if(pitch<=60)
+		{
+			loop.pitch=pitch;
+			
+		}
+		bool r=is_in_range();
+		if(r==true&&inrange==false)
+		{
+			inrange=true;
+			if(in_map)  loop.play_looped();
+			
+		}
+		else if(r==false&&inrange==true)
+		{
+			inrange=false;
+			loop.pause();
+		}
+	}
+	~amb()
+	{
+
+		if(loop.playing)
+		loop.stop();
+		loop.close();
+
+	}
+}
+amb@[] ambs;
+
+void sourcecheckloop()
+{
+	for (uint i=0; i<sources.length(); i++)
+	{
+		if(sources[i].paused!=sources[i].p2)
+		{
+			if(sources[i].paused==true and sources[i].p2==false)
+			{
+				p.pause_sound(sources[i].source_sound);
+				sources[i].p2=true;
+			}
+			else if(sources[i].paused==false and sources[i].p2==true)
+			{
+				p.resume_sound(sources[i].source_sound);
+				sources[i].p2=false;
+			}
+		}
+	}
+}
+void ambiencescheckloop()
+{
+	for(uint i=0; i<ambs.length(); i++)
+	{
+		if(in_map) ambs[i].check();
+	}
+}
+
+void destroy_all_sources()
+{
+	for(uint i=0; i<sources.length(); i++)
+	{
+		p.destroy_sound(sources[i].source_sound);
+	}
+	sources.resize(0);
+}
+void destroy_all_ambiences()
+{
+	ambs.resize(0);
+}
+
+void pause_all_sources()
+{
+	for(uint i=0; i<sources.length(); i++)
+	{
+		sources[i].paused=true;
+	}
+	for(uint i=0; i<ambs.length(); i++)
+	{
+		ambs[i].force_paused=true;
+		if(ambs[i].loop.playing) ambs[i].loop.pause();
+	}
+}
+void resume_all_sources()
+{
+	for(uint i=0; i<sources.length(); i++)
+	{
+		sources[i].paused=false;
+	}
+	for(uint i=0; i<ambs.length(); i++)
+	{
+		ambs[i].force_paused=false;
+		ambs[i].check();
+	}
+}
+void spawn_source(int source_lx, int source_rx, int source_miny, int source_maxy, int source_minz, int source_maxz, string soundfile, int volume=0, int pitch=100, bool paused=false, int id=-1)
+{
+	source source1(source_lx, source_rx, source_miny, source_maxy, source_minz, source_maxz, soundfile, volume, pitch, paused, id);
+	sources.insert_last(source1);
+}
+void destroy_source(int id)
+{
+	for(uint i=0; i<sources.length(); i++)
+	{
+		if(sources[i].id==id and id > -1)
+		{
+			p.destroy_sound(sources[i].source_sound);
+			sources.remove_at(i);
+		}
+	}
+}
+void create_amb(int minx, int maxx, int miny, int maxy, int minz, int maxz, string sound, int v, int p)
+{
+	amb amb1(minx,maxx,miny,maxy,minz,maxz,sound, v,p);
+	ambs.insert_last(amb1);
+}
+void change_source_volume(int volume)
+{
+	source_volume=volume;
+	for (uint i=0; i<sources.length(); i++)
+p.update_sound_start_values(sources[i].source_sound,0,source_volume+sources[i].volume,100);
+}
+void change_source_volume_and_pitch(int volume, int pitch)
+{
+	source_volume=volume;
+source_pitch=pitch;
+	for (uint i=0; i<sources.length(); i++)
+	p.update_sound_start_values(sources[i].source_sound,0,source_volume+sources[i].volume,source_pitch+sources[i].pitch);
+}
+vanishing_platform@[]vanishing_platforms(0);
+class vanishing_platform
+{
+double minx,maxx,miny,maxy,minz,maxz;
+string type;
+string id=randomstring();
+timer vanishingtimer;
+bool vanished=false;
+int vanishingtime;
+string vanishing_sound;
+int vsound;
+vanishing_platform( double vminx, double vmaxx, double vminy, double vmaxy, double vminz, double vmaxz, string vtype, string soundfile, int vanishtime)
+{
+minx=vminx;
+maxx=vmaxx;
+miny=vminy;
+maxy=vmaxy;
+minz=vminz;
+maxz=vmaxz;
+type=vtype;
+vanishingtime=vanishtime;
+vanishing_sound=soundfile;
+spawn_platform(minx,maxx,miny,maxy,minz,maxz,type,id);
+vsound=p.play_3d(vanishing_sound, me.x, me.y, me.z, maxx, miny, minz, facing, true);
+p.update_sound_3d(vsound, minx, miny, minz);
+		p.update_sound_range_3d(vsound, 0, maxx-minx, 0, maxy-miny, 0, maxz-minz);
+}
+}
+void vanishing_loop()
+{
+for(uint i=0; i<vanishing_platforms.length(); i++)
+{
+if(vanishing_platforms[i].vanishingtimer.elapsed>=vanishing_platforms[i].vanishingtime and !vanishing_platforms[i].vanished)
+{
+vanishing_platforms[i].vanishingtimer.restart();
+for(uint i2=0; i2<maps.length(); i2++)
+{
+if(maps[i2].id==vanishing_platforms[i].id and !maps[i2].id.is_empty())
+{
+@maps[i2]=null;
+maps.remove_at(i2);
+p.destroy_sound(vanishing_platforms[i].vsound);
+continue;
+}
+}
+vanishing_platforms[i].vanished=true;
+}
+if(vanishing_platforms[i].vanishingtimer.elapsed>=vanishing_platforms[i].vanishingtime and vanishing_platforms[i].vanished)
+{
+vanishing_platforms[i].vanishingtimer.restart();
+spawn_platform(vanishing_platforms[i].minx,vanishing_platforms[i].maxx,vanishing_platforms[i].miny,vanishing_platforms[i].maxy,vanishing_platforms[i].minz,vanishing_platforms[i].maxz,vanishing_platforms[i].type,vanishing_platforms[i].id);
+vanishing_platforms[i].vanished=false;
+vanishing_platforms[i].vsound=p.play_3d(vanishing_platforms[i].vanishing_sound, me.x, me.y, me.z, vanishing_platforms[i].maxx, vanishing_platforms[i].miny, vanishing_platforms[i].minz, facing, true);
+p.update_sound_3d(vanishing_platforms[i].vsound, vanishing_platforms[i].minx, vanishing_platforms[i].miny, vanishing_platforms[i].minz);
+		p.update_sound_range_3d(vanishing_platforms[i].vsound, 0, vanishing_platforms[i].maxx-vanishing_platforms[i].minx, 0, vanishing_platforms[i].maxy-vanishing_platforms[i].miny, 0, vanishing_platforms[i].maxz-vanishing_platforms[i].minz);
+}
+}
+}
+void spawn_vanishing_platform(double minx, double maxx, double miny, double maxy, double minz, double maxz, string type, string soundfile, int vanishtime)
+{
+vanishing_platform vanishing_platform1(minx,maxx,miny,maxy,minz,maxz,type,soundfile,vanishtime);
+vanishing_platforms.insert_last(vanishing_platform1);
+}
+/*
+void destroy_v()
+{
+for(uint i=0; i<vanishing_platforms.length(); i++)
+{
+for(uint i2=0; i2<maps.length(); i2++)
+{
+if(maps[i2].id==vanishing_platforms[i].id and !maps[i2].id.is_empty())
+{
+@maps[i2]=null;
+maps.remove_at(i2);
+return;
+}
+}
+p.destroy_sound(vanishing_platforms[i].vsound);
+vanishing_platforms.remove_at(i);
+return;
+}
+}
+*/
+void destroy_v()
+{
+for(uint i=0; i<vanishing_platforms.length(); i++)
+{
+for(uint i2=0; i2<maps.length(); i2++)
+{
+if(maps[i2].id==vanishing_platforms[i].id and !maps[i2].id.is_empty())
+{
+@maps[i2]=null;
+maps.remove_at(i2);
+return;
+}
+}
+p.destroy_sound(vanishing_platforms[i].vsound);
+}
+vanishing_platforms.resize(0);
+}

@@ -1,0 +1,8 @@
+7/11/2021 7:44:06 PM
+rotuserver.exe
+A runtime error occurred.
+File: C:\Users\ivan\Dropbox\ROTU src\server\includes\inventory.bgt
+On line: 30
+In function: string inventory::serialize_inv()
+Description: Standard library exception (bad allocation)
+no stack trace available

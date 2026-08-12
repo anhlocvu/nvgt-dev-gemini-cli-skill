@@ -1,0 +1,49 @@
+//key hold by harry min khant
+/*
+this class holds the key to be able to hold down, like moving through the items by holding the down arrow.
+*/
+class keyhold
+{
+bool status;
+short key_flag=0;
+int key_code;
+int repeat_time;
+int setting_1;
+int setting_2;
+timer key_timer;
+keyhold(int _key_code, int setting1, int setting2)
+{
+key_code=_key_code;
+setting_1=setting1;
+setting_2=setting2;
+repeat_time=setting1;
+}
+bool pressing()
+{
+status=key_down(key_code);
+if(status==false)
+{
+repeat_time=0;
+key_timer.restart();
+key_flag=0;
+return false;
+}
+if(key_timer.elapsed>=repeat_time)
+{
+switch(key_flag)
+{
+case 0:
+key_flag=1;
+repeat_time=setting_1;
+key_timer.restart();
+break;
+case 1:
+repeat_time=setting_2;
+key_timer.restart();
+break;
+}
+return true;
+}
+return false;
+}
+}

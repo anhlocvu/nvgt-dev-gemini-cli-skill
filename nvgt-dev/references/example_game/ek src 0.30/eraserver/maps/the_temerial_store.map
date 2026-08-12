@@ -1,0 +1,79 @@
+mapname:the_temerial_store
+maxx:300
+maxy:300
+maxz:200
+tile:0:200:0:200:0:0:grass
+zone:0:300:0:300:0:300:the temerial store
+tile:0:300:0:300:0:0:dirt7
+src:290:300:295:300:0:5:mfsell.ogg
+tile:280:300:280:300:0:0:grass3
+tile:280:280:280:288:0:100:walltree
+tile:280:280:292:300:0:100:walltree
+tile:280:288:280:280:0:100:walltree
+tile:292:300:280:280:0:100:walltree
+tile:300:300:280:300:0:100:walltree
+tile:280:300:300:300:0:100:walltree
+tile:294:296:297:297:0:100:walltree
+tile:295:295:296:296:0:15:wallbody
+tile:296:296:295:296:0:100:walltree
+tile:294:294:295:295:0:100:walltree
+zone:280:300:280:300:0:100:the magical flower garden
+zone:295:295:295:295:0:0:press t to buy the magical flower:trackme
+src:0:5:295:300:0:5:gsell.ogg
+tile:20:20:280:300:0:100:wallwood16
+tile:1:20:300:300:0:100:wallwood15
+tile:0:15:280:280:0:100:wallwood16
+tile:5:20:286:300:0:15:wallwood16
+tile:0:19:281:285:0:0:wood4
+tile:0:4:286:286:0:1:wood
+tile:0:4:287:287:0:0:wallwood18
+tile:0:4:287:292:1:1:wood4
+tile:0:4:292:292:1:2:wood3
+tile:0:4:293:293:0:1:wallwood18
+tile:0:4:293:300:2:2:wood2
+tile:0:4:293:300:2:2:carpet2
+tile:2:4:296:300:2:15:wallwood16
+zone:0:20:280:300:0:100:the missile package market
+tile:16:19:280:280:0:0:stairs
+tile:0:0:300:300:2:15:wallbody
+zone:1:1:300:300:2:2:press t to buy the missile  package:trackme
+tile:292:300:20:20:0:100:wallrocks3
+tile:280:288:20:20:0:100:wallrocks3
+src:295:300:0:5:0:5:minesell.ogg
+tile:280:280:11:20:0:100:wallrocks3
+tile:280:280:0:6:0:100:wallrocks3
+tile:281:300:0:19:0:0:concrete10
+tile:296:300:0:20:0:100:wallrocks3
+tile:296:296:5:5:0:10:wallbody
+tile:295:295:0:4:0:15:wallrocks3
+tile:295:295:6:20:0:15:wallrocks3
+tile:150:150:255:300:0:100:wallmetal23
+tile:252:252:248:300:0:100:wallmetal23
+zone:280:300:0:20:0:100:the mine ground
+tile:150:252:248:248:0:100:wallmetal23
+tile:151:155:280:300:0:10:wallmetal20
+tile:156:156:300:300:0:10:wallbody
+tile:157:252:300:300:0:100:wallmetal23
+tile:156:160:280:299:0:0:hardwood2
+amb:151:175:280:300:0:10:MetalBar2.ogg
+tile:176:250:295:300:0:100:wallmetal19
+tile:176:250:290:294:0:0:carpet2
+tile:161:175:249:289:0:15:wallmetal20
+amb:176:252:280:297:0:7:MetalBar7.ogg
+tile:176:249:249:289:0:15:wallmetal20
+tile:251:251:249:300:0:15:wallmetal20
+tile:250:250:249:289:0:0:carpet2
+tile:250:250:249:249:0:15:wallbody
+src:245:250:250:255:0:5:swsell.ogg
+zone:150:250:148:300:0:100:the blacksmith workshop.
+noitems:0:300:0:300:0:300:wirebomb:motion_bomb:nuclear_bomb:mine:stun_dart:remote_timebomb:security_bomb:remote_gun:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:rocket_launcher,bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censorbomb:stone:fire_starter:censor_bomb:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb
+fightingstate:0
+zone:0:0:0:0:0:0:exit to city:trackme
+zone:250:250:250:250:0:0:the legendary sword:trackme
+src:0:300:0:300:17:20:md27.ogg
+zone:100:100:0:0:0:200:Change from dollar to gold, price, 300000 dollars = 1 gold:trackme
+tile:100:100:0:0:0:0:metal
+zone:295:295:5:5:0:0:press t and buy mine:trackme
+noitems:0:300:0:300:0:300:elecboat:boat:hors:helicopter
+
+safezone:0:10000:0:100000:0:10000

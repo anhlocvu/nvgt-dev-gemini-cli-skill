@@ -1,0 +1,55 @@
+mapname:path_to_grifins_lair
+maxx:300
+maxy:350
+maxz:6000
+zone:0:300:0:300:0:5555:you find yourself floating on a cloud, high in the sky. you feel the wind on your face, harsh and pressuring. everywhere you look you find clouds. you will need to land on these clouds as you jump. be careful, for if you do not land on a cloud, you shall fall down to the earth, never able to rise again
+tile:0:300:0:300:0:0:carpet
+tile:0:0:0:0:5000:5000:cave
+tile:10:10:1:1:5000:5000:air
+tile:18:18:3:3:5000:5000:air
+tile:26:26:7:7:5000:5000:air
+tile:27:27:9:9:5000:5000:air
+tile:28:28:10:10:5000:5000:air
+tile:30:30:20:20:5000:5000:air
+tile:40:40:30:30:5000:5000:air
+tile:45:45:40:40:5000:5000:air
+tile:55:55:45:45:5000:5000:air
+tile:62:62:49:49:5000:5000:air
+tile:72:72:60:60:5000:5000:air
+tile:80:80:60:60:5000:5000:air
+tile:85:85:61:61:5000:5000:air
+tile:90:90:70:70:5000:5000:air
+tile:95:95:70:70:5000:5000:air
+tile:96:96:80:80:5000:5000:air
+tile:96:96:90:90:5000:5000:air
+tile:100:100:100:100:5000:5000:air
+tile:103:103:105:105:5000:5000:air
+tile:110:110:114:114:5000:5000:air
+tile:115:115:121:121:5000:5000:air
+tile:120:120:125:125:5000:5000:air
+tile:130:130:130:130:5000:5000:air
+tile:132:132:131:131:5000:5000:air
+tile:132:132:137:137:5000:5000:air
+tile:140:140:140:140:5000:5000:air
+tile:142:142:143:143:5000:5000:air
+tile:146:146:146:146:5000:5000:air
+tile:146:146:150:150:5000:5000:air
+tile:150:150:150:150:5000:5000:air
+tile:150:300:150:300:5000:5000:dirt4
+zone:150:300:150:300:5000:5555:to your utter shock, you find an actual building, floating up in the sky. looking around this unbelievable phenomenon, you find various other statues. but unlike the statue which you saw earlier, these clearly depict the creature for which they are build to represent. griffins. everywhere you look, you see large griffin statues looming above you. these statues are made so realisticly that for several moments you think they might actually come to life
+src:150:300:150:350:5000:5555:altomare.ogg:0:100
+zone:300:300:300:300:5000:5555:a path leading upwards to a huge tower. you might find your hardest challenge above@trackme@
+zone:300:300:300:349:5100:5555:the tower is in your sights. it is a quiet place. no human or animal has ever daired to come to this place. what lies inside might be more than you can handel. enter at your own risk
+tile:300:300:300:350:5100:5100:gravel3
+zone:300:300:350:350:5100:5555:press shift plus enter to fight the griffin. if you defeat it, you shall become its owner@trackme@
+tile:300:300:301:301:5000:5012:wallbrush2
+tile:300:300:300:300:5000:5100:gravel3
+tile:0:300:0:300:0:4700:icef
+cmusic:0:350:0:350:0:5555:desert wind night.ogg:-10:100
+fightingstate:0
+zone:0:300:0:300:0:4995:path to griffin's lair
+tile:299:299:300:350:5100:5555:wallbuilding3
+travelpoint:300:300:350:350:5100:5100:griffins_lair:0:0:5100:what you are about to do has not been done by any other human. here lies the king of the griffins, the strongest creature on the plannet. perhaps it is bravery to fight it, perhaps foolishness. either way, it is going to be the hardest battle of your life
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb

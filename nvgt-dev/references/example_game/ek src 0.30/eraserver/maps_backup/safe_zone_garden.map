@@ -1,0 +1,35 @@
+mapname:safe_zone_garden
+maxx:1000
+maxy:1000
+maxz:1000
+tile:0:1000:0:1000:0:0:grass4
+zone:0:1000:0:1000:0:1000:safe zone's garden
+src:0:1000:0:1000:0:1000:birds12.ogg
+tile:10:100:10:100:0:0:concrete
+zone:10:100:10:100:0:1000:maps world
+tile:10:100:9:9:0:1000:wallbuilding
+tile:9:9:9:100:0:1000:wallbuilding
+tile:500:600:500:600:-50:0:water2
+tile:101:101:9:100:0:1000:wallbuilding
+zone:500:600:500:600:-50:0:a smal lake:trackme
+tile:10:100:101:101:0:1000:wallbuilding
+zone:10:10:10:10:0:1000:back to the garden
+tile:500:600:500:600:-50:-5:underwater
+door:10:10:0:10:8:0:1000:silence.ogg:silence.ogg:dooropen13.ogg:doorclose13.ogg
+zone:10:10:8:8:0:1000:entrance to the maps world:trackme
+zone:500:600:500:600:-50:-5:under lake:trackme
+door:10:8:0:10:10:0:1000:silence.ogg:silence.ogg:dooropen13.ogg:doorclose13.ogg
+zone:0:0:0:0:0:1000:back to the safe zone :trackme
+travelpoint:0:0:0:0:0:1000:safe_zone:50:50:0:welcome back to the safe zone!
+zone:11:11:11:11:0:0:entrance to the store:trackme
+zone:11:11:12:12:0:0:entrance to the main:trackme
+zone:11:11:13:13:0:0:entrance to the ek services:trackme
+zone:11:11:18:18:0:0:entrance to the relaxation room:trackme
+zone:11:11:14:14:0:0:entrance to the radios room:trackme
+zone:11:11:15:15:0:0:entrance to the challenge maps:trackme
+zone:11:11:16:16:0:0:entrance to the other world:trackme
+zone:11:11:17:17:0:0:entrance to the bff house:trackme
+travelpoint:11:11:14:14:0:0:radios_room:0:0:0:welcome to the radios room!
+travelpoint:11:11:11:11:0:0:store:0:0:0:welcome to the big and large store!
+src:0:1000:0:1000:15:1000:md78.ogg
+fightingstate:0

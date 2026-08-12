@@ -1,0 +1,80 @@
+#include"bgt_compat.nvgt"
+#include"speech.nvgt"
+file temp;
+string[] contents;
+
+string filename,foldername,encryption_key;
+bool encrypt=false;
+string end;
+pack pfile;
+void main()
+{
+foldername=select_folder_dialog();
+if (foldername=="")
+{
+exit();
+}
+filename=open_file_dialog("pack files:dat", cwdir());
+if (filename=="")
+{
+alert("error!","you may not extract an empty file!");
+exit();
+}
+encryption_key=input_box("file encrypter", "enter the encryption key you wish to use.");
+if(encryption_key!="")
+{
+encrypt=true;
+}
+if (get_last_error()==-12)
+{
+exit();
+}
+if(encrypt==true)
+{
+pack_set_global_identifier(encryption_key);
+}
+pfile.open(filename);
+contents=pfile.list_files();
+alert("get ready",contents.length()+" files are about to be extracted!");
+if (!directory_exists(foldername))
+{
+directory_create(foldername);
+}
+string output;
+double temp=-1;
+show_window("working");
+for (double i=0; i<contents.length(); i++)
+{
+double percent=(i+1)/contents.length()*100.0;
+percent=round(percent,0);
+if(percent!=temp)
+{
+speak(percent+" percent");
+temp=percent;
+}
+output+=contents[i]+"\r\n";
+extract_file(pfile,contents[i], foldername+"\\"+string2file(contents[i])+end);
+wait(1);
+}
+//clipboard_copy_text(output);
+alert("success",filename+" has been extracted. stats: "+contents.length()+" files are now in packs/"+filename);
+}
+string string2file(string thing)
+{
+thing=string_replace(thing,"\\","/",true);
+thing=string_replace(thing,"/"," ",true);
+return thing;
+}
+void extract_file(pack@ pf, const string&in filename, const string&in outfile)
+{
+if(encrypt==true)
+{
+pack_set_global_identifier(encryption_key);
+}
+uint size=pf.get_file_size(filename);
+string content=pf.read_file(filename,0,size);
+file t;
+t.open(outfile,"wb");
+t.write(content);
+t.close();
+}

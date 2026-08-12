@@ -1,0 +1,11 @@
+void st()
+{
+setupmenu();
+m.set_callback(netclb,"");
+//m.add_item_tts("your hunger "+f+" this indicates your character's hunger, go and feed him some food","hunger");
+//m.add_item_tts("your thirst, "+thirst_check+" this indicates your character's thirst, go and drink your character some water","thirst");
+m.add_item_tts("name","");
+m.add_item_tts(""+name+"","");
+m.add_item_tts("draving, "+focuseditem+"","");
+int mres=m.run("In this section, you can view your character's statistics, such as level control, thirst control.",true);
+}

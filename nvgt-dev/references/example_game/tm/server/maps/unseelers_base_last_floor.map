@@ -1,0 +1,12 @@
+mapname:unseelers_base_last_floor
+maxx:100
+maxy:100
+maxz:300
+tile:0:300:0:300:0:0:concrete4
+zone:0:300:0:300:0:300:unseelers base, last floor
+
+cmusic:0:300:0:300:0:25:dbz2.ogg:-10:100
+
+zone:100:100:100:100:0:66:press shift plus enter to complete this quest@trackme@
+noitems:0:5555:0:5555:0:5555:stp429:grenade
+robots:0:100:0:100:0:0:1:1000:unseelers_genral

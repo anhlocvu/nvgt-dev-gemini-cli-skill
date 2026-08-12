@@ -1,0 +1,14 @@
+mapname:tower_second_floor
+maxx:300
+maxy:300
+maxz:300
+tile:0:300:0:300:0:0:hardwood2
+tile:0:300:0:300:100:100:hardwood2
+tile:300:300:300:300:100:200:stairs
+travelpoint:300:300:300:300:200:200:tower_third_floor:0:0:200:almost through! just one more left!
+zone:0:300:0:300:0:300:tower, second floor
+zone:300:300:300:300:100:200:stairs to the next floor@trackme@
+zone:300:300:300:300:200:206:press shift enter to continue
+cmusic:0:300:0:300:120:150:dbz4.ogg:-10:100
+robots:0:300:0:300:100:100:4:500:crony,gang_leader,henchman
+noitems:0:5555:0:5555:0:5555:stp429:grenade

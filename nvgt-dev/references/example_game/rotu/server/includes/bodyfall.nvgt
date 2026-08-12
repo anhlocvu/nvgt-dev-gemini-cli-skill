@@ -1,0 +1,36 @@
+bfall@[]bfalls(0);
+class bfall{
+string bfallsound;
+timer falltimer;
+int falltime;
+string map;
+double x,y,z;
+bfall(double bx,double by,double bz,string bfsound,string bmap,int ft)
+{
+x=bx;
+y=by;
+z=bz;
+bfallsound=bfsound;
+falltime=ft;
+map=bmap;
+}
+}
+void bfallloop()
+{
+for(uint i=0; i<bfalls.length(); i++)
+{
+if(bfalls[i].falltimer.elapsed>bfalls[i].falltime)
+{
+send(0,"play "+bfalls[i].bfallsound+".ogg "+bfalls[i].x+" "+bfalls[i].y+" "+bfalls[i].z+" "+bfalls[i].map,6);
+@bfalls[i]=null;
+bfalls.remove_at(i);
+i--;
+continue;
+}
+}
+}
+void bodyfall(double x,double y,double z,string sound,string map,int falltime)
+{
+bfall bfall1(x,y,z,sound,map,falltime);
+bfalls.insert_last(bfall1);
+}

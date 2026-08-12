@@ -1,0 +1,2327 @@
+// staff_panel.nvgt - Staff Control Panel Client Implementation
+// Written for ROTU (NVGT)
+
+string last_store_data = "";
+string last_store_action_status = "";
+string last_store_action_message = "";
+
+string last_player_info_data = "";
+string last_player_inventory_data = "";
+string last_server_stats_data = "";
+string last_server_banlist_data = "";
+string last_tickets_data = "";
+bool staff_is_invisible = false;
+string last_staff_action_status = "";
+string last_staff_action_message = "";
+
+int staff_menu_callback(dynamic_menu_pro@ menu_handle, string data) {
+    netloop();
+    return 0;
+}
+
+// Show Gang Details Menu (shared utility)
+void show_gang_details_menu(string gname, string gleader, string gslogan, string glevel, string gmembers) {
+    while(true) {
+        dynamic_menu_pro m;
+        m.reset(false);
+        m.click_sound = "menuclick.ogg";
+        m.enter_sound = "menuenter.ogg";
+        m.edge_sound = "menuedge.ogg";
+        m.wrap_sound = "menuwrap.ogg";
+        m.open_sound = "menuopen.ogg";
+        m.enable_first_letter_navigation = true;
+        m.enable_up_and_down = true;
+        m.set_callback(staff_menu_callback, "");
+
+        m.add_item_tts("Gang Name: " + gname, "gname");
+        m.add_item_tts("Leader: " + gleader, "leader");
+        m.add_item_tts("Level: " + glevel, "level");
+        m.add_item_tts("Members Count: " + gmembers, "members");
+        m.add_item_tts("Slogan: " + gslogan, "slogan");
+        m.add_item_tts("Go Back", "back");
+
+        int res = m.run("Gang Details for " + gname, true);
+        string opt = m.get_item_name(res);
+        if (opt == "back" or res <= 0) {
+            break;
+        }
+    }
+}
+
+// Global function to trigger the staff panel
+void open_staff_panel(bool is_dev, bool is_admin, bool is_mod, bool is_builder) {
+    global_is_dev = is_dev;
+    global_is_admin = is_admin;
+    global_is_mod = is_mod;
+    global_is_builder = is_builder;
+    while(true) {
+        dynamic_menu_pro sm;
+        sm.reset(false);
+        sm.click_sound = "menuclick.ogg";
+        sm.enter_sound = "menuenter.ogg";
+        sm.edge_sound = "menuedge.ogg";
+        sm.wrap_sound = "menuwrap.ogg";
+        sm.open_sound = "menuopen.ogg";
+        sm.enable_first_letter_navigation = true;
+        sm.enable_up_and_down = true;
+        sm.set_callback(staff_menu_callback, "");
+
+        if (is_dev || is_admin || is_mod) {
+            sm.add_item_tts("Player Management", "player_mgmt");
+            sm.add_item_tts("Gang Management", "gang_mgmt");
+            sm.add_item_tts("Support Tickets Queue", "tickets_mgmt");
+        }
+        if (is_dev || is_admin) {
+            sm.add_item_tts("Store Management", "store_mgmt");
+        }
+        sm.add_item_tts("Server Management", "server_mgmt");
+        if (is_dev || is_admin || is_builder) {
+            sm.add_item_tts("Builder & Maps", "builder_mgmt");
+        }
+        if (is_dev || is_admin) {
+            sm.add_item_tts("Staff Tools", "staff_tools");
+        }
+        sm.add_item_tts("Go Back", "back");
+
+        int res = sm.run("Staff Control Panel. Select a category.", true);
+        string name = sm.get_item_name(res);
+        if (name == "back" || res <= 0) {
+            break;
+        }
+        else if (name == "player_mgmt") {
+            player_management_menu(is_dev, is_admin, is_mod);
+        }
+        else if (name == "gang_mgmt") {
+            gang_management_menu(is_dev, is_admin, is_mod);
+        }
+        else if (name == "tickets_mgmt") {
+            tickets_management_menu(is_dev, is_admin, is_mod);
+        }
+        else if (name == "store_mgmt") {
+            store_management_menu(is_dev, is_admin);
+        }
+        else if (name == "server_mgmt") {
+            server_management_menu(is_dev, is_admin, is_mod);
+        }
+        else if (name == "builder_mgmt") {
+            builder_management_menu(is_dev, is_admin, is_builder);
+        }
+        else if (name == "staff_tools") {
+            staff_tools_menu(is_dev, is_admin);
+        }
+    }
+    speak("Returning to game.");
+}
+
+void player_management_menu(bool is_dev, bool is_admin, bool is_mod) {
+    while(true) {
+        dynamic_menu_pro sm;
+        sm.reset(false);
+        sm.click_sound = "menuclick.ogg";
+        sm.enter_sound = "menuenter.ogg";
+        sm.edge_sound = "menuedge.ogg";
+        sm.wrap_sound = "menuwrap.ogg";
+        sm.open_sound = "menuopen.ogg";
+        sm.enable_first_letter_navigation = true;
+        sm.enable_up_and_down = true;
+        sm.set_callback(staff_menu_callback, "");
+
+        sm.add_item_tts("Online Players List", "online_players");
+        
+        if (is_dev || is_admin) {
+            sm.add_item_tts("Kick Player", "kick_manual");
+            sm.add_item_tts("Ban Player (Online Ban)", "ban_manual");
+            sm.add_item_tts("Offline Ban Player", "offline_ban");
+            sm.add_item_tts("Temp Ban Player", "tempban_manual");
+            sm.add_item_tts("Unban Player", "unban");
+            sm.add_item_tts("Jail Player", "jail_manual");
+            sm.add_item_tts("Unjail Player", "unjail");
+            sm.add_item_tts("Warn Player", "warn_manual");
+            sm.add_item_tts("Give Item to Player", "give_manual");
+            sm.add_item_tts("Set Player Health", "sethealth_manual");
+            sm.add_item_tts("Reset Password", "reset_pass");
+            sm.add_item_tts("Delete Account", "delete_acc");
+        }
+        sm.add_item_tts("Go Back", "back");
+
+        int res = sm.run("Player Management Menu", true);
+        string name = sm.get_item_name(res);
+        if (name == "back" || res <= 0) break;
+
+        if (name == "online_players") {
+            online_players_menu(is_dev, is_admin, is_mod);
+        } else if (name == "kick_manual") {
+            string target = txt.input("Enter player username to kick:", false);
+            if (target != "") kick_player_form(target);
+        } else if (name == "ban_manual") {
+            string target = txt.input("Enter player username to ban:", false);
+            if (target != "") {
+                int confirm = yesno("Are you sure you want to ban " + target + " from the server?", "Yes", "No");
+                if (confirm == 1) send(0, "/ban " + target, 1);
+            }
+        } else if (name == "offline_ban") {
+            offline_ban_form();
+        } else if (name == "tempban_manual") {
+            string target = txt.input("Enter player username to temp ban:", false);
+            if (target != "") tempban_player_form(target);
+        } else if (name == "unban") {
+            unban_form();
+        } else if (name == "jail_manual") {
+            string target = txt.input("Enter player username to jail:", false);
+            if (target != "") jail_player_form(target);
+        } else if (name == "unjail") {
+            unjail_form();
+        } else if (name == "warn_manual") {
+            string target = txt.input("Enter player username to warn:", false);
+            if (target != "") warn_player_form(target);
+        } else if (name == "give_manual") {
+            string target = txt.input("Enter player username to give item:", false);
+            if (target != "") give_item_form(target);
+        } else if (name == "sethealth_manual") {
+            string target = txt.input("Enter player username to set health:", false);
+            if (target != "") sethealth_player_form(target);
+        } else if (name == "reset_pass") {
+            reset_pass_form();
+        } else if (name == "delete_acc") {
+            delete_account_form();
+        }
+    }
+}
+
+bool array_contains_nocase(string[]@ arr, string val) {
+    for (uint i = 0; i < arr.length(); i++) {
+        if (string_to_lower_case(arr[i]) == string_to_lower_case(val)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void online_players_menu(bool is_dev, bool is_admin, bool is_mod) {
+    while(true) {
+        dynamic_menu_pro sm;
+        sm.reset(false);
+        sm.click_sound = "menuclick.ogg";
+        sm.enter_sound = "menuenter.ogg";
+        sm.edge_sound = "menuedge.ogg";
+        sm.wrap_sound = "menuwrap.ogg";
+        sm.open_sound = "menuopen.ogg";
+        sm.enable_first_letter_navigation = true;
+        sm.enable_up_and_down = true;
+        sm.set_callback(staff_menu_callback, "");
+
+        string[] added_names;
+        sm.add_item_tts(username + " (You)", username);
+        added_names.insert_last(username);
+        for(uint i = 0; i < players.length(); i++) {
+            string p_name = players[i].name;
+            if (string_to_lower_case(p_name) == string_to_lower_case(username) || array_contains_nocase(added_names, p_name)) {
+                continue;
+            }
+            sm.add_item_tts(p_name, p_name);
+            added_names.insert_last(p_name);
+        }
+        sm.add_item_tts("Go Back", "back");
+
+        int res = sm.run("Select a player to manage", true);
+        string name = sm.get_item_name(res);
+        if (name == "back" || res <= 0) break;
+
+        single_player_actions_menu(name, is_dev, is_admin, is_mod);
+    }
+}
+
+void single_player_actions_menu(string target, bool is_dev, bool is_admin, bool is_mod) {
+    while(true) {
+        dynamic_menu_pro sm;
+        sm.reset(false);
+        sm.click_sound = "menuclick.ogg";
+        sm.enter_sound = "menuenter.ogg";
+        sm.edge_sound = "menuedge.ogg";
+        sm.wrap_sound = "menuwrap.ogg";
+        sm.open_sound = "menuopen.ogg";
+        sm.enable_first_letter_navigation = true;
+        sm.enable_up_and_down = true;
+        sm.set_callback(staff_menu_callback, "");
+
+        if (target != username) {
+            if (is_dev || is_admin) {
+                sm.add_item_tts("Kick Player", "kick");
+                sm.add_item_tts("Ban Computer (Online Ban)", "ban");
+                sm.add_item_tts("Temp Ban Player", "tempban");
+            }
+            if (is_dev || is_admin) {
+                sm.add_item_tts("Jail Player", "jail");
+                sm.add_item_tts("Warn Player", "warn");
+            }
+            if (is_dev || is_admin || is_mod) {
+                sm.add_item_tts("Give Item", "give");
+                sm.add_item_tts("View email address", "view_email");
+                sm.add_item_tts("Inspect Player Stats", "inspect_stats");
+                sm.add_item_tts("Inspect & Edit Player Inventory", "inspect_inv");
+            }
+            if (is_dev || is_admin) {
+                sm.add_item_tts("Goto Player", "goto");
+                sm.add_item_tts("Summon Player", "summon");
+                sm.add_item_tts("Set Health", "sethealth");
+                sm.add_item_tts("Spectate Player (Invisible Mode)", "spectate");
+            }
+        } else {
+            sm.add_item_tts("You cannot perform staff actions on yourself.", "self_info");
+        }
+        sm.add_item_tts("Go Back", "back");
+
+        int res = sm.run("Actions for " + target, true);
+        string name = sm.get_item_name(res);
+        if (name == "back" || res <= 0) break;
+
+        if (name == "kick") {
+            kick_player_form(target);
+        } else if (name == "ban") {
+            int confirm = yesno("Are you sure you want to ban " + target + " from the server?", "Yes", "No");
+            if (confirm == 1) {
+                send(0, "/ban " + target, 1);
+                break;
+            }
+        } else if (name == "tempban") {
+            tempban_player_form(target);
+        } else if (name == "jail") {
+            jail_player_form(target);
+        } else if (name == "warn") {
+            warn_player_form(target);
+        } else if (name == "give") {
+            give_item_form(target);
+        } else if (name == "inspect_stats") {
+            inspect_player_stats_menu(target);
+        } else if (name == "inspect_inv") {
+            inspect_player_inventory_menu(target);
+        } else if (name == "spectate") {
+            send(0, "staff_toggle_invis", 0);
+            send(0, "/gotoplayer " + target, 1);
+            break;
+        } else if (name == "goto") {
+            send(0, "/gotoplayer " + target, 1);
+            break;
+        } else if (name == "summon") {
+            send(0, "/moveplayer " + target + " " + username, 1);
+            break;
+        } else if (name == "sethealth") {
+            sethealth_player_form(target);
+        } else if (name == "view_email") {
+            send(0, "/get_email " + target, 1);
+        }
+    }
+}
+
+void server_management_menu(bool is_dev, bool is_admin, bool is_mod) {
+    while(true) {
+        dynamic_menu_pro sm;
+        sm.reset(false);
+        sm.click_sound = "menuclick.ogg";
+        sm.enter_sound = "menuenter.ogg";
+        sm.edge_sound = "menuedge.ogg";
+        sm.wrap_sound = "menuwrap.ogg";
+        sm.open_sound = "menuopen.ogg";
+        sm.enable_first_letter_navigation = true;
+        sm.enable_up_and_down = true;
+        sm.set_callback(staff_menu_callback, "");
+
+        if (is_dev || is_admin) {
+            sm.add_item_tts("View Live Server Stats", "live_stats");
+            sm.add_item_tts("IP/Comp Ban List Manager", "ban_manager");
+            sm.add_item_tts("Weather Control Panel", "weather_ctrl");
+            sm.add_item_tts("Garbage Collector (Free RAM)", "garbage");
+            sm.add_item_tts("Clear Server Objects (Reduce Lag)", "clear_server");
+            sm.add_item_tts("Spam Kill Undeads", "spam_kill");
+            sm.add_item_tts("Backup Player Database", "backup_db");
+            sm.add_item_tts("Modify Server MOTD", "modify_motd");
+        }
+        if (is_dev) {
+            sm.add_item_tts("Toggle Game Running State", "toggle_game");
+            sm.add_item_tts("Toggle Server Voice Chat", "toggle_vc");
+            sm.add_item_tts("Server Maintenance Options", "maintenance");
+        }
+        sm.add_item_tts("Go Back", "back");
+
+        int res = sm.run("Server Management Menu", true);
+        string name = sm.get_item_name(res);
+        if (name == "back" || res <= 0) break;
+
+        if (name == "live_stats") {
+            view_live_server_stats_menu();
+        } else if (name == "ban_manager") {
+            ban_list_manager_menu();
+        } else if (name == "weather_ctrl") {
+            weather_control_menu();
+        } else if (name == "garbage") {
+            send(0, "/garbage", 1);
+            speak("Garbage collection request sent.");
+        } else if (name == "clear_server") {
+            int confirm = yesno("Clear all undead, bullets, and items from the server?", "Yes", "No");
+            if (confirm == 1) {
+                send(0, "/serverclear", 1);
+            }
+        } else if (name == "spam_kill") {
+            send(0, "/spamkill", 1);
+            speak("Spam kill request sent.");
+        } else if (name == "backup_db") {
+            send(0, "/playerbackup", 1);
+            speak("Database backup request sent.");
+        } else if (name == "toggle_game") {
+            send(0, "/game", 1);
+        } else if (name == "toggle_vc") {
+            send(0, "/voicechat", 1);
+        } else if (name == "modify_motd") {
+            modify_motd_menu();
+        } else if (name == "maintenance") {
+            server_maintenance_menu();
+        }
+    }
+}
+
+void modify_motd_menu() {
+    while(true) {
+        dynamic_menu_pro sm;
+        sm.reset(false);
+        sm.click_sound = "menuclick.ogg";
+        sm.enter_sound = "menuenter.ogg";
+        sm.edge_sound = "menuedge.ogg";
+        sm.wrap_sound = "menuwrap.ogg";
+        sm.open_sound = "menuopen.ogg";
+        sm.enable_first_letter_navigation = true;
+        sm.enable_up_and_down = true;
+        sm.set_callback(staff_menu_callback, "");
+
+        sm.add_item_tts("Set New MOTD (Overwrite)", "set_motd");
+        sm.add_item_tts("Add to MOTD (Append)", "add_motd");
+        sm.add_item_tts("Go Back", "back");
+
+        int res = sm.run("Modify MOTD Menu", true);
+        string name = sm.get_item_name(res);
+        if (name == "back" || res <= 0) break;
+
+        if (name == "set_motd") {
+            set_motd_form();
+        } else if (name == "add_motd") {
+            add_motd_form();
+        }
+    }
+}
+
+void server_maintenance_menu() {
+    while(true) {
+        dynamic_menu_pro sm;
+        sm.reset(false);
+        sm.click_sound = "menuclick.ogg";
+        sm.enter_sound = "menuenter.ogg";
+        sm.edge_sound = "menuedge.ogg";
+        sm.wrap_sound = "menuwrap.ogg";
+        sm.open_sound = "menuopen.ogg";
+        sm.enable_first_letter_navigation = true;
+        sm.enable_up_and_down = true;
+        sm.set_callback(staff_menu_callback, "");
+
+        sm.add_item_tts("Reboot Server Immediately", "reboot");
+        sm.add_item_tts("Shutdown Server Immediately", "shutdown");
+        sm.add_item_tts("Reboot Server for Update (10s)", "update_reboot");
+        sm.add_item_tts("Generate Performance Profile", "profile");
+        sm.add_item_tts("Go Back", "back");
+
+        int res = sm.run("Server Maintenance Menu", true);
+        string name = sm.get_item_name(res);
+        if (name == "back" || res <= 0) break;
+
+        if (name == "reboot") {
+            int confirm = yesno("Reboot the server now?", "Yes", "No");
+            if (confirm == 1) {
+                send(0, "/reboot", 1);
+                break;
+            }
+        } else if (name == "shutdown") {
+            int confirm = yesno("Shutdown the server now?", "Yes", "No");
+            if (confirm == 1) {
+                send(0, "/exit", 1);
+                break;
+            }
+        } else if (name == "update_reboot") {
+            int confirm = yesno("Reboot for update in 10 seconds?", "Yes", "No");
+            if (confirm == 1) {
+                send(0, "/update", 1);
+                break;
+            }
+        } else if (name == "profile") {
+            send(0, "/profile", 1);
+            speak("Profile logging initiated.");
+        }
+    }
+}
+
+void builder_management_menu(bool is_dev, bool is_admin, bool is_builder) {
+    while(true) {
+        dynamic_menu_pro sm;
+        sm.reset(false);
+        sm.click_sound = "menuclick.ogg";
+        sm.enter_sound = "menuenter.ogg";
+        sm.edge_sound = "menuedge.ogg";
+        sm.wrap_sound = "menuwrap.ogg";
+        sm.open_sound = "menuopen.ogg";
+        sm.enable_first_letter_navigation = true;
+        sm.enable_up_and_down = true;
+        sm.set_callback(staff_menu_callback, "");
+
+        sm.add_item_tts("Open Builder Configuration Menu", "builder_menu");
+        sm.add_item_tts("List Loaded Maps", "maps_list");
+        sm.add_item_tts("Copy Raw Map to Clipboard", "raw_map");
+        sm.add_item_tts("Paste Raw Map from Clipboard", "raw_data");
+        sm.add_item_tts("Promote Player to Builder", "promote_builder");
+        sm.add_item_tts("Demote Builder to Player", "demote_builder");
+        sm.add_item_tts("List Server Builders", "list_builders");
+        sm.add_item_tts("Go Back", "back");
+
+        int res = sm.run("Builder & Maps Menu", true);
+        string name = sm.get_item_name(res);
+        if (name == "back" || res <= 0) break;
+
+        if (name == "builder_menu") {
+            send("buildermenu", 0);
+            break;
+        } else if (name == "maps_list") {
+            send(0, "/mapslist", 1);
+            break;
+        } else if (name == "raw_map") {
+            send(0, "/rawmap", 1);
+            break;
+        } else if (name == "raw_data") {
+            string raw = clipboard_read_text();
+            if (raw == "") {
+                speak("Clipboard is empty.");
+                continue;
+            }
+            int confirm = yesno("Paste raw data from clipboard to overwrite map?", "Yes", "No");
+            if (confirm == 1) {
+                send(0, "/rawdata " + raw, 1);
+                break;
+            }
+        } else if (name == "promote_builder") {
+            string target = txt.input("Enter username to promote to builder:", false);
+            if (target != "") send(0, "/builder " + target, 1);
+        } else if (name == "demote_builder") {
+            string target = txt.input("Enter username to demote from builder:", false);
+            if (target != "") send(0, "/unbuilder " + target, 1);
+        } else if (name == "list_builders") {
+            send(0, "/builders", 1);
+            break;
+        }
+    }
+}
+
+void staff_tools_menu(bool is_dev, bool is_admin) {
+    while(true) {
+        dynamic_menu_pro sm;
+        sm.reset(false);
+        sm.click_sound = "menuclick.ogg";
+        sm.enter_sound = "menuenter.ogg";
+        sm.edge_sound = "menuedge.ogg";
+        sm.wrap_sound = "menuwrap.ogg";
+        sm.open_sound = "menuopen.ogg";
+        sm.enable_first_letter_navigation = true;
+        sm.enable_up_and_down = true;
+        sm.set_callback(staff_menu_callback, "");
+
+        if (is_dev) {
+            sm.add_item_tts("Toggle Dev Shield", "devshield");
+        }
+        sm.add_item_tts("Toggle Invisible Mode (Stealth)", "invis_mode");
+        sm.add_item_tts("Spawn Custom Undead Entity", "spawn_undead");
+        sm.add_item_tts("Broadcast Server Notification", "notify");
+        sm.add_item_tts("Give Item to All Online Players", "giveall");
+        sm.add_item_tts("Play Sounds Menu", "play_sounds");
+        sm.add_item_tts("Teleport / Coordinates Tools", "coords_tools");
+        sm.add_item_tts("Raw Packet Sender", "raw_packet");
+        sm.add_item_tts("Player Feedbacks Manager", "feedbacks_mgmt");
+        sm.add_item_tts("Go Back", "back");
+
+        int res = sm.run("Staff Tools Menu", true);
+        string name = sm.get_item_name(res);
+        if (name == "back" || res <= 0) break;
+
+        if (name == "devshield") {
+            send(0, "/devshield", 1);
+        } else if (name == "invis_mode") {
+            send(0, "staff_toggle_invis", 0);
+        } else if (name == "spawn_undead") {
+            spawn_custom_undead_form();
+        } else if (name == "notify") {
+            broadcast_notification_form();
+        } else if (name == "giveall") {
+            give_all_form();
+        } else if (name == "play_sounds") {
+            play_sounds_menu();
+        } else if (name == "coords_tools") {
+            coordinates_tools_menu();
+        } else if (name == "raw_packet") {
+            raw_packet_form();
+        } else if (name == "feedbacks_mgmt") {
+            feedbacks_management_menu();
+        }
+    }
+}
+
+void feedbacks_management_menu() {
+    while(true) {
+        dynamic_menu_pro sm;
+        sm.reset(false);
+        sm.click_sound = "menuclick.ogg";
+        sm.enter_sound = "menuenter.ogg";
+        sm.edge_sound = "menuedge.ogg";
+        sm.wrap_sound = "menuwrap.ogg";
+        sm.open_sound = "menuopen.ogg";
+        sm.enable_first_letter_navigation = true;
+        sm.enable_up_and_down = true;
+        sm.set_callback(staff_menu_callback, "");
+
+        sm.add_item_tts("List Player Feedbacks", "list_fb");
+        sm.add_item_tts("Reply to Feedback", "reply_fb");
+        sm.add_item_tts("Go Back", "back");
+
+        int res = sm.run("Feedbacks Management Menu", true);
+        string name = sm.get_item_name(res);
+        if (name == "back" || res <= 0) break;
+
+        if (name == "list_fb") {
+            send(0, "/fblist", 1);
+            break;
+        } else if (name == "reply_fb") {
+            reply_feedback_form();
+        }
+    }
+}
+
+void coordinates_tools_menu() {
+    while(true) {
+        dynamic_menu_pro sm;
+        sm.reset(false);
+        sm.click_sound = "menuclick.ogg";
+        sm.enter_sound = "menuenter.ogg";
+        sm.edge_sound = "menuedge.ogg";
+        sm.wrap_sound = "menuwrap.ogg";
+        sm.open_sound = "menuopen.ogg";
+        sm.enable_first_letter_navigation = true;
+        sm.enable_up_and_down = true;
+        sm.set_callback(staff_menu_callback, "");
+
+        sm.add_item_tts("Teleport to Target Map & Coords", "teleport_self");
+        sm.add_item_tts("Move Player to Coords", "move_player_coords");
+        sm.add_item_tts("Move Player to Player (Summon / Teleport)", "move_player_to_player");
+        sm.add_item_tts("Go Back", "back");
+
+        int res = sm.run("Teleport & Coordinates Tools", true);
+        string name = sm.get_item_name(res);
+        if (name == "back" || res <= 0) break;
+
+        if (name == "teleport_self") {
+            teleport_self_form();
+        } else if (name == "move_player_coords") {
+            move_player_coords_form();
+        } else if (name == "move_player_to_player") {
+            move_player_to_player_form();
+        }
+    }
+}
+
+void play_sounds_menu() {
+    while(true) {
+        dynamic_menu_pro sm;
+        sm.reset(false);
+        sm.click_sound = "menuclick.ogg";
+        sm.enter_sound = "menuenter.ogg";
+        sm.edge_sound = "menuedge.ogg";
+        sm.wrap_sound = "menuwrap.ogg";
+        sm.open_sound = "menuopen.ogg";
+        sm.enable_first_letter_navigation = true;
+        sm.enable_up_and_down = true;
+        sm.set_callback(staff_menu_callback, "");
+
+        sm.add_item_tts("Play Sound to Channel Players", "play_normal");
+        sm.add_item_tts("Play Sound with Pitch Adjust", "play_pitch");
+        sm.add_item_tts("Select Sound from Server List", "playsvr");
+        sm.add_item_tts("Go Back", "back");
+
+        int res = sm.run("Server Sounds Menu", true);
+        string name = sm.get_item_name(res);
+        if (name == "back" || res <= 0) break;
+
+        if (name == "play_normal") {
+            play_sound_form();
+        } else if (name == "play_pitch") {
+            play_sound_pitch_form();
+        } else if (name == "playsvr") {
+            send(0, "/playsvr", 1);
+            break;
+        }
+    }
+}
+
+// ================= FORM IMPLEMENTATIONS =================
+
+void kick_player_form(string target) {
+    audio_form f;
+    f.create_window("Kick Player: " + target, false, true);
+    int f_reason = f.create_input_box("Reason for kicking", "", "", 100);
+    int f_ok = f.create_button("Kick", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    f.focus(f_reason);
+
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if (f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if (f.is_pressed(f_ok)) {
+            string reason = f.get_text(f_reason);
+            if (reason == "") {
+                speak("Please enter a reason.");
+                f.focus(f_reason);
+                continue;
+            }
+            send(0, "/kick " + target + " " + reason, 1);
+            speak("Kick request sent.");
+            break;
+        }
+    }
+}
+
+void tempban_player_form(string target) {
+    audio_form f;
+    f.create_window("Temp Ban Player: " + target, false, true);
+    int f_mins = f.create_input_box("Minutes to ban", "60", "", 6);
+    int f_ok = f.create_button("Temp Ban", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    f.focus(f_mins);
+
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if (f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if (f.is_pressed(f_ok)) {
+            string mins = f.get_text(f_mins);
+            if (!mins.is_digits() || mins == "" || stn(mins) <= 0) {
+                speak("Please enter a valid positive number of minutes.");
+                f.focus(f_mins);
+                continue;
+            }
+            send(0, "/tempban " + target + " " + mins, 1);
+            speak("Temp ban request sent.");
+            break;
+        }
+    }
+}
+
+void jail_player_form(string target) {
+    audio_form f;
+    f.create_window("Jail Player: " + target, false, true);
+    int f_mins = f.create_input_box("Minutes in jail", "30", "", 6);
+    int f_reason = f.create_input_box("Reason for jailing", "", "", 100);
+    int f_ok = f.create_button("Send to Jail", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    f.focus(f_mins);
+
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if (f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if (f.is_pressed(f_ok)) {
+            string mins = f.get_text(f_mins);
+            string reason = f.get_text(f_reason);
+            if (!mins.is_digits() || mins == "" || stn(mins) <= 0) {
+                speak("Please enter a valid positive number of minutes.");
+                f.focus(f_mins);
+                continue;
+            }
+            if (reason == "") {
+                speak("Please enter a reason.");
+                f.focus(f_reason);
+                continue;
+            }
+            send(0, "/jail " + target + " " + mins + " " + reason, 1);
+            speak("Jail request sent.");
+            break;
+        }
+    }
+}
+
+void warn_player_form(string target) {
+    audio_form f;
+    f.create_window("Warn Player: " + target, false, true);
+    
+    int f_lvl = f.create_list("Warning Level");
+    f.add_list_item(f_lvl, "Level 1 (Low)");
+    f.add_list_item(f_lvl, "Level 2 (Medium)");
+    f.add_list_item(f_lvl, "Level 3 (High)");
+    
+    int f_reason = f.create_input_box("Reason for warning", "", "", 100);
+    int f_ok = f.create_button("Issue Warning", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    
+    f.focus(f_lvl);
+
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if (f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if (f.is_pressed(f_ok)) {
+            int lvl = f.get_list_position(f_lvl) + 1;
+            string reason = f.get_text(f_reason);
+            if (reason == "") {
+                speak("Please enter a reason.");
+                f.focus(f_reason);
+                continue;
+            }
+            send(0, "/warn " + target + " " + lvl + " " + reason, 1);
+            speak("Warning issued.");
+            break;
+        }
+    }
+}
+
+void give_item_form(string target) {
+    audio_form f;
+    f.create_window("Give Item to: " + target, false, true);
+    int f_item = f.create_input_box("Item name", "", "", 50);
+    int f_amount = f.create_input_box("Amount", "1", "", 6);
+    int f_ok = f.create_button("Give", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    f.focus(f_item);
+
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if (f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if (f.is_pressed(f_ok)) {
+            string item = f.get_text(f_item);
+            string amount = f.get_text(f_amount);
+            if (item == "") {
+                speak("Please enter an item name.");
+                f.focus(f_item);
+                continue;
+            }
+            if (!amount.is_digits() || amount == "" || stn(amount) == 0) {
+                speak("Please enter a valid amount.");
+                f.focus(f_amount);
+                continue;
+            }
+            send(0, "/give " + target + " " + item + " " + amount, 1);
+            speak("Give request sent.");
+            break;
+        }
+    }
+}
+
+void sethealth_player_form(string target) {
+    audio_form f;
+    f.create_window("Set Health: " + target, false, true);
+    int f_hp = f.create_input_box("Health value", "5000", "", 10);
+    int f_ok = f.create_button("Set", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    f.focus(f_hp);
+
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if (f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if (f.is_pressed(f_ok)) {
+            string hp = f.get_text(f_hp);
+            if (!hp.is_digits() || hp == "" || stn(hp) <= 0) {
+                speak("Please enter a valid positive number.");
+                f.focus(f_hp);
+                continue;
+            }
+            send(0, "/sethealth " + target + " " + hp, 1);
+            speak("Health update request sent.");
+            break;
+        }
+    }
+}
+
+void offline_ban_form() {
+    audio_form f;
+    f.create_window("Offline Ban Player", false, true);
+    int f_name = f.create_input_box("Username to ban", "", "", 30);
+    int f_ok = f.create_button("Ban", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    f.focus(f_name);
+
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if (f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if (f.is_pressed(f_ok)) {
+            string name = f.get_text(f_name);
+            if (name == "") {
+                speak("Please enter a username.");
+                f.focus(f_name);
+                continue;
+            }
+            send(0, "/ban2 " + name, 1);
+            speak("Offline ban command sent.");
+            break;
+        }
+    }
+}
+
+void unban_form() {
+    audio_form f;
+    f.create_window("Unban Player", false, true);
+    int f_name = f.create_input_box("Username to unban", "", "", 30);
+    int f_ok = f.create_button("Unban", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    f.focus(f_name);
+
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if (f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if (f.is_pressed(f_ok)) {
+            string name = f.get_text(f_name);
+            if (name == "") {
+                speak("Please enter a username.");
+                f.focus(f_name);
+                continue;
+            }
+            send(0, "/unban " + name, 1);
+            speak("Unban command sent.");
+            break;
+        }
+    }
+}
+
+void unjail_form() {
+    audio_form f;
+    f.create_window("Unjail Player", false, true);
+    int f_name = f.create_input_box("Username to unjail", "", "", 30);
+    int f_ok = f.create_button("Unjail", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    f.focus(f_name);
+
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if (f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if (f.is_pressed(f_ok)) {
+            string name = f.get_text(f_name);
+            if (name == "") {
+                speak("Please enter a username.");
+                f.focus(f_name);
+                continue;
+            }
+            send(0, "/unjail " + name, 1);
+            speak("Unjail command sent.");
+            break;
+        }
+    }
+}
+
+void reset_pass_form() {
+    audio_form f;
+    f.create_window("Reset Password", false, true);
+    int f_name = f.create_input_box("Player username", "", "", 30);
+    int f_pass = f.create_input_box("New password", "", "", 30);
+    int f_ok = f.create_button("Reset Password", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    f.focus(f_name);
+
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if (f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if (f.is_pressed(f_ok)) {
+            string name = f.get_text(f_name);
+            string pass = f.get_text(f_pass);
+            if (name == "") {
+                speak("Please enter a username.");
+                f.focus(f_name);
+                continue;
+            }
+            if (pass.length() < 6) {
+                speak("Password must be at least 6 characters.");
+                f.focus(f_pass);
+                continue;
+            }
+            send(0, "/resetpass " + name + " " + pass, 1);
+            speak("Reset password request sent.");
+            break;
+        }
+    }
+}
+
+void delete_account_form() {
+    audio_form f;
+    f.create_window("Delete Player Account", false, true);
+    int f_name = f.create_input_box("Username to delete", "", "", 30);
+    int f_ok = f.create_button("DELETE ACCOUNT", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    f.focus(f_name);
+
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if (f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if (f.is_pressed(f_ok)) {
+            string name = f.get_text(f_name);
+            if (name == "") {
+                speak("Please enter a username.");
+                f.focus(f_name);
+                continue;
+            }
+            int confirm = yesno("Are you absolutely sure you want to PERMANENTLY DELETE " + name + "'s account? This cannot be undone!", "Yes", "No");
+            if (confirm == 1) {
+                send(0, "/delete " + name, 1);
+                speak("Delete command sent.");
+                break;
+            } else {
+                speak("Canceled.");
+                f.focus(f_name);
+            }
+        }
+    }
+}
+
+void set_motd_form() {
+    audio_form f;
+    f.create_window("Set New Message Of The Day", false, true);
+    int f_msg = f.create_input_box("New MOTD text", "", "", 500, false, true);
+    int f_ok = f.create_button("Set MOTD", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    f.focus(f_msg);
+
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if (f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if (f.is_pressed(f_ok)) {
+            string msg = f.get_text(f_msg);
+            if (msg == "") {
+                speak("Please enter text.");
+                f.focus(f_msg);
+                continue;
+            }
+            send(0, "/setmotd " + msg, 1);
+            speak("New MOTD set.");
+            break;
+        }
+    }
+}
+
+void add_motd_form() {
+    audio_form f;
+    f.create_window("Append Message Of The Day", false, true);
+    int f_msg = f.create_input_box("Text to append to MOTD", "", "", 500, false, true);
+    int f_ok = f.create_button("Append", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    f.focus(f_msg);
+
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if (f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if (f.is_pressed(f_ok)) {
+            string msg = f.get_text(f_msg);
+            if (msg == "") {
+                speak("Please enter text.");
+                f.focus(f_msg);
+                continue;
+            }
+            send(0, "/addmotd " + msg, 1);
+            speak("Text appended to MOTD.");
+            break;
+        }
+    }
+}
+
+void broadcast_notification_form() {
+    audio_form f;
+    f.create_window("Broadcast Server Notification", false, true);
+    int f_msg = f.create_input_box("Notification text", "", "", 200);
+    int f_ok = f.create_button("Broadcast", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    f.focus(f_msg);
+
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if (f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if (f.is_pressed(f_ok)) {
+            string msg = f.get_text(f_msg);
+            if (msg == "") {
+                speak("Please enter text.");
+                f.focus(f_msg);
+                continue;
+            }
+            send(0, "/notify " + msg, 1);
+            speak("Notification broadcasted.");
+            break;
+        }
+    }
+}
+
+void give_all_form() {
+    audio_form f;
+    f.create_window("Give Item to All Online Players", false, true);
+    int f_item = f.create_input_box("Item name", "", "", 50);
+    int f_amount = f.create_input_box("Amount", "1", "", 6);
+    int f_ok = f.create_button("Give to All", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    f.focus(f_item);
+
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if (f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if (f.is_pressed(f_ok)) {
+            string item = f.get_text(f_item);
+            string amount = f.get_text(f_amount);
+            if (item == "") {
+                speak("Please enter an item name.");
+                f.focus(f_item);
+                continue;
+            }
+            if (!amount.is_digits() || amount == "" || stn(amount) == 0) {
+                speak("Please enter a valid amount.");
+                f.focus(f_amount);
+                continue;
+            }
+            send(0, "/giveall " + item + " " + amount, 1);
+            speak("Give to all request sent.");
+            break;
+        }
+    }
+}
+
+void play_sound_form() {
+    audio_form f;
+    f.create_window("Play Sound to Channel Players", false, true);
+    int f_sound = f.create_input_box("Sound filename (e.g. exploit.ogg)", "", "", 80);
+    int f_ok = f.create_button("Play", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    f.focus(f_sound);
+
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if (f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if (f.is_pressed(f_ok)) {
+            string soundname = f.get_text(f_sound);
+            if (soundname == "") {
+                speak("Please enter a sound file name.");
+                f.focus(f_sound);
+                continue;
+            }
+            if (soundname.substr(soundname.length() - 4) == ".ogg") {
+                soundname = soundname.substr(0, soundname.length() - 4);
+            }
+            send(0, "/play " + soundname, 1);
+            speak("Play sound command sent.");
+            break;
+        }
+    }
+}
+
+void play_sound_pitch_form() {
+    audio_form f;
+    f.create_window("Play Sound to Channel with Pitch", false, true);
+    int f_sound = f.create_input_box("Sound filename", "", "", 80);
+    int f_pitch = f.create_input_box("Pitch adjust (-100 to 100)", "0", "", 5);
+    int f_ok = f.create_button("Play with Pitch", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    f.focus(f_sound);
+
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if (f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if (f.is_pressed(f_ok)) {
+            string soundname = f.get_text(f_sound);
+            string pitch = f.get_text(f_pitch);
+            if (soundname == "") {
+                speak("Please enter a sound file name.");
+                f.focus(f_sound);
+                continue;
+            }
+            if (soundname.substr(soundname.length() - 4) == ".ogg") {
+                soundname = soundname.substr(0, soundname.length() - 4);
+            }
+            int pitch_val = stn(pitch);
+            if (pitch == "" || pitch_val < -100 || pitch_val > 100) {
+                speak("Please enter a valid pitch between -100 and 100.");
+                f.focus(f_pitch);
+                continue;
+            }
+            send(0, "/play2 " + soundname + " " + pitch_val, 1);
+            speak("Play sound request sent.");
+            break;
+        }
+    }
+}
+
+void raw_packet_form() {
+    audio_form f;
+    f.create_window("Raw Packet Sender", false, true);
+    int f_peer = f.create_input_box("Target Peer ID ('all' or numeric ID)", "all", "", 10);
+    int f_chan = f.create_input_box("Network Channel", "0", "", 3);
+    int f_mess = f.create_input_box("Raw message", "", "", 500);
+    int f_ok = f.create_button("Send Packet", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    f.focus(f_peer);
+
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if (f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if (f.is_pressed(f_ok)) {
+            string peer = f.get_text(f_peer);
+            string chan = f.get_text(f_chan);
+            string mess = f.get_text(f_mess);
+            if (peer == "") {
+                speak("Please enter peer ID.");
+                f.focus(f_peer);
+                continue;
+            }
+            if (!chan.is_digits() || chan == "") {
+                speak("Please enter network channel.");
+                f.focus(f_chan);
+                continue;
+            }
+            if (mess == "") {
+                speak("Please enter raw message.");
+                f.focus(f_mess);
+                continue;
+            }
+            send(0, "/packet " + peer + " " + chan + " " + mess, 1);
+            speak("Packet sent.");
+            break;
+        }
+    }
+}
+
+void reply_feedback_form() {
+    audio_form f;
+    f.create_window("Reply to Feedback", false, true);
+    int f_id = f.create_input_box("Feedback index (ID)", "", "", 5);
+    int f_msg = f.create_input_box("Developer reply message", "", "", 300);
+    int f_ok = f.create_button("Submit Reply", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    f.focus(f_id);
+
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if (f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if (f.is_pressed(f_ok)) {
+            string id = f.get_text(f_id);
+            string msg = f.get_text(f_msg);
+            if (!id.is_digits() || id == "") {
+                speak("Please enter a valid feedback ID.");
+                f.focus(f_id);
+                continue;
+            }
+            if (msg == "") {
+                speak("Please enter a reply message.");
+                f.focus(f_msg);
+                continue;
+            }
+            send(0, "/fbreply " + id + " " + msg, 1);
+            speak("Reply submitted.");
+            break;
+        }
+    }
+}
+
+void teleport_self_form() {
+    audio_form f;
+    f.create_window("Teleport to Map & Coordinates", false, true);
+    int f_map = f.create_input_box("Map name", "main", "", 30);
+    int f_x = f.create_input_box("Coordinate X", "0", "", 10);
+    int f_y = f.create_input_box("Coordinate Y", "0", "", 10);
+    int f_z = f.create_input_box("Coordinate Z", "0", "", 10);
+    int f_ok = f.create_button("Teleport", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    f.focus(f_map);
+
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if (f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if (f.is_pressed(f_ok)) {
+            string map_val = f.get_text(f_map);
+            string x_val = f.get_text(f_x);
+            string y_val = f.get_text(f_y);
+            string z_val = f.get_text(f_z);
+            if (map_val == "") {
+                speak("Please enter map name.");
+                f.focus(f_map);
+                continue;
+            }
+            if (x_val == "" || y_val == "" || z_val == "") {
+                speak("Please enter valid X, Y and Z coordinates.");
+                continue;
+            }
+            send(0, "/go " + map_val + " " + stn(x_val) + " " + stn(y_val) + " " + stn(z_val), 1);
+            speak("Teleport request sent.");
+            break;
+        }
+    }
+}
+
+void move_player_coords_form() {
+    audio_form f;
+    f.create_window("Move Player to Coordinates", false, true);
+    int f_name = f.create_input_box("Player username", "", "", 30);
+    int f_x = f.create_input_box("Coordinate X", "0", "", 10);
+    int f_y = f.create_input_box("Coordinate Y", "0", "", 10);
+    int f_z = f.create_input_box("Coordinate Z", "0", "", 10);
+    int f_ok = f.create_button("Move Player", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    f.focus(f_name);
+
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if (f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if (f.is_pressed(f_ok)) {
+            string name = f.get_text(f_name);
+            string x_val = f.get_text(f_x);
+            string y_val = f.get_text(f_y);
+            string z_val = f.get_text(f_z);
+            if (name == "") {
+                speak("Please enter player username.");
+                f.focus(f_name);
+                continue;
+            }
+            if (x_val == "" || y_val == "" || z_val == "") {
+                speak("Please enter valid X, Y and Z coordinates.");
+                continue;
+            }
+            send(0, "/move " + name + " " + stn(x_val) + " " + stn(y_val) + " " + stn(z_val), 1);
+            speak("Move player request sent.");
+            break;
+        }
+    }
+}
+
+void move_player_to_player_form() {
+    audio_form f;
+    f.create_window("Move Player to Player", false, true);
+    int f_source = f.create_input_box("Source player (Who to move)", "", "", 30);
+    int f_dest = f.create_input_box("Destination player (Move to who)", "", "", 30);
+    int f_ok = f.create_button("Move", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    f.focus(f_source);
+
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if (f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if (f.is_pressed(f_ok)) {
+            string src_p = f.get_text(f_source);
+            string dest_p = f.get_text(f_dest);
+            if (src_p == "") {
+                speak("Please enter source player username.");
+                f.focus(f_source);
+                continue;
+            }
+            if (dest_p == "") {
+                speak("Please enter destination player username.");
+                f.focus(f_dest);
+                continue;
+            }
+            send(0, "/moveplayer " + src_p + " " + dest_p, 1);
+            speak("Move player to player request sent.");
+            break;
+        }
+    }
+}
+
+void gang_management_menu(bool is_dev, bool is_admin, bool is_mod) {
+    while(true) {
+        dynamic_menu_pro m;
+        m.reset(false);
+        m.click_sound = "menuclick.ogg";
+        m.enter_sound = "menuenter.ogg";
+        m.edge_sound = "menuedge.ogg";
+        m.wrap_sound = "menuwrap.ogg";
+        m.open_sound = "menuopen.ogg";
+        m.enable_first_letter_navigation = true;
+        m.enable_up_and_down = true;
+        m.set_callback(staff_menu_callback, "");
+
+        m.add_item_tts("View & Manage All Gangs", "list");
+        m.add_item_tts("Force Disband Gang By Name", "force_disband");
+        m.add_item_tts("Go Back", "back");
+
+        int res = m.run("Gang Management. Select a category.", true);
+        string name = m.get_item_name(res);
+        if (name == "back" || res <= 0) {
+            break;
+        }
+        else if (name == "list") {
+            staff_gang_list_menu();
+        }
+        else if (name == "force_disband") {
+            string gname = txt.input("Enter gang name to force disband", true);
+            if (gname != "") {
+                int yn = yesno_online("Are you sure you want to FORCE DISBAND the gang " + gname + "? This action will permanently delete this gang!", "Yes, disband", "Cancel");
+                if (yn == 1) {
+                    send("gang_admin_disband " + gname, 0);
+                    wait(300);
+                }
+            }
+        }
+    }
+}
+
+void staff_gang_list_menu() {
+    while(true) {
+        string glist = get_gang_list_sync();
+        if(glist.is_empty()) {
+            dlg("There are no active gangs on the server.");
+            break;
+        }
+
+        dynamic_menu_pro m;
+        m.reset(false);
+        m.click_sound = "menuclick.ogg";
+        m.enter_sound = "menuenter.ogg";
+        m.edge_sound = "menuedge.ogg";
+        m.wrap_sound = "menuwrap.ogg";
+        m.open_sound = "menuopen.ogg";
+        m.enable_first_letter_navigation = true;
+        m.enable_up_and_down = true;
+        m.set_callback(staff_menu_callback, "");
+
+        string[] gangs_raw = string_split(glist, "|", false);
+        for(uint i = 0; i < gangs_raw.length(); i++) {
+            string[] gparts = string_split(gangs_raw[i], ":", true);
+            if(gparts.length() >= 4) {
+                m.add_item_tts("Gang " + gparts[0] + " (Leader: " + gparts[1] + ", " + gparts[2] + " members, Level " + gparts[3] + ")", gangs_raw[i]);
+            }
+        }
+        m.add_item_tts("Go Back", "back");
+
+        int res = m.run("System gang list.", true);
+        string name = m.get_item_name(res);
+        if(name == "back" or res <= 0) {
+            break;
+        }
+
+        string[] gparts = string_split(name, ":", true);
+        string target_gang = gparts[0];
+        string target_leader = gparts[1];
+        string target_members = gparts[2];
+        string target_level = gparts[3];
+        string target_slogan = "";
+        if(gparts.length() >= 5) target_slogan = gparts[4];
+
+        dynamic_menu_pro sub;
+        sub.reset(false);
+        sub.click_sound = "menuclick.ogg";
+        sub.enter_sound = "menuenter.ogg";
+        sub.edge_sound = "menuedge.ogg";
+        sub.wrap_sound = "menuwrap.ogg";
+        sub.open_sound = "menuopen.ogg";
+        sub.enable_first_letter_navigation = true;
+        sub.enable_up_and_down = true;
+        sub.set_callback(staff_menu_callback, "");
+
+        sub.add_item_tts("View Details", "info");
+        sub.add_item_tts("Assign New Leader", "change_leader");
+        sub.add_item_tts("Force Change Slogan", "change_slogan");
+        sub.add_item_tts("Force Disband Gang", "disband");
+        sub.add_item_tts("Go Back", "back");
+
+        int sub_res = sub.run("Administer gang " + target_gang, true);
+        string sub_opt = sub.get_item_name(sub_res);
+        if(sub_opt == "info") {
+            show_gang_details_menu(target_gang, target_leader, target_slogan, target_level, target_members);
+        }
+        else if(sub_opt == "change_leader") {
+            string new_leader = txt.input("Enter the username of the member you want to promote to the new Leader", true);
+            if(new_leader != "") {
+                send("gang_admin_leader " + target_gang + "|" + new_leader, 0);
+                wait(300);
+                break;
+            }
+        }
+        else if(sub_opt == "change_slogan") {
+            string new_slg = txt.input("Enter the new slogan to force for this gang", true);
+            if(new_slg != "") {
+                send("gang_admin_slogan " + target_gang + "|" + new_slg, 0);
+                wait(300);
+                break;
+            }
+        }
+        else if(sub_opt == "disband") {
+            int yn = yesno_online("Are you sure you want to FORCE DISBAND the gang " + target_gang + "?", "Yes, disband", "Cancel");
+            if (yn == 1) {
+                send("gang_admin_disband " + target_gang, 0);
+                wait(300);
+                break;
+            }
+        }
+    }
+}
+
+void store_management_menu(bool is_dev, bool is_admin) {
+    while(true) {
+        dynamic_menu_pro sm;
+        sm.reset(false);
+        sm.click_sound = "menuclick.ogg";
+        sm.enter_sound = "menuenter.ogg";
+        sm.edge_sound = "menuedge.ogg";
+        sm.wrap_sound = "menuwrap.ogg";
+        sm.open_sound = "menuopen.ogg";
+        sm.enable_first_letter_navigation = true;
+        sm.enable_up_and_down = true;
+        sm.set_callback(staff_menu_callback, "");
+
+        sm.add_item_tts("List & Edit Store Items", "list_store");
+        sm.add_item_tts("Add New Item to Store", "add_store");
+        sm.add_item_tts("Go Back", "back");
+
+        int res = sm.run("Store Management Menu", true);
+        string name = sm.get_item_name(res);
+        if (name == "back" || res <= 0) break;
+
+        if (name == "list_store") {
+            list_store_items_menu();
+        } else if (name == "add_store") {
+            add_store_item_form();
+        }
+    }
+}
+
+void list_store_items_menu() {
+    last_store_data = "";
+    send("store_req_list", 0);
+    
+    speak("Loading store items, please wait...");
+    timer load_timer;
+    load_timer.restart();
+    while(last_store_data == "" and load_timer.elapsed < 5000) {
+        wait(5);
+        netloop();
+    }
+    
+    if(last_store_data == "") {
+        speak("Failed to load store data from server. Timeout.");
+        return;
+    }
+    
+    while(true) {
+        dynamic_menu_pro sm;
+        sm.reset(false);
+        sm.click_sound = "menuclick.ogg";
+        sm.enter_sound = "menuenter.ogg";
+        sm.edge_sound = "menuedge.ogg";
+        sm.wrap_sound = "menuwrap.ogg";
+        sm.open_sound = "menuopen.ogg";
+        sm.enable_first_letter_navigation = true;
+        sm.enable_up_and_down = true;
+        sm.set_callback(staff_menu_callback, "");
+
+        string[] items_raw = string_split(last_store_data, "|", false);
+        for(uint i = 0; i < items_raw.length(); i++) {
+            if(items_raw[i] == "") continue;
+            string[] fields = string_split(items_raw[i], ":", false);
+            if(fields.length() >= 4) {
+                string name = fields[0];
+                string price = fields[1];
+                string desc = fields[2];
+                string level = fields[3];
+                string limit = (fields.length() >= 5) ? fields[4] : "";
+                string display_text = name + " - Price: " + price + " Gold (Req Level: " + level + ")";
+                if(limit == "*") display_text += " [Paid Only]";
+                sm.add_item_tts(display_text, items_raw[i]);
+            }
+        }
+        sm.add_item_tts("Go Back", "back");
+
+        int res = sm.run("Select an item to manage", true);
+        string select_data = sm.get_item_name(res);
+        if (select_data == "back" || res <= 0) break;
+
+        single_item_actions_menu(select_data);
+        
+        last_store_data = "";
+        send("store_req_list", 0);
+        load_timer.restart();
+        while(last_store_data == "" and load_timer.elapsed < 5000) {
+            wait(5);
+            netloop();
+        }
+        if(last_store_data == "") {
+            speak("Store data refresh failed.");
+            break;
+        }
+    }
+}
+
+void single_item_actions_menu(string item_raw_data) {
+    string[] fields = string_split(item_raw_data, ":", false);
+    if(fields.length() < 4) return;
+    
+    string item_name = fields[0];
+    string price = fields[1];
+    string desc = fields[2];
+    string level = fields[3];
+    string limit = (fields.length() >= 5) ? fields[4] : "";
+    
+    while(true) {
+        dynamic_menu_pro sm;
+        sm.reset(false);
+        sm.click_sound = "menuclick.ogg";
+        sm.enter_sound = "menuenter.ogg";
+        sm.edge_sound = "menuedge.ogg";
+        sm.wrap_sound = "menuwrap.ogg";
+        sm.open_sound = "menuopen.ogg";
+        sm.enable_first_letter_navigation = true;
+        sm.enable_up_and_down = true;
+        sm.set_callback(staff_menu_callback, "");
+
+        sm.add_item_tts("Edit Item Details", "edit");
+        sm.add_item_tts("Delete Item from Store", "delete");
+        sm.add_item_tts("Go Back", "back");
+
+        int res = sm.run("Manage item: " + item_name, true);
+        string opt = sm.get_item_name(res);
+        if (opt == "back" || res <= 0) break;
+
+        if (opt == "edit") {
+            edit_store_item_form(item_name, price, desc, level, limit);
+            break;
+        } else if (opt == "delete") {
+            int confirm = yesno("Are you sure you want to delete " + item_name + " from the store?", "Yes", "No");
+            if (confirm == 1) {
+                last_store_action_status = "";
+                send("store_delete " + item_name, 0);
+                timer act_timer;
+                act_timer.restart();
+                while(last_store_action_status == "" and act_timer.elapsed < 5000) {
+                    wait(5);
+                    netloop();
+                }
+                break;
+            }
+        }
+    }
+}
+
+void add_store_item_form() {
+    audio_form f;
+    f.create_window("Add New Store Item", false, true);
+    
+    int f_name = f.create_input_box("Item Name (use underscores instead of spaces, e.g. sniper_ammo)", "", "", 50);
+    int f_price = f.create_input_box("Price (Gold)", "10", "", 10);
+    int f_desc = f.create_input_box("Description", "", "", 200);
+    int f_level = f.create_input_box("Minimum Level Required", "1", "", 5);
+    
+    int f_limit = f.create_list("Paid Players Limit");
+    f.add_list_item(f_limit, "No Limit (All Players)");
+    f.add_list_item(f_limit, "Yes, Paid Players Only");
+    
+    int f_ok = f.create_button("Add Item", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    
+    f.focus(f_name);
+
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if (f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if (f.is_pressed(f_ok)) {
+            string name = f.get_text(f_name);
+            string price = f.get_text(f_price);
+            string desc = f.get_text(f_desc);
+            string level = f.get_text(f_level);
+            int limit_pos = f.get_list_position(f_limit);
+            string limit = (limit_pos == 1) ? "*" : "";
+            
+            if (name == "") {
+                speak("Please enter item name.");
+                f.focus(f_name);
+                continue;
+            }
+            if (string_contains(name, " ", 1) >= 0 || string_contains(name, ":", 1) >= 0) {
+                speak("Item name cannot contain spaces or colons.");
+                f.focus(f_name);
+                continue;
+            }
+            if (!price.is_digits() || price == "" || stn(price) <= 0) {
+                speak("Please enter a valid positive number for price.");
+                f.focus(f_price);
+                continue;
+            }
+            if (desc == "") {
+                speak("Please enter item description.");
+                f.focus(f_desc);
+                continue;
+            }
+            if (string_contains(desc, ":", 1) >= 0 || string_contains(desc, "|", 1) >= 0) {
+                speak("Description cannot contain colons or vertical bars.");
+                f.focus(f_desc);
+                continue;
+            }
+            if (!level.is_digits() || level == "" || stn(level) <= 0) {
+                speak("Please enter a valid positive level.");
+                f.focus(f_level);
+                continue;
+            }
+            
+            last_store_action_status = "";
+            send("store_add " + name + ":" + price + ":" + desc + ":" + level + (limit == "*" ? ":*" : ""), 0);
+            
+            timer act_timer;
+            act_timer.restart();
+            while(last_store_action_status == "" and act_timer.elapsed < 5000) {
+                wait(5);
+                netloop();
+            }
+            break;
+        }
+    }
+}
+
+void edit_store_item_form(string old_name, string price, string desc, string level, string limit) {
+    audio_form f;
+    f.create_window("Edit Item: " + old_name, false, true);
+    
+    int f_name = f.create_input_box("Item Name", old_name, "", 50);
+    int f_price = f.create_input_box("Price (Gold)", price, "", 10);
+    int f_desc = f.create_input_box("Description", desc, "", 200);
+    int f_level = f.create_input_box("Minimum Level Required", level, "", 5);
+    
+    int f_limit = f.create_list("Paid Players Limit");
+    f.add_list_item(f_limit, "No Limit (All Players)");
+    f.add_list_item(f_limit, "Yes, Paid Players Only");
+    if(limit == "*") {
+        f.set_list_position(f_limit, 1);
+    }
+    
+    int f_ok = f.create_button("Save Changes", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    
+    f.focus(f_name);
+
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if (f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if (f.is_pressed(f_ok)) {
+            string name = f.get_text(f_name);
+            string new_price = f.get_text(f_price);
+            string new_desc = f.get_text(f_desc);
+            string new_level = f.get_text(f_level);
+            int limit_pos = f.get_list_position(f_limit);
+            string new_limit = (limit_pos == 1) ? "*" : "";
+            
+            if (name == "") {
+                speak("Please enter item name.");
+                f.focus(f_name);
+                continue;
+            }
+            if (string_contains(name, " ", 1) >= 0 || string_contains(name, ":", 1) >= 0) {
+                speak("Item name cannot contain spaces or colons.");
+                f.focus(f_name);
+                continue;
+            }
+            if (!new_price.is_digits() || new_price == "" || stn(new_price) <= 0) {
+                speak("Please enter a valid positive number for price.");
+                f.focus(f_price);
+                continue;
+            }
+            if (new_desc == "") {
+                speak("Please enter item description.");
+                f.focus(f_desc);
+                continue;
+            }
+            if (string_contains(new_desc, ":", 1) >= 0 || string_contains(new_desc, "|", 1) >= 0) {
+                speak("Description cannot contain colons or vertical bars.");
+                f.focus(f_desc);
+                continue;
+            }
+            if (!new_level.is_digits() || new_level == "" || stn(new_level) <= 0) {
+                speak("Please enter a valid positive level.");
+                f.focus(f_level);
+                continue;
+            }
+            
+            last_store_action_status = "";
+            send("store_edit " + old_name + "|" + name + ":" + new_price + ":" + new_desc + ":" + new_level + (new_limit == "*" ? ":*" : ""), 0);
+            
+            timer act_timer;
+            act_timer.restart();
+            while(last_store_action_status == "" and act_timer.elapsed < 5000) {
+                wait(5);
+                netloop();
+            }
+            break;
+        }
+    }
+}
+
+void tickets_management_menu(bool is_dev, bool is_admin, bool is_mod) {
+    while(true) {
+        last_tickets_data = "WAITING";
+        send("ticket_req_list", 0);
+        
+        speak("Loading support tickets, please wait...");
+        timer t;
+        t.restart();
+        while(last_tickets_data == "WAITING" and t.elapsed < 5000) {
+            wait(5);
+            netloop();
+        }
+        
+        if(last_tickets_data == "WAITING") {
+            speak("Failed to load tickets. Timeout.");
+            return;
+        }
+        
+        if(last_tickets_data == "EMPTY") {
+            speak("There are no support tickets in the queue.");
+            break;
+        }
+        
+        dynamic_menu_pro sm;
+        sm.reset(false);
+        sm.click_sound = "menuclick.ogg";
+        sm.enter_sound = "menuenter.ogg";
+        sm.edge_sound = "menuedge.ogg";
+        sm.wrap_sound = "menuwrap.ogg";
+        sm.open_sound = "menuopen.ogg";
+        sm.enable_first_letter_navigation = true;
+        sm.enable_up_and_down = true;
+        sm.set_callback(staff_menu_callback, "");
+
+        string[] t_raw = string_split(last_tickets_data, "|", false);
+        int ticket_count = 0;
+        for(uint i=0; i<t_raw.length(); i++) {
+            if(t_raw[i] == "") continue;
+            string[] parts = string_split(t_raw[i], ":", false);
+            if(parts.length() >= 4) {
+                string display = "Ticket #" + parts[0] + " from " + parts[1] + ": " + parts[2] + " [" + parts[3] + "]";
+                sm.add_item_tts(display, t_raw[i]);
+                ticket_count++;
+            }
+        }
+        sm.add_item_tts("Go Back", "back");
+
+        int res = sm.run("Support Tickets Queue. Active: " + ticket_count, true);
+        string name = sm.get_item_name(res);
+        if (name == "back" || res <= 0) break;
+
+        string[] parts = string_split(name, ":", false);
+        string t_id = parts[0];
+        string t_user = parts[1];
+        string t_msg = parts[2];
+        string t_status = parts[3];
+        
+        dynamic_menu_pro opt;
+        opt.reset(false);
+        opt.click_sound = "menuclick.ogg";
+        opt.enter_sound = "menuenter.ogg";
+        opt.edge_sound = "menuedge.ogg";
+        opt.wrap_sound = "menuwrap.ogg";
+        opt.open_sound = "menuopen.ogg";
+        opt.enable_first_letter_navigation = true;
+        opt.enable_up_and_down = true;
+        opt.set_callback(staff_menu_callback, "");
+        
+        opt.add_item_tts("Claim Ticket (Assign to yourself)", "claim");
+        opt.add_item_tts("Teleport to Player (" + t_user + ")", "teleport");
+        opt.add_item_tts("Close Ticket (Resolve)", "close");
+        opt.add_item_tts("Go Back", "back");
+        
+        int opt_res = opt.run("Ticket #" + t_id + " actions", true);
+        string opt_name = opt.get_item_name(opt_res);
+        if(opt_name == "claim") {
+            last_staff_action_status = "";
+            send("ticket_claim " + t_id, 0);
+            t.restart();
+            while(last_staff_action_status == "" and t.elapsed < 5000) { wait(5); netloop(); }
+        }
+        else if(opt_name == "teleport") {
+            send(0, "/gotoplayer " + t_user, 1);
+            break;
+        }
+        else if(opt_name == "close") {
+            last_staff_action_status = "";
+            send("ticket_close " + t_id, 0);
+            t.restart();
+            while(last_staff_action_status == "" and t.elapsed < 5000) { wait(5); netloop(); }
+        }
+    }
+}
+
+void inspect_player_stats_menu(string target) {
+    while(true) {
+        last_player_info_data = "";
+        send("player_req_info " + target, 0);
+        
+        speak("Requesting player data, please wait...");
+        timer t;
+        t.restart();
+        while(last_player_info_data == "" and t.elapsed < 5000) {
+            wait(5);
+            netloop();
+        }
+        
+        if(last_player_info_data == "") {
+            speak("Failed to load player stats.");
+            return;
+        }
+        
+        string[] parts = string_split(last_player_info_data, "|", false);
+        if(parts.length() < 11) {
+            speak("Error parsing player data.");
+            return;
+        }
+        
+        string name = parts[0];
+        string lvl = parts[1];
+        string exp = parts[2];
+        string gold = parts[3];
+        string hp = parts[4];
+        string map_val = parts[5];
+        string x_val = parts[6];
+        string y_val = parts[7];
+        string z_val = parts[8];
+        string ip_val = parts[9];
+        string comp_val = parts[10];
+        
+        dynamic_menu_pro sm;
+        sm.reset(false);
+        sm.click_sound = "menuclick.ogg";
+        sm.enter_sound = "menuenter.ogg";
+        sm.edge_sound = "menuedge.ogg";
+        sm.wrap_sound = "menuwrap.ogg";
+        sm.open_sound = "menuopen.ogg";
+        sm.enable_first_letter_navigation = true;
+        sm.enable_up_and_down = true;
+        sm.set_callback(staff_menu_callback, "");
+        
+        sm.add_item_tts("Level: " + lvl + " (Press Enter to edit)", "lvl");
+        sm.add_item_tts("XP: " + exp + " (Press Enter to edit)", "xp");
+        sm.add_item_tts("Gold: " + gold + " (Press Enter to edit)", "gold");
+        sm.add_item_tts("Health: " + hp + " (Press Enter to edit)", "hp");
+        sm.add_item_tts("Location: Map " + map_val + ", Coordinates " + x_val + ", " + y_val + ", " + z_val, "loc");
+        sm.add_item_tts("IP Address: " + ip_val, "ip");
+        sm.add_item_tts("Computer ID: " + comp_val, "comp");
+        sm.add_item_tts("Go Back", "back");
+        
+        int res = sm.run("Inspect " + name, true);
+        string field = sm.get_item_name(res);
+        if(field == "back" || res <= 0) break;
+        
+        if(field == "lvl") {
+            edit_player_stat_form(name, "lvl", "Level", lvl);
+        } else if(field == "xp") {
+            edit_player_stat_form(name, "xp", "Experience", exp);
+        } else if(field == "gold") {
+            edit_player_stat_form(name, "gold", "Gold", gold);
+        } else if(field == "hp") {
+            edit_player_stat_form(name, "hp", "Health", hp);
+        }
+    }
+}
+
+void edit_player_stat_form(string target, string field, string field_display_name, string current_value) {
+    audio_form f;
+    f.create_window("Edit " + field_display_name + " for " + target, false, true);
+    int f_val = f.create_input_box("Enter new " + field_display_name, current_value, "", 10);
+    int f_ok = f.create_button("Save", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    f.focus(f_val);
+    
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if(f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if(f.is_pressed(f_ok)) {
+            string val = f.get_text(f_val);
+            if(!val.is_digits() || val == "" || stn(val) < 0) {
+                speak("Please enter a valid positive number.");
+                f.focus(f_val);
+                continue;
+            }
+            
+            last_staff_action_status = "";
+            send("player_update_stat " + target + "|" + field + "|" + val, 0);
+            timer t;
+            t.restart();
+            while(last_staff_action_status == "" and t.elapsed < 5000) { wait(5); netloop(); }
+            break;
+        }
+    }
+}
+
+void inspect_player_inventory_menu(string target) {
+    while(true) {
+        last_player_inventory_data = "";
+        send("player_req_inv " + target, 0);
+        
+        speak("Requesting player inventory, please wait...");
+        timer t;
+        t.restart();
+        while(last_player_inventory_data == "" and t.elapsed < 5000) {
+            wait(5);
+            netloop();
+        }
+        
+        if(last_player_inventory_data == "") {
+            speak("Failed to load inventory.");
+            return;
+        }
+        
+        string[] parts = string_split(last_player_inventory_data, "|", false);
+        string name = parts[0];
+        
+        dynamic_menu_pro sm;
+        sm.reset(false);
+        sm.click_sound = "menuclick.ogg";
+        sm.enter_sound = "menuenter.ogg";
+        sm.edge_sound = "menuedge.ogg";
+        sm.wrap_sound = "menuwrap.ogg";
+        sm.open_sound = "menuopen.ogg";
+        sm.enable_first_letter_navigation = true;
+        sm.enable_up_and_down = true;
+        sm.set_callback(staff_menu_callback, "");
+        
+        sm.add_item_tts("Add New Item to " + name + "'s Inventory", "add_item");
+        for(uint i=1; i<parts.length(); i++) {
+            if(parts[i] == "") continue;
+            string[] itm_fields = string_split(parts[i], "=", false);
+            if(itm_fields.length() >= 2) {
+                sm.add_item_tts(itm_fields[0] + " - Quantity: " + itm_fields[1], parts[i]);
+            }
+        }
+        sm.add_item_tts("Go Back", "back");
+        
+        int res = sm.run(name + "'s Inventory. Select to edit.", true);
+        string select_data = sm.get_item_name(res);
+        if(select_data == "back" || res <= 0) break;
+        
+        if(select_data == "add_item") {
+            add_player_item_form(name);
+        } else {
+            string[] itm_fields = string_split(select_data, "=", false);
+            edit_player_item_form(name, itm_fields[0], itm_fields[1]);
+        }
+    }
+}
+
+void edit_player_item_form(string target, string item_name, string current_amount) {
+    audio_form f;
+    f.create_window("Edit item " + item_name + " for " + target, false, true);
+    int f_amt = f.create_input_box("Enter new amount (0 to remove)", current_amount, "", 10);
+    int f_ok = f.create_button("Save", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    f.focus(f_amt);
+    
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if(f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if(f.is_pressed(f_ok)) {
+            string val = f.get_text(f_amt);
+            if(!val.is_digits() || val == "" || stn(val) < 0) {
+                speak("Please enter a valid positive quantity.");
+                f.focus(f_amt);
+                continue;
+            }
+            
+            last_staff_action_status = "";
+            send("player_update_inv " + target + "|" + item_name + "|" + val, 0);
+            timer t;
+            t.restart();
+            while(last_staff_action_status == "" and t.elapsed < 5000) { wait(5); netloop(); }
+            break;
+        }
+    }
+}
+
+void add_player_item_form(string target) {
+    audio_form f;
+    f.create_window("Add item to " + target, false, true);
+    int f_name = f.create_input_box("Item Name (e.g. rifle, gold)", "", "", 50);
+    int f_amt = f.create_input_box("Quantity", "1", "", 10);
+    int f_ok = f.create_button("Add", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    f.focus(f_name);
+    
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if(f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if(f.is_pressed(f_ok)) {
+            string name = f.get_text(f_name);
+            string val = f.get_text(f_amt);
+            if(name == "") {
+                speak("Please enter item name.");
+                f.focus(f_name);
+                continue;
+            }
+            if(!val.is_digits() || val == "" || stn(val) <= 0) {
+                speak("Please enter a valid positive quantity.");
+                f.focus(f_amt);
+                continue;
+            }
+            
+            last_staff_action_status = "";
+            send("player_update_inv " + target + "|" + name + "|" + val, 0);
+            timer t;
+            t.restart();
+            while(last_staff_action_status == "" and t.elapsed < 5000) { wait(5); netloop(); }
+            break;
+        }
+    }
+}
+
+void view_live_server_stats_menu() {
+    last_server_stats_data = "";
+    send("svr_req_stats", 0);
+    
+    speak("Loading server stats, please wait...");
+    timer t;
+    t.restart();
+    while(last_server_stats_data == "" and t.elapsed < 5000) {
+        wait(5);
+        netloop();
+    }
+    
+    if(last_server_stats_data == "") {
+        speak("Failed to load server stats.");
+        return;
+    }
+    
+    string[] parts = string_split(last_server_stats_data, "|", false);
+    if(parts.length() < 8) return;
+    
+    while(true) {
+        dynamic_menu_pro sm;
+        sm.reset(false);
+        sm.click_sound = "menuclick.ogg";
+        sm.enter_sound = "menuenter.ogg";
+        sm.edge_sound = "menuedge.ogg";
+        sm.wrap_sound = "menuwrap.ogg";
+        sm.open_sound = "menuopen.ogg";
+        sm.enable_first_letter_navigation = true;
+        sm.enable_up_and_down = true;
+        sm.set_callback(staff_menu_callback, "");
+        
+        sm.add_item_tts("Uptime: " + parts[0], "uptime");
+        sm.add_item_tts("Peak Online Players: " + parts[1], "peak");
+        sm.add_item_tts("Undead Animals active: " + parts[2], "undead");
+        sm.add_item_tts("Active players online: " + parts[3], "players");
+        sm.add_item_tts("Network: " + parts[4] + " connections, " + parts[5] + " disconnections", "net");
+        sm.add_item_tts("Received: " + parts[6] + ", Sent: " + parts[7], "net_traffic");
+        sm.add_item_tts("Go Back", "back");
+        
+        int res = sm.run("Live Server Monitor", true);
+        string opt = sm.get_item_name(res);
+        if(opt == "back" || res <= 0) break;
+    }
+}
+
+void ban_list_manager_menu() {
+    while(true) {
+        last_server_banlist_data = "";
+        send("svr_req_banlist", 0);
+        
+        speak("Loading ban lists, please wait...");
+        timer t;
+        t.restart();
+        while(last_server_banlist_data == "" and t.elapsed < 5000) {
+            wait(5);
+            netloop();
+        }
+        
+        if(last_server_banlist_data == "") {
+            speak("Failed to load ban list.");
+            return;
+        }
+        
+        string[] parts = string_split(last_server_banlist_data, "|", true);
+        if(parts.length() < 2) {
+            speak("Error: Invalid ban list data format.");
+            return;
+        }
+        string[] ips = string_split(parts[0], ",", false);
+        string[] comps = string_split(parts[1], ",", false);
+        
+        dynamic_menu_pro sm;
+        sm.reset(false);
+        sm.click_sound = "menuclick.ogg";
+        sm.enter_sound = "menuenter.ogg";
+        sm.edge_sound = "menuedge.ogg";
+        sm.wrap_sound = "menuwrap.ogg";
+        sm.open_sound = "menuopen.ogg";
+        sm.enable_first_letter_navigation = true;
+        sm.enable_up_and_down = true;
+        sm.set_callback(staff_menu_callback, "");
+        
+        sm.add_item_tts("--- Banned IP Addresses (" + (parts[0] == "" ? 0 : ips.length()) + ") ---", "header_ips");
+        if(parts[0] != "") {
+            for(uint i=0; i<ips.length(); i++) {
+                if(ips[i] != "") sm.add_item_tts("IP: " + ips[i] + " (Press Enter to Unban)", "unban_ip|" + ips[i]);
+            }
+        }
+        
+        sm.add_item_tts("--- Banned Computer IDs (" + (parts[1] == "" ? 0 : comps.length()) + ") ---", "header_comps");
+        if(parts[1] != "") {
+            for(uint i=0; i<comps.length(); i++) {
+                if(comps[i] != "") sm.add_item_tts("ID: " + comps[i] + " (Press Enter to Unban)", "unban_comp|" + comps[i]);
+            }
+        }
+        sm.add_item_tts("Go Back", "back");
+        
+        int res = sm.run("IP & Comp ID Ban Manager", true);
+        string opt = sm.get_item_name(res);
+        if(opt == "back" || res <= 0) break;
+        
+        if(opt.substr(0, 8) == "unban_ip") {
+            string target_ip = string_replace(opt, "unban_ip|", "", false);
+            int yn = yesno("Are you sure you want to unban IP " + target_ip + "?", "Yes", "No");
+            if(yn == 1) {
+                last_staff_action_status = "";
+                send("svr_unban_ip " + target_ip, 0);
+                t.restart();
+                while(last_staff_action_status == "" and t.elapsed < 5000) { wait(5); netloop(); }
+            }
+        }
+        else if(opt.substr(0, 10) == "unban_comp") {
+            string target_comp = string_replace(opt, "unban_comp|", "", false);
+            int yn = yesno("Are you sure you want to unban Computer ID " + target_comp + "?", "Yes", "No");
+            if(yn == 1) {
+                last_staff_action_status = "";
+                send("svr_unban_comp " + target_comp, 0);
+                t.restart();
+                while(last_staff_action_status == "" and t.elapsed < 5000) { wait(5); netloop(); }
+            }
+        }
+    }
+}
+
+void weather_control_menu() {
+    while(true) {
+        dynamic_menu_pro sm;
+        sm.reset(false);
+        sm.click_sound = "menuclick.ogg";
+        sm.enter_sound = "menuenter.ogg";
+        sm.edge_sound = "menuedge.ogg";
+        sm.wrap_sound = "menuwrap.ogg";
+        sm.open_sound = "menuopen.ogg";
+        sm.enable_first_letter_navigation = true;
+        sm.enable_up_and_down = true;
+        sm.set_callback(staff_menu_callback, "");
+        
+        sm.add_item_tts("Trigger Rain (Play Thunder)", "rain");
+        sm.add_item_tts("Clear Weather", "clear");
+        sm.add_item_tts("Go Back", "back");
+        
+        int res = sm.run("Weather Control Panel", true);
+        string opt = sm.get_item_name(res);
+        if(opt == "back" || opt == "" || res <= 0) break;
+        
+        last_staff_action_status = "";
+        send("staff_set_weather " + opt, 0);
+        timer t;
+        t.restart();
+        while(last_staff_action_status == "" and t.elapsed < 5000) { wait(5); netloop(); }
+    }
+}
+
+void spawn_custom_undead_form() {
+    audio_form f;
+    f.create_window("Spawn Custom Undead", false, true);
+    
+    int f_type = f.create_list("Select Undead Type");
+    f.add_list_item(f_type, "bear");
+    f.add_list_item(f_type, "wolf");
+    f.add_list_item(f_type, "lion");
+    f.add_list_item(f_type, "key");
+    f.add_list_item(f_type, "graven");
+    f.add_list_item(f_type, "ghoul");
+    f.add_list_item(f_type, "santa");
+    
+    int f_hp = f.create_input_box("Custom Health", "1000", "", 10);
+    int f_speed = f.create_input_box("Custom Speed (lower is faster, e.g. 100)", "150", "", 5);
+    
+    int f_ok = f.create_button("Spawn Entity", true);
+    int f_cancel = f.create_button("Cancel", false, true);
+    f.focus(f_type);
+    
+    while(f.active) {
+        wait(5);
+        netloop();
+        f.monitor();
+        if(f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) break;
+        if(f.is_pressed(f_ok)) {
+            int type_pos = f.get_list_position(f_type);
+            string type = "giabear";
+            if(type_pos == 0) type = "giabear";
+            else if(type_pos == 1) type = "agawolf";
+            else if(type_pos == 2) type = "gholion";
+            else if(type_pos == 3) type = "ghostkey";
+            else if(type_pos == 4) type = "graven";
+            else if(type_pos == 5) type = "seaghoul";
+            else if(type_pos == 6) type = "santa";
+            
+            string hp = f.get_text(f_hp);
+            string speed = f.get_text(f_speed);
+            
+            if(!hp.is_digits() || hp == "" || stn(hp) <= 0) {
+                speak("Please enter a valid health.");
+                f.focus(f_hp);
+                continue;
+            }
+            if(!speed.is_digits() || speed == "" || stn(speed) <= 0) {
+                speak("Please enter a valid speed.");
+                f.focus(f_speed);
+                continue;
+            }
+            
+            last_staff_action_status = "";
+            send("staff_spawn_undead " + type + "|" + hp + "|" + speed, 0);
+            timer t;
+            t.restart();
+            while(last_staff_action_status == "" and t.elapsed < 5000) { wait(5); netloop(); }
+            break;
+        }
+    }
+}

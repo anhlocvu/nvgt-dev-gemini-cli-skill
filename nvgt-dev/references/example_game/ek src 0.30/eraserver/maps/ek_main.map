@@ -1,0 +1,195 @@
+travelpoint:0:0:50:50:0:0:ek_relaxing_room:0:0:0:Welcome to the additional ek relaxing room! I hope these sounds will help you relaxing down.
+travelpoint:0:0:0:0:0:0:ek_services:50:0:0:ek services
+mapname:ek_main
+maxx:1000
+//ispawn:0:1000:0:1000:0:0:60000:5:5,100:gift_box
+maxy:1000
+maxz:1000
+tile:0:500:0:99:0:0:grass4
+zone:0:1000:0:1000:0:1000:main city
+src:0:1000:0:1000:0:100:birds2.ogg
+tile:100:200:100:200:-20:-20:water
+src:100:200:100:200:-20:-5:river2.ogg
+tile:99:201:99:99:-20:-1:wall
+tile:99:99:99:201:-20:-1:wall
+tile:99:201:200:200:-20:-1:wall
+tile:201:201:99:201:-20:-1:wall
+zone:150:160:99:201:0:10:bridge
+zone:99:201:99:201:-1:-20:river
+tile:0:500:201:250:0:0:dirt6
+zone:0:500:201:250:0:10:black road
+zone:350:370:150:300:0:10:bff street:trackme
+noitems:0:1000:0:1000:0:1000:elecboat:arena_card
+tile:0:99:99:200:0:0:dirt2
+tile:201:300:100:200:0:0:concrete12
+zone:201:300:100:200:0:10:buzreisi's street:trackme
+tile:0:500:250:500:0:0:concrete14
+tile:0:500:250:250:0:0:concrete12
+src:210:300:100:200:0:10:street2.ogg
+src:0:500:200:250:0:10:background1.ogg
+src:0:500:250:500:0:10:desertnight.ogg
+tile:300:500:0:500:0:0:grass4
+tile:355:500:200:250:0:0:dirt6
+src:350:370:150:300:0:10:street3.ogg
+tile:350:370:150:300:0:0:concrete10
+src:200:500:100:200:0:10:night.ogg
+tile:40:40:0:20:0:10:wallwood15
+tile:40:60:20:20:10:10:wallwood15
+tile:60:60:0:20:0:10:wallwood15
+tile:41:59:0:19:0:0:wood4
+tile:40:60:21:500:0:0:dirt2
+zone:40:60:21:500:0:10:road
+tile:48:52:20:20:0:0:concrete13
+tile:40:47:20:20:0:10:wallwood15
+tile:53:60:20:20:0:10:wallwood15
+tile:40:60:100:200:0:0:concrete4
+src:0:100:100:200:0:10:birds.ogg
+tile:100:150:0:20:0:0:tile
+zone:100:150:0:20:0:10:small park:trackme
+tile:120:135:10:15:0:0:grass
+src:100:150:0:20:0:10:birds3.ogg
+zone:200:210:0:500:0:10:blue road
+tile:200:210:0:500:0:0:concrete5
+zone:0:51:49:51:0:10:dark road
+tile:0:51:49:51:0:0:dirt3
+zone:100:139:100:200:0:-20:river
+zone:150:239:100:200:0:-20:river
+tile:501:1000:0:1000:0:0:gravel
+src:501:1000:0:1000:0:100:birds5.ogg
+tile:0:1000:501:1000:0:0:gravel4
+src:0:1000:501:1000:0:100:nighttime.ogg
+src:510:1000:0:1000:0:10:background2.ogg
+tile:324:334:51:60:0:0:grate
+zone:324:334:51:60:0:100:sewer door:trackme
+tile:430:498:350:350:0:100:wallbuilding2
+tile:430:500:351:391:0:0:tile2
+tile:430:500:392:392:0:100:wallbuilding2
+tile:429:429:350:392:0:100:wallbuilding2
+zone:430:430:391:391:0:0:small house:trackme
+src:430:500:350:392:0:10:house.ogg
+tile:700:730:0:1000:0:0:concrete3
+zone:700:730:0:1000:0:7:bo choke street:trackme
+src:700:730:0:1000:0:10:street2.ogg
+src:800:830:0:1000:0:10:street2.ogg
+tile:800:830:0:1000:0:0:concrete
+zone:800:830:0:1000:0:10:Athee's street:trackme
+tile:0:1000:500:600:0:50:wallgrass
+tile:0:1000:499:499:0:50:gravel2
+tile:0:1000:500:600:50:50:grass
+tile:0:1000:600:600:0:50:gravel2
+tile:500:600:0:1000:0:50:grass
+tile:499:499:0:499:0:50:gravel2
+tile:601:601:0:499:0:50:gravel2
+tile:499:499:601:1000:0:0:grass
+tile:601:601:601:1000:0:0:grass
+tile:900:900:0:900:0:0:dirt5
+tile:0:900:900:900:0:0:dirt5
+tile:500:600:0:1000:0:49:wallgrass
+tile:450:450:775:775:0:50:metal
+tile:150:230:650:740:0:0:wood7
+tile:420:480:740:800:50:50:wood5
+zone:420:480:730:800:50:60:tower:trackme
+tile:152:230:649:649:0:200:wallbuilding
+zone:450:450:775:775:0:49:stairs to tower:trackme
+zone:445:446:750:752:50:60:minigames:trackme
+tile:231:231:649:740:0:100:wallbuilding4
+src:445:446:750:752:50:60:casino.ogg
+tile:150:231:741:741:0:100:wallbuilding2
+src:42:44:10:12:0:10:casino.ogg
+zone:42:44:10:12:0:10:minigames:trackme
+tile:149:149:649:741:0:100:wallglass3
+zone:149:231:650:741:0:100:Inside of the General tower, first floor:trackme
+tile:150:151:649:649:0:0:concrete2
+zone:150:151:649:649:0:20:entrance to the general tower:trackme
+tile:150:150:740:740:0:20:roof2
+tile:150:230:650:740:20:20:wood7
+zone:150:230:649:751:20:39:second floor:trackme
+zone:230:230:720:720:20:25:minigames:trackme
+src:230:230:720:720:20:20:casino.ogg
+tile:256:256:950:950:0:20:bleacher
+tile:240:270:930:970:50:50:wood2
+zone:200:300:900:1000:50:60:tower:trackme
+zone:256:256:950:950:0:49:tower stairs:trackme
+tile:170:170:650:650:21:40:roof3
+tile:150:230:650:740:40:40:wood7
+zone:150:230:649:741:40:59:Third floor.:trackme
+tile:230:230:740:740:41:60:roof
+zone:150:230:649:741:60:79:Fourth floor:trackme
+tile:150:230:650:740:60:60:wood7
+tile:150:151:650:650:61:80:roof2
+zone:150:230:649:741:80:99:Fifth floor:trackme
+tile:150:230:650:740:80:80:wood7
+tile:190:190:700:700:81:110:roof3
+tile:150:230:650:740:110:110:wood6
+zone:150:230:650:740:110:130:on the roof of the general tower:trackme
+src:150:230:650:740:110:130:calm.ogg
+zone:190:190:700:700:81:109:stairs to rooff:trackme
+zone:150:151:650:650:61:79:stairs to fifth floor:trackme
+zone:230:230:740:740:41:59:stairs to fourth floor:trackme
+zone:170:170:650:650:21:39:stairs to third floor:trackme
+zone:150:150:740:740:0:19:stairs to second floor:trackme
+tile:150:150:620:644:110:110:gravel3
+tile:154:170:620:620:110:110:gravel3
+tile:170:170:600:616:110:110:broken_glass
+tile:140:164:600:600:110:110:dirt6
+tile:140:140:590:598:110:110:dirt6
+tile:140:140:602:630:110:110:dirt3
+tile:140:146:632:632:110:110:dirt6
+randtravelpoint:150:150:0:0:0:10:road:0:100:0:100:0:0:welcome
+zone:150:150:0:0:0:10:passage to road:trackme
+src:130:160:100:200:-5:-3:river3.ogg
+tile:0:10:490:500:0:0:gravel6
+tile:0:10:500:500:1:10:grass3
+tile:40:60:0:20:10:10:bleacher
+zone:40:60:0:20:10:20:store roof:trackme
+tile:100:200:99:201:0:0:bridge2
+zone:100:200:99:201:0:10:bridge:trackme
+tile:500:500:500:500:0:10:cement
+tile:499:499:500:500:0:10:concrete6
+tile:500:500:499:499:0:10:concrete6
+tile:490:498:500:500:0:10:concrete9
+randtravelpoint:0:0:10:10:0:0:rabit_forest:0:500:0:500:0:0:welcome
+zone:0:0:10:10:0:10:rabit forest entrance:trackme
+zone:430:498:350:392:0:10:house:trackme
+zone:498:498:350:354:0:10:entrance to house:trackme
+tile:498:498:354:392:0:10:wallbuilding3
+tile:498:498:350:354:0:0:concrete7
+travelpoint:324:334:51:60:0:0:sewer:25:0:50:falling...
+tile:149:151:149:151:-19:-1:wallunderwater
+tile:150:150:150:150:-20:0:metal
+zone:100:200:100:200:-20:-10:river
+zone:150:150:150:150:-20:0:stairs:trackme
+//ispawn:0:200:0:200:0:0:100:50:dollar
+tile:70:70:70:70:0:20:branch
+tile:600:1000:391:391:0:0:wood10
+tile:933:933:691:1000:0:0:wood10
+tile:933:933:391:691:0:0:cement
+tile:933:933:501:599:0:49:wallgrass3
+tile:61:61:0:0:0:10:roof4
+zone:61:61:0:0:0:20:Staircase to the store roof:trackme
+randtravelpoint:0:0:0:0:0:10:safe_zone:0:100:0:100:0:0:done:trackme
+//zone:0:0:0:0:0:0:safe zone:trackme
+randtravelpoint:100:100:0:0:0:0:bears_forest:0:200:0:200:0:0:bears forest
+zone:100:100:0:0:0:0:bears forest:trackme
+randtravelpoint:1000:1000:0:0:0:0:leopards_forest:0:200:0:200:0:0:leopards forest
+zone:1000:1000:0:0:0:0:leopards forest:trackme
+travelpoint:0:0:1000:1000:0:0:road_to_the_hell:1000:1000:1000:road to the hell
+zone:0:0:1000:1000:0:0:road to the hell:trackme
+randtravelpoint:1000:1000:1000:1000:0:0:monsters_world:0:100:0:100:0:0:monster_world
+zone:1000:1000:1000:1000:0:10:The monsters world:trackme
+randtravelpoint:250:250:250:250:0:0:the_boars_forest:0:200:0:200:0:0:done
+zone:250:250:250:250:0:10:The boars forest entrance.:trackme
+zone:70:70:70:70:0:30:safe_tree:trackme
+randtravelpoint:250:250:0:0:0:0:land:0:250:0:250:0:0:Done.
+zone:250:250:0:0:0:10:The land:trackme
+tile:499:499:600:1000:0:50:gravel2
+tile:601:601:600:1000:0:50:gravel2
+music:The Passing of Ages.ogg
+zone:0:0:0:0:0:10:ek services:trackme
+zone:0:0:50:50:0:10:go to ek relax ing room:trackme
+tile:0:0:51:51:0:1000:wallwood18
+tile:1:1:50:51:0:100:wallwood18
+zone:255:255:192:192:0:500:there is a door that leads to an area with shops: you can enter for new weapons and new things:trackme
+travelpoint:255:255:192:192:0:0:new_store:20:0:0:welcome to ek store!:0
+//reverb:0:10:0:10:0:10:0.7:0.5:0.70:0.9:0.8
+//robots:0:1000:0:1000:0:0:1:20000:santa

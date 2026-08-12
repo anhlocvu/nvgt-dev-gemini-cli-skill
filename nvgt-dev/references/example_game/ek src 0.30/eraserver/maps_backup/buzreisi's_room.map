@@ -1,0 +1,8 @@
+mapname:buzreisi's_room
+maxx:0
+maxy:55
+maxz:0
+tile:0:0:0:55:0:0:55
+zone:0:0:0:55:0:0:buzreisi's_room
+tile:0:55:0:55:0:0:carpet2
+jplayer:0:55:0

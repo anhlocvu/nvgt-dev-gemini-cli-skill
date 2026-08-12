@@ -1,0 +1,70 @@
+mapname:store
+maxx:100
+maxy:100
+maxz:1000
+tile:0:100:0:100:0:0:concrete6
+zone:0:100:0:100:0:1000:store
+zone:0:100:0:100:0:1000:store
+amb:0:79:0:100:0:1000:store2.ogg:-9
+amb:80:100:0:59:0:1000:store2.ogg:-8
+tile:0:10:10:20:0:0:concrete26
+tile:0:10:9:9:0:10:wallbeaulon
+tile:11:11:10:20:0:10:wallbeaulon
+tile:0:10:21:21:0:10:wallbeaulon
+tile:0:5:10:15:1:1:wood9
+zone:0:10:10:20:0:10:weapon and ammo store
+zone:0:0:20:20:0:10:press t to buy in the ammo store:trackme
+zone:10:10:20:20:0:0:press t to buy from weapon store:trackme
+fightingstate:0
+door:10:8:0:10:10:0:200:silence.ogg:silence.ogg:dooropen19.ogg:doorclose19.ogg
+door:10:10:0:10:8:0:200:silence.ogg:silence.ogg:dooropen19.ogg:doorclose19.ogg
+zone:10:10:10:10:0:10:back to the store
+zone:10:10:8:8:0:10:door leading to the weapon and ammo store:trackme
+zone:0:0:0:0:0:0:back to the safe zone:trackme
+tile:20:30:20:30:0:0:concrete26
+tile:19:19:20:30:0:10:wallbeaulon
+tile:31:31:20:30:0:10:wallbeaulon
+tile:20:30:19:19:0:10:wallbeaulon
+tile:20:30:31:31:0:10:wallbeaulon
+door:20:20:0:20:18:0:200:silence.ogg:silence.ogg:dooropen19.ogg:doorclose19.ogg
+zone:20:30:20:30:0:10:explosive store
+zone:20:20:20:20:0:10:back to the store
+zone:30:30:30:30:0:10:press t to buy:trackme
+door:20:18:0:20:20:0:200:silence.ogg:silence.ogg:dooropen19.ogg:doorclose19.ogg
+zone:20:20:18:18:0:10:door leading to the explosion store:trackme
+tile:40:50:40:50:0:0:concrete26
+zone:40:50:40:50:0:10:misc and health store
+tile:40:50:39:39:0:10:wallbeaulon
+tile:40:50:51:51:0:10:wallbeaulon
+tile:39:39:40:50:0:10:wallbeaulon
+tile:51:51:40:50:0:10:wallbeaulon
+door:40:38:0:40:40:0:200:silence.ogg:silence.ogg:dooropen19.ogg:doorclose19.ogg
+door:40:40:0:40:38:0:200:silence.ogg:silence.ogg:dooropen19.ogg:doorclose19.ogg
+zone:40:40:40:40:0:10:back to the store
+zone:40:40:38:38:0:10:door, leading to the misc and health store:trackme
+zone:50:50:50:50:0:10:press t to buy:trackme
+tile:60:70:60:70:0:0:concrete9
+tile:60:70:59:59:0:10:wallbigmetal
+tile:59:59:60:70:0:10:wallbigmetal
+tile:60:70:71:71:0:10:wallbigmetal
+tile:71:71:60:70:0:10:wallbigmetal
+zone:60:70:60:70:0:10:vehicle store
+zone:60:60:60:60:0:10:back to the store
+door:60:60:0:60:58:0:4000:silence.ogg:silence.ogg:dooropen39.ogg:doorclose39.ogg
+zone:60:60:58:58:0:10:door, leading to the vehicle store:trackme
+door:60:58:0:60:60:0:4000:silence.ogg:silence.ogg:dooropen39.ogg:doorclose39.ogg
+zone:70:70:70:70:0:10:press t to buy:trackme
+tile:80:100:60:100:0:0:grass4
+tile:80:100:59:59:0:10:wallglass8
+tile:79:79:60:100:0:10:wallglass5
+door:80:60:0:80:58:0:1000:silence.ogg:silence.ogg:dooropen28.ogg:doorclose28.ogg
+door:80:58:0:80:60:0:1000:silence.ogg:silence.ogg:dooropen28.ogg:doorclose28.ogg
+zone:80:100:60:100:0:10:store's garden
+zone:80:80:60:60:0:10:back to the store
+zone:80:80:58:58:0:10:door, leads to store's garden:trackme
+amb:80:100:60:100:0:10:birds12.ogg
+randtravelpoint:0:0:0:0:0:0:safe_zone:1:20:1:20:0:0:moved:0
+safezone:0:100000:0:10000000:0:10000
+zone:0:0:50:50:0:10:vending machine:trackme
+vending_machine:0:50:0
+tile:0:0:50:50:0:0:glass3

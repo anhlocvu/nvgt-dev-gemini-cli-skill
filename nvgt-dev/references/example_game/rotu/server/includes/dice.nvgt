@@ -1,0 +1,20 @@
+class dice{
+int faces=6;
+int num;
+dice(int fc)
+{
+faces=fc;
+num=random(1,faces);
+}
+}
+bool all_dice_match(dice@[]di,int val)
+{
+if(di.length()==1) return false;
+int count=0;
+for(uint i=0; i<di.length(); i++)
+{
+if(di[i].num==val) count++;
+}
+if(count==di.length()) return true;
+return false;
+}

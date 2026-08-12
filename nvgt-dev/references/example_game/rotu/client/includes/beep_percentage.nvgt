@@ -1,0 +1,33 @@
+tone_synth beep_synth;
+upcoming::sound @beep_sound;
+tone_synth downloader_progress_synth;
+upcoming::sound @downloader_progress_sound;
+void beep(double frequency, int ms = 40, int waveform = 3, double v=-6)
+{
+	beep_synth.reset();
+	beep_synth.waveform_type = waveform;
+	beep_synth.set_edge_fades(0, 0);
+	beep_synth.freq_ms(frequency, ms);
+		beep_synth.volume=v;
+	upcoming::sound@ new_sound = beep_synth.write_wave_sound();
+	beep_synth.reset();
+	if (new_sound is null) return;
+	@beep_sound = new_sound;
+	beep_sound.play();
+}
+				void beep_percentage(double val, double vol=-10, int wave_form=3, int fade_in=0, int fade_out=0)
+{
+	val = floor(val + 0.5);
+	if (val < 0) val = 0;
+	if (val > 100) val = 100;
+	double freq = 110.0 * pow(2.0, val / 25.0);
+	downloader_progress_synth.reset();
+	downloader_progress_synth.volume=vol;
+	downloader_progress_synth.waveform_type = wave_form;
+	downloader_progress_synth.set_edge_fades(fade_in, fade_out);
+	downloader_progress_synth.freq_ms(freq, 40);
+	upcoming::sound@ new_sound = downloader_progress_synth.write_wave_sound();
+	if (new_sound is null) return;
+	@downloader_progress_sound = new_sound;
+	downloader_progress_sound.play();
+}

@@ -1,0 +1,41 @@
+name main3
+maxx 500
+maxy 500
+spawn
+platform 0 500 0 500 0 0 sand3
+zone 0 500 0 500 0 100 a huge sprawling desert. The sun beats down on you and the dunes around you
+
+platform 280 310 315 350 0 3 wallrocks
+platform 280 310 315 350 3 3 gravel
+zone 279 311 314 351 0 40 a large rock formation sticking out of the desert. The undead can't fight here for some reason
+safezone 279 311 314 351 3 8
+beacon 295 295 332 332 3 3 the safe zone rock formation
+platform 0 201 199 301 0 40 dirt
+platform 0 200 200 300 0 39 walldirt2
+platform 220 260 200 240 0 0 water
+zone 220 260 200 240 0 10 an oasis
+source 0 500 0 500 0 99 birds30.ogg
+source 0 500 0 500 0 99 desert2.ogg
+source 0 500 0 500 30 99 desert3.ogg
+platform 300 400 400 500 0 0 concrete
+platform 300 300 400 420 0 30 wallrocks3
+platform 300 300 445 450 0 50 wallrocks3
+platform 315 325 450 470 0 3 wallrocks2
+platform 315 325 450 470 4 4 concrete
+source 315 325 450 470 0 4 electricity.ogg
+zone 314 326 449 471 0 10 a large stone table from wich you can hear a strange hum eminating from within
+platform 300 300 470 500 0 30 wallrocks
+zone 300 400 400 500 0 99 the ruins of a large temple
+beacon 300 400 400 500 0 0 temple ruins
+platform 399 500 0 51 0 70 dirt
+platform 400 500 0 50 0 60 wallrocks
+zone 399 500 0 51 0 80 a small sand dune
+platform 100 106 100 106 0 20 metal
+source 100 106 100 106 0 20 electricity.ogg
+zone 99 107 99 107 0 30 an ancient large weathered looking statue. emitting some sort of energy
+source 0 500 0 500 0 100 desert1.ogg -15
+source 0 500 0 500 0 100 desert2.ogg -15
+source 0 500 0 500 0 100 desert3.ogg -15
+zone 500 500 295 305 0 10 Go back to main1
+beacon 500 500 295 305 0 0 Back to main1
+travelpoint 500 500 295 305 0 10 1 300 0 main

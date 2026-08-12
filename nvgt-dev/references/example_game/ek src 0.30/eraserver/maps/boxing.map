@@ -1,0 +1,13 @@
+mapname:boxing
+maxx:50
+maxy:50
+maxz:100
+tile:0:50:0:50:0:0:wood2
+zone:0:50:0:50:0:100:boxing ring
+src:0:50:0:50:-10:-10:md1.ogg:
+travelpoint:50:50:50:50:0:0:safe_zone:30:4:0:Done, you are back to the safe zone.
+zone:50:50:50:50:0:10:To go out!:trackme
+tile:0:50:0:50:40:40:stairs
+travelpoint:0:50:0:50:40:40:boxing:1:1:0:Fight!
+zone:0:50:0:50:40:100:Press t to fight!
+noitems:0:50:0:50:0:100:tasing_small_projectile:boat:small_projectile_poisoned_small_projectile:police_motorcycle:helicopter:suicide_bomb:nuclear_bomb

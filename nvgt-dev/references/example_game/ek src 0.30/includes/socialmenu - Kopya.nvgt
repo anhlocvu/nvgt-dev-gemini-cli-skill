@@ -1,0 +1,312 @@
+string sc="
+ruscle_and_stretch
+burp
+grone_with_effert
+clearing_throat
+gasp
+itch_hair
+pat
+shush
+yawn
+sigh
+coughing_fit
+gag_in_discuss
+whistle
+cough_in_discuss
+surprised
+hit_body
+laugh1
+laugh2
+laugh3
+grunt
+tired_ekeath
+clenched_teath_anger
+grone_in_pain
+releaved_sigh
+eavil_laugh
+";
+void smenu()
+{
+m.reset(true);
+m.open_sound="menuopen.ogg";
+m.enter_sound="menuenter.ogg";
+m.allow_escape=true;
+m.wrap=false;
+m.enable_home_and_end=true;
+m.enable_up_and_down=true;
+m.enable_left_and_right=false;
+m.set_callback(netclb,"");
+m.add_item("s1.ogg", "s1");
+m.add_item("s2.ogg", "s2");
+m.add_item("s3.ogg", "s3");
+m.add_item("s4.ogg", "s4");
+m.add_item("s5.ogg", "s5");
+m.add_item("s6.ogg", "s6");
+m.add_item("s7.ogg", "s7");
+m.add_item("s8.ogg", "s8");
+m.add_item("s9.ogg", "s9");
+m.add_item("s10.ogg", "s10");
+m.add_item("s11.ogg", "s11");
+m.add_item("s12.ogg", "s12");
+m.add_item("s13.ogg", "s13");
+m.add_item("s14.ogg", "s14");
+m.add_item("s15.ogg", "s15");
+m.add_item("s16.ogg", "s16");
+m.add_item("s17.ogg", "s17");
+m.add_item("s18.ogg", "s18");
+m.add_item("s19.ogg", "s19");
+m.add_item("s20.ogg", "s20");
+m.add_item("s21.ogg", "s21");
+m.add_item("s22.ogg", "s22");
+m.add_item("s23.ogg", "s23");
+m.add_item("s24.ogg", "s24");
+m.add_item("s25.ogg", "s25");
+m.add_item("s26.ogg", "s26");
+int mres=m.run("social menu",true);
+if (m.get_item_name(mres)=="s1")
+{
+send_reliable(0,"/s1",1);
+}
+else if (m.get_item_name(mres)=="s2")
+{
+send_reliable(0,"/s2",1);
+}
+else if (m.get_item_name(mres)=="s3")
+{
+send_reliable(0,"/s3",1);
+}
+if (m.get_item_name(mres)=="s4")
+{
+send_reliable(0,"/s4",1);
+}
+if (m.get_item_name(mres)=="s5")
+{
+send_reliable(0,"/s5",1);
+}
+if (m.get_item_name(mres)=="s6")
+{
+send_reliable(0,"/s6",1);
+}
+if (m.get_item_name(mres)=="s7")
+{
+send_reliable(0,"/s7",1);
+}
+if (m.get_item_name(mres)=="s8")
+{
+send_reliable(0,"/s8",1);
+}
+if (m.get_item_name(mres)=="s9")
+{
+send_reliable(0,"/s9",1);
+}
+if (m.get_item_name(mres)=="s10")
+{
+send_reliable(0,"/s10",1);
+}
+if (m.get_item_name(mres)=="s11")
+{
+send_reliable(0,"/s11",1);
+}
+if (m.get_item_name(mres)=="s12")
+{
+send_reliable(0,"/s12",1);
+}
+if (m.get_item_name(mres)=="s13")
+{
+send_reliable(0,"/s13",1);
+}
+if (m.get_item_name(mres)=="s14")
+{
+send_reliable(0,"/s14",1);
+}
+if (m.get_item_name(mres)=="s15")
+{
+send_reliable(0,"/s15",1);
+}
+if (m.get_item_name(mres)=="s16")
+{
+send_reliable(0,"/s16",1);
+}
+if (m.get_item_name(mres)=="s17")
+{
+send_reliable(0,"/s17",1);
+}
+if (m.get_item_name(mres)=="s18")
+{
+send_reliable(0,"/s18",1);
+}
+if (m.get_item_name(mres)=="s19")
+{
+send_reliable(0,"/s19",1);
+}
+if (m.get_item_name(mres)=="s20")
+{
+send_reliable(0,"/s20",1);
+}
+if (m.get_item_name(mres)=="s21")
+{
+send_reliable(0,"/s21",1);
+}
+if (m.get_item_name(mres)=="s22")
+{
+send_reliable(0,"/s22",1);
+}
+if (m.get_item_name(mres)=="s23")
+{
+send_reliable(0,"/s23",1);
+}
+if (m.get_item_name(mres)=="s24")
+{
+send_reliable(0,"/s24",1);
+}
+if (m.get_item_name(mres)=="s25")
+{
+send_reliable(0,"/s25",1);
+}
+if (m.get_item_name(mres)=="s26")
+{
+send_reliable(0,"/s26",1);
+}
+}
+void mfmenu()
+{
+m.reset(true);
+m.open_sound="menuopen.ogg";
+m.allow_escape=true;
+m.wrap=false;
+m.enable_home_and_end=true;
+m.enable_up_and_down=true;
+m.enable_left_and_right=false;
+m.set_callback(netclb,"");
+m.add_item("m1.ogg", "m1");
+m.add_item("m2.ogg", "m2");
+m.add_item("m3.ogg", "m3");
+m.add_item("m4.ogg", "m4");
+m.add_item("m5.ogg", "m5");
+m.add_item("m6.ogg", "m6");
+m.add_item("m7.ogg", "m7");
+m.add_item("m8.ogg", "m8");
+m.add_item("m9.ogg", "m9");
+m.add_item("m10.ogg", "m10");
+m.add_item("m11.ogg", "m11");
+m.add_item("m12.ogg", "m12");
+m.add_item("m13.ogg", "m13");
+m.add_item("m14.ogg", "m14");
+m.add_item("m15.ogg", "m15");
+m.add_item("m16.ogg", "m16");
+m.add_item("m17.ogg", "m17");
+m.add_item("m18.ogg", "m18");
+m.add_item("m19.ogg", "m19");
+m.add_item("m20.ogg", "m20");
+m.add_item("m21.ogg", "m21");
+m.add_item("m22.ogg", "m22");
+m.add_item("m23.ogg", "m23");
+m.add_item("m24.ogg", "m24");
+m.add_item("m25.ogg", "m25");
+m.add_item("m26.ogg", "m26");
+int mres=m.run("social menu",true);
+if (m.get_item_name(mres)=="m1")
+{
+send_reliable(0,"/m1",1);
+}
+else if (m.get_item_name(mres)=="m2")
+{
+send_reliable(0,"/m2",1);
+}
+else if (m.get_item_name(mres)=="m3")
+{
+send_reliable(0,"/m3",1);
+}
+if (m.get_item_name(mres)=="m4")
+{
+send_reliable(0,"/m4",1);
+}
+if (m.get_item_name(mres)=="m5")
+{
+send_reliable(0,"/m5",1);
+}
+if (m.get_item_name(mres)=="m6")
+{
+send_reliable(0,"/m6",1);
+}
+if (m.get_item_name(mres)=="m7")
+{
+send_reliable(0,"/m7",1);
+}
+if (m.get_item_name(mres)=="m8")
+{
+send_reliable(0,"/m8",1);
+}
+if (m.get_item_name(mres)=="m9")
+{
+send_reliable(0,"/m9",1);
+}
+if (m.get_item_name(mres)=="m10")
+{
+send_reliable(0,"/m10",1);
+}
+if (m.get_item_name(mres)=="m11")
+{
+send_reliable(0,"/m11",1);
+}
+if (m.get_item_name(mres)=="m12")
+{
+send_reliable(0,"/m12",1);
+}
+if (m.get_item_name(mres)=="m13")
+{
+send_reliable(0,"/m13",1);
+}
+if (m.get_item_name(mres)=="m14")
+{
+send_reliable(0,"/m14",1);
+}
+if (m.get_item_name(mres)=="m15")
+{
+send_reliable(0,"/m15",1);
+}
+if (m.get_item_name(mres)=="m16")
+{
+send_reliable(0,"/m16",1);
+}
+if (m.get_item_name(mres)=="m17")
+{
+send_reliable(0,"/m17",1);
+}
+if (m.get_item_name(mres)=="m18")
+{
+send_reliable(0,"/m18",1);
+}
+if (m.get_item_name(mres)=="m19")
+{
+send_reliable(0,"/m19",1);
+}
+if (m.get_item_name(mres)=="m20")
+{
+send_reliable(0,"/m20",1);
+}
+if (m.get_item_name(mres)=="m21")
+{
+send_reliable(0,"/m21",1);
+}
+if (m.get_item_name(mres)=="m22")
+{
+send_reliable(0,"/m22",1);
+}
+if (m.get_item_name(mres)=="m23")
+{
+send_reliable(0,"/m23",1);
+}
+if (m.get_item_name(mres)=="m24")
+{
+send_reliable(0,"/m24",1);
+}
+if (m.get_item_name(mres)=="m25")
+{
+send_reliable(0,"/m25",1);
+}
+if (m.get_item_name(mres)=="m26")
+{
+send_reliable(0,"/m26",1);
+}
+}

@@ -1,0 +1,64 @@
+new in 02/24/2023.
+added /invdump command, the inv dump has been copyed your inventory
++minimum bid 0 removed, no longer offers 0 dollars
++cancel bid command has been removed!
++extremely dangerous and demanding arena2 has been added, in this arena, you will try to pass over, right or left of the dangers while fighting with the players, if you hit the danger, you will die, Use /arena2 to join this arena, sp2 to watch, /leave to leave.
+*now, after creating an auction, you have to wait 2 minutes, after 2 minutes, you can create a new auction
+*edited trust, untrust, trustlist commands
+*Fixed the issue of switching from the arena entered with the arena card to a different arena
++added /afk command
++added for admins /pnotify command
+
+*Now, when the admins turn their flag on or off, the whole server will be notified, this is to prevent builders or admins from opening their flag in the arena or war, and admins, as long as your flag is off, we are we are all  players, open your flag when you use a command, it off when you're done.
++Edited the reboot code, it will now wait 40 seconds so that everything can save the good
+new in 02/12/2023.
+
+remodified /admintell command.
+/request command has been changed to /feedback.
+fixed friendship sphere again.
+developers can no longer be able to send feedbacks or reports anymore, it is because yeah, as a developer, it is not necessary need to send feedbacks or reports, or already be sent.
+added spam maps kill system for developers. let the spam maps go out of the server's storage!
+added /teaminfo command to check the info of the team you are currently In. this includes team kills, and points.
+fixed the map deletion.
+added building stuff to the server.
+
+*a copy of client side changelog:
+
+new in version 7.02.
+added jump building to disable or enable by coordinates.
+added signs. press shift+enter on a sign to read the text containing in that sign. the sign loop ding ding ding sound is what you'll hear.
+added dialog building. press shift+enter on a dialog to read the text.
+fixed walking.
+added blockage building. A blockage is simply a wall that speaks the text, when you either bump into it, or are within its boundaries.
+disabling jump will no longer be stucked.
+the source and ambience can now be set its volume.
+the first navigation letter is not enough, so we added multi letter navigation for menus.
+the settings menu is now with checkboxes. to use them, press tab or shift+tab to navigate, the space or enter to activate.
+you can now open options menu with alt+o in the game without leaving the game. however, some of things cannot be changed from the game.
+added some notifications toggle in settings menu of the game that opens with f7.
+changed the exit menu If you have enabled confirmation to exit. now, you may press either y or enter key to exit, or n or escape to cancel.
+fixed the camera bug. and, the camera will no longer go through the walls!
+
+
+rewritten the robot system completely. they will no longer go through out of their area! as usual, report bugs If you found.
+rewritten the /help command.
+developers can now set item descriptions from the server without having to reboot.
+
+new in 02/06/2023.
+fixed some map related commands.
+fixed the robots biting pacifisted players. hopefully they will no longer be able to bite now.
+added map backup system for admins. hopefully, this will now lose the possibilities of losing maps!
+fixed friendship sphere not removing from your inventory after it is being used.
+
+02/05/2022.
+added the friendship spheres!
+fixed the /leave command.
+added new building features on the server, example of one is random travelpoints.
+fixed the pacifist players can fight with weapons.
+fixed the travelpoints and it has now abilities to add level, and taking items.
+fixed the nickname command.
+added a new spam kill system.
+
+02/04/2023.
+Added /arena1 and /sp1 commands, now you can use those commands for free war! /arena1 lets you join the arena! /sp1 allows you to watch the arena! Note that the /sp or /arena1 command cannot be used in the spectating area, as well as in the arena.
+fixed some weapon bugs and change some dammages.

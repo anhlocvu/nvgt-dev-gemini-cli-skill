@@ -1,0 +1,15 @@
+mapname:the_ocean
+maxx:1000
+maxy:1000
+maxz:200
+zone:0:1000:0:1000:-500:200:the ocean
+tile:0:1000:0:1000:-4:0:swimming
+tile:0:1000:0:1000:-300:-5:underwater
+travelpoint:0:0:0:0:-100:-100:frozen_world:100:150:-100:done:trackme
+src:0:1000:0:1000:-5:300:ocean3.ogg
+src:0:1000:0:1000:-300:-25:underwater.ogg
+zone:0:0:0:0:-100:-100:press t to back:trackme
+zone:1000:1000:1000:1000:-300:-300:the ocean cave:trackme
+travelpoint:1000:1000:1000:1000:-300:-300:the_ocean_cave:0:0:0:moved
+robots:0:1000:0:1000:-300:0:7:1000:shark
+noitems:0:1000:0:1000:-300:0:grenade:tasing_small_projectile:guided_missile

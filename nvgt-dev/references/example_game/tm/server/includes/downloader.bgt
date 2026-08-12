@@ -1,0 +1,5 @@
+class downloader {
+    bool initiate_download(string url, string file) { return false; }
+    bool monitor() { return false; }
+    void get_headers() {}
+}

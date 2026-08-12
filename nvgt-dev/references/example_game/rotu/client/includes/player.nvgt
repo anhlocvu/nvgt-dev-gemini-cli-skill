@@ -1,0 +1,108 @@
+player@[] players(0);
+class player
+{
+int x;
+int y;
+int z;
+string map;
+string name;
+int bpitch=random(-50, 50);
+timer btimer;
+player(int px,int py,int pz,string pmap, string pname)
+{
+x=px;
+y=py;
+z=pz; map=pmap;
+map=pmap;
+name=pname;
+}
+}
+void player_loop()
+{
+for(uint i=0; i<players.length(); i+=1) {
+if(players[i].btimer.elapsed>=750 and beacs==1 and players[i].map==mapname and players[i].name!=username) {
+players[i].btimer.restart();
+p.play_extended_3d("beacon1.ogg",me.x,me.y,me.z,players[i].x,players[i].y,players[i].z,dir,0,0,0,0,0,0,false,0,0,0,players[i].bpitch);
+}
+}
+}
+void spawn_player(int x,int y,int z,string map,string name)
+{
+for(uint i=0; i<players.length(); i++)
+{
+if(string_to_lower_case(players[i].name)==string_to_lower_case(name))
+{
+players[i].x=x;
+players[i].y=y;
+players[i].z=z;
+players[i].map=map;
+return;
+}
+}
+player pl(x,y,z,map,name);
+players.insert_last(pl);
+}
+void remove_player(string username)
+{
+for(int i=int(players.length())-1; i>=0; i--)
+{
+if(string_to_lower_case(players[i].name)==string_to_lower_case(username))
+{
+if(viewname==players[i].name){
+viewname="";
+viewingplayer=false;
+viewmap="";
+p.play_stationary("lookoff",false);
+send("getmapdata "+mapname,0);
+}
+players.remove_at(i);
+}
+}
+}
+void remove_all_players()
+{
+players.resize(0);
+}
+void view_player_perspective(string name)
+{
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].name==name)
+{
+viewer.x=players[i].x;
+viewer.y=players[i].y;
+viewer.z=players[i].z;
+viewmap=players[i].map;
+viewingplayer=true;
+viewname=players[i].name;
+send("getmapdata "+viewmap,0);
+}
+}
+}
+void update_player_coordinates(string n, int x,int y,int z, string m)
+{
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].name==n)
+{
+players[i].x=x;
+players[i].y=y;
+players[i].z=z;
+/*
+me.x=x;
+me.y=y;
+me.z=z;
+positions();
+*/
+if(players[i].map!=m)
+players[i].map=m;
+if(players[i].map==mapname and players[i].name!=username) p.play_3d(get_tile_at(players[i].x,players[i].y,players[i].z)+"step"+random(1,5)+".ogg",me.x,me.y,me.z,x,y,z,dir,false);
+}
+}
+}
+int get_player_index(string n) {
+for(uint i=0; i<players.length(); i+=1) {
+if(players[i].name==n) return i;
+}
+return -1;
+}

@@ -1,0 +1,34 @@
+mapname:new_store
+maxx:50
+maxy:50
+maxz:0
+tile:0:0:0:50:0:0:50
+zone:0:0:0:50:0:0:new_store
+tile:0:50:0:50:0:0:concrete6
+zone:0:50:0:50:0:50:A store, you can find anything you want here
+src:0:50:0:50:0:50:store.ogg:0:100
+music:The Idol.ogg
+tile:11:11:9:9:0:0:hardwood
+zone:11:11:9:9:0:50:weapons store:trackme
+tile:22:22:20:20:0:0:diamond
+zone:22:22:20:20:0:50:ammo store:trackme
+tile:38:38:14:14:0:0:metal12
+zone:38:38:14:14:0:50:explosive store:trackme
+tile:36:36:41:41:0:50:warehouse
+zone:36:36:41:41:0:50:vehicles store:trackme
+tile:11:11:34:34:0:0:glass
+zone:11:11:34:34:0:50:misc store:trackme
+tile:27:27:17:17:0:0:plywood
+zone:27:27:17:17:0:50:healthy_store:trackme
+travelpoint:20:20:0:0:0:0:ek_main:255:192:0:Hope you come again! good games:0
+zone:20:20:0:0:0:50:There is a door here, you can use it to go outside:trackme
+src:11:11:9:9:0:0:MetalBar5.ogg:0:100
+src:22:22:20:20:0:0:MetalBar1.ogg:0:100
+src:38:38:14:14:0:0:MetalBar8.ogg:-3:100
+src:36:36:41:41:0:0:MetalBar5.ogg:0:77
+src:11:11:34:34:0:0:MetalBar5.ogg:-4:111
+src:27:27:17:17:0:0:MetalBar1.ogg:-6:65
+sign:20:2:0:Hello! Welcome to our store! You can see the stores either from the tracking menu or via sounds! pleasant shopping.
+zone:20:20:2:2:0:20:Here stands a young promoter, on his shirt is a worker's badge; The badge says publicity officer and alex, and He wants to tell you something; press shift enter to listen:trackme
+
+safezone:0:100:0:100:0:100

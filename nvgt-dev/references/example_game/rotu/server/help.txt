@@ -1,0 +1,27 @@
+These are the server's commands.
+/pm playername message: PM a player.
+/reply or /r message: Replies to the last pm received or sent.
+/mute playername: Mutes a player.
+/unmute playername: Unmutes a player.
+/emotes: Toggles me emotes on or off.
+/at or /admintell message: Send a message to any available admins.
+/feedback message: Sends a message to the developers.
+/tile: Check what tile you are on. NOTE: As of version 0.2 this information can be obtained by pressing Y.
+	/rules: Brings up the game's rules.
+/afk: Goes AFK.
+/where playername: Checks where a player is.
+/transfer playername itemname amount: Transfers the specified quantity of an item to a player. Requirements: You must both have mPads (turned on and with transfer status enabled), and you must have the quantity of what you are trying to give.
+/dragons: If there is a dragon on the server, tells you where it is located.
+/setdescription text: Sets the description of your character.
+/look playername: Looks at the description of another player's character.
+/jailinfo <optional_playername>: This command works in two different ways. If you type /jailinfo with no parameters, you will be presented with your own jail info, if you are in jail. If you add a parameter, playername, it tells you the jail info of others.
+/votes: If you have already voted, and voting is enabled, checks to see how much votes there are, as well as the percentage.
+/vote yes or no: Votes yes or no.
+/ctfmembers: If in a CTF event, tells you how many members on each team, along with their names.
+/t message: If in a CTF event, chats with your teammates.
+/join_royale: Joins the royale if it is active. You can only join a royale with a blank character.
+/leave_royale: Leaves the royale if you are in the battle.
+/royaleplayers: Views the royale's participants.
+/changepass new_password: Allows you to change your password to something new. Upon changing your password you will be kicked from the server to log in with your new credentials. Your password must be at least 6 characters in length.
+/changemail email_address: Changes your e-mail address associated with your account.
+/chardelete charname: Deletes the specified character.

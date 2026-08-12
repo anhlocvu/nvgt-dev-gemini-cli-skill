@@ -1,0 +1,93 @@
+jail@[]jails(0);
+class jail
+{
+double mins=5;
+double ms;
+timer jailtimer;
+string username;
+jail(string un,double min)
+{
+username=un;
+mins=min;
+ms=mins*60000;
+}
+}
+void jailloop()
+{
+for(uint i=0; i<jails.length(); i++)
+{
+if(jails[i].jailtimer.elapsed>jails[i].ms)
+{
+admintell(jails[i].username+"'s jail time has expired!");
+
+@jails[i]=null;
+jails.remove_at(i);
+continue;
+}
+}
+}
+void create_jail(string user, double minutes=5, double elapsed=0)
+{
+jail tb1(user,minutes);
+tb1.jailtimer.force(elapsed);
+jails.insert_last(tb1);
+}
+bool jailcheck(string u)
+{
+for(uint i=0; i<jails.length(); i++)
+{
+if(jails[i].username==u)
+return true;
+}
+return false;
+}
+double get_jail_index(string user)
+{
+for(uint i=0; i<jails.length(); i++)
+{
+if(jails[i].username==user) {
+return i;
+}
+}
+return -1;
+}
+
+void save_jails()
+{
+string final;
+for(uint i=0; i<jails.length(); i++)
+{
+final+=jails[i].username+"="+jails[i].mins+"="+jails[i].jailtimer.elapsed+"\r\n";
+}
+file_put_contents("jails.dat",final,250);
+}
+
+
+void load_all_jails()
+{
+file tb;
+if(!tb.open("jails.dat", "rb"))
+{
+return;
+}
+string tbdata=tb.read();
+tb.close();
+if(tbdata.is_empty())
+{
+return;
+}
+string[] tbans=string_split(tbdata, "\r\n", false);
+for(uint i=0; i<tbans.length(); i++)
+{
+string[] parsed=string_split(tbans[i], "=", false);
+create_jail(parsed[0], stn(parsed[1]),stn(parsed[2]));
+}
+}
+bool unjail(string u,string me) {
+double i=get_jail_index(u);
+if(i<0) return false;
+notify(jails[i].username+"'s "+ms_to_readable_time(jails[i].ms)+" jail period has been revoked by "+me+"!");
+jails.remove_at(i);
+addprefs();
+return true;
+}

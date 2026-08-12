@@ -1,0 +1,54 @@
+mapname:big
+maxx:200
+maxy:200
+maxz:400
+tile:0:0:0:0:0:0:0
+zone:0:0:0:0:0:400:big
+tile:0:400:0:400:0:0:grass3
+zone:0:400:0:400:0:400:big war forest with animals
+amb:0:400:0:151:0:332:desertnight.ogg
+tile:0:400:0:40:0:0:dirt8
+zone:0:400:0:40:0:20:the dirty area:trackme
+src:0:400:0:40:0:40:birds20.ogg
+tile:0:55:41:115:0:0:grass
+zone:0:55:41:115:0:22:knee-high grass:trackme
+tile:56:122:41:115:0:0:grass4
+zone:56:122:41:115:0:22:long grassland, the fodder is green, the place smells very good, you like the birdsong, and you are happy with it, the only problem is that the grass is too crooked to walk:trackme
+tile:0:6:0:0:382:382:hardwood
+tile:0:400:116:150:0:0:shortgrass2
+zone:0:400:116:150:0:22:a small island:trackme
+tile:0:400:151:151:0:21:walltree
+src:0:400:116:151:0:44:birds14.ogg
+tile:0:400:150:150:0:21:dirt7
+zone:0:400:150:150:0:28:there's a staircase here, it goes up:trackme
+tile:0:400:151:152:21:21:dirt9
+tile:0:400:152:152:0:21:shortgrass2
+zone:0:400:152:152:0:28:there's a ladder here, it goes up:trackme
+zone:0:400:151:151:0:29:there is a dirty area here, the warriors made this place with the shovels in their hands while they were passing here, so that their enemies could not attack them and were prevented, but their only mistake was that this road connects 2 stairs, there are about 20 footprints, it looks like it was used a lot, also with a stone pen, Era of knights They wrote:trackme
+src:0:400:150:152:21:29:birds19.ogg
+tile:0:400:153:400:0:0:cave
+zone:0:400:153:400:0:22:big cave:trackme
+src:0:400:153:400:0:15:cave.ogg
+tile:50:100:140:149:0:0:shallow
+zone:50:100:140:149:0:22:it's a crooked stream, the water seems to flow beautifully here, the view is beautiful, the depth is not deep enough to dive in and you won't get hurt, frogs and fish are dancing:trackme
+src:50:100:140:149:0:15:stream9.ogg
+src:50:100:140:149:0:15:emb4.ogg
+tile:46:46:142:142:0:8:branch
+zone:46:46:142:142:0:12:tree:trackme
+tile:108:150:116:149:0:0:clay
+src:108:150:116:149:0:12:emb9.ogg
+tile:123:200:41:107:0:0:gravel2
+zone:123:200:41:107:0:12:a rocky field full of gravel, like nothing here just a few remnants of the war:trackme
+src:123:200:41:107:0:21:emb1.ogg
+tile:7:7:0:0:382:400:wallcar
+tile:0:6:1:1:382:400:wallcar
+zone:0:6:0:0:382:400:a mysterious helicopter will drop you off in the forest
+src:0:6:0:0:342:400:air.ogg
+zone:0:0:0:0:382:400:press t to exit here:trackme
+door:6:0:382:12:40:32:50:silence.ogg:helecopter_voice.ogg:computer_keabord.ogg:alarm.ogg
+
+zone:6:6:0:0:382:400:press enter to start the helicopter
+zone:12:12:32:38:12:26:the helicopter slows down, you have an interesting fear inside you, like you're going to fall
+tile:16:16:42:42:0:0:woods
+src:16:16:42:42:0:7:fireplace.ogg
+zone:16:16:42:42:0:8:There's a fire here, a lot of wood is still not burned, this fire never goes out for some reason:trackme

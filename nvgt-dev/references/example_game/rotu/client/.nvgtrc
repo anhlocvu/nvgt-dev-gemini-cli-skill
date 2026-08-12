@@ -1,0 +1,7 @@
+[build]
+product_name = "ROTU"
+product_version = "5.6"
+product_identifier = "com.lcboy.rotu"
+product_version_semantic = "5.6.0"
+windows_bundle = 2
+shared_library_excludes = "plist TrueAudioNext GPUUtilities systemd_notify sqlite git2 curl"

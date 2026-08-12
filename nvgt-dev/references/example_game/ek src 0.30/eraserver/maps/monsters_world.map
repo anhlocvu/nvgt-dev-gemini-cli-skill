@@ -1,0 +1,11 @@
+mapname:monsters_world
+maxx:100
+maxy:100
+maxz:100
+tile:0:100:0:100:0:0:concrete6
+zone:0:100:0:100:0:100:The monsters world.
+src:0:100:0:100:0:100:amb15.ogg
+zone:0:0:0:0:0:10:ek main:trackme
+robots:0:100:0:100:0:0:3:1000:monster,chest,woodbox
+noitems:0:100:0:100:0:100:hors:boat:elecboat:wood
+randtravelpoint:0:0:0:0:0:0:ek_main:700:1000:700:1000:0:0:done

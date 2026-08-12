@@ -1,0 +1,58 @@
+sound rnloop;
+timer rntimer;
+int rntime=450;
+bool rnstart=false;
+bool raining=false;
+bool rnstop=false;
+int rnstartvol=-75;
+int rnendvol=0;
+void update_rain_volumes(int v1,int v2)
+{
+rnstartvol=v1;
+rnendvol=v2;
+}
+void rainingloop()
+{
+if(rnstart and raining and !rnstop)
+{
+if(rntimer.elapsed>rntime)
+{
+rntimer.restart();
+int currentvol=rnloop.volume;
+rnloop.volume=currentvol+1;
+}
+if(rnloop.volume>=rnendvol or rnloop.volume==0) rnstart=false;
+}
+if(rnstop and raining and !rnstart)
+{
+if(rntimer.elapsed>rntime)
+{
+int currentvol=rnloop.volume;
+rntimer.restart();
+rnloop.volume=currentvol-1;
+}
+if(rnloop.volume==rnstartvol or rnloop.volume==-100){ rnstop=false;
+rnloop.stop();
+raining=false;
+}
+}
+}
+void start_raining()
+{
+if(viewpoint=="inside")
+{
+rnloop.stream("rain_int.ogg");
+}
+else{ 
+rnloop.stream("rain_ext.ogg");
+}
+rnloop.volume=rnstartvol;
+rnloop.play_looped();
+rnstart=true;
+raining=true;
+}
+void stop_raining()
+{
+rnstart=false;
+rnstop=true;
+}

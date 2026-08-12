@@ -1,0 +1,29 @@
+mapname:evermore_bar
+maxx:100
+maxy:100
+maxz:100
+tile:0:100:0:100:0:0:carpet
+tile:0:100:0:100:0:0:hardwood2
+zone:0:100:0:100:0:100:evermore bar
+zone:100:100:100:100:0:100:press shift plus enter to buy drinks@trackme@
+fightingstate:0
+zone:0:0:0:0:0:100:go back@trackme@
+travelpoint:0:0:0:0:0:0:evermore_city:800:800:0: come back anytime
+
+tile:25:30:25:30:5:5:wood4
+zone:25:30:25:30:0:10:a table@trackme@
+tile:25:25:26:26:0:3:chair
+tile:28:28:26:26:0:3:chair
+zone:25:25:26:26:0:10:a chair@trackme@
+zone:28:28:26:26:0:10:a chair @trackme@
+tile:50:55:50:55:5:5:wood4
+tile:50:50:56:56:0:3:chair
+tile:54:54:56:56:0:3:chair
+
+zone:50:55:50:55:0:10:a table@trackme@
+zone:50:50:56:56:0:10:a chair@trackme@
+zone:54:54:56:56:0:10:a chair@trackme@
+cmusic:0:100:0:100:0:500:dancing_hall.ogg:-10:100
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb

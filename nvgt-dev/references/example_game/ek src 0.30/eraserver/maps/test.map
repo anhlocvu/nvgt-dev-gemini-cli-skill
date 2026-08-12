@@ -1,0 +1,16 @@
+safezonemenu:0:0:7:7:0:0
+mapname:test
+maxx:500
+maxy:500
+maxz:500
+tile:0:500:0:500:0:0:concrete2
+zone:0:500:0:500:0:500:Test.
+src:0:500:0:500:0:500:calm.ogg
+jplayer:0:0:0
+travelpoint:0:0:0:0:0:0:safe_zone:50:50:0:Go!
+noitems:0:10:0:10:0:10:mlk_207_combat_rifle
+randtravelpoint:10:10:0:10:0:0:safe_zone:0:100:0:100:0:0:moved
+robots:20:30:0:20:0:0:4:5000:woodbox,metalbox
+zone:4:4:4:4:0:4:die %name
+dialog:0:0:0:hello %name
+zone:0:0:7:7:0:0:safezonemenu:trackme

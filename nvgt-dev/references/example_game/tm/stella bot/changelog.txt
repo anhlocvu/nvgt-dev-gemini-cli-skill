@@ -1,0 +1,32 @@
+Hmm, who am I writing this changelog for? Well, maybe someday my tk src will be leacked, and someone will read this changelog. Why will it be leacked? Well, I don't know, sometimes I'm a stupid person and do stupid things so, who knows? Anyway, let's go!
+0.8
++Added chat, misc, kills, pm and ADM buffers
+*Updated readme with new hotkeys. Yay!
+-Removed fucking info about buffers
+
+0.7
++Added states. In fakt, nothing new cause i'm lazy as fuck to code something
++Added buffer
++Added connection timer.
+
+0.6
+*Recoded some stuff, netvers, bla bla
+
+0.5
++Added debug mode
+
+0.4
++Added, you can press f2 to hide or unhide the bot.
++Added config.
+
+0.3
++You can press f1 to open bot commands dialog.
++Added readme.
++Added stella check  and something...
+
+0.2
+*Fixed bugs.
+*Forced stella to work in latest ver of tk.
+
+0.1
++Created stella!

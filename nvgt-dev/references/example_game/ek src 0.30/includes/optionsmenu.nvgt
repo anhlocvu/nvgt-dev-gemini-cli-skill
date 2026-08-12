@@ -1,0 +1,114 @@
+void optionsmenu(bool fromgame=false)
+{
+form.create_window("options",false);
+int msc=form.create_checkbox("enable menu sidescrolling",int_to_bool(sidescrolling));
+int mwrap=form.create_checkbox("enable menu wrapping",int_to_bool(wrap));
+int askte=form.create_checkbox("ask before exiting",int_to_bool(asktoexit));
+int rctrl=form.create_checkbox("enable right control detection",int_to_bool(rcontrol));
+int spinter=form.create_checkbox("enable speech interrupt",int_to_bool(interrupt));
+int pl=form.create_checkbox("play logo on startup",int_to_bool(play_logo));
+int cupd=form.create_checkbox("enable chec for updates on startup",int_to_bool(cu));
+int c=form.create_checkbox("enable &UI translator");
+if(translator==1)
+form.set_checkbox_mark(c,true);
+//int d=form.create_button("select &language");
+int pus=form.create_checkbox("play the updated sounds",int_to_bool(uploadedsounds));
+int signsnds=form.create_checkbox("enable sign loop sounds",int_to_bool(signsounds));
+int bflog=form.create_checkbox("enable buffer logging",int_to_bool(importbufferlogs));
+int bfbeep=form.create_checkbox("enable buffer beeping",int_to_bool(bufferbeep));
+int output=form.create_button("select output device");
+if(fromgame) form.set_state(output,false,false);
+int gvol=form.create_button("set game volume");
+int ca=form.create_button("enable translator");
+int d=form.create_button("select &language");
+
+int save=form.create_button("&save",true,false);
+int cancel=form.create_button("cancel",false,true);
+form.focus(msc);
+while(true)
+{
+wait(5);
+form.monitor();
+if(fromgame) ek_loop();
+if(form.is_pressed(save))
+{
+sidescrolling=bool_to_int(form.is_checked(msc));
+wrap=bool_to_int(form.is_checked(mwrap));
+asktoexit=bool_to_int(form.is_checked(askte));
+bufferbeep=bool_to_int(form.is_checked(bfbeep));
+importbufferlogs=bool_to_int(form.is_checked(bflog));
+play_logo=bool_to_int(form.is_checked(pl));
+rcontrol=bool_to_int(form.is_checked(rctrl));
+interrupt=bool_to_int(form.is_checked(spinter));
+uploadedsounds=bool_to_int(form.is_checked(pus));
+cu=bool_to_int(form.is_checked(cupd));
+signsounds=bool_to_int(form.is_checked(signsnds));
+form.reset();
+speak("options saved");
+writeprefs();
+if(!fromgame) mainmenu();
+return;
+}
+if(form.is_pressed(d))
+{
+msc=form.get_current_focus();
+if(translator==1)
+{
+writeprefs();
+string temp=langmenu();
+if(temp=="")
+{
+form.reset();
+speak("No action will be taken");
+optionsmenu(fromgame);
+writeprefs();
+break;
+}
+else
+{
+form.reset();
+currentlangfile=temp;
+writeprefs();
+optionsmenu(fromgame);
+break;
+}
+form.reset();
+writeprefs();
+optionsmenu(fromgame);
+break;
+}
+else
+{
+speak("you must turn on translator to use this option");
+}
+}
+if(form.is_pressed(output))
+{
+form.reset();
+soundcardmenu();
+return;
+}
+if(form.is_checked(c))
+//if(form.is_pressed(ca))
+{
+translator=1;
+}
+else
+{
+translator=0;
+}
+if(form.is_pressed(gvol))
+{
+form.reset();
+volumemenu(fromgame);
+return;
+}
+if(form.is_pressed(cancel))
+{
+form.reset();
+speak("canceled");
+if(!fromgame) mainmenu();
+return;
+}
+}//while
+}//end

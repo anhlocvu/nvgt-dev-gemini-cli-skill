@@ -1,0 +1,40 @@
+can_of_nectar:6:A small canister full of very sweet water. It restores your health by a random amount between 100 and 300
+hand_grenade:12:A standard throwable grenade. Just pull the pin out, toss it, and boom.
+rifle:100:A standard assault rifle holding 45 bullets. Perfect for dealing with massive amounts of undead.
+micro_smg:200:A very small sub machine gun holding 30 bullets, that has two modes, individual shots costing 1 bullet, or burst fire costing 3 bullets
+shotgun:300:A Remington Shotgun which holds 5 shells
+pistol_ammo_pack:2:An ammo package for the pistol.
+micro_smg_ammo_pack:8:An ammo package for the Micro SMG.
+rifle_ammo_pack:4:An ammo package for the rifle.
+shotgun_ammo_pack:10:An ammo package for the shotgun.
+kyles_crossbow_ammo_pack:14:On regular examination, it looks like a regular quiver of arrows. However, examining the quiver closely reveals a symbol, a skull and crossbones.
+mPad:300:A small rectangular tablet with a bezelless display, and a single button on one side. It allows you to buy and trade items without having to be at the outpost.
+mPad_battery_pack:40:A small lithium ion battery pack for the marketPad.
+auto_saturn:700: 
+banged_up_sneakers:13:These sneakers only need one word to be described, terrible. The laces are torn in several places, and the soles are just barely managing to stick onto the shoe. The leather has peeled in several places, revealing the inner leather.
+tattered_jeans:10:These jeans have several holes in them. The zipper is torn out, as well as the buttons, and the waistband is slack.
+shredded_tunic:11:This tunic has long claw mark holes in the front, and its once fashionable logo is now a mess of holes and rips. You can't imagine wearing this.
+dirty_sandals:16:These sandals are a bit dirty, but they are wearable, intact, and a nice find.
+sleeveless_shirt:15:A nice sleeveless shirt, perfect for summer conditions. The hem of the shirt has a small hole in it, but it won't really matter in the end.
+faded_baseball_cap:18:A baseball cap with a faded and unreadablel logo. Otherwise its still in great condition. It has velcro on the back to adjust the hat.
+winter_hat:15:A standard winter hat. The earmuffs have been ripped off, but the hat itself is still intact.
+gloves:13:A standard pair of winter gloves. All the finger holes are still there, and the gloves themselves are intact, except for a small bit of snow on one of the gloves.
+hoodless_winter_jacket:13:A heavy wool winter jacket. The hood seems to be missing, as though someone ripped it off, but everything else is in good shape.
+dirty_sweat_shirt:17:A dirty sweat shirt, with a small hole in the right shoulder. Besides that, its wearable, and that's really all that matters.
+velcro_shoes:22:A used pair of velcro shoes. The velcro seems to be peeling off of the right shoe, and part of the strap is missing on the left shoe, but they are still worth the find.
+worn_down_adidas:19:A pair of heavily used adidas. They appear to have been recently cleaned but with minimal effort. If you want something to wear but don't care about the smell of socks radiating from the shoe's interior, then give it a go.
+tactile_watch:35:This is a nice, gold watch that seemed to be designed for the visually impaired in mind. It has a nice cover that you can lift and read the tactile hands with. The watch is still in great condition, as if it was just removed from the box.
+torn_shorts:17:A pair of standard Khaki shorts. There appear to be some small holes on the back, and the buttons on the front are missing, but not a bad find at all.
+brass_knuckles:40:A pair of gently used brass knuckles. One of the knuckles are missing on the right set, but its still in good condition.
+leather_helmet:120:A thick leather helmet with a flexible visor.
+steel_helmet:440:This helmet is very heavy, and seems to do its job of protecting well. The visor is rather flimsy, but the rest of the helmet is pure steel.
+chestplate:720:A nice solid chest plate made of interlaced plating and metal, too tight for claws to get through.
+combat_boots:640:A nice pair of gently used combat boots. The laces are still tightly knotted and the soles of the boots are designed for pure stomping torture.
+steel_toed_boots:620:A pair of steel toed boots, perfect for kicking.
+leather_armor:300:This armor appears to cover your upper body. It has long thick leather arms for your arms, and plenty of chest and waist protection.
+leather_leggings:354:A pair of leggings made of thick heavy leather. It even has a belt, allowing for melee weapons and other assortments to be easily attached.
+plated_leggings:500:An advanced version of the leggings made of thick plating. The belt is constructed of chainmail.
+leather_shoulder_pads:580:A pair of heavy shoulder pads made of very expensive leather.
+metal_shoulder_pads:666:An upgraded version of the leather shoulder pads, with the exception that these shoulder pads are made of very heavy metal.
+chainmail_armor:600:This chainmail armor has a similar design to the leather armor, except its much heavier and much more durrable
+plate_armor:1200:This armor is the heaviest compared to both the chainmail armor and leather armor. It also provides the best protection.

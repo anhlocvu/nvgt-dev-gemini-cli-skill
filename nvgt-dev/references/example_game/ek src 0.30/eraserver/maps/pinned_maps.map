@@ -1,0 +1,11 @@
+mapname:pinned_maps
+maxx:44
+maxy:0
+maxz:44
+tile:0:44:0:0:0:0:concrete3
+zone:0:44:0:0:0:44:pinned_maps
+zone:0:44:0:0:0:44:here you will find the best maps
+music:md57.ogg
+zone:0:0:0:0:0:33:Just press the t key to return to the safezone.:trackme
+safezone:0:44:0:0:0:44
+travelpoint:0:0:0:0:0:44:safe_zone:10:0:0:exiting

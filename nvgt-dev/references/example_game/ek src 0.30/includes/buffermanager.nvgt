@@ -1,0 +1,20 @@
+void gchat() {
+string chat = v.input("Please enter your message for general chat.","", true);
+if (chat != "" && !is_eloquence_crash_word(chat) && get_sequence(chat, true) <= 3) {
+string[] chats = string_split(chat, "::", true);
+if (chat != "")
+send_reliable(0, chat, 1);
+}
+if (key_pressed(KEY_ESCAPE)) {
+return;
+}
+}
+
+void mchat() {
+string smessage = v.input("Type your message for local chat.","", true);
+if (smessage != "")
+send_reliable(0, "/mchat " + smessage, 1);
+if (key_pressed(KEY_ESCAPE)) {
+return;
+}
+}

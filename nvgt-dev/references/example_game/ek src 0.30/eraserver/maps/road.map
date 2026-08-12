@@ -1,0 +1,9 @@
+mapname:road
+maxx:500
+maxy:500
+maxz:500
+tile:0:500:0:500:0:0:concrete5
+src:0:500:0:500:0:500:desertnight.ogg
+zone:0:500:0:500:0:500:road
+randtravelpoint:0:5:0:0:0:10:ek_main:0:300:0:300:0:0:welcome back
+zone:0:5:0:0:0:10:passage to ek_main

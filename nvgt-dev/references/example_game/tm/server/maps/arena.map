@@ -1,0 +1,13 @@
+mapname:arena
+maxx:500
+maxy:500
+maxz:300
+tile:0:500:0:500:0:0:sand2
+zone:0:500:0:500:0:30:arena
+noitems:0:500:0:500:0:300:suicide_bomb:nuclear_bomb::ultimate_bomb:field_card:fantasy_pass:grenade
+tile:0:500:0:500:10:10:cement
+noitems:0:400:0:400:0:200000:guided_missile
+
+noitems:0:500:0:500:0:500:cosmic_bomb
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb:throwing_star:kings_statue:demon_king
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb

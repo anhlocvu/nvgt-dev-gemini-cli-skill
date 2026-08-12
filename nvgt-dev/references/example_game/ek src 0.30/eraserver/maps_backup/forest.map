@@ -1,0 +1,50 @@
+mapname:forest
+maxx:500
+maxy:500
+maxz:100
+tile:0:500:0:500:0:0:grass3
+zone:0:500:0:500:0:100:dark forest
+src:0:500:0:500:0:100:night.ogg
+travelpoint:10:20:0:0:0:10:the_world_of_the_magical_flower:40:48:0:welcome
+zone:10:20:0:0:0:10:press t to go to the magical world:trackme
+tile:0:500:50:60:0:0:dirt2
+zone:0:500:50:60:0:100:a long dirt road
+tile:60:100:64:74:0:0:mud
+tile:60:100:75:105:0:0:water
+tile:60:100:106:126:0:0:mud
+src:60:100:75:105:0:20:stream4.ogg
+tile:54:59:64:126:0:0:mud
+tile:101:106:64:126:0:0:mud
+tile:147:147:85:85:0:20:branch
+tile:107:107:88:88:0:50:concrete10
+zone:107:107:88:88:0:50:a staircase leading to a bridge
+tile:53:53:88:88:0:50:concrete10
+zone:53:53:88:88:0:50:a staircase leading to a bridge
+tile:54:106:64:126:50:50:bridge2
+zone:54:106:64:126:50:60:bridge
+tile:116:116:31:31:0:25:branch
+tile:180:181:120:121:0:30:branch
+tile:25:75:150:250:0:0:wood2
+zone:25:75:150:250:0:10:house
+tile:25:25:150:250:0:10:wallwood9
+tile:75:75:150:250:0:10:wallwood9
+tile:25:75:250:250:0:10:wallwood9
+tile:25:75:150:150:0:10:wallglass3
+travelpoint:25:75:149:149:0:10:forest:50:151:0:welcome
+src:25:75:150:250:0:10:room3.ogg
+zone:25:75:149:151:0:10:house door
+travelpoint:25:75:151:151:0:0:forest:50:149:0:welcome back
+tile:60:60:149:149:0:10:bleacher
+zone:60:60:149:149:0:20:stairs to house rooff
+tile:25:75:150:250:10:10:roof
+zone:25:75:150:250:10:20:house rooff
+robots:0:500:0:500:0:0:8:2000:leopard,gorilla,boar,lion,bear
+tile:471:471:53:53:0:30:roof3
+zone:471:471:53:53:0:30:a staircase to the tower
+tile:451:491:23:93:30:30:wood7
+zone:451:491:23:93:30:40:a tower
+tile:471:471:86:86:30:60:roof3
+zone:471:471:86:86:30:60:staircase to the second tower
+tile:271:491:3:103:60:60:wood7
+zone:271:491:3:103:60:90:inside of the second tower
+src:60:105:75:105:0:10:river2.ogg

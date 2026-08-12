@@ -1,0 +1,79 @@
+double stn(string the_string){
+return string_to_number(the_string);
+}
+bool is_one_month(int month, int day,int year)
+{
+if(DATE_MONTH>=month+1 and DATE_DAY>=day and DATE_YEAR>=year) return true;
+else return false;
+}
+string get_slashed_date()
+{
+return DATE_MONTH+"/"+DATE_DAY+"/"+DATE_YEAR;
+}
+string get_current_date()
+{
+return DATE_WEEKDAY_NAME+", "+DATE_MONTH_NAME+" "+DATE_DAY+", "+DATE_YEAR;
+}
+string lister(string[] l)
+{
+if(l.length()==0) return "";
+if(l.length()==1) return l[0];
+string ret;
+for(uint i=0; i<l.length(); i++)
+{
+if(i==l.length()-1)
+{
+ret+="and "+l[i];
+}
+else
+{
+ret+=l[i]+", ";
+}
+}
+return ret;
+}
+string get_file(string path)
+{
+if(!file_exists(path)) return "";
+file f;
+f.open(path,"rb");
+string file_contents=f.read();
+f.close();
+return file_contents;
+}
+int searchstring(string the_string,string text)
+{
+return string_contains(the_string,text,1);
+}
+string randomstring(uint length=5)
+{
+string temp="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+string ret;
+for(uint i=0; i<length; i++)
+{
+ret=ret+temp[random(0,(temp.length()-1))];
+}
+return ret;
+}
+string linear(string[] a)
+{
+string final;
+for(uint i=0; i<a.length(); i++)
+{
+final+=(a[i]+"\r\n");
+}
+return final;
+}
+string[] delinear(string a)
+{
+return string_split(a, "\r\n", false);
+}
+string[] delinear2(string a)
+{
+return string_split(a, " ", false);
+}
+bool dice_match(int val1,int val2,int val3,int matchnumber)
+{
+if(val1==matchnumber and val2==matchnumber and val3==matchnumber) return true;
+else return false;
+}

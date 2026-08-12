@@ -1,0 +1,447 @@
+undead@[]unds(0);
+class undead{
+double x,y,z;
+map_data@mymap=null;
+bool flying=false;
+bool ab=false;
+timer checkpltimer;
+timer abtimer;
+int health;
+string type;
+timer growltimer;
+int growltime=7000;
+string lastweapon;
+string hitby;
+int range=5;
+int dodgepercent=30;
+int dodgerange=5;
+timer movetimer;
+int steppitch=100;
+int speed;
+int targetx=-1, targety=-1, targetz=-1;
+string targetmap="";
+bool attracted=false;
+timer attracttimer;
+timer attacktimer;
+int attacktime=1500;
+double dir=0.0;
+timer dirtimer;
+int dirtime=random(60000,300000);
+int damage=random(300,900);
+bool trackingplayer=false;
+player@target=null;
+undead(double ux,double uy,double uz,string utype,string umap)
+{
+type=utype;
+x=ux;
+y=uy;
+z=uz;
+int map_idx = get_map_index(umap);
+if (map_idx == -1) map_idx = get_map_index("main");
+if (map_idx == -1 && maps.length() > 0) map_idx = 0;
+if (map_idx > -1) {
+@mymap = maps[map_idx];
+} else {
+@mymap = null;
+}
+if(type=="santa")
+{
+speed=300;
+damage=random(120,180);
+health=random(2500,5000);
+flying=true;
+}
+if(type=="graven")
+{
+dodgepercent=75;
+speed=130;
+damage=random(120,150);
+health=random(200,550);
+flying=true;
+range=3;
+attacktime = 900;
+steppitch=random(125,150);
+}
+if(type=="seaghoul")
+{
+speed=125;
+damage=random(120,150);
+health=random(300,500);
+flying=true;
+dodgepercent=65;
+range=2;
+attacktime = 950;
+steppitch=random(125,150);
+}
+if(type=="gholion")
+{
+speed=150;
+damage=random(300,600);
+//damage=random(500,1000);
+dodgerange=8;
+dodgepercent=25;
+health=random(400,600);
+attacktime = 1800;
+steppitch=random(75,90);
+}
+if(type=="ghostkey")
+{
+speed=170;
+damage=random(120,300);
+dodgepercent=80;
+health=random(200,500);
+range=4;
+attacktime=1200;
+steppitch=random(110,150);
+}
+if(type=="agawolf")
+{
+speed=180;
+damage=random(200,600);
+range=4;
+attacktime=1600;
+health=random(300,600);
+steppitch=random(80,90);
+dodgepercent=10;
+dodgerange=random(10, 15);
+}
+if(type=="giabear")
+{
+speed=500;
+damage=random(600,800);
+health=random(500,800);
+range=6;
+attacktime=2000;
+steppitch=random(60,80);
+dodgerange=11;
+}
+}
+string gettile() {
+if(@this.mymap==null) return "";
+return this.mymap.get_tile_at(this.x,this.y,this.z);
+}
+void dodge() {
+int perc=random(0, 100);
+if(perc>=this.dodgepercent) {
+int dec=random(1, 4);
+int tiles=random(2, this.dodgerange);
+if(dec==1) this.x-=tiles;
+else if(dec==2) this.x+=tiles;
+else if(dec==3) this.y-=tiles;
+else if(dec==4) this.y+=tiles;
+else
+this.z=(this.flying and this.z>0?this.z-tiles:this.z+tiles);
+}
+}
+void playstep()
+{
+if(this.type=="santa") send_nearby_unreliable("play santaslay.ogg "+this.x+" "+this.y+" "+this.z+" "+this.mymap.name,6,30,this.x,this.y,this.z,this.mymap.name);
+else send_nearby_unreliable("play2 "+this.gettile()+"step"+random(1,5)+".ogg "+this.x+" "+this.y+" "+this.z+" "+this.mymap.name+" "+this.steppitch,6,30,this.x,this.y,this.z,this.mymap.name);
+}
+void hit(int ph,int dam, string lw="")
+{
+if(ph>-1)
+{
+if(!lw.is_empty()) this.lastweapon=lw;
+@this.target=players[ph];
+this.hitby=this.target.name;
+this.health-=dam;
+this.dodge();
+this.trackingplayer=true;
+}
+}
+}
+void undloop()
+{
+for(uint i=0; i<unds.length(); i++)
+{
+if(@unds[i] == null) continue;
+if(unds[i].speed<100) unds[i].speed=100;
+if(unds[i].health<=0 or unds[i].ab)
+{
+send_nearby_unreliable("play "+unds[i].type+"vanish.ogg "+unds[i].x+" "+unds[i].y+" "+unds[i].z+" "+unds[i].mymap.name,6, 30, unds[i].x, unds[i].y, unds[i].z, unds[i].mymap.name);
+bodyfall(unds[i].x,unds[i].y,unds[i].z,"disappear",unds[i].mymap.name,3000);
+if(unds[i].ab==false) {
+int ind=get_player_index_from(unds[i].hitby, true);
+if(ind>-1)
+{
+if(players[ind].newb==1) continue;
+players[ind].give("gold",(doublegold?random(25,50):random(1,25)));
+players[ind].kills+=1;
+int nlvl=players[ind].lvl;
+int new_exp=(doublegold?round(random(2,100)/nlvl,0):round(random(1,50)/nlvl,0));
+players[ind].exp=players[ind].exp+new_exp;
+send(players[ind].peer_id, "You have gained "+new_exp+" experience", 2);
+if(players[ind].gang != "") {
+    add_gang_exp(players[ind].gang, new_exp);
+    add_gang_kill(players[ind].gang, 1);
+}
+if(!unds[i].lastweapon.is_empty()) {
+if(@players[ind].myquest!=null) {
+int t;
+if(!players[ind].working_quest_dict.exists(unds[i].lastweapon))
+t=1;
+else
+players[ind].working_quest_dict.get(unds[i].lastweapon, t);
+t+=1;
+players[ind].working_quest_dict.set(unds[i].lastweapon, t);
+players[ind].checkquest();
+}
+}
+if(unds[i].type=="santa")
+{
+players[ind].give("gift_sack",1);
+}
+if(unds[i].type=="graven")
+{
+int getfeather=random(0,100);
+if(getfeather>=100-10-players[ind].lvl)
+{
+players[ind].give("graven_feather",1);
+}
+}
+}
+}
+@unds[i]=null;
+unds.remove_at(i);
+if(i>0) i--;
+continue;
+}
+if(!gamestopped) {
+if(unds[i].abtimer.elapsed>=300000 and unds[i].ab==false) {
+unds[i].ab=true;
+}
+if(unds[i].growltimer.elapsed>unds[i].growltime)
+{
+unds[i].growltimer.restart();
+send_nearby_unreliable("play "+unds[i].type+random(1,5)+".ogg "+unds[i].x+" "+unds[i].y+" "+unds[i].z+" "+unds[i].mymap.name,6, 30, unds[i].x, unds[i].y, unds[i].z, unds[i].mymap.name);
+if(unds[i].type=="agawolf")
+{
+for(uint u2=0; u2<unds.length(); u2++)
+{
+if(@unds[u2] == null) continue;
+if(unds[u2].type=="agawolf" and get_3d_distance(unds[i].x,unds[i].y,unds[i].z,unds[u2].x,unds[u2].y,unds[u2].z)<=100 and unds[u2].mymap.name==unds[i].mymap.name and @unds[u2].target!=@unds[i].target and @unds[i].target!=null) @unds[u2].target=@unds[i].target;
+}
+}
+}
+if(unds[i].x>unds[i].mymap.maxx){ 
+unds[i].x=unds[i].mymap.maxx;
+unds[i].dir=270;
+}
+if(unds[i].y>unds[i].mymap.maxy){
+unds[i].y=unds[i].mymap.maxy;
+unds[i].dir=180;
+}
+if(unds[i].x<0){
+unds[i].x=0;
+unds[i].dir=90;
+}
+if(unds[i].y<0){
+unds[i].y=0;
+unds[i].dir=0;
+}
+if(unds[i].movetimer.elapsed>unds[i].speed)
+{
+unds[i].movetimer.restart();
+if(unds[i].trackingplayer==false and unds[i].attracted==false)
+{
+vector u;
+u=move(unds[i].x,unds[i].y,unds[i].dir);
+unds[i].x=round(u.x,0);
+unds[i].y=round(u.y,0);
+unds[i].playstep();
+if(unds[i].dirtimer.elapsed>unds[i].dirtime)
+{
+unds[i].dirtimer.restart();
+unds[i].dir=random(0,359);
+}
+}
+if(unds[i].trackingplayer==true and @unds[i].target!=null)
+{
+if(@unds[i].target==null) {
+unds[i].trackingplayer=false;
+}
+else if(unds[i].target.safe()==true or unds[i].target.newb==1 or unds[i].target.hidden==true) {
+unds[i].trackingplayer=false;
+@unds[i].target=null;
+}
+if(@unds[i].target != null) {
+bool moved=false;
+if(unds[i].x<unds[i].target.x)
+{
+unds[i].x++;
+moved=true;
+}
+if(unds[i].x>unds[i].target.x)
+{
+unds[i].x--;
+moved=true;
+}
+if(unds[i].y<unds[i].target.y)
+{
+unds[i].y++;
+moved=true;
+}
+if(unds[i].y>unds[i].target.y)
+{
+unds[i].y--;
+moved=true;
+}
+if(unds[i].z<unds[i].target.z and unds[i].flying)
+{
+unds[i].z++;
+moved=true;
+}
+if(unds[i].z>unds[i].target.z and unds[i].flying)
+{
+unds[i].z--;
+moved=true;
+}
+if(moved) {
+unds[i].playstep();
+}
+}
+}
+}
+if(unds[i].attacktimer.elapsed>=unds[i].attacktime) {
+unds[i].attacktimer.restart();
+for(uint p=0; p<players.length(); p+=1) {
+if(@players[p] == null) continue;
+if(players[p].safe() or players[p].map!=unds[i].mymap.name or players[p].devshield or players[p].hidden) continue;
+if(get_3d_distance(players[p].x,players[p].y,players[p].z,unds[i].x,unds[i].y,unds[i].z)<=unds[i].range)
+{
+if(players[p].devshield) continue;
+send_nearby_reliable("play "+unds[i].type+"attack"+random(1,3)+".ogg "+unds[i].x+" "+unds[i].y+" "+unds[i].z+" "+unds[i].mymap.name,6,30,unds[i].x,unds[i].y,unds[i].z,unds[i].mymap.name);
+players[p].hitby="a "+unds[i].type+".";
+unds[i].abtimer.restart();
+if(players[p].incar and players[p].carspeed>0)
+{
+unds[i].hit(p,300);
+send_nearby_reliable("play carhit"+random(1,3)+".ogg "+unds[i].x+" "+unds[i].y+" "+unds[i].z+" "+unds[i].mymap.name,6,30,unds[i].x,unds[i].y,unds[i].z,unds[i].mymap.name);
+}
+if(players[p].incar==false or players[p].carspeed==0)
+{
+players[p].damage(unds[i].damage);
+}
+send_nearby_reliable("play hit"+random(1,4)+".ogg "+players[p].x+" "+players[p].y+" "+players[p].z+" "+players[p].map,6,30,players[p].x,players[p].y,players[p].z,players[p].map);
+}
+}
+}
+if(unds[i].attracted==true and unds[i].targetx>-1 and unds[i].targety>-1 and unds[i].targetz>-1 and unds[i].targetmap.is_empty()==false and unds[i].movetimer.elapsed>=unds[i].speed) {
+unds[i].movetimer.restart();
+bool moved=false;
+if(unds[i].x<unds[i].targetx)
+{
+unds[i].x++;
+moved=true;
+}
+if(unds[i].x>unds[i].targetx)
+{
+unds[i].x--;
+moved=true;
+}
+if(unds[i].y<unds[i].targety)
+{
+unds[i].y++;
+moved=true;
+}
+if(unds[i].y>unds[i].targety)
+{
+unds[i].y--;
+moved=true;
+}
+if(unds[i].z<unds[i].targetz and unds[i].flying)
+{
+unds[i].z++;
+}
+if(unds[i].z>unds[i].targetz and unds[i].flying)
+{
+unds[i].z--;
+}
+if(moved) unds[i].playstep();
+}
+if(@unds[i].target==null and unds[i].checkpltimer.elapsed>=15000 and !unds[i].trackingplayer) {
+unds[i].checkpltimer.restart();
+bool run=false;
+for(uint p=0; p<players.length(); p++)
+{
+if(@players[p] == null) continue;
+if(get_3d_distance(players[p].x,players[p].y,players[p].z,unds[i].x,unds[i].y,unds[i].z)<=150 and players[p].safe()==false and players[p].hidden==false and unds[i].mymap.name==players[p].map and @unds[i].target==null and players[p].devshield==false)
+{
+@unds[i].target=players[p];
+unds[i].trackingplayer=true;
+run=true;
+}
+if(run) break;
+}
+}
+}
+}
+}
+void undead_appear(double x,double y,double z,string type,string map)
+{
+if(!map_exists(map)) map = "main";
+undead u1(x,y,z,type,map);
+if(doublegold)
+{
+/*
+This calculation makes undead go insanely fast. 
+u1.speed *= 0.8;
+Instead I've replaced it with 0.6. If an undead had a speed of 150, with the 0.1 calculation their speed would be 15ms. With 0.6, it ends up being 90ms, which is way more reasonable.
+*/
+u1.speed *= 0.9;
+u1.health *= 2;
+u1.damage *= 2;
+}
+unds.insert_last(u1);
+}
+
+void undead_appear(string type, map_data@ m)
+{
+if(@m == null) {
+int main_idx = get_map_index("main");
+if(main_idx == -1 && maps.length() > 0) main_idx = 0;
+if(main_idx > -1) @m = maps[main_idx];
+}
+undead_appear(random(0, m.maxx), random(0, m.maxy), 0, type, m.name);
+}
+void attract_undead(int x, int y, int z, string mapname, bool hardcore=false) {
+if(unds.length()==0) return;
+undead@[]attracted(0);
+int counter=0;
+int mindist=225;
+if(hardcore) mindist=random(400, 750);
+int max=random(1, 4);
+if(hardcore) max=random(1, 8);
+undead@[]already_there;
+for(uint x=0; x<unds.length(); x+=1) {
+bool e=true;
+if(unds[x].mymap.name==mapname) {
+int dist=get_3d_distance(unds[x].x, unds[x].y, unds[x].z, x, y, z);
+if(dist<=50) {
+e=false;
+already_there.insert_last(unds[x]);
+}
+if(dist<=mindist and e==true) {
+attracted.insert_last(unds[x]);
+counter+=1;
+}
+}
+if(counter>=max or already_there.length()>=10) break;
+}
+for(uint i=0; i<attracted.length(); i+=1) {
+int f=random(1, 2);
+if(f==1) {
+attracted[i].growltimer.restart();
+attracted[i].attracted=true;
+attracted[i].attracttimer.restart();
+attracted[i].targetx=x;
+attracted[i].targety=y;
+attracted[i].targetz=z;
+attracted[i].targetmap=mapname;
+//if(attracted[i].speed>50) attracted[i].speed-=1;
+attracted[i].trackingplayer=false;
+@attracted[i].target=null;
+}
+}
+}

@@ -1,0 +1,434 @@
+//string netaddress="ice-master.duckdns.org";
+string netaddress="45.136.6.192";
+//string netaddress="ramo-reis.com.tr.ht";
+int netport=2007;
+uint peer_id=0;
+string oldservers;
+string lookname;
+bool prior_connected=false;
+timer connectiontimer;
+int connectiontime=10000;
+void login()
+{
+if(name==""||password=="")
+{
+dlg("error!","No account configured. Please click setup an account, or create a new one","ok");
+loginoptionsmenu();
+return;
+}
+connectiontimer.restart();
+if(!SCRIPT_COMPILED)
+speak("Connecting to "+netaddress);
+else
+speak("Connecting");
+n.setup_client(20, 500);
+n.connect(netaddress, netport);
+//while(true)
+{
+wait(5);
+e=n.request();
+if (key_pressed(KEY_ESCAPE))
+{
+connected=false;
+peer_id=0;
+mainmenu();
+//break;
+}
+if(connectiontimer.elapsed>connectiontime and connected==false and prior_connected==false)
+{
+speak("the server now appears to be offline. Please wait while we try to connect to the server. We will automatically log you in when the server is online.");
+n.setup_client(20, 500);
+n.connect(netaddress, netport);
+connectiontimer.restart();
+connected=false;
+}
+}
+if(connected==true or prior_connected==true)
+{
+e=n.request();
+send_reliable(0, "login "+name+" "+password+" "+netver+" "+compid, 0);
+}
+timeouttimer.restart();
+while(true)
+{
+wait(5);
+
+if(speed_stop_is_hacking(200)==true)
+killbitch();
+
+e=n.request();
+if (key_pressed(KEY_ESCAPE))
+{
+reset_network();
+loginoptionsmenu();
+}
+if(e.type==event_connect and connected==false)
+{
+peer_id=e.peer_id;
+speak("Logging in as "+name+", with version "+netver);
+t.play_stationary("connected.ogg",false);
+send_reliable(0, "login "+name+" "+password+" "+netver+" "+compid, 0);
+connected=true;
+}
+else if(e.type==event_receive and get_event_message()=="loggedin")
+{
+p.update_listener_3d(me.x, me.y, me.z);
+sourcecheckloop();
+checkloc();
+game();
+}
+else if(e.type==event_receive and get_event_message()=="admin")
+{
+speak("You are an admin");
+admin=true;
+}
+else if(e.type==event_receive and get_event_message()=="mapname")
+{
+mapname=string_replace(get_event_message(),"mapname ","",false);
+}
+else if(e.type==event_receive and get_event_message()=="nochar")
+{
+dlg("error","This account does not exist!","ok");
+reset_network();
+loginoptionsmenu();
+}
+else if(e.type==event_receive and get_event_message()=="wrongpass")
+{
+dlg("Sorry","but the password you entered does not match the account name, if you have forgotten it, you can recover it via the password recovery option.","ok");
+reset_network();
+loginoptionsmenu();
+}
+else if(e.type==event_receive and get_event_message()=="alreadyplaying")
+{
+dlg("error","this account is already logged in","ok");
+reset_network();
+loginoptionsmenu();
+}
+else if(string_contains(get_event_message(),"error",1)>-1)
+{
+speak(get_event_message());
+reset_network();
+loginoptionsmenu();
+}
+else if(e.type==event_receive and get_event_message()=="error" or(timeouttimer.elapsed>=timeouttime))
+{
+string reason=url_get("http://omerefe-productions.com/server_down_reason.txt");
+dlg("Error","The server is down. Reason: "+reason+"","ok");
+reset_network();
+loginoptionsmenu();
+speak("unabble connecting to server: reason: the server is down: please notify the  to developers or hosters: try to connect");
+wait(15000);
+speak("unabble connecting to server: reason: the server is down: please notify the  to developers or hosters: try to connect");
+wait(15000);
+reset_network();
+mainmenu();
+}
+
+else if(e.type==event_receive and get_event_message()=="banned")
+{
+if(SCRIPT_COMPILED)
+{
+dlg("Error","Unabble connect to server: reason: you have been banned.","ok");
+loginoptionsmenu();
+}
+else
+{
+dlg("developer error","You would be banned, but you're a dev!","close");
+}
+}
+else if(e.type==event_receive)
+{
+/*
+sound g;
+g.load("progress.ogg");
+g.play();
+g.close();
+*/
+string[] parsed=string_split(get_event_message(), " ", false);
+if(parsed.length()>1)
+{
+if(parsed[0]=="block")
+{
+speak(string_trim_left(get_event_message(),6));
+reset_network();
+mainmenu();
+}
+if(parsed[0]=="x")
+{
+me.x=string_to_number(parsed[1]);
+}
+else if(parsed[0]=="oldversion" and parsed.length()>1)
+{
+speak("you are running a different version than the one on the server. Please redownload the game at https://omerefe-productions.com/ek.zip. Your version: "+netver+". Latest version: "+parsed[1]);
+reset_network();
+mainmenu();
+}
+else if(parsed[0]=="y")
+{
+
+me.y=string_to_number(parsed[1]);
+}
+else if(parsed[0]=="z")
+{
+
+me.z=string_to_number(parsed[1]);
+}
+else if(parsed[0]=="mapname")
+{
+
+mapname=parsed[1];
+}
+else if(parsed[0]=="motd")
+{
+motd=string_trim_left(get_event_message(),6);
+}
+else if(parsed[0]=="spawn_player")
+{
+int x=parse_float(parsed[1]);
+int y=parse_float(parsed[2]);
+int z=parse_float(parsed[3]);
+string n=parsed[4];
+string mp=parsed[5];
+if(n!=name)
+{
+spawn_player(x,y,z,mp,n);
+}
+}
+else if(parsed[0]=="m_data")
+{
+
+load_map(string_replace(get_event_message(), "mdata ", "", false));
+}
+else if(parsed[0]=="facing")
+{
+
+facing=string_to_number(parsed[1]);
+}
+}
+}
+}
+}
+void create()
+{
+string user=input("username","type the account name you want to display in the game, no spaces are allowed","","",0,false,false,"&next");
+if(user=="" or string_contains(user, " ", 1)!=-1)
+{
+creating=false;
+reset_network();
+mainmenu();
+}
+string pass=input("password","type the password containing 8 letters, no spaces are allowed","","*",0,false,false,"&next");
+if(pass=="" or string_contains(pass, " ", 1)!=-1 or pass.length()<8 and SCRIPT_COMPILED==true)
+{
+speak("sorry, this password is not valid");
+creating=false;
+reset_network();
+mainmenu();
+}
+string email=input("email","type the email for this account's forgetting passwords to change etc","","",0,false,false,"&finish");
+if(email=="" or string_contains(email,"@",1)==-1)
+{
+dlg("error","This email is not valid!","ok");
+creating=false;
+reset_network();
+mainmenu();
+}
+string gd=list_gender();
+if(gd=="")
+{
+speak("we need your gender");
+creating=false;
+reset_network();
+create();
+return;
+}
+speak("try to connect: please wait");
+n.setup_client(20, 500);
+n.connect(netaddress, netport);
+if(connected==true)
+{
+creating=false;
+send_reliable(0, "newchar "+user+" "+pass+" "+email+" "+compid, 0);
+}
+timeouttimer.restart();
+while(true)
+{
+wait(random(1, 5));
+e=n.request();
+if(speed_stop_is_hacking(200)==true)
+killbitch();
+if (key_pressed(KEY_ESCAPE))
+{
+n.destroy();
+mainmenu();
+}
+if(e.type==event_disconnect or timeouttimer.elapsed>=timeouttime)
+{
+alert("error","the server is down: please again try later...");
+reset_network();
+exit();
+speak("unabble connecting to server: reason: the server is down: please notify the  to developers or hosters: try to connect");
+wait(15000);
+speak("unabble connecting to server: reason: the server is down: please notify the  to developers or hosters: try to connect");
+wait(15000);
+reset_network();
+mainmenu();
+}
+if(e.type==event_connect and connected==false)
+{
+peer_id=e.peer_id;
+speak("creating");
+send_reliable(0, "newchar "+user+" "+pass+" "+email+" "+compid, 0);
+connected=true;
+}
+else if(e.type==event_receive and get_event_message()=="createdchar")
+{
+dlg("success!","Account created! Press login to login.","login");
+name=user;
+password=pass;
+writeprefs();
+login();
+creating=false;
+}
+else if(e.type==event_receive and get_event_message()=="alreadyaccount")
+{
+dlg("Error","This computer is already associated with another account","ok");
+exitgame();
+creating=false;
+}
+else if(e.type==event_receive and get_event_message()=="alreadyexists")
+{
+dlg("error","This account already exists","ok");
+exitgame();
+creating=false;
+}
+else if(e.type==event_receive and string_contains(get_event_message(),"Error",1)>-1)
+{
+speak(get_event_message());
+creating=false;
+reset_network();
+mainmenu();
+}
+}
+}
+
+void reset_network(){ 
+n.disconnect_peer(0);
+timeouttimer.restart();
+peer_id=0;
+n.destroy();
+prior_connected=false;
+connected=false;
+@n=null;
+network t;
+@n=t;
+}
+
+void resetpass()
+{
+string char=v.input("enter the character name you would like to reset the password for", false);
+if(char=="") mainmenu();
+n.setup_client(20, 500);
+speak("connecting");
+n.connect(netaddress,netport);
+timeouttimer.restart();
+while(true)
+{
+wait(random(1, 5));
+e=n.request();
+if (key_pressed(KEY_ESCAPE))
+{
+mainmenu();
+}
+if(e.type==event_disconnect or connected==false and timeouttimer.elapsed>=timeouttime)
+{
+alert("error","the server is down: please again try later...");
+reset_network();
+exit();
+
+speak("unabble connecting to server: reason: the server is down: please notify the  to developers or hosters: try to connect");
+wait(15000);
+reset_network();
+mainmenu();
+}
+if(e.type==event_connect and connected==false)
+{
+connected=true;
+peer_id=e.peer_id;
+send_reliable(0,"resetpassword "+char+" "+compid,0);
+}
+if(e.type==event_receive&&e.channel==6)
+{
+speak(get_event_message());
+reset_network();
+mainmenu();
+}
+}
+}
+void resetpasskey()
+{
+string char=v.input("enter your password reset key", false);
+if(char=="") multimenu();
+if(char.length()!=15)
+{
+dlg("Error!","This password reset key is not valid","ok");
+mainmenu();
+}
+n.setup_client(20, 500);
+speak("connecting");
+n.connect(netaddress,netport);
+timeouttimer.restart();
+while(true)
+{
+wait(random(1, 5));
+e=n.request();
+if (key_pressed(KEY_ESCAPE))
+{
+mainmenu();
+}
+if(e.type==event_disconnect or connected==false and timeouttimer.elapsed>=timeouttime)
+{
+alert("error","the server is down: please again try later...");
+reset_network();
+exit();
+speak("unabble connecting to server: reason: the server is down: please notify the  to developers or hosters: try to connect");
+wait(15000);
+speak("unabble connecting to server: reason: the server is down: please notify the  to developers or hosters: try to connect");
+wait(15000);
+reset_network();
+mainmenu();
+}
+if(e.type==event_connect and connected==false)
+{
+peer_id=e.peer_id;
+send_reliable(0,"resetkey "+char,0);
+connected=true;
+}
+if(e.type==event_receive&&string_left(get_event_message(),9)=="resetting")
+{
+string newpass=v.input("enter the new password for "+string_trim_left(get_event_message(),10), false, true);
+if(newpass=="")
+{
+newpass=password;
+dlg("success","new password set to your current entered password from prefferences","ok");
+}
+send_reliable(0,"newpassword "+char+" "+newpass,0);
+}
+if(e.type==event_receive&&e.channel==6)
+{
+speak(get_event_message());
+reset_network();
+mainmenu();
+}
+}
+}
+string list_gender()
+{
+setupmenu();
+m.add_item_tts("male","male");
+m.add_item_tts("female","female");
+int gd=m.run("select your gender(required)",true);
+string gend=m.get_item_name(gd);
+if(gend=="female" or gend=="male") return gend;
+else return"";
+}

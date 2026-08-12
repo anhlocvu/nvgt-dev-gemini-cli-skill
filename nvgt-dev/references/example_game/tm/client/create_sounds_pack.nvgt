@@ -1,0 +1,19 @@
+#include "bgt_compat.nvgt"
+
+void main()
+{
+    print("Building sounds.dat from sounds/ directory...");
+    pack_file p;
+    p.create("sounds.dat");
+    string[] files = find_files("sounds/*");
+    print("Found " + files.length() + " files in sounds/.");
+    
+    for (uint i = 0; i < files.length(); i++) {
+        string fname = files[i];
+        p.add_file("sounds/" + fname, fname);
+        if (i % 1000 == 0) {
+            print("Packed " + i + " / " + files.length() + " files...");
+        }
+    }
+    print("Successfully created sounds.dat!");
+}

@@ -1,0 +1,50 @@
+mapname:the_gates
+maxx:400
+maxy:400
+maxz:1000
+zone:0:400:0:400:0:1000:the gates
+tile:0:400:0:400:0:0:grass
+tile:0:400:300:300:0:100:wallmetal21
+tile:100:100:0:150:0:100:wallrocks3
+tile:101:400:0:299:0:0:ash2
+tile:100:100:152:299:0:100:wallrocks3
+tile:100:100:151:151:0:0:ash2
+tile:51:99:0:299:2:2:ledge2
+tile:100:100:151:151:0:1:wallrocks3
+tile:50:50:1:299:0:100:wallrocks3
+tile:50:50:0:0:0:1:wallrocks3
+tile:0:49:0:200:-4:0:deepwater
+tile:50:50:0:400:-300:-1:wallunderwater
+tile:0:49:201:299:-50:0:deepwater
+tile:0:49:300:400:-50:-1:deepwater
+tile:0:49:301:400:0:0:deepwater
+tile:50:50:301:399:0:100:wallrocks3
+tile:50:50:400:400:0:1:wallrocks3
+tile:51:99:301:400:2:2:concrete8
+tile:100:100:301:400:0:5:wallrocks3
+tile:101:400:301:400:0:0:ash2
+tile:100:100:151:151:2:3:wallrocks3
+tile:50:50:0:0:0:5:wallrocks3
+zone:101:400:0:299:0:1000:the_gates
+zone:51:99:0:299:0:1000:way
+zone:0:49:0:299:-300:1000:deep_water
+src:0:400:0:280:4:1000:menumus7.ogg
+src:0:400:330:400:6:1000:menumus5.ogg
+amb:0:400:0:400:0:1000:snowwind.ogg
+tile:1:400:300:300:-300:-1:wallunderwater
+tile:0:49:200:400:-50:-5:underwater
+tile:0:0:300:300:-40:-1:wallunderwater
+travelpoint:400:400:400:400:0:0:the_dreams_castle:0:0:0:the_dreams_castle
+zone:400:400:400:400:0:0:the dreams castle:trackme
+travelpoint:300:300:0:0:0:0:the__redentra_desert:0:50:0:the redentra 
+zone:300:300:0:0:0:0:the redentra desert:trackme
+noitems:0:400:0:400:-50:50:wirebomb:motion_bomb:nuclear_bomb:mine:stun_dart:remote_timebomb:security_bomb:remote_gun:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:rocket_launcher,bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:wood:guided_missile:tank:police_car:ultrabomb:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censorbomb:stone:fire_starter:censor_bomb:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:guided_missile:missile_interceptor:mine:ford
+fightingstate:0
+noitems:0:400:0:400:-50:100:elecboat
+noitems:0:400:0:400:-100:100:police_motorcycle
+noitems:0:400:0:400:-50:100:hors:boat
+noitems:0:400:0:400:-50:200:helicopter
+noitems:0:400:0:400:-50:100:arena_card
+noitems:0:400:0:400:-50:100:tasing_small_projectile
+noitems:0:400:0:400:-50:100:small_projectile
+safezone:0:400:0:400:-100000:100000

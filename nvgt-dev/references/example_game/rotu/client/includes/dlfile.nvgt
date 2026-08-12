@@ -1,0 +1,72 @@
+#include"downloader.nvgt"
+downloader dl;
+int progbeeps=1;
+string dl_file(string url, string disk_file)
+{
+dl.initiate_download(url, disk_file);
+speak("Downloading update, please wait.  Press Space for percentage, 1 2 and 3 keys for detailed progress, or escape to cancel. Press M to mute progress beeps. Press H to hear this message again.");
+string status;
+double dlpercent=-1;
+while(dl.is_active())
+{
+dl.monitor();
+if (key_pressed(KEY_ESCAPE))
+{
+dl.abort();
+status="canceled";
+speak(status);
+wait(600);
+return status;
+}
+if (key_pressed(KEY_1))
+{
+string size=round(dl.get_total_size()/1024/1024, 2)+" MB ("+round(dl.get_total_size()/1024, 2)+" KB)";
+speak("File size: "+size);
+}
+if (key_pressed(KEY_2))
+{
+string size=round(dl.get_downloaded_size()/1024/1024, 2)+" MB ("+round(dl.get_downloaded_size()/1024, 2)+" KB)";
+speak("Total downloaded: "+size);
+}
+if (key_pressed(KEY_3))
+{
+string size=round(dl.get_remaining_size()/1024/1024, 2)+" MB ("+round(dl.get_remaining_size()/1024, 2)+" KB)";
+speak("Total remaining: "+size);
+}
+if(round(dl.get_percentage(),0)!=dlpercent)
+{
+dlpercent=round(dl.get_percentage(),0);
+if(progbeeps==1 and is_game_window_active()) beep_percentage(dlpercent);
+}
+if(key_pressed(KEY_M))
+{
+progbeeps=(progbeeps==1?0:1);
+speak("Progress beeps "+(progbeeps==1?"unmuted":"muted"));
+}
+if(key_pressed(KEY_H))
+{
+speak("Downloading update, please wait.  Press Space for percentage, 1 2 and 3 keys for detailed progress, or escape to cancel. Press M to mute progress beeps. Press H to hear this message again.");
+}
+if (key_pressed(KEY_SPACE))
+{
+speak(dl.get_percentage()+" percent");
+}
+}
+if (status!="canceled")
+{
+status="finished";
+speak(status);
+wait(600);
+return status;
+}
+return "";
+}
+void beep_percentage(double val)
+{
+val=round(val,0);
+if(val<0) val=0;
+if(val>100) val=100;
+double freq=110*2**(val/25);
+@prog=generate_beep(freq);
+prog.play();
+}

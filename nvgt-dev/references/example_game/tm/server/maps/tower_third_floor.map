@@ -1,0 +1,14 @@
+mapname:tower_third_floor
+maxx:300
+maxy:300
+maxz:300
+tile:0:300:0:300:0:0:hardwood2
+tile:0:300:0:300:200:200:hardwood2
+tile:300:300:300:300:200:300:stairs
+travelpoint:300:300:300:300:300:300:tower_last_floor:0:0:300:prepare for a tuf fight!
+zone:0:300:0:300:0:400:tower, third floor
+zone:300:300:300:300:200:300:stairs to the next floor@trackme@
+zone:300:300:300:300:300:306:press shift enter to continue
+cmusic:0:300:0:300:220:250:dbz7.ogg:-10:100
+robots:0:300:0:300:200:200:4:500:gunman,unseeler_royal_guard,unseelers_hitman,unseelers_trainer
+noitems:0:5555:0:5555:0:5555:grenade:stp429

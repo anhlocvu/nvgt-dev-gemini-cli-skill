@@ -1,0 +1,7 @@
+/go x y z. Moves the player to the given coordinates. If you need to move to the map, write the name of the map after z.
+/maps. Gives you a list of maps and their sizes. Note that shelters also generate maps.
+/rawmap. Copies the text of the current map to your clipboard.
+/rawdata data. Sets your current map's data to data, this should be pasted from your clipboard. Do not! Do this to main! Don't build on main at all until a dev gives you permission to do so. Note that if the mapname attribute does not match the map's actual filename, this command will terminate with an error.
+/newmap name x y z tile. Creates a new map. The x, y and z parameters are the maximum values put at the top of the file, they can be changed later. The tile is a surface to put on the entire bottom of the map so when you go to it you don't fall into nothingness.
+/flag. Enables your admin's, or builder's flag
+/robots. Shows a list of all existing robots

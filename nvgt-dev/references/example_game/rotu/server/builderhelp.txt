@@ -1,0 +1,9 @@
+These are builder commands. Misuse of these commands will result in you being demoted.
+Chat commands, these are commands sent through the chat:
+/cm playername mapname x y z: Moves a player to a different map, as well as a different set of cordinates. For example, /changemap tunmi safe_zone 0 0 0. Please keep in mind that map names are case sensitive.
+/move playername x y z: Moves a player to a different set of cordinates.
+/rawmap: Retrieves the data of a map.
+/rawdata: Pastes the data of the map.
+/newmap mapname max_x max_y platform: Creates a map with the specified platform, for example, /newmap forest 500 500 grass.
+/delmap mapname: Deletes a map.
+/mapslist: Brings up a menu containing all maps. Pressing Enter on a map in the list will spawn you on that map.

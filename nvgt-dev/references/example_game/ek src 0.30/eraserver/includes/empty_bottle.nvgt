@@ -1,0 +1,47 @@
+empty_beer_bottle@[] beer_bottles(0);
+
+class empty_beer_bottle {
+double x, y, z;
+int dir = 0;
+bool explode = false;
+timer explodetimer;
+int range = 5;
+string map;
+string owner;
+empty_beer_bottle(double bx, double by, double bz, double bdir, string bmap, string bowner) {
+x = bx;
+y = by;
+z = bz;
+dir = bdir;
+map = bmap;
+owner = bowner;
+play("beer_bottlethrow", x, y, z, map);
+}
+}
+
+void beer_bottle_loop() {
+for (uint j = 0; j < beer_bottles.length(); j++) {
+if (beer_bottles[j].explodetimer.elapsed >= 2500) {
+beer_bottles[j].explodetimer.restart();
+play("empty_beer_bottle", beer_bottles[j].x, beer_bottles[j].y, beer_bottles[j].z, beer_bottles[j].map);
+send_reliable(0, "distsound beerbottlebreakdist " + beer_bottles[j].x + " " + beer_bottles[j].y + " " + beer_bottles[j].z + " " + beer_bottles[j].map, 0);
+for (uint x = 0; x < players.length(); x++) {
+if (in_vehicle(players[x].name) > -1 || players[x].newb == 1 || players[x].is_dead || players[x].invinsible) continue;
+if (get_3d_distance(beer_bottles[j].x, beer_bottles[j].y, beer_bottles[j].z, players[x].x, players[x].y, players[x].z) <= beer_bottles[j].range && players[x].map == beer_bottles[j].map) {
+players[x].hit(2000, 5000);
+players[x].stun(5000, true, true);
+players[x].should_subtract = true;
+players[x].hitby = beer_bottles[j].owner + "'s empty beer bottle";
+}
+}
+@beer_bottles[j] = null;
+beer_bottles.remove_at(j);
+continue;
+}
+}
+}
+
+void spawn_beer_bottle(double x, double y, double z, double dir, string map, string owner) {
+empty_beer_bottle b1(x, y, z, dir, map, owner);
+beer_bottles.insert_last(b1);
+}

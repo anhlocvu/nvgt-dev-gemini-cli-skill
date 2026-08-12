@@ -1,0 +1,57 @@
+mapname:land
+maxx:500
+maxy:500
+maxz:510
+zone:0:500:0:500:0:530:land
+tile:0:100:0:500:0:0:clay
+amb:0:100:0:500:0:510:birds19.ogg
+tile:101:120:0:500:0:0:shallow
+src:101:120:0:500:0:500:lake1.ogg
+src:101:120:0:500:0:500:birds15.ogg
+tile:121:300:0:500:0:0:grass
+src:121:300:0:500:0:500:birds21.ogg
+tile:300:500:0:500:0:0:grass4
+src:300:500:0:500:0:510:birds2.ogg
+src:300:500:0:500:0:510:skysunstorm.ogg
+src:300:500:0:500:0:510:rain1.ogg
+zone:0:100:0:500:0:500:clay area
+zone:101:120:0:500:0:500:Lake
+zone:121:300:0:500:0:500:A land with beautiful grass, and birds flying over it, really beautiful
+src:121:300:0:500:0:500:birds56.ogg
+zone:300:500:0:500:0:510:This is the beautiful land, here you see it, with the birds flying, the beautiful rain falling and thunder, the land of its truly beautiful and beautiful.
+tile:258:258:31:31:0:10:tree
+zone:258:258:31:31:0:15:tree
+tile:282:282:96:96:0:11:tree
+zone:282:282:96:96:0:15:tree
+tile:500:500:0:0:0:100:rope
+zone:500:500:0:0:100:106:Wonderful, I discovered this rope, since you climbed it you can explore more about what is delivering you.
+tile:499:499:0:100:100:100:rope
+tile:500:500:100:100:100:120:rope
+tile:450:496:100:100:120:120:rope
+tile:450:450:0:100:120:120:rope
+tile:450:450:0:0:120:200:rope
+tile:450:450:4:100:200:200:rope
+tile:400:449:95:95:200:200:rope
+tile:400:400:95:95:203:300:rope
+tile:400:400:95:95:303:400:rope
+tile:405:500:95:95:400:400:rope
+tile:485:485:96:96:400:400:rope
+tile:486:486:96:96:400:400:rope
+tile:487:487:97:97:400:400:rope
+tile:487:487:96:96:400:400:rope
+tile:487:487:97:97:400:450:rope
+tile:487:487:100:200:450:450:rope
+tile:450:485:200:200:450:450:rope
+tile:400:445:200:200:450:450:rope
+tile:400:400:202:300:453:453:rope
+tile:400:400:300:500:453:500:rope
+zone:400:400:500:500:500:530:Wow, really nice, congratulations, you have been able to get here, at this place you found a door, you enter a map where there are precious items that are not easily found in other places, or may be expensive in the store, press the enter key to enter.
+randtravelpoint:400:400:500:500:500:500:treasure_map:0:50:0:50:0:0:Enjoy
+noitems:0:500:0:500:0:500:concussive_grenade
+randtravelpoint:0:0:0:0:0:0:ek_main:0:500:0:500:0:0:done
+zone:0:0:0:0:0:10:ek main entrance
+tile:399:399:500:500:500:500:concrete2
+travelpoint:399:399:500:500:500:500:land:0:0:0:done
+zone:399:399:500:500:500:510:press t to go back:trackme
+noitems:0:500:0:500:0:510:elecboat
+noitems:0:500:0:500:0:500:hors:boat

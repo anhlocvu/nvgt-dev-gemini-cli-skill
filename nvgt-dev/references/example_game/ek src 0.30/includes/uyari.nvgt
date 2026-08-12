@@ -1,0 +1,70 @@
+void uyari(string message, bool in_game=false,string dlalert="",string dlgdismiss="")
+{
+if(dlalert!="") p.play_stationary(dlalert,false);
+speak(message);
+while(true)
+{
+if(in_game) ek_loop();
+if(speed_stop_is_hacking(200)==true)
+killbitch();
+if (key_pressed(KEY_LEFT) or key_pressed(KEY_RIGHT) or key_pressed(KEY_UP) or key_pressed(KEY_DOWN))
+{
+speak(message);
+}
+if(key_pressed(KEY_F12))
+{
+p.play_stationary("clipcopy.ogg", false);
+speak("copyed");
+clipboard_copy_text(""+message+"");
+}
+if (key_pressed(KEY_RETURN) or key_pressed(KEY_ESCAPE) or key_pressed(KEY_NUMPADENTER))
+{
+break;
+}
+wait(1);
+}
+if(dlgdismiss!="") p.play_stationary(dlgdismiss,false);
+}
+
+void dl_send(string message, string return_packet="dlg_reply",bool in_game=false)
+{
+speak(message);
+while(true)
+{
+if(in_game) ek_loop();
+if(speed_stop_is_hacking(200)==true)
+killbitch();
+if (key_pressed(KEY_LEFT) or key_pressed(KEY_RIGHT) or key_pressed(KEY_UP) or key_pressed(KEY_DOWN))
+{
+speak(message);
+}
+if (key_pressed(KEY_RETURN) or key_pressed(KEY_NUMPADENTER) or key_pressed(KEY_ESCAPE))
+{
+send_reliable(0,return_packet+" "+keys_pressed()[0],0);
+break;
+}
+wait(1);
+}
+}
+
+void dl_wait(string message, int waittime)
+{
+speak(message);
+timer d;
+speed_stop_reset(true);
+while(true)
+{
+e=n.request();
+if(speed_stop_is_hacking(200)==true)
+killbitch();
+if (key_pressed(KEY_LEFT) or key_pressed(KEY_RIGHT) or key_pressed(KEY_UP) or key_pressed(KEY_DOWN))
+{
+speak(message);
+}
+if(d.elapsed>=waittime)
+{
+break;
+}
+wait(1);
+}
+}

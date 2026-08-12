@@ -1,0 +1,13 @@
+mapname:virgin_radio
+maxx:0
+maxy:0
+maxz:0
+tile:0:0:0:0:0:0:carpet2
+zone:0:0:0:0:0:0:virgin_radio
+disable_camera:1
+disable_courdinates:1
+zone:0:0:0:0:0:0:enjoy! if you press t, you will redirect radios room!:trackme
+travelpoint:0:0:0:0:0:0:radios_room:10:0:0:welcome back to the radios room!
+url:https://17773.live.streamtheworld.com/VIRGIN_RADIO.mp3
+fightingstate:0
+noitems:0:0:0:0:0:0:guided_missile:timebomb:suicidebomb:bullet_bomb:security_bomb::censor_bomb:nuclear_bomb:stun_grenade:concussive_grenade:small_projectile:tasing_small_projectile:fight_inviter:police_motorcycle:fuel_tank:open_beer_bottle:item_grabber:item_grabber_small?projectile_tasing_small_projectile_suicidebomb:suicidebomb

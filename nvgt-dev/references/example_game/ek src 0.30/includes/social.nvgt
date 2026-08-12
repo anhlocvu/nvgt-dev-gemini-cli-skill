@@ -1,0 +1,172 @@
+string sc="
+ruscle_and_stretch
+burp
+grone_with_effert
+clearing_throat
+gasp
+itch_hair
+pat
+shush
+yawn
+sigh
+coughing_fit
+gag_in_discuss
+whistle
+cough_in_discuss
+surprised
+hit_body
+laugh1
+laugh2
+laugh3
+grunt
+tired_breath
+clenched_teath_anger
+grone_in_pain
+releaved_sigh
+eavil_laugh
+";
+
+
+void social()
+{
+string[] m=string_split(sc,"\r\n",true);
+sociallist(m);
+}
+void sociallist(string [] socials)
+{
+get_characters();
+string cl;
+speak("please select the type of social you want to play");
+double counter=0;
+while(true)
+{
+if(speed_stop_is_hacking(200)==true)
+killbitch();
+cl=get_characters();
+wait(5);
+cwloop();
+netloop();
+sound social;
+if(counter > socials.length()-1)
+{
+counter=socials.length()-1;
+}
+if(cl!="" and cl.length()==1)
+{
+int f=0;
+int oc=counter;
+for(uint i=counter; i<socials.length(); i++)
+{
+if(i==counter)
+{
+continue;
+}
+if(socials[i][0]==cl)
+{
+counter=i;
+speak(socials[counter]);
+if(gender=="male")
+{
+p.play_stationary(socials[counter]+"_m.ogg",false);
+}
+else if(gender=="female")
+{
+p.play_stationary(socials[counter]+"_f.ogg",false);
+}
+cl="";
+f=1;
+break;
+}
+}
+if(f==0)
+{
+counter=0;
+for(uint i=counter; i<socials.length(); i++)
+{
+if(socials[i][0]==cl)
+{
+counter=i;
+speak(socials[counter]);
+if(gender=="male")
+{
+p.play_stationary(socials[counter]+"_m.ogg",false,false,false);
+}
+else if(gender=="female")
+{
+p.play_stationary(socials[counter]+"_f.ogg",false,false,false);
+}
+cl="";
+f=1;
+break;
+}
+}
+}
+if(f==0)
+{
+speak("No such social exists");
+}
+}
+if(key_pressed(KEY_UP))
+{
+if(socials.length==1)
+{
+speak(socials[0]);
+counter=0;
+}
+else if(counter > 0)
+{
+counter--;
+speak(socials[counter]);
+if(gender=="male")
+{
+p.play_stationary(socials[counter]+"_m.ogg",false,false,false);
+}
+else if(gender=="female")
+{
+p.play_stationary(socials[counter]+"_f.ogg",false,false,false);
+}
+}
+}
+if(key_pressed(KEY_DOWN))
+{
+if(socials.length==1)
+{
+speak(socials[0]);
+counter=0;
+}
+else if(counter < socials.length()-1)
+{
+counter++;
+speak(socials[counter]);
+if(gender=="male")
+{
+social.stop();
+p.play_stationary(socials[counter]+"_m.ogg",false);
+//p.play_stationary(socials[counter]+"_m.ogg",false,false);
+}
+else if(gender=="female")
+{
+p.play_stationary(socials[counter]+"_f.ogg",false,false,false);
+}
+}
+}
+if(key_pressed(KEY_RETURN) or key_pressed(KEY_NUMPADENTER) and counter <= socials.length()-1 and socials[counter]!="")
+{
+if(gender=="male")
+{
+send_reliable(0,"social "+socials[counter]+"_m",0);
+}
+else if(gender=="female")
+{
+send_reliable(0,"social "+socials[counter]+"_f",0);
+}
+return;
+}
+if(key_pressed(KEY_ESCAPE))
+{
+speak("canceled");
+return;
+}
+}
+return;
+}

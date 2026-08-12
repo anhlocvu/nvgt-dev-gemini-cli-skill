@@ -1,0 +1,21 @@
+mapname:demon_realm_level5
+maxx:200
+maxy:200
+maxz:500
+tile:0:200:0:200:0:0:hardwood
+tile:0:200:0:200:-200:-200:hardwood
+tile:200:200:200:200:-250:-200:ladder3
+tile:0:200:0:200:-250:-250:hardwood
+tile:199:199:200:200:-250:-201:wallwood9
+tile:200:200:199:199:-250:-201:wallwood9
+tile:199:199:199:199:-250:-201:wallwood9
+cmusic:0:200:0:200:-200:-200:demon realm6.ogg:-10:100
+cmusic:0:200:0:200:-250:-250:demon realm6.ogg
+zone:0:200:0:200:-250:-190:overcoming all ods, you have reached this far. however it has not been without losses. you feel utterly exhausted, your mind broken, your spirit almost burned out. moments away from clashing with the demon king, you are at the edge of collapsing. hopelessness threatens to drag you down, despair hanging over you like a cloud. only now you realise how foolish you have been so far. only now you realise that you have quareled with the forces of nature itself. the only way to go is forward however, as the chance to get out of this hellish nightmare remain only by slaying the demon king, no matter how slim it might be
+zone:200:200:200:200:-200:-250:ladder leading down. prepare yourself. the time to duell the demon king has come@trackme@
+zone:200:200:200:200:-250:-200:ladder leading down. prepare yourself. the time to duell the demon king has come
+zone:150:150:150:150:-250:-250:press shift plus enter to continue@trackme@
+noitems:0:3000:0:3000:-55550:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb
+noitems:0:3000:0:3000:-55550:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+robots:0:200:0:200:-200:-200:5:1000:pain_elemental,sin_lord,zombie_leader
+tile:0:200:0:200:-250:-250:hardwood

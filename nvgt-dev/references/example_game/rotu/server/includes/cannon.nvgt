@@ -1,0 +1,45 @@
+cannon@[]cannons(0);
+class cannon{
+string map;
+double x,y,z;
+int firedir;
+timer actiontimer;
+int actiontime=1200;
+string owner;
+cannon(double cx,double cy,double cz,string o,string cm)
+{
+x=cx;
+y=cy;
+z=cz;
+owner=o;
+map=cm;
+}
+}
+void cannonloop()
+{
+for(uint i=0; i<cannons.length(); i++)
+{
+if(cannons.length()==0) break;
+if(cannons[i].actiontimer.elapsed>=cannons[i].actiontime) {
+play("cannon",cannons[i].x,cannons[i].y,cannons[i].z,cannons[i].map);
+for(uint i2=0; i2<unds.length(); i2++)
+{
+if(get_3d_distance(cannons[i].x,cannons[i].y,cannons[i].z,unds[i2].x,unds[i2].y,unds[i2].z)<=35 and unds[i2].mymap.name==cannons[i].map)
+{
+unds[i2].hitby=cannons[i].owner;
+play("cannonhit", unds[i2].x, unds[i2].y, unds[i2].z, unds[i2].mymap.name);
+unds[i2].lastweapon="cannon";
+unds[i2].health-=random(500, 1400);
+}
+}
+@cannons[i]=null;
+cannons.remove_at(i);
+continue;
+}
+}
+}
+void place_cannon(double x,double y,double z,string owner,string map)
+{
+cannon cannon1(x,y,z,owner,map);
+cannons.insert_last(cannon1);
+}

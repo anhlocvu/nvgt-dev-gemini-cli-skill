@@ -1,0 +1,8 @@
+mapname:suicide
+maxx:100
+maxy:100
+maxz:100
+tile:0:100:0:100:0:0:suicide
+zone:0:100:0:100:0:100:suicide
+tile:0:100:50:50:0:50:wallchest
+tile:0:100:45:55:0:55:snow

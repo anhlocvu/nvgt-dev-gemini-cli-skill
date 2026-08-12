@@ -1,0 +1,156 @@
+void bike()
+{
+int index = get_player_index(e.peer_id);
+if (index < 0) return;
+if(!players[index].bikeriding)
+{
+string items = players[index].get_inv();
+if (inv_item_number(items, "bike") < 1)
+{
+send_reliable(players[index].peer_id, "bike_stop", 0);
+return;
+}
+players[index].bikeriding = true; // Set as bike riding
+send_reliable(players[index].peer_id,"bikestart",0);
+players[index].playsound("bikeon");
+players[index].biketimer.restart();
+//        players[index].bike_speed_timer.restart();
+return;
+}
+if(players[index].biketimer.elapsed>=500 && players[index].bikeriding)
+{
+players[index].biketimer.restart();
+vector max,currentcoords(players[index].x,players[index].y,players[index].facing),bk;
+string playertile=get_tile_at(players[index].x,players[index].y,players[index].z,players[index].map);
+if(playertile=="")
+{
+send_reliable(players[index].peer_id,"Not in the air!",2);
+return;
+}
+if(playertile=="water" or playertile=="shallow" or playertile=="water2" or playertile=="water3" or playertile=="water4" or playertile=="sewer")
+{
+players[index].playsound("bikestuck");
+//send_reliable(players[index].peer_id,"Oh no! You're bike just got stuck!",0);
+return;
+}
+max=get_max_values(players[index].map);
+int distance=0;
+string tile;
+bk=currentcoords;
+for(uint i=5; i<=10; i++)
+{
+bk=move(players[index].x,players[index].y,players[index].facing);
+bk.x=round(bk.x,0);
+bk.y=round(bk.y,0);
+if(bk.x>max.x)
+{
+bk.x=max.x;
+}
+if(bk.y>max.y)
+{
+bk.y=max.y;
+}
+if(bk.x<0) bk.x=0;
+if(bk.y<0) bk.y=0;
+tile=get_tile_at(bk.x,bk.y,players[index].z,players[index].map);
+if(string_contains(tile,"water",1)>-1 or string_contains(tile,"deepwater",1)>-1 or string_contains(tile,"sewer",1)>-1 or string_contains(tile,"swimming",1)>-1)
+{
+players[index].playsound("bikestuck");
+//send_reliable(players[index].peer_id,"Oh no! You're bike just got stuck!",0);
+return;
+}
+if(string_contains(tile,"wall",1)>-1)
+{
+send_reliable(players[index].peer_id,"your bike faces sudden death!",2);
+send_reliable(players[index].peer_id,"bike_stop",0);
+players[index].playsound("bikecrash");
+players[index].give("bike",-1);
+players[index].health-=random(50000,75000000);
+players[index].hitby="sudden collision";
+return;
+}
+}
+  
+players[index].x=bk.x;
+players[index].y=bk.y;
+send_reliable(players[index].peer_id,"move "+players[index].x+" "+players[index].y+" "+players[index].z,0);
+
+if (players[index].bikewith != "")
+{
+int otherPlayerIndex = get_player_index_from(players[index].bikewith);
+if(otherPlayerIndex > -1)
+{
+players[otherPlayerIndex].x=bk.x;
+players[otherPlayerIndex].y=bk.y;
+send_reliable(players[otherPlayerIndex].peer_id, "move "+players[otherPlayerIndex].x+" "+players[otherPlayerIndex].y+" "+players[otherPlayerIndex].z,0);
+}
+}
+
+   
+
+for(uint j=0;j<=20;j+=1) {
+bk=move(players[index].x,players[index].y,players[index].facing);
+}
+string bt=get_tile_at(bk.x,bk.y,players[index].z,players[index].map);
+if(string_contains(bt,"wall",1)>-1)
+players[index].playsound("bikeradar");
+if(tile!=players[index].biketile)
+{
+players[index].playsound("bikechangetile");
+players[index].biketile=tile;
+}
+if(tile=="dirt" or tile=="dirt1" or tile=="dirt2" or tile=="dirt3" or tile=="dirt4" or tile=="dirt5" or tile=="dirt6" or tile=="dirt7" or tile=="dirt8" or tile=="dirt9" or tile=="dirt10" or tile=="dirt11" or tile=="dirt12")
+{
+players[index].playsound("bikedirt");
+}
+else if(tile=="grass" or tile=="grass1" or tile=="grasspacked" or tile=="grass2" or tile=="grass3" or tile=="grass4" or tile=="grass5" or tile=="grass6" or tile=="grass7" or tile=="grass8")
+{
+players[index].playsound("bikegrass");
+}
+else if(tile=="gravel" or tile=="gravel1" or tile=="gravel2" or tile=="gravel3" or tile=="gravel4" or tile=="gravel5" or tile=="gravel6" or tile=="gravel7" or tile=="gravel8" or tile=="gravel9" or tile=="gravel10")
+{
+players[index].playsound("bikegravel");
+}
+else if(tile=="metal" or tile=="metal1" or tile=="metal2" or tile=="metal3" or tile=="metal4" or tile=="metal5" or tile=="metal6" or tile=="metal7" or tile=="metal8" or tile=="metal9" or tile=="metal10" or tile=="metal11" or tile=="metal12" or tile=="metal13" or tile=="metal14" or tile=="metal15" or tile=="metalpipe" or tile=="grate")
+{
+players[index].playsound("bikemedal");
+}
+else if(tile=="mud" or tile=="mud1" or tile=="mud2" or tile=="mud3" or tile=="mud4" or tile=="swamp" or tile=="marsh")
+{
+players[index].playsound("bikemud");
+}
+else if(tile=="rocks" or tile=="rocks1" or tile=="rocks2" or tile=="rocks3")
+{
+players[index].playsound("bikerock");
+}
+else if(tile=="weed" or tile=="branch" or tile=="branch2" or tile=="branch3")
+{
+players[index].playsound("bikeweed");
+}
+else if(tile=="hardwood" or tile=="hardwood1" or tile=="hardwood2" or tile=="hardwood3" or tile=="hardwood4" or tile=="old_wood" or tile=="smallwood" or tile=="wood" or tile=="wood1" or tile=="wood2" or tile=="wood3" or tile=="wood4" or tile=="wood5" or tile=="wood6" or tile=="wood7" or tile=="wood8" or tile=="wood9" or tile=="wood10" or tile=="wood11" or tile=="wood12" or tile=="wood13" or tile=="wood14" or tile=="woodshelter")
+{
+players[index].playsound("bikewood");
+}
+else
+{
+players[index].playsound("bikemisc");
+}
+int closest=0;
+for (uint i = 0; i < players.length(); i++) {
+if (players[i].name == players[index].name) continue;
+int dist = players[index].distancecheck(players[i].x, players[i].y, players[i].z);
+if (dist <= 5 && players[i].map == players[index].map) {
+if (dist == 1) {
+send_reliable(players[index].peer_id, "bike_stop", 0);
+players[index].playsound("bikecrash");
+
+// Çarpışmada sağlık kaybı
+players[index].health -= random(25000, 500000);
+players[index].hitby = "another player collision";
+return;
+}
+players[index].playsound("bikeradar");
+}
+}
+}
+}

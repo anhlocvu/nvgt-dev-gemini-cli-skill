@@ -1,0 +1,16 @@
+name monster
+health 40000000
+defence 10000
+speed 500
+damage 146500
+shoot 5000
+distance 8
+aggro 1000
+spread 3
+angle 360
+steps 0
+voices 3
+loot censor_bomb,grenade,health_box
+amount 25
+minxp 1290000
+maxxp 162000000

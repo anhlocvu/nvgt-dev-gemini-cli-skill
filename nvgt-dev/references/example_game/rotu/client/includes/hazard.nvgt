@@ -1,0 +1,48 @@
+hazard@[]hazards(0);
+class hazard{
+double minx,maxx,miny,maxy,minz,maxz;
+int hazardsound;
+string type;
+bool stepped_on=false;
+hazard(double mx,double mx2,double my,double my2,double mz,double mz2,string t)
+{
+minx=mx;
+maxx=mx2;
+miny=my;
+maxy=my2;
+minz=mz;
+maxz=mz2;
+type=t;
+hazardsound=spawn_source(this.minx, this.maxx, this.miny, this.maxy, this.minz, this.maxz, this.type+".ogg");
+}
+}
+hazard@is_hazard_here(double x,double y, double z)
+{
+hazard@h=null;
+for(uint i=0; i<hazards.length(); i++)
+{
+if(hazards[i].stepped_on) continue;
+if(hazards[i].minx<=x&&hazards[i].maxx>=x&&hazards[i].miny<=y&&hazards[i].maxy>=y&&hazards[i].minz<=z&&hazards[i].maxz>=z)
+{
+@h=hazards[i];
+}
+}
+return h;
+}
+void hazardcheck() {
+hazard@temp=is_hazard_here(me.x, me.y, me.z);
+if(@temp==null) return;
+temp.stepped_on=true;
+speak("Get out of that "+temp.type+"!");
+send("hazard "+temp.type, 3);
+}
+void destroy_all_hazards() {
+for(uint i=0; i<hazards.length(); i+=1) {
+destroy_source(hazards[i].hazardsound);
+hazards.remove_at(i);
+continue;
+}
+}
+void spawn_hazard(int minx, int maxx, int miny, int maxy, int minz, int maxz, string type) {
+hazards.insert_last(hazard(minx, maxx, miny, maxy, minz, maxz, type));
+}

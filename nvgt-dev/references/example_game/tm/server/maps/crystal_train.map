@@ -1,0 +1,69 @@
+mapname:crystal_train
+maxx:150
+maxy:150
+maxz:100
+tile:0:100:0:100:0:0:carpet
+zone:0:100:0:100:0:100:the train is crowded with people. everyone is rushing to find the best seets. you should start finding seets as well. you have a limited amount of time to do so. if you don't find seets before the train starts moving? you will have to spend the entire journey without a seet! so make it quick!
+
+
+
+tile:20:20:46:50:3:3:carpet2
+tile:20:20:46:50:0:2:wallcloth
+tile:40:60:46:50:3:3:carpet2
+tile:40:60:46:50:0:2:wallcloth
+tile:20:50:0:4:3:3:carpet2
+tile:20:50:0:4:0:2:wallcloth
+zone:20:50:0:8:0:50:frunt seets@trackme@
+tile:20:50:3:3:3:12:wallcloth
+tile:20:50:20:25:3:3:carpet2
+tile:20:50:20:25:0:2:wallcloth
+tile:20:50:24:25:3:10:wallcloth
+zone:20:50:14:39:0:30:senter seets@trackme@
+tile:20:50:5:10:3:3:carpet2
+tile:20:50:5:10:0:2:wallcloth
+tile:20:50:9:9:3:10:wallcloth
+
+tile:20:50:14:18:3:3:carpet2
+tile:20:50:19:19:3:10:wallcloth
+tile:20:50:14:18:0:2:wallcloth
+tile:20:50:14:14:3:10:wallcloth
+tile:20:50:30:40:3:3:carpet2
+tile:20:50:30:40:0:2:wallcloth
+tile:20:50:36:36:3:3:wallcloth
+tile:20:50:30:30:0:2:wallcloth
+tile:20:50:40:40:3:10:wallcloth
+tile:0:50:50:50:3:10:wallcloth
+tile:20:50:51:56:3:3:carpet2
+tile:20:50:52:57:0:2:wallcloth
+tile:20:50:57:57:3:3:wallcloth
+fightingstate:0
+tile:0:100:58:65:3:3:carpet2
+tile:0:100:65:65:3:100:wallcloth
+src:0:109:0:109:0:100:train.ogg:0:100
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb:throwing_star
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb:field_card:fantasy_pass:teleporter
+tile:60:80:0:5:3:3:carpet2
+tile:60:80:0:5:0:2:wallcloth
+tile:60:80:5:5:3:3:wallcloth
+tile:90:100:0:6:3:3:carpet2
+tile:90:100:0:6:0:2:wallcloth
+tile:90:100:5:6:3:10:wallcloth
+tile:101:104:0:5:3:15:wallglass5
+zone:90:100:0:6:0:15:the windo seet@trackme@
+tile:101:120:0:100:0:0:carpet
+tile:0:100:94:100:3:3:carpet2
+tile:0:100:94:99:0:2:wallcloth
+tile:0:100:100:100:3:20:wallcloth
+zone:0:100:94:100:0:20:the last seet@trackme@
+tile:0:100:58:64:0:2:wallcloth
+zone:20:100:58:64:0:50:back seets@trackme@
+
+tile:0:100:66:70:3:3:carpet2
+tile:101:150:101:150:0:0:carpet
+zone:110:150:110:150:0:6:you've reached your destination. make your way to the exit, located in northeast
+zone:150:150:150:150:0:7:train exit@trackme@
+tile:0:151:107:109:0:50:wallglass5
+tile:100:109:110:150:0:50:wallglass5
+tile:101:120:0:109:0:50:wallwood16
+src:110:150:110:150:10:150:croustation.ogg
+noitems:0:55555:0:55555:0:55555:kings_statue

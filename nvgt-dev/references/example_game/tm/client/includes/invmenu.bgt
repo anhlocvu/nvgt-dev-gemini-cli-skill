@@ -1,0 +1,504 @@
+
+void give(string itemname, double itemvalue)
+{
+string content=inventory;
+string[] peramitors=string_split(content, "\r\n", true);
+string[] values;
+for(uint i=0; i<peramitors.length(); i++)
+{
+values.insert_at(i,string_replace(peramitors[i], string_left(peramitors[i], string_contains(peramitors[i], " ", 1)+1), "", true));
+peramitors[i]=string_replace(peramitors[i], " "+values[i], "", true);
+}
+if(inv_item_exists(itemname))
+{
+double orgval;
+if(inv_item_number(itemname) > -1)
+{
+orgval=string_to_number(values[inv_item_number(itemname)]);
+}
+else
+{
+return;
+}
+if(orgval+itemvalue < 1)
+{
+inv_delete_item(itemname);
+}
+else
+{
+values[inv_item_number(itemname)]=(orgval+itemvalue);
+string tempinv;
+for(uint i=0; i<peramitors.length(); i++)
+{
+tempinv+=peramitors[i]+" "+values[i]+"\r\n";
+}
+inventory=tempinv;
+}
+}
+else
+{
+if(itemvalue > 0)
+{
+inventory+=itemname+" "+itemvalue+"\r\n";
+}
+}
+inventory=inventory;
+}
+bool inv_item_exists(string itemname)
+{
+string content=inventory;
+string[] peramitors=string_split(content, "\r\n", true);
+string[] values;
+for(uint i=0; i<peramitors.length(); i++)
+{
+values.insert_at(i,string_replace(peramitors[i], string_left(peramitors[i], string_contains(peramitors[i], " ", 1)+1), "", true));
+peramitors[i]=string_replace(peramitors[i], " "+values[i], "", true);
+}
+for(uint i=0; i<peramitors.length(); i++)
+{
+if(peramitors[i]==itemname)
+{
+return true;
+}
+}
+return false;
+}
+double inv_item_number(string itemname)
+{
+string content=inventory;
+string[] peramitors=string_split(content, "\r\n", true);
+string[] values;
+for(uint i=0; i<peramitors.length(); i++)
+{
+values.insert_at(i,string_replace(peramitors[i], string_left(peramitors[i], string_contains(peramitors[i], " ", 1)+1), "", true));
+peramitors[i]=string_replace(peramitors[i], " "+values[i], "", true);
+}
+for(uint i=0; i<peramitors.length(); i++)
+{
+if(peramitors[i]==itemname)
+{
+return string_to_number(values[i]);
+}
+}
+return 0;
+}
+double inv_item(string itemname)
+{
+string content=inventory;
+string[] peramitors=string_split(content, "\r\n", true);
+string[] values;
+for(uint i=0; i<peramitors.length(); i++)
+{
+values.insert_at(i,string_replace(peramitors[i], string_left(peramitors[i], string_contains(peramitors[i], " ", 1)+1), "", true));
+peramitors[i]=string_replace(peramitors[i], " "+values[i], "", true);
+}
+for(uint i=0; i<peramitors.length(); i++)
+{
+if(peramitors[i]==itemname)
+{
+return i;
+}
+}
+return -1;
+}
+void inv_delete_item(string itemname)
+{
+string content=inventory;
+string[] peramitors=string_split(content, "\r\n", true);
+string[] values;
+for(uint i=0; i<peramitors.length(); i++)
+{
+values.insert_at(i,string_replace(peramitors[i], string_left(peramitors[i], string_contains(peramitors[i], " ", 1)+1), "", true));
+peramitors[i]=string_replace(peramitors[i], " "+values[i], "", true);
+}
+for(uint i=0; i<peramitors.length(); i++)
+{
+if(peramitors[i]==itemname)
+{
+inventory=string_replace(inv, itemname+" "+values[i]+"\r\n", "", false);
+}
+}
+}
+
+void invmenu(string c)
+{
+sound invmove;
+get_characters();
+string cl;
+string []storage;
+//string[] storage=string_split(inventory,"\r\n",true);
+string[] items;
+if (c=="all inventory") items=string_split(inventory,"\r\n",true);
+if (c=="weapons and ammo") items=string_split(wa,"\r\n",true);
+if (c=="packages and packed items") items=string_split(packages,"\r\n",true);
+if (c=="food and drinks") items=string_split(food,"\r\n",true);
+if (c=="unprepared food and drinks") items=string_split(unprepared_food,"\r\n",true);
+if (c=="dead animals and corpses") items=string_split(corpse,"\r\n",true);
+int number=0;
+for(int i=0; i<items.length(); i+=1)
+{
+number++;
+}
+speak(c+", "+number+" items.");
+int counter=0;
+timer invchange;
+
+while(true)
+{
+if(speed_stop_is_hacking(200)==true)
+killbitch();
+cl=get_characters();
+wait(5);
+string []item=string_split(items[counter], " ", true);
+if (invchange.elapsed>2000 and c=="all inventory") items=string_split(inventory,"\r\n",true);
+if (c=="weapons and bulets") items=string_split(wa,"\r\n",true);
+if (c=="packages and packed items") items=string_split(packages,"\r\n",true);
+if (c=="food and drinks") items=string_split(food,"\r\n",true);
+if (c=="unprepared food and drinks") items=string_split(unprepared_food,"\r\n",true);
+if (c=="dead animals and corpses") items=string_split(corpse,"\r\n",true);
+tk_loop();
+netloop();
+if(counter>items.length())
+{
+counter=items.length()-1;
+}
+
+string p=items[counter];
+if(key_pressed(KEY_HOME))
+{
+if(items.length()==1)
+{
+string []item=string_split(items[0], " ", true);
+if (item[0]!="") speak(item[0]+", you have"+inv_item_number(item[0]));
+counter=0;
+}
+else if(counter > 0)
+{
+counter=0;
+string []item=string_split(items[counter], " ", true);
+if (item[0]!="") speak(item[0]+", you have"+inv_item_number(item[0]));
+spool.play_stationary("invclick.ogg",false);
+}
+}
+if(key_pressed(KEY_END))
+{
+if(items.length()==1)
+{
+string []item=string_split(items[0], " ", true);
+if (item[0]!="") speak(item[0]+", you have"+inv_item_number(item[0]));
+counter=0;
+}
+else if(counter < items.length()-1)
+{
+counter=items.length()-1;
+string []item=string_split(items[counter], " ", true);
+if (item[0]!="") speak(item[0]+", you have"+inv_item_number(item[0]));
+spool.play_stationary("invclick.ogg",false);
+}
+}
+if (key_pressed(KEY_TAB) and key_up(KEY_LMENU) and key_up(KEY_RMENU))
+{
+if (shift_is_down())
+{
+invcatpos-=1;
+if (invcatpos<0)
+invcatpos=invcat.length()-1;
+spool.play_stationary("invswitch.ogg",false);
+invmenu(invcat[invcatpos]);
+break;
+}
+else
+{
+invcatpos+=1;
+if (invcatpos>=invcat.length())
+invcatpos=0;
+spool.play_stationary("invswitch.ogg",false);
+invmenu(invcat[invcatpos]);
+break;
+}
+}
+if( alt_is_down())
+{
+if(key_pressed(KEY_1))
+{
+items.resize(0);
+cat="all inventory";
+spool.play_stationary("invswitch.ogg",false);
+invcheck();
+invmenu(cat);
+break;
+}
+if(key_pressed(KEY_2))
+{
+items.resize(0);
+cat="weapons and ammo";
+spool.play_stationary("invswitch.ogg",false);
+invcheck();
+invmenu(cat);
+break;
+}
+if(key_pressed(KEY_3))
+{
+items.resize(0);
+cat="packages and packed items";
+spool.play_stationary("invswitch.ogg",false);
+invcheck();
+invmenu(cat);
+break;
+}
+if(key_pressed(KEY_4))
+{
+items.resize(0);
+spool.play_stationary("invswitch.ogg",false);
+cat="food and drinks";
+invcheck();
+invmenu(cat);
+break;
+}
+if(key_pressed(KEY_5))
+{
+items.resize(0);
+spool.play_stationary("invswitch.ogg",false);
+cat="unprepared food and drinks";
+invcheck();
+invmenu(cat);
+break;
+}
+if(key_pressed(KEY_6))
+{
+items.resize(0);
+spool.play_stationary("invswitch.ogg",false);
+cat="dead animals and corpses";
+invcheck();
+invmenu(cat);
+break;
+}
+}
+if (kup.pressing())
+{
+if(alt_is_down() and c=="all inventory")
+{
+invchange.restart();
+if(counter>0) {
+items.remove_at(counter);
+items.insert_at(counter-1, p);
+counter--;
+invchanged=true;
+spool.play_stationary("invmove.ogg",false);
+}
+}
+else
+{
+if(items.length()==1)
+{
+string []item=string_split(items[0], " ", true);
+if (item[0]!="") speak(item[0]+", you have"+inv_item_number(item[0]));
+//speak(item[0]+", you hev"+item[1]);
+counter=0;
+}
+else if(counter > 0)
+{
+counter--;
+string []item=string_split(items[counter], " ", true);
+if (item[0]!="") speak(item[0]+", you have"+inv_item_number(item[0]));
+spool.play_stationary("invclick.ogg",false);
+}
+}
+}
+if (kdown.pressing())
+{
+if(alt_is_down() and c=="all inventory")
+{
+invchange.restart();
+if(counter<items.length()-1) {
+items.remove_at(counter);
+items.insert_at(counter+1, p);
+counter++;
+invchanged=true;
+spool.play_stationary("invmove.ogg",false);
+}
+}
+else{
+if(items.length()==1)
+{
+string []item=string_split(items[0], " ", true);
+if (item[0]!="") speak(item[0]+", you have"+inv_item_number(item[0]));
+counter=0;
+}
+else if(counter < items.length()-1)
+{
+counter++;
+string []item=string_split(items[counter], " ", true);
+if (item[0]!="") speak(item[0]+", you have"+inv_item_number(item[0]));
+spool.play_stationary("invclick.ogg",false);
+}
+}
+}
+if(key_pressed(KEY_SPACE) and item[0]!="")
+{
+string []item=string_split(items[counter], " ", true);
+send_reliable(0,"giveitem "+item[0],0);
+invchanged=false;
+}
+if(key_pressed(KEY_ESCAPE))
+{
+send_reliable(0,"invclose",0);
+break;
+}
+
+if(key_pressed(KEY_RETURN))
+{
+string []item=string_split(items[counter], " ", true);
+if (item[0]!="" and can_move==true)
+{
+//send_reliable(0, "use "+item[0], 0);
+focuseditem=item[0];
+break;
+}
+else
+speak("Error: could not use item!");
+}
+
+/*
+if(key_pressed(KEY_LEFT))
+{
+string []item=string_split(items[counter], " ", true);
+
+if(lefthand!=item[0])send_reliable(0,"take "+item[0],0);
+lefthand=item[0];
+invchanged=false;
+}
+if(key_pressed(KEY_RIGHT))
+{
+string []item=string_split(items[counter], " ", true);
+
+if(righthand!=item[0]) send_reliable(0,"take "+item[0],0);
+righthand=item[0];
+invchanged=false;
+}
+*/
+if(key_pressed(KEY_BACK) and item[0]!="")
+{
+string []item=string_split(items[counter], " ", true);
+/*
+if(shift_is_down())
+{
+double amount=stn(chat("hav many.", ""));
+if(amount>0)
+drop(item[0],amount);
+invchanged=false;
+}
+else
+{
+*/
+//drop(item[0]);
+//string []item=string_split(items[counter], " ", true);
+
+send_reliable(0, "drop "+item[0], 0);
+
+invchanged=false;
+}
+}
+if (invchange.elapsed>1000 and invchanged==true and c=="all inventory")
+{
+invchange.restart();
+invchanged=false;
+//storage=items;
+string d;
+for(int i=0; i<items.length(); i++)
+{
+d+=items[i]+"\r\n";
+}
+inventory=d;
+send_reliable(0,"setinv "+d,0);
+}
+if(items.length()>1)
+{
+if(cl!="" and cl!=" " and cl.length()==1)
+{
+int f=0;
+int oc=counter;
+for(uint i=counter; i<items.length(); i++)
+{
+if(i==counter)
+{
+continue;
+}
+if(items[i][0]==cl)
+{
+counter=i;
+string []item=string_split(items[counter], " ", true);
+if (item[0]!="") speak(item[0]+", you have"+inv_item_number(item[0]));
+cl="";
+f=1;
+break;
+}
+}
+if(f==0)
+{
+counter=0;
+for(uint i=counter; i<items.length(); i++)
+{ 
+if(items[i][0]==cl)
+{
+counter=i;
+string []item=string_split(items[counter], " ", true);
+if (item[0]!="") speak(item[0]+", you have"+inv_item_number(item[0]));
+cl="";
+f=1;
+break;
+}
+}
+}
+if(f==0)
+{
+speak("No such item exists");
+}
+}
+}
+return;
+}
+
+void invcheck()
+{
+string tempweapon;
+string temppackages;
+string tempfood;
+string tempcorpse;
+string tempunprepared_food;
+string[] peramitors=string_split(inventory, "\r\n", true);
+for(uint i=0; i<peramitors.length(); i++)
+{
+string []item=string_split(peramitors[i], " ", true);
+if (is_weapon(item[0])==true and inv_item_number(item[0])>0)
+{
+tempweapon+=item[0]+"\r\n";
+number++;
+}
+if (is_food(item[0])==true and inv_item_number(item[0])>0)
+{
+tempfood+=item[0]+"\r\n";
+number++;
+}
+if (is_corpse(item[0])==true and inv_item_number(item[0])>0)
+{
+tempcorpse+=item[0]+"\r\n";
+number++;
+}
+if (is_unprepared_food(item[0])==true and inv_item_number(item[0])>0)
+{
+tempunprepared_food+=item[0]+"\r\n";
+number++;
+}
+if(string_contains(item[0], "pack", 1)>-1 and inv_item_number(item[0])>0)
+{
+temppackages+=item[0]+"\r\n";
+number++;
+}
+}
+wa=tempweapon;
+packages=temppackages;
+food=tempfood;
+unprepared_food=tempunprepared_food;
+corpse=tempcorpse;
+}

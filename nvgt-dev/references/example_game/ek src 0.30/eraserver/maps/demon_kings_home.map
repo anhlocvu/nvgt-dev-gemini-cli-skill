@@ -1,0 +1,7 @@
+mapname:demon_kings_home
+maxx:100
+maxy:100
+maxz:100
+tile:0:100:0:100:0:0:concrete
+zone:0:100:0:100:0:100:demon_kings_home
+robots:0:100:0:100:0:0:1:2000:demon_king

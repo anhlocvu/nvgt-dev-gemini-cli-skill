@@ -1,0 +1,107 @@
+mapname:donkey
+maxx:400
+maxy:400
+maxz:800
+zone:0:800:0:800:0:800:an exciting, thrilling environment can be felt here. people come here to shop all sorts of goods. from life necessaties to weapons of destruction, crystal mall possesses everything that is required. the major difference between this and the evermore mall is that here, all sorts of new things can be found, just waiting to be bought
+zone:5:5:5:5:0:0:stairs leading up to the 2nd floor@trackme@
+tile:0:800:0:800:0:0:carpet
+tile:0:800:0:800:0:0:concrete7
+tile:0:101:101:101:0:20:wallglass5
+tile:101:102:0:100:0:100:wallglass5
+tile:150:200:151:151:0:200:wallglass5
+tile:148:151:151:200:0:200:wallglass5
+tile:201:202:151:201:0:200:wallglass5
+zone:100:100:100:100:0:15:entrence to the  crystall mall@trackme@
+zone:100:100:102:102:0:20:go back 
+zone:150:150:150:150:0:20:entrence to the combat store@trackme@
+zone:200:200:200:200:0:0:press shift plus enter to go through the items which are available to buy @trackme@
+zone:152:152:152:152:0:20:go back
+tile:152:200:201:202:0:20:wallglass5
+cmusic:0:400:0:400:0:8000:anime85.ogg:-10:100
+tile:0:800:0:800:400:400:concrete7
+tile:249:301:251:251:0:20:wallglass5
+tile:248:251:251:301:0:20:wallglass5
+tile:301:302:252:301:0:20:wallglass5
+tile:252:300:301:303:0:20:wallglass5
+fightingstate:0
+tile:349:402:351:351:0:20:wallglass5
+tile:348:351:351:402:0:20:wallglass5
+tile:352:402:401:402:0:20:wallglass5
+tile:401:403:352:401:0:20:wallglass5
+zone:152:200:152:200:0:20:from mailay weapons to guns, the combat store has a large selection choose from. even swords and bows can be bought here 
+zone:250:250:250:250:0:20:door leading to a small shop, people can buy different sorts of healing items and cures @trackme@
+zone:252:300:252:300:0:20:it is a simble of peace, created with an intention to heal, not to harm. all which is required to heal or to cure you, it all is here, waiting to be bought 
+zone:252:252:252:252:0:0:exit
+zone:200:200:200:200:0:0:press shift plus enter to go through the items which are available to buy 
+zone:152:152:152:152:0:20:exit 
+zone:300:300:300:300:0:0:press shift plus enter to go through the list of medisens and cures @trackme@
+zone:350:350:350:350:0:0:door to the bullets shop. bullets of various guns can be bought here @trackme@
+zone:352:400:352:400:0:20:bullets store 
+zone:352:352:352:352:0:20:exit 
+zone:400:400:400:400:0:0:press shift plus enter to see a list of available bullets @trackme@
+tile:0:400:0:400:200:200:concrete7
+zone:0:400:0:400:200:300:crystal mall, 2nd floor
+tile:70:70:0:50:200:300:wallglass5
+tile:0:70:51:52:200:300:wallglass5
+door:69:69:50:50:200:200:69:53:200:500:none.ogg:none.ogg:dooropen22.ogg:doorclose22.ogg
+door:69:69:53:53:200:200:69:50:200:500:none.ogg:none.ogg:dooropen22.ogg:doorclose22.ogg
+tile:71:80:71:72:200:300:wallglass5
+tile:71:72:71:80:200:300:wallglass5
+tile:80:81:71:80:200:300:wallglass5
+tile:72:81:80:80:200:300:wallglass5
+door:71:71:70:70:200:200:73:73:200:500:none.ogg:none.ogg:dooropen22.ogg:doorclose22.ogg
+door:73:73:73:73:200:200:71:70:200:500:none.ogg:none.ogg:dooropen22.ogg:doorclose22.ogg
+tile:91:100:91:92:200:300:wallglass5
+tile:91:92:91:100:200:300:wallglass5
+tile:100:100:91:100:200:300:wallglass5
+tile:91:100:100:100:200:300:wallglass5
+door:93:93:93:93:200:200:91:90:200:500:none.ogg:none.ogg:dooropen22.ogg:doorclose22.ogg
+door:91:91:90:90:200:200:93:93:200:500:none.ogg:none.ogg:dooropen22.ogg:doorclose22.ogg
+zone:71:71:70:70:200:200:entrence to the bombs store@trackme@
+zone:73:79:73:79:200:400:bombs store
+zone:73:73:73:73:200:200:exit
+zone:79:79:79:79:200:200:press shift plus enter to see a list of available bombs @trackme@
+zone:93:99:93:99:200:250:all sorts of useful items are sold here. speed drinks, jump drinks, shields and fight inviters, everything is available here
+zone:91:91:90:90:200:200:entrence to misk store @trackme@
+zone:93:93:93:93:200:250:exit
+zone:99:99:99:99:200:200:press shift plus enter to see a list of all the items@trackme@
+tile:141:155:141:142:200:300:wallglass5
+tile:141:142:141:155:200:300:wallglass5
+tile:156:156:141:155:200:300:wallglass5
+tile:141:156:156:156:200:300:wallglass5
+zone:143:155:143:155:200:300:the shop is small, however more useful than perhaps anything. aura can be bought here, through which you can use the wand to cast spells
+door:143:143:143:143:200:200:141:140:200:500:none.ogg:none.ogg:dooropen22.ogg:doorclose22.ogg
+zone:141:141:140:140:200:200:entrence to magical store@trackme@
+door:141:141:140:140:200:200:143:143:201:500:none.ogg:none.ogg:dooropen22.ogg:doorclose22.ogg
+zone:143:143:143:143:200:300:exit
+zone:155:155:155:155:200:200:press shift plus enter to see a list of magical items@trackme@
+tile:11:20:11:11:0:230:wallcar2
+tile:10:10:11:20:0:300:wallcar2
+tile:20:20:11:20:0:300:wallcar2
+tile:11:20:20:20:0:300:wallcar2
+tile:11:19:12:19:0:0:metal3
+door:15:15:12:12:0:0:15:10:0:1500:none.ogg:none.ogg:dooropen107.ogg:doorclose107.ogg
+door:15:15:10:10:0:0:15:12:0:1500:none.ogg:none.ogg:dooropen107.ogg:doorclose107.ogg
+door:15:15:10:10:200:200:15:12:200:1500:none.ogg:none.ogg:dooropen107.ogg:doorclose107.ogg
+tile:11:19:12:19:200:200:metal3
+door:15:15:12:12:200:200:15:10:200:1500:none.ogg:none.ogg:dooropen107.ogg:doorclose107.ogg
+door:15:15:15:15:200:200:15:15:0:50:none.ogg:doormove15.ogg:none.ogg:none.ogg
+door:15:15:15:15:0:0:15:15:200:26:none.ogg:doormove15.ogg:dooropen52.ogg:none.ogg
+tile:15:15:15:15:12:198:metal3
+tile:5:5:5:5:0:200:wood4
+tile:4:6:6:6:1:199:wall
+tile:6:6:5:5:1:199:wall
+tile:4:4:5:5:1:199:wall
+tile:4:6:4:4:1:199:wall
+zone:5:5:5:5:200:200:stairs leading down to the first floor@trackme@
+zone:5:5:5:5:0:200:stairs
+door:100:100:100:100:0:0:100:102:0:500:none.ogg:none.ogg:dooropen22.ogg:doorclose22.ogg
+door:100:100:102:102:0:0:100:100:0:500:none.ogg:none.ogg:dooropen22.ogg:doorclose22.ogg
+door:150:150:150:150:0:0:152:152:0:500:none.ogg:none.ogg:dooropen22.ogg:doorclose22.ogg
+door:152:152:152:152:0:0:150:150:0:500:none.ogg:none.ogg:dooropen22.ogg:doorclose22.ogg
+door:250:250:250:250:0:0:252:252:0:500:none.ogg:none.ogg:dooropen22.ogg:doorclose22.ogg
+door:252:252:252:252:0:0:250:250:0:400:none.ogg:none.ogg:dooropen22.ogg:doorclose22.ogg
+door:350:350:350:350:0:0:352:352:0:500:none.ogg:none.ogg:dooropen22.ogg:doorclose22.ogg
+door:352:352:352:352:0:0:350:350:0:500:none.ogg:none.ogg:dooropen22.ogg:doorclose22.ogg
+tile:0:400:157:400:200:300:wallbank
+tile:157:400:0:400:200:300:wallbank

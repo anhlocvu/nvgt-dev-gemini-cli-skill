@@ -1,0 +1,50 @@
+source@[]sources(0);
+class source{
+double minx,maxx,miny,maxy,minz,maxz;
+int source_sound;
+int source_volume;
+int source_pitch;
+string filename;
+int id=-1;
+source(double mx,double mx2,double my,double my2,double mz,double mz2,string name,int srcvol=0)
+{
+minx=mx;
+maxx=mx2;
+miny=my;
+maxy=my2;
+minz=mz;
+maxz=mz2;
+filename=name;
+source_volume=srcvol;
+if(source_volume>0) source_volume=0;
+if(source_volume<-40) source_volume=-40;
+source_sound=srcpool.play_3d(filename,me.x,me.y,me.z,this.minx,this.miny,this.minz,dir,true);
+srcpool.update_sound_start_values(source_sound,0,source_volume,100);
+srcpool.update_sound_range_3d(source_sound,0,maxx-minx,0,maxy-miny,0,maxz-minz);
+id=random(111, 99999);
+}
+}
+void destroy_source(int id) {
+for(uint i=0; i<sources.length(); i+=1) {
+if(sources[i].id==id) {
+srcpool.destroy_sound(sources[i].source_sound);
+sources.remove_at(i);
+continue;
+}
+}
+}
+int spawn_source(double x1,double x2,double y1,double y2,double z1,double z2,string soundname,int source_volume=0)
+{
+source source1(x1,x2,y1,y2,z1,z2,soundname,source_volume);
+sources.insert_last(source1);
+int retval=source1.id;
+return retval;
+}
+void destroy_sources()
+{
+for(uint i=0; i<sources.length(); i++)
+{
+srcpool.destroy_sound(sources[i].source_sound);
+}
+sources.resize(0);
+}

@@ -1,0 +1,67 @@
+int hrs=6,mins=0,secs=0;
+string AMPM = "AM";
+bool tnotify=false;
+timer tstimer;
+void save_clock()
+{
+file f;
+f.open("time_system.dat","wb");
+string timedata=hrs+":"+mins+":"+secs;
+f.write(timedata);
+f.close();
+}
+void load_clock()
+{
+file f;
+if(file_exists("time_system.dat"))
+{
+f.open("time_system.dat","rb");
+string[]timedata=string_split(f.read(),":",false);
+f.close();
+hrs=stn(timedata[0]);
+mins=stn(timedata[1]);
+secs=stn(timedata[2]);
+}
+}
+void time_system_loop()
+{
+if(hrs==6 and mins==0 and secs==0 and !tnotify and raining==false)
+{
+send(0,"The sun rises, and casts its golden rays over the carnage and destruction that has been caused.",2);
+tnotify=true;
+}
+if(hrs==20 and mins==0 and secs==0 and !tnotify and raining==false)
+{
+send(0,"Darkness begins to settle as the sun begins to set, leaving the game in almost complete darkness, only broken slightly by the moon.",2);
+tnotify=true;
+}
+if(tstimer.elapsed>=200)
+{
+tstimer.restart();
+secs+=1;
+tnotify=false;
+}
+if(secs==60)
+{
+mins+=1;
+secs=0;
+}
+if(mins==60)
+{
+hrs+=1;
+mins=0;
+secs=0;
+}
+if(hrs==12) AMPM="PM";
+if(hrs==24)
+{
+hrs=0;
+mins=0;
+secs=0;
+}
+if(hrs==0) AMPM="AM";
+}
+string get_sayable_time()
+{
+return (hrs>12?hrs-12:hrs)+":"+(mins<10?"0"+mins:mins)+":"+(secs<10?"0"+secs:secs)+" "+AMPM;
+}

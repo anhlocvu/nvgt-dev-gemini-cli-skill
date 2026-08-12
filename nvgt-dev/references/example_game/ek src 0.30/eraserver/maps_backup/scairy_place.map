@@ -1,0 +1,128 @@
+mapname:scairy_place
+maxx:500
+maxy:500
+maxz:500
+tile:0:500:0:500:0:0:wood
+tile:0:200:0:200:0:0:dirt2
+zone:0:200:0:200:0:20:hmm, now, use camera to go out from this map!
+src:0:200:0:200:0:20:amb7.ogg
+tile:0:200:50:50:0:300:wallwooddoor
+zone:0:200:49:49:0:300:oh god, how to cross this wall?
+tile:50:50:49:49:-50:0:dirt2
+tile:50:50:50:50:-49:-1:wallwood18
+tile:50:50:48:48:-49:-1:wallwood18
+tile:49:49:49:49:-49:-1:wallwood18
+tile:51:51:49:49:-49:-1:wallwood18
+src:0:200:0:200:-100:-5:amb7.ogg
+zone:50:50:49:49:-50:-50:go strate, don't move to east, west, south
+tile:50:50:50:70:-50:-50:dirt2
+zone:50:50:49:49:-49:-1:wow, you are on right road!
+zone:50:50:70:70:-50:-50:hey buddy, what to do now!
+tile:50:50:75:100:-55:-55:dirt2
+zone:50:50:75:99:-55:-55:good job! best luck for your adventure!
+tile:50:50:100:100:-55:0:dirt2
+zone:50:50:100:100:-55:-55:now, use camera to find road! its easy!
+zone:50:50:100:100:-54:-1:nice! you are on right way!
+tile:201:500:0:200:0:0:dirt2
+src:201:500:0:200:0:20:amb7.ogg
+tile:201:500:50:50:0:200:wallwooddoor
+tile:50:500:201:500:0:0:dirt2
+tile:0:500:201:500:0:0:dirt2
+zone:0:500:201:500:0:500:main adventure, starts from hear.
+src:0:500:201:500:0:500:amb7.ogg
+zone:201:500:0:200:0:500:adventures area!
+tile:0:0:500:500:0:100:concrete11
+tile:10:50:500:500:100:100:concrete11
+tile:45:45:500:500:100:100:concrete11
+tile:45:45:490:500:100:100:concrete11
+tile:45:45:490:490:100:130:concrete11
+tile:55:100:490:490:125:125:concrete11
+tile:100:100:490:490:125:150:concrete11
+tile:100:100:450:480:150:150:concrete11
+tile:100:100:450:450:150:300:concrete11
+tile:110:150:450:450:300:300:concrete11
+tile:151:151:450:450:300:300:concrete11
+tile:152:152:450:450:299:299:concrete11
+tile:152:152:448:450:299:299:concrete11
+tile:153:153:448:448:298:298:concrete11
+tile:153:153:444:448:298:298:concrete11
+tile:154:154:444:444:297:297:concrete11
+tile:154:154:442:444:297:297:concrete11
+tile:155:155:440:442:296:296:concrete11
+tile:165:200:440:440:295:295:concrete11
+tile:200:200:440:440:300:400:concrete11
+tile:200:200:439:439:401:401:concrete11
+tile:200:200:438:438:402:402:concrete11
+tile:200:200:437:437:403:403:concrete11
+tile:200:200:436:436:404:404:concrete11
+tile:200:200:435:435:405:405:concrete11
+tile:201:201:435:435:406:406:concrete11
+tile:202:202:435:435:407:407:concrete11
+tile:203:203:435:435:408:408:concrete11
+tile:204:204:435:435:409:409:concrete11
+tile:205:205:435:435:410:410:concrete11
+tile:205:205:433:433:411:411:concrete11
+tile:205:205:430:430:413:413:concrete11
+tile:207:207:430:430:414:414:concrete11
+tile:210:210:430:430:416:416:concrete11
+tile:210:210:430:430:420:420:concrete11
+zone:50:50:49:49:0:0:startting point:trackme
+tile:211:211:430:430:420:420:concrete11
+tile:211:211:429:429:420:420:concrete11
+tile:212:212:429:429:420:420:concrete11
+tile:212:212:428:428:420:420:concrete11
+tile:213:213:428:428:420:420:concrete11
+tile:213:213:427:427:420:420:concrete11
+tile:214:214:427:427:420:420:concrete11
+tile:214:214:426:426:420:420:concrete11
+tile:215:215:426:426:420:420:concrete11
+tile:215:215:425:425:420:420:concrete11
+tile:216:216:425:425:420:420:concrete11
+tile:216:216:424:424:420:420:concrete11
+tile:217:217:423:424:420:420:concrete11
+tile:218:218:422:423:420:420:concrete11
+tile:219:219:421:422:420:420:concrete11
+tile:220:220:420:421:420:420:concrete11
+tile:220:220:420:420:425:450:concrete11
+tile:220:220:400:410:450:450:concrete11
+tile:220:250:400:400:450:450:concrete11
+tile:0:200:0:200:-100:-100:fi
+tile:250:250:380:390:448:448:concrete11
+tile:260:270:380:380:445:445:concrete11
+tile:270:270:381:381:444:444:concrete11
+tile:270:270:365:371:441:441:concrete11
+tile:271:300:370:370:440:440:concrete11
+tile:0:200:0:200:-350:-300:underwater
+src:0:200:0:200:-350:-290:underwater.ogg
+src:0:200:0:200:-350:-290:lake.ogg
+tile:201:201:0:201:-350:-250:wallunderwater2
+tile:0:201:201:201:-350:-250:wallunderwater2
+tile:0:200:0:200:-299:-299:wallrocks3
+tile:201:201:134:134:-334:-334:underwater
+tile:202:210:130:140:-350:-330:underwater
+src:202:210:130:140:-350:-330:underwater.ogg
+src:202:210:130:140:-350:-300:lake.ogg
+tile:202:210:130:140:-329:-300:water3
+tile:0:300:0:300:-400:-400:fi
+zone:0:300:0:300:-400:-250:cross this water!:trackme
+travelpoint:210:210:140:140:-300:-300:scairy_place:0:0:0:move to next stape of adventure!
+noitems:0:300:0:300:-400:-250:gas_mask:air_canister
+zone:200:200:134:134:-300:-300:hint to cross the water!:trackme
+tile:300:300:350:360:435:435:concrete11
+tile:310:320:350:350:430:430:concrete11
+tile:321:321:350:350:425:425:concrete11
+tile:321:321:330:340:425:425:concrete11
+tile:320:320:330:330:420:420:concrete11
+tile:330:340:330:330:420:420:concrete11
+tile:340:340:328:328:415:415:concrete11
+tile:340:340:324:324:410:410:concrete11
+tile:340:340:323:323:405:405:concrete11
+tile:340:340:300:314:400:400:concrete11
+tile:350:400:300:300:400:400:concrete11
+tile:400:400:300:300:400:450:concrete11
+tile:410:450:300:300:450:450:concrete11
+tile:454:500:300:300:455:455:concrete11
+tile:500:500:300:300:450:500:concrete11
+tile:500:500:300:500:500:500:concrete11
+zone:500:500:500:500:500:500:wow! you made it! congratulations!
+noitems:0:500:0:500:0:500:elecboat

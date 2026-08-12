@@ -1,0 +1,406 @@
+/*
+inventory function.
+by technology production
+*/
+void inventorymenu(string cat,double maincount=0)
+{
+key_hold ileft(KEY_LEFT,300,50);
+key_hold iright(KEY_RIGHT,300,50);
+key_hold iup(KEY_UP,500,50);
+key_hold idown(KEY_DOWN,500,50);
+key_hold iback(KEY_DELETE,500,50);
+get_characters();
+string cl;
+timer invchangetimer;
+bool invchange=false;
+double mc=0;
+double counter=maincount;
+string content=inv;
+string[] peramitors=string_split(content, "\r\n", true);
+string[] peramitors2;
+for(uint i=0; i<peramitors.length(); i++)
+{
+peramitors[i]=string_split(peramitors[i],"=",true)[0];
+}
+speak(cat);
+while(true)
+{
+cl=get_characters();
+wait(5);
+ek_loop();
+peramitors.resize(0);
+peramitors2.resize(0);
+content=inv;
+peramitors2=string_split(content, "\r\n", true);
+for(uint i=0; i<peramitors2.length(); i++)
+{
+peramitors2[i]=string_split(peramitors2[i],"=",true)[0];
+if(cat=="entire inventory")
+{
+peramitors.insert_last(peramitors2[i]);
+}
+else if(cat=="pay items")
+{
+if(payitems.find(peramitors2[i])>-1)
+{
+peramitors.insert_last(peramitors2[i]);
+}
+}
+else if(cat=="explosives")
+{
+if(string_contains(string_to_lower_case(peramitors2[i]),"_bomb",1)>-1 or explosives.find(peramitors2[i])>-1)
+{
+peramitors.insert_last(peramitors2[i]);
+}
+}
+else if(cat=="vehicles")
+{
+if(vehicles.find(peramitors2[i])>-1)
+{
+peramitors.insert_last(peramitors2[i]);
+}
+}
+else if(cat=="weapons and ammos")
+{
+if(guns.find(peramitors2[i])>-1 or ammos.find(peramitors2[i])>-1)
+{
+peramitors.insert_last(peramitors2[i]);
+}
+}
+else if(cat=="technology")
+{
+if(techs.find(peramitors2[i])>-1)
+{
+peramitors.insert_last(peramitors2[i]);
+}
+}
+else if(cat=="foods and drinks")
+{
+if(foods.find(peramitors2[i])>-1)
+{
+peramitors.insert_last(peramitors2[i]);
+}
+}
+else if(cat=="animals")
+{
+if(string_contains(string_to_lower_case(peramitors2[i]),"dead_",1)>-1 or string_contains(string_to_lower_case(peramitors2[i]),"cutted_",1)>-1 or string_contains(string_to_lower_case(peramitors2[i]),"skinned_",1)>-1 or animalsactions.find(peramitors2[i])>-1)
+{
+peramitors.insert_last(peramitors2[i]);
+}
+}
+else if(cat=="medical items")
+{
+if(medicals.find(peramitors2[i])>-1)
+{
+peramitors.insert_last(peramitors2[i]);
+}
+}
+else if(cat=="unsorted")
+{
+if(payitems.find(peramitors2[i])<0 and string_contains(string_to_lower_case(peramitors2[i]),"_bomb",1)<0 and explosives.find(peramitors2[i])<0 and vehicles.find(peramitors2[i])<0 and guns.find(peramitors2[i])<0 and ammos.find(peramitors2[i])<0 and foods.find(peramitors2[i])<0 and string_contains(string_to_lower_case(peramitors2[i]),"dead_",1)<0 and string_contains(string_to_lower_case(peramitors2[i]),"cutted_",1)<0 and string_contains(string_to_lower_case(peramitors2[i]),"skinned_",1)<0 and animalsactions.find(peramitors2[i])<0 and medicals.find(peramitors2[i])<0 and string_contains(string_to_lower_case(peramitors2[i]),"pack",1)<0 and string_contains(string_to_lower_case(peramitors2[i]),"bag",1)<0 and string_contains(string_to_lower_case(peramitors2[i]),"box_of",1)<0 and packages.find(peramitors2[i])<0)
+{
+peramitors.insert_last(peramitors2[i]);
+}
+}
+else if(cat=="packages and bags")
+{
+if(string_contains(string_to_lower_case(peramitors2[i]),"pack",1)>-1 or string_contains(string_to_lower_case(peramitors2[i]),"bag",1)>-1 or string_contains(string_to_lower_case(peramitors2[i]),"box_of",1)>-1 or packages.find(peramitors2[i])>-1)
+{
+peramitors.insert_last(peramitors2[i]);
+}
+}
+}
+if(counter > peramitors.length()-1)
+{
+counter=peramitors.length()-1;
+}
+if(counter<0) counter=0;
+if(cl!="" and cl!=" ")
+{
+cl=string_to_lower_case(cl);
+int f=0;
+int oc=counter;
+for(uint i=counter; i<peramitors.length(); i++)
+{
+if(i==counter)
+{
+continue;
+}
+if(string_to_lower_case(peramitors[i][0])==cl)
+{
+if(counter<i)
+counter=i;
+else if(counter>i and peramitors[i][0]==cl)
+counter=i;
+speak(peramitors[counter]+", you have in your inventory, "+inv_item_number(peramitors[counter]));
+f=1;
+cl="";
+p.play_stationary("invclick.ogg",false);
+break;
+}
+}
+if(f==0)
+{
+for(uint i=0; i<peramitors.length(); i++)
+{
+if(string_to_lower_case(peramitors[i][0])==cl)
+{
+if(counter<i)
+counter=i;
+else if(counter>i and peramitors[i][0]==cl)
+counter=i;
+speak(peramitors[counter]+", you have in your inventory, "+inv_item_number(peramitors[counter]));
+f=1;
+cl="";
+break;
+}
+}
+p.play_stationary("invclick.ogg",false);
+}
+if(f==0)
+{
+p.play_stationary("inverror.ogg",false);
+speak("not found this item!");
+}
+}
+mc=counter;
+if(ileft.pressing())
+{
+invc--;
+if(invc<0) invc=invcats.length()-1;
+p.play_stationary("invcat.ogg",false);
+send_reliable(0,"playmap invcat",0);
+inventorymenu(invcats[invc],mc);
+break;
+}
+if(iright.pressing())
+{
+invc++;
+if(invc>=invcats.length())
+{
+invc=0;
+}
+p.play_stationary("invcat.ogg",false);
+send_reliable(0,"playmap invcat",0);
+inventorymenu(invcats[invc],mc);
+break;
+}
+if(key_pressed(KEY_SPACE))
+{
+if(peramitors.length==0)
+{
+speak("no item this category!");
+}
+else
+{
+send_reliable(0,"giveitem "+peramitors[counter],0);
+}
+}
+if(shift_is_down() and key_pressed(KEY_RETURN))
+{
+if(peramitors.length==0)
+{
+speak("no item this category!");
+}
+else
+{
+send_reliable(0,"auctionitem "+peramitors[counter],0);
+}
+}
+if(key_pressed(KEY_TAB))
+{
+if(peramitors.length==0)
+{
+speak("no item this category!");
+}
+else
+{
+send_reliable(0,"describe "+peramitors[counter],0);
+}
+}
+if(key_pressed(KEY_BACK))
+{
+if(shift_is_down())
+{
+if(peramitors.length==0)
+{
+speak("no item this category!");
+}
+else
+{
+string amount=input("amount","type the amount you wish to drop this item "+peramitors[counter]);
+if(stn(amount)<1) return;
+send_reliable(0,"dropbyamount "+peramitors[counter]+" "+stn(amount),0);
+}
+}
+else
+{
+if(peramitors.length==0)
+{
+speak("no item this category!");
+}
+else
+{
+send_reliable(0,"drop "+peramitors[counter],0);
+}
+}
+}
+if (key_pressed(KEY_RETURN))
+{
+if(peramitors.length==0)
+{
+speak("no item this category!");
+}
+else
+{
+send_reliable(0,"playmap invclose",0);
+p.play_stationary("invclose.ogg",false);
+focuseditem=peramitors[counter];
+return;
+}
+}
+if(key_pressed(KEY_HOME) and peramitors.length()>0)
+{
+if(peramitors.length==0)
+{
+speak("no item this category!");
+p.play_stationary("invclick.ogg",false);
+}
+else if((alt_is_down() and !shift_is_down() and !control_is_down()) and counter>0)
+{
+string ha=peramitors[counter];
+peramitors.remove_at(counter);
+peramitors.insert_at(0,ha);
+invchange=true;
+counter=0;
+p.play_stationary("invmove7.ogg",false);
+}
+else
+{
+counter=0;
+speak(peramitors[counter]+", you have in your inventory, "+inv_item_number(peramitors[counter]));
+p.play_stationary("invclick.ogg",false);
+mc=counter;
+}
+}
+if(key_pressed(KEY_END) and peramitors.length()>0)
+{
+if(peramitors.length==0)
+{
+p.play_stationary("invclick.ogg",false);
+speak("this category doesn't has any items");
+}
+else if((alt_is_down() and !control_is_down() and !shift_is_down()) and counter<peramitors.length()-1)
+{
+string ha=peramitors[counter];
+peramitors.remove_at(counter);
+peramitors.insert_at(peramitors.length(),ha);
+invchange=true;
+counter=peramitors.length()-1;
+p.play_stationary("invmove7.ogg",false);
+}
+else
+{
+counter=peramitors.length()-1;
+speak(peramitors[counter]+", you have in your inventory, "+inv_item_number(peramitors[counter]));
+p.play_stationary("invclick.ogg",false);
+}
+}
+if (key_pressed(KEY_UP)==false and iup.pressing())
+{
+if(peramitors.length==0)
+{
+p.play_stationary("invclick.ogg",false);
+speak("this category doesn't has any items");
+}
+else if((alt_is_down() and !shift_is_down() and !control_is_down()) and counter>0)
+{
+string ha=peramitors[counter];
+peramitors.remove_at(counter);
+peramitors.insert_at(counter-1,ha);
+invchange=true;
+counter--;
+p.play_stationary("invmove7.ogg",false);
+}
+else if(peramitors.length==1)
+{
+speak(peramitors[0]+", you have "+inv_item_number(peramitors[0]));
+counter=0;
+p.play_stationary("invclick.ogg",false);
+}
+else if(counter > 0)
+{
+counter--;
+speak(peramitors[counter]+", you have in your inventory, "+inv_item_number(peramitors[counter]));
+p.play_stationary("invclick.ogg",false);
+}
+mc=counter;
+}
+if (key_pressed(KEY_DOWN)==false and idown.pressing())
+{
+if(peramitors.length==0)
+{
+p.play_stationary("invclick.ogg",false);
+speak("this category doesn't has any items");
+}
+else if((alt_is_down() and !shift_is_down() and !control_is_down()) and counter<peramitors.length()-1)
+{
+string ha=peramitors[counter];
+peramitors.remove_at(counter);
+peramitors.insert_at(counter+1,ha);
+invchange=true;
+counter++;
+p.play_stationary("invmove7.ogg",false);
+}
+else if(peramitors.length==1)
+{
+speak(peramitors[0]+", you have "+inv_item_number(peramitors[0]));
+counter=0;
+p.play_stationary("invclick.ogg",false);
+}
+else if(counter < peramitors.length()-1)
+{
+counter++;
+speak(peramitors[counter]+", you have in your inventory, "+inv_item_number(peramitors[counter]));
+p.play_stationary("invclick.ogg",false);
+}
+mc=counter;
+}
+if(invchange and invchangetimer.elapsed>=30 and cat=="entire inventory")
+{
+string d;
+for(uint i=0; i<peramitors.length(); i++)
+{
+d+=peramitors[i]+"="+inv_item_number(peramitors[i])+"\r\n";
+}
+send_reliable(0,"setinv "+d,0);
+invchange=false;
+}
+if(key_pressed(KEY_ESCAPE))
+{
+send_reliable(0,"playmap invclose",0);
+p.play_stationary("invclose.ogg",false);
+focuseditem="";
+return;
+}
+}
+}
+double inv_item_number(string itemname)
+{
+string content=inv;
+string[] peramitors=string_split(content, "\r\n", true);
+string[] values;
+for(uint i=0; i<peramitors.length(); i++)
+{
+values.insert_at(i,string_replace(peramitors[i], string_left(peramitors[i], string_contains(peramitors[i], "=", 1)+1), "", true));
+peramitors[i]=string_replace(peramitors[i], "="+values[i], "", true);
+}
+for(uint i=0; i<peramitors.length(); i++)
+{
+if(peramitors[i]==itemname)
+{
+return string_to_number(values[i]);
+}
+}
+return 0;
+}

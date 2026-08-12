@@ -1,0 +1,25 @@
+mapname:the_library
+maxx:200
+maxy:200
+maxz:200
+tile:0:200:0:200:0:0:carpet
+tile:0:200:0:200:0:0:concrete7
+zone:0:200:0:200:0:200:the library is a large sized building, with a quiet atmosphere. various bookshelves are located in different corners, with piles and piles of books on them. in the far northeast corner is a starecase, leading up to the second floor. the scroll definitely would not be here with the rest of the books you're certain, so that only leaves the 2nd floor. checking it out might be a good idea
+zone:200:200:200:200:0:49:starecase leading to the second floor@trackme@
+tile:200:200:200:200:0:49:stairs
+tile:0:200:0:200:50:50:concrete7
+zone:0:200:0:200:50:500:the second floor, surprisingly doesn't have a lot of stuff. only two or three bookshelves are located here, the books seeming old and dusty. on the left side there's a wall, to which a small scroll is attached. you know just by seeing that this is the scrol the old man wanted you to read
+tile:0:500:99:99:50:5555:wallbeaulon
+tile:99:99:0:500:50:5555:wallbeaulon
+zone:100:100:100:100:50:100:a wooden wall, with a short scroll attached to it. press shift plus enter to read it@trackme@
+tile:0:0:0:0:50:50:concrete6
+zone:0:0:0:0:50:500:press shift plus enter to complete this quest@trackme@
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter
+fightingstate:0
+noitems:0:3000:0:3000:0:5000:ultimate_bomb:poison_dart:cosmic_bomb:field_card:teleporter:fantasy_pass
+cmusic:0:200:0:200:0:10:anime161.ogg:-11:100:-10
+cmusic:0:200:0:200:65:144:anime164.ogg
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+zone:0:0:0:0:0:6:go back@trackme@
+travelpoint:0:0:0:0:0:0:crystal_city:500:500:0:hope you found what you were looking for

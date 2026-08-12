@@ -1,0 +1,17 @@
+mapname:the_gorilla_forest
+maxx:500
+maxy:500
+maxz:100
+tile:0:500:0:500:0:0:grass
+tile:0:500:0:500:0:0:grass3
+src:0:500:0:500:0:100:b2.ogg
+robots:0:500:0:500:0:0:5:1000:gorilla
+tile:11:11:100:100:0:20:branch
+zone:0:500:0:500:0:100:the_gorilla_forest
+zone:11:11:100:100:0:30:tree, if you want safe your self:trackme
+zone:0:0:0:0:0:10:go back to city:trackme
+travelpoint:0:0:0:0:0:10:temerial_city:1500:0:0:done
+tile:20:20:200:200:0:20:branch
+zone:20:20:200:200:0:20:another tree:trackme
+noitems:0:500:0:500:0:100:elecboat:arena_card
+noitems:0:500:0:500:0:500:hors:boat

@@ -1,0 +1,130 @@
+/*
+Sub Menu class
+by tunmi13
+This class allows you to create submenus, or various menus containing items. I know it may not be the best class, but I hope it does provide what some people might require.
+*/
+//#include "speech.nvgt"
+class sub_menu_system{
+sub_menu@[]subs;
+int subcounter=0;
+int level=0;
+bool say_sub_menu=true;
+string subclick,menuclick;
+sound sclick,mclick,eclick;
+sub_menu_system(){
+this.say_sub_menu=true;
+this.subclick="subclick.ogg";
+this.menuclick="menuclick.ogg";
+if(subclick!="") sclick.load(subclick);
+if(menuclick!="") mclick.load(menuclick);
+eclick.load("menuedge.ogg");
+}
+void reset(){
+subs.resize(0);
+}
+int get_sub_index(string subname){
+for(uint i=0; i<subs.length(); i++){
+if(subs[i].title==subname) return i;
+}
+return -1;
+}
+void add_sub_menu(string menuname){
+if(get_sub_index(menuname)>-1) return;
+sub_menu temp(menuname);
+subs.insert_last(temp);
+}
+void add_sub_menu_item(string subname,string itemname,string reference){
+int s=get_sub_index(subname);
+if(s<=-1) return;
+subs[s].items.insert_last(itemname);
+subs[s].reffitems.insert_last(reference);
+}
+string run(string title)
+{
+if(title!="") speak(title);
+subs[subcounter].itmcount=-1;
+level=0;
+while(true){
+wait(5);
+if(key_pressed(KEY_LEFT))
+{
+if(subcounter<=0)
+{
+if(eclick.active) eclick.stop(); eclick.play();
+}
+else
+{
+if(sclick.active) sclick.stop(); sclick.play();
+subcounter--;
+speak(subs[subcounter].title+(say_sub_menu?" subMenu":""));
+subs[subcounter].itmcount=-1;
+level=0;
+}
+}
+if(key_pressed(KEY_RIGHT))
+{
+if(subcounter>=subs.length()-1)
+{
+if(eclick.active) eclick.stop(); eclick.play();
+}
+else
+{
+if(sclick.active) sclick.stop(); sclick.play();
+subcounter++;
+speak(subs[subcounter].title+(say_sub_menu?" subMenu":""));
+subs[subcounter].itmcount=-1;
+level=0;
+}
+}
+if(key_pressed(KEY_DOWN)){
+if(subs[subcounter].itmcount>=int(subs[subcounter].items.length())-1)
+{
+if(eclick.active) eclick.stop(); eclick.play();
+}
+else{
+if(mclick.active) mclick.stop(); mclick.play();
+subs[subcounter].itmcount++;
+speak(subs[subcounter].items[subs[subcounter].itmcount]);
+level=1;
+}
+}
+if(key_pressed(KEY_UP)){
+if(subs[subcounter].itmcount<=0)
+{
+if(subs[subcounter].itmcount==0)
+{
+if(mclick.active) mclick.stop(); mclick.play();
+subs[subcounter].itmcount=-1;
+level=0;
+speak(subs[subcounter].title+(say_sub_menu?" subMenu":""));
+}
+else
+{
+if(eclick.active) eclick.stop(); eclick.play();
+}
+}
+else{
+if(mclick.active) mclick.stop(); mclick.play();
+subs[subcounter].itmcount--;
+speak(subs[subcounter].items[subs[subcounter].itmcount]);
+level=1;
+}
+}
+if(key_pressed(KEY_RETURN) and level==1)
+{
+return subs[subcounter].title+":"+subs[subcounter].reffitems[subs[subcounter].itmcount];
+}
+if(key_pressed(KEY_ESCAPE))break;
+}
+return "";
+}
+}
+class sub_menu{
+string title;
+string[]items,reffitems;
+
+int itmcount;
+sub_menu(string ttl){
+title=ttl;
+}
+}

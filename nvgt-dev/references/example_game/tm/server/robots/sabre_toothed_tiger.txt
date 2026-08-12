@@ -1,0 +1,16 @@
+name sabre_toothed_tiger
+health 55000000
+defence 2800
+speed 400
+damage 9000000
+shieldhits 10000,10000
+shieldchance 0
+shoot 1000
+distance 20
+aggro 1000
+spread 6
+angle 360
+steps 0
+loot throwing_star
+amount 5
+xp 70000,80000

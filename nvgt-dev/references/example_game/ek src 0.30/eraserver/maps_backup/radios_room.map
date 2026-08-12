@@ -1,0 +1,26 @@
+mapname:radios_room
+maxx:1000
+maxy:0
+maxz:1000
+tile:0:1000:0:0:0:0:concrete10
+zone:0:1000:0:0:0:1000:radios_room
+zone:0:0:0:0:0:0:back to the safe zone:trackme
+travelpoint:0:0:0:0:0:0:safe_zone:60:60:0:welcome back!
+zone:5:5:0:0:0:0:entrance to the kral pop radio, description, this radio is playing turkish pop musics:trackme
+travelpoint:5:5:0:0:0:0:kral_pop_radio:0:0:0:welcome to the kral pop radio, enjoy!
+zone:10:10:0:0:0:0:entrance to the virgin radio description, this radio is playing turkish rap, melanconic and english deep house musics.:trackme
+travelpoint:10:10:0:0:0:0:virgin_radio:0:0:0:welcome to the this radio!
+zone:15:15:0:0:0:0:entrance to the radio fenomen, description, this radio playing english pop and deephouse musics:trackme
+travelpoint:15:15:0:0:0:0:radio_fenomen:0:0:0:Welcome to the radio fenomen!
+zone:20:20:0:0:0:0:entrance to the best fm, this radio is playing turkish pop musics:trackme
+travelpoint:20:20:0:0:0:0:best_fm:0:0:0:welcome to the best fm!
+zone:25:25:0:0:0:0:kafa radyo! description, this radio is playing turkish pop musics!:trackme
+travelpoint:25:25:0:0:0:0:kafa_radyo:0:0:0:welcome
+zone:30:30:0:0:0:0:radio phenomenon mixed, description, this radio plays mixed music:trackme
+travelpoint:30:30:0:0:0:0:fenomen_mixed:0:0:0:welcome to this radio!
+zone:35:35:0:0:0:0:big_fm, description, working hindi radio station in UAE:trackme
+travelpoint:35:35:0:0:0:0:big_fm:0:0:0:Welcome
+zone:40:40:0:0:0:0:Radio Udaan, description, Hindi Dissability Community Radio, Dedicated to the Disabled Community:trackme
+travelpoint:40:40:0:0:0:0:radio_udaan:0:0:0:Welcome
+fightingstate:0
+noitems:0:1000:0:1000:0:100:grenade:timebomb:remote_bomb:censorbomb:suicidebomb:stun_grenade:police_motorcycle:elecboat:guided_missile:fight_inviter:tasing_small_projectile_small_projectile:tasing_small_projectile:suicide_bomb:helicopter

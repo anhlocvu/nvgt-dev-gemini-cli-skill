@@ -1,0 +1,89 @@
+mapname:evermore_city
+maxx:1600
+maxy:1600
+maxz:3000
+tile:0:3000:0:3000:0:0:dirt6
+zone:0:3000:0:3000:0:100:evermore city seems to be glowing with lights. there is a great noise by the people. in the distance you see a towering building. it is the largest building in the city. people can be seen everywhere. there's a great amount of trafic on the roads. various kinds of vehicles are coming and going.
+zone:75:300:75:300:0:110:a rode connecting the east side of the city to the west one
+zone:90:90:90:90:0:10:the fiery path@trackme@
+zone:115:125:115:125:0:110:a gas station. a large number of vehicles are parked here. perhaps getting some fule tanks is a good idea?@trackme@
+zone:120:120:120:120:0:10:to buy fuel tanks, press shift plus enter@trackme@
+tile:115:125:115:125:0:0:cement
+zone:250:255:250:255:0:110:entrence to the vehicle showroom@trackme@
+travelpoint:250:255:250:255:0:0:vehicle_showroom:0:0:0:welcome!
+zone:301:1399:301:1399:0:110:downtown area
+zone:400:400:400:400:0:111:entrence to evermore mall, the largest building of the city@trackme@
+zone:500:505:500:505:0:121:the mechanic's shop, excelent for getting your vehicles repaired@trackme@
+travelpoint:500:505:500:505:0:0:the_mechanic's_shop:0:0:0: 
+zone:600:610:600:610:0:100:the evermore delights, the most popular restaurant of the city. it is a large, well designed building@trackme@
+travelpoint:600:610:600:610:0:0:evermore_delights:0:0:0:welcome!
+zone:700:705:700:705:0:111:coffeeshop@trackme@
+zone:800:805:800:805:0:111:the evermore bar@trackme@
+travelpoint:800:805:800:805:0:0:evermore_bar:0:0:0:welcome!
+travelpoint:700:705:700:705:0:0:coffee_shop:0:0:0: 
+zone:900:920:900:920:0:49:climb the burnt tower@trackme@
+zone:900:920:900:920:50:56:the burnt tower. so the myths are true... you find yourself on top of a building which is half destroied. noone has entered this building in many years, however people say that the fire which destroied the tower still burns inside it. you have a strong urge to go inside and find out for yourself if the legends are true or not
+zone:900:900:900:900:50:56:entrence to the burnt tower@trackme@
+tile:1001:1100:1001:1001:0:10:wallfence
+tile:1001:1001:1001:1100:0:10:wallfence
+tile:1031:1069:1031:1069:0:0:water
+tile:1100:1100:1001:1100:0:10:wallfence
+tile:1001:1100:1100:1100:0:10:wallfence
+tile:1030:1070:1030:1030:0:10:wallwoodcrate
+tile:1030:1030:1030:1070:0:10:wallwoodcrate
+tile:1070:1070:1030:1070:0:10:wallwoodcrate
+tile:1030:1070:1070:1070:0:10:wallwoodcrate
+tile:1010:1015:1010:1015:0:3:wallglass11
+tile:1010:1015:1010:1015:3:3:tile
+tile:1009:1009:1013:1013:0:2:carpet3
+tile:1016:1016:1013:1013:0:2:carpet3
+tile:1040:1040:1029:1029:0:10:ladder3
+zone:1000:1100:1000:1100:0:10:the public pool. have a relaxing time in the soothing water@trackme@
+zone:1010:1010:1000:1000:0:101:door leading to the pool. press alt plus enter to open it@trackme@
+zone:1031:1069:1031:1069:0:101:inside the pool@trackme@
+zone:1040:1040:1029:1029:0:100:ladder to the pool@trackme@
+zone:1010:1015:1010:1015:0:10:table
+zone:1009:1009:1013:1013:0:2:chair
+zone:1016:1016:1013:1013:0:2:chair
+tile:1013:1013:1016:1016:0:2:carpet3
+zone:1013:1013:1016:1016:0:10:chair:
+tile:1013:1013:1009:1009:0:2:carpet3
+zone:1013:1013:1009:1009:0:10:chair
+tile:1030:1070:1030:1030:10:10:concrete
+tile:1030:1030:1030:1070:10:10:concrete
+tile:1070:1070:1030:1070:10:10:concrete
+tile:1030:1070:1070:1070:10:10:concrete
+src:1031:1069:1031:1069:0:15:kidpool.ogg
+door:1010:1010:1000:1000:0:0:1010:1002:0:2000:doors.ogg:none:door3open.ogg:door3close.ogg
+door:1010:1010:1002:1002:0:0:1010:1000:0:2000:doors.ogg:doors.ogg:door3open.ogg:door3close.ogg
+zone:1040:1040:1031:1031:0:10:get out from the pool@trackme@
+zone:1010:1010:1002:1002:0:11:exit from the pool, press alt plus enter to open the door@trackme@
+zone:1200:1215:1200:1215:0:11:the beach, it leads to the popular fantasy island@trackme@
+tile:1200:1215:1200:1215:0:0:sand2
+zone:1400:1600:1400:1600:0:11:the outskirts of the city. it is a grassy area. you also see a jungle in the distance
+zone:0:1650:1400:1650:0:11:the outskirts of the city. it is a grassy area. you also see a jungle in the distance
+zone:1400:1650:0:1650:0:11:the outskirts of the city. it is a grassy area. you also see a jungle in the distance
+tile:1400:1650:1400:1650:0:0:shortgrass
+zone:1600:1650:1600:1650:0:11:the jungle. animals of different sizes and strenghts can be found here@trackme@
+tile:1400:1650:1400:1400:0:11:shortgrass
+travelpoint:1200:1200:1200:1200:0:0:the_beach:0:0:0: 
+tile:1300:1350:1300:1350:40:40:concrete
+tile:1325:1330:1325:1325:40:41:carpet3
+tile:0:1600:1350:1355:40:40:roof4
+tile:1300:1350:1356:1400:40:40:concrete
+tile:1300:1350:1401:1401:40:50:wallwoodcrate
+tile:0:1650:1400:1650:0:0:shortgrass
+tile:1400:1650:0:1650:0:0:shortgrass
+tile:1040:1040:1031:1031:0:10:ladder3
+cmusic:0:2000:0:2000:0:1000:melody4.ogg:0:100
+tile:900:920:900:920:0:50:marble
+tile:900:920:900:920:50:50:roof3
+travelpoint:0:0:0:0:0:0:safe_zone:0:0:0:evermore shall await you
+noitems:0:1650:0:1650:0:3000:elecboat
+noitems:0:2000:0:2000:0:2000:ultimate_bomb
+noitems:0:2000:0:2000:0:60000:m116_death_bringer
+noitems:0:2000:0:2000:0:2000:hanc_cannon
+noitems:0:2000:0:2000:0:2000:hand_cannon
+zone:1300:1300:1300:1300:0:6:the train station. the trains here take you to crystal city@trackme@
+travelpoint:1300:1300:1300:1300:0:0:evermore_train_station:0:0:0:welcome
+zone:0:0:0:0:0:6:go back to safe zone@trackme@

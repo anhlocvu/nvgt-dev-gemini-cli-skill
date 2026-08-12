@@ -1,0 +1,71 @@
+string input(string title,string text,string dt="",string pm="",int ml=0,bool r=false,bool m=false,string button1="ok",string button2="&cancel",bool button1auto=false,bool button2auto=false)
+{
+string ha;
+form.create_window(title,false,true);
+int a=form.create_input_box(text,dt,pm,ml,r,m);
+int b=form.create_button(button1,true,false,true);
+int c=form.create_button(button2,false,true,true);
+form.focus(a);
+while(true)
+{
+wait(5);
+form.monitor();
+ek_loop();
+string t=form.get_text(a);
+if(form.is_pressed(b))
+{
+form.reset();
+ha=t;
+break;
+}
+if(form.is_pressed(c))
+{
+form.reset();
+ha="";
+break;
+}
+}
+return ha;
+}
+/*
+string promt_list(string title,string sdtext, string focusref, string[] whats,string[] refes, string typedo="slider", string button1="ok", string button2="cancel", bool b1a=false, bool b2a=false,bool ncable=true,string descof="", string b1descof="", string b2descof="")
+{
+if(whats.length()<1) return"";
+if(refes.length()!=whats.length()) return"";
+string ha;
+form.create_window(title,false);
+int a=form.create_list(sdtext,0,false,ncable);
+if(descof!="") form.set_description(a,descof);
+for(uint i=0;i<whats.length();i++)
+{
+form.add_list_item(a,whats[i],-1,false,refes[i]);
+}
+if(focusref!="") form.set_list_position(a,form.get_list_ref_exists(a,focusref));
+else form.set_list_position(a,0);
+int b=form.create_button(button1,true,false,true,b1a);
+if(b1descof!="") form.set_description(b,b1descof);
+int c=form.create_button(button2,false,true,true,b2a);
+if(b2descof!="") form.set_description(c,b2descof);
+form.focus(a);
+while(true)
+{
+wait(5);
+form.monitor();
+process_form_loops();
+string t=form.get_list_ref(a,form.get_list_position(a));
+if(form.is_pressed(b))
+{
+form.reset();
+ha=t;
+break;
+}
+if(form.is_pressed(c))
+{
+form.reset();
+ha="";
+break;
+}
+}
+return ha;
+}
+*/

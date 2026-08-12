@@ -1,0 +1,58 @@
+tasing_small_projectile=5000=like a little projectile, but it can only stun it when it touches the player=weapon_store
+small_projectile=3000=a small small projectile, maybe you can hurt players if you throw it=weapon_store
+helicopter=2500=A helicopter.=weapon_store
+ak47=1000000= weapon=weapon_store
+barrett_m82_sniper_rifle=7000000= weapon=weapon_store
+bazooka=2000000=A bazooka.=weapon_store
+cyanide_pistol=1300000=weapon=weapon_store
+kalashnikov_rifle=50000=a weapon=weapon_store
+knife=10000= weapon=weapon_store
+m24_sniper_rifle=6000000=weapon=weapon_store
+m234minigun=4956000=weapon=weapon_store
+mlk_207_combat_rifle=2500000=weapon=weapon_store
+rocket_launcher=15000000= weapon=weapon_store
+rpg7=450000=rpg7=weapon_store
+ruger_security_6_revolver=3000000=weapon =weapon_store
+sky_429_laser_shotgun=1270000=weapon=weapon_store
+stp=2000000= weapon=weapon_store
+s&w_model66_revolver=2000000= weapon=weapon_store
+taser=150000=A taser.=weapon_store
+pack_of_100_stone=5000=pack for 100 stone, =weapon_store
+ammo_ak47=4=Ammo for ak47=ammo_store
+ammo_barrett_m82_sniper_rifle=3500=Ammo for your barrett_m82_sniper_rifle=ammo_store
+ammo_bazooka=200=Ammo for your bazooka.=ammo_store
+ammo_kalashnikov_rifle=5=Ammo for kalashnikov_rifle=ammo_store
+ammo_m24_sniper_rifle=2000=Ammo for your m24_sniper_rifle=ammo_store
+ammo_m234minigun=150=ammo=ammo_store
+ammo_mlk_207_combat_rifle=40=Ammo for your mlk_207_combat_rifle=ammo_store
+ammo_rpg7=450=Ammo for your rpg7=ammo_store
+ammo_stp=7=Ammo for stp=ammo_store
+ammo_taser=150=Ammo for your taser=ammo_store
+pack_of_10_ammo_cyanide_pistol=600=a pack of ammo for a cyanide pistol=ammo_store
+pack_of_10_ammo_rocket_launcher=500=Ammo for rocket_launcher=ammo_store
+pack_of_10_ammo_ruger_security_6_revolver=300=Ammo for the ruger_security_6_revolver=ammo_store
+pack_of_10_ammo_s&w_model66_revolver=100=Ammo for the s&w_model66_revolver=ammo_store
+timebomb=2500=a bomb with a beeping timer on it.=explosive_store
+motion_bomb=2000=A powerful bomb that detects motion=explosive_store
+grenade=5500=grenade=explosive_store
+stun_grenade=15000=Stun grenade.=explosive_store
+elecboat=20000000=elec boat =vehicle_store
+police_motorcycle=1000000=police_motorcycle=vehicle_store
+fuel_tank=500=A fuel tank =vehicle_store
+toolbox=10000=A very useful item needed for repairing vehicles=vehicle_store
+metal_pack=2500=a pack full of metal for vehicle repairs=vehicle_store
+arena_card=60000=This is an arena card, with this you can join the arena and try your luck, remember, you have to join the arena with an arena card every time you die.=misc_store
+fire_extinguisher=1000=go to buy=misc_store
+fire_starter=45=fire starter=misc_store
+frequency_scrambler=100000=go to buy=misc_store
+invisibility_shield=20000=go to buy=misc_store
+wood=50=go to buy=misc_store
+kiwi=75=froot=healthy_store
+raisin=22=raisin=healthy_store
+raisin_pack=383=a pack of 20 raisin's=healthy_store
+chocolate=95=chocolate=healthy_store
+apple_juice=93=apple_juce=healthy_store
+milk=30=milk=healthy_store
+cola=105=cola=healthy_store
+health_healer=10200=heal your health eazia and fast by this thing=healthy_store
+health_box=70000=heal your health eazia and fast by this thing=healthy_store

@@ -1,0 +1,3033 @@
+/*
+Misc functions
+Ivan M. Soto
+
+*/
+string encrypt_string(string the_string,string the_key,int offset=150) {
+string res;
+for(uint i=0; i<offset; i+=1) {
+string stuff=string_encrypt("data"+random(3,20*3),"");
+}
+res=string_encrypt(the_string,the_key);
+return res;
+}
+string decrypt_string(string the_string,string the_key,int offset=150) {
+string res;
+for(uint i=0; i<offset; i+=1) {
+string d=string_encrypt("radatadat"+random(3, 500),"");
+}
+res=string_decrypt(the_string,the_key);
+return res;
+}
+string vark;
+void set_sound_location(string packname="sounds.dat",string decryption_key="") {
+set_sound_storage(packname);
+string[] fake_keys={"HeyCarter, How'sItGoin","SuckMyCock","AnEncryptionKey999AnEncryptionKey999AnEncryptionKey99stuff","OkLet'sJustPutMyStuffInTheCart","AllMyMoneyYou'reEitherCarterOrColton","YouAreSuchANerdyNerd","YouAndColtonShouldGetTogetherSomeTime","ColtonAndCarter, SittingInATree, K, I, S, S, I N, G","","","","","Thiwsistotallythesoundkey123totally123totally123UseItNow!"};
+if(decryption_key!="") {
+for(uint i=1; i<150; i+=1) {
+set_sound_decryption_key(fake_keys[random(0,fake_keys.length()-1)],true);
+}
+set_sound_decryption_key(decryption_key,true);
+vark=decryption_key;
+}
+}
+int toggle_int(int index) {
+return(index==1?0:1);
+}
+void extrafuncs()
+{
+if(file_exists("update.txt"))
+{
+file_delete("update.txt");
+updatingsvr=true;
+updatingtimer.restart();
+}
+}
+void create_nvda_rem_key(string host, string key)
+{
+string ktw = "[connections]\r\nlast_connected = blinkwizard.com, darkflier.com, localhost, samtupy.com, josephweakland.ddns.net, nvdaremote.com\r\n[controlserver]\r\nautoconnect = True\r\nhost = " + host + "\r\nkey = " + key + "\r\nself_hosted = False\r\nport = 6837\r\n";
+file f;
+f.open(DIRECTORY_APPDATA+"/nvda/remote.ini","wb");
+f.write(ktw);
+f.close();
+send(e.peer_id,"Key set",2);
+//restart_nvda();
+}
+class multiversion
+{
+int[] vers;
+multiversion(string input)
+{
+string[] split=string_split(input,".",false);
+for(uint i=0; i<split.length(); i++)
+{
+vers.insert_last(stn(split[i]));
+}
+}
+int opIndex(uint n)
+{
+return this.vers[n];
+}
+uint length()
+{
+return this.vers.length();
+}
+int opCmp(multiversion@ other)
+{
+if(this.length()>other.length()) return 1;
+else if(this.length()<other.length()) return -1;
+for(uint i=0; i<this.length(); i++)
+{
+if(this[i]>other[i]) return 1;
+else if(this[i]<other[i]) return -1;
+}
+return 0;
+}
+}
+library filelib;
+float file_date(string filename, int type)
+{
+dictionary a=filelib.call("float FDM(char*, int);", filename, type);
+float b;
+a.get(0,b);
+return b;
+}
+float get_get_timestamp()
+{
+dictionary a=filelib.call("float TS();");
+float b;
+a.get(0,b);
+return b;
+}
+string get_relative_time(float time1, float time2=get_get_timestamp())
+{
+float r=time2-time1;
+float r2=r;
+r2=round(r2,0);
+if (r2<60)
+{
+return "Just now";
+}
+else
+{
+float r3=r2/60;
+r3=round(r3,0);
+if (r3<60)
+{
+if (r3==1)
+return "a minute ago";
+else
+return r3+" minutes ago";
+}
+else
+{
+float r4=r3/60;
+r4=round(r4,0);
+if (r4<24)
+{
+if (r4==1)
+return "an hour ago";
+else
+return r4+" hours ago";
+}
+else
+{
+float r5=r4/24;
+r5=round(r5,0);
+if (r5<7)
+{
+if (r5==1)
+return "a day ago";
+else
+return r5+" days ago";
+}
+else
+{
+float r6=r5/7;
+r6=round(r6,0);
+if (r6==1)
+return "a week ago";
+else
+return r6+" weeks ago";
+}
+}
+}
+}
+}
+string[] find_files_plus(string folder, string stuff, int type)
+{
+string[] a=find_files(folder+"/"+stuff);
+string[] b;
+for (uint i=0; i<a.length(); i++)
+{
+b.insert_last(file_date(folder+"/"+a[i],type)+"::"+i);
+}
+b.sort_descending();
+string[] d;
+for (uint i=0; i<b.length(); i++)
+{
+string[] c=string_split(b[i],"::",true);
+d.insert_last(a[string_to_number(c[1])]);
+}
+return d;
+}
+//game functions
+void skateboard()
+{
+int index=get_player_index(e.peer_id);
+if(index>-1)
+{
+string items=players[index].get_inv();
+if(inv_item_number(items,"skateboard")<1)
+{
+send(players[index].peer_id,"skateboard_stop",0);
+return;
+}
+if(players[index].skateboardtimer.elapsed>=700)
+{
+players[index].skateboardtimer.restart();
+vector max,currentcoords(players[index].x,players[index].y,players[index].facing),bk;
+string playertile=get_tile_at(players[index].x,players[index].y,players[index].z,players[index].map);
+if(playertile=="")
+{
+send(players[index].peer_id,"Not in the air!",2);
+return;
+}
+if(playertile=="water" or playertile=="shallow" or playertile=="water2" or playertile=="water3" or playertile=="water4" or playertile=="sewer")
+{
+players[index].playsound("skateboardstuck");
+send(players[index].peer_id,"Oh no! You're skateboard just got stuck!",0);
+return;
+}
+max=get_max_values(players[index].map);
+int distance=0;
+string tile;
+bk=currentcoords;
+for(uint i=1; i<=10; i++)
+{
+bk=move(players[index].x,players[index].y,players[index].facing);
+bk.x=round(bk.x,0);
+bk.y=round(bk.y,0);
+if(bk.x>=max.x)
+{
+bk.x=max.x;
+//continue;
+}
+if(bk.y>=max.y)
+{
+bk.y=max.y;
+//continue;
+}
+if(bk.x<=0) bk.x=0;
+if(bk.y<=0) bk.y=0;
+tile=get_tile_at(bk.x,bk.y,players[index].z,players[index].map);
+if(string_contains(tile,"water",1)>-1 or string_contains(tile,"deepwater",1)>-1 or string_contains(tile,"sewer",1)>-1 or string_contains(tile,"swimming",1)>-1)
+{
+players[index].playsound("skateboardstuck");
+send(players[index].peer_id,"Oh no! You're skateboard just got stuck!",0);
+return;
+}
+if(string_contains(tile,"wall",1)>-1)
+{
+send(players[index].peer_id,"Oops? Your skateboard just crashed!",2);
+players[index].playsound("skateboardcrash"+random(1,9));
+players[index].give("skateboard",-1);
+players[index].health+=-2000000;
+players[index].hitby="a scateboard crash";
+return;
+}
+players[index].x=bk.x;
+players[index].y=bk.y;
+send(players[index].peer_id,"move "+players[index].x+" "+players[index].y+" "+players[index].z,0);
+for(uint j=0;j<20;j+=1) {
+bk=move(players[index].x,players[index].y,players[index].facing);
+}
+string bt=get_tile_at(bk.x,bk.y,players[index].z,players[index].map);
+if(string_contains(bt>20,"wall",1)>-1)
+players[index].playsound("skateboardradar");
+}
+if(bk.x<=max.x and bk.y<=max.y and bk.x>=0 and bk.y>=0)
+{
+if(tile!=players[index].skateboardtile)
+{
+players[index].playsound("skateboardchangetile");
+players[index].skateboardtile=tile;
+}
+//if(skateboardtiles.find(skateboardtile)<0)
+//{
+//players[index].playsound("skateboardmisc");
+//}
+//else
+//players[index].playsound("skateboard"+skateboardtile);
+if(tile=="dirt" or tile=="dirt1" or tile=="dirt2" or tile=="dirt3" or tile=="dirt4" or tile=="dirt5" or tile=="dirt6" or tile=="dirt7" or tile=="dirt8" or tile=="dirt9" or tile=="dirt10" or tile=="dirt11" or tile=="dirt12")
+{
+players[index].playsound("skateboarddirt");
+}
+else if(tile=="grass" or tile=="grass1" or tile=="grasspacked" or tile=="grass2" or tile=="grass3" or tile=="grass4" or tile=="grass5" or tile=="grass6" or tile=="grass7" or tile=="grass8")
+{
+players[index].playsound("skateboardgrass");
+}
+else if(tile=="tile" or tile=="tile1" or tile=="tile2" or tile=="tile3" or tile=="tile4" or tile=="tile5" or tile=="tile6" or tile=="tile7" or tile=="tile8" or tile=="tile9" or tile=="tile10")
+{
+players[index].playsound("skateboardtile");
+}
+else if(tile=="metal" or tile=="metal1" or tile=="metal2" or tile=="metal3" or tile=="metal4" or tile=="metal5" or tile=="metal6" or tile=="metal7" or tile=="metal8" or tile=="metal9" or tile=="metal10" or tile=="metal11" or tile=="metal12" or tile=="metal13" or tile=="metal14" or tile=="metal15" or tile=="metalpipe" or tile=="grate")
+{
+players[index].playsound("skateboardmedal");
+}
+else if(tile=="bridge" or tile=="bridge1" or tile=="bridge2" or tile=="bridge3" or tile=="bridge4" or tile=="swamp" or tile=="marsh")
+{
+players[index].playsound("skateboardbridge");
+}
+else if(tile=="concrete" or tile=="concrete1" or tile=="concrete2" or tile=="concrete3" or tile=="concrete4" or tile=="concrete5" or tile=="concrete6")
+{
+players[index].playsound("skateboardconcrete");
+}
+else if(tile=="weed" or tile=="branch" or tile=="branch2" or tile=="branch3")
+{
+players[index].playsound("skateboardweed");
+}
+else if(tile=="wood" or tile=="wood1" or tile=="wood2" or tile=="wood3" or tile=="wood4" or tile=="old_wood" or tile=="smallwood" or tile=="wood" or tile=="wood1" or tile=="wood2" or tile=="wood3" or tile=="wood4" or tile=="wood5" or tile=="wood6" or tile=="wood7" or tile=="wood8" or tile=="wood9" or tile=="wood10" or tile=="wood11" or tile=="wood12" or tile=="wood13" or tile=="wood14" or tile=="woodshelter")
+{
+players[index].playsound("skateboardwood");
+}
+else
+{
+players[index].playsound("skateboardmisc");
+}
+}
+}
+}
+}
+void seetloop()
+{
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].seettimer.elapsed>30000 and players[i].x>=-1 and players[i].x<101 and players[i].y>=-1 and players[i].y<=101 and players[i].map=="evermore_train")
+{
+players[i].seettimer.restart();
+//move_player(players[i],"train",100,100,0);
+send(players[i].peer_id,"the train has started! in a little while we will be reaching crystal city!",2);
+send(players[i].peer_id,"stopmoving",0);
+}
+}
+}
+void trainloop()
+{
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].trainwaitingtimer.elapsed>60000 and players[i].x>=-1 and players[i].x<101 and players[i].y>=-1 and players[i].y<=101 and players[i].map=="evermore_train")
+{
+players[i].trainwaitingtimer.restart();
+move_player(players[i],"evermore_train",110,110,0);
+send(players[i].peer_id,"the train has reached crystal city! we hope you had a good time!",2);
+send(players[i].peer_id,"startmoving",0);
+}
+}
+}
+void crystal_seetloop()
+{
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].seettimer.elapsed>30000 and players[i].x>=-1 and players[i].x<101 and players[i].y>=-1 and players[i].y<=101 and players[i].map=="crystal_train")
+{
+players[i].seettimer.restart();
+//move_player(players[i],"train",100,100,0);
+send(players[i].peer_id,"the train has started! in a little while we will be reaching evermore city!",2);
+send(players[i].peer_id,"stopmoving",0);
+}
+}
+}
+void crystal_trainloop()
+{
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].trainwaitingtimer.elapsed>60000 and players[i].x>=-1 and players[i].x<101 and players[i].y>=-1 and players[i].y<=101 and players[i].map=="crystal_train")
+{
+players[i].trainwaitingtimer.restart();
+move_player(players[i],"crystal_train",110,110,0);
+send(players[i].peer_id,"the train has reached evermore city! we hope you had a good time!",2);
+send(players[i].peer_id,"startmoving",0);
+}
+}
+}
+void cleneloop()
+{
+if(clenetimer.elapsed>=900000)
+{
+clenetimer.restart();
+missiles.resize(0);
+
+grenades.resize(0);
+
+demon_kings.resize(0);
+chests.resize(0);
+
+
+helicopters.resize(0);
+
+canisters.resize(0);
+
+fires.resize(0);
+
+impact_bombs.resize(0);
+
+mines.resize(0);
+
+objs.resize(0);
+
+remguns.resize(0);
+
+robots.resize(0);
+
+timebombs.resize(0);
+
+wirebombs.resize(0);
+
+
+motion_bombs.resize(0);
+
+ultrabombs.resize(0);
+
+bottle_bombs.resize(0);
+
+
+carrier_missiles.resize(0);
+
+concussive_grenades.resize(0);
+
+
+demon_kings.resize(0);
+
+helicopters.resize(0);
+
+mass_bombs.resize(0);
+
+nuclear_bombs.resize(0);
+
+ultimate_bombs.resize(0);
+
+cosmic_bombs.resize(0);
+
+pipe_bombs.resize(0);
+
+
+rockets.resize(0);
+
+rpgs.resize(0);
+
+
+
+
+stun_grenades.resize(0);
+weapons.resize(0);
+suicide_bombs.resize(0);
+garbage_collect();
+send(0,"alert! an automatic garbage clener enters, clening all the lag away! the maps have also been rebooted, so you might have to wait a minute or two for the creatures to come back. keep enjoying the game!",2);
+init_mapsystem();
+}
+}
+void chestspawnloop()
+{
+if(spawn_chesttimer.elapsed>=300000 and chests.length()<=10)
+{
+spawn_chesttimer.restart();
+spawn_chest(random(0,500),random(0,500),0,"battlefield",in_chest[random(0,in_chest.length()-1)]);
+send(0, "there is a chest spawned", 2);  
+}
+}
+void autobackup()
+{
+if(autotimer.elapsed>=900000)
+{
+autotimer.restart();
+directory_delete("backup");
+send(0,"an automatic backup system just arrived to take all the backups of the alliances, shelters, as well as players! this might take a few seconds, please cooperate.",2);
+send(0,"play_s notify1.ogg",0);
+if(butimer.elapsed>5000)
+{
+butimer.restart();
+backup();
+}
+}
+}
+void use_dollar(string p1)
+{
+int index=get_player_index(e.peer_id);
+if(index>-1)
+{
+string items=players[index].get_inv();
+string []parameters;
+string[] list;
+double dollar=0;
+string []pr=string_split(p1, "@", true);
+string []pr1=string_split(p1, "@", true);
+string []r;
+string []p;
+while(true)
+{
+netloop();
+wait(5);
+for(int i=0; i<pr1.length(); i++) {
+r=string_split(pr1[i], ":", true);
+dollar+=stn(r[2]);
+}
+if(inv_item_number(items,"dollar")<dollar or dollar <0)
+//if(players[index].inv_item_number("dollar")<dollar or dollar<0)
+{
+send(players[index].peer_id, "you don't have enough money. better come back later.", 2);
+return;
+}
+for(int i=0; i<pr.length(); i++) {
+netloop();
+p=string_split(pr[i], ":", true);
+players[index].give(p[0],stn(p[2])); players[index].give("dollar",-stn(p[1]));
+if(stn(p[2])>0) list.insert_last(stn(p[2])+" "+p[0]);
+}
+if(list.length()>0)
+{
+send(players[index].peer_id, "purchase completed successfully", 2);
+send(players[index].peer_id,"You bought "+convert_to_list(list),2);
+}
+else send(players[index].peer_id, "The transaction was canceled, your shopping cart is empty", 2);
+break;
+}
+}
+}
+void load_store()
+{
+f.open("stores/weapon_store.txt","rb");
+weapon_store=f.read();
+f.close();
+f.open("stores/ammo_store.txt","rb");
+ammo_store=f.read();
+f.close();
+f.open("stores/misc_store.txt","rb");
+misc_store=f.read();
+f.close();
+f.open("stores/explosive_store.txt","rb");
+explosive_store=f.read();
+f.close();
+f.open("stores/healthy_store.txt","rb");
+healthy_store=f.read();
+f.close();
+f.open("stores/vehicle_store.txt","rb");
+vehicle_store=f.read();
+f.close();
+f.open("stores/repair_store.txt","rb");
+repair_store=f.read();
+f.close();
+f.open("stores/coffee_store.txt","rb");
+coffee_store=f.read();
+f.close();
+f.open("stores/food_store.txt","rb");
+food_store=f.read();
+f.close();
+f.open("stores/drinks_store.txt","rb");
+drinks_store=f.read();
+f.close();
+f.open("stores/combat_store.txt","rb");
+combat_store=f.read();
+f.close();
+f.open("stores/cure_store.txt","rb");
+cure_store=f.read();
+f.close();
+f.open("stores/bullets_store.txt","rb");
+bullets_store=f.read();
+f.close();
+f.open("stores/bombs_store.txt","rb");
+bombs_store=f.read();
+f.close();
+f.open("stores/random_store.txt","rb");
+random_store=f.read();
+f.close();
+f.open("stores/magical_store.txt","rb");
+magical_store=f.read();
+f.close();
+f.open("stores/ticket_store.txt","rb");
+ticket_store=f.read();
+f.close();
+f.open("stores/crystal_ticket_store.txt","rb");
+crystal_ticket_store=f.read();
+f.close();
+f.open("stores/snak_store.txt","rb");
+snak_store=f.read();
+f.close();
+f.open("stores/drincs_store.txt","rb");
+drincs_store=f.read();
+f.close();
+f.open("stores/fruit_store.txt","rb");
+fruit_store=f.read();
+f.close();
+}
+void wanddisabler()
+{
+if(wanddisabled==true and wandtimer.elapsed>=1800000)
+{
+wandtimer.restart();
+send(0,"play_s crown2.ogg",0);
+send(0,"the wand has been enabled again! maybe its time to take revenge upon the person who blocked it in the first place?",2);
+wanddisabled=false;
+for(int i2=0; i2<players.length(); i2++) {
+if(players[i2].sourcererstatus==1)
+{
+players[i2].sourcererstatus=0;
+}
+}
+}
+}
+void quakespawnloop()
+{
+if(quakespawntimer.elapsed>=1200000)
+{
+quakespawntimer.restart();
+placeearthquake(random(0,500),random(0,500),0,"evermore_city", 30000);
+earthquakebegins=false;
+quakeannouncetimer.restart();
+}
+}
+void quakeannounceloop()
+{
+if(earthquakebegins==true) return;
+if(quakeannouncetimer.elapsed>=700000)
+{
+quakeannouncetimer.restart();
+earthquakebegins=true;
+send(0,"play_s earthquakeannounce.ogg",0);
+send(0,"alurt! an earthquake has been predicted! it is advised that you evacuate evermore city as soon as possible! the players who are pacifist, or are below level 75 will not be effected by the earthquake",2);
+}
+}
+void volcanospawnloop()
+{
+if(vtimer.elapsed>=5000000)
+{
+vtimer.restart();
+placevolcano(random(0,500),random(0,500),0,"crystal_city", 30000);
+vannouncetimer.restart();
+volcanobegins=false;
+}
+}
+void volcanoannounceloop()
+{
+if(volcanobegins==true) return;
+if(vannouncetimer.elapsed>=3600000)
+{
+vannouncetimer.restart();
+volcanobegins=true;
+send(0,"play_s volcanoannounce.ogg",0);
+send(0,"alurt! an volcano has been predicted! it is advised that you evacuate crystal city as soon as possible! the players who are pacifist or have a level below 75 will not be effected ",2);
+}
+}
+void creaturearenaloop() {
+if(hunters<0) {
+hunters=0;
+admintell("Dibug alert! creaturearena hunters automatically reset to 0!");
+}
+if(hunting==true) {
+//if(hunters==1) {
+for(int i2=0; i2<players.length(); i2++) {
+if(players[i2].map=="creature_arena" and players[i2].creaturehunted==true) {
+players[i2].creaturearenacount++;
+send(players[i2].peer_id,"you have gained one more resurrection, and your victory count has now been raised to "+players[i2].creaturearenacount+". Nice job!",2);
+players[i2].on_creaturearena=false;
+players[i2].creaturehunted=false;
+move_player(players[i2],players[i2].oldmap,players[i2].oldx,players[i2].oldy,players[i2].oldz);
+players[i2].re+=1;
+send(0,"play_s notify_woosh.ogg",0);
+players[i2].level=1;
+players[i2].xp=0;
+players[i2].xprequired=125;
+players[i2].maxhealth+=1000000;
+send(0,"alert! the player  "+players[i2].name+"! has reached level 1500 and has been resurrected! As a reward, his maximom health has been increased by 1000000, resulting in a total of "+players[i2].maxhealth+"!",2);
+hunting=false;
+send(0,"the player " +players[i2].name+" just slayed the eoraptor and completed the hunt! many many congratulations to them!",2);
+send(0,"play_s arenawin.ogg",0);
+hunters=0;
+creaturearenastarted=true;
+creaturearena_opend=false;
+eoraptorsmash();
+if(players[i2].creaturearenacount==10)
+{
+send(0,"the player "+players[i2].name+" just won ten times in the creaturearena. they now will get to claim one of the creaturearena gifts!",2);
+ send(players[i2].peer_id,"arenagifts",0);
+}
+return;
+}
+}
+if(hunting==true)
+{
+if(hunters<=0)
+{
+send(0,"oopsy! it seems nobody won. the eoraptor smashed everyone away, causing the hunt to come to a stop. better luck next time, hunters!",2);
+hunting=false;
+hunters=0;
+creaturearena_opend=false;
+eoraptorsmash();
+creaturearenastarted=false;
+return;
+}
+}
+for(uint i4=0; i4<players.length(); i4++) {
+if(players[i4].map=="creature_arena" and players[i4].x==50 and players[i4].y==50 and players[i4].z==10) {
+move_player(players[i4],players[i4].oldmap,players[i4].oldx,players[i4].oldy,players[i4].oldz);
+send(players[i4].peer_id,"startmoving",0);
+return;
+}
+}
+}
+if(creaturearenastarted==true)
+{
+for(uint i5=0; i5<players.length(); i5++)
+{
+if(players[i5].map=="creature_arena")
+{
+move_player(players[i5],players[i5].oldmap,players[i5].oldx,players[i5].oldy,players[i5].oldz);
+creaturearenastarted=false;
+players[i5].on_creaturearena=false;
+hunting=false;
+hunters=0;
+creaturearena_opend=false;
+eoraptorsmash();
+players[i5].creaturehunted=false;
+}
+}
+}
+if(creaturearena_opend==true) {
+huntstarted=true;
+if(hunttimer.elapsed>=50000) {
+if(ftime==false)
+{
+send(0,"attention! You have 10 seconds left to join!",2);
+send(0,"play_s 22.ogg",0);
+ftime=true;
+}
+}
+if(hunttimer.elapsed>60000) {
+hunttimer.restart();
+hunting=true;
+if (hunting==true) {
+if(hunters==1) {
+for(uint i3=0; i3<players.length(); i3++) {
+if(players[i3].map=="creature_arena_wait") {
+move_player(players[i3],players[i3].oldmap,players[i3].oldx,players[i3].oldy,players[i3].oldz);
+players[i3].on_creaturearena=false;
+send(players[i3].peer_id,"startmoving",0);
+hunting=false;
+huntstarted=false;
+creaturearena_opend=false;
+hunters=0;
+send(0,"not enough players",2);
+send(0,"play_s arenaclose.ogg",0);
+players[i3].creaturehunted=false;
+creaturearenastarted=false;
+return;
+}
+}
+}
+if(hunters==0) {
+hunting=false;
+huntstarted=false;
+creaturearena_opend=false;
+send(0,"not enough players to hunt",2);
+send(0,"play_s arenaclose.ogg",0);
+creaturearenastarted=false;
+return;
+}
+else
+{
+huntstarted=false;
+creaturearenatimer.restart();
+send(0,"The hunt has begun! good luck to all the players!",2);
+send(0,"play_s arenastart.ogg",0);
+eoraptorsmash();
+spawn_eoraptor(50,50,0,"creature_arena");
+for(uint i=0; i<players.length(); i++) {
+if(players[i].map=="creature_arena_wait") {
+players[i].creaturehunted=false;
+creaturearenastarted=false;
+move_player(players[i],"creature_arena",random(0,100),random(0,100),0);
+send(players[i].peer_id,"startmoving",0);
+creaturearena_opend=false;
+}
+}
+}
+}
+}
+}
+}
+void arenaloop() {
+if(fighiters<0) {
+fighiters=0;
+admintell("Dibug alert! Arena fighters automatically reset to 0!");
+}
+if(fighting==true) {
+if(fighiters==1) {
+for(int i2=0; i2<players.length(); i2++) {
+if(players[i2].map=="arena") {
+int a=random(4420000, 5550000);
+players[i2].give("dollar",a);
+players[i2].arenacount++;
+send(players[i2].peer_id,"you have gained "+a+" dollars, and your victory count has now been raised to "+players[i2].arenacount+". Nice job!",2);
+players[i2].on_arena=false;
+move_player(players[i2],players[i2].oldmap,players[i2].oldx,players[i2].oldy,players[i2].oldz);
+fighting=false;
+send(0,"We congratulate the winner! And the winner is "+players[i2].name+"!",2);
+send(0,"play_s arenawin.ogg",0);
+fighiters=0;
+arena_opend=false;
+if(players[i2].arenacount==10)
+{
+send(0,"the player "+players[i2].name+" just won ten times in the arena. they now will get to claim one of the arena gifts!",2);
+ send(players[i2].peer_id,"arenagifts",0);
+}
+return;
+}
+}
+}
+for(uint i4=0; i4<players.length(); i4++) {
+if(players[i4].map=="arena" and players[i4].x==50 and players[i4].y==50 and players[i4].z==10) {
+move_player(players[i4],players[i4].oldmap,players[i4].oldx,players[i4].oldy,players[i4].oldz);
+send(players[i4].peer_id,"startmoving",0);
+return;
+}
+}
+}
+if(arena_opend==true) {
+fightstarted=true;
+if(fighttimer.elapsed>=50000) {
+if(ftime==false)
+{
+send(0,"attention! You have 10 seconds left to join!",2);
+send(0,"play_s 22.ogg",0);
+ftime=true;
+}
+}
+if(fighttimer.elapsed>60000) {
+fighttimer.restart();
+fighting=true;
+if (fighting==true) {
+if(fighiters==1) {
+for(uint i3=0; i3<players.length(); i3++) {
+if(players[i3].map=="arena_wait") {
+move_player(players[i3],players[i3].oldmap,players[i3].oldx,players[i3].oldy,players[i3].oldz);
+players[i3].on_arena=false;
+send(players[i3].peer_id,"startmoving",0);
+fighting=false;
+fightstarted=false;
+arena_opend=false;
+fighiters=0;
+send(0,"not enough players to fight",2);
+send(0,"play_s arenaclose.ogg",0);
+return;
+}
+}
+}
+if(fighiters==0) {
+fighting=false;
+fightstarted=false;
+arena_opend=false;
+send(0,"not enough players to fight",2);
+send(0,"play_s arenaclose.ogg",0);
+return;
+}
+else
+{
+fightstarted=false;
+arenatimer.restart();
+send(0,"The arena battles have begun! We wish good luck to our fighters!",2);
+send(0,"play_s arenastart.ogg",0);
+for(uint i=0; i<players.length(); i++) {
+if(players[i].map=="arena_wait") {
+move_player(players[i],"arena",random(0,100),random(0,100),0);
+send(players[i].peer_id,"startmoving",0);
+arena_opend=false;
+}
+}
+}
+}
+}
+}
+}
+void meleearenaloop() {
+if(tossers<0) {
+tossers=0;
+admintell("Dibug alert! meleearena tossers automatically reset to 0!");
+}
+if(tossing==true) {
+if(tossers==1) {
+for(int i2=0; i2<players.length(); i2++) {
+if(players[i2].map=="melee_arena") {
+int a=random(4000000, 5000000);
+players[i2].give("dollar",a);
+players[i2].give("death_free_card",-10);
+players[i2].on_meleearena=false;
+send(players[i2].peer_id,"you have gained "+a+" dollars, and your victory count has been raised to "+players[i2].meleecount+" Nice job!",2);
+players[i2].meleecount++;
+move_player(players[i2],players[i2].oldmap,players[i2].oldx,players[i2].oldy,players[i2].oldz);
+tossing=false;
+send(0,"We congratulate the winner! And the winner is "+players[i2].name+"!",2);
+send(0,"play_s arenawin.ogg",0);
+tossers=0;
+meleearena_opend=false;
+if(players[i2].meleecount==10)
+{
+send(0,"the player "+players[i2].name+" just won ten times in the melee arena. they now will get to claim one of the arena gifts!",2);
+ send(players[i2].peer_id,"meleegifts",0);
+}
+return;
+}
+}
+}
+for(uint i4=0; i4<players.length(); i4++) {
+if(players[i4].map=="meleearena" and players[i4].x==50 and players[i4].y==50 and players[i4].z==10) {
+move_player(players[i4],players[i4].oldmap,players[i4].oldx,players[i4].oldy,players[i4].oldz);
+send(players[i4].peer_id,"startmoving",0);
+return;
+}
+}
+}
+if(meleearena_opend==true) {
+tossstarted=true;
+if(tosstimer.elapsed>=50000) {
+if(ftime==false)
+{
+send(0,"attention! You have 10 seconds left to join!",2);
+send(0,"play_s 22.ogg",0);
+ftime=true;
+}
+}
+if(tosstimer.elapsed>60000) {
+tosstimer.restart();
+tossing=true;
+if (tossing==true) {
+if(tossers==1) {
+for(uint i3=0; i3<players.length(); i3++) {
+if(players[i3].map=="melee_arena_wait") {
+move_player(players[i3],players[i3].oldmap,players[i3].oldx,players[i3].oldy,players[i3].oldz);
+players[i3].on_meleearena=false;
+send(players[i3].peer_id,"startmoving",0);
+tossing=false;
+tossstarted=false;
+meleearena_opend=false;
+tossers=0;
+send(0,"not enough players to fight",2);
+send(0,"play_s arenaclose.ogg",0);
+return;
+}
+}
+}
+if(tossers==0) {
+tossing=false;
+tossstarted=false;
+meleearena_opend=false;
+send(0,"not enough players to fight",2);
+send(0,"play_s meleearenaclose.ogg",0);
+return;
+}
+else
+{
+tossstarted=false;
+meleearenatimer.restart();
+send(0,"The melee battles are underway! who will come out on top!!",2);
+send(0,"play_s arenastart.ogg",0);
+for(uint i=0; i<players.length(); i++) {
+if(players[i].map=="melee_arena_wait") {
+move_player(players[i],"melee_arena",random(0,100),random(0,100),0);
+meleearena_opend=false;
+}
+}
+}
+}
+}
+}
+}
+void rebootloop()
+{
+if(rebooting==true)
+{
+if(reboottimer.elapsed>=60000)
+{
+wait(1000);
+for(uint i=0; i<players.length(); i++)
+{
+scd(i);
+}
+for(uint i=0; i<alliances.length(); i++)
+{
+alliances[i].alliance_save();
+}
+saveshelters();
+save_corpses();
+save_lockers();
+writedata();
+save_shipments();
+send(0,"reboot",0);
+wait(1200);
+run(get_script_path(),"",false,false);
+exit();
+}
+else if(reboottimer.elapsed>=49990 and reboottimer.elapsed<=49999) {
+send(0,"server restarting, 10 seconds left",2);
+send(0,"play_s notify_swoosh.ogg",0);
+}
+else if(reboottimer.elapsed>=30000 and reboottimer.elapsed<=30005) {
+send(0,"server restarting, 30 seconds left",2);
+send(0,"play_s notify_swoosh.ogg",0);
+}
+}
+}
+void mapupdate(string map)
+{
+init_mapsystem();
+int mi=get_map_index(map);
+if(mi<0) return;
+string mdata=maps[mi].rawdata;
+string ite;
+for(uint i=0; i<sources.length(); i++)
+{
+if(sources[i].map==map)
+ite+="src:"+sources[i].lx+":"+sources[i].rx+":"+sources[i].miny+":"+sources[i].maxy+":"+sources[i].minz+":"+sources[i].maxz+":"+sources[i].soundfile+":"+sources[i].id+"\r\n";
+}
+for(uint i=0; i<cmusics.length(); i++)
+{
+if(cmusics[i].map==map)
+ite+="cmusic:"+cmusics[i].lx+":"+cmusics[i].rx+":"+cmusics[i].miny+":"+cmusics[i].maxy+":"+cmusics[i].minz+":"+cmusics[i].maxz+":"+cmusics[i].soundfile+":"+cmusics[i].id+"\r\n";
+}
+for(uint i=0; i<robots.length(); i++)
+{
+if(robots[i].map==mi) {
+destroy_moving_sound(robots[i].voice);
+robots.remove_at(i);
+}
+}
+maps[mi].currobots=0;
+
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].map==map)
+{
+players[i].map=map;
+send(players[i].peer_id, "m_data "+mdata+"\r\n"+ite+"\r\nx:"+players[i].x+"\r\ny:"+players[i].y+"\r\nz:"+players[i].z+"\r\n", 0);
+}
+}
+}
+void playermapupdate(string map, int x, int y, int z, player@ p)
+{
+string mdata=get_map_text(map);
+string ite;
+for(uint i=0; i<sources.length(); i++)
+{
+if(sources[i].map==map)
+ite+="src:"+sources[i].lx+":"+sources[i].rx+":"+sources[i].miny+":"+sources[i].maxy+":"+sources[i].minz+":"+sources[i].maxz+":"+sources[i].soundfile+":"+sources[i].id+"\r\n";
+}
+for(uint i=0; i<cmusics.length(); i++)
+{
+if(cmusics[i].map==map)
+ite+="cmusic:"+cmusics[i].lx+":"+cmusics[i].rx+":"+cmusics[i].miny+":"+cmusics[i].maxy+":"+cmusics[i].minz+":"+cmusics[i].maxz+":"+cmusics[i].soundfile+":"+cmusics[i].id+"\r\n";
+}
+p.x=0;
+p.y=0;
+p.z=0;
+send(p.peer_id,"mapname "+map,0);
+p.map=map;
+send(p.peer_id, "m_data "+mdata+"\r\n"+ite+"\r\nx:"+x+"\r\ny:"+y+"\r\nz:"+z+"\r\n", 0);
+}
+string motd()
+{
+string fmotd=file_get_contents("prefs/motd.svr");
+if(fmotd=="")
+fmotd="No message of the day";
+return fmotd;
+}
+string adminmotd()
+{
+	file f;
+	f.open("prefs/adminmotd.svr", "rb");
+	string fadminmotd=f.read();
+	f.close();
+	if(fadminmotd.is_empty())
+	fadminmotd="No message of the day has been set. ";
+	return fadminmotd;
+}
+void login(string u, string p, string yv, uint id, string compid)
+{
+bool can_login=true;
+string ip=n.get_peer_address(id);
+if(login_disabled==1)
+{
+send(id,"login_disabled",0);
+can_login=false;
+}
+if(is_compbanned(compid,u) or is_ipbanned(ip,u))
+{
+send(id,"banned",0);
+can_login=false;
+}
+if(tempbancheck(u))
+{
+int t=get_tempban_index(u);
+can_login=false;
+send(id,"block Your account is currently disabled. Please try again in "+ms_to_readable_time(tempbans[t].ms-tempbans[t].tempbantimer.elapsed),0);
+}
+multiversion yver(yv);
+multiversion minver(minverstring);
+if(yver<minver)
+{
+send(id,"block your client is out of date. Your version: "+yv+". Minimum required version is "+minverstring,0);
+can_login=false;
+}
+if(can_login==true)
+{
+if(!compid_handlercheck(compid))
+{
+add_compid(compid,u);
+}
+string charfolder="chars/"+u;
+file f, chardata;
+if(!directory_exists("chars/"+u))
+{
+send(id,"nochar",0);
+}
+else
+{
+file charfile;
+charfile.open("chars/"+u+"/password.usr","rb");
+string charpass=charfile.read();
+charfile.close();
+if(charpass!=string_hash(p,2,false))
+{
+send(id,"wrongpass",0);
+}
+else
+{
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].name==u)
+{
+ if(players[i].hidden==0) send(0,u+" has been overwritten",2);
+remove_player(u);
+}
+}
+if(file_get_contents(charfolder+"/map.usr")=="")
+{
+file_put_contents(charfolder+"/map.usr","safe_zone",FILE_WRITE);
+}
+f.open(charfolder+"/map.usr","rb");
+string m=f.read();
+f.close();
+send(id,"mapname "+m,0);
+if(file_get_contents(charfolder+"/facing.usr")=="") file_put_contents(charfolder+"/facing.usr","0",FILE_WRITE);
+if(file_get_contents(charfolder+"/x.usr")=="") file_put_contents(charfolder+"/x.usr",""+random(0,500),FILE_WRITE);
+if(file_get_contents(charfolder+"/y.usr")=="") file_put_contents(charfolder+"/y.usr",""+random(0,500),FILE_WRITE);
+if(file_get_contents(charfolder+"/z.usr")=="") file_put_contents(charfolder+"/z.usr","0",FILE_WRITE);
+f.open(charfolder+"/facing.usr","rb");
+send(id,"facing "+f.read(),0);
+f.close();
+f.open(charfolder+"/x.usr","rb");
+send(id,"x "+f.read(),0);
+f.close();
+f.open(charfolder+"/y.usr","rb");
+send(id,"y "+f.read(),0);
+f.close();
+f.open(charfolder+"/z.usr","rb");
+send(id,"z "+f.read(),0);
+f.close();
+server_log("connections",u+" logged in.",true,true);
+send(id, "loggedin", 0);
+}
+}
+}
+}
+int get_player_index(uint id)
+{
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].peer_id==id)
+{
+return i;
+}
+}
+return -1;
+}
+int get_player_index_from(string name, bool evenhidden=true)
+{
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].name==name)
+{
+if(!evenhidden&&players[i].hidden>0) continue;
+ return i;
+}
+}
+return -1;
+}
+int get_item_index(string name)
+{
+string[] items;
+for(int i=0; i<stores.length(); i++)
+{
+for(int i2=0; i2<stores[i].item_names.length(); i2++)
+{
+items.insert_last(stores[i].item_names[i2]);
+}
+}
+for(int i=0; i<items.length(); i++)
+{
+if(items[i]==name) return i;
+}
+return -1;
+}
+void create_char(string username, string password,uint id, string compid)
+{
+if(disable_account_creation==1)
+{
+send(id,"Error: account creation disabled: please try again later.",0);
+return;
+}
+if(filter(username))
+{
+send(id,"Error: this username contains eloquence crash codes",0);
+return;
+}
+if(filterchar(username,true))
+{
+send(id,"Error: this username contains invalid characters",0);
+return;
+}
+string ip=n.get_peer_address(id);
+if(is_compbanned(compid,"") or is_ipbanned(ip,""))
+{
+send(id,"Error: This client is banned",0);
+return;
+}
+string charfolder="chars/"+username;
+if(!directory_exists("chars"))
+directory_create("chars");
+if(!directory_exists(charfolder))
+{
+directory_create(charfolder);
+file c;
+c.open(charfolder+"/level.usr","w");
+c.write("1");
+c.close();
+c.open(charfolder+"/re.usr","w");
+c.write("0");
+c.close();
+c.open(charfolder+"/health.usr","wb");
+c.write("1000000");
+c.close();
+c.open(charfolder+"/maxhealth.usr","wb");
+c.write("50000000");
+c.close();
+c.open(charfolder+"/energycount.usr","wb");
+c.write("100");
+c.close();
+c.open(charfolder+"/newb.usr","wb");
+c.close();
+c.open(charfolder+"/password.usr","wb");
+c.write(string_hash(password,2,false));
+c.close();
+c.open(charfolder+"/facing.usr","wb");
+c.write("0");
+c.close();
+c.open(charfolder+"/x.usr","wb");
+c.write(random(0,30));
+c.close();
+c.open(charfolder+"/y.usr","wb");
+c.write(random(0,30));
+c.close();
+c.open(charfolder+"/z.usr","wb");
+c.write("0");
+c.close();
+add_compid(compid,username);
+send(id,"createdchar",0);
+send(0,"play_s newplayer.ogg",0);
+send(0,"the player "+username+" has been created! Please welcome him when he come online!",2);
+}
+else
+send(id,"alreadyexists",0);
+}
+void play(string sound, double x, double y, double z, string map, int index=-1, bool onlynear=true, bool reliable=true, int channel=3)
+{
+int pindex = get_player_index(e.peer_id);
+if (pindex > -1 and in_vehicle(players[pindex].name)>-1) {
+players[pindex].playsound(sound);
+return;
+}
+if(onlynear==true)
+{
+if(index>-1)
+{
+if(reliable)
+send(0, sound+" "+x+" "+y+" "+z+" "+map, channel, index);
+else
+send_u(0, sound+" "+x+" "+y+" "+z+" "+map, channel, index);
+}
+else
+{
+if(reliable)
+send_x(0, sound+" "+x+" "+y+" "+z+" "+map, channel, x, y, z,map);
+else
+send_u_x(0, sound+" "+x+" "+y+" "+z+" "+map, channel, x, y, z,map);
+}
+}
+else
+send(0, sound+" "+x+" "+y+" "+z+" "+map, channel);
+}
+string read_from(string name,string val)
+{
+string ret;
+file f;
+int index=get_player_index_from(name);
+if(index>-1)
+{
+string charfolder="chars/"+players[index].name;
+f.open(charfolder+"/"+val+".usr","rb");
+ret=f.read();
+f.close();
+return ret;
+}
+else
+return "error";
+}
+void write_to(string name, string fn, string c)
+{
+fl.open("chars/"+name+"/"+fn, "wb");
+fl.write(c);
+fl.close();
+}
+
+void write_to(string name, string fn, double c)
+{
+file f;
+f.open("chars/"+name+"/"+fn, "wb");
+f.write(c);
+f.close();
+}
+void respawn(int index)
+{
+move_player(players[index],players[index].map,players[index].x,players[index].y,players[index].z);
+players[index].is_dead=false;
+players[index].storetimer.restart();
+players[index].storestage=1;
+players[index].oldhealth=players[index].health;
+players[index].statchangetimer.force(60000);
+}
+void move_player(player@p, string map, int x, int y, int z, bool sound=true,bool command=false,int sindex=-1)
+{
+if(p.hidden>0 or p.invinsible) sound=false;
+if(sound==true)
+play("unspawn",p.x,p.y,p.z,p.map);
+p.x=x;
+p.y=y;
+p.z=z;
+bool mapchanged=false;
+if(map!=p.map or command==false) mapchanged=true;
+if(map!=p.map)
+{
+if(in_shelter(p.name)>-1 or p.map=="store") send(p.peer_id,"exitshelter",0);
+else if(shelter_exists(map))
+{
+int x2=get_shelter_index(map);
+if(x2>-1) send(p.peer_id,"entershelter "+shelters[x2].x+" "+shelters[x2].y+" "+shelters[x2].z+" "+shelters[x2].map,0);
+}
+else if(map=="store") send(p.peer_id,"entershelter "+storex+" "+storey+" "+storez+" main",0);
+}
+if(mapchanged)
+{
+p.map=map;
+string ite;
+for(uint i=0;i<sources.length();i++)
+{
+if(sources[i].map==map)
+ite+="src:"+sources[i].lx+":"+sources[i].rx+":"+sources[i].miny+":"+sources[i].maxy+":"+sources[i].minz+":"+sources[i].maxz+":"+sources[i].soundfile+":"+sources[i].id+"\r\n";
+}
+for(uint i=0; i<cmusics.length(); i++)
+{
+if(cmusics[i].map==map)
+ite+="cmusic:"+cmusics[i].lx+":"+cmusics[i].rx+":"+cmusics[i].miny+":"+cmusics[i].maxy+":"+cmusics[i].minz+":"+cmusics[i].maxz+":"+cmusics[i].soundfile+":"+cmusics[i].id+"\r\n";
+}
+send(p.peer_id,"mapname "+map,0);
+if(sindex>-1)
+send(p.peer_id, "m_data "+shelters[sindex].generate_map()+ite, 0);
+else
+send(p.peer_id, "m_data "+get_map_text(map)+ite, 0);
+if(p.bleedsound!="" or p.bleeding)
+{
+destroy_moving_sound(p.bleedsound);
+p.bleedsound=spawn_moving_sound("bleeding.ogg",p.x,p.y,p.z,p.map);
+}
+}
+send(p.peer_id,"move "+p.x+" "+p.y+" "+p.z,0);
+if(mapchanged==false and p.bleedsound!="") update_moving_sound(p.bleedsound,p.x,p.y,p.z);
+if(sound==true)
+{
+send(0,"distsound movedist "+p.x+" "+p.y+" "+p.z+" "+p.map,0);
+}
+}
+void updatesvr()
+{
+bool updating=false;
+send(0,"updatesvr",0);
+wait(500);
+send(0,"updatesvr",0);
+bool result=run("updater.exe","",false,false);
+exit();
+}
+void setmotd(string newmotd,bool public=true)
+{
+file mfile;
+mfile.open("prefs/motd.svr","wb");
+mfile.write(newmotd);
+mfile.close();
+if(public==true) send(0,"Message of the day was updated to "+newmotd,2);
+}
+void setadminmotd(string newadminmotd)
+{
+	file mfile;
+	mfile.open("prefs/adminmotd.svr","wb");
+	mfile.write(newadminmotd);
+	mfile.close();
+	admintell("The message of the day for the admins was changed to: \r\n"+newadminmotd);
+}
+void send_inv(int index)
+{
+if(index>-1)
+{
+if(!file_exists("chars/"+players[index].name+"/inv.usr") and has_shelter(players[index])==false)
+file_copy("prefs/default_inv.svr","chars/"+players[index].name+"/inv.usr",true);
+file f;
+f.open("chars/"+players[index].name+"/inv.usr","rb");
+string inv=f.read();
+string[] invvalues=string_split(inv,"\r\n",false);
+for(uint i=0; i<invvalues.length(); i++)
+{
+string[] invparser=string_split(invvalues[i],"=",true);
+players[index].give(invparser[0],stn(invparser[1]),false);
+}
+send(players[index].peer_id,"invstring "+string_compress(players[index].get_inv(false)),0);
+}
+}
+bool has_remgun(string name)
+{
+for(uint i=0; i<remguns.length(); i++)
+{
+if(remguns[i].owner==name)
+{
+return true;
+}
+}
+return false;
+}
+int select_random_player(string noname="")
+{
+int[] indexs;
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].afk==true or players[i].invinsible==true or players[i].disappear==true or players[i].is_dead==true or players[i].invisible==true or players[i].name==noname) continue;
+indexs.insert_last(get_player_index(players[i].peer_id));
+}
+if(indexs.length()<=0)
+{
+return -1;
+}
+else
+return indexs[random(0,indexs.length()-1)];
+}
+
+void exitsvr()
+{
+for(uint i=0; i<players.length(); i++)
+{
+scd(i);
+}
+wait(2000);
+send(0,"killclient",0);
+wait(5000);
+destroy_all_canisters();
+destroy_all_sky_mines();
+destroy_all_nuclear_bombs();
+destroy_all_mines();
+destroy_all_timebombs();
+destroy_all_motion_bombs();
+destroy_all_wirebombs();
+for(uint i=0; i<alliances.length(); i++)
+{
+alliances[i].alliance_save();
+}
+saveshelters();
+save_corpses();
+save_lockers();
+writedata();
+save_shipments();
+exit();
+}
+string killmsg(string player1, string player2, string player1weapon)
+{
+string temp=killmsgs[random(0,killmsgs.length()-1)];
+if(string_contains(player1,"'",1)>-1)
+{
+string pn=string_left(player1,string_contains(player1,"'",1));
+player1=string_replace(player1,pn,cn2n(pn),false);
+}
+else player1=cn2n(player1);
+if(string_contains(player2,"'",1)>-1)
+{
+string pn=string_left(player2,string_contains(player2,"'",1));
+player2=string_replace(player2,pn,cn2n(pn),false);
+}
+else player2=cn2n(player2);
+if(string_left(player2,9)=="internal:") temp=internal_killmsg(string_trim_left(player2,9));
+temp=string_replace(temp,"%1",player1,true);
+temp=string_replace(temp,"%2",player2,true);
+temp=string_replace(temp,"%3",player1weapon,true);
+server_log("eventstream","death: "+temp);
+return temp;
+}
+void givegift() {
+int gifted=random(0,players.length()-1);
+string gift=gifts[random(0,gifts.length()-1)];
+players[gifted].give(gift,1);
+send(0,"A random gift has been given out. The recipient, randomly chosen, was "+players[gifted].name+", and they have received "+gift,2);
+send(players[gifted].peer_id,"the server has given you a gift! The item is "+gift,2);
+play("gift2",players[gifted].x,players[gifted].y,players[gifted].z,players[gifted].map);
+}
+void giftloop()
+{
+if(gifttimer.elapsed>=300000 and gifting==1 and players.length()>0)
+{
+gifttimer.restart();
+givegift();
+}
+}
+double stn(string the_string)
+{
+return string_to_number(the_string);
+}
+string randomstring(uint length=10,int mode=1)
+{
+string lets="abcdefghijklmnopqrstuvwxyz";
+string nums="1234567890";
+string temp;
+if(mode==1)
+temp=lets+nums;
+else if(mode==2)
+temp=nums;
+else if(mode==3)
+temp=lets;
+string ret;
+for(uint i=0; i<length; i++)
+{
+ret=ret+temp[random(0,(temp.length()-1))];
+}
+return ret;
+}
+/*
+void add_to_store(string item_name, string item_description, int amount) {
+store_items.insert_last(item_name);
+descriptions.insert_last(item_description);
+amounts.insert_last(amount);
+}
+*/
+void send_store(int playerindex) {
+if(playerindex>-1)
+{
+double dollars=players[playerindex].get_item_count("dollar");
+server_menu menu;
+menu.initial_packet="buysomething";
+menu.intro="What do you wish to buy";
+for(uint i=0; i<store_items.length(); i++)
+{
+int canbuy=dollars/amounts[i];
+menu.add(store_items[i]+" for "+amounts[i]+" dollars. Description, "+descriptions[i]+". You can buy "+canbuy,store_items[i]);
+}
+menu.send(players[playerindex].peer_id);
+}
+}
+void purchase(string name, double amount, int index)
+{
+if(index>-1)
+{
+if(amount<=0)
+{
+send(players[index].peer_id,"you must buy at least 1 of any item to buy anything!",2);
+play("store_error",players[index].x,players[index].y,players[index].z,players[index].map);
+return;
+}
+double itemindex=get_item_index(name);
+if(itemindex>-1)
+{
+double[] a=get_amounts();
+double totalamount=amount*a[itemindex];
+if(totalamount<=0)
+{
+send(players[index].peer_id,"overflow error.",2);
+play("store_error",players[index].x,players[index].y,players[index].z,players[index].map);
+return;
+}
+double dollar=players[index].get_item_count("dollar");
+if(dollar<totalamount)
+{
+send(players[index].peer_id,"Error. Not enough dollars. You need "+totalamount+" dollars and you only have "+players[index].get_item_count("dollar")+".",0);
+play("store_error",players[index].x,players[index].y,players[index].z,players[index].map);
+play("store_v_fish",players[index].x,players[index].y,players[index].z,players[index].map);
+}
+else
+{
+players[index].give("dollar",-totalamount);
+players[index].give(name,amount);
+if(amount==1) send(players[index].peer_id,"1 "+name+" purchased",2);
+else send(players[index].peer_id,""+amount+" "+name+"s purchased",2);
+players[index].add_log_entry("player_actions","bought "+amount+" "+name+"s");
+storeplay("purchase",3,index);
+play("store_purchase_success"+random(1,6),players[index].x,players[index].y,players[index].z,players[index].map);
+}
+}
+}
+}
+double inv_item_number(string inv, string item)
+{
+string content=inv;
+string[] invvalues=string_split(content,"\r\n",false);
+double res;
+for(uint i=0; i<invvalues.length(); i++)
+{
+string[] parsed=string_split(invvalues[i],"=",false);
+if(parsed[0]==item)
+{
+res=stn(parsed[1]);
+}
+}
+return res;
+}
+bool inv_item_exists(string inv, string itemname)
+{
+string content=inv;
+string[] peramitors=string_split(content, "\r\n", true);
+string[] values;
+for(uint i=0; i<peramitors.length(); i++)
+{
+values.insert_at(i,string_replace(peramitors[i], string_left(peramitors[i], string_contains(peramitors[i], "=", 1)+1), "", true));
+peramitors[i]=string_replace(peramitors[i], "="+values[i], "", true);
+}
+for(uint i=0; i<peramitors.length(); i++)
+{
+if(peramitors[i]==itemname)
+{
+return true;
+}
+}
+return false;
+}
+void send_serverbox(int peerid, int mode=0, int maxlength=-1, int autosend=0, int keypresses=-1, string sendtext="server_box", string text="enter text")
+{
+send(peerid,"input ++"+mode+"++"+maxlength+"++"+autosend+"++"+keypresses+"++"+sendtext+"++"+text,0);
+}
+void send_menu(int id, string menuintro, string text, string items)
+{
+menuintro=string_replace(menuintro," ","[SPCE]",true);
+text=string_replace(text, " ", "[SPCE", true);
+send(id,"launchmenu "+menuintro+" "+text+" "+items,0);
+}
+void updateloop()
+{
+if(updatingsvr==false) return;
+if(updatenotified==false)
+{
+updatenotified=true;
+send(0,"the server is being updated. All vehicles are now being controled. Please wait for termination.",0);
+send(0,"play_s notify_woosh.ogg",0);
+}
+if(updatevstopped==false)
+{
+updatevstopped=true;
+for(uint i=0; i<vs.length(); i++)
+{
+if(vs[i].speed>0) vs[i].command("enter",true);
+}
+for(int i=0; i<players.length(); i++)
+{
+int e=is_part_of_event(players[i].name);
+if(e>-1) events[e].leave(players[i], true, true);
+}
+}
+if(updatevstopped&&!updatevkilled&&updatingtimer.elapsed>=4500)
+{
+updatevkilled=true;
+for(uint i=0; i<vs.length(); i++)
+{
+vs[i].command("escape",true);
+}
+}
+if(updatingtimer.elapsed>=10000)
+{
+send(0,"notify The server is updating! Reconnecting to server",0);
+for(uint i=0; i<players.length(); i++)
+{
+scd(i);
+}
+for(uint i=0; i<alliances.length(); i++)
+{
+alliances[i].alliance_save();
+}
+saveshelters();
+save_corpses();
+save_lockers();
+writedata();
+save_shipments();
+save_bombs();
+file_delete("update.txt");
+updatesvr();
+}
+}
+string get_day()
+{
+string ret;
+if(day==1)
+{
+ret="Monday";
+}
+else if(day==2)
+{
+ret="Tuesday";
+}
+else if(day==3)
+{
+ret="Wednesday";
+}
+else if(day==4)
+{
+ret="Thursday";
+}
+else if(day==5)
+{
+ret="Friday";
+}
+else if(day==6)
+{
+ret="Saturday";
+}
+else if(day==7)
+{
+ret="Sunday";
+}
+else
+{
+ret="unknown";
+}
+return ret;
+}
+string convert_month(int m)
+{
+string ret;
+if(m==1)
+ret="january";
+else if(m==2)
+ret="Febuary";
+else if(m==3)
+ret="March";
+else if(m==4)
+ret="April";
+else if(m==5)
+ret="May";
+else if(m==6)
+ret="June";
+else if(m==7) ret="July";
+else if(m==8)
+ret="Augast";
+else if(m==9)
+ret="September";
+else if(m==10)
+ret="October";
+else if(m==11)
+ret="november";
+else if(m==12)
+ret="december";
+else
+ret="Unknown";
+return ret;
+}
+
+bool toggle(bool b)
+{
+bool br=(b==true ? false : true);
+return br;
+}
+int toggle(int intt)
+{
+if(intt==0) return 1;
+else return 0;
+}
+string[] get_registered_users()
+{
+string[] pls;
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].registered>0) pls.insert_last(i);
+}
+return pls;
+}
+string get_registered_names()
+{
+string[] chars=find_directories("chars/*");
+string info;
+int reg=0;
+for(uint i=0; i<chars.length(); i++)
+{
+if(file_exists("chars/"+chars[i]+"/reginfo.usr"))
+{
+reg++;
+info+=chars[i]+", ";
+}
+}
+return "There are "+chars.length()+" characters on the server. Out of all of them, "+reg+" are registered. They are: "+info;
+}
+void storeplay(string what, int max,int x,bool custom=false, int xx=0, int y=0, int z=0)
+{
+if(x>-1 and announcertimer.elapsed>=25000)
+{
+announcertimer.restart();
+string soundfile="store_v_"+what+random(1,max);
+if(custom==false)
+{
+playint(soundfile,players[x].name);
+playext(soundfile,players[x].x,players[x].y,players[x].z,"store",players[x].name);
+}
+else
+{
+playint(soundfile,players[x].name);
+playext(soundfile,xx,y,z,"store",players[x].name);
+}
+}
+}
+void intercept(int x,int y, int z, string map, int index=-1)
+{
+if(index>-1)
+{
+for(uint j=0; j<carrier_missiles.length(); j++)
+{
+int dist=get_3d_distance(carrier_missiles[j].x,carrier_missiles[j].y,carrier_missiles[j].z,x,y,z);
+if(dist<=15 and carrier_missiles[j].map==map and carrier_missiles[j].intercepted==false)
+{
+int index2=get_player_index_from(carrier_missiles[j].owner.name);
+if(index2>-1)
+{
+send(players[index2].peer_id,"Your carrier missile was just intercepted by "+players[index].name+"!",2);
+send(players[index].peer_id,"You're interceptor just intercepted "+players[index2].name+"'s carrier missile!",2);
+play("missile_interceptor_hit",carrier_missiles[j].x,carrier_missiles[j].y,carrier_missiles[j].z,map);
+destroy_moving_sound(carrier_missiles[j].mid);
+carrier_missiles[j].intercepted=true;
+carrier_missiles[j].intercepttimer.restart();
+}
+}
+}
+for(uint j=0; j<missiles.length(); j++)
+{
+int dist=get_3d_distance(missiles[j].x,missiles[j].y,missiles[j].z,x,y,z);
+if(dist<=15 and missiles[j].map==map and missiles[j].intercepted==false)
+{
+int index2=get_player_index_from(missiles[j].owner.name);
+if(index2>-1)
+{
+send(players[index2].peer_id,"Your missile was just intercepted by "+players[index].name+"!",2);
+send(players[index].peer_id,"You're interceptor just intercepted "+players[index2].name+"'s missile!",2);
+play("missile_interceptor_hit",missiles[j].x,missiles[j].y,missiles[j].z,map);
+destroy_moving_sound(missiles[j].mid);
+missiles[j].intercepted=true;
+missiles[j].intercepttimer.restart();
+}
+}
+}
+}
+}
+string random_string_from_array(string[] arraystring)
+{
+string retval=arraystring[random(0,arraystring.length()-1)];
+return retval;
+}
+bool filter(string message)
+{
+if(filterstuff==0) return false;
+message=string_to_lower_case(message);
+string[] filter;
+filter.insert_last("re=\\b(\\w+[bdflmnrvzqh])hes([bcdfgjklmnprtw]\\w+)\\b");
+filter.insert_last("re=(\\d):(\\d\\d[snrt][tdh])");
+filter.insert_last("re=([hH])'([bBdDfFjJkKpPtTvVxX]+)'([rR][aAeEiIoOuU]?)");
+filter.insert_last("re=(re|un|non|anti)cosp");
+filter.insert_last("re=(t+)zsche");
+filter.insert_last("re=(anti|non|re|un)caesure");
+filter.insert_last("re=(EUR[A-Z]+)(\\d+)");
+for(int counter=0; counter<filter.length(); counter++)
+{
+string banned=filter[counter];
+if(string_left(banned, 3)=="re=")
+{
+banned=string_trim_left(banned, 3);
+if(check_regexp(message, banned))
+{
+return true;
+}
+}
+if(string_contains(message, filter[counter], 1)>-1)
+{
+return true;
+}
+}
+return false;
+}
+
+bool filterchar(string message,bool strict=false,string additional="")
+{
+string filter;
+if(!strict) filter="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 !\"Ј$%^&*()-_=+[]{};:'@#\\|,./<>?`~\t\r\n";
+else filter="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-_";
+filter+=additional;
+bool found=false;
+for(int counter=0; counter<message.length(); counter++)
+{
+found=false;
+for(int search=0; search<filter.length(); search++)
+{
+if(message[counter]==filter[search])
+{
+found=true;
+break;
+}
+}
+if(!found)
+{
+return true;
+}
+}
+return false;
+}
+
+bool check_regexp(string message, string pattern)
+{
+library re;
+if(!re.load("libs/filter.dll"))
+{
+return false;
+}
+int handle=-1;
+int rex=-1;
+int matches=-1;
+dictionary@ result=re.call("int regexp_create();");
+result.get("0", handle);
+@result=re.call("int result_create();");
+result.get("0", rex);
+re.call("void regexp_compile(int, char*, int);", handle, pattern, 0);
+re.call("void regexp_match(int, char*, int, int);", handle, message, -1, rex);
+@result=re.call("int result_ismatched(int);", rex);
+result.get("0", matches);
+re.call("void result_free(int);", rex);
+re.call("void regexp_free(int);", handle);
+if(matches>0)
+{
+return true;
+}
+return false;
+}
+bool actually_change_password(string name, string newpassword)
+{
+if(!file_exists("chars/"+name+"/password.usr")) return false;
+else
+{
+file f;
+bool ret;
+ret=f.open("chars/"+name+"/password.usr","wb");
+if(!ret) return false;
+f.write(string_hash(newpassword,2,false));
+f.close();
+return true;
+}
+}
+void change_password(string name ,string newpass, uint id)
+{
+bool retthing=actually_change_password(name,newpass);
+if(!retthing)
+{
+send(id,"Something went wrong.",2);
+}
+else
+{
+send(id,"Your password has been changed.",2);
+}
+}
+bool seriously_change_password(string name, string newpassword)
+{
+if(!file_exists("chars/"+name+"/password.usr")) return false;
+else
+{
+file f;
+bool ret;
+ret=f.open("chars/"+name+"/password.usr","wb");
+if(!ret) return false;
+f.write(string_hash(newpassword,2,false));
+f.close();
+return true;
+}
+}
+void really_change_password(string name, string oldpass, string newpass, uint id)
+{
+if(oldpass==newpass)
+{
+send(id,"You cannot change your password to what it already is.",2);
+return;
+}
+string cp=file_get_contents("chars/"+name+"/password.usr");
+if(string_hash(oldpass,2,false)!=cp)
+{
+send(id,"Error: Given old password is invalid.",2);
+return;
+}
+else if(string_hash(oldpass,2,false)==cp)
+{
+bool retthing=seriously_change_password(name,newpass);
+if(!retthing)
+{
+send(id,"Something went wrong.",2);
+}
+else
+{
+send(id,"Your password has been changed from "+oldpass+" to "+newpass,2);
+}
+}
+}
+string internal_killmsg(string act)
+{
+if(act=="drown") return "%1 has drowned!";
+if(act=="rg:expire") return "%1 has expired!";
+else if(act=="rg:destruct") return "%1 just self destructed!";
+else if(string_left(act,8)=="vehicle:") return "%1 was obliterated by the explosion of their "+string_trim_left(act,8);
+else return "%1 was terminated by "+act;
+}
+void instant_notify(string event,string name=" ")
+{
+server_log("events",event,false,true);
+}
+dictionary wdata;
+void setupserver()
+{
+wdata.set("fists","200 norm");
+wdata.set("hand_cannon","250 norm");
+wdata.set("feet","200 norm");
+wdata.set("admingun","800 norm");
+wdata.set("s110pistol","500 norm");
+wdata.set("g48pistol","50 norm");
+wdata.set("w912pocket_pistol","100 norm");
+wdata.set("bow","600 norm");
+wdata.set("brass_knuckles","500 norm");
+wdata.set("broken_rifle","700 norm");
+wdata.set("tm_sword","500 norm");
+wdata.set("baseball_bat","500 norm");
+wdata.set("bolt_sniper","2000 norm");
+wdata.set("crow_bar","700 norm");
+wdata.set("crt17_combat_knife","100 norm");
+wdata.set("golden_war_axe","600 norm");
+wdata.set("hammer","250 norm");
+wdata.set("large_iron_club","600 norm");
+wdata.set("nunchaku","200 norm");
+wdata.set("g521_laser_cannon","200 norm");
+wdata.set("e395_laserbeam","200 norm");
+wdata.set("m116_death_bringer","250 norm");
+wdata.set("jawbreaker","250 norm");
+wdata.set("flame_thrower","300 norm");
+wdata.set("fire_staff","300 norm");
+wdata.set("sp5shotgun","2000 norm");
+wdata.set("m1891","300 norm");
+wdata.set("throwing_knives","500 norm");
+wdata.set("gauss","2000 norm");
+wdata.set("sky_429_laser_shotgun","300 norm");
+wdata.set("sp150shotgun","1300 norm");
+wdata.set("small_dagger","600 norm");
+wdata.set("small_sabre","600 norm");
+wdata.set("laser_cannon","3000 norm");
+wdata.set("missile_launcher","3000 norm");
+wdata.set("ak48","150 auto");
+wdata.set("ak47","250 auto");
+wdata.set("b96machinegun","150 auto");
+wdata.set("hk_machinegun","150 auto");
+wdata.set("p90compact_machinegun","150 auto");
+wdata.set("combat_machinegun","150 auto");
+gifts.insert_last("health_booster");
+gifts.insert_last("ultimate_bomb");
+gifts.insert_last("health_box");
+gifts.insert_last("health_healer");
+gifts.insert_last("teleporter");
+gifts.insert_last("field_card");
+gifts.insert_last("shield");
+gifts.insert_last("speed_drink");
+gifts.insert_last("cosmic_bomb");
+add_drink_item("chocolate",30);
+add_drink_item("apple",50);
+add_drink_item("kiwi",50);
+add_drink_item("raisin_pack",100);
+add_drink_item("apple_juice",20);
+add_drink_item("milk",30);
+add_drink_item("cola",30);
+add_drink_item("health_drink",2500);
+add_drink_item("beer_bottle",20);
+if(!load_store_registers())
+{
+create_store(0, 0, 0, "store", "weapon_store");
+create_store(0, 10, 0, "store", "misc_store");
+create_store(10, 20, 0, "store", "medical_store");
+create_store(10, 10, 0, "store", "explosive_store");
+create_store(20, 10, 0, "store", "vehicle_store");
+}
+if(!load_stores())
+{
+}
+if(!load_sell())
+{
+}
+string[] temparray=sellitems.get_keys();
+temparray.sort_ascending();
+for(uint i=0; i<temparray.length(); i++)
+{
+int tempkey;
+sellitems.get(temparray[i],tempkey);
+tempkey=round(tempkey*0.75,0);
+sellsend+=temparray[i]+" for "+tempkey+" dollars a piece:"+temparray[i]+"[]";
+}
+sellsend=string_trim_right(sellsend,2);
+}
+
+void add_achievement(string achievement, int index,string reward="",bool public=false)
+{
+bool stuff=false;
+stuff=players[index].a.add(achievement);
+if (stuff==true)
+{
+send(players[index].peer_id,"play_s achievement.ogg",0);
+if(reward=="")
+send(players[index].peer_id,"New achievement! "+achievement,2);
+else
+send(players[index].peer_id,"New achievement! "+achievement+". Reward: "+reward,2);
+if(public==true)
+{
+send_plus(players[index].peer_id,"play_s achievement_complete.ogg",0);
+send_plus(players[index].peer_id,"alert: "+players[index].name+" completed the achievement "+achievement+"!",2);
+}
+if(reward!="")
+{
+string[] rw=string_split(reward," ",true);
+players[index].give(rw[1],stn(rw[0]));
+}
+}
+}
+bool hasammo(string w)
+{
+if(guns.find(w)>-1)
+return true;
+return false;
+}
+void loops()
+{
+netloop();
+robotsloop();
+pipe_bombloop();
+pprojectileloop();
+tprojectileloop();
+projectileloop();
+bottle_bombloop();
+enemyloop();
+concussive_grenadeloop();
+suicide_bomb2loop();
+explosion2loop();
+eoraptorloop();
+//eoraptorspawnloop();
+turretloop();
+mini_missileloop();
+//chestspawnloop();
+robocoploop();
+bbombloop();
+demention_bombloop();
+mega_missileloop();
+wanddisabler();
+helicopterloop();
+sat_bombloop();
+stun_grenadeloop();
+//autobackup();
+cleneloop();
+bulletbombloop();
+bomb_defuserloop();
+suicide_bombloop();
+ultimate_bombloop();
+cosmic_bombloop();
+explosionloop();
+demon_kingloop();
+chestloop();
+shipmentloop();
+playerloop();
+quakeannounceloop();
+quakespawnloop();
+earthquakeloop();
+volcanospawnloop();
+volcanoannounceloop();
+volcanoloop();
+
+arenaloop();
+meleearenaloop();
+creaturearenaloop();
+trainloop();
+crystal_trainloop();
+seetloop();
+crystal_seetloop();
+rebootloop();
+gploop();
+rocketloop();
+rpgloop();
+mass_bombloop();
+agsloop();
+weaponloop();
+tempbanloop();
+lockerloop();
+timeloop();
+gameeventloop();
+weaponloop();
+canisterloop();
+vendingloop();
+maploop();
+objloop();
+horbloop();
+sbombloop();
+ultrabombloop();
+sky_mineloop();
+nuclear_bombloop();
+hipersound_bombloop();
+impactbombloop();
+timeitemloop();
+timebombloop();
+grenadeloop();
+mineloop();
+wirebombloop();
+cmloop();
+missileloop();
+fireloop();
+motionbombloop();
+remgunloop();
+timepacketloop();
+bodyfallloop();
+enerjy_manipulaterloop();
+time_benderloop();
+wand_blockerloop();
+invisibility_reverserloop();
+shield_smasherloop();
+freezing_waveloop();
+thunder_bombloop();
+draconic_furyloop();
+hell_tunnelloop();
+mega_bombloop();
+assid_curseloop();
+giftloop();
+remote_timebombloop();
+shelterloop();
+remote_bombloop();
+allianceloop();
+extrafuncs();
+vloop();
+}
+//this function will make it a lot easier for me to make the new store system!
+void print_store()
+{
+string printout;
+for(uint i=0; i<stores.length(); i++)
+{
+for(int i2=0; i2<stores[i].item_names.length(); i2++)
+{
+printout+=stores[i].item_names[i2]+"="+stores[i].prices[i2]+"="+stores[i].descriptions[i2]+"="+stores[i].name+"\r\n";
+}
+}
+fl.open("prefs/store.svr","wb");
+fl.write(printout);
+fl.close();
+printout="";
+string[] k=sellitems.get_keys();
+for(uint i=0; i<k.length(); i++)
+{
+int val;
+sellitems.get(k[i],val);
+printout+=k[i]+"="+val+"\r\n";
+}
+fl.open("prefs/sell.svr","wb");
+fl.write(printout);
+fl.close();
+}
+string url_ret(string url, string data="")
+{
+string what;
+if(data=="") what=httpn.get(url);
+else what=httpn.post(url,data);
+while(httpn.progress > 0)
+{
+what+=httpn.request();
+if(get_last_error()<0) return get_last_error_text();
+netloop();
+}
+return what;
+}
+string[] delete_array_item(string[] array,string value)
+{
+string inv=linear(array);
+string itemname=value;
+string[] peramitors=array;
+string[] values;
+string srt;
+for(uint i=0; i<peramitors.length(); i++)
+{
+values.insert_at(i,string_replace(peramitors[i], string_left(peramitors[i], string_contains(peramitors[i], "=", 1)+1), "", true));
+peramitors[i]=string_replace(peramitors[i], "="+values[i], "", true);
+}
+for(uint i=0; i<peramitors.length(); i++)
+{
+if(peramitors[i]==itemname)
+{
+inv=string_replace(inv, itemname+"="+values[i]+"\r\n", "", false);
+}
+}
+return delinear(inv);
+}
+void send_plus(uint excluding_peer_id, string packet, int channel)
+{
+for(uint i=0; i<players.length(); i++)
+{
+if(excluding_peer_id!=players[i].peer_id)
+{
+send(players[i].peer_id,packet,channel);
+}
+}
+}
+void playmap(string sound,string map)
+{
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].map==map)
+send(players[i].peer_id,"play_s "+sound+".ogg",0);
+}
+}
+void sendmap(string packet,string map,int channel=0,bool reliable=true)
+{
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].map==map)
+{
+if(reliable) send(players[i].peer_id,packet,channel);
+else send_u(players[i].peer_id,packet,channel);
+}
+}
+}
+bool int_to_bool(int i)
+{
+if(i==1)
+return true;
+return false;
+}
+int bool_to_int(bool b)
+{
+if(b==true)
+return 1;
+return 0;
+}
+string localgrab_url(string filename)
+{
+return file_get_contents("../../var/www/html/"+filename);
+}
+bool automatic(string w)
+{
+string[] aut={"ak47","ak48","hk_machinegun","combat_machinegun","p90compact_machinegun","b96machinegun"};
+if(aut.find(w)>-1)
+return true;
+return false;
+}
+bool write_to_webfile(string filename,string content)
+{
+return file_put_contents("../../var/www/html/"+filename,content,250);
+}
+void admintell(string msg)
+{
+file f;
+f.open("prefs/admintells.svr","ab");
+f.write(msg+"\r\n");
+f.close();
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].adminable())
+{
+send(players[i].peer_id,"adm "+msg,0);
+}
+}
+}
+void timeloop()
+{
+if(timetimer.elapsed > timetime)
+{
+timetimer.restart();
+minute++;
+}
+if(minute>59)
+{
+minute=0;
+hour++;
+}
+if(hour>23)
+{
+hour=0;
+minute=0;
+day+=1;
+if (day>31)
+{
+day=1;
+month+=1;
+if (month>12)
+{
+month=1;
+year+=1;
+}
+}
+}
+}
+double get_best_number_from(double[] numbers)
+{
+int temp=0;
+for(uint i=0; i<numbers.length(); i++)
+{
+if(temp==0) temp=numbers[i];
+else
+{
+if(numbers[i]>temp) temp=numbers[i];
+}
+}
+return temp;
+}
+double  get_closest_value(double num, int[] arr) {
+double diff=0;
+double result;
+for(uint i=0; i<arr.length(); i++) {
+int d=absolute(num-arr[i]);
+if(d<diff || diff==0) {
+diff=d;
+result=arr[i];
+}
+}
+return result;
+}
+//this function starts the guess the number game, resetting all values.
+void gnstart() {
+guessthenumber_guesses.resize(0);
+guessthenumber_minutes=0;
+guessthenumbertimer.restart();
+gntarget=random(1,50);
+guessthenumber_active=1;
+}
+string gettime()
+{
+int newhour;
+string newminute;
+string ampm;
+if (hour<=12 and hour>0)
+{
+newhour=hour;
+ampm="AM";
+}
+else if (hour==0)
+{
+newhour=12;
+ampm="AM";
+}
+else
+{
+ampm="PM";
+newhour=hour-12;
+}
+if (minute<10)
+newminute="0"+minute;
+else
+newminute=minute;
+return newhour+":"+newminute+" "+ampm+", "+convert_month(month)+" "+day+", "+year;
+}
+string get_script_path()
+{
+string scriptpath;
+if(!SCRIPT_COMPILED)
+{
+scriptpath=SCRIPT_CURRENT_FILE;
+}
+else
+{
+scriptpath=SCRIPT_EXECUTABLE;
+}
+return scriptpath;
+}
+string convert_to_list(string[] arr)
+{
+string list;
+if(arr.length()==0) return "";
+if(arr.length()==1) return arr[0];
+for(uint i=0; i<arr.length(); i++)
+{
+if(i==arr.length()-1)
+list+=" and "+arr[i];
+else
+list+=arr[i]+", ";
+}
+return list;
+}
+string convert_to_list(int[] arr)
+{
+string list;
+if(arr.length()==0) return "";
+if(arr.length()==1) return arr[0];
+for(uint i=0; i<arr.length(); i++)
+{
+if(i==arr.length()-1)
+list+=" and "+arr[i];
+else
+list+=arr[i]+", ";
+}
+return list;
+}
+bool dm(string username,string mess)
+{
+return run("dm.exe","--username "+username+" --message \""+mess+"\"",true,true);
+}
+double calculate_movetime_per_tile(int ms,int tiles_to_move)
+{
+return (ms/tiles_to_move);
+}
+double[] get_amounts()
+{
+double[] a;
+for(int i=0; i<stores.length(); i++)
+{
+for(int i2=0; i2<stores[i].prices.length(); i2++)
+{
+a.insert_last(stores[i].prices[i2]);
+}
+}
+return a;
+}
+bool load_stores()
+{
+string sdata;
+bool s=fl.open("prefs/store.svr", "rb");
+if(!s) return false;
+sdata=fl.read();
+fl.close();
+string[] items=string_split(sdata, "\r\n", false);
+if(items.length()<=1) return false;
+for(int i=0; i<items.length(); i++)
+{
+string[] parsed=string_split(items[i], "=", true);
+if(parsed.length()>=4) add_to_store(parsed[0], parsed[2], stn(parsed[1]), parsed[3]);
+}
+return true;
+}
+bool load_sell()
+{
+bool s=fl.open("prefs/sell.svr","rb");
+if(!s) return false;
+string[] data=string_split(fl.read(),"\r\n",false);
+fl.close();
+if(data.length()<=1) return false;
+for(uint i=0; i<data.length(); i++)
+{
+string[] parsed=string_split(data[i],"=",false);
+if(parsed.length()==2)
+{
+int val=stn(parsed[1]);
+sellitems.set(parsed[0],val);
+}
+}
+return true;
+}
+bool load_store_registers()
+{
+file f;
+if(!f.open("prefs/store_registers.svr", "rb")) return false;
+string stuff=f.read();
+f.close();
+string[] store_registers=string_split(stuff, "\r\n", false);
+if(store_registers.length()<1) return false;
+for(int i=0; i<store_registers.length(); i++)
+{
+string[] parsed=string_split(store_registers[i], "=", false);
+create_store(stn(parsed[1]), stn(parsed[2]), stn(parsed[3]), parsed[4], parsed[0]);
+}
+return true;
+}
+void save_store_registers()
+{
+file f;
+f.open("prefs/store_registers.svr", "wb");
+string final;
+for(int i=0; i<stores.length(); i++)
+{
+final+=stores[i].name+"="+stores[i].x+"="+stores[i].y+"="+stores[i].z+"="+stores[i].map+"\r\n";
+}
+f.write(final);
+f.close();
+}
+void achloop(int i, int k)
+{
+if(i>-1 and k>-1)
+{
+if(i==k)
+{
+if(players[k].hitby==players[i].name+"'s grenade") add_achievement("I'm just bad at this grenade thing.",k,"",true);
+else if(players[k].hitby==players[i].name+"'s suicide bomb") add_achievement("bad at dodging",k,"20 warp_box");
+else if(players[k].hitby==players[i].name+"'s ultimate bomb") add_achievement("I really like booms!",i,"4 cosmic_bomb",true);
+else add_achievement("I wanna die now",i,"2 health_booster");
+}
+else
+{
+if(players[i].kills>=10) add_achievement("Killed 10 players",i,"1000000 dollar");
+if(players[i].kills>=50) add_achievement("Killed 50 players",i,"5000000 dollar",true);
+if(players[i].kills>=150) add_achievement("150 kills",i,"5 cosmic_bomb",true);
+if(players[i].kills>=200) add_achievement("200 kills",i,"15 metal_pack",true);
+if(players[i].kills>=500) add_achievement("500 kills",i,"5 ultimate_griffin",true);
+if(players[i].kills>=1000) add_achievement("1000 kills",i,"3 tower_pack",true);
+if(players[i].kills>=2000) add_achievement("2000 kills",i,"1 vehicle_pack",true);
+if(players[i].kills>=3000) add_achievement("3000 kills",i,"3 ultimate_griffin",true);
+if(players[i].kills>=4000) add_achievement("4000 kills",i,"20 fantasy_pass",true);
+if(players[i].kills>=5000) add_achievement("5000 kills",i,"1 ultra_pack",true);
+if(players[i].kills>=6000) add_achievement("It's over 6000!",i,"100 aura_pack",true);
+if(players[i].kills>=7000) add_achievement("Holy! Motherfucking! Shit! 7000 kills",i,"5 ultra_pack",true);
+if(players[k].invisible) add_achievement("kill an invisible player",i,"10 invisibility_shield",true);
+if(players[k].hitby==players[i].name+"'s throwing_knives")
+{
+add_achievement("butcher",i,"300 ammo_flamethrower",true);
+if(players[k].stunned==false) add_achievement("Commander Blade",i,"500 ammo_hand_cannon",true);
+}
+if(players[k].hitby==players[i].name+"'s grenade")
+{
+add_achievement("grenade in your face",i,"3 health_booster",false);
+add_achievement("tastes like grenade",k,"",true);
+}
+int vi=in_vehicle(players[i].name);
+int vk=in_vehicle(players[k].name);
+if(vk>-1&&vi==-1)
+{
+if(vs[vk].type=="tank") add_achievement("killed somebody in a tank",i,"1 tank",true);
+if(vs[vk].type=="armored_tank") add_achievement("killed somebody in a armored tank",i,"1 armored_tank",true);
+else if(vs[vk].type=="aircraft") add_achievement("blow an aircraft out of the sky",i,"1 aircraft",true);
+else if(vs[vk].type=="police_car") add_achievement("bring down the popo",i,"1 police_car",true);
+if(vs[vk].hitby==players[i].name+"'s throwing_knives") add_achievement("killed a vehicle with your knife",i,"50 mine",true);
+}
+else if(vk>-1&&vi>-1)
+{
+if((vs[vi].type=="aircraft"||vs[vi].type=="police_car")&&vs[vk].type=="tank") add_achievement("laser a tank to death",i,"8 metal_pack",true);
+if(vs[vi].type=="aircraft"&&vs[vk].type=="aircraft") add_achievement("professional dogfighter",i,"5 fuel_tank",true);
+if(vs[vi].type=="police_car"&&vs[vk].type=="police_car")
+{
+add_achievement("AWOL",i,"1 police_car",true);
+add_achievement("nailed by a rogue",k,"1 police_car",false);
+}
+}
+if(players[i].kills>=100) add_achievement("Killed 100 players",i,"5 guided_missile",false);
+if(players[k].hitby==players[i].name+"'s missile")
+{
+add_achievement("eat my missile",k,"50 missile_interceptor");
+if(players[k].intercepting) add_achievement("almost had it",k,"2 guided_missile");
+}
+if(players[k].hitby==players[i].name+"'s sp5shotgun") add_achievement("Private Shotgun",i,"1000 ammo_sp5shotgun");
+if(players[k].hitby==players[i].name+"'s shotgun"&&players[k].stunned==false) add_achievement("General Shotgun",i,"2000000 dollar",true);
+if(players[i].health<=5000000&&players[i].health>0&&players[i].name!=players[k].name)
+{
+add_achievement("holy shit that was close",i,"25 health_box",true);
+add_achievement("close, but no cigar",k,"15 health_box");
+}
+if(players[k].oldhealth>=2000000) add_achievement("Youch! That hurt",i,"2 ultimate_bomb");
+if(players[k].shieldshots>0&&string_contains(players[k].hitby,"bomb",1)<0) add_achievement("you beat my shield",i,"25 shield");
+if(string_contains(players[k].hitby,"gun",1)>-1) add_achievement("Bullseye",i,"2 police_car",true);
+}
+}
+}
+void save_bombs()
+{
+dictionary data;
+if(mines.length()>0) data.set("mines",create_datastream_from_mine_array());
+if(motion_bombs.length()>0) data.set("motion_bombs",create_datastream_from_motion_bomb_array());
+if(security_bombs.length()>0) data.set("security_bombs",create_datastream_from_security_bomb_array());
+if(barricade_bombs.length()>0) data.set("barricade_bombs",create_datastream_from_barricade_bomb_array());
+if(wirebombs.length()>0) data.set("wirebombs",create_datastream_from_wirebomb_array());
+if(data.get_size()>0)
+{
+fl.open("prefs/save_bombs.dat","wb");
+fl.write(serialize(data));
+fl.close();
+}
+}
+void load_bombs()
+{
+if(file_exists("prefs/save_bombs.dat")==false) return;
+fl.open("prefs/save_bombs.dat","rb");
+dictionary d=deserialize(fl.read());
+fl.close();
+file_delete("prefs/save_bombs.dat");
+if(d.exists("mines")) create_mine_array_from_datastream(dget_string(d,"mines"));
+if(d.exists("motion_bombs")) create_motion_bomb_array_from_datastream(dget_string(d,"motion_bombs"));
+if(d.exists("security_bombs")) create_security_bomb_array_from_datastream(dget_string(d,"security_bombs"));
+if(d.exists("wirebombs")) create_wirebomb_array_from_datastream(dget_string(d,"wirebombs"));
+if(d.exists("barricade_bombs")) create_barricade_bomb_array_from_datastream(dget_string(d,"barricade_bombs"));
+}
+void call_bumap_cleaner(player@play=null)
+{
+	string spams;
+	int maps_deleted=0;
+if(play.adminable())
+{
+send(0,"The spam backup maps killing system just started by "+play.name+"! Please wait! That might take a few seconds.",2);
+send(0,"play_s 16.ogg",0);
+	string[] files=find_files("backup/maps/*.map");
+	for (uint i=0; i<files.length(); i++)
+	{
+		bool delete=false;
+		string n=string_trim_right(files[i],4);
+		int mx=get_map_index(n);
+		f.open("backup/maps/"+files[i], "rb");
+		string[] lines=string_split(f.read(), "\r\n" ,false);
+		f.close();
+		if (lines.length()<=5)
+		{
+			delete=true;
+			spams+=n+". Reason: less than 5 lines. \r\n";
+		}
+		else if (n.length()<=3)
+		{
+			spams+=n+". reason: less than 3 characters. \r\n";
+			delete=true;
+		}
+		else if (n.length()>40 )
+		{
+			spams+=n+". reason: more than 40 characters. \r\n";
+			delete=true;
+		}
+		else if (string_is_digits(n))
+		{
+			spams+=n+". Reason: only digits. \r\n";
+			delete=true;
+		}
+		else if(is_crash_word(n))
+		{
+			spams+="\r\nWarning: this map contain a crash words: \r\n"+n+". Reason: crash codes";
+			delete=true;
+		}
+		if(delete)
+		{
+			file_delete("backup/maps/"+files[i]);
+			maps_deleted+=1;
+		}
+	}
+	if(!spams.is_empty())
+	{
+		server_log("spam_maps",spams);
+		admintell("these all the spam maps has been removed from the server: \r\n"+spams);
+send(0,"complete! "+maps_deleted+" maps Out of "+files.length()+", ("+round(percent(maps_deleted,files.length()),0)+"%) of the backup maps was marked as spam, and has been deleted from the server!",2);
+send(0,"play_s 20.ogg",0);
+	}
+	else
+{
+send(0,"spam backupped maps are not found in our database!",2);
+send(0,"play_s 21.ogg",0);
+}
+}
+}
+void call_map_cleaner(player@p=null)
+{
+	string spams;
+	int maps_deleted=0;
+	if(p.adminable())
+{
+send(0,"The spam maps killing system just started by "+p.name+"! Please wait! That might take a few seconds.",2);
+send(0,"play_s 16.ogg",0);
+	string[] files=find_files("maps/*.map");
+	for (uint i=0; i<files.length(); i++)
+	{
+		bool delete=false;
+		string n=string_trim_right(files[i],4);
+		int mx=get_map_index(n);
+		f.open("maps/"+files[i], "rb");
+		string[] lines=string_split(f.read(), "\r\n" ,false);
+		f.close();
+		if (lines.length()<=5)
+		{
+			delete=true;
+			spams+=n+". Reason: less than 5 lines. \r\n";
+		}
+		else if (n.length()<=3)
+		{
+			spams+=n+". reason: less than 3 characters. \r\n";
+			delete=true;
+		}
+		else if (n.length()>40 )
+		{
+			spams+=n+". reason: more than 40 characters. \r\n";
+			delete=true;
+		}
+		else if (string_is_digits(n))
+		{
+			spams+=n+". Reason: only digits. \r\n";
+			delete=true;
+		}
+		else if(is_crash_word(n))
+		{
+			spams+="\r\nWarning: this map contain a crash words: \r\n"+n+". Reason: crash codes";
+			delete=true;
+		}
+		for(uint i=0; i<players.length(); i++)
+		if(players[i].map==n)
+		{
+			delete=false;
+		}
+		
+		if(delete)
+		{
+			file_delete("maps/"+files[i]);
+			maps_deleted+=1;
+		}
+	}
+	if(!spams.is_empty())
+	{
+		server_log("spam_maps",spams);
+		admintell("these all the spam maps has been removed from the server: \r\n"+spams);
+send(0,"Complete! "+maps_deleted+" maps Out of "+files.length()+", ("+round(percent(maps_deleted,files.length()),0)+"%) of maps was marked as spam, and has been deleted!",2);
+send(0,"play_s 20.ogg",0);
+		init_mapsystem();
+	}
+else
+{
+send(0,"spam maps are not found in our database!",2);
+send(0,"play_s 21.ogg",0);
+}
+}
+}
+string kill_spam_players()
+{
+	string spams;
+	int playerdeld=0;
+	string[] players=find_directories("chars/*");
+	for (uint i=0; i<players.length(); i++)
+	{
+		bool delete=false;
+		
+		if (players[i].length()<2)
+		{
+			spams+=players[i]+". reason: less 2 characters. \r\n";
+			delete=true;
+		}
+		else if (players[i].length()>26 )
+		{
+			spams+=players[i]+". reason: more than 26 characters. \r\n";
+			delete=true;
+		}
+		else if (string_is_digits(players[i]))
+		{
+			spams+=players[i]+". Reason: only digits. \r\n";
+			delete=true;
+		}
+		else if(is_crash_word(players[i]))
+		{
+			spams+="\r\nWarning: this player contain a crash words: \r\n"+players[i]+". Reason: crash codes";
+			delete=true;
+		}
+		else if(!file_exists("chars/"+players[i]+"/compid.usr"))
+		{
+			spams+=players[i]+". Reason: cant find the computer ID. \r\n";
+			delete=true;
+		}
+/*
+		else if(!file_exists("players/"+players[i]+"/configs.usr"))
+		{
+			spams+=players[i]+". Reason: outdated. \r\n";
+			delete=true;
+		}
+		else if(file_exists("players/"+players[i]+"/gender.usr") and !is_on_server(players[i]))
+		{
+			f.open("players/"+players[i]+"/gender.usr" , "rb");
+			string what=f.read();
+			f.close();
+			if(stn(what)<=0)
+			{
+				spams+=players[i]+". Reason: not set the gender! \r\n";
+				delete=true;
+			}
+		}
+*/
+		else if(!file_exists("chars/"+players[i]+"/playtime.usr") and is_on_server(players[i]))
+		{
+			spams+=players[i]+". Reason: cant find the play time's data. \r\n";
+			delete=true;
+		}
+		else if(file_exists("chars/"+players[i]+"/playtime.usr"))
+		{
+			f.open("chars/"+players[i]+"/playtime.usr" , "rb");
+			string test=f.read();
+			f.close();
+			if(stn(test)<=180000)
+			{
+				spams+=players[i]+". Reason: played just for "+ms_to_readable_time(stn(test))+". \r\n";
+				if(!is_on_server(players[i])) delete=true;
+			}
+		}
+		
+		if (delete==true)
+		{
+			if(is_on_server(players[i]))
+			{
+				remove_player(players[i], true);
+			}
+			directory_delete("chars/"+players[i]);
+			playerdeld+=1;
+		}
+	}
+	if(!spams.is_empty())
+	{
+		server_log("spam_players",spams);
+		admintell("these all the spam players has been removed from the server: \r\n"+spams);
+		
+send(0,"complete! "+playerdeld+" players Out of "+players.length()+", ("+round(percent(playerdeld,players.length()),0)+"%) of players was marked as spam, and has been deleted!",2);
+send(0,"play_s 20.ogg",0);
+		return false;
+	}
+send(0,"spam players are not found in our database!",2);
+send(0,"play_s 21.ogg",0);
+	return true;
+}
+void backup()
+{
+			if(!directory_exists("backup/alliances"))
+			{
+				directory_create("backup/alliances");
+			}
+			string[] a=find_files("alliances/*.alliance");
+			for(uint i=0; i<a.length(); i++)
+			{
+				file_copy("alliances/"+a[i],"backup/alliances/"+a[i],true);
+			}
+			if(!directory_exists("backup/maps"))
+			{
+				directory_create("backup/maps");
+			}
+			string[] m=find_files("maps/*.map");
+			for(uint i=0; i<m.length(); i++)
+			{
+				file_copy("maps/"+m[i],"backup/maps/"+m[i],true);
+			}
+			if(!directory_exists("backup/prefs"))
+			{
+				directory_create("backup/prefs");
+			}
+			string[] p=find_files("prefs/*.*");
+			for(uint i=0; i<p.length(); i++)
+			{
+				file_copy("prefs/"+p[i],"backup/prefs/"+p[i],true);
+			}
+			if(!directory_exists("backup/shelters"))
+			{
+				directory_create("backup/shelters");
+			}
+			string[] s=find_files("shelters/*.shelter");
+			for(uint i=0; i<s.length(); i++)
+			{
+				file_copy("shelters/"+s[i],"backup/shelters/"+s[i],true);
+			}
+if(!directory_exists("backup/chars"))
+directory_create("backup/chars");
+string[] pdirs=find_directories("chars/*");
+for(uint i=0; i<pdirs.length(); i++)
+{
+netloop();
+string[]pdirs2=find_files("chars/"+pdirs[i]+"/*.*");
+if(!directory_exists("backup/chars/"+pdirs[i])) directory_create("backup/chars/"+pdirs[i]);
+for(uint i2=0; i2<pdirs2.length(); i2++)
+{
+file_copy("chars/"+pdirs[i]+"/"+pdirs2[i2],"backup/chars/"+pdirs[i]+"/"+pdirs2[i2],true);
+}
+}
+			if(!directory_exists("backup/lockers"))
+			{
+				directory_create("backup/lockers");
+			}
+			string[] l=find_files("lockers/*.locker");
+			for(uint i=0; i<l.length(); i++)
+			{
+				file_copy("lockers/"+l[i],"backup/lockers/"+l[i],true);
+			}
+send(0,"Complete! The backup system ended successfully. Backup stats: A total of "+pdirs.length()+" players, "+maps.length()+" maps, "+shelters.length()+" shelters and "+alliances.length()+" alliances has been backed up!",2);
+send(0,"play_s 17.ogg",0);
+		}
+bool is_crash_word(string phrase)
+{
+	phrase=string_to_lower_case(phrase);
+	if (string_contains(phrase, ":22nd",1)!=-1)
+	return true;
+	if (string_contains(phrase, ":23nd",1)!=-1)
+	return true;
+	if (string_contains(phrase, ":24nd",1)!=-1)
+	return true;
+	if (string_contains(phrase, ":25nd",1)!=-1)
+	return true;
+	if (string_contains(phrase, "hesday",1)!=-1)
+	return true;
+	if (string_contains(phrase, "'d're",1)!=-1)
+	return true;
+	if (string_contains(phrase, "'d've",1)!=-1)
+	return true;
+	if (string_contains(phrase, "uncosp",1)!=-1)
+	return true;
+	if (string_contains(phrase, "deadhes",1)!=-1)
+	return true;
+	if (string_contains(phrase, "webhes",1)!=-1)
+	return true;
+	if (string_contains(phrase, "melhes",1)!=-1)
+	return true;
+	if (string_contains(phrase, "hesfall",1)!=-1)
+	return true;
+	if (string_contains(phrase, "hesspace",1)!=-1)
+	return true;
+	if (string_contains(phrase, "heskill",1)!=-1)
+	return true;
+	
+	
+	return false;
+}
+int get_help_index(string name)
+{
+string[] helpfiles=find_files("helpfiles/*.help");
+for(uint i=0; i<helpfiles.length(); i++)
+{
+//if(helpfiles[i].name==name)
+//{
+return i;
+}
+return -1;
+}
+void checkma(player@ p=null)
+{
+	if(@p!=null) //idk how to fix this
+	{
+		string[] files=find_directories("chars/*");
+		string data;
+		string caught_str;
+		string w;
+		w="warning: "+p.name+" has these accounts: \r\n";
+		for (uint i=0; i<files.length(); i++)
+		{
+			f.open("chars/"+files[i]+"/compid.usr", "rb");
+			data=f.read();
+			if(data==p.compid)
+			{
+				if(files[i]==p.name)
+				{
+					continue;
+				}
+				caught_str+=files[i]+". \r\n";
+			}
+			f.close();
+		}
+		if(caught_str.is_empty()) return;
+		admintell(w+caught_str);
+	}
+}

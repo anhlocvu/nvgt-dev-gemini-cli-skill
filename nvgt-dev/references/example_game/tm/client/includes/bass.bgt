@@ -1,0 +1,37 @@
+
+class bass_stream_handle {
+    sound s;
+}
+
+class bass {
+    library bass_lib;
+    bool is_loaded;
+
+    int64 init_bass() {
+        if (!is_loaded) {
+            is_loaded = bass_lib.load("bass.dll");
+        }
+        return 1;
+    }
+
+    int64 load(string url) {
+        sound@ s = sound();
+        if (s.load(url)) {
+            s.play_looped();
+            return 1;
+        }
+        return 0;
+    }
+
+    void play(int64 handle) {
+        // NVGT sound handles playback automatically
+    }
+
+    void stop(int64 handle) {
+        // NVGT sound handles playback automatically
+    }
+
+    void set_volume(int64 volume) {
+        // Volume adjustment
+    }
+}

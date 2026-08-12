@@ -1,0 +1,145 @@
+mapname:bff_safe_house
+maxx:50
+maxy:50
+maxz:200
+tile:0:50:0:50:0:0:wood2
+src:0:50:0:50:-33:-33:md13.ogg
+zone:0:50:0:50:0:100:bff_safe_house
+
+fightingstate:0
+noitems:0:50:0:50:-100:200:wirebomb:motion_bomb:nuclear_bomb:mine:stun_dart:remote_timebomb:security_bomb:remote_gun:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:rocket_launcher,bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:wood:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censorbomb:stone:fire_starter:censor_bomb:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:ford:mine:guided_missile:missile_interceptor:stone:sound_grenade:tasing_small_projectile:small_projectile:helicopter
+tile:20:30:0:0:0:0:metalpipe
+zone:20:30:0:0:0:0:press t here bff city:trackme
+travelpoint:20:20:0:0:0:0:bff_city:850:0:0:start_fight
+travelpoint:21:21:0:0:0:0:bff_city:600:150:0:start_fight
+travelpoint:22:22:0:0:0:0:bff_city:215:471:301:start_fight
+travelpoint:23:23:0:0:0:0:bff_city:551:715:301:start_fight
+travelpoint:24:24:0:0:0:0:bff_city:450:250:0:start_fight
+travelpoint:25:25:0:0:0:0:bff_city:250:250:0:start_fight
+travelpoint:26:26:0:0:0:0:bff_city:50:250:0:start_fight
+travelpoint:27:27:0:0:0:0:bff_city:100:400:0:start_fight
+travelpoint:28:28:0:0:0:0:bff_city:100:100:0:start_fight
+travelpoint:29:29:0:0:0:0:bff_city:500:50:0:start_fight
+travelpoint:30:30:0:0:0:0:bff_city:500:450:0:start_fight
+tile:0:0:0:0:0:50:stairs
+zone:0:0:0:0:0:50:stairs second floor:trackme
+tile:0:50:0:50:50:50:carpet
+src:0:50:0:50:45:45:coffee_shop.ogg
+zone:0:50:0:50:50:100:second floor coffee shop:trackme
+
+tile:48:50:0:5:0:1:wallwood17
+tile:48:50:0:5:1:1:wood
+tile:50:50:5:5:1:5:wallcounter
+tile:49:49:5:5:1:1:glass3
+zone:48:50:0:5:1:1:food table:trackme
+zone:49:49:5:5:1:1:food store:trackme
+
+tile:50:50:0:0:50:85:stairs
+zone:50:50:0:0:50:85:stairs the third floor:trackme
+tile:0:50:0:50:85:85:carpet2
+zone:0:50:0:50:85:100:the third floor relax area:trackme
+
+tile:40:50:6:6:0:49:wallwood15
+tile:40:50:20:20:0:49:wallwood15
+tile:40:40:7:19:0:49:wallwood15
+
+tile:50:50:0:0:1:5:wallcounter
+vending_machine:49:0:1
+
+zone:40:50:7:19:0:10:study room
+tile:40:50:30:30:0:49:wallwood17
+tile:40:40:21:29:0:49:wallwood15
+zone:40:50:21:29:0:10:living room
+tile:40:50:40:40:0:49:wallwood18
+tile:40:40:31:39:0:49:wallwood15
+zone:40:50:31:39:0:10:bedroom
+tile:40:40:41:50:0:49:wallwood15
+zone:40:50:41:50:0:10:dining room
+tile:15:15:40:50:0:49:wallwood15
+tile:0:15:39:39:0:49:wallwood16
+tile:0:14:30:30:0:49:wallwood15
+tile:15:15:30:38:0:49:wallwood15
+zone:0:15:40:50:0:10:bathroom
+zone:0:15:31:38:0:10:toilet
+
+tile:0:14:31:38:0:0:cement3
+tile:0:14:40:50:0:0:sewer
+src:0:0:45:45:6:6:lake.ogg
+tile:41:50:7:19:0:0:carpet
+door:39:7:0:41:7:0:0:0:door2moving.ogg:door8open.ogg:door6close.ogg
+door:41:7:0:39:7:0:0:0:door2moving.ogg:door8open.ogg:door6close.ogg
+
+door:39:21:0:41:21:0:0:0:door2moving.ogg:door8open.ogg:door6close.ogg
+door:41:21:0:39:21:0:0:0:door2moving.ogg:door8open.ogg:door6close.ogg
+
+door:39:31:0:41:31:0:0:0:door2moving.ogg:door8open.ogg:door6close.ogg
+door:41:31:0:39:31:0:0:0:door2moving.ogg:door8open.ogg:door6close.ogg
+
+door:39:41:0:41:41:0:0:0:door2moving.ogg:door8open.ogg:door6close.ogg
+door:41:41:0:39:41:0:0:0:door2moving.ogg:door8open.ogg:door6close.ogg
+
+door:16:45:0:14:45:0:0:0:door2moving.ogg:door8open.ogg:door6close.ogg
+door:14:45:0:16:45:0:0:0:door2moving.ogg:door8open.ogg:door6close.ogg
+
+door:7:29:0:7:31:0:0:0:door2moving.ogg:door8open.ogg:door6close.ogg
+door:7:31:0:7:29:0:0:0:door2moving.ogg:door8open.ogg:door6close.ogg
+
+zone:39:39:7:7:0:0:door the study room:trackme
+zone:39:39:21:21:0:0:door the living room:trackme
+zone:39:39:31:31:0:0:door the bed room:trackme
+zone:39:39:41:41:0:0:door the dining room:trackme
+zone:16:16:45:45:0:0:door the bath room:trackme
+zone:7:7:29:29:0:0:door the toilet:trackme
+
+tile:0:3:31:34:0:4:wallcone
+tile:0:3:31:34:5:5:wallbucket
+zone:0:3:31:34:5:5:toilet seat
+tile:0:3:47:50:0:3:wallbarrel
+tile:0:3:47:50:4:4:bathtub2
+zone:0:4:46:50:0:4:bath tub
+tile:14:14:38:38:0:0:steel
+src:14:14:38:38:4:4:waterfountain.ogg
+zone:14:14:38:38:0:4:sink, for hand wash
+
+tile:50:50:50:50:85:150:ladder3
+tile:0:50:0:50:150:150:roof2
+src:0:50:0:50:155:155:forest.ogg
+src:0:50:0:50:160:160:emb11.ogg
+zone:0:50:0:50:150:200:Bff safe house roof.:trackme
+zone:50:50:50:50:85:160:Stairs to the roof.:trackme
+zone:26:26:26:26:0:0:lift up to roof:trackme
+zone:25:25:25:25:150:150:lift down from roof:trackme
+door:25:25:150:25:25:0:70:0:0:0:0
+tile:25:25:25:25:1:149:wallscreen
+tile:25:25:25:25:150:150:metal5
+amb:25:25:25:25:1:149:elevator.ogg
+zone:25:25:25:25:0:149:elevator
+door:26:26:0:25:25:150:70:0:0:0:0
+tile:26:26:26:26:0:0:metal5
+tile:1:1:0:1:1:49:wallair
+tile:0:0:1:1:1:49:wallair
+tile:49:49:0:0:51:84:wallair
+tile:50:50:1:1:51:84:wallair
+tile:49:49:49:50:86:149:wallair
+tile:50:50:49:49:86:149:wallair
+
+tile:0:50:0:50:-100:-100:concrete21
+src:0:50:0:50:-110:-105:generic.ogg
+zone:45:45:45:45:0:0:secret
+zone:0:50:0:50:-100:-1:basement
+
+tile:46:50:32:38:5:5:carpet3
+zone:46:50:32:38:5:5:bed for relaxation
+tile:40:40:7:7:0:10:wallwooddoor
+tile:40:40:21:21:0:10:wallwooddoor
+tile:40:40:31:31:0:10:wallwooddoor
+tile:40:40:41:41:0:10:wallwooddoor
+tile:15:15:45:45:0:10:walldoor3
+tile:7:7:30:30:0:10:walldoor2
+zone:41:41:7:7:0:0:door out
+zone:41:41:21:21:0:0:door out
+zone:41:41:31:31:0:0:door out
+zone:41:41:41:41:0:0:door out
+zone:14:14:45:45:0:0:door out
+zone:7:7:31:31:0:0:door out
+tile:25:25:25:25:0:0:metal

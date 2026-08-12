@@ -1,0 +1,451 @@
+name battle_royale
+maxx 2000
+maxy 2000
+platform 0 2000 0 2000 0 0 water
+zone 0 2000 0 2000 0 50 battle_royale
+platform 250 1750 250 1750 0 0 gravel
+platform 255 1745 255 1745 0 0 grass2
+zone 0 2000 0 2000 0 500 a large ocean surrounding the huge island
+zone 250 1750 250 1750 0 500 the beach at the edge of the island
+zone 255 1745 255 1745 0 500 a large grassy island in the middle of a huge ocean
+source 0 251 0 2000 0 100 waves2.ogg
+source 252 2000 0 251 0 100 waves3.ogg
+source 1749 2000 252 2000 0 100 waves4.ogg
+source 252 1748 1749 2000 0 100 waves5.ogg
+source 255 1745 255 1745 0 100 birds11.ogg -10
+platform 970 1010 999 1025 0 0 grass
+source 970 1010 999 1025 0 100 field.ogg -10
+zone 970 1010 999 1025 0 10 a large meadow with the sun shining on the lush green grass
+platform 980 986 443 1030 0 0 water
+source 980 986 443 1030 0 50 river1.ogg
+source 980 986 1025 1030 0 50 river3.ogg
+platform 969 969 1010 1020 0 8 wallwood
+zone 980 986 443 1030 0 10 a large gushing river
+platform 969 969 1014 1016 0 5 walldoor
+zone 980 986 1025 1030 0 10 the start of the large gushing river, the water seems to flow from a underground spring
+source 980 986 1025 1030 0 50 river1.ogg 5
+door 970 1015 0 968 1015 0 650 none.ogg none.ogg door7.ogg door8.ogg
+door 968 1015 0 970 1015 0 650 none.ogg none.ogg door7.ogg door8.ogg
+platform 958 969 1009 1009 0 8 wallwood
+platform 958 958 1010 1020 0 8 wallwood
+platform 958 969 1021 1021 0 8 wallwood
+platform 959 968 1010 1020 0 0 wood2
+platform 251 980 443 450 0 0 water
+source 251 979 443 450 0 50 river1.ogg
+zone 251 979 443 450 0 10 a large gushing river
+zone 980 986 443 450 0 10 a large turn in the river
+platform 958 969 1009 1021 9 9 hardwood
+zone 251 300 443 450 0 10 the river has a large estery here
+platform 958 969 1009 1021 8 8 wallwood
+zone 959 968 1010 1020 0 7 A small wooden cottage
+zone 959 968 1010 1020 8 9 roof top of the small wooden cottage
+zone 968 968 1015 1015 0 0 Door out of the cottage
+zone 970 970 1015 1015 0 0 Door to the small wooden cottage
+beacon 970 970 1014 1016 0 0 The small wooden cottage
+platform 970 979 1015 1015 0 0 concrete
+platform 979 987 1015 1015 0 0 wood2
+zone 971 979 1015 1015 0 10 a path leading from the bridge to the cottage
+zone 979 987 1015 1015 0 10 a small bridge crossing over the gushing river
+platform 988 989 1015 1015 0 0 concrete
+platform 990 995 255 1745 0 0 gravel
+zone 988 989 1015 1015 0 10 a small path connecting a small bridge and the south-north road
+zone 990 995 255 1745 0 10 the south-north road
+platform 132 167 293 329 0 4 wallrocks
+platform 132 167 293 329 4 4 gravel
+zone 131 168 292 330 0 100 a large rock sticking out the ocean with a small light house sat on top
+source 120 180 280 340 0 100 waves5.ogg
+platform 139 151 299 311 4 40 wallstone
+platform 140 150 300 310 4 40 air
+platform 140 150 300 310 4 4 hardwood2
+platform 140 150 300 310 35 35 wood
+platform 145 145 305 305 0 35 hardwood3
+platform 140 150 300 310 40 40 walldoor
+platform 139 151 299 311 41 41 wood2
+zone 138 152 298 312 0 100 a small light house over looking the ocean
+zone 140 150 300 310 0 40 inside the ruined looking light house
+zone 145 145 305 305 0 40 the rickety stair case, there is nothing stopping you from falling
+zone 140 150 300 310 35 40 the area with the light, the old looking light bulb swivels above the stair case
+zone 145 145 305 305 35 40 the top of the stairs, the old light turns above it
+source 145 145 305 305 39 59 electricity.ogg
+zone 145 145 305 305 0 3 a small shelter at the bottom of the stairs, clearly this island was ready for tornadoes
+door 145 310 4 145 312 4 500 none.ogg none.ogg door5.ogg door6.ogg
+door 145 312 4 145 310 4 500 none.ogg none.ogg door5.ogg door6.ogg
+zone 145 145 310 312 4 9 the light house's small heavy door
+beacon 145 145 311 311 4 4 a small old light house on a rock
+source 255 500 900 1300 0 50 birds29.ogg
+source 255 500 900 1300 0 50 birds28.ogg
+platform 255 500 900 1300 0 0 water
+zone 255 500 900 1300 0 10 a huge marsh shrouded in mist, there are build ups of sediment through out the murky water
+platform 300 350 600 650 75 75 hardwood2
+source 300 350 600 650 75 100 wind2.ogg -6
+platform 299 299 599 651 75 85 wallglass
+platform 300 351 599 599 75 85 wallglass
+platform 351 351 599 651 75 85 wallglass
+platform 299 351 651 651 75 85 wallglass
+zone 300 350 600 650 75 90 A large platform suspended in the air
+sign 965 1008 0 Looking upwards, you think there's more to the wooden roof of the small cottage. Only if you could find a way up...
+platform 965 965 1010 1010 0 1 walltable
+platform 965 965 1010 1010 2 2 hardwood3
+zone 964 966 1010 1011 0 2 There's a stationary clock here
+platform 142 148 299 299 37 39 air
+platform 142 148 299 299 37 37 wood2
+zone 142 148 299 299 37 39 a small wide window overlooking the ocean, there is no glass, i would get down
+platform 1150 1250 700 800 0 30 wallstone
+zone 1145 1255 695 805 0 100 a huge ominous fortress, it towers above the land casting a massive shadow
+platform 1151 1249 701 799 0 29 air
+platform 1151 1249 701 799 0 0 stone
+platform 1150 1150 749 751 0 5 walldoor
+zone 1151 1249 701 799 0 29 the inside of the huge fortress, the ground is flooded and it is pitch black
+zone 1149 1151 749 751 0 5 the huge oak doors leading in too the fortress
+door 1149 750 0 1151 750 0 500 none.ogg none.ogg door5.ogg door6.ogg
+door 1151 750 0 1149 750 0 500 none.ogg none.ogg door5.ogg door6.ogg
+door 1149 749 0 1151 749 0 500 none.ogg none.ogg door5.ogg door6.ogg
+door 1151 749 0 1149 749 0 500 none.ogg none.ogg door5.ogg door6.ogg
+door 1149 751 0 1151 751 0 500 none.ogg none.ogg door5.ogg door6.ogg
+door 1151 751 0 1149 751 0 500 none.ogg none.ogg door5.ogg door6.ogg
+platform 1151 1249 752 752 0 29 wallstone
+platform 1151 1249 748 748 0 29 wallstone
+zone 1152 1249 749 751 0 29 a main hallway down the center of the fortress, the ground is flooded and it is pitch black
+platform 1249 1249 749 751 0 25 wood3
+zone 1246 1249 749 751 0 29 a large staircase stands in front of you, it climbs the 6 floors
+zone 1249 1249 549 751 0 29 the staircase, first floor
+zone 1249 1249 749 751 5 29 stair case floor2
+safezone 300 350 600 650 50 100
+platform 1151 1248 749 751 5 5 concrete28
+
+zone 1151 1245 749 751 5 10 the second floor corridoor
+zone 1249 1249 749 751 10 15 stairs, third floor
+beacon 1150 1150 750 750 0 0 the large doors to the fortress
+zone 1000 1000 1000 1000 0 0 a stone pillar at the center of the map
+platform 1151 1248 749 751 10 10 concrete21
+zone 1151 1245 749 751 10 15 third floor hallway
+platform 1151 1248 749 751 15 15 concrete21
+zone 1151 1245 749 751 15 20 fourth floor hallway
+zone 1249 1249 749 751 15 19 stairs, fourth floor
+zone 1249 1249 749 749 20 30 stairs
+platform 1500 1745 1500 1745 0 10 wallrocks
+zone 1499 1746 1499 1746 0 100 a small rocky hill
+platform 1500 1745 1500 1745 10 10 grass
+platform 1499 1745 1499 1499 0 10 stone
+platform 1499 1499 1499 1745 0 10 stone
+platform 1745 1760 1600 1745 0 10 wallbrick
+platform 1745 1760 1600 1745 10 10 pavement
+zone 1745 1761 1599 1746 0 100 a long dock along side the main road
+platform 1760 1810 1667 1673 10 10 wood3
+platform 1810 1810 1667 1667 0 9 wallwood
+platform 1800 1800 1667 1667 0 9 wallwood
+platform 1790 1790 1667 1667 0 9 wallwood
+platform 1780 1780 1667 1667 0 9 wallwood
+platform 1770 1770 1667 1667 0 9 wallwood
+platform 1770 1770 1673 1673 0 9 wallwood
+platform 1780 1780 1673 1673 0 9 wallwood
+platform 1790 1790 1673 1673 0 9 wallwood
+platform 1800 1800 1673 1673 0 9 wallwood
+platform 1810 1810 1673 1673 0 9 wallwood
+zone 1760 1811 1666 1674 0 100 a long peer sticking from the dock, it is empty
+platform 1745 1745 1500 1745 10 10 wallstone
+platform 1745 1745 1500 1745 11 11 concrete8
+zone 1550 1745 1550 1745 10 100 a small village at the corner of the island, it is completely abandoned
+platform 1500 1745 1745 1745 10 10 wallstone
+platform 1500 1745 1745 1745 11 11 concrete8
+platform 1734 1744 1550 1744 10 10 concrete23
+platform 1734 1735 1550 1744 10 10 concrete6
+platform 1743 1744 1550 1744 10 10 concrete6
+zone 1734 1744 1550 1744 10 20 the main road of the village, it is along side the sea.
+zone 1734 1735 1550 1744 10 20 sidewalk
+zone 1743 1744 11550 1744 10 20 sidewalk
+platform 1745 1745 1670 1675 10 11 air
+platform 1745 1745 1670 1675 10 10 cement2
+zone 1745 1745 1670 1675 10 20 the entrance to the dock
+platform 1723 1733 1560 1610 10 20 wallbuilding
+platform 1723 1733 1560 1610 20 20 tile2
+zone 1722 1734 1559 1611 10 20 outside a small cafe on the main street
+zone 1734 1734 1560 1610 10 20 in front of the sea side cafe
+platform 1733 1733 1575 1575 10 15 walldoor
+zone 1723 1733 1560 1610 10 19 inside the cafe
+zone 1732 1734 1575 1575 10 15 the entrance to the obandoned cafe
+door 1732 1575 10 1734 1575 10 500 none.ogg none.ogg door3.ogg door4.ogg
+door 1734 1575 10 1732 1575 10 500 none.ogg none.ogg door3.ogg door4.ogg
+platform 1724 1732 1561 1609 10 19 air
+platform 1724 1732 1561 1609 10 10 stairs2
+platform 1724 1732 1565 1565 10 11 wallcounter
+platform 1724 1732 1565 1565 12 12 wood
+zone 1724 1732 1564 1566 10 19 the cafe's counter
+zone 1724 1732 1561 1563 10 19 behind the counter
+platform 1724 1732 1607 1609 10 10 walltable
+platform 1724 1732 1607 1609 11 11 hardwood
+zone 1724 1732 1606 1609 10 19 a table at the end of the cafe
+zone 1744 1746 1499 1598 0 9 The village's eastern cliff stands here, blocking access to the hill. You'll have to use the west or the south side
+platform 1724 1730 1570 1603 10 11 walltable
+platform 1724 1730 1570 1603 12 12 hardwood
+zone 1724 1731 1569 1604 10 19 a long table on the west side of the cafe
+platform 1731 1731 1571 1602 10 10 chair
+zone 1731 1731 1571 1602 10 19 a long bench along side the table
+zone 1500 1744 1746 1746 0 9 This is the village's northern cliff. It looks like there is no access to the hill here either. Maybe try the west or the south side?
+zone 1500 1745 1745 1745 10 20 a small wall over looking the beach
+zone 1745 1745 1500 1745 10 20 a small wall over looking the beach
+platform 1713 1733 1625 1650 10 25 wallwood
+platform 1733 1733 1635 1635 10 19 walldoor
+zone 1712 1734 1624 1651 10 25 Outside the giftshop
+zone 1734 1734 1625 1650 10 20 In front of the giftshop, a sign reads: CLOSED FOR GOOD
+zone 1714 1732 1626 1649 10 19 Inside the giftshop, there are several dusty shelves, and gifts scattered all over the dirty hardwood floor
+zone 1732 1734 1635 1635 10 20 The door of the giftshop, which is barely hanging onto its hinges. Seems like its not closed after all?
+door 1734 1635 10 1732 1635 10 1400 none.ogg none.ogg door9.ogg door10.ogg
+door 1732 1635 10 1734 1635 10 1400 none.ogg none.ogg door9.ogg door10.ogg
+platform 1700 1733 1670 1720 10 20 wallwood
+platform 1714 1732 1626 1649 10 20 air
+platform 1714 1732 1626 1649 10 10 hardwood
+zone 1699 1734 1669 1721 10 30 outside the village swimming pool
+zone 1734 1734 1670 1720 10 20 in front of a village swimming pool
+platform 1733 1733 1671 1719 10 19 wallglass
+platform 1700 1732 1671 1719 11 19 air
+platform 1714 1732 1647 1649 10 12 walldebris2
+platform 1700 1732 1671 1719 10 10 marble
+platform 1714 1732 1647 1649 13 13 wood2
+platform 1714 1732 1647 1649 15 15 walldebris2
+door 1732 1695 10 1734 1695 10 500 none.ogg none.ogg door1.ogg door2.ogg
+door 1734 1695 10 1732 1695 10 500 none.ogg none.ogg door1.ogg door2.ogg
+platform 1714 1732 1647 1649 16 16 wood2
+zone 1700 1732 1671 1719 0 19 on the side of the swimming pool
+zone 1732 1734 1695 1695 10 15 the door of the swimming pool
+platform 1732 1732 1646 1646 10 16 metal2
+platform 1705 1727 1675 1715 0 9 wallunderwater
+platform 1705 1727 1675 1715 10 10 water
+zone 1714 1732 1646 1649 10 18 A destabilized shelf stack
+zone 1732 1732 1646 1646 10 18 Ladder
+zone 1705 1727 1675 1715 10 19 inside the swimming pool, it is freazing cold despite the warm weather
+platform 1714 1732 1626 1628 10 12 walldebris2
+platform 1714 1732 1626 1628 13 13 wood2
+platform 1714 1732 1626 1628 15 15 walldebris2
+platform 1714 1732 1626 1628 16 16 wood2
+platform 1714 1714 1629 1629 10 16 metal2
+zone 1714 1732 1626 1629 10 18 A destabilized shelf stack
+zone 1714 1714 1629 1629 10 18 Ladder
+source 1714 1732 1647 1649 10 19 giftopen.ogg -8
+source 1714 1732 1626 1628 10 19 giftopen.ogg -8
+platform 1712 1712 1635 1635 10 25 steel5
+zone 1712 1712 1635 1635 10 30 Fire escape
+platform 1713 1733 1625 1650 25 25 wood
+zone 1713 1733 1625 1650 25 35 Giftshop roof
+zone 1713 1713 1630 1640 25 34 Near the fire escape
+beacon 1733 1733 1635 1635 10 10 the village gift shop
+beacon 1733 1733 1575 1575 10 10 the village cafe
+beacon 1733 1733 1695 1695 10 10 the village swimming pool
+platform 1550 1735 1655 1665 10 10 concrete23
+platform 1550 1735 1655 1656 10 10 concrete6
+platform 1550 1735 1664 1665 10 10 concrete6
+zone 1550 1735 1655 1665 10 20 tower avenue
+zone 1550 1735 1655 1656 10 20 sidewalk
+zone 1550 1735 1664 1665 10 20 sidewalk
+platform 1736 1742 1657 1663 10 10 concrete2
+zone 1736 1742 1657 1664 10 20 intersection between tower avenue (the west) and main road (the north and south).
+platform 1151 1249 753 799 0 29 air
+platform 1151 1249 753 799 0 0 marble
+zone 1151 1249 753 799 0 29 a huge throan room, the ceiling 20 times your hight
+door 1200 751 0 1200 753 0 500 none.ogg none.ogg door5.ogg door6.ogg
+door 1200 753 0 1200 751 0 500 none.ogg none.ogg door5.ogg door6.ogg
+platform 1200 1200 752 752 0 5 walldoor
+zone 1200 1200 751 753 0 5 a large oak door leading into some where large
+platform 1190 1210 790 799 0 5 wallstone
+platform 1190 1210 790 799 5 5 carpet6
+zone 1189 1211 789 799 0 11 a large dayess in the middle of the back wall, a huge ornate throan sits upon it
+platform 1199 1201 789 789 0 5 stairs
+zone 1199 1201 788 789 0 11 stairs leading up to the dayess
+platform 1198 1202 795 799 5 10 wallcloth
+platform 1198 1202 795 799 10 10 carpet6
+platform 1199 1201 795 798 7 7 carpet6
+platform 1199 1201 795 798 8 10 air
+zone 1197 1203 794 799 5 11 the large throan sits hear, its arms ornate with beautiful jewels incrusted in the fabric
+zone 1198 1202 795 799 10 15 the beautiful arms of the throan
+zone 1199 1201 795 798 7 15 the large, comfortable seat of the throan
+platform 1190 1210 753 755 5 5 pavement
+zone 1190 1210 753 755 5 9 a small balcany looking over the throan room, it is rather low down and you could probably fall off with no harm done
+zone 1200 1200 751 753 5 9 a door leading out onto a platform
+door 1200 751 5 1200 753 5 500 none.ogg none.ogg door1.ogg door2.ogg
+door 1200 753 5 1200 751 5 500 none.ogg none.ogg door1.ogg door2.ogg
+platform 1220 1230 753 755 10 10 pavement
+zone 1220 1230 753 755 10 14 a balcany over looking the throan room, it would hert if you fell off here
+zone 1225 1225 751 753 10 14 a door leading out on to a platform
+platform 1225 1225 752 752 10 14 walldoor
+door 1225 751 10 1225 753 10 500 none.ogg none.ogg door1.ogg door2.ogg
+door 1225 753 10 1225 751 10 500 none.ogg none.ogg door1.ogg door2.ogg
+platform 1170 1180 753 755 10 10 pavement
+zone 1170 1180 753 755 10 14 a balcany over looking the throan room, it would hert if you fell off here
+zone 1175 1175 751 753 10 14 a door leading out on to a platform
+platform 1175 1175 752 752 10 14 walldoor
+door 1175 751 10 1175 753 10 500 none.ogg none.ogg door1.ogg door2.ogg
+door 1175 753 10 1175 751 10 500 none.ogg none.ogg door1.ogg door2.ogg
+platform 1235 1245 753 755 15 15 pavement
+zone 1235 1245 753 755 15 19 a balcany over looking the throan room, it would hert if you fell off here
+zone 1240 1240 751 753 15 19 a door leading on to a platform
+platform 1240 1240 752 752 15 19 walldoor
+door 1240 751 15 1240 753 15 500 none.ogg none.ogg door1.ogg door2.ogg
+door 1240 753 15 1240 751 15 500 none.ogg none.ogg door1.ogg door2.ogg
+platform 1155 1165 753 755 15 15 pavement
+platform 1185 1215 753 755 15 15 pavement
+zone 1185 1215 753 755 15 19 a balcany over looking the throan room, it would hert if you fell off here
+zone 1200 1200 751 753 15 19 a door leading out on to a platform
+platform 1200 1200 752 752 15 19 walldoor
+door 1200 751 15 1200 753 15 500 none.ogg none.ogg door1.ogg door2.ogg
+door 1200 753 15 1200 751 15 500 none.ogg none.ogg door1.ogg door2.ogg
+platform 1151 1248 749 751 20 20 concrete10
+zone 1249 1249 749 751 20 24 stairs, fifth floor
+zone 1151 1245 749 751 20 24 fifth floor hallway
+zone 1249 1249 749 751 25 29 the top of the staircase
+platform 1151 1248 749 751 25 25 concrete21
+zone 1151 1245 749 751 25 29 sixth floor hallway
+platform 1151 1249 753 799 25 25 pavement
+platform 1156 1244 756 794 25 25 air
+door 1200 751 25 1200 753 25 500 none.ogg none.ogg door1.ogg door2.ogg
+door 1200 753 25 1200 751 25 500 none.ogg none.ogg door1.ogg door2.ogg
+zone 1151 1249 753 799 25 29 a balcany surrounding the wall of the throan room, almost at the ceiling, do, not, fall, off
+zone 1156 1244 756 794 25 29 a huge throan room, the ceiling 20 times your hight
+platform 1200 1200 752 752 25 29 walldoor
+zone 1200 1200 751 753 25 29 a door leading on to a platform
+platform 996 1149 749 751 0 0 gravel
+zone 996 1148 749 751 0 10 a road leading to a huge fortress looming over the land
+platform 1600 1650 1604 1654 0 20 wallstone
+zone 1599 1651 1603 1655 0 20 outside a large cherch on tower avenue
+zone 1600 1650 1655 1655 10 19 in front of the large cherch
+platform 1601 1649 1605 1653 10 19 air
+platform 1601 1649 1605 1653 10 10 marble
+zone 1601 1649 1605 1653 10 19 inside the large church
+platform 1625 1625 1654 1654 10 15 walldoor
+door 1625 1653 10 1625 1655 10 500 none.ogg none.ogg door5.ogg door6.ogg
+door 1625 1655 10 1625 1653 10 500 none.ogg none.ogg door5.ogg door6.ogg
+zone 1625 1625 1653 1655 10 15 the door leading into the Church
+platform 1605 1645 1610 1650 10 10 wallplastic
+platform 1605 1645 1610 1650 11 11 chair
+zone 1604 1646 1609 1651 10 19 the pews lining the cherch
+platform 1605 1645 1649 1649 10 11 air
+platform 1605 1645 1647 1647 10 11 air
+platform 1605 1645 1645 1645 10 11 air
+platform 1605 1645 1643 1643 10 11 air
+platform 1605 1645 1641 1641 10 11 air
+platform 1605 1645 1639 1639 10 11 air
+platform 1605 1645 1637 1637 10 11 air
+platform 1605 1645 1635 1635 10 11 air
+platform 1605 1645 1633 1633 10 11 air
+platform 1605 1645 1631 1631 10 11 air
+platform 1605 1645 1629 1629 10 11 air
+platform 1605 1645 1627 1627 10 11 air
+platform 1605 1645 1625 1625 10 11 air
+platform 1605 1645 1623 1623 10 11 air
+platform 1605 1645 1621 1621 10 11 air
+platform 1605 1645 1619 1619 10 11 air
+platform 1605 1645 1617 1617 10 11 air
+platform 1605 1645 1615 1615 10 11 air
+platform 1605 1645 1613 1613 10 11 air
+platform 1605 1645 1611 1611 10 11 air
+platform 1605 1645 1611 1611 10 10 marble
+platform 1605 1645 1613 1613 10 10 marble
+platform 1605 1645 1615 1615 10 10 marble
+platform 1605 1645 1617 1617 10 10 marble
+platform 1605 1645 1619 1619 10 10 marble
+platform 1605 1645 1621 1621 10 10 marble
+platform 1605 1645 1623 1623 10 10 marble
+platform 1605 1645 1625 1625 10 10 marble
+platform 1605 1645 1627 1627 10 10 marble
+platform 1605 1645 1627 1627 10 10 marble
+platform 1605 1645 1629 1629 10 10 marble
+platform 1605 1645 1631 1631 10 10 marble
+platform 1605 1645 1633 1633 10 10 marble
+platform 1605 1645 1633 1633 10 10 marble
+platform 1605 1645 1635 1635 10 10 marble
+platform 1605 1645 1637 1637 10 10 marble
+platform 1605 1645 1639 1639 10 10 marble
+platform 1605 1645 1641 1641 10 10 marble
+platform 1605 1645 1643 1643 10 10 marble
+platform 1605 1645 1645 1645 10 10 marble
+platform 1605 1645 1647 1647 10 10 marble
+platform 1605 1645 1649 1649 10 10 marble
+platform 1624 1626 1610 1650 10 11 air
+platform 1624 1626 1610 1650 10 10 marble
+zone 1624 1626 1610 1650 10 19 the isle down the middle of the cherch
+platform 1620 1630 1650 1745 0 5 air
+platform 1620 1630 1650 1745 0 0 concrete24
+zone 1620 1630 1650 1745 0 5 a large, long cave leading under the village
+platform 1623 1627 1653 1750 0 0 water
+source 1623 1627 1653 1750 0 0 river1.ogg 5
+zone 1623 1627 1653 1745 0 5 a river leading down the cave
+zone 1623 1627 1746 1750 0 10 a river leading out of a dark cave
+platform 1623 1627 1653 1653 0 7 water
+source 1623 1627 1653 1653 0 7 waterfall2.ogg -7
+zone 1623 1627 1653 1653 0 7 a small water fall flowing from the ceiling
+platform 1626 1627 1550 1653 7 7 stone
+zone 1626 1627 1550 1653 7 7 a very low ceilinged tunnel leading through the rocky hill
+platform 1700 1700 1670 1720 10 20 wallwood
+platform 1719 1719 1674 1680 10 10 metal3
+zone 1719 1719 1674 1680 10 19 a diving board leading out over the pool
+platform 1703 1703 1695 1695 10 15 metal2
+zone 1703 1703 1695 1695 10 15 the life guard's chair
+platform 1703 1703 1695 1695 15 15 chair
+platform 1624 1676 1666 1718 10 30 wallbrick
+beacon 1625 1625 1654 1654 10 10 the large village church
+beacon 1625 1625 1745 1745 0 0 the entrance to a cave under the rocky hill
+zone 1623 1677 1665 1719 10 30 Outside the village marketplace
+zone 1624 1676 1665 1665 10 30 In front of the marketplace, the building towers over most other buildings in the village
+platform 1625 1675 1667 1717 10 10 concrete25
+zone 1625 1675 1667 1717 10 29 Inside the large marketplace
+zone 1650 1650 1665 1667 10 20 Door B
+platform 1650 1650 1666 1666 10 20 walldoor
+platform 1640 1640 1666 1666 10 20 walldoor
+zone 1640 1640 1665 1667 10 20 Door A
+zone 1660 1660 1665 1667 10 20 Door C
+platform 1660 1660 1666 1666 10 20 walldoor
+platform 1148 1149 700 800 20 20 wallstone
+platform 1148 1148 700 800 21 21 cement2
+platform 1149 1149 700 700 21 21 cement2
+platform 1149 1149 800 800 21 21 cement2
+platform 1149 1149 701 799 15 15 pavement
+door 1640 1665 10 1640 1667 10 1500 none.ogg none.ogg elevator1open.ogg elevator1close.ogg
+door 1640 1667 10 1640 1665 10 1500 none.ogg none.ogg elevator1open.ogg elevator1close.ogg
+zone 1148 1149 700 800 20 25 the battlements overlooking the fortress's entrance
+door 1650 1665 10 1650 1667 10 1500 none.ogg none.ogg elevator1open.ogg elevator1close.ogg
+door 1650 1667 10 1650 1665 10 1500 none.ogg none.ogg elevator1open.ogg elevator1close.ogg
+zone 1148 1148 700 800 20 26 the top of the battlements
+door 1660 1665 10 1660 1667 10 1500 none.ogg none.ogg elevator1open.ogg elevator1close.ogg
+door 1660 1667 10 1660 1665 10 1500 none.ogg none.ogg elevator1open.ogg elevator1close.ogg
+zone 1149 1149 700 700 20 26 the top of the battlements
+zone 1149 1149 800 800 20 26 the top of the battlements
+platform 1150 1150 750 750 20 24 walldoor
+platform 1625 1675 1667 1717 11 29 air
+zone 1149 1151 750 750 20 24 a door leading between the battlements and the fifth floor
+door 1149 750 20 1151 750 20 500 none.ogg none.ogg door3.ogg door4.ogg
+door 1151 750 20 1149 750 20 500 none.ogg none.ogg door3.ogg door4.ogg
+beacon 1640 1640 1665 1665 10 10 Village marketplace door A
+platform 1149 1149 701 799 20 20 concrete3
+beacon 1650 1650 1665 1665 10 10 Village Marketplace door B
+beacon 1660 1660 1665 1665 10 10 Village Marketplace door C
+zone 1149 1149 700 800 15 19 a ledge underneeth the battlements, if you want to get off you would need to jump, 20 feet or more
+platform 1625 1675 1675 1700 10 10 concrete17
+platform 1625 1675 1701 1701 10 30 wallwood
+platform 1634 1634 1675 1700 10 20 wallglass
+platform 1644 1644 1675 1700 10 20 wallglass
+platform 1654 1654 1675 1700 10 20 wallglass
+platform 1655 1675 1675 1700 10 10 marble
+zone 1645 1653 1675 1700 10 20 Aisle 3
+zone 1635 1643 1675 1700 10 20 Aisle 2
+zone 1625 1633 1675 1700 10 20 Aisle 1
+zone 1655 1675 1675 1700 10 25 Checkout
+platform 1665 1675 1690 1700 10 12 wallcounter
+platform 1665 1675 1690 1700 13 13 hardwood2
+zone 1664 1675 1689 1700 10 20 Checkout counter
+platform 1626 1639 1666 1666 10 15 wallglass
+platform 1641 1649 1666 1666 10 15 wallglass
+platform 1651 1659 1666 1666 10 15 wallglass
+platform 1661 1674 1666 1666 10 15 wallglass
+door 1636 1700 10 1638 1702 4 1 elevator2open.ogg none.ogg door5.ogg door2.ogg
+door 1638 1702 4 1636 1700 10 1 elevator2open.ogg none.ogg door5.ogg door2.ogg
+platform 1638 1658 1702 1722 4 4 hardwood
+platform 1642 1644 1702 1706 4 4 chair
+platform 1642 1644 1702 1706 4 7 wallwood
+platform 1654 1656 1718 1720 4 6 walltable
+zone 1654 1656 1718 1720 4 4 A table stuck in the middle. It was previously used for planning.
+platform 1650 1653 1712 1715 4 5 air
+zone 1650 1653 1712 1715 4 5 Just a chasm. Not the safest place to hang out
+platform 1648 1650 1705 1709 4 5 wallrail
+zone 1638 1658 1702 1722 4 4 The secret hideout. It was once used for planning, but is now cluttered with furniture and a gaping chasm
+zone 1638 1638 1702 1702 4 4 The trapdoor back to the store
+zone 1636 1636 1700 1700 10 10 A loose floorboard. Hmm. What if I pry it open and try to go underneath?
+platform 1000 1000 1000 1000 0 10 wallstone

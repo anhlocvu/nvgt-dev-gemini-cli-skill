@@ -1,0 +1,33 @@
+mapname:the_lions_forest
+maxx:500
+maxy:500
+maxz:50
+tile:0:500:0:500:0:0:shortgrass
+robots:0:500:0:500:0:3:4:1000:lion
+amb:0:500:0:500:0:50:birds9.ogg
+zone:0:500:0:500:0:50:lions forest
+tile:50:50:50:50:5:25:branch
+zone:50:50:50:50:0:4:jump to climb the safe tree:trackme
+zone:50:50:50:50:5:40:safe tree
+tile:250:250:250:250:5:25:branch
+zone:250:250:250:250:0:4:jump to climb the safe tree:trackme
+zone:250:250:250:250:5:40:safe tree
+tile:500:500:500:500:5:25:branch
+zone:500:500:500:500:0:4:jump to climb the safe tree:trackme
+zone:500:500:500:500:5:40:safe tree
+tile:0:0:500:500:5:25:branch
+zone:0:0:500:500:0:4:jump to climb the safe tree:trackme
+zone:0:0:500:500:5:40:safe tree
+noitems:0:0:500:500:0:100:wirebomb:motion_bomb:nuclear_bomb:mine:stun_dart:remote_timebomb:security_bomb:remote_gun:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:rocket_launcher,bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:wood:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censorbomb:stone:fire_starter:censor_bomb:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:guided_missile:missile_interceptor:mine:elecboat
+noitems:250:250:250:250:0:100:wirebomb:motion_bomb:nuclear_bomb:mine:stun_dart:remote_timebomb:security_bomb:remote_gun:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:rocket_launcher,bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:wood:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censorbomb:stone:fire_starter:censor_bomb:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:guided_missile:missile_interceptor:mine:elecboat
+noitems:50:50:50:50:0:100:wirebomb:motion_bomb:nuclear_bomb:mine:stun_dart:remote_timebomb:security_bomb:remote_gun:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:rocket_launcher,bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:wood:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censorbomb:stone:fire_starter:censor_bomb:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:guided_missile:missile_interceptor:mine:elecboat
+noitems:500:500:500:500:0:100:wirebomb:motion_bomb:nuclear_bomb:mine:stun_dart:remote_timebomb:security_bomb:remote_gun:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:rocket_launcher,bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:wood:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censorbomb:stone:fire_starter:censor_bomb:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:guided_missile:missile_interceptor:mine:elecboat
+travelpoint:0:50:0:0:0:10:temerial_city:1988:121:0:done
+zone:0:50:0:0:0:100:go back to temerial_city:trackme
+travelpoint:450:500:0:0:0:100:old_shelter:1:1:0:done
+zone:450:500:0:0:0:100:press t to go to the old shelter:trackme
+zone:50:50:50:50:5:6:tree
+tile:50:50:50:50:2:5:branch2
+zone:50:50:50:50:2:5:tree
+noitems:0:500:0:500:0:500:hors:boat
+noitems:0:500:0:500:0:200:arena_card

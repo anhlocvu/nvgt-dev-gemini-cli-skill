@@ -1,0 +1,21 @@
+mapname:city
+maxx:500
+maxy:500
+maxz:500
+zone:0:500:0:500:0:500:city
+tile:0:200:0:200:0:0:grass
+zone:0:200:0:200:0:20:forest :trackme
+src:0:200:0:200:0:50:birds.ogg
+robots:25:100:0:50:0:0:5:100:horse,bear
+zone:25:100:0:50:0:50:kill horse and Bear:trackme
+tile:0:20:30:40:0:0:mud
+zone:0:20:30:40:0:50:near river:trackme
+tile:0:20:41:100:0:0:water
+src:0:20:41:100:0:50:river2.ogg
+zone:0:20:41:100:0:50:river:trackme
+src:0:200:0:200:0:50:jungle.ogg
+tile:0:20:101:111:0:0:mud
+zone:0:20:101:111:0:50:in front of the river:trackme
+tile:14:14:133:133:0:20:branch
+zone:14:14:133:133:0:50:tree:trackme
+noitems:0:500:0:500:0:500:elecboat

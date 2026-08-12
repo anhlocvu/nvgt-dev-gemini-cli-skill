@@ -1,0 +1,80 @@
+#include"audioutils.nvgt"
+sound@ progress_sound;
+string dl_file(string url, string disk_file,bool quiet=false,string msg="Downloading. Press Space for percentage, 1 2 and 3 keys for detailed progress, or escape to cancel")
+{
+internet_request r(url,disk_file);
+if(!quiet) speak(msg);
+double last_percentage;
+string status;
+while(r.complete!=true)
+{
+wait(5);
+if(r.download_percent-last_percentage>=1)
+{
+beep_percentage(r.download_percent);
+last_percentage=r.download_percent;
+}
+if (key_pressed(KEY_ESCAPE))
+{
+status="canceled";
+speak(status);
+wait(500);
+return status;
+}
+else if (key_pressed(KEY_1))
+{
+string size=round(r.download_size/1024/1024, 0)+" MB ("+round(r.download_size/1024, 0)+" KB)";
+speak("File size: "+size);
+}
+else if (key_pressed(KEY_2))
+{
+string size=round(r.bytes_downloaded/1024/1024, 0)+" MB ("+round(r.bytes_downloaded/1024, 0)+" KB)";
+speak("Total downloaded: "+size);
+}
+else if (key_pressed(KEY_3))
+{
+string size=(round(r.download_size/1024/1024, 0)-round(r.bytes_downloaded/1024/1024, 0))+" MB( "+(round(r.download_size/1024, 0)-round(r.bytes_downloaded/1024, 2))+" KB)";
+speak("Total remaining: "+size);
+}
+else if (key_pressed(KEY_SPACE))
+{
+speak(round(r.download_percent, 0)+" percent downloaded");
+}
+else if(r.complete==true)
+{
+status="finished";
+}
+}
+return status;
+}
+void beep_percentage(double val)
+{
+val=round(val,0);
+val=clamp(val,0,100);
+uint freq=uint(110*pow(2,val/25));
+float dur=40;
+float amp=0.5;
+uint sr=44100;
+float[]@ samples=sinewave(freq,dur,amp,sr);
+samples=adsr_envelope(samples,5,0,1,5,sr);
+@progress_sound=push_audio(samples,sr);
+progress_sound.play();
+}
+
+string dl_file1(string url, string disk_file,bool quiet=false,string msg="Downloading. Press Space for percentage, 1 2 and 3 keys for detailed progress, or escape to cancel")
+{
+internet_request r(url,disk_file);
+if(!quiet) speak(msg);
+string status;
+while(r.complete!=true)
+{
+wait(5);
+if(r.complete==true)
+{
+status="finished";
+}
+//prog.play();
+}
+return status;
+
+}

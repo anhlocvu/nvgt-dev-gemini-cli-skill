@@ -1,0 +1,51 @@
+name main2
+maxx 100
+maxy 500
+platform 0 500 0 500 0 0 grass2
+zone 0 500 0 500 0 50 An overgrown forest
+source 0 500 0 500 0 500 forest1.ogg -8
+platform 0 10 10 20 0 10 walldirt
+platform 16 16 11 90 0 10 wallrocks3
+platform 0 9 0 10 walldirt2
+platform 1 15 41 41 0 10 wallbranch
+platform 0 5 45 45 0 10 wallrocks
+platform 18 24 80 80 0 10 wallrocks2
+platform 17 40 75 75 0 15 walldirt
+platform 17 30 50 50 0 10 wallstone
+platform 16 16 0 9 0 15 wallrocks3
+platform 0 15 70 70 0 1 wallrocks
+platform 0 15 85 85 0 3 wallrocks3
+source 0 500 101 500 0 500 wind2.ogg -10
+platform 0 500 105 105 0 6 walldirt2
+platform 0 500 104 104 0 6 dirt
+platform 0 500 105 150 7 7 grass
+platform 0 500 106 106 0 6 dirt
+platform 0 500 150 150 0 3 wallrocks3
+platform 0 30 160 160 0 10 wallrocks2
+platform 20 40 180 200 0 15 wallbranch
+platform 64 100 124 144 0 15 wallbranch
+platform 20 75 220 240 0 12 wallrocks2
+platform 10 90 245 290 0 13 wallbranch
+platform 75 300 350 0 0 water
+source 25 75 300 350 0 25 river1.ogg -11
+zone 25 75 300 350 0 30 Safe zone river
+beacon 25 25 300 300 0 0 Safe zone
+platform 1 20 300 400 0 50 wallrocks2
+platform 23 89 370 370 0 12 wallstone
+platform 30 50 380 400 0 15 wallrocks3
+platform 21 95 430 430 0 10 wallrocks3
+platform 20 80 435 445 0 10 wallrocks3
+platform 25 75 465 475 0 13 wallrocks
+platform 0 18 465 500 0 10 wallrocks2
+platform 80 100 465 500 0 13 wallrocks
+platform 19 100 500 500 0 50 wallstone
+zone 25 50 499 499 0 10 To continue into the distant graveyard, press Shift Enter
+beacon 25 50 499 499 0 0 Entrance into the abandoned graveyard (main5)
+zone 0 0 0 0 0 100 press shift enter to go back to main
+travelpoint 0 0 0 0 0 100 63 495 0 main
+beacon 0 0 0 0 0 0 go back to the first main
+
+platform 0 100 151 151 0 4 dirt
+no_fights
+safezone 25 75 300 350 0 30
+platform 25 50 300 350 0 0 water2

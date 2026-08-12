@@ -1,0 +1,8 @@
+mapname:safe_zone2
+maxx:150
+maxy:150
+maxz:50
+tile:0:150:0:150:0:0:grass
+zone:0:150:0:150:0:50:safe_zone2
+tile:0:150:0:150:0:0:carpet
+zone:0:150:0:150:0:50:This is the safe zone, no one can kill you here, explore, and start learning the game:trackme

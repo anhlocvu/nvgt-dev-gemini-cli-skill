@@ -1,0 +1,22 @@
+mapname:fantasy_island
+maxx:1000
+maxy:1000
+maxz:1000
+tile:0:1000:0:1000:0:0:carpet
+zone:0:1000:0:1000:0:1000:the island of fantacy, a home to various powerful creatures which are considered mythicle by the most. however they exist, and this island is a proof. it is a large place, surrounded by the ocean. looking up you see a huge mountain going up as far as the eye can see. on the far right you also see a path leading to the ocean, different than the one you just came from.
+tile:0:2000:0:2000:0:0:sand2
+zone:100:100:100:100:0:100:a large portal surrounded with enerjyfields. on its other side you will see creatures beyond your wildist imaginations, roaming around.@trackme@
+tile:200:250:200:200:0:200:mountain
+zone:200:250:200:200:0:200:a huge mountain. on its peak. you see an electric blue glow@trackme@
+zone:200:250:200:200:200:250:you find yourself at the peak of the mountain. everything is covered in a deap, electric blue glow. standing at such a hight, you can see the entire island down below. while looking around, you think you some times see imiges of strange, flying creatures in the glow. you almost think you can touch the glow. press shift plus to find out if you can
+zone:200:200:200:200:200:211:press shift plus enter to go to the sky of the mighty@trackme@
+zone:400:400:400:400:0:100:a large statue of a creature with wings, crackling with lightning. press shift plus enter to activate it@trackme@
+cmusic:0:2000:0:2000:0:2000:lighthouse.ogg:-10:100
+zone:500:500:500:500:0:0:go down in to the ocean@trackme@
+zone:0:0:0:0:0:0:go back to safe zone@trackme@
+travelpoint:0:0:0:0:0:0:safe_zone:0:0:0:you decide to go back
+travelpoint:200:250:200:250:200:200:sky_of_the_mighty:0:0:0:moved
+
+noitems:0:4444:0:4444:0:4444:stp429
+travelpoint:100:100:100:100:0:0:land_of_the_fallen:0:0:0:.
+travelpoint:500:500:500:500:0:0:sea_of_the_forgotten:0:0:5:.

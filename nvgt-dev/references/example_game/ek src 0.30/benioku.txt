@@ -1,0 +1,96 @@
+Merhaba ve Şövalyeler Dönemine hoş geldiniz!
+Bu oyun Omerefe-Productions tarafından geliştirildi. Aşağıda oyun hakkında bilmeniz gereken her şeyi bulacaksınız.
+Her şeyden önce, bu oyunun bir klon olduğunu bilmenizi istiyorum. Klonları sevmiyorsanız, oyunu cihazınızdan kaldırmanızı öneririz. Aksi takdirde, oyunda bahsetmeye devam ederseniz, karakteriniz üzerinde eylemler yapabiliriz.
+Hızlı bir şekilde oyuna girelim. Oyun, çeşitli silahlar alabileceğiniz ve yaratıklara veya diğer oyunculara karşı savaşabileceğiniz bir 3D savaş oyunudur. Ekibinizle diğer takımlara meydan okuyabilir, para kazanabilir ve daha güçlü silahlara sahip olabilirsiniz.
+Oyun, sadece birkaç farklılıkla birçok oyunda bulunan bir klavye düzenine sahiptir.
+Ana menüyü öğrenelim!
+Oyunun ana menüsü klasik bir ana menüdür.
+Ana menü müziğinin ses seviyesini ayarlamak için sayfa yukarı ve sayfa aşağı tuşlarını kullanabilirsiniz. Yukarı ve aşağı ok tuşlarını kullanarak seçeneklerde gezinebilir ve Enter tuşuyla etkinleştirebilirsiniz.
+Diyerek şöyle devam etti: "Şövalyeler kurallarını kabul etmediniz. Kabul etmek için Enter tuşuna basın."
+Bu düğme, oyun kurallarını kabul etmenizi sağlar: açılan iletişim kutusunda evet bastığınızda, bazı düğmeler görünür hale gelir.
+Giriş Seçenekleri
+Bu düğme, oyuna giriş yapmak, oyuna erişmek ve bir hesap oluşturmak için seçenekleri içeren bir menü açar.
+Seçenekler
+Bu menü, oyun ayarlarını değiştirmenize ve seçenekleri tercihinize göre özelleştirmenize olanak tanır.
+Sunucu menüsü
+Burada hangi sunucuya bağlı olduğunuzu, sunucunun güvenli olup olmadığını görebilir ve genel sunucuları görüntüleyebilir. Aralarında geçiş yapabilirsiniz.
+Güncellemeleri kontrol edin
+Bu küçük düğme oyun güncellemelerini kontrol eder ve varsa bunları indirmenizi sağlar. Oyundan ayrılmadan ana menüden ses güncellemelerini ve diğer güncellemeleri indirebilirsiniz.
+Test Hoparlörleri
+Kulaklıklarınızı test etmek için basit bir seçenek. Test etmek için tıklayın ve her zaman sizi bekleyen bir düğme vardır.
+çıkış
+Oyundan sıkıldıysanız, bırakmak için henüz çok erken, ancak düğmenin adı bile ne yaptığını gösteriyor.
+Yeni bir hesap oluştur
+Burada yapmanız gereken oldukça basit. Sekme tuşunu kullanarak gezinme:
+• Oyunda görüntülenmek istediğiniz hesap adını yazın; Mekanlara izin verilmez. Bu alanı bulun ve oyunda kullanacağınız adı girin; Bu senin takma adın değil.
+Enter veya sonraki düğme ile bir sonraki adıma geçebilirsiniz.
+Şifre ekranı
+Hatırlayabileceğiniz güçlü bir şifre oluşturun ve kimseyle paylaşmayın. Oyundaki potansiyel dolandırıcılara dikkat edin. Parola sizin sorumluluğunuzdadır ve hesabınızı güvenilmeyen kişilerle paylaşmamalısınız. Birisi öğelerinizi veya hesabınızı kötüye kullanırsa ve personeli etkilemezse sorumlu değiliz. Şifreniz en az 8 karakter uzunluğunda olmalı ve boşluk içermemelidir.
+Parolanızı girdiyseniz, bir sonraki düğmeye basarak devam edebilirsiniz.
+E -posta ekranı
+Lütfen geçerli e -posta adresini girin. Bu e -posta, yöneticilerin şifrenizi sıfırlamasına ve diğer konulara yardımcı olmasına yardımcı olacaktır. Örneğin,Bir yönetici, şifrenizi sıfırlamak için e -postanıza bir kod gönderebilir. Yanlış girişler sizin sorumluluğunuzdadır ve daha sonra düzeltilemeyen sorunlara neden olabilir.
+E -postanızı girdikten sonra Bitiş düğmesine basın!
+Cinsiyet bölümü
+Lütfen size uygun seçeneği seçin. Yanlış seçim yaparsanız, haklarınız kısıtlı olabilir ve bunları tekrar kullanamayabilirsiniz.
+Her şey doğru şekilde doldurulursa, iletişim kutusunda görünen Oturum Açma düğmesini bulun; Hazırsın!
+Başlayalım!
+İlk olarak, karakterimizi ve bununla ilgili her şeyi nasıl kontrol edeceğimizi öğrenelim!
+Hızlı bir şekilde öğrenelim:
+• R: Oturma / ayakta
+• S: susuzluğunuzu gösterir; 1000'e ulaşırsa, muhtemelen ölümsüzlük kartınızı ölecek veya kaybedeceksiniz.
+• U: Açlığınızı gösterir; susuzluğa benzer; 1000'e ulaşırsa, ölümsüzlük kartınızı ölür veya kaybedersiniz.
+•BEN; Envanterinizi açmanıza izin verir.
+• E ve S: 45 dereceyi çevirin.
+• K: Cephaneniz varsa silahınızı yeniden yüklemenizi sağlar.
+• L: Seviyenizi ve kalan XP'nizi bir sonraki seviyeye gösterir.
+• Noktalı Paralı: Gülme veya alkışlama gibi çeşitli sosyal eylemleri seçebileceğiniz ve kullanabileceğiniz sosyal menüyü açar.
+• Gir: Envanterinizde bir öğe kullanmanızı sağlar.
+• Shift + Enter: Dolar için diğer oyunculara ürün satabileceğiniz bir açık artırma başlatır.
+• Sekme: Varsa öğelerin açıklamalarını gösterir.
+• Alan: Yakındaki oyunculara geldiğiniz bir öğeyi geçirmenizi sağlar.
+• Geri düğme: çantanızdan bir öğeyi atar.
+• Kaçış: Envanteri kapatır.
+C: Mevcut konumunuzdaki X, Y, Z koordinatlarınızı gösterir.
+Shift + C: Tampondaki her şeyi kopyalar.
+Slash: Halka açık sohbete bir mesaj gönderir.
+Backslash: Haritaya bir mesaj gönderir.
+Y: Komutlar girip göndermenizi sağlar.
+Shift + Y: Yöneticilere bir mesaj gönderir. Bunu gerektiğinde kullanın.
+N: Mevcut konumunuzu gösterir.
+M: Yakındaki öğeleri gösterir.
+P: Yakındaki oyuncuları gösteriyor.
+O: Ayarlarınızı yönetmek için bir menü açar.
+T: Bir barınaktaysanız, barınak menüsünü açar.
+X: Çevrenizdeki yerleri görmenizi sağlar. Bir şey görünürse, seçin ve takip etmek için Enter tuşuna basın.
+J: Takip ettiğiniz konum hakkında bilgi sağlar.
+F: Yönünüzü gösterir.
+Alan: Atlamanızı sağlar; Atlama Z koordinatınızı artırır.
+Ana Sayfa/End: Oyun seslerinin hacmini ayarlamak için kullanılır.
+Vardiya ile de kullanabilirsiniz
+Bu, oyun müziğini ayarlar: Birini kullanırsanız, oyun sesini ayarlar
+F1: Sunucudaki kişi sayısını gösterir.
+F2: Sunucunun çalışma süresini gösterir.
+F3: Ping'i gösterir.
+F4, yöneticiler tarafından belirlenen oyun mesajını gösterir, satır satır okumak mümkündür
+F5: Takip edebileceğiniz kişiler hakkında bilgi alabileceğiniz takip menüsünü açar.
+F6: Oyundaki oyuncuların listesini açar.
+Oyuncu menüsü:
+• F1, F2, F3 ve F4: Oyuncu hakkında küçük ayrıntılar sağlayın.
+• M: Bir kişiyi susturur.
+• u: bir temas açar.
+• CTRL + C: Bir kişinin adını kopyalayın.
+• Gir: Kişiye bir PM gönderir.
+• V: Oyuncu menüsü kapatıldığında son PM'ye hızlı bir şekilde yanıt verir.
+Sol ve sağ parantez:Tamponlar arasında geçiş.
+Virgül ve Dönem: Arabellekteki mesajlarda gezin. Virgül önceki mesajdır ve dönem bir sonraki mesajdır. Tamponun başlangıcına ve sonuna atlamak için Shift tuşunu kullanın.
+F8: Konuşmayı açıp kapatıyor.
+F9: Otomatik yürüme ve kapalı döner.
+Z: Silahınızda kaç mermi kaldığınızı, kaç tane yükleyebileceğinizi ve silahınız varsa çantanızda kaç mermi olduğunu gösterir.
+A: Yakındaki yaratıkları gösterir.
+H: Sağlığınızı gösterir.
+1 ila 0: Kolay erişim için bu anahtarlara favori öğeleri atayın. Favorilerinize bir öğe eklemek için Shift tuşunu basılı tutun ve öğeyi atamak istediğiniz sayı tuşunu tıklayın. En sevdiğiniz öğeyi başarıyla eklediniz!
+Kendi başınıza daha fazlasını keşfetmenizi öneririm. Sekme tuşuna basarak oyun içi menülere erişebilirsiniz.
+Son olarak, kaçırdığımız veya eklemediğimiz bir şey varsa, aşağıdaki kişi aracılığıyla bize gönderebilirsiniz:
+Telegram: @omerefe-productions
+Bu belge 25 Mart 2025 Salı günü hazırlandı. Daha fazla yardım için oyun boyunca yöneticilerle veya benimle iletişime geçebilirsiniz.
+Size oyunun temellerini öğretmeyi amaçladım. Umarım her şeyi olabildiğince açık bir şekilde açıklarım!

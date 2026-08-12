@@ -1,0 +1,15 @@
+mapname:flower_city
+maxx:250
+maxy:250
+maxz:500
+tile:0:250:0:250:0:0:branch
+zone:0:250:0:250:0:500:flower_city
+src:0:250:0:250:10:500:birds5.ogg
+src:0:250:0:250:10:500:amb2.ogg
+//tile:50:150:50:150:0:0:grass6
+tile:50:150:50:150:0:0:grass3
+robots:0:250:0:250:0:0:5:2000:person1,person2,person3,person4,person5,goat,rabit,horse
+travelpoint:0:10:0:0:0:0:the_world_of_the_magical_flower:40:48:0:welcome back
+zone:0:10:0:0:0:10:press t to go back the magical world:trackme
+tile:150:150:150:150:0:30:branch
+zone:150:150:150:150:0:50:flower  tree.:trackme

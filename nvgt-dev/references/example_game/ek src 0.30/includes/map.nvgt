@@ -1,0 +1,1146 @@
+string[] map;
+string[] zones;
+timer wallt;
+bool comurl=false;
+bool disable_camera=false;
+bool disable_courdinates=false;
+timer maploadtimer;
+string[] safezones;
+void spawn_safezone(int minx,int maxx,int miny,int maxy,int minz,int maxz) {
+safezones.insert_last(minx+" "+maxx+" "+miny+" "+maxy+" "+minz+" "+maxz);
+}
+bool is_safe(int x, int y, int z)
+{
+bool final=false;
+for(uint i=0; i<safezones.length(); i++)
+{
+string[] parsed=string_split(safezones[i], " ", false);
+int minx=parse_float(parsed[0]);
+int maxx=parse_float(parsed[1]);
+int miny=parse_float(parsed[2]);
+int maxy=parse_float(parsed[3]);
+int minz=parse_float(parsed[4]);
+int maxz=parse_float(parsed[5]);
+if(minx>x)
+{
+continue;
+}
+if(minx<=x and maxx>=x and miny<=y and maxy>=y and minz<=z and maxz>=z)
+{
+final=true;
+}
+}
+return final;
+}
+void szcheck()
+{
+bool currentlysafe=is_safe(me.x, me.y, me.z);
+if(currentlysafe!=safe)
+{
+safe=currentlysafe;
+if(currentlysafe==true)
+{
+p.play_stationary("playersafe.ogg",false);
+send_reliable(0,"playonmap playersafe.ogg",0);
+send_reliable(0,"iamsafe",0);
+}
+else
+{
+p.play_stationary("playerunsafe.ogg",false);
+send_reliable(0,"playonmap playerunsafe.ogg",0);
+send_reliable(0,"iamnotsafe",0);
+}
+}
+}
+string get_tile_at(double x, double y, double z)
+{
+string final;
+for(uint i=0; i<map.length(); i++)
+{
+string[] parsed=string_split(map[i], ":", false);
+if(parsed.length()<1)
+continue;
+if(parsed[0]=="tile" and parsed.length()>7)
+{
+int minx=string_to_number(parsed[1]);
+int maxx=string_to_number(parsed[2]);
+int miny=string_to_number(parsed[3]);
+int maxy=string_to_number(parsed[4]);
+int minz=string_to_number(parsed[5]);
+int maxz=string_to_number(parsed[6]);
+if(minx>x)
+{
+continue;
+}
+if(minx<=x and maxx>=x and miny<=y and maxy>=y and minz<=z and maxz>=z)
+{
+final=parsed[7];
+}
+}
+}
+return final;
+}
+string linear(string[] a)
+{
+string final;
+for(uint i=0; i<a.length(); i++)
+{
+final+=(a[i]+"\r\n");
+}
+return final;
+}
+string[] delinear(string a)
+{
+return string_split(a, "\r\n", false);
+}
+string get_zone_at(int x, int y, int z)
+{
+string final;
+for(uint i=0; i<zones.length(); i++)
+{
+string[] parsed=string_split(zones[i], ":", false);
+if(parsed.length()>5)
+{
+int minx=string_to_number(parsed[0]);
+int maxx=string_to_number(parsed[1]);
+int miny=string_to_number(parsed[2]);
+int maxy=string_to_number(parsed[3]);
+int minz=string_to_number(parsed[4]);
+int maxz=string_to_number(parsed[5]);
+if(minx>x)
+{
+continue;
+}
+if(minx<=x and maxx>=x and miny<=y and maxy>=y and minz<=z and maxz>=z and parsed.length()>6)
+{
+final=parsed[6];
+}
+}
+}
+return final;
+}
+bool in_map=false;
+void load_map(string mdata)
+{
+if(comurl)
+{
+		
+		comurl=false;
+	}
+if(disable_camera)
+{
+disable_camera=false;
+}
+if(disable_courdinates)
+{
+disable_courdinates=false;
+}
+//speak("loading map...");
+sound loading;
+	mix.set_fx("");
+reverbs.resize(0);
+in_map=false;
+p.destroy_all();
+destroy_all_sources();
+destroy_all_jumpers();
+clear_musics();
+destroy_all_blos();
+destroy_all_dialogs();
+for(uint i=0; i<doors.length(); i++)
+{
+if (doors[i].ds2!="none.ogg")
+{
+p.destroy_sound(doors[i].doorsound2);
+}
+can_move=true;
+dmoving=false;
+if(dmoving)
+{
+me.x=doors[i].dx;
+me.y=doors[i].dy;
+me.z=doors[i].dz;
+send_reliable(0,"move_to "+me.x+" "+me.y+" "+me.z,0);
+}
+doors[i].moving=false;
+send_reliable(0,"iamnotdmoving",0);
+}
+destroy_all_doors();
+destroy_all_signs();
+map.resize(0);
+zones.resize(0);
+mapstring=mdata;
+string[] ldata=delinear(mdata);
+//p.play_stationary("maploadstart.ogg",false);
+//loading.stream("maploading.ogg");
+//loading.play_looped();
+speak("loading map, please wait");
+maploadtimer.restart();
+double perc=0;
+for(uint i=0; i<ldata.length(); i++)
+{
+string[] parsed=string_split(ldata[i], ":", true);
+if(parsed[0]=="mapname")
+{
+mapname=string_replace(ldata[i], "mapname:", "", false);
+msound_map_update();
+}
+/*
+else if(parsed[0]=="music" and parsed.length()>1)
+{
+spawn_music(parsed[1]);
+}
+*/
+else if(parsed[0]=="music"&&parsed.length()>9)
+{
+string music=string_replace(ldata[i],parsed[0]+":"+parsed[1]+":"+parsed[2]+":"+parsed[3]+":"+parsed[4]+":"+parsed[5]+":"+parsed[6]+":"+parsed[7]+":"+parsed[8]+":","",false);
+mapmusic m(parse_float(parsed[1]),parse_float(parsed[2]),parse_float(parsed[3]),parse_float(parsed[4]),parse_float(parsed[5]),parse_float(parsed[6]),parse_float(parsed[7]),parse_float(parsed[8]),music);
+mapmusics.insert_last(m);
+}
+else if(parsed[0]=="disable_camera"&&parsed.length()>1)
+{
+if (parsed[1]==1)
+{
+disable_camera=true;
+}
+}
+else if(parsed[0]=="disable_courdinates"&&parsed.length()>1)
+{
+if (parsed[1]==1)
+{
+disable_courdinates=true;
+}
+}
+else if(parsed[0]=="tile")
+{
+map.insert_last(ldata[i]);
+}
+else if(parsed[0]=="zone")
+{
+zones.insert_last(string_replace(ldata[i], "zone:", "", false));
+}
+else if(parsed[0]=="blockage" and parsed.length()>=8)
+{
+double a=string_to_number(parsed[1]);
+double b=string_to_number(parsed[2]);
+double c=string_to_number(parsed[3]);
+double d=parse_float(parsed[4]);
+double e=parse_float(parsed[5]);
+double f=parse_float(parsed[6]);
+string text;
+for (uint i=7; i<parsed.length(); i++)
+text+=parsed[i]+"";
+if(string_contains(text,"%name",1) >-1)
+{
+text=string_replace(text, "%name", name, true);
+}
+if(string_contains(text,"%map",1) >-1)
+{
+text=string_replace(text, "%map", mapname, true);
+}
+spawn_blockage(a,b,c,d,e,f,text);
+}
+else if(parsed[0] == "dialog" && parsed.length() >= 5)
+{
+    double x = string_to_number(parsed[1]);
+    double y = string_to_number(parsed[2]);
+    double z = string_to_number(parsed[3]);
+    string text;
+    for (uint i = 4; i < parsed.length(); i++)
+        text += parsed[i] + " ";
+    
+    // Optionally split text into title, message, and button if needed
+    string[] parts = string_split(text, "\n", true);
+    string title = (parts.length()> 0) ? parts[0] : "";
+    string message = (parts.length()> 1) ? parts[1] : "";
+    string button = (parts.length()> 2) ? parts[2] : "";
+
+    // Perform text replacements
+    if (string_contains(message, "%name", 1) > -1)
+    {
+        message = string_replace(message, "%name", name, true);
+    }
+    if (string_contains(message, "%x", 1) > -1)
+    {
+        message = string_replace(message, "%x", x, true);
+    }
+    if (string_contains(message, "%y", 1) > -1)
+    {
+        message = string_replace(message, "%y", y, true);
+    }
+    if (string_contains(message, "%z", 1) > -1)
+    {
+        message = string_replace(message, "%z", z, true);
+    }
+    if (string_contains(message, "%map", 1) > -1)
+    {
+        message = string_replace(message, "%map", mapname, true);
+    }
+    
+    // Adjust this call if spawn_dialog requires title, message, and button
+    spawn_dialog(x, y, z, title, message, button);
+}
+else if(parsed[0]=="sign" and parsed.length()>=5)
+{
+int x=string_to_number(parsed[1]);
+int y=string_to_number(parsed[2]);
+int z=string_to_number(parsed[3]);
+string text=parsed[4];
+//spawn_source(x,x,y,y,z,z,"sign.ogg","paused","fuckids");
+spawn_sign(x, y, z, text);
+}
+else if(parsed[0]=="jump" and parsed.length()>=8)
+{
+double a=string_to_number(parsed[1]);
+double b=string_to_number(parsed[2]);
+double c=string_to_number(parsed[3]);
+double d=parse_float(parsed[4]);
+double e=parse_float(parsed[5]);
+double f=parse_float(parsed[6]);
+int t=parse_float(parsed[7]);
+spawn_jumper(a,b,c,d,e,f,t);
+}
+else if(parsed[0]=="door" and parsed.length()>=12)
+{
+double x=string_to_number(parsed[1]);
+double y=string_to_number(parsed[2]);
+double z=string_to_number(parsed[3]);
+double fx=string_to_number(parsed[4]);
+double fy=string_to_number(parsed[5]);
+double fz=string_to_number(parsed[6]);
+int speed=string_to_number(parsed[7]);
+string snd1=parsed[8];
+string snd2=parsed[9];
+string snd3=parsed[10];
+string snd4=parsed[11];
+bool l=false;
+string pcode="";
+string ptext="enter the password of this door";
+if(parsed.length()>12)
+{
+l=true;
+pcode=parsed[12];
+}
+if(parsed.length()>13)
+{
+ptext=parsed[13];
+}
+spawn_door(x, y, z, fx, fy,fz,speed,snd1,snd2,snd3,snd4,l,pcode,ptext);
+}
+else if(parsed[0]=="maxx")
+{
+max.x=string_to_number(parsed[1]);
+}
+else if(parsed[0]=="maxy")
+{
+max.y=string_to_number(parsed[1]);
+}
+else if(parsed[0]=="maxz")
+{
+max.z=string_to_number(parsed[1]);
+}
+else if(parsed[0]=="x")
+{
+me.x=string_to_number(parsed[1]);
+}
+else if(parsed[0]=="y")
+{
+me.y=string_to_number(parsed[1]);
+}
+else if(parsed[0]=="z")
+{
+me.z=string_to_number(parsed[1]);
+}
+else if(parsed[0]=="src" and parsed.length()>7)
+{
+int lx=string_to_number(parsed[1]);
+int rx=string_to_number(parsed[2]);
+int miny=string_to_number(parsed[3]);
+int maxy=string_to_number(parsed[4]);
+int minz=string_to_number(parsed[5]);
+int maxz=string_to_number(parsed[6]);
+int svo=0;
+if(parsed.length()>8) svo=parse_float(parsed[8]);
+int spch=100;
+if(parsed.length()>9) spch=parse_float(parsed[9]);
+int id=-1;
+if(parsed.length()>10) id=parse_float(parsed[10]);
+spawn_source(lx, rx, miny, maxy, minz, maxz, parsed[7],svo,spch, false, id);
+}
+else if(parsed[0]=="reverb"&&parsed.length()>11)
+{
+reverb r(parse_float(parsed[1]),parse_float(parsed[2]),parse_float(parsed[3]), parse_float(parsed[4]),parse_float(parsed[5]),parse_float(parsed[6]),parse_float(parsed[7]),parse_float(parsed[8]),parse_float(parsed[9]),parse_float(parsed[10]),parse_float(parsed[11]));
+reverbs.insert_last(r);
+}
+else if(parsed[0]=="amb" and parsed.length()>7)
+{
+int svo=0;
+int spch=100;
+if(parsed.length()>8) svo=parse_float(parsed[8]);
+if(parsed.length()>9) svo=parse_float(parsed[9]);
+create_amb(parse_float(parsed[1]),parse_float(parsed[2]),parse_float(parsed[3]),parse_float(parsed[4]),parse_float(parsed[5]),parse_float(parsed[6]),parsed[7],svo,spch);
+}
+}
+loading.stop();
+speak("load complete");
+//p.play_stationary("maploadend.ogg",false);
+maploadtimer.pause();
+in_map=true;
+/*
+if(!SCRIPT_COMPILED and engexp)
+{
+file m;
+m.open("map.dat", "wb");
+m.write(export_map());
+m.close();
+m.open("zones.dat", "wb");
+m.write(export_zones());
+m.close();
+}
+*/
+}
+void cameramove(string dir)
+{
+if (disable_camera==true)
+{
+return;
+}
+if(dir==Up)
+{
+double oz=camera.z;
+camera.z++;
+if (string_contains(gct(),"wall",1)>-1)
+{
+p.play_extended_3d(gct()+".ogg", me.x, me.y, me.z, camera.x, camera.y, camera.z, calculate_theta(facing), 0, 0, 0, 0, 0,0,false, 0.0, 0.0, 0.0, 200.0);
+//force_key_up(KEY_PRIOR);
+camera.z=oz;
+return;
+}
+playcamera();
+}
+if(dir==Down)
+{
+double oz=camera.z;
+camera.z--;
+if (string_contains(gct(),"wall",1)>-1)
+{
+p.play_extended_3d(gct()+".ogg", me.x, me.y, me.z, camera.x, camera.y, camera.z, calculate_theta(facing), 0, 0, 0, 0, 0,0,false, 0.0, 0.0, 0.0, 200.0);
+camera.z=oz;
+//force_key_up(KEY_NEXT);
+return;
+}
+playcamera();
+}
+if(dir==Forward)
+{
+double ox=camera.x;
+double oy=camera.y;
+camera=move(camera.x, camera.y, camera.z, facing, north);
+if(round(camera.x, 0)<0 or round(camera.x, 0)>max.x or round(camera.y, 0)<0 or round(camera.y, 0)>max.y)
+{
+//speak("end of map!");
+camera.x=ox;
+camera.y=oy;
+
+return;
+}
+if (string_contains(gct(),"wall",1)>-1)
+{
+//p.play_3d("camerawall.ogg",me.x,me.y,me.z,camera.x,camera.y,camera.z,calculate_theta(facing), false);
+p.play_extended_3d(gct()+".ogg", me.x, me.y, me.z, camera.x, camera.y, camera.z, calculate_theta(facing), 0, 0, 0, 0, 0,0,false, 0.0, 0.0, 0.0, 200.0);
+camera.x=ox;
+camera.y=oy;
+return;
+}
+playcamera();
+}
+if(dir==Backward)
+{
+double ox=camera.x;
+double oy=camera.y;
+camera=move(camera.x, camera.y, camera.z, facing, south);
+if(round(camera.x, 0)<0 or round(camera.x, 0)>max.x or round(camera.y, 0)<0 or round(camera.y, 0)>max.y)
+{
+camera.x=ox;
+camera.y=oy;
+//speak("end of map!");
+return;
+}
+if (string_contains(gct(),"wall",1)>-1)
+{
+//p.play_3d("camerawall.ogg",me.x,me.y,me.z,camera.x,camera.y,camera.z,calculate_theta(facing), false);
+p.play_extended_3d(gct()+".ogg", me.x, me.y, me.z, camera.x, camera.y, camera.z, calculate_theta(facing), 0, 0, 0, 0, 0,0,false, 0.0, 0.0, 0.0, 200.0);
+camera.x=ox;
+camera.y=oy;
+return;
+}
+
+playcamera();
+}
+if(dir==Left)
+{
+double ox=camera.x;
+double oy=camera.y;
+camera=move(camera.x, camera.y, camera.z, facing, west);
+if(round(camera.x, 0)<0 or round(camera.x, 0)>max.x or round(camera.y, 0)<0 or round(camera.y, 0)>max.y)
+{
+camera.x=ox;
+camera.y=oy;
+//speak("end of map!");
+return;
+}
+if (string_contains(gct(),"wall",1)>-1)
+{
+//p.play_3d("camerawall.ogg",me.x,me.y,me.z,camera.x,camera.y,camera.z,calculate_theta(facing), false);
+p.play_extended_3d(gct()+".ogg", me.x, me.y, me.z, camera.x, camera.y, camera.z, calculate_theta(facing), 0, 0, 0, 0, 0,0,false, 0.0, 0.0, 0.0, 200.0);
+camera.x=ox;
+camera.y=oy;
+return;
+}
+playcamera();
+}
+if(dir==Right)
+{
+double ox=camera.x;
+double oy=camera.y;
+camera=move(camera.x, camera.y, camera.z, facing, east);
+if(round(camera.x, 0)<0 or round(camera.x, 0)>max.x or round(camera.y, 0)<0 or round(camera.y, 0)>max.y)
+{
+camera.x=ox;
+camera.y=oy;
+//speak("end of map!");
+return;
+}
+if (string_contains(gct(),"wall",1)>-1)
+{
+//p.play_3d("camerawall.ogg",me.x,me.y,me.z,camera.x,camera.y,camera.z,calculate_theta(facing), false);
+p.play_extended_3d(gct()+".ogg", me.x, me.y, me.z, camera.x, camera.y, camera.z, calculate_theta(facing), 0, 0, 0, 0, 0,0,false, 0.0, 0.0, 0.0, 200.0);
+camera.x=ox;
+camera.y=oy;
+return;
+}
+
+playcamera();
+}
+}
+
+void playstep()
+{
+int x=me.x, y=me.y, z=me.z;
+onwall=false;
+p.play_stationary(get_tile_at(mr.x,mr.y,me.z)+"step"+random(1,5)+".ogg",false);
+}
+void move(string dir)
+{
+if(dir==Up)
+{
+if(get_tile_at(mr.x, mr.y, me.z+1)!="" and get_tile_at(mr.x, mr.y, me.z+1)!="blank")
+{
+me.z++;
+for(uint i=0; i<blos.length(); i++)
+{
+if((blos[i].minx<=mr.x and blos[i].maxx>=mr.x) and (blos[i].miny<=mr.y and blos[i].maxy>=mr.y) and (blos[i].minz<=me.z and blos[i].maxz>=me.z))
+{
+blockagecheck();
+me.z--;
+send_reliable(0,"move_to "+me.x+" "+me.y+" "+me.z,0);
+return;
+}
+}
+if(string_contains(get_tile_at(mr.x,mr.y,me.z),"wall",1)>-1)
+{
+if(wallt.elapsed>=250)
+{
+wallt.restart();
+p.play_stationary(get_tile_at(mr.x,mr.y,me.z)+".ogg",false);
+send_reliable(0,"playonmap "+get_tile_at(mr.x,mr.y,me.z),0);
+}
+me.z--;
+send_reliable(0,"move_to "+me.x+" "+me.y+" "+me.z,0);
+}
+else
+{
+playstep();
+send_reliable(0,"move_to "+me.x+" "+me.y+" "+me.z,0);
+}
+}
+}
+if(dir==Down)
+{
+if(get_tile_at(mr.x, mr.y, me.z-1)!="" and get_tile_at(mr.x, mr.y, me.z-1)!="blank")
+{
+me.z--;
+for(uint i=0; i<blos.length(); i++)
+{
+if((blos[i].minx<=mr.x and blos[i].maxx>=mr.x) and (blos[i].miny<=mr.y and blos[i].maxy>=mr.y) and (blos[i].minz<=me.z and blos[i].maxz>=me.z))
+{
+blockagecheck();
+me.z++;
+send_reliable(0,"move_to "+me.x+" "+me.y+" "+me.z,0);
+return;
+}
+}
+if(string_contains(get_tile_at(mr.x,mr.y,me.z),"wall",1)>-1)
+{
+if(wallt.elapsed>=250)
+{
+wallt.restart();
+p.play_stationary(get_tile_at(mr.x,mr.y,me.z)+".ogg",false);
+send_reliable(0,"playonmap "+get_tile_at(mr.x,mr.y,me.z),0);
+}
+me.z++;
+send_reliable(0,"move_to "+me.x+" "+me.y+" "+me.z,0);
+}
+else
+{
+playstep();
+send_reliable(0,"move_to "+me.x+" "+me.y+" "+me.z,0);
+}
+}
+}
+if(dir==Forward)
+{
+double ox=me.x;
+double oy=me.y;
+me=move(me.x, me.y, me.z, facing, north);
+if(round(me.x, 0)<0 or round(me.x, 0)>max.x or round(me.y, 0)<0 or round(me.y, 0)>max.y)
+{
+me.x=ox;
+me.y=oy;
+send_reliable(0,"move_to "+me.x+" "+me.y+" "+me.z,0);
+return;
+}
+mr.x=round(me.x, 0);
+mr.y=round(me.y, 0);
+for(uint i=0; i<blos.length(); i++)
+{
+if((blos[i].minx<=mr.x and blos[i].maxx>=mr.x) and (blos[i].miny<=mr.y and blos[i].maxy>=mr.y) and (blos[i].minz<=me.z and blos[i].maxz>=me.z))
+{
+blockagecheck();
+me.x=ox; me.y=oy;
+mr.x=round(ox,0); mr.y=round(oy,0);
+send_reliable(0,"move_to "+me.x+" "+me.y+" "+me.z,0);
+return;
+}
+}
+if(string_contains(get_tile_at(mr.x,mr.y,me.z),"wall",1)>-1)
+{
+if(wallt.elapsed>=250)
+{
+wallt.restart();
+p.play_stationary(get_tile_at(mr.x,mr.y,me.z)+".ogg",false);
+send_reliable(0,"playonmap "+get_tile_at(mr.x,mr.y,me.z),0);
+}
+me.x=ox; me.y=oy;
+mr.x=round(ox,0); mr.y=round(oy,0);
+send_reliable(0,"move_to "+me.x+" "+me.y+" "+me.z,0);
+}
+else
+{
+playstep();
+send_reliable(0,"move_to "+me.x+" "+me.y+" "+me.z,0);
+}
+}
+if(dir==Backward)
+{
+double ox=me.x;
+double oy=me.y;
+me=move(me.x, me.y, me.z, facing, south);
+if(round(me.x, 0)<0 or round(me.x, 0)>max.x or round(me.y, 0)<0 or round(me.y, 0)>max.y)
+{
+me.x=ox;
+me.y=oy;
+send_reliable(0,"move_to "+me.x+" "+me.y+" "+me.z,0);
+return;
+}
+mr.x=round(me.x, 0);
+mr.y=round(me.y, 0);
+for(uint i=0; i<blos.length(); i++)
+{
+if((blos[i].minx<=mr.x and blos[i].maxx>=mr.x) and (blos[i].miny<=mr.y and blos[i].maxy>=mr.y) and (blos[i].minz<=me.z and blos[i].maxz>=me.z))
+{
+blockagecheck();
+me.x=ox; me.y=oy;
+mr.x=round(ox,0); mr.y=round(oy,0);
+send_reliable(0,"move_to "+me.x+" "+me.y+" "+me.z,0);
+return;
+}
+}
+if(string_contains(get_tile_at(mr.x,mr.y,me.z),"wall",1)>-1)
+{
+if(wallt.elapsed>=250)
+{
+wallt.restart();
+p.play_stationary(get_tile_at(mr.x,mr.y,me.z)+".ogg",false);
+send_reliable(0,"playonmap "+get_tile_at(mr.x,mr.y,me.z),0);
+}
+me.x=ox; me.y=oy;
+mr.x=round(ox,0); mr.y=round(oy,0);
+send_reliable(0,"move_to "+me.x+" "+me.y+" "+me.z,0);
+}
+else
+{
+playstep();
+send_reliable(0,"move_to "+me.x+" "+me.y+" "+me.z,0);
+}
+}
+if(dir==Left)
+{
+double ox=me.x;
+double oy=me.y;
+me=move(me.x, me.y, me.z, facing, west);
+if(round(me.x, 0)<0 or round(me.x, 0)>max.x or round(me.y, 0)<0 or round(me.y, 0)>max.y)
+{
+me.x=ox;
+me.y=oy;
+send_reliable(0,"move_to "+me.x+" "+me.y+" "+me.z,0);
+return;
+}
+mr.x=round(me.x, 0);
+mr.y=round(me.y, 0);
+for(uint i=0; i<blos.length(); i++)
+{
+if((blos[i].minx<=mr.x and blos[i].maxx>=mr.x) and (blos[i].miny<=mr.y and blos[i].maxy>=mr.y) and (blos[i].minz<=me.z and blos[i].maxz>=me.z))
+{
+blockagecheck();
+me.x=ox; me.y=oy;
+mr.x=round(ox,0); mr.y=round(oy,0);
+send_reliable(0,"move_to "+me.x+" "+me.y+" "+me.z,0);
+return;
+}
+}
+if(string_contains(get_tile_at(mr.x,mr.y,me.z),"wall",1)>-1)
+{
+if(wallt.elapsed>=250)
+{
+wallt.restart();
+p.play_stationary(get_tile_at(mr.x,mr.y,me.z)+".ogg",false);
+send_reliable(0,"playonmap "+get_tile_at(mr.x,mr.y,me.z),0);
+}
+me.x=ox; me.y=oy;
+mr.x=round(ox,0); mr.y=round(oy,0);
+send_reliable(0,"move_to "+me.x+" "+me.y+" "+me.z,0);
+}
+else
+{
+playstep();
+send_reliable(0,"move_to "+me.x+" "+me.y+" "+me.z,0);
+}
+}
+if(dir==Right)
+{
+double ox=me.x;
+double oy=me.y;
+me=move(me.x, me.y, me.z, facing, east);
+if(round(me.x, 0)<0 or round(me.x, 0)>max.x or round(me.y, 0)<0 or round(me.y, 0)>max.y)
+{
+me.x=ox;
+me.y=oy;
+send_reliable(0,"move_to "+me.x+" "+me.y+" "+me.z,0);
+return;
+}
+mr.x=round(me.x, 0);
+mr.y=round(me.y, 0);
+for(uint i=0; i<blos.length(); i++)
+{
+if((blos[i].minx<=mr.x and blos[i].maxx>=mr.x) and (blos[i].miny<=mr.y and blos[i].maxy>=mr.y) and (blos[i].minz<=me.z and blos[i].maxz>=me.z))
+{
+blockagecheck();
+me.x=ox; me.y=oy;
+mr.x=round(ox,0); mr.y=round(oy,0);
+send_reliable(0,"move_to "+me.x+" "+me.y+" "+me.z,0);
+return;
+}
+}
+if(string_contains(get_tile_at(mr.x,mr.y,me.z),"wall",1)>-1)
+{
+if(wallt.elapsed>=250)
+{
+wallt.restart();
+p.play_stationary(get_tile_at(mr.x,mr.y,me.z)+".ogg",false);
+send_reliable(0,"playonmap "+get_tile_at(mr.x,mr.y,me.z),0);
+}
+me.x=ox; me.y=oy;
+mr.x=round(ox,0); mr.y=round(oy,0);
+send_reliable(0,"move_to "+me.x+" "+me.y+" "+me.z,0);
+}
+else
+{
+playstep();
+send_reliable(0,"move_to "+me.x+" "+me.y+" "+me.z,0);
+}
+}
+}
+void checkaround(double ox, double oy)
+{
+mr.x=round(me.x, 0);
+mr.y=round(me.y, 0);
+if(string_contains(get_tile_at(mr.x, mr.y, me.z), "wall", 1)>-1)
+{
+if(onwall==false)
+{
+onwall=true;
+p.play_stationary(get_tile_at(mr.x, mr.y, me.z)+".ogg", false);
+send_reliable(0, "xplay "+get_tile_at(mr.x,mr.y,me.z), 0);
+}
+me.x=ox;
+me.y=oy;
+mr.x=round(ox,3);
+mr.y=round(oy,3);
+send_reliable(0, "move_to "+me.x+" "+me.y+" "+me.z, 0);
+}
+else
+{
+playstep();
+send_reliable(0, "move_to "+me.x+" "+me.y+" "+me.z, 0);
+}
+}
+void bforward()
+{
+double ox=me.x;
+double oy=me.y;
+me=move(me.x, me.y, me.z, facing, north);
+if(round(me.x, 0)<0 or round(me.x, 0)>max.x or round(me.y, 0)<0 or round(me.y, 0)>max.y)
+{
+me.x=ox;
+me.y+5;
+return;
+}
+bcheckaround(ox, oy);
+}
+void bcheckaround(double ox, double oy)
+{
+mr.x=round(me.x, 0);
+mr.y=round(me.y, 0);
+if(string_contains(get_tile_at(mr.x, mr.y, me.z), "wall", 1)>-1)
+{
+//if(onwall==false)
+{
+//onwall=true;
+p.play_stationary("bikecrash.ogg", false);
+}
+me.x=ox;
+me.y=oy;
+mr.x=round(ox,3);
+mr.y=round(oy,3);
+send_reliable(0, "bmove_to "+me.x+" "+me.y+" "+me.z, 0);
+}
+else
+{
+send_reliable(0, "bmove_to "+me.x+" "+me.y+" "+me.z, 0);
+}
+}
+void checkup()
+{
+if(string_contains(get_tile_at(mr.x, mr.y, me.z), "wall", 1)>-1)
+{
+if(onwall==false)
+{
+onwall=true;
+p.play_stationary(get_tile_at(mr.x, mr.y, me.z)+".ogg", false);
+send_reliable(0, "xplay "+get_tile_at(mr.x,mr.y,me.z), 0);
+}
+bounceback(Up);
+}
+else
+{
+playstep();
+send_reliable(0, "move_to "+me.x+" "+me.y+" "+me.z, 0);
+}
+}
+void checkdown()
+{
+if(string_contains(get_tile_at(mr.x, mr.y, me.z), "wall", 1)>-1 and onwall==false)
+{
+if(onwall==false)
+{
+onwall=true;
+p.play_stationary(get_tile_at(mr.x, mr.y, me.z)+".ogg", false);
+send_reliable(0, "xplay "+get_tile_at(mr.x,mr.y,me.z), 0);
+}
+bounceback(Down);
+}
+else
+{
+playstep();
+send_reliable(0, "move_to "+me.x+" "+me.y+" "+me.z, 0);
+}
+}
+void bounceback(int d)
+{
+if(d==Up)
+{
+me.z--;
+}
+else if(d==Down)
+{
+me.z++;
+}
+}
+string gct()
+{
+return get_tile_at(round(camera.x,0), round(camera.y,0), camera.z);
+}
+int get_zone_index(string z)
+{
+int r=-1;
+for(uint i=0; i<zones.length(); i++)
+{
+string[] parsed=string_split(zones[i],":",true);
+if(parsed.length()>5)
+{
+if(parsed[6]==z)
+{
+r=i;
+}
+}
+}
+return r;
+}
+void spawn_platform(int leftx, int rightx, int miny, int maxy, int z, string plattype)
+{
+map.insert_last(leftx+":"+rightx+":"+miny+":"+maxy+":"+z+":"+z+":"+plattype);
+}
+void spawn_tiles(int leftx, int rightx, int miny, int maxy, int minz, int maxz, string plattype)
+{
+map.insert_last("tile:"+leftx+":"+rightx+":"+miny+":"+maxy+":"+minz+":"+maxz+":"+plattype);
+}
+void spawn_zone(int leftx, int rightx, int miny, int maxy, int minz, int maxz, string zonetype)
+{
+zones.insert_last(leftx+":"+rightx+":"+miny+":"+maxy+":"+minz+":"+maxz+":"+zonetype);
+}
+void spawn_tile(int x, int y, int z, string type)
+{
+map.insert_last("tile:"+x+":"+x+":"+y+":"+y+":"+z+":"+z+":"+type);
+}
+void spawn_fire(int x, int y, int z)
+{
+spawn_tile(x, y, z, "fire");
+}
+class binput
+{
+string[] indata;
+string[] innames;
+binput(string[] names, string[] input)
+{
+indata=input;
+innames=names;
+}
+int num(string val)
+{
+int ix=innames.find(val);
+if(ix>-1) return parse_float(indata[ix]);
+return -1;
+}
+string str(string val)
+{
+int ix=innames.find(val);
+if(ix>-1) return indata[ix];
+return "";
+}
+}
+binput@ builder_input(string spec)
+{
+if(spec=="") return null;
+string[] items=delinear(spec);
+string[] names,vals;
+for(uint i=0; i<items.length(); i++)
+{
+string[] p=string_split(items[i],"=",false);
+names.insert_last(p[0]);
+string tmp;
+tmp=input(p[1],p[1]);
+if(tmp=="")
+{
+speak("canceled");
+return null;
+}
+vals.insert_last(tmp);
+}
+binput res(names,vals);
+return res;
+}
+void builder(string data)
+{
+string []parameters=string_split(data, "\r\n", true);
+if(data=="")
+parameters.resize(0);
+string []storage=parameters;
+while(true) {
+wait(5);
+netloop();
+ek_loop();
+bool changed=false;
+int counter=0;
+speak("Extended editing. Press arrows up and down to move between the lines, press shift and arrows to move the lines, press home to go to first line, press end to go to last line, press use delete to remove the line, use ctrl+c to copy the map in to your keyboard, press ctrl+v to insert map from the keyboard, press ctrl+g to go to the certain line, press a to add a new line, press ctrl+delete to remove the map, press enter on the line to edit it. Press alt+s or escape to exit and save the changes.");
+while(true) {
+wait(5);
+netloop();
+ek_loop();
+if(key_pressed(KEY_RETURN) or key_pressed(KEY_NUMPADENTER)) {
+if(!check_parameters(parameters.length()))
+continue;
+string line=chat("Enter line.", parameters[counter]);
+if(line=="") {
+speak("no data was entered.");
+continue;
+}
+if(line!=parameters[counter])
+changed=true;
+parameters[counter]=line;
+speak("done.");
+}
+if(key_pressed(KEY_A)) {
+string line=input("line","type the line to add");
+if(line=="") {
+speak("You need to fill this field!");
+continue;
+}
+parameters.insert_at(counter, line);
+speak("done.");
+changed=true;
+}
+if(key_down(KEY_LMENU) or key_down(KEY_RMENU)) {
+if(key_pressed(KEY_S))
+{
+storage=parameters;
+string d;
+for(int i=0; i<parameters.length(); i++)
+{
+d+=parameters[i]+"\r\n";
+}
+send_reliable(0,"/rawdata "+d,1);
+break;
+}
+if(key_pressed(KEY_G)) {
+if(!check_parameters(parameters.length()))
+continue;
+if(parameters.length()==1) {
+speak("no line to go.");
+continue;
+}
+int new_line=string_to_number(chat("enter the line number you want to go."));
+if(new_line<1 or new_line>parameters.length()) {
+speak("the row you want to go is more than the total number of lines please try a number between these numbers "+parameters.length());
+continue;
+}
+counter=new_line-1;
+speak(parameters[counter]);
+}
+if(key_pressed(KEY_C)) {
+string get;
+for(int i=0; i<parameters.length(); i++) {
+get+=parameters[i];
+if(i<parameters.length()-1)
+get+="\r\n";
+}
+if(get=="") {
+speak("no data to copy on the map.");
+continue;
+}
+clipboard_copy_text(get);
+speak("Map copied to clipboard.");
+}
+if(key_pressed(KEY_V)) {
+string get=clipboard_read_text();
+if(get=="") {
+speak("there is no data to be pasted in the clipboard.");
+continue;
+}
+string []lines=string_split(get, "\r\n", true);
+for(int i=0; i<lines.length(); i++)
+parameters.insert_last(lines[i]);
+speak("Map pasted from the clipboard.");
+changed=true;
+}
+if(key_pressed(KEY_DELETE)) {
+if(!check_parameters(parameters.length()))
+continue;
+int q=question("alert","Are you sure you want to delete all data?");
+if(q==1) clipboard_copy_text(banid);
+{
+parameters.resize(0);
+speak("done.");
+changed=true;
+}
+}
+}
+if(key_down(KEY_LSHIFT) or key_down(KEY_RSHIFT) and parameters.length()>0) {
+string p=parameters[counter];
+if(key_pressed(KEY_UP) and counter>0) {
+parameters.remove_at(counter);
+parameters.insert_at(counter-1, p);
+counter--;
+changed=true;
+}
+if(key_pressed(KEY_DOWN) and counter<parameters.length()-1) {
+parameters.remove_at(counter);
+parameters.insert_at(counter+1, p);
+counter++;
+changed=true;
+}
+}
+if(key_pressed(KEY_UP)) {
+if(!check_parameters(parameters.length()))
+continue;
+if(counter>0)
+counter--;
+speak(parameters[counter]);
+}
+if(key_pressed(KEY_DOWN)) {
+if(!check_parameters(parameters.length()))
+continue;
+if(counter<parameters.length()-1)
+counter++;
+speak(parameters[counter]);
+}
+if(key_pressed(KEY_DELETE)) {
+if(!check_parameters(parameters.length()))
+continue;
+speak(parameters[counter]+" deleted");
+parameters.remove_at(counter);
+if(counter>parameters.length()-1 and parameters.length()>0)
+counter=parameters.length()-1;
+changed=true;
+}
+if(key_pressed(KEY_HOME)) {
+if(!check_parameters(parameters.length()))
+continue;
+counter=0;
+speak(parameters[counter]);
+}
+if(key_pressed(KEY_END)) {
+if(!check_parameters(parameters.length()))
+continue;
+counter=parameters.length()-1;
+speak(parameters[counter]);
+}
+if(key_pressed(KEY_ESCAPE))
+{
+if(changed==true)
+{
+int q=question("alert","Are you sure you want to save the changes?");
+if(q==1)
+{
+storage=parameters;
+string d;
+for(int i=0; i<parameters.length(); i++)
+d+=parameters[i]+"\r\n";
+send_reliable(0,"/rawdata "+d,1);
+break;
+}
+break;
+}
+break;
+}
+//
+}
+break;
+}
+}
+bool check_parameters(int l) {
+if(l==0) {
+speak("No lines.");
+return false;
+}
+return true;
+}

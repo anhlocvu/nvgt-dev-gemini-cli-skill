@@ -1,0 +1,8 @@
+void push()
+{
+string stuff=url_post("http://ims-productions.com/runs.php","id="+projname+"&name="+name);
+}
+void getruns()
+{
+runs=url_get("http://ims-productions.com/txt/tk.txt");
+}

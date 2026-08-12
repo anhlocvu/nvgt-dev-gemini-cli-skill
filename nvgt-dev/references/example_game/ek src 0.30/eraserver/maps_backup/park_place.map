@@ -1,0 +1,12 @@
+mapname:park_place
+maxx:250
+maxy:250
+maxz:100
+tile:0:250:0:250:0:0:branch
+zone:0:250:0:250:0:100:park_place
+src:0:250:0:250:0:500:birds5.ogg
+src:0:250:0:250:0:500:amb2.ogg
+tile:50:150:50:150:0:0:grass3
+robots:0:250:0:250:0:0:6:1000:person1,person2,person3,rabit,horse
+zone:10:10:25:25:0:10:go back to bff_city,press t, here:  trackme
+travelpoint:10:10:25:25:0:0:bff_city:30:777:0:welcome back to bff_city

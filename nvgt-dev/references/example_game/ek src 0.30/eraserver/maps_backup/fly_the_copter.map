@@ -1,0 +1,110 @@
+mapname:fly_the_copter
+maxx:500
+maxy:100
+maxz:150
+tile:0:500:0:100:0:0:fi
+zone:0:500:0:100:0:160:fly_the_copter
+amb:0:88:0:100:0:160:fire3.ogg
+amb:490:500:0:100:0:149:fire3.ogg
+amb:0:88:0:100:0:160:desert.ogg
+amb:490:500:0:100:0:149:desert.ogg
+amb:0:88:0:100:0:149:amb16.ogg:-8
+amb:490:500:0:100:0:149:amb16.ogg
+amb:0:88:0:100:0:149:emb13.ogg:-7
+amb:490:500:0:100:0:149:emb13.ogg
+amb:0:88:0:100:0:149:alarm5dist.ogg:-14
+amb:490:500:0:100:0:149:alarm5dist.ogg
+tile:0:0:0:0:0:0:concrete
+tile:0:0:0:0:5:5:cement
+tile:3:3:3:3:6:6:concrete6
+tile:6:6:5:5:6:6:carpet
+tile:10:10:10:10:5:5:concrete8
+tile:10:10:10:10:10:10:grate
+tile:16:18:10:15:5:20:fi
+tile:15:15:8:8:11:11:dirt
+tile:20:20:10:10:10:10:bathtub
+tile:20:20:15:15:13:13:bleacher
+tile:22:22:20:20:15:15:cement
+tile:22:22:20:20:20:20:concrete12
+tile:23:23:23:23:20:20:generic
+tile:25:25:25:25:20:20:bridge
+tile:27:27:27:27:20:20:suicide
+tile:27:27:30:30:20:20:glass
+tile:30:30:30:30:25:25:ledge2
+tile:30:30:30:30:30:30:metalpipe
+tile:30:30:30:30:31:31:icef
+tile:30:31:31:31:26:29:icef
+tile:31:32:31:32:30:30:deepsnow
+tile:34:34:34:34:34:34:suicide
+tile:35:35:35:35:35:35:pavement
+tile:41:41:36:36:35:35:gravel5
+tile:43:44:36:39:35:41:wallair
+tile:41:41:30:30:35:35:hook
+tile:45:45:30:30:40:40:metal3
+tile:45:45:40:40:40:40:branch2
+tile:45:45:41:41:39:47:wallborder
+tile:43:43:45:45:43:43:grass
+tile:45:45:45:45:46:46:debris
+tile:49:49:48:48:46:46:suicide
+tile:49:49:49:49:45:45:concrete5
+tile:50:50:50:50:45:49:rope
+tile:50:50:50:50:50:50:fi
+travelpoint:50:50:50:50:49:49:fly_the_copter:75:75:75:congratulations, you are now at AirPort. go and find the copter, but not easy.
+zone:50:50:50:50:49:49:press T here, teleport in another interesting way
+tile:50:50:50:50:44:44:icef
+tile:75:75:75:75:75:75:swamp
+tile:82:82:75:75:75:75:concrete9
+tile:82:90:76:85:70:75:teleport
+tile:82:82:80:80:80:80:ladder3
+tile:86:86:82:82:80:80:hardwood2
+tile:88:88:85:85:85:85:ladder2
+tile:88:88:85:85:90:90:roof4
+zone:88:88:85:85:90:90:congratulations. you'r front of the copter, press D for open the door and go inside
+door:88:85:90:90:85:90:50:0:door2moving.ogg:door2open.ogg:door2close.ogg
+amb:88:88:85:85:90:90:door5.ogg
+tile:90:90:85:85:90:90:ladder
+tile:89:89:80:100:88:100:wallmetal2
+zone:90:90:85:85:90:90:Congratulations, now you are inside the copter. find the driver seat now.
+tile:90:90:86:89:89:90:wallcar2
+tile:90:90:86:89:91:91:ladder
+tile:90:90:90:90:90:90:snow2
+src:90:90:90:90:80:80:truckbackup.ogg
+src:90:90:90:90:80:80:ventil.ogg
+zone:90:90:90:90:90:100:good. now all control in your hands, press D and begin your journey!
+tile:90:90:91:100:89:100:wallcardboard
+tile:91:487:80:100:89:100:wallglass9
+tile:90:90:80:84:89:100:wallcardboard
+tile:488:488:90:90:90:90:snow2
+amb:91:95:90:90:90:90:computer_keabord.ogg
+amb:96:97:90:90:90:90:cash_register.ogg
+amb:98:98:90:90:90:90:confirmation.ogg
+amb:99:100:90:90:90:90:conveyer.ogg
+amb:101:105:90:90:90:90:creoloop.ogg
+amb:106:110:90:90:90:90:Bumble Overhead Close.ogg
+amb:111:118:90:90:90:90:helecopter.ogg
+amb:119:475:90:90:90:90:helecopter_voice.ogg
+amb:476:480:90:90:90:90:truckbackup.ogg
+amb:481:484:90:90:90:90:pinball.ogg
+amb:485:487:90:90:90:90:alarm.ogg
+door:90:90:90:488:90:90:250::0:0:0:0
+tile:488:488:91:100:89:100:wallcardboard
+tile:488:488:80:89:89:100:wallcardboard
+tile:489:489:80:100:88:150:wallmetal2
+tile:490:490:90:90:90:90:concrete15
+door:488:90:90:490:90:90:50:0:door2moving.ogg:door2open.ogg:door2close.ogg
+zone:488:488:90:90:90:90:Wow!, open the door and go outside.
+zone:490:490:90:90:90:90:Continue from here, you will reach your destination very soon.
+amb:488:488:90:90:90:90:door5.ogg
+src:490:490:90:90:85:85:street.ogg
+tile:490:490:100:100:90:95:ledge
+tile:500:500:100:100:95:105:steel
+zone:500:500:100:100:105:105:press T here for, final way
+travelpoint:500:500:100:100:105:105:fly_the_copter:500:100:140:you r very near from, your goal
+tile:500:500:100:100:140:150:synthetic
+amb:500:500:100:100:150:160:phone.ogg
+zone:500:500:100:100:150:160:Congratulations. Pick up this call, and clame your reward!
+fightingstate:0
+noitems:0:500:0:100:0:200:wirebomb:motion_bomb:mine:stun_dart:remote_timebomb:security_bomb:remote_gun:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:rocket_launcher,bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:wood:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censorbomb:stone:fire_starter:censor_bomb:empty_apple_juice:nuclear_bomb:fight_inviter:ford:boat:elecboat:sound_grenade:speed_drink:arena_card:police_motorcycle:police:car:super:rocket_launcher:bazooka:small_projectile:tasing_small_projectile:helicoptenoitems:0:500:0:500:0:500:wirebomb:motion_bomb:mine:stun_dart:remote_timebomb:security_bomb:remote_gun:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:rocket_launcher,bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:wood:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censorbomb:stone:fire_starter:censor_bomb:empty_apple_juice:nuclear_bomb:fight_inviter:ford:elecboat:boat:hors:police_motorcycle:helicopter:tank:truck:teleporter:death_free_card:friendship_sphere:the_magical_flower
+safezone:0:500:0:500:0:500
+zone:0:0:0:0:5:5:if you want to go back , press t here:trackme
+randtravelpoint:0:0:0:0:5:5:safe_zone:20:80:20:80:0:5:go away %name, go go, hahahahahahahaha:0

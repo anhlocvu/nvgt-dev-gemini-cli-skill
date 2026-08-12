@@ -1,0 +1,6 @@
+mapname:la_brea
+maxx:50
+maxy:50
+maxz:10
+tile:0:50:0:50:0:0:tile
+zone:0:50:0:50:0:10:la_brea

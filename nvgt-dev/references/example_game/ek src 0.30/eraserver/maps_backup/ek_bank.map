@@ -1,0 +1,42 @@
+mapname:ek_bank
+maxx:100
+maxy:100
+maxz:100
+tile:0:100:0:100:0:0:pavement
+zone:0:100:0:100:-100:100:ek bank
+src:0:100:0:100:-100:100:calm.ogg
+src:0:100:0:100:-100:100:store.ogg
+travelpoint:0:0:0:0:0:0:ek_services:100:50:5:ek services
+zone:0:0:0:0:0:0:go out of the bank:trackme
+tile:8:12:98:100:0:2:wallmetal23
+tile:8:12:98:100:2:2:metal6
+zone:7:13:97:100:0:20:Near the gold machine.
+zone:8:12:98:100:0:10:Gold machine.
+src:7:13:97:100:0:20:desktop.ogg
+tile:8:8:98:100:2:10:wallmetal23
+tile:12:12:98:100:2:10:wallmetal23
+tile:8:12:100:100:2:10:wallmetal23
+tile:8:12:98:100:10:10:metalpipe
+tile:8:12:98:100:9:9:wallmetal23
+zone:8:12:98:100:10:20:Top of the gold machine.
+tile:10:10:99:99:2:2:metal4
+zone:10:10:99:99:2:9:The gold machine is here. If you have gold in your inventory, find it, close your inventory and press enter. You will have converted your gold. Warning, 1 gold price = 100000 dollars.:trackme
+tile:28:32:98:100:0:2:wallmetal23
+tile:28:32:98:100:2:2:metal6
+zone:27:33:97:100:0:20:Near the bitcoin machine.
+zone:28:32:98:100:0:10:Bitcoin machine.
+src:27:33:97:100:0:20:desktop.ogg
+tile:28:28:98:100:2:10:wallmetal23
+tile:32:32:98:100:2:10:wallmetal23
+tile:28:32:100:100:2:10:wallmetal23
+tile:28:32:98:100:10:10:metalpipe
+tile:28:32:98:100:9:9:wallmetal23
+zone:28:32:98:100:10:20:Top of the bitcoin machine.
+tile:30:30:99:99:2:2:metal4
+zone:30:30:99:99:2:9:The bitcoin machine is here. If you have bitcoin in your inventory, find it, close your inventory and press enter. You will have converted your bitcoin. Warning, 1 bitcoin price = 500000 dollars.:trackme
+robots:0:100:0:100:0:0:4:1000:chest,woodbox,metalbox
+fightingstate:1
+noitems:0:100:0:100:-100:100:nuclear_bomb:tasing_small_projectile:tasing_projectile:suicide_bomb:guided_missile:missile_interceptor:taser:grenade:stun_dart:concussive_grenade
+ispawn:0:100:0:100:0:0:1000:5:1,8:bitcoin:gold
+
+music:md57.ogg

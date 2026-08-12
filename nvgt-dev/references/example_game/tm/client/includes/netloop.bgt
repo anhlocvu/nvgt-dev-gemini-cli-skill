@@ -1,0 +1,1726 @@
+void netloop()
+{
+e=n.request();
+if (e.type==event_disconnect)
+{
+speak("you have lost your connection to the server or may be something about your internet, please wait while trying to reconnect");
+reset_network();
+login();
+}
+if (e.type==event_receive)
+{
+if(e.channel==9)
+{
+string[]parsed=string_split(get_event_message()," ",true);
+if(parsed[0]=="ogg_stationary" and parsed.length()>1) {
+string oggdata=string_replace(get_event_message(), parsed[0]+" ", "", true);
+p.play_stationary(oggdata, false, true); }
+if(parsed[0]=="ogg_file")
+{
+int oggx=stn(parsed[1]);
+int oggy=stn(parsed[2]);
+int oggz=stn(parsed[3]);
+string oggmap=parsed[4];
+string recorddata=string_replace(get_event_message(),parsed[0]+" "+parsed[1]+" "+parsed[2]+" "+parsed[3]+" "+parsed[4]+" ","",true);
+if(mapname==oggmap)
+{
+p.play_3d(recorddata,me.x,me.y,me.z,oggx,oggy,oggz,calculate_theta(facing), false, true);
+}
+}
+}
+if (e.channel==0)
+{
+string[] parsed=string_split(get_event_message()," ",true);
+if(parsed[0]=="step")
+{
+int x=string_to_number(parsed[1]);
+int y=string_to_number(parsed[2]);
+int z=string_to_number(parsed[3]);
+string map=parsed[4];
+if(parsed[5]!=name and mapname==map)
+{
+p.play_3d(get_tile_at(x, y, z)+"step"+random(1, 5)+".ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+if(lookname==parsed[5])
+{
+me.x=x;
+me.y=y;
+me.z=z;
+mpool.update_listener_3d(me.x, me.y, me.z, calculate_theta(facing));
+p.update_listener_3d(me.x, me.y, me.z, calculate_theta(facing));
+sourcepool.update_listener_3d(me.x, me.y, me.z, calculate_theta(facing));
+shdistpool.update_listener_3d(me.x, me.y, me.z, calculate_theta(facing));
+distpool.update_listener_3d(me.x, me.y, me.z, calculate_theta(facing));
+}
+}
+}
+else if(parsed[0]=="usewand")
+{
+wandmenu();
+}
+else if(parsed[0]=="crystal_teleport")
+{
+crystaltellymenu();
+}
+else if(parsed[0]=="teleport")
+{
+tellymenu();
+}
+else if(parsed[0]=="meleegifts")
+{
+giftmenu();
+}
+
+else if(parsed[0]=="arenagifts")
+{
+giftmenu();
+}
+else if(parsed[0]=="sheltermenu")
+{
+sheltermenu();
+}
+else if(parsed[0]=="megamenu")
+{
+megamenu();
+}
+else if(parsed[0]=="plane_crash")
+{
+in_plane=false;
+go_out=true;
+}
+else if(parsed[0]=="start_the_plane")
+{
+pause_all_sources();
+splaneloop();
+}
+else if(parsed[0]=="start_plane")
+{
+pause_all_sources();
+planeloop();
+}
+else if(parsed[0]=="sc")
+{
+if(can_stop==true)
+{
+can_stop=false;
+}
+else if(can_stop==false)
+{
+can_stop=true;
+}
+}
+else if(parsed[0]=="store")
+{
+string final=string_replace(get_event_message(),"store ","",false);
+store_menu(final);
+}
+else if(parsed[0]=="energystart")
+{
+walktime=90;
+}
+else if(parsed[0]=="energystop")
+{
+walktime=180;
+}
+else if(parsed[0]=="timebend")
+{
+walktime=230;
+}
+else if(parsed[0]=="timeresume")
+{
+walktime=180;
+}
+else if(parsed[0]=="jumpstart")
+{
+jumptime=290;
+kangaroo=true;
+}
+else if(parsed[0]=="jumpstop")
+{
+jumptime=130;
+kangaroo=false;;
+}
+
+else if(parsed[0]=="biciclet")
+{
+if(skateboard==true)
+{
+send(0, "noskateboard", 0);
+}
+else
+{
+skateboard=true;
+p.play_stationary("skateboardstart.ogg",false);
+}
+}
+else if(parsed[0]=="skateboard_stop")
+{
+skateboard=false;
+}
+else if(parsed[0]=="sitstart")
+{
+sitting=1;
+}
+else if(parsed[0]=="sitstop")
+{
+sitting=0;
+}
+else if(parsed[0]=="weaponlist" and parsed.length()>1)
+{
+weapons.resize(0);
+w=0;
+for(uint i=1; i<parsed.length(); i++)
+{
+weapons.insert_last(parsed[i]);
+}
+}
+else if(parsed[0]=="weapondata" and parsed.length()>2)
+{
+firetime=stn(parsed[1]);
+weaponauto=(parsed[2]=="auto" ? true : false);
+}
+else if(parsed[0]=="draw" and parsed.length()>1)
+{
+weapons.insert_last(parsed[1]);
+w=(weapons.length()-1);
+speak(weapons[w]);
+send(0,"draw "+weapons[w],0);
+}
+else if(parsed[0]=="playerlog")
+{
+file lf;
+lf.open("players.log","wb");
+lf.write(string_replace(get_event_message(),"playerlog ","",false));
+lf.close();
+speak("log written");
+}
+else if(parsed[0]=="robotcontrol")
+{
+robotcontroling=true;
+}
+else if(parsed[0]=="invstring")
+{
+inv=string_decompress(string_trim_left(get_event_message(), 10));
+invchanged=true;
+}
+else if(parsed[0]=="upload" and parsed.length()>=2)
+{
+bool atempbool=false;
+int atempint=string_to_number(parsed[1]);
+if(atempint==1) atempbool=true;
+uploadfile();
+}
+else if(parsed[0]=="buildzone")
+{
+binput@ dat=builder_input("minx=enter the left x of your zone" + "\n" +
+"maxx=enter the right x of your zone" + "\n" +
+"miny=enter the minimum y of your zone" + "\n" +
+"maxy=enter the maximum y of your zone" + "\n" +
+"minz=enter the bottom z of your zone" + "\n" +
+"maxz=enter the top z of your zone" + "\n" +
+"text=enter the text of your zone");
+if(@dat!=null)
+{
+string temp="";
+int trackable=yesno("would you like this zone to be trackable via the grave menu?");
+if(trackable==1) temp="@trackme@";
+						send(0,"addzone zone:"+dat.num("minx")+":"+dat.num("maxx")+":"+dat.num("miny")+":"+dat.num("maxy")+":"+dat.num("minz")+":"+dat.num("maxz")+":"+dat.str("text")+(trackable==1 ? "@trackme@" : ""),0);
+}
+}
+				else if(parsed[0]=="buildcp")
+{
+send(0,"addcp checkpoint:"+round(mr.x,0)+":"+round(mr.y,0)+":"+round(me.z,0),0);
+}
+				else if(parsed[0]=="buildsign")
+				{
+binput@ dat=builder_input("x=enter the x of your sign" + "\n" +
+"y=enter the y of your sign" + "\n" +
+"z=enter the z of your sign" + "\n" +
+"text=enter the text of your sign");
+					if(@dat!=null)
+					{
+send(0,"addsign sign:"+dat.num("x")+":"+dat.num("y")+":"+dat.num("z")+":"+dat.str("text"),0);
+					}
+				}
+				else if(parsed[0]=="buildclock")
+				{
+binput@ dat=builder_input("x=enter the x of this clock" + "\n" +
+"y=enter the y of this clock" + "\n" +
+"z=enter the z of this clock" + "\n" +
+"text=Enter the text that will be used to announced the time, For example. The clock says");
+					if(@dat!=null)
+					{
+send(0,"addclock clock:"+dat.num("x")+":"+dat.num("y")+":"+dat.num("z")+":"+dat.str("text"),0);
+					}
+				}
+				else if(parsed[0]=="buildcalander")
+				{
+binput@ dat=builder_input("x=enter the x of this calander" + "\n" +
+"y=enter the y of this calander" + "\n" +
+"z=enter the z of this calander" + "\n" +
+"text=Enter the text that will be used to announced the date, For example. today is");
+					if(@dat!=null)
+					{
+send(0,"addcalander calander:"+dat.num("x")+":"+dat.num("y")+":"+dat.num("z")+":"+dat.str("text"),0);
+					}
+				}
+				else if(parsed[0]=="buildpiano")
+				{
+binput@ dat=builder_input("x=enter the x of this piano" + "\n" +
+"y=enter the y of this piano" + "\n" +
+"z=enter the z of this piano");
+					if(@dat!=null)
+					{
+send(0,"addpiano piano:"+dat.num("x")+":"+dat.num("y")+":"+dat.num("z"),0);
+					}
+				}
+
+				else if(parsed[0]=="builddoor")
+				{
+binput@ dat=builder_input("minx=enter the minimum x of this door" + "\n" +
+"maxx=enter the maximum x of this door" + "\n" +
+"miny=enter the minimum y of this door" + "\n" +
+"maxy=enter the maximum y of this door" + "\n" +
+"minz=enter the bottom z of this door" + "\n" +
+"maxz=enter the top z of this door" + "\n" +
+"dx=enter the x of the destination" + "\n" +
+"dy=enter the y of the destination" + "\n" +
+"dz=enter the z of the destination" + "\n" +
+"s=enter the speed to move the player to the destination in Milliseconds (1000=1second)");
+					if(@dat==null) 
+					{
+						return;
+					}
+					string s1=dloop();
+					if(s1.is_empty())
+					{
+						speak("canceled, no looping sound that will hear it near the door");
+						return;
+					}
+					string s2=drmoving();
+					if(s2.is_empty())
+					{
+						speak("canceled, i can't find the door sound while move the player");
+						return;
+					}
+					string s3=dropen();
+					if(s3.is_empty())
+					{
+						speak("canceled! I can't find the door open sound while click enteriin to the door! ");
+						return;
+					}
+					string s4=drclose();
+					if(s4.is_empty())
+					{
+						speak("canceled! I can't find the door close sound!");
+						return;
+					}
+string pcode;
+					int locked=qa("Do you need to add a passcode to this door to lock it?","yes, i need","no, i dont need it, dont tell to me");
+					if(locked==1) 
+					{
+						pcode=v.input("Type the passcode to lock this door.",false);
+					}
+					send(0,"adddoor door:"+dat.num("minx")+":"+dat.num("maxx")+":"+dat.num("miny")+":"+dat.num("maxy")+":"+dat.num("minz")+":"+dat.num("maxz")+":"+dat.num("dx")+":"+dat.num("dy")+":"+dat.num("dz")+":"+dat.num("s")+":"+s1+".ogg"+":"+s2+".ogg"+":"+s3+".ogg"+":"+s4+".ogg"+(locked==1 ? ":"+pcode:""),0);
+				}
+else if(parsed[0]=="buildtpoint")
+{
+binput@ dat=builder_input("minx=enter the left x of this travelpoint" + "\n" +
+"maxx=enter the right x of this travelpoint" + "\n" +
+"miny=enter the minimum y of this travelpoint" + "\n" +
+"maxy=enter the maximum y of this travelpoint" + "\n" +
+"minz=enter the bottom z of this travelpoint" + "\n" +
+"maxz=enter the top z of this travelpoint" + "\n" +
+"newmap=enter the map this travelpoint should move you to" + "\n" +
+"newx=enter the destination x" + "\n" +
+"newy=enter the destination y" + "\n" +
+"newz=enter the destination z" + "\n" +
+"wtext=enter the text this travelpoint should speak when moving the player");
+if(@dat!=null) send(0,"addtpoint travelpoint:"+dat.num("minx")+":"+dat.num("maxx")+":"+dat.num("miny")+":"+dat.num("maxy")+":"+dat.num("minz")+":"+dat.num("maxz")+":"+dat.str("newmap")+":"+dat.num("newx")+":"+dat.num("newy")+":"+dat.num("newz")+":"+dat.str("wtext"),0);
+}
+else if(parsed[0]=="buildsrc")
+{
+binput@ dat=builder_input("minx=enter the left x of this source" + "\n" +
+"maxx=enter the right x of this source" + "\n" +
+"miny=enter the minimum y of this source" + "\n" +
+"maxy=enter the maximum y of this source" + "\n" +
+"minz=enter the bottom z of this source" + "\n" +
+"maxz=enter the top z of this source");
+if(@dat==null) return;
+string soundfile=srctypemenu();
+if(soundfile=="")
+{
+speak("canceled");
+return;
+}
+					srcv(soundfile, 0 , 100);
+send(0,"addsrc src:"+dat.num("minx")+":"+dat.num("maxx")+":"+dat.num("miny")+":"+dat.num("maxy")+":"+dat.num("minz")+":"+dat.num("maxz")+":"+soundfile+":"+volume+":"+pitch,0);
+}
+else if(parsed[0]=="buildcmusic")
+{
+binput@ dat=builder_input("minx=enter the left x of this music" + "\n" +
+"maxx=enter the right x of this music" + "\n" +
+"miny=enter the minimum y of this music" + "\n" +
+"maxy=enter the maximum y of this music" + "\n" +
+"minz=enter the bottom z of this music" + "\n" +
+"maxz=enter the top z of this music");
+if(@dat==null) return;
+string soundfile=musictypemenu();
+if(soundfile=="")
+{
+speak("canceled");
+return;
+}
+					cmusicv(soundfile, 0 , 100);
+send(0,"addcmusic cmusic:"+dat.num("minx")+":"+dat.num("maxx")+":"+dat.num("miny")+":"+dat.num("maxy")+":"+dat.num("minz")+":"+dat.num("maxz")+":"+soundfile+":"+volume+":"+pitch,0);
+}
+
+else if(parsed[0]=="buildurl")
+{
+binput@ dat=builder_input("urllink=Enter the stream URL.)if(@dat==null) returnsend(0,addurl url:+dat.str(urllink),0");
+}
+else if(parsed[0]=="buildamb")
+{
+binput@ dat=builder_input("minx=enter the left x of this ambience" + "\n" +
+"maxx=enter the right x of this ambience" + "\n" +
+"miny=enter the minimum y of this ambience" + "\n" +
+"maxy=enter the maximum y of this ambience" + "\n" +
+"minz=enter the bottom z of this ambience" + "\n" +
+"maxz=enter the top z of this ambience");
+if(@dat==null) return;
+string soundfile=srctypemenu();
+if(soundfile=="")
+{
+speak("canceled");
+return;
+}
+					srcv(soundfile, 0 , 100);
+send(0,"addsrc amb:"+dat.num("minx")+":"+dat.num("maxx")+":"+dat.num("miny")+":"+dat.num("maxy")+":"+dat.num("minz")+":"+dat.num("maxz")+":"+soundfile+":"+volume+":"+pitch,0);
+}
+
+else if(parsed[0]=="buildvanishing_platform")
+{
+binput@ dat=builder_input("minx=enter the left x of this vanishing platform" + "\n" +
+"maxx=enter the right x of this vanishing platform" + "\n" +
+"miny=enter the minimum y of this vanishing platform" + "\n" +
+"maxy=enter the maximum y of this vanishging platform" + "\n" +
+"minz=enter the bottom z of this vanishing platform" + "\n" +
+"maxz=enter the top z of this vanishing platform" + "\n" +
+"vanishtime= enter the time for vanishing");
+if(@dat==null) return;
+string platform=plattypemenu();
+if(platform=="") return;
+string v=srctypemenu();
+if(v=="") return;
+send(0,"addvanishing vanishing_platform:"+dat.num("minx")+":"+dat.num("maxx")+":"+dat.num("miny")+":"+dat.num("maxy")+":"+dat.num("minz")+":"+dat.num("maxz")+":"+platform+":"+v+":"+dat.num("vanishtime"),0);
+}
+else if(parsed[0]=="buildtile")
+{
+binput@ dat=builder_input("minx=enter the left x of this tile" + "\n" +
+"maxx=enter the right x of this tile" + "\n" +
+"miny=enter the minimum y of this tile" + "\n" +
+"maxy=enter the maximum y of this tile" + "\n" +
+"minz=enter the bottom z of this tile" + "\n" +
+"maxz=enter the top z of this tile");
+if(@dat==null) return;
+string platform=plattypemenu();
+if(platform=="")
+return;
+send(0,"addtile tile:"+dat.num("minx")+":"+dat.num("maxx")+":"+dat.num("miny")+":"+dat.num("maxy")+":"+dat.num("minz")+":"+dat.num("maxz")+":"+platform,0);
+}
+else if(parsed[0]=="dlg")
+{
+string alert=string_replace(get_event_message(),"dlg ","",false);
+dlg(alert, true);
+}
+else if(parsed[0]=="spawnsource")
+{
+int lx=stn(parsed[1]);
+int rx=stn(parsed[2]);
+int miny=stn(parsed[3]);
+int maxy=stn(parsed[4]);
+int minz=stn(parsed[5]);
+int maxz=stn(parsed[6]);
+int id=stn(parsed[8]);
+					spawn_source(lx, rx, miny, maxy, minz, maxz, parsed[7], 0, 100, false, id);
+}
+else if(parsed[0]=="delsource")
+{
+int id=stn(parsed[1]);
+destroy_source(id);
+}
+else if(parsed[0]=="spawncmusic")
+{
+int lx=stn(parsed[1]);
+int rx=stn(parsed[2]);
+int miny=stn(parsed[3]);
+int maxy=stn(parsed[4]);
+int minz=stn(parsed[5]);
+int maxz=stn(parsed[6]);
+int id=stn(parsed[8]);
+					spawn_cmusic(lx, rx, miny, maxy, minz, maxz, parsed[7], 0, 100, false, id);
+}
+else if(parsed[0]=="delcmusic")
+{
+int id=stn(parsed[1]);
+destroy_cmusic(id);
+}
+else if(parsed[0]=="launchmenu")
+{
+string i=string_replace(parsed[1],"[SPCE]"," ",true);
+string t=string_replace(parsed[2], "[SPCE]", " ", true);
+string items=string_replace(get_event_message(),parsed[0]+" "+parsed[1]+" "+parsed[2]+" ","",true);
+serverside_menu(t,i,items);
+}
+else if(parsed[0]=="entershelter"&&parsed.length()>=5)
+{
+sh.x=stn(parsed[1]);
+sh.y=stn(parsed[2]);
+sh.z=stn(parsed[3]);
+shmap=parsed[4];
+inshelter=true;
+}
+else if(parsed[0]=="exitshelter")
+{
+sh.x=0;sh.y=0;sh.z=0;shmap="";
+inshelter=false;
+}
+else if(parsed[0]=="reboot")
+{
+speak("The server is rebooting. Please wait...");
+exitgame(false);
+reboottimer.restart();
+writeprefs();
+ereboot=true;
+}
+else if(parsed[0]=="mapname")
+{
+mapname=string_replace(get_event_message(),"mapname ","",false);
+}
+else if(parsed[0]=="menusound")
+{
+int x=stn(parsed[1]);
+int y=stn(parsed[2]);
+int z=stn(parsed[3]);
+string map=parsed[4];
+string pn=parsed[5];
+if(name!=pn and mapname==map)
+{
+p.play_3d(parsed[6],me.x,me.y,me.z,x,y,z,calculate_theta(facing),false);
+}
+}
+else if(parsed[0]=="trackplayer")
+{
+int x=round(stn(parsed[2]),0);
+int y=round(stn(parsed[3]),0);
+int z=stn(parsed[4]);
+string mp=parsed[5];
+if(mapname!=mp)
+speak("This player is on a different map. Sorry");
+else
+{
+tell_where(x,y,z,parsed[6],true);
+}
+}
+else if(parsed[0]=="editmap" and parsed.length()>1)
+{
+string m=string_trim_left(get_event_message(),8);
+builder(m);
+}
+else if(parsed[0]=="helpopen" and parsed.length()>1)
+{
+string m=string_trim_left(get_event_message(),9);
+string hlp=input("help topick dialog: ",m,"",0,true,true);
+}
+else if(parsed[0]=="admopen" and parsed.length()>1)
+{
+string m=string_trim_left(get_event_message(),5);
+string hlp=input("admintells dialog: ",m,"",0,true,true);
+}
+else if(parsed[0]=="playermenu")
+{
+string m=string_replace(get_event_message(),"playermenu","",true);
+string[] playerstuff=string_split(m,"\r\n",true);
+playermenu(playerstuff);
+}
+else if(parsed[0]=="pmapmenu")
+{
+string m=string_replace(get_event_message(),"pmapmenu","",true);
+string[] playerstuff=string_split(m,"\r\n",true);
+pmapmenu(playerstuff);
+}
+else if(parsed[0]=="statistics")
+{
+string m=string_replace(get_event_message(),"statistics","",true);
+string[] statisticstuff=string_split(m,"\r\n",true);
+statistics(statisticstuff);
+}
+else if(parsed[0]=="isadmin")
+{
+admin=true;
+}
+else if(parsed[0]=="remcontrol")
+{
+speak("You pull out a remote controler. Its  small with a button in the center with the letter F. You see a small flashing light indicating a remote gun is sending a signal");
+controling_remgun=true;
+}
+else if(parsed[0]=="startmoving")
+{
+can_move=true;
+}
+else if(parsed[0]=="walkmod" and parsed.length()>2)
+{
+walkmod=true;
+walktime=stn(parsed[1]);
+airtime=(stn(parsed[1])/2);
+canjump=stn(parsed[2]);
+movetime=walktime;
+walktimer.restart();
+}
+else if(parsed[0]=="candraw")
+{
+can_draw_weapon=true;
+}
+else if(parsed[0]=="cannotdraw")
+{
+can_draw_weapon=false;
+}
+else if(parsed[0]=="resetwalktime")
+{
+walkmod=false;
+walktime=180;
+movetime=walktime;
+if(canjump==0) canjump=1;
+airtime=100;
+}
+else if(parsed[0]=="freezestart")
+{
+can_move=false;
+frozen=true;
+pause_all_sources();
+}
+else if(parsed[0]=="freezestop")
+{
+can_move=true;
+frozen=false;
+resume_all_sources();
+}
+else if(parsed[0]=="followstart")
+{
+can_move=false;
+following=true;
+}
+else if(parsed[0]=="followstop")
+{
+can_move=true;
+following=false;
+}
+else if(parsed[0]=="forcekey" and parsed.length()>1)
+{
+int keycode=stn(parsed[1]);
+force_key_down(keycode);
+key_released(keycode);
+}
+else if(parsed[0]=="stopmoving")
+{
+can_move=false;
+if(!SCRIPT_COMPILED&&file_exists("nostun.txt")) can_move=true;
+}
+else if(parsed[0]=="look" and parsed.length()>4)
+{
+me.x=stn(parsed[1]);
+me.y=stn(parsed[2]);
+me.z=stn(parsed[3]);
+lookname=parsed[4];
+p.update_listener_3d(me.x, me.y, me.z, calculate_theta(facing));
+sourcepool.update_listener_3d(me.x, me.y, me.z, calculate_theta(facing));
+mpool.update_listener_3d(me.x, me.y, me.z, calculate_theta(facing));
+distpool.update_listener_3d(me.x, me.y, me.z, calculate_theta(facing));
+shdistpool.update_listener_3d(me.x, me.y, me.z, calculate_theta(facing));
+}
+else if(parsed[0]=="move" and parsed.length()>=3)
+{
+me.x=stn(parsed[1]);
+me.y=stn(parsed[2]);
+me.z=stn(parsed[3]);
+p.update_listener_3d(me.x, me.y, me.z, calculate_theta(facing));
+sourcepool.update_listener_3d(me.x, me.y, me.z, calculate_theta(facing));
+mpool.update_listener_3d(me.x, me.y, me.z, calculate_theta(facing));
+distpool.update_listener_3d(me.x, me.y, me.z, calculate_theta(facing));
+}
+else if(parsed[0]=="ping" and parsed.length()>1)
+{
+send(0,"pingr "+parsed[1],0);
+}
+else if(parsed[0]=="pong" and pinging==true)
+{
+pingpongtimer.pause();
+int ms=pingpongtimer.elapsed;
+pinging=false;
+p.play_stationary("pingstop.ogg",false);
+string spk;
+spk="The ping took ";
+if(ms<1000) //1second.
+spk+=ms+" ms";
+else
+spk+=ms+" ms, "+ms_to_readable_time(ms);
+speak(spk);
+}
+else if(parsed[0]=="speak")
+{
+speak(string_trim_left(get_event_message(),6));
+}
+else if(parsed[0]=="clip")
+{
+clipboard_copy_text(string_trim_left(get_event_message(),5));
+}
+else if(parsed[0]=="vespawning")
+{
+pause_all_sources();
+inve=true;
+if(parsed.length()==2) vetype=parsed[1];
+}
+else if(parsed[0]=="vesiren"&&parsed.length()>1)
+{
+if(vesiren.playing) vesiren.stop();
+if(parsed[1]!="off")
+{
+vesiren.load(parsed[1]);
+vesiren.play_looped();
+}
+}
+else if(parsed[0]=="vestart" and parsed.length()>2)
+{
+vesound.load(parsed[1]);
+vesound.pitch=stn(parsed[2]);
+vesound.play_looped();
+}
+else if(parsed[0]=="vepitch"&&parsed.length()>1)
+{
+vesound.pitch=stn(parsed[1]);
+}
+else if(parsed[0]=="vestop")
+{
+vesound.stop();
+}
+else if(parsed[0]=="veunspawn")
+{
+if(vetype!="") vetype="";
+resume_all_sources();
+inve=false;
+}
+else if(parsed[0]=="lowfuel")
+{
+velfsound.load("vehicle_lowfuel.ogg");
+velfsound.play_looped();
+}
+else if(parsed[0]=="goodfuel")
+{
+velfsound.stop();
+}
+else if(parsed[0]=="checkpointcheckclient")
+{
+send(0,"checkpointcheck",0);
+}
+else if(parsed[0]=="lowhealth" and parsed.length()>1)
+{
+lowhealth=true;
+currenthealth=stn(parsed[1]);
+}
+else if(parsed[0]=="goodhealth")
+{
+lowhealth=false;
+}
+else if(parsed[0]=="notify")
+{
+string msg;
+msg=string_replace(get_event_message(),"notify ","",false);
+p.play_stationary("notify.ogg",false);
+add_buffer_item("notifications",msg);
+}
+else if(parsed[0]=="pm")
+{
+string message=string_replace(get_event_message(),"pm ","",false);
+p.play_stationary("pm.ogg",false);
+add_buffer_item("private messages",message);
+}
+else if(parsed[0]=="reply")
+{
+string message=string_replace(get_event_message(),"reply ","",false);
+p.play_stationary("pm.ogg",false);
+add_buffer_item("private messages",message);
+}
+else if(parsed[0]=="tc")
+{
+string msg=string_replace(get_event_message(),"tc ","",true);
+p.play_stationary("alliancechat.ogg",false);
+speak(msg);
+}
+else if(parsed[0]=="death")
+{
+dead=true;
+pause_all_sources();
+frozen=true;
+deathtimer.restart();
+while(deathtimer.elapsed<3000)
+{
+wait(5);
+if(speed_stop_is_hacking(200)==true)
+killbitch();
+main_loop();
+if(key_pressed(KEY_ESCAPE))
+{
+int e;
+e=yesno("Are you sure you want to exit?");
+if(e==1)
+{
+send(0, "close", 0);
+xtimer.restart();
+x=true;
+}
+}
+}
+resume_all_sources();
+frozen=false;
+dead=false;
+send(0,"revive",0);
+}
+else if(parsed[0]=="playerdeath")
+{
+string msg=string_replace(get_event_message(),"playerdeath ","",true);
+if(killmsgs==1) p.play_stationary("kill6.ogg",false);
+if(killmsgs==1) add_buffer_item("kills",msg);
+}
+else if(parsed[0]=="levelup")
+{
+if (levelup==1)
+{
+string msg=string_replace(get_event_message(),"levelup ","",true);
+p.play_stationary("levelup"+random(1,23)+".ogg",false);
+speak(msg);
+add_buffer_item("all",msg);
+}
+}
+else if(parsed[0]=="adm")
+{
+if(!SCRIPT_COMPILED or admin==true)
+{
+string msg;
+msg=string_replace(get_event_message(),"adm ","",false);
+p.play_stationary("admintell.ogg",false);
+add_buffer_item("admintell",msg);
+}
+}
+else if(parsed[0]=="input")
+{
+string[] ds=string_split(string_replace(get_event_message(), "input ++", "", false), "++", false);
+serverbox(stn(ds[0]), stn(ds[1]), stn(ds[2]), stn(ds[3]), ds[4], ds[5]);
+}
+else if(parsed[0]=="distsound" and parsed.length()>5)
+{
+string soundname=parsed[1];
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string soundmap=parsed[5];
+if(soundmap==mapname)
+distpool.play_3d(soundname+".ogg", me.x, me.y, me.z, x, y, z, facing, false);
+else if(soundmap==shmap&&inshelter==true)
+shdistpool.play_3d(soundname+".ogg", sh.x, sh.y, sh.z, x, y, z, facing, false);
+}
+else if(parsed[0]=="invitem" and parsed.length()>1)
+{
+focuseditem=parsed[1];
+}
+else if (parsed[0]=="inv" and parsed.length()>=3)
+{
+send(0,get_event_message(),0);
+}
+else if(parsed[0]=="jump")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("jump.ogg",me.x,me.y,me.z,x,y,z,calculate_theta(facing),false);
+}
+}
+else if(parsed[0]=="turn")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("turn.ogg",me.x,me.y,me.z,x,y,z,calculate_theta(facing),false);
+}
+}
+else if(parsed[0]=="piano1")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano1.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano2")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano2.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+
+else if(parsed[0]=="piano3")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano3.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano4")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano4.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano5")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano5.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano6")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano6.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano7")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano7.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano8")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano8.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano9")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano9.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano10")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano10.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano11")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano11.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano12")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano12.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano13")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano13.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano14")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano14.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano15")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano15.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano16")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano16.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano17")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano17.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano18")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano18.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano19")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano19.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano20")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano20.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano21")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano21.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano22")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano22.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano23")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano23.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano24")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano24.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano25")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano25.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano26")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano26.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano27")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano27.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano28")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano28.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano29")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano29.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano30")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano30.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano31")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano31.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano32")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano32.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano33")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano33.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano34")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano34.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano35")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano35.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="piano36")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("piano36.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="pianoa1")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("pianoa1.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="pianoa2")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("pianoa2.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="pianoa3")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("pianoa3.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="pianoa4")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("pianoa4.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="pianoa5")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("pianoa5.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="pianoa6")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("pianoa6.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="pianoa7")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("pianoa7.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="pianoa8")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("pianoa8.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="pianoa9")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("pianoa9.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="pianoa10")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("pianoa10.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="pianoa11")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("pianoa11.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="pianoa12")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("pianoa12.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="pianoa13")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("pianoa13.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="pianoa14")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("pianoa14.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="pianoa15")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("pianoa15.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="pianoa16")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("pianoa16.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="pianoa17")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("pianoa17.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="pianoa18")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("pianoa18.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="pianoa19")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("pianoa19.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="pianoa20")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("pianoa20.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="pianoa21")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("pianoa21.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="pianoa22")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("pianoa22.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="pianoa23")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("pianoa23.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="pianoa24")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("pianoa24.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+else if(parsed[0]=="pianoa25")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false)
+{
+p.play_3d("pianoa25.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+}
+}
+
+else if(parsed[0]=="hardland")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(map==mapname and inve==false)
+{
+p.play_3d(get_tile_at(x, y, z)+"hardland.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+p.play_3d("hit"+random(1, 5)+".ogg",me.x,me.y,me.z,x,y,z,calculate_theta(facing),false);
+}
+}
+else if(parsed[0]=="facing"&&parsed.length()>1) facing=stn(parsed[1]);
+else if(parsed[0]=="land")
+{
+int x=string_to_number(parsed[2]);
+int y=string_to_number(parsed[3]);
+int z=string_to_number(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname)
+{
+p.play_3d(get_tile_at(x, y, z)+"land.ogg", me.x, me.y, me.z, x, y, z, calculate_theta(facing), false);
+if(bone==true)
+{
+send(0,"bone_detected",0);
+}
+}
+}
+else if(parsed[0]=="fall")
+{
+int x=stn(parsed[2]);
+int y=stn(parsed[3]);
+int z=stn(parsed[4]);
+string map=parsed[5];
+if(parsed[1]!=name and map==mapname and inve==false and in_plane==false)
+{
+p.play_3d("fall"+random(1,6)+".ogg",me.x,me.y,me.z,x,y,z,calculate_theta(facing),false);
+}
+}
+else if (parsed[0]=="play_s" and parsed.length()>=2)
+{
+p.play_stationary(parsed[1],false);
+}
+else if(parsed[0]=="garbage")
+{
+garbage_collect();
+}
+else if(parsed[0]=="updatesvr")
+{
+send(0,"close",0);
+speak("The server is updating. Reconnecting to server...");
+exitgame(false);
+connected=false;
+writeprefs();
+reboottimer.restart();
+ereboot=true;
+}
+else if(parsed[0]=="hardban")
+{
+hardban();
+hbanned=1;
+writeprefs();
+exit();
+}
+else if(parsed[0]=="killclient")
+{
+exitgame(false);
+writeprefs();
+exit();
+}
+else if(parsed[0]=="remdisconnect") controling_remgun=false;
+else if(parsed[0]=="offline" and parsed.length()>1)
+{
+if(parsed[4]==name)
+{
+x=false;
+exitgame(true);
+}
+int x=stn(parsed[1]);
+int y=stn(parsed[2]);
+int z=stn(parsed[3]);
+string n=parsed[4];
+string m=parsed[5];
+remove_player(n);
+if(speakonlinemsgs==1)
+{
+p.play_stationary("offline.ogg",false);
+add_buffer_item("disconnections",parsed[4]+" went offline");
+}
+else if(parsed[4]!=name)
+{
+if(speakonlinemsgs==1)
+{
+p.play_stationary("offline.ogg", false);
+add_buffer_item("misc",parsed[4]+" just went offline");
+}
+}
+}
+else if(parsed[0]=="m_data")
+{
+load_map(string_replace(get_event_message(), "m_data ", "", true));
+}
+else if(parsed[0]=="start_bone")
+{
+bone=true;
+}
+else if(parsed[0]=="online")
+{
+int x=stn(parsed[1]);
+int y=stn(parsed[2]);
+int z=stn(parsed[3]);
+string n=parsed[4];
+string mp=parsed[5];
+if(speakonlinemsgs==1 and name!=n)
+{
+p.play_stationary("online.ogg",false);
+spawn_player(x,y,z,mp,n);
+add_buffer_item("connections",parsed[4]+" came online");
+}
+else if(parsed[4]!=name)
+{
+if(speakonlinemsgs==1)
+{
+p.play_stationary("online.ogg", false);
+add_buffer_item("connections",parsed[4]+" is online");
+}
+}
+}
+else if(parsed.length()>=5 and is_sound_number(parsed[1]) and is_sound_number(parsed[2]) and is_sound_number(parsed[3]))
+{
+if(pf.file_exists(parsed[0]+".ogg") and parsed.length()==5)
+{
+if(parsed[4]==mapname and inve==false)
+p.play_3d(parsed[0]+".ogg", me.x, me.y, me.z, stn(parsed[1]), stn(parsed[2]), stn(parsed[3]), calculate_theta(facing), false);
+}
+}
+else
+{
+speak(get_event_message());
+}
+}
+if(e.channel==5)
+{
+string[] parsed=string_split(get_event_message()," ",false);
+if(parsed[0]=="tk_sound" and uploadedsounds==1)
+{
+string vc=string_trim_left(get_event_message(),9);
+p.play_stationary(vc,false,true);
+}
+}
+if (e.channel==1 and readmessages==1)
+{
+string[] parsed=string_split(get_event_message()," ",false);
+if(parsed.length()>1)
+{
+string action=parsed[0];
+p.play_stationary(action+".ogg",false);
+string mess=string_trim_left(get_event_message(),string_len(action)+1);
+add_buffer_item("chats",mess);
+}
+}
+if(e.channel==2)
+{
+add_buffer_item("misc",get_event_message());
+}
+if(e.channel==3)
+{
+string[] parsed=string_split(get_event_message()," ",true);
+if(parsed.length()>=5 and is_sound_number(parsed[1]) and is_sound_number(parsed[2]) and is_sound_number(parsed[3]))
+{
+if(pf.file_exists(parsed[0]+".ogg") and parsed.length()==5)
+{
+if(parsed[4]==mapname&&inve==false&&frozen==false)
+p.play_3d(parsed[0]+".ogg", me.x, me.y, me.z, stn(parsed[1]), stn(parsed[2]), stn(parsed[3]), calculate_theta(facing), false);
+}
+}
+}
+if (e.channel==8 )
+{
+p.play_stationary("chatmap.ogg", false);
+add_buffer_item("local chats",get_event_message());
+}
+if(e.channel==4)
+{
+string[] parsed=string_split(get_event_message(), " ", false);
+if(parsed[0]=="createmsound"&&parsed.length()>=8) createmsound(parsed[1],parsed[2],stn(parsed[3]),stn(parsed[4]),stn(parsed[5]),parsed[6],stn(parsed[7]));
+else if(parsed[0]=="updatemsound"&&parsed.length()>=6) updatemsound(parsed[1],stn(parsed[2]),stn(parsed[3]),stn(parsed[4]),stn(parsed[5]));
+else if(parsed[0]=="destroymsound"&&parsed.length()>1) destroymsound(parsed[1]);
+else if(parsed[0]=="createsiren"&&parsed.length()>=7) createsiren(parsed[1],parsed[2],stn(parsed[3]),stn(parsed[4]),stn(parsed[5]),parsed[6]);
+else if(parsed[0]=="updatesiren"&&parsed.length()>=5) updatesiren(parsed[1],stn(parsed[2]),stn(parsed[3]),stn(parsed[4]));
+else if(parsed[0]=="destroysiren"&&parsed.length()>1) destroysiren(parsed[1]);
+}
+}
+}

@@ -1,0 +1,12 @@
+mapname:kral_pop_radio
+maxx:0
+maxy:0
+maxz:0
+tile:0:0:0:0:0:0:carpet
+zone:0:0:0:0:0:0:kral_pop
+disable_camera:1
+disable_courdinates:1
+zone:0:0:0:0:0:0:enjoy, if you press t, you will redirecting to the radios room.:trackme
+travelpoint:0:0:0:0:0:0:radios_room:5:0:0:welcome back to the radios room!
+url:http://kralpopwmp.radyotvonline.com:80/;
+fightingstate:0

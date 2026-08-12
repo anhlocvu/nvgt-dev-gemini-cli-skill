@@ -1,0 +1,379 @@
+name main6
+maxx 500
+maxy 500
+platform 0 500 0 500 0 0 dirt2
+platform 0 500 0 500 0 100 wallbrick
+
+viewpoint inside
+platform 0 500 295 305 0 10 air
+platform 0 500 295 305 0 0 water2
+zone 0 500 0 500 0 100 the city sewers
+zone 0 500 295 305 0 10 the sewer under Olivia avenue
+platform 0 500 295 295 0 0 pavement
+platform 0 500 305 305 0 0 pavement
+source 0 500 296 304 0 0 river3.ogg -15
+platform 290 310 0 500 0 10 air
+platform 290 310 0 500 0 0 water2
+platform 290 290 305 500 0 0 pavement
+platform 310 310 305 500 0 0 pavement
+platform 310 310 0 295 0 0 pavement
+platform 290 290 0 295 0 0 pavement
+zone 290 310 0 500 0 10 the sewer under the deserted main road
+zone 290 310 295 305 0 10 sewer intersection between Olivia avenue and the deserted main road
+source 291 309 0 500 0 0 river1.ogg -15
+platform 0 500 405 415 0 10 air
+platform 0 500 405 415 0 0 water2
+platform 0 290 405 405 0 0 pavement
+platform 310 500 405 405 0 0 pavement
+platform 0 290 415 415 0 0 pavement
+platform 310 500 415 415 0 0 pavement
+zone 0 500 405 415 0 10 sewer under denver street
+source 0 500 406 414 0 0 creek1.ogg
+platform 0 0 410 410 0 100 metal3
+zone 0 0 410 410 0 100 the pipe leading to the surface
+travelpoint 0 0 410 410 100 100 0 410 0 main
+zone 0 0 310 310 100 100 press shift enter to pass through the man hole cover to the city above
+platform 74 76 0 405 0 10 air
+platform 74 76 0 405 0 0 water2
+zone 74 76 0 405 0 10 a narrow sewer leading under the city
+zone 74 76 296 304 0 10 the sewer under Olivia avenue
+source 74 76 0 405 0 0 creek2.ogg
+platform 50 50 290 295 0 5 air
+platform 50 50 290 295 0 0 cement2
+zone 50 50 290 295 0 5 an access tunnel to the worker tunnels
+platform 50 50 290 290 0 7 metal2
+platform 0 500 290 290 7 10 air
+platform 0 49 290 290 6 6 pavement
+platform 51 500 290 290 6 6 pavement
+zone 0 500 290 290 6 10 a worker tunnel
+zone 50 50 290 290 0 10 ladder into the worker tunnels
+platform 290 310 290 290 6 6 metal3
+platform 74 76 290 290 6 6 metal3
+platform 328 328 0 500 6 6 pavement
+zone 328 328 0 500 6 10 a worker tunnel
+zone 328 328 290 290 6 10 intersection between worker tunnels
+platform 328 328 295 305 6 6 metal3
+platform 328 328 405 415 6 6 metal3
+platform 328 328 0 500 7 10 air
+platform 0 500 410 410 6 6 metal3
+zone 1 500 410 410 6 10 a beam above the sewers
+zone 328 328 410 410 6 10 a beam and the worker tunnel intersect here
+platform 75 75 0 500 6 6 metal3
+zone 75 75 0 500 6 10 a beam above the sewers
+zone 75 75 410 410 6 10 2 beams intersect here
+zone 75 75 290 290 6 10 a beam and a worker tunnel intersect here
+platform 300 300 0 500 6 6 metal3
+zone 300 300 0 500 6 10 a beam above the sewers
+zone 300 300 290 290 6 10 a worker tunnel and a beam over the sewers intersect here
+zone 300 300 410 410 6 10 2 beams above the sewers intersect here
+platform 0 500 300 300 6 6 metal3
+zone 0 500 300 300 6 10 a beam above the sewers
+zone 75 75 300 300 6 10 2 beams above the sewers intersect here
+zone 300 300 300 300 6 10 2 beams above the sewers intersect here
+zone 328 328 300 300 6 10 a worker tunnel and a beam above the sewers intersect here
+platform 0 10 0 10 0 10 air
+platform 0 10 0 10 0 0 concrete24
+platform 12 73 0 2 0 10 air
+platform 12 73 0 2 0 0 water2
+zone 12 73 0 2 0 10 a narrow sewer leading under the city
+zone 74 76 0 2 0 10 a turn in the tunnel
+zone 74 76 0 2 6 10 the beam turns here
+platform 12 76 1 1 6 6 metal3
+zone 12 73 1 1 6 10 a beam above the sewers
+platform 11 11 0 11 0 10 wallmedal3
+platform 0 11 11 11 0 10 wallmedal3
+platform 0 11 0 11 10 10 wallmedal3
+platform 11 11 0 2 0 5 wallmedal3
+zone 0 10 0 10 0 10 the neucliar fall out shelter at the bottom of the sewers
+zone 10 12 1 1 0 5 a hatch of the fall out shelter
+door 10 1 0 12 1 0 3000 none.ogg none.ogg elevator2open.ogg elevator2close.ogg
+door 12 1 0 10 1 0 3000 none.ogg none.ogg elevator2open.ogg elevator2close.ogg
+0 10 0 10 0 10
+platform 212 232 415 428 0 10 air
+platform 212 232 415 429 0 0 water
+zone 212 232 416 429 0 10 Shallow water near the safezone 0 10 0 10 0 10 0 10 0 10 0 10's underground pipe system
+platform 212 232 430 445 0 10 water2
+zone 212 232 430 445 0 11 The safezone 's underground pipe system. The water is 10 feet high here, almost impossible to walk through, inf act the water is over your head
+source 212 232 430 445 0 15 waterfall2.ogg -15
+source 212 232 430 445 0 10 waterfall1.ogg -15
+platform 218 228 446 446 0 10 wallbigmetal
+zone 218 228 445 445 0 10 A very steep chute from the down to the bottom of the pipe system. It doesn't look climbable either, guess there's no getting out this way
+platform 218 228 445 445 11 99 air
+platform 0 500 45 55 15 25 air
+platform 0 500 45 55 15 15 water2
+platform 0 500 95 105 15 25 air
+platform 0 500 95 105 15 15 water2
+platform 0 500 145 155 15 25 air
+platform 0 500 145 155 15 15 water2
+platform 0 500 195 205 15 25 air
+platform 0 500 195 205 15 15 water2
+platform 0 500 245 255 15 25 air
+platform 0 500 245 255 15 15 water2
+platform 0 500 295 305 15 25 air
+platform 0 500 295 305 15 15 water2
+platform 0 500 345 355 15 25 air
+platform 0 500 345 355 15 15 water2
+platform 0 500 395 405 15 25 air
+platform 0 500 395 405 15 15 water2
+platform 0 500 450 460 15 25 air
+platform 0 500 450 460 15 15 water2
+platform 45 55 0 500 15 25 air
+platform 45 55 0 500 15 15 water2
+platform 95 105 0 500 15 25 air
+platform 95 105 0 500 15 15 water2
+platform 145 155 0 500 15 25 air
+platform 145 155 0 500 15 15 water2
+platform 195 205 0 500 15 25 air
+platform 195 205 0 500 15 15 water2
+platform 245 255 0 500 15 25 air
+platform 245 255 0 500 15 15 water2
+platform 295 305 0 500 15 25 air
+platform 295 305 0 500 15 15 water2
+platform 345 355 0 500 15 25 air
+platform 345 355 0 500 15 15 water2
+platform 395 405 0 500 15 25 air
+platform 395 405 0 500 15 15 water2
+platform 445 455 0 500 15 25 air
+platform 445 455 0 500 15 15 water2
+zone 0 500 0 500 15 25 this level of the sewers seems to be an abandoned black market city, the water stagnent causing a horific smell
+zone 45 55 45 55 15 25 2 sewers intersect here
+zone 95 105 45 55 15 25 2 sewers intersect here
+zone 145 155 45 55 15 25 2 sewers intersect here
+zone 195 205 45 55 15 25 2 sewers intersect here
+zone 245 255 45 55 15 25 2 sewers intersect here
+zone 295 305 45 55 15 25 2 sewers intersect here
+zone 345 355 45 55 15 25 2 sewers intersect here
+zone 395 405 45 55 15 25 2 sewers intersect here
+zone 445 455 45 55 15 25 2 sewers intersect here
+zone 45 55 95 105 15 25 2 sewers intersect here
+zone 95 105 95 105 15 25 2 sewers intersect here
+beacon 11 11 1 1 0 0 the bunker
+zone 145 155 95 105 15 25 2 sewers intersect here
+zone 195 205 95 105 15 25 2 sewers intersect here
+zone 245 255 95 105 15 25 2 sewers intersect here
+zone 295 305 95 105 15 25 2 sewers intersect here
+zone 345 355 95 105 15 25 2 sewers intersect here
+zone 395 405 95 105 15 25 2 sewers intersect here
+zone 445 455 95 105 15 25 2 sewers intersect here
+zone 45 55 145 155 15 25 2 sewers intersect here
+zone 95 105 145 155 15 25 2 sewers intersect here
+zone 145 155 145 155 15 25 2 sewers intersect here
+zone 195 205 145 155 15 25 2 sewers intersect here
+zone 245 255 145 155 15 25 2 sewers intersect here
+zone 295 305 145 155 15 25 2 sewers intersect here
+zone 345 355 145 155 15 25 2 sewers intersect here
+zone 395 405 145 155 15 25 2 sewers intersect here
+zone 445 455 145 155 15 25 2 sewers intersect here
+zone 45 55 195 205 15 25 2 sewers intersect here
+zone 95 105 195 205 15 25 2 sewers intersect here
+zone 145 155 195 205 15 25 2 sewers intersect here
+zone 195 205 195 205 15 25 2 sewers intersect here
+zone 245 255 195 205 15 25 2 sewers intersect here
+zone 245 255 195 205 15 25 2 sewers intersect here
+zone 295 305 195 205 15 25 2 sewers intersect here
+zone 345 355 195 205 15 26 2 sewers intersect here
+zone 395 405 195 205 15 25 2 sewers intersect here
+zone 445 455 195 205 15 25 2 sewers intersect here
+zone 45 55 245 255 15 25 2 sewers intersect here
+zone 95 105 245 255 15 25 2 sewers intersect here
+zone 95 105 245 255 15 25 2 sewers intersect here
+zone 145 155 245 255 15 25 2 sewers intersect here
+zone 195 205 245 255 15 25 2 sewers intersect here
+zone 395 405 245 255 15 25 2 sewers intersect here
+zone 445 455 245 255 15 25 2 sewers intersect here
+zone 345 355 245 255 15 25 2 sewers intersect here
+zone 295 305 245 255 15 25 2 sewers intersect here
+zone 245 255 245 255 15 25 2 sewers intersect here
+zone 45 55 295 305 15 25 2 sewers intersect here
+zone 95 105 295 305 15 25 2 sewers intersect here
+zone 145 155 295 305 15 25 2 sewers intersect here
+zone 195 205 295 305 15 25 2 sewers intersect here
+zone 245 255 295 305 15 25 2 sewers intersect here
+zone 295 305 295 305 15 25 2 sewers intersect here
+zone 345 355 295 305 15 25 2 sewers intersect here
+zone 395 405 295 305 15 25 2 sewers intersect here
+zone 445 455 295 305 15 25 2 sewers intersect here
+zone 45 55 345 355 15 25 2 sewers intersect here
+zone 95 105 345 355 15 25 2 sewers intersect here
+zone 145 155 345 355 15 25 2 sewers intersect here
+zone 195 205 345 355 15 25 2 sewers intersect here
+zone 295 305 345 355 15 25 2 sewers intersect here
+zone 345 355 345 355 15 25 2 sewers intersect here
+zone 395 405 345 355 15 25 2 sewers intersect here
+zone 445 455 345 355 15 25 2 sewers intersect here
+zone 45 55 395 405 15 25 2 sewers intersect here
+zone 95 105 395 405 15 25 2 sewers intersect here
+zone 145 155 395 405 15 25 2 sewers intersect here
+zone 195 205 395 405 15 25 2 sewers intersect here
+zone 245 255 395 405 15 25 2 sewers intersect here
+zone 295 305 395 405 15 25 2 sewers intersect here
+zone 345 355 395 405 15 25 2 sewers intersect here
+zone 395 405 395 405 15 25 2 sewers intersect here
+zone 445 455 395 405 15 25 2 sewers intersect here
+zone 45 55 450 460 15 25 2 sewers intersect here
+zone 95 105 450 460 15 25 2 sewers intersect here
+zone 145 155 450 460 15 25 2 sewers intersect here
+zone 145 155 450 460 15 25 2 sewers intersect here
+zone 195 205 450 460 15 25 2 sewers intersect here
+zone 295 305 450 460 15 25 2 sewers intersect here
+zone 345 355 450 460 15 25 sewers intersect here
+zone 245 255 345 355 15 25 2 sewers intersect here
+zone 245 255 450 460 15 26 2 sewers intersect here
+zone 395 405 450 460 15 25 2 sewers intersect here
+zone 445 455 450 460 15 25 2 sewers intersect here
+platform 25 43 1 34 15 25 air
+platform 25 43 1 34 15 15 cement3
+zone 25 43 1 34 15 25 a large room, shelves full of explosives line it
+zone 43 45 25 25 15 20 the hatch of the illegal explosives store
+platform 44 44 25 25 15 20 wallmedal2
+door 43 25 15 45 25 15 3000 none.ogg none.ogg elevator2open.ogg elevator2close.ogg
+door 45 25 15 43 25 15 3000 none.ogg none.ogg elevator2open.ogg elevator2close.ogg
+platform 25 25 1 34 15 23 wood3
+zone 25 25 1 34 15 25 a shelf full of boxes with red labels, "TNT"
+platform 28 30 1 23 15 22 wood3
+platform 29 29 1 23 15 22 wallobject
+zone 28 30 1 23 15 25 a shelf full of boxes with the label, "highe explosive suicide bomb"
+platform 28 30 27 34 15 22 wood3
+platform 29 29 27 34 15 22 wallobject
+zone 28 30 27 34 15 25 a shelf full of boxes full of hand grenades
+platform 43 43 27 34 15 22 wood3
+zone 43 43 27 34 15 25 a shelf full of bomb ingredients
+platform 43 43 1 23 15 22 wood3
+zone 43 43 1 23 15 25 a shelf full of bomb ingredients
+platform 34 36 1 23 15 22 wood3
+platform 35 35 1 23 15 22 wallobject
+zone 34 36 1 23 15 25 a shelf full of timebombs
+platform 34 36 27 34 15 22 wood3
+platform 35 35 27 34 15 22 wallobject
+zone 34 36 27 34 15 25 a shelf full of dynomite
+platform 39 41 1 23 15 22 wood3
+platform 40 40 1 23 15 22 wallobject
+platform 39 41 27 34 15 22 wood3
+platform 40 40 27 34 15 22 wallobject
+zone 39 41 1 23 15 25 a shelf laidon with missiles
+zone 39 41 27 34 15 25 a shelf full of motion bombs
+platform 57 70 1 34 15 25 air
+platform 57 70 1 34 15 15 cement
+zone 57 70 1 34 15 25 a large room with weapons hanging on the walls
+zone 55 57 25 25 15 20 the hatch of the illegal weapons store
+platform 56 56 25 25 15 20 wallmedal2
+door 55 25 15 57 25 15 3000 none.ogg none.ogg elevator2open.ogg elevator2close.ogg
+door 57 25 15 55 25 15 3000 none.ogg none.ogg elevator2open.ogg elevator2close.ogg
+platform 70 70 1 34 15 22 metal
+zone 70 70 1 34 15 25 a rack of weaponery up against the back wall
+platform 60 62 34 34 15 27 wallcardboard
+zone 59 63 33 34 15 25 a target board leaning up against the wall for trying out weapons
+platform 60 62 34 34 18 18 wood2
+platform 60 62 1 33 15 15 sand2
+zone 60 62 1 32 15 25 a firing range down the middle of the room, the ground is turned to sand with years of high force blasts
+platform 57 93 57 93 15 25 air
+platform 57 93 57 93 15 15 pavement
+platform 75 75 56 56 15 20 wallmedal2
+zone 57 93 57 93 15 25 a large room smelling strongly, the shelves are full of vials.
+zone 75 75 55 57 15 20 the hatch of the drug store
+door 75 55 15 75 57 15 3000 none.ogg none.ogg elevator2open.ogg elevator2close.ogg
+door 75 57 15 75 55 15 3000 none.ogg none.ogg elevator2open.ogg elevator2close.ogg
+platform 57 93 75 75 15 25 wallgeneric
+platform 58 74 58 58 15 22 wallobject
+platform 76 92 58 58 15 22 wallobject
+platform 58 74 60 60 15 22 wallobject
+platform 58 74 62 62 15 22 wallobject
+platform 58 74 66 66 15 22 wallobject
+platform 58 74 64 64 15 22 wallobject
+platform 58 74 68 68 15 22 wallobject
+platform 58 74 70 70 15 22 wallobject
+platform 58 74 72 72 15 22 wallobject
+platform 57 93 74 74 15 22 wallobject
+platform 76 92 72 72 15 22 wallobject
+platform 76 92 70 70 15 22 wallobject
+platform 76 92 68 68 15 22 wallobject
+platform 76 92 66 66 15 22 wallobject
+platform 76 92 64 64 15 22 wallobject
+platform 76 92 62 62 15 22 wallobject
+platform 76 92 60 60 15 22 wallobject
+zone 58 74 59 60 15 25 isle 2 A
+zone 58 74 57 58 15 25 isle 1 A
+zone 58 74 61 62 15 25 isle 3 A
+zone 58 74 63 64 15 25 isle 4 A
+zone 58 74 65 66 15 25 isle 5 A
+zone 58 74 67 68 15 25 isle 6 A
+zone 58 74 69 70 15 25 isle 7 A
+zone 58 74 71 72 15 25 isle 8 A
+zone 58 74 73 74 15 25 isle 9 A
+zone 76 92 73 74 15 25 isle 9 B
+zone 76 92 71 72 15 25 isle 8 B
+zone 76 92 69 70 15 25 isle 7 B
+zone 76 92 67 68 15 25 isle 6 B
+zone 76 92 65 66 15 25 isle 5 B
+zone 76 92 63 64 15 25 isle 4 B
+zone 76 92 61 62 15 25 isle 3 B
+zone 76 92 59 60 15 25 isle 2 B
+zone 76 92 57 58 15 25 isle 1 B
+beacon 44 44 25 25 15 15 abandoned explosives store
+beacon 56 56 25 25 15 15 abandoned weapons store
+beacon 75 75 56 56 15 15 abandoned drug store
+zone 0 0 410 410 15 25 the pipe leading to the surface
+platform 328 328 369 369 6 15 metal2
+platform 306 327 369 369 15 15 cement2
+platform 306 328 369 369 16 20 air
+zone 328 328 369 369 6 20 a ladder between the sewer layers
+zone 306 327 369 369 15 20 an access tunnel
+platform 107 120 60 80 15 25 air
+platform 107 120 60 80 15 15 cement3
+zone 107 120 60 80 15 25 a small store room, it was probably used by workers before the black market took over the place
+zone 105 107 70 70 15 20 hatch of a store room
+platform 106 106 70 70 15 20 wallmedal2
+door 105 70 15 107 70 15 3000 none.ogg none.ogg elevator2open.ogg elevator2close.ogg
+door 107 70 15 105 70 15 3000 none.ogg none.ogg elevator2open.ogg elevator2close.ogg
+platform 107 120 72 72 15 25 wallmedal3
+zone 107 120 71 71 15 25 a large ceiled shipping container
+zone 107 120 72 80 15 25 the inside of a large shipping container, it is completely empty
+zone 112 112 71 73 15 25 the container's door
+door 112 71 15 112 73 15 4000 none.ogg none.ogg elevator2open.ogg door11.ogg
+door 112 73 15 112 71 15 500 none.ogg none.ogg door12.ogg elevator2close.ogg
+beacon 56 56 70 70 15 15 the abandoned store room
+platform 107 120 73 80 15 15 metal
+platform 157 193 107 143 15 25 air
+platform 157 193 107 143 15 15 cement2
+zone 157 193 107 143 15 25 a large room full of smoke, the store room recently burned, you wander why?
+platform 175 175 144 144 15 20 wallmedal2
+zone 175 175 143 145 15 20 the hatch of the burning store room
+door 175 145 15 175 143 15 3000 none.ogg none.ogg elevator2open.ogg elevator2close.ogg
+door 175 143 15 175 145 15 3000 none.ogg none.ogg elevator2open.ogg elevator2close.ogg
+platform 158 192 108 142 15 15 wood2
+platform 158 192 141 141 15 15 concrete
+platform 158 192 139 139 15 15 concrete
+platform 158 192 137 137 15 15 concrete
+platform 158 192 135 135 15 15 concrete
+platform 158 192 133 133 15 15 concrete
+platform 158 192 131 131 15 15 concrete
+platform 158 192 129 129 15 15 concrete
+platform 158 192 127 127 15 15 concrete
+platform 158 192 125 125 15 15 concrete
+platform 158 192 123 123 15 15 concrete
+platform 158 192 121 121 15 15 concrete
+platform 158 192 119 119 15 15 concrete
+platform 158 192 117 117 15 15 concrete
+platform 158 192 115 115 15 15 concrete
+platform 158 192 113 113 15 15 concrete
+platform 158 192 111 111 15 15 concrete
+platform 158 192 109 109 15 15 concrete
+platform 175 175 108 142 15 15 cement2
+zone 158 192 108 142 15 25 rows of burning, collapsed shelves
+zone 175 175 108 142 15 25 the isle down the middle of the burning shelving
+source 160 190 110 140 15 20 fire.ogg -15
+zone 163 163 115 115 15 15 a small piece of dynomight packaging
+beacon 175 175 144 144 15 15 the burning store room
+platform 0 0 410 410 11 11 wallrocks
+zone 0 0 410 410 10 12 rocks have blocked the pipe, you will have to find a way round
+platform 0 0 395 409 15 15 cement2
+platform 0 0 405 409 16 20 air
+zone 0 0 395 409 15 20 a path leading into the wall
+safe zone
+safezone 0 10 0 10 0 10
+platform 0 500 0 500 101 101 walldirt
+zone 0 0 410 410 100 100 press shift enter to continue to main
+beacon 50 50 295 295 0 0 access tunnels entrance, this is the first step to exiting
+beacon 328 328 369 369 6 6 ladder to the second layer this is the second step to exiting
+beacon 0 0 410 410 15 15 pipe to the surface, hits is the final step to exiting
+spawn

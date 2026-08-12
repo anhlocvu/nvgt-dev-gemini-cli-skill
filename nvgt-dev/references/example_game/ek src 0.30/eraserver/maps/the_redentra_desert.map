@@ -1,0 +1,32 @@
+mapname:the_redentra_desert
+maxx:4000
+maxy:4000
+maxz:2000
+tile:0:4000:0:4000:0:0:grass
+tile:0:4000:0:4000:0:0:sand2
+tile:0:4000:0:4000:0:0:dirt5
+src:0:4000:0:4000:0:2000:desert.ogg
+tile:0:4000:0:4000:0:0:sand2
+zone:0:4000:0:4000:0:2000:redentra desert
+travelpoint:0:4000:0:0:0:0:the_frozen_mountain:150:300:50:the_frozen_mountain
+
+travelpoint:0:4000:4000:4000:0:100:the__redentra_desert:0:0:0:done
+src:0:4000:0:4000:15:20:md14.ogg
+noitems:0:4000:0:4000:0:1000:wirebomb:motion_bomb:nuclear_bomb:mine:stun_dart:remote_timebomb:security_bomb:remote_gun:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:rocket_launcher,bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:wood:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censorbomb:stone:fire_starter:censor_bomb:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:guided_missile:missile_interceptor:mine:ford:ford
+fightingstate:0
+noitems:0:4000:0:4000:0:2000:elecboat
+door:4000:1:0:3949:4000:0:70:silent.ogg:horsedoormove.ogg:horsedooropen.ogg:silent.ogg
+door:4000:3999:0:3900:0:0:70:silent.ogg:horsedoormove.ogg:horsedooropen.ogg:silent.ogg
+tile:3901:3901:0:4000:0:4000:wallfence
+
+travelpoint:3900:3900:1:3999:0:4000:the_redentra_desert:4000:3999:0:done, press d again
+tile:3950:3950:0:4000:0:4000:wallrocks3
+travelpoint:3949:3949:1:3999:0:4000:the_redentra_desert:4000:1:0:done, press d again
+zone:3949:3949:1:3999:0:4000:press t to back to the hors
+zone:3900:3900:1:3999:0:4000:press t to back to the hors
+zone:4000:4000:3999:3999:0:4000:the hors
+zone:4000:4000:1:1:0:4000:the hors
+
+noitems:0:4000:0:4000:0:4000:boat:helicopter:tasing_small_projectile:arena_card:police_motorcycle
+safezone:-100:10000:0:100000:-10000:100000
+jump:0:4000:0:4000:0:5:0

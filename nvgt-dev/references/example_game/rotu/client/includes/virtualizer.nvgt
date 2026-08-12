@@ -1,0 +1,143 @@
+int charrepeat=1,kb=1;
+sound capbeep;
+int capmode=1;
+class virtualizer
+{
+int backtime=125;
+timer backtimer;
+key_hold kdelete(KEY_BACK,400,50);
+
+string input(string text, bool stuff=false,bool is_pw=false,string default_text="")
+{
+    audio_form f;
+    f.create_window(text, false, true);
+    int txt_input = f.create_input_box(text, default_text, (is_pw ? "*" : ""), 0);
+    int btn_ok = f.create_button("OK", true);
+    int btn_cancel = f.create_button("Cancel", false, true);
+    f.focus(txt_input);
+
+    string last_text = default_text;
+
+    while(f.active)
+    {
+        wait(5);
+        if(stuff==true)
+        {
+            netloop();
+            doorloop();
+            update_listener();
+            fallcheck();
+        }
+
+        f.monitor();
+
+        string current_text = f.get_text(txt_input);
+        if (current_text != last_text)
+        {
+            if (current_text.length() > last_text.length())
+            {
+                string added = "";
+                int diff_pos = -1;
+                for (uint i = 0; i < last_text.length(); i++)
+                {
+                    if (current_text[i] != last_text[i])
+                    {
+                        diff_pos = i;
+                        break;
+                    }
+                }
+                if (diff_pos == -1)
+                {
+                    added = current_text.substr(last_text.length());
+                }
+                else
+                {
+                    added = current_text.substr(diff_pos, current_text.length() - last_text.length());
+                }
+
+                if (kbd == 1)
+                {
+                    string first_char = (added.length() > 0) ? added.substr(0, 1) : "";
+                    if (first_char == " ")
+                    {
+                        p.play_stationary(keyboard_name + "space.ogg", false);
+                    }
+                    else if (first_char != "")
+                    {
+                        p.play_stationary(keyboard_name + "type" + random(1, 10) + ".ogg", false);
+                    }
+                }
+            }
+            else if (current_text.length() < last_text.length())
+            {
+                if (kbd == 1)
+                {
+                    p.play_stationary(keyboard_name + "delete.ogg", false);
+                }
+            }
+            last_text = current_text;
+        }
+        else
+        {
+            if (kbd == 1 && (key_pressed(KEY_BACK) || key_pressed(KEY_DELETE)))
+            {
+                p.play_stationary(keyboard_name + "delete.ogg", false);
+            }
+        }
+
+        if (f.is_pressed(btn_cancel) || key_pressed(KEY_ESCAPE))
+        {
+            speak("Cancel.");
+            return "";
+        }
+        else if (f.is_pressed(btn_ok))
+        {
+            string message = f.get_text(txt_input);
+            if (kbd == 1) p.play_stationary(keyboard_name + "return.ogg", false);
+            return message;
+        }
+    }
+    return "";
+}
+}
+string p2w(string c)
+{
+c=string_replace(c,".","dot",true);
+c=string_replace(c,",","comma",true);
+c=string_replace(c,"/","slash",true);
+c=string_replace(c,";","semicolon",true);
+c=string_replace(c,"'","apostrophe",true);
+c=string_replace(c,"[","left bracket",true);
+c=string_replace(c,"]","right bracket",true);
+c=string_replace(c,"\\","backslash",true);
+c=string_replace(c,"`","grave",true);
+c=string_replace(c,"-","dash",true);
+c=string_replace(c,"=","equals",true);
+c=string_replace(c,"<","less than",true);
+c=string_replace(c,">","greater than",true);
+c=string_replace(c,"?","question mark",true);
+c=string_replace(c,":","colon",true);
+c=string_replace(c,"\"","quote",true);
+c=string_replace(c,"~","tilde",true);
+c=string_replace(c,"!","exclamation mark",true);
+c=string_replace(c,"@","at",true);
+c=string_replace(c,"#","number",true);
+c=string_replace(c,"$","dollar",true);
+c=string_replace(c,"%","percent",true);
+c=string_replace(c,"^","caret",true);
+c=string_replace(c,"&","ampersand",true);
+c=string_replace(c,"*","star",true);
+c=string_replace(c,"(","left paren",true);
+c=string_replace(c,")","right paren",true);
+c=string_replace(c,"_","underscore",true);
+c=string_replace(c,"+","plus",true);
+c=string_replace(c,"{","left brace",true);
+c=string_replace(c,"}","right brace",true);
+c=string_replace(c,"|","vertical bar",true);
+c=string_replace(c, "\r", "carriage return", true);
+c=string_replace(c, "\n", "line feed", true);
+c=string_replace(c, "\t", "tab", true);
+c=string_replace(c,"©","copyright sign",true);
+c=string_replace(c,"®","registered sign",true);
+return c;
+}

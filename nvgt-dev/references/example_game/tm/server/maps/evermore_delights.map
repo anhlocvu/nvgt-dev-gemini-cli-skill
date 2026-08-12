@@ -1,0 +1,46 @@
+mapname:evermore_delights
+maxx:110
+maxy:110
+maxz:300
+tile:0:110:0:110:0:0:wood4
+zone:0:300:0:300:0:300:the smell of fresh, cooked food makes your mouth water. looking around you see people having a good time, eating various dishes. perhaps grabbing a table and ordering something would be a good idea
+zone:50:60:26:36:0:13:table near the exit@trackme@
+tile:50:50:25:25:0:3:carpet3
+tile:50:60:26:36:5:5:glass
+zone:50:50:25:25:0:13:a chair. you sit down comfortably, putting your hands on the table
+tile:55:55:25:25:0:3:carpet3
+zone:55:55:25:25:0:13:a chair. you sit down comfortably, putting your hands on the table
+tile:55:55:37:37:0:3:carpet3
+tile:50:50:37:37:0:3:carpet3
+zone:55:55:37:37:0:3:a chair. you sit down comfortably, putting your hands on the table
+zone:50:50:37:37:0:13:a chair. you sit down comfortably, putting your hands on the table
+
+tile:70:70:40:40:0:3:carpet3
+tile:70:80:41:50:5:5:glass
+zone:70:80:41:50:5:13:table located in the middle of the restaurant. you see a lot of people here@trackme@
+zone:70:70:40:40:0:3:a chair. you sit down comfortably, putting your hands on the table
+zone:75:75:40:40:0:3:a chair. you sit down comfortably, putting your hands on the table
+tile:75:75:40:40:0:3:carpet3
+tile:75:75:51:51:0:3:carpet3
+tile:70:70:51:51:0:3:carpet3
+zone:70:70:51:51:0:3:a chair. you sit down comfortably, putting your hands on the table
+zone:75:75:51:51:0:3:a chair. you sit down comfortably, putting your hands on the table
+tile:95:105:76:86:5:5:glass
+zone:95:105:76:86:5:13:table near the foodcounter@trackme@
+tile:95:95:75:75:0:3:carpet3
+zone:95:95:75:75:0:3:a chair. you sit down comfortably, putting your hands on the table
+tile:100:100:75:75:0:3:carpet3
+zone:100:100:75:75:0:3:a chair. you sit down comfortably, putting your hands on the table
+tile:100:100:87:87:0:3:carpet3
+tile:105:105:87:87:0:3:carpet3
+zone:100:100:87:87:0:3:a chair. you sit down comfortably, putting your hands on the table
+zone:105:105:87:87:0:3:a chair. you sit down comfortably, putting your hands on the table
+zone:110:110:110:110:0:100:the foodcounter. order what you would like to eat@trackme@
+fightingstate:0
+zone:0:0:0:0:0:333:go back@trackme@
+travelpoint:0:0:0:0:0:0:evermore_city:600:600:0:welcome!
+cmusic:0:500:0:500:0:500:restaurant.ogg:-10:100
+travelpoint:0:0:0:0:0:0:evermore_city:600:600:0:come back anytime!
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb

@@ -1,0 +1,20 @@
+mapname:the_way_of_goldenmountain
+maxx:300
+maxy:300
+maxz:1000
+tile:0:300:0:300:0:0:sno
+zone:0:300:0:300:0:1000:the_way_of_goldenmounten
+tile:0:300:0:300:0:0:gravel4
+src:0:300:0:300:0:1000:emb20.ogg
+tile:0:300:20:20:0:50:ledge2
+tile:0:300:21:21:0:49:wallstone2
+
+tile:0:300:34:34:53:53:dirt
+tile:0:300:35:35:54:60:wallstone
+tile:0:300:35:35:53:60:wallstone
+tile:100:100:34:34:53:100:tile2
+tile:0:300:40:40:50:100:smallwood
+tile:110:111:40:100:49:49:bare
+travelpoint:0:300:22:300:0:0:the_way_of_goldenmounten:0:0:0:o! , ,o?
+tile:0:300:34:35:49:49:debris
+tile:0:300:35:35:49:50:wallstone2

@@ -1,0 +1,37 @@
+mapname:safez
+maxx:100
+maxy:100
+maxz:500
+tile:0:2000000:0:20000000:0:0:carpet
+zone:0:200000000:0:200000000:0:500000:safe zone
+zone:0:20:0:20:0:19:first floor of the safe zone
+noitems:0:1000:0:1000:-1000:1000:wirebomb:mine:stun_dart:security_bomb:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censor_bomb:stone:fire_starter:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:guided_missile:missile_interceptor:mine:hors:boat:tasing_small_projectile:small_projectile:elecboat:censor_bomb:frequency_scrambler:helicopter:fire_extinguisher:sound_grenade:air_canister:shield:motion_bomb:helicopter:wood:police_car_super:tank:aircraft:item_grabber:fight_inviter
+zone:0:0:0:0:0:19:stairs between the floors:trackme
+safezone:0:200000000:0:200000000:-200000000:200000000
+zone:20:20:0:0:0:15:go to the main map:trackme
+randtravelpoint:20:20:0:0:0:0:ek_main:0:1000:0:1000:0:0:moved you!:0
+randtravelpoint:20:20:20:20:0:0:legendary_fight:0:5:0:5:10:10:moved you, fight!:10
+zone:20:20:20:20:0:15:sword fight map, fight with your sword within the map:track
+tile:0:21:21:21:0:20000000:wallbarrel
+tile:21:21:0:21:0:200000:wallbarrel
+door:22:5:0:20:5:0:1000:silence.ogg:doormove2.ogg:dooropen4.ogg:doorclose4.ogg
+door:20:5:0:22:5:0:1000:silence.ogg:doormove2.ogg:dooropen4.ogg:doorclose4.ogg
+zone:20:22:5:5:0:10:door in and out:trackme
+randtravelpoint:0:0:20:20:0:0:challenge_city:0:15:0:0:0:0:moved you to the challenge map %name, find and explore!:0
+zone:0:0:20:20:0:19:challenge world which lists the maps for challenging:trackme
+tile:0:0:0:0:0:20:carpet4
+tile:0:20:0:20:20:20:hardwood3
+zone:0:20:0:20:20:39:second floor of the safe zone
+randtravelpoint:20:20:20:20:20:20:ek_services:50:60:0:0:0:0:moved you, %name?:0
+zone:20:20:20:20:20:39:ek services:trackme
+randtravelpoint:0:0:20:20:20:20:frozen_world:0:10:0:10:0:0:moved, enjoy on tthe other world exploration %name!:5
+zone:0:0:20:20:20:39:the other world:trackme
+randtravelpoint:20:20:0:0:20:20:ek_relaxing_room:0:20:0:25:0:0:moved you to relax, %name!:0
+zone:20:20:0:0:20:39:the relaxing room:trackme
+randtravelpoint:20:20:10:10:20:20:store:0:10:0:10:0:0:moved you, %name?:0
+zone:20:20:10:10:20:39:store:trackme
+src:0:20:0:20:0:19:sky.ogg:0:100
+music:md62.ogg
+
+src:22:100:0:21:0:1000000:emb2.ogg:0:100
+src:0:100000:22:1000:0:100000:birds18.ogg:0:100

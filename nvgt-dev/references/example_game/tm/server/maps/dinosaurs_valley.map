@@ -1,0 +1,47 @@
+mapname:dinosaurs_valley
+maxx:3000
+maxy:3000
+maxz:3000
+tile:0:3000:0:3000:0:0:gravel2
+tile:2000:3000:2000:3000:0:0:shallow
+cmusic:1990:3000:1990:3000:0:50:ocean.ogg
+tile:2001:3000:2001:3000:-100:-1:underwater
+cmusic:2000:3000:2000:3000:-100:-10:underwater.ogg
+tile:1970:3000:1970:1985:0:0:sand2
+tile:1985:3000:1986:2000:0:0:clay
+tile:1985:2000:2000:3000:0:0:clay
+tile:1970:1984:1986:3000:0:0:sand2
+tile:0:3000:0:200:0:0:grass3
+tile:2000:2000:2000:3000:-100:-1:wallunderwater2
+tile:2000:3000:2000:2000:-100:-1:wallunderwater2
+zone:0:200:0:200:0:200:passage leading to the main valley. in the distance you see towering, high mountains. a huge, grand door stands far above you, on which as you gaze you feel shivers of excitement and terror go down your spine.
+tile:150:150:150:150:0:100:mountain
+tile:140:160:150:160:100:100:ledge2
+tile:15:15:15:15:0:30:branch2
+tile:22:22:22:22:0:30:branch2
+tile:30:30:30:30:0:15:branch2
+tile:201:300:0:200:0:200:wall
+tile:0:3000:201:299:0:200:wall
+fightingstate:0
+tile:0:299:300:3000:0:200:wall
+zone:300:3000:300:3000:0:3000:the valley is beautiful, with ancient, tall mountains surrounding it from all sides. the air is fresh, the trees seeming to be alive and flourishing. standing at this ancient place, you feel excitement coursing through you. however a strange and unknown fear also haunts you. such a place may hold various mystaries to be unvailed, yet the forces which reside here can end you in a single strike. as you gaze around, you see different places, holding ancient, forgotten secrets. yet you know for a fact that without cautian, they could become deadly soon enough.
+tile:300:800:400:800:0:0:grass3
+zone:400:800:400:800:0:800:you enter a large jungle, tall ancient trees surrounding you from all sides. as you enter, you realise that not even sunlight dairs to travel this far. a sudden darkness descends upon you. in the distance you see shadows of ancient caves, from where deep, haunting calls echo in to your ears
+zone:450:450:450:450:0:450:first cave intrence@trackme@
+zone:500:500:500:500:0:500:second cave entrence@trackme@
+zone:550:550:550:550:0:500:third cave intrence@trackme@
+zone:600:600:600:600:0:500:4th cave entrence@trackme@
+zone:650:650:650:650:0:650:5th cave entrence@trackme@
+tile:300:1000:850:1000:0:0:gravel4
+cmusic:0:3000:0:3000:0:3000:fantasy19.ogg:-10:100
+travelpoint:145:150:150:155:100:100:eoraptors_cave:0:0:0:you have entered the cave of the guardian of this  dinosaurs valley! good luck  fighting him!
+zone:145:155:150:155:100:150:entrence to the cave eoraptor, by defeating him you will get the  key to unlock the  valley's door!@trackme@
+tile:300:3000:1000:1000:0:300:mountain
+tile:300:3000:1001:1010:0:299:wallrocks3
+tile:300:400:1000:1100:300:300:snow2
+tile:0:3000:1102:1400:300:300:snow2
+tile:300:1000:1020:1300:0:0:fi
+tile:0:299:1000:1100:300:500:wall
+tile:0:1000:1400:1400:0:300:mountain
+tile:0:3000:1399:1399:0:299:air
+tile:0:3000:1395:1399:0:299:wallrocks3

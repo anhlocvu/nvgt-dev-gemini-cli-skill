@@ -1,0 +1,44 @@
+void cfu(bool silent)
+{
+string latest=url_get("http://blindgamers.net/ekv.ver");
+double lv=string_to_number(latest);
+string description=url_get("http://test.tt4ar.com/CMimportantfiles/update_description.txt");
+string[] yourversion=string_split(ver," ",true);
+double yv=string_to_number(yourversion[0]);
+if (yv>lv and silent==false)
+{
+dlg("Oops! There was an error checking for updates!. This could be because you are running a beta, or the server was not contacted!. Version: "+ver+". Latest: "+latest);
+}
+else if (yv==lv and silent==false)
+{
+dlg("No updates were found at this time!. "+lv+" Is the newest version!");
+}
+else if (yv<lv)
+{
+updatefound.play_wait();
+int e;
+e=yesno("alert, there new version from era of knights is availabl, do you like to download it now??");
+if(e==1)
+{
+update();
+}
+else 
+{
+mainmenu();
+}
+}
+}
+
+void update()
+{
+speak("Starting update process.");
+sound updatemus; updatemus.stream("update_starting.ogg"); updatemus.play_wait();
+string status=dl_file("http://ek.blindgamers.net/ek.zip","ek.zip");
+if(status=="finished")
+{
+updatemus.stop();
+updatedone.play_wait();
+alert("update completed","era of knights "+latest+" has been downloaded. Please go to the game folder , and you will fownd the ek.zip , Ore you can  Search abot this file!. ");
+exit();
+}
+}

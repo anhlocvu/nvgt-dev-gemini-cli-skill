@@ -1,0 +1,24 @@
+mapname:the_world_of_the_magical_flower
+maxx:200
+maxy:100
+maxz:200
+tile:0:200:0:200:0:0:grass
+zone:0:200:0:200:0:200:the world of the magical flower
+travelpoint:10:20:0:0:0:200:safe_zone:50:50:0:Done, you are back from to the safe zone.
+zone:10:20:0:0:0:200:Press t to go back to the safe zone.:trackme
+travelpoint:0:0:48:48:0:200:dark_forest:0:0:0:done
+zone:0:0:48:48:0:200:the dark forest:trackme
+travelpoint:20:20:48:48:0:200:farm:0:0:0:done
+zone:20:20:48:48:0:200:the farm:trackme
+travelpoint:40:40:48:48:0:200:flower_city:0:0:0:done
+zone:40:40:48:48:0:200:flower_city entrance:trackme
+travelpoint:60:60:48:48:0:200:hunters_battlefield:0:0:0:done
+zone:60:60:48:48:0:200:hunters_battlefield:trackme
+travelpoint:80:80:48:48:0:200:mountain:0:0:0:done
+zone:80:80:48:48:0:200:the mountain:trackme
+zone:100:100:48:48:0:10:Blocked map, it will coming soon!:trackme
+fightingstate:0
+noitems:0:200:0:100:0:200:wirebomb:motion_bomb:nuclear_bomb:mine:stun_dart:remote_timebomb:security_bomb:remote_gun:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:rocket_launcher,bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:wood:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censorbomb:stone:fire_starter:censor_bomb:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:guided_missile:missile_interceptor:mine:ford:elecboat:boat:speed_drink:helicopter:tasing_small_projectile:small_projectile:item_grabber
+safezone:0:1000:0:1000:0:1000
+src:0:200:0:200:0:200:birds18.ogg:0:100
+music:md10.ogg

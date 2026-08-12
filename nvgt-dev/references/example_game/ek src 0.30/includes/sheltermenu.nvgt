@@ -1,0 +1,44 @@
+void sheltermenu()
+{
+setupmenu();
+m.add_item_tts("allow player to enter your shelter","allow");
+m.add_item_tts("remove player from your shelter","remove");
+m.add_item_tts("remove all players from this shelter","removeall");
+m.add_item_tts("point your shelter to your team","point");
+m.add_item_tts("un point the shelter from your team","unpoint");
+m.add_item_tts("allowed players","players");
+int mres=m.run("shelter menu",true);
+if (m.get_item_name(mres)=="point")
+{
+send_reliable(0,"/shteam set",1);
+}
+else if (m.get_item_name(mres)=="allow")
+{
+string jmessage =v.input("type the player name you want to allow to enter this shelter. ",true);
+if(jmessage!="")
+send_reliable(0,"/shadd "+jmessage,1);
+}
+else if (m.get_item_name(mres)=="remove")
+{
+string jmessage =v.input("Type the name of the player you want to remove from the shelter.",true);
+if(jmessage!="")
+send_reliable(0,"/shremove "+jmessage,1);
+}
+else if (m.get_item_name(mres)=="unpoint")
+{
+send_reliable(0,"/shteam remove",1);
+}
+else if (m.get_item_name(mres)=="players")
+{
+send_reliable(0,"/shallowed",1);
+}
+else if (m.get_item_name(mres)=="removeall")
+{
+int e;
+e=yesno("Are you sure you want to remove all allowed players?");
+if(e==1)
+{
+send_reliable(0,"/shremoveall",1);
+}
+}
+}

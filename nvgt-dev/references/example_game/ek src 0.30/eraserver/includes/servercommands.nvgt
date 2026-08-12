@@ -1,0 +1,177 @@
+string help="Any of these commands are typed with a slash after the input box. So open the chatbox with the slash key and type any command including it's prepending slash.
+There is an event right now!
+Other help commands are located below!
+In this event, you can teleport yourself from anywhere to anywhere on an existing map, you can give yourself as many items as you want!
+If there is a command that you want to be added, do not hesitate to contact us!
+The commands are specified below:
+/givemyself or /gv item name amount. It will give you the item you have written  with amount.
+/movemyself or /mv x, y, and z courdinates. It moves you to an existing location on the map that you are in.
+Other help commands:
+/admins or /staff: Shows a list of all builders, admins, and developers in the game. It says online next to the names of those who are online.
+/rules: Allows you to see the rules in the game, in the same way you can view them in the rules.txt in the game folder. This displays in a menu.
+/mute <playername>: Mutes a player. Warning, when you mute a player, you do not receive notifications from him or her, such as public chats channel, map messages, and private messages.
+/unmute <playername>: Unmutes a player. If you have unmuted a player, you will receive notifications from him or her, such as channel messages, map messages and private messages.
+/request <request>: You can send anything you want added to the game to this command. Note: Your requests will reach the developers and the developers will come to a conclusion and let you know if your request will be added to the game.
+/report <report>: In this command, you must report players who broke the rules or cheated. For example a player cheated, send the cheat he or she did and how he or she did it to this command, the developers will be interested.
+/changes: Views a list of changes to the server. This displays in a menu.
+/version <playername>: Checks someone's current game version.
+/pm <playername> <message>: Write a message to the player, example /pm 1 how are you doing?
+/reply or /r: Reply to the player's message, example /re yes I know.
+/changepassword <old password>, <new password>, <new password>: To change your password, you must first write your current password, then your new password twice, if the new passwords do not match, or if you try to put the old password, it will give an error, you will receive a notification that your password has been changed, then you must exit the game and log in with your new password. Here is an example to change password: /changepassword 1234 4321 4321: 1234 current password, 4321 new password, you have to type 2 times to confirm the new password, remember, this is just an example, you will write your own current password and new password here.
+/stats <playername>: Displays almost all the in-game information of the player, such as how many people he or she killed, how long person has played the game in total, and more.
+/serverchars: Reports how many, and the characters that are created on the server.
+/leave: Allows you to leave the arena. Warning: This command only works when you join the arena with the arena card, it will not work on other maps.
+/beacon: Toggles whether you hear player beacons or not, or you can turn it off by selecting the turn beacon on or of option from the f7 menu.
+/nickfind <nickname>: Finds players(if any) with that nickname. Not case sensative. Prints out each player on it's own packet in the misc buffer, since multiple people can have the same nickname.
+/nickname <new name>: Changes your nickname in the game. When you create a new account, your nickname will be the same as your username, but when you change a nickname, it will appear on chat channels or other players when you kill a player or kill you.
+/me: Sends a me message, called emotes on some games.
+/sell: Opens a menu to sell items to the store, or you can open the sell menu by pressing the alt + g keys.
+/transfer <playername> <itemname> <amount>: Transfer amount of item to playername. This is our way of adding a player to player give feature without a client update. As such, it has a limitation range of 5 tiles.
+/vote yes or /vote no: Allows you to vote if voting has started. Warning, check the notifications after the welcome message to see if the voting has started, if there is nothing related to the vote, the voting has not started.
+/votes: If you voted with /vote yes or /vote no, you can just use this command and see if yes or no will get more votes.
+Status commands.
+/setstatus <new status message>: Allows you to select your status message, warning, you can make your status message up to 500 characters. If you want to clear your status message, you should just type /setstatus and leave nothing in the next field.
+/status <playername>: Lets you see someone else's status message.
+Team commands.
+/teamcreate: Create a team. Just press enter and it will ask you for your team name.
+/jointeam <teamname> <teampassword>: Joins a team. If a player wants you in their team they will probably pm you with the info to join it.
+/t <message>: Sends a message to your team.
+/members: Lists your team's all members.
+/teamshelters: Tells you what shelters are assigned to your team. To assign a shelter to your team, you must build it and then type \"/shteam set\" inside it.
+/teamleave: Leaves a team you are in, if you're not the leader. If you are the leader use cancel.
+Team commands that only team leaders can use.
+/teampass <password>: Updates your team's password. Only works if you are leader of the team.
+/teamremove <playername>: Removes a player from your team.
+/teamcancel: Cancels your team.
+Auction commands.
+/auction amount item bid: Auctions amount of a certain item with a minimum bid of bid. Note that you can also do this by hitting space in your inv menu. If this command is followed by no parameters, I.E. /auction, it will tell you about the current auction in progress.
+/bid number: Bids number of dollars on an active auction. If the bid is too low it will tell you.
+/cancelbid: Cancels your previous bid, mainly useful if you added one too many digits or whatever. It will revert to the state it was previously in.
+/ca: Cancels your auction.
+Commands you can use when you create a shelter.
+/shadd <playername>: Adds a player to the shelter allowed players list. Please note that in order for this to work, you must be in a shelter you own.
+/shremove <playername>: Removes a player from the shelter allowed players list. Please note that in order for this to work, you must be in a shelter you own.
+/shallowed: Checks allowed players in a shelter you own.
+/shteam: Can link a shelter to a team. Use /shteam by itself to check currently associated team, /shteam set to assign it to the team you are a part of, and /shteam remove to unlink it from that team. This can be used to let anyone from that team enter the shelter, among possibly other things.
+/shc <message>: Sends out a chat into a shelter you are currently in for anyone inside. Does not require owner permissions.
+";
+
+string rules="These are the era of knights rules. If you do not agree to the rules, delete the game from your device.
+Last updated on wednesday, april 30, 2021
+
+1. Spamming.
+Spamming is considered the habit of sending several messages under a short amount of time, or sending long messages containing random characters such as backquotes and things to make the engine do things it wasn't designed to do,  messages that crashe the screen readers.
+If you spam, you will be warned by an administrator or developer. If you ignore the warning, your chat will first be closed for a while, jailed or temporarily banned. Warning, as the era of knights team, we do not want to penalize any of our players, but if you do not heed these warnings, we may have to punish them.
+Another way to spam is to open multiple accounts. If you do this and you are spotted, you will be banned without warning.
+Another way is to do things insulting or harassing your nickname and change it 1 time per minute. You will be warned first and if you ignore the warning you will be banned.
+2. Chatting.
+Every player can speak freely in chat channels as they wish, but it is forbidden to talk about sex or sexually explicit channels or harass someone on channels other than free chat. However, you will be warned 1 time and the second time you will be jailed and your chat will be closed.
+If you want to talk about such topics, you can talk comfortably by private message or by inviting your friends to the free chat channel. Warning. Admins or developers are not responsible for the messages sent in free chat.
+You can never share any game link on main chat channels, if you want to share something with a friend, you must send it by private message. If you ignored it, you will be warned first, and if you do not heed the warning, you will be banned.
+If you speak a different language on a different language channel, for example speaking Turkish on the English channel or any other language, your chat will be closed if you are warned and do not listen to the warning. You can comfortably talk to a beginner to help people who are just starting the game.
+3. Asking for any rank.
+Era of knights admins are here for you and are in charge of forwarding your requests to the developer. However, if you request a rank from an authorized person and continue after being warned, your chat will be closed without being notified again. If you have a report or request that really works for us, you can contact the developer directly.
+4. Cheating.
+It is forbidden to make a mistake that is strictly found in the game. For example, let's say there is a bug that gives 1 dollar for 1000 dollars, and let's say that players are constantly using this bug and increasing the items in their inventories by cheating. If this happens, you will be banned without warning and the items in your inventory will return to their original state like a player who has just started the game.
+A second way to cheat is with cheat programs that help speed up the game. If you use any of these programs and you are noticed / reported by someone and verified that you are cheating, you will be banned without warning.
+5. Account information sharing.
+
+If you shared your account password with an era of knights player, we will not take this responsibility. You can change your password using the password change command.
+
+6, exploiting a bug, or error, or escaping a battle in the middle of a battle
+this will only result in a friendly warning in the first
+If you do not listen and continue, you will receive the WARN, ban, or tempban determined by the admins.
+7, if any admin/developer has told you not to do anything, listen and stop
+for example, I told you not to throw anything that would break screen readers in chat, and it's not in the rules, it doesn't matter if it's in the rules or not,  an admin of that game and if it tells you not to dont something, don't do it.
+
+Thanks for reading the Era of knights rules. Please try to follow the rules as much as we can.
+Copyright buzreisi-productions, 2023, all rights reserved.";
+
+string admincmd="
+Admin commands:
+Player related commands:
+/itemtesting: This new command is used for testing items out. If you type this command, you can test any item in the game out by giving it to yourself. In this mode, your items won't be saved. Note: when using or testing items, make sure you are clear by a developer. You can not test items on players. Just because you turn this mode on, it does not give you the ability to freely give out or use items to kill players.
+/varset <param> <value>: changes a setting in the server. Contact a developer for information about these settings, as these can change from server updates, etc.
+/invforce <playername>: Force the invinsibility of a player, stunning them and making them untrackable or shootable. This is good for stopping the player and making them listen to you. Once the situation has been resolved, you can type this command again to disable it.
+/moveplayer: moves one player to another player. Example: /moveplayer x0 ivan, moves x0 to ivan.
+/move playername x y z, moves playername to coordinates x y z. Example, /move ivan 0 0 0. This command may optionally take a map to move them too after the coordinates, example /move ivan 10 20 0 store
+/changemap playername mapname: changes a player to a specified map. Note this moves them to 0 0 0, and was superceeded by /move gaining the optional ability to take a map.
+/mapmove params: can move one or more players matching certain criteria to random spots on a map. Params can be one or more of:
+<playername>: a player to match directly.
+map:<name>: All players on a specified map.
+dest:<name>: a map they should be dumped to. Default value for this is main.
+This function will always dump them to a random location gotten by querying the max values of the map for a random threshold. You may include as many param instances as you like.
+**begin examples**:
+/mapmove x0 ivan dest:main_builder
+will move both x0 and ivan to random points on main_builder
+/mapmove map:store
+will move everyone in the store to random locations on main. Can be used to get a jamming team out.
+/mapmove x0 map:store dest:jail
+Extreme example. Will move everyone in the store, and x0, to the map jail.
+**end examples**
+/hideme: Hides you from other players. Note: you need to log off and log in again to take affect.
+/follow <playername>: starts following that player. You need to type /stopfollow to stop following them. This command only works with hidden enabled.
+/ip <playername> Gets the IP address of a player.
+/compinfo <playername> Gets information about someone's computer such as the scriptpath they are running the game from. This is useful for detecting players making secondary accounts.
+/stopfollow: stops following the selected player.
+/blockfeature <playername> <feature>: blocks a feature from a player. example: /blockfeature ivan chat. Blocks ivan from sending chats.
+/cdata playername value: this command returns the player's value. For example: /cdata ivan level: returns the level of the player ivan. This can be any file in their char folder, examples are location and nickname. Some values update in realtime, such as inv, shields, and health. Health also returns a vehicle's health and it's type if they are in one at the time of execution.
+/cdataset playername value new value: changes a player's value to the one specified here. For this to work correctly it saves the player's data, overwrites the stored value, and then reloads it. This can be used to set a player's inv or nickname.
+/serverchars: Reports how many, and the chars that are created on the server.
+/warn playername level message: Warns a player of something. Levels are indicated to what this person is doing. For example: /warn ivan 5 You are speedhacking! Levels are 1 through 5. It is good admin practice to warn players before taking serious actions, generally how many times you do it depends on the level and it should increase.
+/settitle playername title: Sets a player's title to something. I.E: /settitle ivan master.
+/cleartitle playername: clears a player's title, removing anything that was there. For example: /cleartitle ivan removes ivan's title, which is probably developer, so it just says ivan.
+/kick <playername>: Kics a player from the server.
+/kickall: Kick all from the server.
+/ban: bans a player.
+/unban: unbans a player.
+/banned: Returns a list of all banned players on the server.
+/tempban <playername> <minutes>: Bans someone for a certain amount of time. example: /tempban ivan 20: bans ivan for 20 minutes.
+/tempbans: tells you the temp bans on the server and how long they have until an unban.
+
+Server commands
+/garbage: Starts a garbage collect cycle. This may lag the server but frees server lag.
+/adminlog: Views the admin log.
+/addalog: Writes to the admin log.
+/eventhelp: copies the guide on how to create events to clipboard.
+*** note: This admin log is only used for messages about bans, warnings, or anything you think all admins should know about.
+map related commands:
+/maps: gives you a list of maps and their sizes. Note that shelters also generate maps.
+/intmaps: gives you a list of maps currently loaded into RAM by the server. This can be used to make sure that a map is not missing from RAM after being created.
+/rawmap: copies the text of the current map to your clipboard.
+/rawdata data: sets your current map's data to data, this should be pasted from your clipboard. Do not! Do this to main! Don't build on main at all until a dev gives you permission to do so. Note that if the mapname attribute does not match the map's actual filename, this command will terminate with an error.
+/newmap name x y z tile: creates a new map. The x, y and z parameters are the maximum values put at the top of the file, they can be changed later. The tile is a surface to put on the entire bottom of the map so when you go to it you don't fall into nothingness.
+
+item related commands:
+/give <playername> <item> <amount>: gives the amount of items to the given playername. Warning! Using this command to give yourself or your friends free items to cheat this game will not be allowed! This command is only used when giving back items a player has lost, I.E: server crashes and inventory was not saved, etc.
+/itemlist: Gets a list of all items that spawn and sends them to your clipboard.
+/spawn_obj x y z map item amount: spawns an object of type item, containing amount of this item, at x y z on map. For example: /spawn_obj 0 0 0 store coin 1000
+/killobjs: nukes all items on the map.
+/shockwave: clears all bombs by making them detinate.
+/countbombs: tells you how many bombs are active and how many of each type. Useful for tracking down lag.
+/fireoutall: kills all fires.
+
+misc commands:
+/adtomotd: Adds to the existing message of the day.
+/newmotd: sets the message of the day to something you want. for example: /newmotd hi, thank you for trying out the game.
+/notify message: sends out a notification to the server. example: /notify this server is going to be updated in 30 minutes.
+Have fun!";
+
+string buildercmd="
+/go x y z: Moves the player to the given coordinates. If you need to move to the map, write the name of the map after z.
+/maps: gives you a list of maps and their sizes. Note that shelters also generate maps.
+/rawmap: copies the text of the current map to your clipboard.
+/rawdata data: sets your current map's data to data, this should be pasted from your clipboard. Do not! Do this to main! Don't build on main at all until a dev gives you permission to do so. Note that if the mapname attribute does not match the map's actual filename, this command will terminate with an error.
+/newmap name x y z tile: creates a new map. The x, y and z parameters are the maximum values put at the top of the file, they can be changed later. The tile is a surface to put on the entire bottom of the map so when you go to it you don't fall into nothingness.
+/flag: Enables your admin's, or builder's flag";
+
+string eventhelp="Type /newevent <eventname> to create a new event. This should send back an ID with the event ID. This ID will contain only numbers and should only be 4 digets. From there, you need to set everything up through the /eventset command.
+Setting up the event will be kind of easy, but it can be a process. Type /eventset <id> <setting=val> to set the event.
+Event values are as follows: 
+*map: a string defining where the user will be moved when joining the event. the default value is main.
+*description: a string defining the description the user will see when requesting information about the event.
+*can_keep_inventory: an int defining if the user is allowed to keep their inventory after and when joining the event. If the inventory value is set to 0, the user's inventory will be removed when joining the event and will be backed up. Once the user leaves or the event ends, he will then have his or her inventory back to normal. If the can_keep_inventory int is 1, he will be able to join with his or her inventory and when they leave, will leave with that same inventory. There will be other things as well, such as the ability to collect items.
+*can_leave: an int defining if the user is allowed to type /leaveevent at any time. If this command is sent, the user will leave the event.
+*joinx,joiny, and joinz, ints defining the coordinates the player will be moved to when joining. They are set to 0, 0, 0 by default.
+After setting all the params you wish to fill out, you can type /eventinfo <id> to check everything in the event. and make sure everything checks out like you wish. If everything is ready, you can type /launchevent <id> and launch the event! Note: when an event is launched and started the event settings will not be editable anymore. So make sure that you launch the event when you're absolutely sure everything is set to go!
+If you wish to end an event, you can type /endevent <id>, and the event will end.";

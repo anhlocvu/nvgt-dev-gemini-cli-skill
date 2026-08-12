@@ -1,0 +1,12 @@
+mapname:fenomen_mixed
+maxx:0
+maxy:0
+maxz:0
+tile:0:0:0:0:0:0:carpet2
+zone:0:0:0:0:0:0:fenomen_mixed
+disable_camera:1
+disable_courdinates:1
+zone:0:0:0:0:0:0:enjoy! if you press t, you will redirect radios room!:trackme
+travelpoint:0:0:0:0:0:0:radios_room:30:0:0:welcome back!
+url:http://fenomenkarisik.listenfenomen.com/fenomenkarisik/128/icecast.audio
+fightingstate:0

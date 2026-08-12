@@ -1,0 +1,11 @@
+mapname:tower_last_floor
+maxx:100
+maxy:100
+maxz:500
+tile:0:100:0:100:0:0:hardwood
+tile:0:100:0:100:300:300:hardwood2
+cmusic:0:100:0:100:320:322:anime181.ogg:-10:100
+zone:0:300:0:300:300:400:defeat the leader at all causts! if you fail, everything will be changed for the worst!
+zone:100:100:100:100:300:310:press shift plus enter to finish the last quest, and end the story mode!@trackme@
+noitems:0:5555:0:5555:0:5555:stp429:grenade
+robots:0:100:0:100:300:300:1:1000:unseelers_leader

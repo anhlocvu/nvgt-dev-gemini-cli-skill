@@ -1,0 +1,47 @@
+sign@[]signs(0);
+class sign{
+double x,y,z;
+string text;
+int signloop;
+sign(double snx,double sny,double snz,string sntext)
+{
+x=snx;
+y=sny;
+z=snz;
+text=sntext;
+if(signsounds==1) signloop=p.play_3d("sign.ogg",me.x,me.y,me.z,x,y,z,dir,true);
+}
+}
+void destroy_all_signs()
+{
+for(uint i=0; i<signs.length(); i++)
+{
+p.destroy_sound(signs[i].signloop);
+}
+signs.resize(0);
+}
+void signcheck()
+{
+for(uint i=0; i<signs.length(); i++)
+{
+if(signs[i].x==me.x and signs[i].y==me.y and signs[i].z==me.z)
+{
+p.play_stationary("signpress.ogg",false);
+send("playmap signpress "+me.x+" "+me.y+" "+me.z+" "+mapname,0);
+speak(signs[i].text);
+}
+}
+}
+void spawn_sign(double x,double y,double z,string text)
+{
+sign sign1(x,y,z,text);
+signs.insert_last(sign1);
+}
+bool is_sign(double x,double y,double z)
+{
+for(uint i=0; i<signs.length(); i++)
+{
+if(signs[i].x==x and signs[i].y==y and signs[i].z==z) return true;
+}
+return false;
+}

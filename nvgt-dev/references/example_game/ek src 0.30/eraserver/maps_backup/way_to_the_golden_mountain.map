@@ -1,0 +1,18 @@
+mapname:way_to_the_golden_mountain
+maxx:100
+maxy:100
+maxz:100
+tile:0:100:0:50:0:0:suicide
+tile:0:100:50:100:0:0:stun
+zone:0:100:0:100:0:100:way_to_the_golden_mountain
+tile:100:100:100:100:0:50:cement2
+tile:100:100:100:100:55:100:cement2
+travelpoint:100:100:100:100:100:100:golden_mountain:0:0:0:done
+zone:100:100:100:100:100:100:Press T to go to golden mountain, level 3
+fightingstate:0
+noitems:0:10000000000:0:10000000000:-10000000000:10000000000:death_free_card:teleporter:friendship_sphere
+noitems:0:3000:0:3000:-3000:3000:wirebomb:nuclear_bomb:mine:stun_dart:security_bomb:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:rocket_launcher:bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censor_bomb:stone:fire_starter:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:guided_missile:missile_interceptor:mine:hors:boat:tasing_small_projectile:small_projectile:elecboat:censor_bomb:frequency_scrambler:helicopter:fire_extinguisher:wood:sound_grenade:arena_card:police_motorcycle:police_car:police_car_super:bike:armored_tank:aircraft
+
+safezone:0:500000:0:500000:-500000:500000
+noitems:0:1000:0:1000:-1000:1000:wirebomb:mine:stun_dart:security_bomb:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censor_bomb:stone:fire_starter:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:guided_missile:missile_interceptor:mine:hors:boat:tasing_small_projectile:small_projectile:elecboat:censor_bomb:frequency_scrambler:helicopter:fire_extinguisher:sound_grenade:air_canister:shield:motion_bomb:helicopter:wood:police_car_super:tank:aircraft:item_grabber:fight_inviter:teleporter:friendship_sphere:the_magical_flower
+safezone:-10000:1000000:-1000000:1000000:-100000:1000000000

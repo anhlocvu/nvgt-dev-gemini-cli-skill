@@ -1,0 +1,338 @@
+string netaddress="127.0.0.1";
+int netport=6789;
+string oldaddress=netaddress;//for switching vie shift keys
+uint peer_id=0;
+string oldservers;
+string lookname;
+bool prior_connected=false;
+void login()
+{
+if(name==""||password=="")
+{
+dlg("Please setup your account that you want to use to login, or if you don't have an account, please create one");
+mainmenu();
+return;
+}
+if(connected==false and prior_connected==false)
+{
+speak("connecting to server");
+if(n.active)
+reset_network();
+n.setup_client(20, 500);
+n.connect(netaddress, netport);
+if(get_last_error()!=0)
+{
+alert("error","network failed to initialize. Error code: "+get_last_error());
+mainmenu();
+}
+}
+if(connected==true or prior_connected==true)
+{
+e=n.request();
+send(0, "login "+name+" "+password+" "+netver+" "+compid, 0);
+}
+timeouttimer.restart();
+while(true)
+{
+wait(5);
+if(speed_stop_is_hacking(200)==true)
+killbitch();
+e=n.request();
+if (key_pressed(KEY_ESCAPE))
+{
+mainmenu();
+}
+if(e.type==event_connect and connected==false)
+{
+peer_id=e.peer_id;
+wait(50);
+speak("logging in as "+name+"...");
+p.play_stationary("connected.ogg",false);
+send(0, "login "+name+" "+password+" "+netver+" "+compid, 0);
+connected=true;
+}
+else if(e.type==event_receive and get_event_message()=="loggedin")
+{
+wait(1);
+p.update_listener_3d(me.x, me.y, me.z);
+game();
+sourcecheckloop();
+checkloc();
+}
+else if(e.type==event_receive and get_event_message()=="admin")
+{
+speak("You are an admin");
+admin=true;
+}
+else if(e.type==event_receive and get_event_message()=="mapname")
+{
+mapname=string_replace(get_event_message(),"mapname ","",false);
+}
+else if(e.type==event_receive and get_event_message()=="nochar")
+{
+dlg("the account that you were requested to login does not exists on the server, please check your account name to be sure its typed correctly");
+reset_network();
+mainmenu();
+}
+else if(e.type==event_receive and get_event_message()=="wrongpass")
+{
+dlg("the password is in correct");
+reset_network();
+mainmenu();
+}
+else if(e.type==event_receive and get_event_message()=="alreadyplaying")
+{
+dlg("sorry: this account is already logged in");
+reset_network();
+mainmenu();
+}
+else if(string_contains(get_event_message(),"error",1)>-1)
+{
+dlg(get_event_message());
+reset_network();
+mainmenu();
+}
+else if(e.type==event_receive and get_event_message()=="error" or(timeouttimer.elapsed>=timeouttime))
+{
+dlg("Server is offline");
+reset_network();
+mainmenu();
+}
+else if(e.type==event_receive and get_event_message()=="login_disabled" and SCRIPT_COMPILED==true)
+{
+dlg("login disabled: please try again later");
+reset_network();
+mainmenu();
+}
+else if(e.type==event_receive and get_event_message()=="banned")
+{
+dlg("error, You are currently banned from the game. please try again later");
+reset_network();
+mainmenu();
+}
+else if(e.type==event_receive)
+{
+sound g;
+g.load("progress.ogg");
+g.play();
+g.close();
+string[] parsed=string_split(get_event_message(), " ", false);
+if(parsed.length()>1)
+{
+if(parsed[0]=="block")
+{
+dlg(string_trim_left(get_event_message(),6));
+reset_network();
+mainmenu();
+}
+if(parsed[0]=="x")
+{
+me.x=string_to_number(parsed[1]);
+}
+else if(parsed[0]=="oldversion" and parsed.length()>1)
+{
+dlg("error, you are running a different version than the one on the server. Please redownload the game at http://45.9.72.18/tk/release.zip or run updater.exe Your version: "+netver+". Latest version: "+parsed[1]);
+reset_network();
+mainmenu();
+}
+else if(parsed[0]=="y")
+{
+me.y=string_to_number(parsed[1]);
+}
+else if(parsed[0]=="z")
+{
+me.z=string_to_number(parsed[1]);
+}
+else if(parsed[0]=="mapname")
+{
+mapname=parsed[1];
+}
+else if(parsed[0]=="motd")
+{
+motd=string_trim_left(get_event_message(),6);
+}
+else if(parsed[0]=="spawn_player")
+{
+int x=stn(parsed[1]);
+int y=stn(parsed[2]);
+int z=stn(parsed[3]);
+string n=parsed[4];
+string mp=parsed[5];
+if(n!=name)
+{
+spawn_player(x,y,z,mp,n);
+}
+}
+else if(parsed[0]=="m_data")
+{
+load_map(string_replace(get_event_message(), "mdata ", "", false));
+}
+else if(parsed[0]=="facing")
+{
+facing=string_to_number(parsed[1]);
+}
+}
+}
+}
+}
+void create()
+{
+string uname;
+string upass;
+form.create_window("creating account", false);
+int username=form.create_input_box("Please type your username. and then press tab to continue edit", "", "", 0, false, false);
+int sifre=form.create_input_box("Please type a password of at least 8 characters for your character and press tab to continue edit protected", "", "*", 0, false, false);
+int ok=form.create_button("&OK");
+int cancel=form.create_button("&Cancel");
+form.focus(0);
+while(true)
+{
+form.monitor();
+switch_layout_monitor();
+wait(5);
+uname=form.get_text(username);
+upass=form.get_text(sifre);
+if(form.is_pressed(ok))
+{
+if(uname=="")
+{
+form.reset();
+dlg("username field cannot be empty");
+}
+else if (upass=="")
+{
+form.reset();
+dlg("Password field should not be blank.");
+}
+else if(upass=="" or string_contains(upass, " ", 1)!=-1 or upass.length()<8)
+{
+form.reset();
+dlg("you entered an invalid password");
+}
+else
+{
+form.reset();
+createacount(uname,upass,compid);
+}
+}
+else if(form.is_pressed(cancel))
+{
+form.reset();
+mainmenu();
+}
+}
+}
+void createacount(string uname, string upass, string compid)
+{
+speak("connecting to server");
+n.setup_client(20, 500);
+n.connect(netaddress, netport);
+if(connected==true)
+{
+creating=false;
+send(0, "newchar "+uname+" "+upass+" "+compid, 0);
+}
+timeouttimer.restart();
+while(true)
+{
+wait(5);
+e=n.request();
+if(speed_stop_is_hacking(200)==true)
+killbitch();
+if (key_pressed(KEY_ESCAPE))
+{
+n.destroy();
+mainmenu();
+}
+if(e.type==event_disconnect or timeouttimer.elapsed>=timeouttime)
+{
+dlg("server is offline");
+reset_network();
+mainmenu();
+}
+if(e.type==event_connect and connected==false)
+{
+peer_id=e.peer_id;
+speak("creating");
+send(0, "newchar "+uname+" "+upass+" "+compid, 0);
+connected=true;
+}
+else if(e.type==event_receive and get_event_message()=="createdchar")
+{
+dlg("success! Account created! Press enter to login.");
+name=uname;
+password=upass;
+writeprefs();
+login();
+creating=false;
+}
+else if(e.type==event_receive and get_event_message()=="alreadyaccount")
+{
+dlg("Error: This computer is already associated with another account");
+exitgame();
+creating=false;
+}
+else if(e.type==event_receive and get_event_message()=="alreadyexists")
+{
+dlg("This account already exists");
+exitgame();
+creating=false;
+}
+else if(e.type==event_receive and string_contains(get_event_message(),"Error",1)>-1)
+{
+dlg(get_event_message());
+creating=false;
+reset_network();
+mainmenu();
+}
+}
+}
+
+void reset_network(){ 
+n.disconnect_peer(0);
+timeouttimer.restart();
+peer_id=0;
+n.destroy();
+prior_connected=false;
+connected=false;
+@n=null;
+network t;
+@n=t;
+}
+
+void resetpass()
+{
+string char=input("enter the character name you would like to reset the password for", "", "", 0, false, false);
+if(char=="") mainmenu();
+n.setup_client(20, 500);
+speak("connecting");
+n.connect(netaddress,netport);
+timeouttimer.restart();
+while(true)
+{
+wait(5);
+e=n.request();
+if (key_pressed(KEY_ESCAPE))
+{
+mainmenu();
+}
+if(e.type==event_disconnect or connected==false and timeouttimer.elapsed>=timeouttime)
+{
+dlg("server is offline");
+reset_network();
+mainmenu();
+}
+if(e.type==event_connect and connected==false)
+{
+connected=true;
+peer_id=e.peer_id;
+send(0,"resetpassword "+char+" "+compid,0);
+}
+if(e.type==event_receive&&e.channel==6)
+{
+dlg(get_event_message());
+reset_network();
+mainmenu();
+}
+}
+}

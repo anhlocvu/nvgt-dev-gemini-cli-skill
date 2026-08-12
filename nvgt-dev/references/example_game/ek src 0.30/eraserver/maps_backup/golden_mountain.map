@@ -1,0 +1,43 @@
+mapname:golden_mountain
+maxx:500
+maxy:500
+maxz:1010
+tile:0:500:0:500:0:0:snow_wet
+zone:0:500:0:500:0:1010:golden_mountain
+src:0:500:0:500:0:1010:mountain.ogg
+src:0:500:0:500:0:1010:snowwind.ogg
+tile:0:500:50:90:0:50:mountain
+tile:0:500:30:60:0:50:mountain
+tile:0:500:99:99:0:100:mountain
+tile:0:500:100:100:0:99:wallrocks
+tile:0:500:110:150:0:150:mountain
+tile:0:500:157:200:0:200:mountain
+tile:0:500:201:201:205:205:rope
+tile:0:500:203:203:210:210:rope
+tile:0:500:206:206:215:215:rope
+tile:0:500:210:210:219:250:rope
+tile:0:500:210:210:255:300:rope
+tile:0:500:218:218:300:300:snow_wet
+tile:0:500:227:227:300:300:snow
+tile:0:500:237:237:300:300:snow2
+tile:0:500:243:243:300:300:snow
+tile:0:500:251:251:300:300:snow_wet
+tile:0:500:266:300:300:350:snow2
+tile:0:500:311:311:350:350:deepsnow
+tile:300:300:300:350:350:350:rope
+tile:300:350:350:350:350:350:rope
+tile:350:350:350:350:350:400:rope
+tile:350:400:350:350:400:400:rope
+tile:400:400:350:400:400:400:rope
+tile:405:500:405:500:400:500:mountain
+tile:500:500:500:500:505:1000:rope
+zone:500:500:500:500:500:999:A big rope, you can't even imagin, how big it is, even tho it is big you can still complete it?
+zone:500:500:500:500:1000:1010:Hi dear, this is the end, press T and take your reward!
+fightingstate:0
+noitems:0:3000:0:3000:-3000:3000:wirebomb:nuclear_bomb:mine:stun_dart:security_bomb:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:rocket_launcher:bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censor_bomb:stone:fire_starter:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:guided_missile:missile_interceptor:mine:hors:boat:tasing_small_projectile:small_projectile:elecboat:censor_bomb:frequency_scrambler:helicopter:fire_extinguisher:wood:sound_grenade:arena_card:police_motorcycle:police_car:police_car_super:bike:armored_tank:aircraft
+zone:0:50:0:50:0:0:hay dear, in frunt of you there is a mountain , climbe it.  try to reach the end. if it happens  you will get golden pack:trackme
+//noitems:0:10000000000:0:10000000000:-10000000000:10000000000:death_free_card:teleporter:friendship_sphere
+safezone:0:500000:0:500000:-500000:500000
+
+noitems:0:1000:0:1000:-1000:1000:wirebomb:mine:stun_dart:security_bomb:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censor_bomb:stone:fire_starter:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:guided_missile:missile_interceptor:mine:hors:boat:tasing_small_projectile:small_projectile:elecboat:censor_bomb:frequency_scrambler:helicopter:fire_extinguisher:sound_grenade:air_canister:shield:motion_bomb:helicopter:wood:police_car_super:tank:aircraft:item_grabber:fight_inviter:teleporter:friendship_sphere:the_magical_flower
+safezone:-10000:1000000:-1000000:1000000:-100000:1000000000

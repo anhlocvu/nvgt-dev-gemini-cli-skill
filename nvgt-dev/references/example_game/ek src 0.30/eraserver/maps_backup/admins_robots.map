@@ -1,0 +1,8 @@
+mapname:admins_robots
+maxx:50
+maxy:50
+maxz:50
+tile:0:50:0:50:0:0:grass
+zone:0:500:0:500:0:500:admin's_robots_map
+src:0:50:0:50:0:50:birds.ogg
+robots:0:50:0:50:0:0:3:3:baibydragon,dragon,leopard,soldier,robot,gorilla,boar,goat

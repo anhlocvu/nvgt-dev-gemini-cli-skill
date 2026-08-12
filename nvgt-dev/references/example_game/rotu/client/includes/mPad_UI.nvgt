@@ -1,0 +1,107 @@
+void goldflip()
+{
+show_game_window("mPad Application: Gold Flip");
+speak("Gold flip. Press the Enter key to flip the coin. Press Escape to close the application.");
+while(true)
+{
+wait(5);
+update_listener();
+game_keys_access();
+netloop();
+if(key_pressed(KEY_RETURN)) send("mpadselect goldflip",0);
+if(key_pressed(KEY_ESCAPE))break;
+}
+show_game_window("Revenge of the Undead "+version);
+}
+void iRoll()
+{
+timer rtimer;
+int dr=1;
+show_game_window("mPad Application: iRoll");
+speak("iRoll. Use the number row to select the amount of dice to use. Press the Enter key to roll the dice. If you get all of the same number, then you will win gold depending on how much dice you rolled with. Press Escape to close the application.");
+while(true)
+{
+wait(5);
+update_listener();
+game_keys_access();
+netloop();
+if(key_pressed(KEY_RETURN) and rtimer.elapsed>1500){
+ send("mpadselect iroll "+dr,0);
+rtimer.restart();
+}
+if(key_pressed(KEY_ESCAPE))break;
+int[]rls=keys_pressed();
+for(uint i=0; i<rls.length(); i++)
+{
+if(rls[i]>=30 and rls[i]<=35 and i==0)
+{
+dr=rls[i]-29;
+speak("You are now rolling with "+dr+" "+(dr==1?"die":"dice")+".");
+}
+}
+}
+show_game_window("Revenge of the Undead "+version);
+}
+bool launch_application(string launchname)
+{
+if(launchname=="goldflip")
+{
+goldflip();
+return true;
+}
+else if(launchname=="iroll")
+{
+iRoll();
+return true;
+}
+else return false;
+}
+void game_keys_access()
+{
+if(kperiod.pressing())
+{
+if(shift_is_down()) bottombufferitem();
+else nextbufferitem();
+}
+if(kcomma.pressing())
+{
+if(shift_is_down()) topbufferitem();
+else prevbufferitem();
+}
+if(key_pressed(KEY_LBRACKET))
+{
+if(shift_is_down()) firstbuffer();
+else bufferleft();
+}
+if(key_pressed(KEY_RBRACKET))
+{
+if(shift_is_down()) lastbuffer();
+else bufferright();
+}
+if(key_pressed(KEY_C)) 
+{
+if(shift_is_down()) 
+{
+copy_buffer_item();
+speak("Copied.");
+}
+else speak(me.x+", "+me.y+", "+me.z);
+}
+if(key_pressed(KEY_SLASH))
+{
+if(shift_is_down()) send("who_is_online",0);
+else
+{
+string chatmsg=txt.input("Enter your message.",true);
+if(chatmsg!="" and chatmsg.length()>0)
+{
+send(0,chatmsg,1);
+}
+else 
+{
+speak("Canceled.");
+}
+}
+}
+if(key_pressed(KEY_P)) send("who_is_near",0);
+}

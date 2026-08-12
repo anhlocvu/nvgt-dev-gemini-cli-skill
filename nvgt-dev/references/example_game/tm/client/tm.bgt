@@ -1,0 +1,592 @@
+#include"i.bgt"
+string netver="3.4.1";
+string ver="3.4.1";
+//constants
+const int Left=-1;
+const int Right=1;
+const int Backward=0;
+const int Forward=2;
+const int Down=-2;
+const int Up=3;
+//end_constants
+virtualizer v;
+string state="";
+file skpf;
+library user32;
+audio_form form;
+dictionary @result;
+int window_handle=0;
+int combatmode=0;
+int collecttime=60000;
+timer rectimer,recspamtimer;
+ultrarec rec;
+bool recding=false;
+timer turntimer;
+int turntime;
+timer collecttimer;
+sound plane;
+bool go_reload=false;
+bool can_stop=true; 
+bool go_out=false;
+bool in_plane=false;
+timer flytimer;
+bool bombloaded=false;
+timer bombloadtimer;
+bool pianoplaying=false;
+int movemod;
+bool kangaroo=false;
+timer testtimer;
+timer skateboardtimer;
+int mx,my;
+int cpx, cpy, cpz;
+int scripting=0;
+int bonechance=0;
+int playx=0;
+int cameraspeed=50;
+int canjump=1;
+double pitch=100;
+double volume=0;
+int lastruns=0;
+int hbanned=0;
+int playmusic=1;
+bool walkmod=false;
+int sent_packets=0,received_packets=0;
+string packetlog;
+string skp;
+double musicvolume;
+bool engexp;
+bool isupdating;
+sound bnext,bpos;
+bool skateboard=false;
+bool net_debug=false;
+bool profiler=false;
+bool inbox=false;
+bool bone=false;
+bool ereboot=false;
+string mapstring;
+int autowalking=1;
+const string soundkey="%";
+const string serverkey="+-";
+const string serverkey2="..";
+joystick jstick;
+sound music;
+string musicsound;
+int importbufferlogs=0;
+string musictrack="menumus1";
+string windowtext;
+string focuseditem;
+int sitting=0;
+int sidescrolling=0;
+int play_logo=1;
+int wrap=0;
+int uploadedsounds=1;
+int channels=1;
+int defjoy=0;
+string defjoyname=jstick.name;
+string soundcardname;
+int soundcard;
+tts_voice voice;
+bool muted=false;
+bool firing=false;
+bool onwall=false;
+bool frozen=false,following=false;
+bool robotcontroling=false;
+timer heartsoundtimer;
+bool lowhealth=false;
+int currenthealth;
+int bufferbeep=1;
+timer deathtimer;
+timer posetimer;
+timer reboottimer;
+timer spamtimer;
+int playingtime;
+int spamtime=5000;
+
+string lngdata;
+string currentlangfile;
+string runs, latest, description;
+string[] langarray;
+bool inshelter;
+timer pingpongtimer;
+bool admin=false;
+bool is_active;
+string godir, godir2, godir3, go, go2, go3, go4;
+string tracking="";
+int trackx=-1, tracky=-1, trackz=-1;
+string currentloc;
+string projname="tm";
+pack_file pf;
+int beaconing=0;
+timer chattimer;
+bool x=false;
+bool pinging=false;
+bool dead=false;
+bool connected,playing;
+bool creating;
+bool controling_remgun=false;
+int level=1;
+int xpmaster;
+double xp=0;
+double xprequired=500;
+int killmsgs=1;
+int readmessages=1;
+int levelup=1;
+int rcontrol;
+int speechmode=0;
+int ttsvoice=0;
+int speakonlinemsgs=1;
+int firetime;
+key_hold kleft(KEY_LEFT,300,cameraspeed);
+key_hold kright(KEY_RIGHT,300,cameraspeed);
+key_hold kup(KEY_UP,300,cameraspeed);
+key_hold kdown(KEY_DOWN,300,cameraspeed);
+key_hold kpgdn(KEY_NEXT,300,cameraspeed);
+key_hold kpgup(KEY_PRIOR,300,cameraspeed);
+key_hold khome(KEY_HOME,300,100);
+key_hold kend(KEY_END,300,100);
+key_hold kPERIOD(KEY_PERIOD,300,30);
+key_hold kCOMMA(KEY_COMMA,300,30);
+bass stream;
+double volumestream=1000;
+int w;
+bool overrun=false;
+DFSpeech df_s;
+string name;
+string password;
+double facing=0.0;
+sound_pool p, mpool;
+sound_pool pool2;
+sound_pool sourcepool;
+sound_pool cmusicpool;
+timer walktimer;
+int beacontime=670;
+int runtime=170;
+int walktime=180;
+int airtime=100;
+savedata sd(CONFIG_PATH,"shwjeyetbxvsfwtsudififhdbssvqtwucjvbfgryeuwoqpvbfgryteyueiwoqpfnvbfgrtyedhsnxbcvfgrteywuwifjghreywiwqodnvbfryeuwifnvbfgrgryeuwiev");
+vector me,mr,sh,max,camera;
+bool falling=false;
+timer falltimer;
+int falltime=50;
+int falldistance=0;
+bool jumping=false;
+timer jumptimer, firetimer, weapontimer, trackingtimer, beacontimer, bombtimer, afktimer;
+int[] keylist;
+string[] ads;
+int jumptime=100;
+int jumpup=0;
+int jumplandz=0;
+bool can_move=true;
+string currentcameratile;
+string mapname="main";
+string compid=generate_computer_id("gamesaremadeforfunnotfordrama17",true);
+string banid=generate_computer_id("gamesaremadeforfunnotfordrama17"+ver,true);
+network@ n;
+network_event e;
+int movetime;
+string[] weapons;
+bool weaponauto=false;
+string motd;
+timer xtimer, timeouttimer;
+int readerinterrupt=1;
+int timeouttime=10000;
+instance tkinstance("tm");
+kh keyhook;
+string[] fi(6);
+bool inve=false;
+bool can_draw_weapon=true;
+string inv;
+sound vesound,velfsound,vesiren;
+string vetype;
+sound_pool distpool,shdistpool;
+string shmap;
+timer cectimer,ceftimer;
+string serverlist;
+int charrepeat=0;
+int styping=0;
+string sndver;
+string[] menutracks;
+const string CONFIG_PATH="config.dat";
+void main()
+{
+weapons.reserve(16);
+mpool.behind_pitch_decrease=-2;
+p.behind_pitch_decrease=5;
+df_s.buffer="";
+create_buffer("all");
+create_buffer("chats");
+create_buffer("local chats");
+create_buffer("misc");
+create_buffer("connections");
+create_buffer("disconnections");
+create_buffer("notifications");
+create_buffer("private messages");
+create_buffer("admintell");
+create_buffer("kills");
+p.pan_step=5.0;
+pool2.pan_step=2.0;
+pool2.behind_pitch_decrease=5;
+p.volume_step=1;
+sourcepool.volume_step=1;
+sourcepool.pan_step=5.0;
+cmusicpool.volume_step=1;
+cmusicpool.pan_step=5.0;
+pool2.volume_step=5;
+mpool.pan_step=5.0;
+mpool.behind_pitch_decrease=-2;
+distpool.pan_step=0.2;
+distpool.behind_pitch_decrease=5;
+distpool.volume_step=0.05;
+shdistpool.pan_step=0.2;
+shdistpool.behind_pitch_decrease=5;
+shdistpool.volume_step=0.05;
+readprefs();
+small jcheck=find_joy(defjoyname);
+if (jcheck==-1 and defjoyname!=jstick.name) {
+if (jstick.joysticks>0)
+alert("Error","The joystick/game pad "+defjoyname+" does not exist on this system anymore. Using the default.");
+defjoy=0;
+defjoyname=jstick.name;
+writeprefs();
+}
+else {
+if (defjoy!=0 or defjoyname!=jstick.name) {
+jstick.set(jcheck);
+if (defjoy!=jcheck) {
+defjoy=jcheck;
+writeprefs();
+}
+}
+}
+small sccheck=find_scard(soundcardname);
+if (sccheck==-1&&soundcardname!="") {
+alert("Error","The output sound device "+soundcardname+" does not exist on this system anymore. Using the default.");
+soundcard=0;
+soundcardname="Primary Sound Driver";
+writeprefs();
+}
+else {
+open_sound_device(sccheck);
+if (soundcard!=sccheck) {
+soundcard=sccheck;
+writeprefs();
+}
+}
+if(string_contains(musictrack,".ogg",1)<0) musictrack+=".ogg";
+if(file_exists("sounds.dat")) {
+    set_sound_storage("sounds.dat");
+    pf.open("sounds.dat");
+} else if(directory_exists("sounds")) {
+    set_sound_storage("sounds");
+}
+skp="scriptkeys.txt";
+if(!file_exists("scriptkeys.txt"))
+{
+skpf.open("scriptkeys.txt","wb");
+skpf.close();
+}
+network tempnet;
+@n=tempnet;
+speed_stop_reset(true);
+if(file_exists("sounds.dat")) pf.open("sounds.dat");
+stream.init_bass();
+sndver=read_from_file_in_pack("ver.txt");
+if(!file_exists("tm.exe") and SCRIPT_COMPILED)
+{
+p.play_stationary("error.ogg",false);
+speak("error, We have encountered suspicious circumstances. Please contact the developers.");
+wait(1000);
+exit();
+}
+if(file_exists(DIRECTORY_TEMP+"/tm.DMP")) file_delete(DIRECTORY_TEMP+"/tm.DMP");
+if(is_hardbanned())
+{
+p.play_stationary("error.ogg",false);
+int q=question("error","you are currently banned from the game. Would you like to generate an ID to reverse this ban?");
+if(q==1) clipboard_copy_text(banid);
+exit();
+}
+if(false) speed_stop_disable();
+df_s.mode=speechmode;
+df_s.set_voice(ttsvoice);
+if(state=="")
+{
+show_game_window("The massacre version "+ver+windowtext);
+}
+else
+{
+show_game_window("The massacre "+state+" version "+ver+windowtext);
+}
+	bpos.load("bufferswitch.ogg");
+	bnext.load("buffermove.ogg");
+keyhook.install();
+if(play_logo==1) dlgplay("logo.ogg",true,5, true);
+//getmotd();
+//cfu("tm","tm.zip",true);
+//sndcheck();
+network t;
+@n=t;
+string[] filelist;
+if(file_exists("sounds.dat")) {
+    filelist=pf.list_files();
+} else if(directory_exists("sounds")) {
+    filelist=find_files("sounds/*.ogg");
+}
+for(uint i=0; i<filelist.length(); i++)
+{
+if(string_left(filelist[i],7)=="menumus") menutracks.insert_last(filelist[i]);
+}
+filelist.resize(0);
+if(COMMAND_LINE=="-u")
+{
+overrun=true;
+isupdating=true;
+}
+if(file_exists(DIRECTORY_TEMP+"/tmr.dat"))
+{
+overrun=true;
+isupdating=true;
+file_delete(DIRECTORY_TEMP+"/tmr.dat");
+}
+if(false)
+{
+alert("error","Can't have 2 instances of the game up");
+exit();
+}
+if(isupdating==true)
+{
+if(SCRIPT_COMPILED) {sound r;r.stream("rebooted.ogg");r.play_wait();}
+//login();
+}
+if (COMMAND_LINE!=crc32("soundrestart"))
+{
+//sound_init();
+mainmenu();
+}
+else {
+overrun=true;
+sound enterfake;
+enterfake.stream("menuenter.ogg");
+enterfake.play();
+speak("Ok. Using "+soundcardname);
+optionsmenu();
+}
+}
+bool shift_is_down()
+{
+if(key_down(KEY_LSHIFT) or key_down(KEY_RSHIFT))
+{
+return true;
+}
+return false;
+}
+bool alt_is_down()
+{
+if(key_down(KEY_LMENU) or key_down(KEY_RMENU))
+{
+return true;
+}
+return false;
+}
+bool control_is_down()
+{
+if(key_down(KEY_LCONTROL) or (key_down(KEY_RCONTROL)&&rcontrol==1))
+{
+return true;
+}
+return false;
+}
+bool control_is_pressed()
+{
+if(key_pressed(KEY_LCONTROL) or (key_pressed(KEY_RCONTROL)&&rcontrol==1))
+{
+return true;
+}
+return false;
+}
+void readprefs()
+{
+sd.load();
+if (sd.d.exists("name"))
+name=sd.read("name");
+if (sd.d.exists("password"))
+password=sd.read("password");
+if (sd.d.exists("source_volume"))
+source_volume=sd.readn("source_volume");
+if (sd.d.exists("cmusic_volume"))
+cmusic_volume=sd.readn("cmusic_volume");
+if(sd.d.exists("readerinterrupt"))
+readerinterrupt=sd.readn("readerinterrupt");
+if(sd.d.exists("autowalking"))
+autowalking=sd.readn("autowalking");
+if(sd.d.exists("scripting"))
+scripting=sd.readn("scripting");
+if(sd.d.exists("levelup"))
+levelup=sd.readn("levelup");
+if(sd.d.exists("musictrack"))
+musictrack=sd.read("musictrack");
+if(sd.d.exists("hbanned"))
+hbanned=sd.readn("hbanned");
+if(sd.d.exists("importbufferlogs"))
+importbufferlogs=sd.readn("importbufferlogs");
+if(sd.d.exists("bufferbeep"))
+bufferbeep=sd.readn("bufferbeep");
+if(sd.d.exists("charrepeat"))
+charrepeat=sd.readn("charrepeat");
+if(sd.d.exists("styping"))
+styping=sd.readn("styping");
+if(sd.d.exists("lastruns"))
+lastruns=sd.readn("lastruns");
+if(sd.d.exists("killmsgs"))
+killmsgs=sd.readn("killmsgs");
+if (sd.d.exists("level"))
+level=sd.readn("level");
+if (sd.d.exists("xp"))
+xp=sd.readn("xp");
+if (sd.d.exists("xpmaster"))
+xpmaster=sd.readn("xpmaster");
+if (sd.d.exists("xprequired"))
+if(sd.d.exists("soundcard"))
+soundcard=sd.readn("soundcard");
+if(sd.d.exists("soundcardname"))
+soundcardname=sd.read("soundcardname");
+if(sd.d.exists("uploadedsounds"))
+uploadedsounds=sd.readn("uploadedsounds");
+if(sd.d.exists("readmessages"))
+readmessages=sd.readn("readmessages");
+if(sd.d.exists("speechmode"))
+speechmode=sd.readn("speechmode");
+if(sd.d.exists("wrap"))
+wrap=sd.readn("wrap");
+if(sd.d.exists("sidescrolling"))
+sidescrolling=sd.readn("sidescrolling");
+if(sd.d.exists("play_logo"))
+play_logo=sd.readn("play_logo");
+if (sd.d.exists("fi1"))
+{
+fi[1]=sd.read("fi1");
+sd.d.delete("fi1");
+}
+if (sd.d.exists("fi2"))
+{
+fi[2]=sd.read("fi2");
+sd.d.delete("fi2");
+}
+if (sd.d.exists("fi3"))
+{
+fi[3]=sd.read("fi3");
+sd.d.delete("fi3");
+}
+if(sd.d.exists("fi4"))
+{
+fi[4]=sd.read("fi4");
+sd.d.delete("fi4");
+}
+if(sd.d.exists("fi"))
+{
+fi=string_split(sd.read("fi")," ",false);
+if(SCRIPT_COMPILED) fi.resize(12);
+else fi.resize(12);
+}
+if(sd.d.exists("ttsvoice"))
+ttsvoice=sd.readn("ttsvoice");
+if (sd.d.exists("motdhash"))
+motdhash=sd.read("motdhash");
+if(sd.d.exists("rcontrol"))
+rcontrol=sd.readn("rcontrol");
+if(sd.d.exists("menumusvol")) menumusvol=sd.readn("menumusvol");
+for(int i=0; i<buffers.length(); i++)
+{
+if(sd.d.exists("b"+i+"int"))
+buffers[i].interrupt=sd.readn("b"+i+"int");
+}
+if(sd.d.exists("netaddress")) sd.d.delete("netaddress");
+if(sd.d.exists("netport")) sd.d.delete("netport");
+}
+int menumusvol=0;
+void writeprefs()
+{
+sd.add("name",name);
+sd.add("password",password);
+sd.add("musictrack",musictrack);
+sd.add("source_volume",source_volume);
+sd.add("hbanned",hbanned);
+sd.add("cmusic_volume",cmusic_volume);
+
+sd.add("autowalking",autowalking);
+sd.add("scripting",scripting);
+sd.add("levelup",levelup);
+sd.add("charrepeat",charrepeat);
+sd.add("styping",styping);
+sd.add("lastruns",lastruns);
+sd.add("importbufferlogs",importbufferlogs);
+sd.add("bufferbeep",bufferbeep);
+sd.add("motdhash",motdhash);
+sd.add("uploadedsounds",uploadedsounds);
+sd.add("killmsgs",killmsgs);
+string input;
+for(uint i=0; i<fi.length(); i++)
+{
+input+=fi[i]+" ";
+}
+input=string_trim_right(input,1);
+sd.add("fi",input);
+sd.add("readmessages",readmessages);
+sd.add("wrap",wrap);
+sd.add("speakonlinemsgs",speakonlinemsgs);
+sd.add("play_logo",play_logo);
+sd.add("sidescrolling",sidescrolling);
+sd.add("speechmode",speechmode);
+sd.add("ttsvoice",ttsvoice);
+sd.add("soundcard",soundcard);
+sd.add("soundcardname",soundcardname);
+sd.add("rcontrol",rcontrol);
+sd.add("menumusvol",menumusvol);
+for(int i=0; i<buffers.length(); i++)
+{
+sd.add("b"+i+"int",buffers[i].interrupt);
+}
+sd.add("readerinterrupt",readerinterrupt);
+sd.add("netaddress",netaddress);
+sd.add("netport",netport);
+sd.save();
+}
+void send(uint peer, string mess, uint channel)
+{
+if(net_debug) packetlog+=">"+mess+"\r\n";
+mess=string_encrypt(mess, serverkey+"loltrytodecryptthis"+serverkey2);
+n.send_reliable(peer, mess, channel);
+sent_packets+=1;
+}
+void send_u(uint peer, string mess, uint channel)
+{
+if(net_debug) packetlog+=">"+mess+"\r\n";
+mess=string_encrypt(mess, serverkey+"loltrytodecryptthis"+serverkey2);
+n.send_unreliable(peer, mess, channel);
+sent_packets+=1;
+}
+string get_event_message()
+{
+string r=e.message;
+if(r=="")
+{
+return "";
+}
+r=string_decrypt(r, serverkey+"loltrytodecryptthis"+serverkey2);
+received_packets+=1;
+if(net_debug) packetlog+="<"+r+"\r\n";
+return r;
+}
+string get_script_path()
+{
+string scriptpath;
+if(SCRIPT_COMPILED==false)
+{
+scriptpath=SCRIPT_CURRENT_FILE;
+}
+else
+{
+scriptpath=SCRIPT_EXECUTABLE;
+}
+return scriptpath;
+}

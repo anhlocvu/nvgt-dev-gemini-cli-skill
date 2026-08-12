@@ -1,0 +1,11 @@
+mapname:mini_fighting_room
+maxx:10
+maxy:10
+maxz:10
+tile:0:10:0:10:0:0:deepsnow
+zone:0:10:0:10:0:10:mini_fighting_room
+robots:0:10:0:10:0:0:3:12000:monster,dragon,mortal,lion
+src:0:10:0:10:0:10:a1.ogg:-10
+noitems:0:10:0:10:0:10
+travelpoint:0:0:0:0:0:0:safe_zone:25:100:0:Go! Coward!
+zone:0:0:0:0:0:10:Go back to the safe zone!:trackme

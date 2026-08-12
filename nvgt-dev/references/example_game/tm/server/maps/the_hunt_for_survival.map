@@ -1,0 +1,11 @@
+mapname:the_hunt_for_survival
+maxx:1000
+maxy:1000
+maxz:1000
+tile:0:1000:0:1000:0:0:shortgrass
+
+fightingstate:0
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+zone:0:1000:0:1000:0:1000:your job is to collect items. you won't be able to use your invitory here, so you have to collect different weapons, ammos and healing items. in ten minutes you will be moved to a map where you'll fight with these items! good luck!
+src:0:1000:0:1000:24:1000:anime163.ogg

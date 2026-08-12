@@ -1,0 +1,16 @@
+timer startraintimer,endraintimer,thundertimer;
+bool raining=false;
+int startvol=-100,endvol=-5,startraintime=random(300000,10800000),endraintime=random(300000,1500000),thundertime=random(30000,120000);
+void start_raining()
+{
+startvol=random(-100,-50);
+endvol=random(-49,-5);
+send(0,"play_s2 thunder"+random(1,20)+".ogg "+random(90,110),6);
+send(0,"startrain "+startvol+" "+endvol,0);
+raining=true;
+}
+void stop_raining()
+{
+raining=false;
+send(0,"stoprain "+endvol+" "+startvol,0);
+}

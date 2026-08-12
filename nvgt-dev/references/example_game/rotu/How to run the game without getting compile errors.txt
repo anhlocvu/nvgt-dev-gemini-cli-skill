@@ -1,0 +1,2 @@
+You need to copy the King Audio libraries into the King Audio folder, then go into the lib folder. Copy all the files in there into this path: "C:\nvgt\lib", and you’ll be able to run the client.  
+Good luck!

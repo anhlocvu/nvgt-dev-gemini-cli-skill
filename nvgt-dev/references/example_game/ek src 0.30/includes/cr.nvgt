@@ -1,0 +1,60 @@
+void create()
+{
+string uname;
+string upass;
+string gn;
+string email="";
+form.create_window("creating br account", false,false);
+int username=form.create_input_box("please enter a username. and then press tap for next step text box", "", "", 0, false, false);
+int sifre=form.create_input_box("please enter a password of at least 8 characters for your character and press tap text box", "", "*", 0, false, false);
+int list=form.create_list("choose you &gender", 0);
+form.add_list_item(list, "male", -1);
+form.add_list_item(list, "female", -1);
+int l=form.create_input_box("&blood river license agreement", license, "", 1000000, true,multiline=true);
+int lc=form.create_checkbox("I have read and &accept the blood river license terms", false);
+int ok=form.create_button("&create account");
+int cancel=form.create_button("canc&el");
+while(true)
+{
+form.monitor();
+wait(5);
+uname=form.get_text(username);
+upass=form.get_text(sifre);
+gn=form.get_list_item(list, form.get_list_position(list));
+if(form.is_pressed(ok))
+{
+if(form.is_checked(lc))
+{
+form.reset;
+if(uname=="")
+{
+form.reset;
+dlg("username field cannot be empty");
+
+}
+else if (upass=="")
+{
+form.reset;
+dlg("Password field should not be left blank.");
+
+}
+else if(upass=="" or string_contains(upass, " ", 1)!=-1 or upass.length()<8)
+{
+form.reset;
+dlg("you entered an invalid password");
+
+}
+else if(gn=="")
+{
+form.reset;
+dlg("please select a gender");
+}
+else
+{
+}
+form.reset;
+//break;
+}
+}
+}
+}

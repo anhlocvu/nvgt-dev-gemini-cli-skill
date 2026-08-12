@@ -1,0 +1,43 @@
+string realprojname="Revenge of the Undead";
+sound upmus;
+void check_for_updates(string projectname,bool say_no_updates=false)
+{
+speak("Checking update");
+wait(300);
+string web_version=url_get("https://lc.ktgame207.com/rotu/version.txt");
+web_version = web_version.trim_whitespace();
+if(web_version == "")
+{
+if(say_no_updates)
+{
+speak("Failed to check for updates. Please check your internet connection.");
+}
+return;
+}
+double current_ver = string_to_number(version);
+double web_ver = string_to_number(web_version);
+if(current_ver < web_ver)
+{
+int upd = yesno("A new update is available. Current version: " + version + ". Latest version: " + web_version + ".\nDo you want to update?", "Yes", "No");
+if(upd == 1)
+{
+string status = download_file("https://lc.ktgame207.com/rotu/rotu.zip", "rotu.zip");
+if(status == "finished")
+{
+run("unzip.bat", "", false, false);
+exit();
+}
+else
+{
+speak("Update download failed or was canceled.");
+}
+}
+}
+else
+{
+if(say_no_updates)
+{
+speak("No updates found. You are running the latest version.");
+}
+}
+}

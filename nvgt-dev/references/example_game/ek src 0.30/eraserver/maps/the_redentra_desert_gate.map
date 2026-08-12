@@ -1,0 +1,23 @@
+mapname:the_redentra_desert_gate
+maxx:100
+maxy:100
+maxz:100
+tile:0:100:0:100:0:0:grass
+tile:0:100:0:100:0:0:sand2
+src:0:100:0:100:0:100:horses.ogg
+tile:0:100:0:100:0:0:concrete3
+tile:0:100:0:100:0:0:dirt3
+tile:51:100:0:100:0:100:wallwoodpile
+tile:51:51:90:100:0:15:wallbody
+zone:0:50:0:100:0:100:the redentra desert gate
+zone:50:50:100:100:0:0:Rent a horse for 150000 dollar, alert, if you Rented out more than one, you will loss your 150000 dollar:trackme
+src:50:50:100:100:0:5:hors1.ogg
+travelpoint:0:0:100:100:0:0:the_redentra_desert:0:0:0:the redentra desert
+zone:0:0:100:100:0:0:the_redentra_desert:trackme
+tile:50:50:100:100:0:0:hs
+noitems:0:100:0:100:0:100:elecboat
+zone:25:25:100:100:0:100:Rent a golden horse for $ 500,000, when you rent it you will go to the desert directly, and you can press the letter, d, to ride the horse.:trackme
+noitems:0:100:0:100:0:100:police_motorcycle
+noitems:0:100:0:100:0:100:hors:boat
+noitems:0:100:0:100:0:100:arena_card
+noitems:0:100:0:100:0:100:tasing_small_projectile

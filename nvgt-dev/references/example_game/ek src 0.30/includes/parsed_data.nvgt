@@ -1,0 +1,43 @@
+class parsed_data{
+	private string[] lines;
+	private string[] values;
+	private string file;
+	private string text;
+	bool set_file(string file){
+		values.resize(0);
+		lines.resize(0);
+		this.file=file;
+		file f;
+		bool abrir=f.open(file,"r");
+		if(!abrir){
+alert("Error opening file", "");
+			return this.file!="";
+		}
+		else{
+			string d;
+			d=f.read();
+			string[] parseddata=string_split(d,"\r\n",false);
+			for(int i=0; i<parseddata.length; i++){
+				string[] parseddata2=string_split(parseddata[i],"{=}",false);
+				if(parseddata2.length!=2)continue;
+				else{
+					lines.insert_last(parseddata2[0]);
+					values.insert_last(parseddata2[1]);
+				}
+			}
+		}
+		return this.file!="";
+	}
+	string get_value(string line){
+		for(uint i=0;i<lines.length();i++){
+			if(lines[i]==line){
+				for(uint i2=0;i2<values.length();i2++){
+					if(i==i2){
+						return values[i2];
+					}
+				}
+			}
+		}
+		return line;
+	}
+}

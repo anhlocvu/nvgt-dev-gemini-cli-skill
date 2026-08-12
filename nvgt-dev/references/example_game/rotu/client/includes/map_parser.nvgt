@@ -1,0 +1,441 @@
+void load_map_from(string data)
+{
+tb.x=-1;
+tb.y=-1;
+trackbeacon=false;
+viewpoint="outside";
+travelpoints.resize(0);
+destroy_all_platforms();
+zones.resize(0);
+destroy_all_hazards();
+destroy_all_urls();
+destroy_all_signs();
+beacons.resize(0);
+destroy_songs();
+destroy_all_doors();
+destroy_sources();
+//destroy_all_item_beeps();
+msounds.resize(0);
+mpool.destroy_all();
+p.play_stationary("loadstart.ogg",false);
+int loading=p.play_stationary("loading.ogg",true);
+speak("Loading map.");
+mapload=true;
+string[]lines=string_split(data,"\r\n",false);
+for(uint i=0; i<lines.length(); i++)
+{
+string[]parsed=string_split(lines[i]," ",false);
+if(parsed[0]=="platform" and parsed.length()>7)
+{
+bool will_vanish=false;
+int vanishtime, appeartime;
+if(parsed.length()>8) {
+will_vanish=true;
+vanishtime=stn(parsed[8]);
+if(parsed.length()>9) appeartime=stn(parsed[9]);
+else appeartime=stn(parsed[8]);
+}
+if(parsed[7]=="air")
+{
+spawn_platform(stn(parsed[1]),stn(parsed[2]),stn(parsed[3]),stn(parsed[4]),stn(parsed[5]),stn(parsed[6]),"", will_vanish, vanishtime, appeartime);
+}
+else spawn_platform(stn(parsed[1]),stn(parsed[2]),stn(parsed[3]),stn(parsed[4]),stn(parsed[5]),stn(parsed[6]),parsed[7], will_vanish, vanishtime, appeartime);
+}
+else if(parsed[0]=="music" and parsed.length()>1) add_map_music(parsed[1], (parsed.length()>2?string_to_number(parsed[2]):0));
+else if(parsed[0]=="door" and parsed.length()>11)
+{
+create_door(stn(parsed[1]),stn(parsed[2]),stn(parsed[3]),stn(parsed[4]),stn(parsed[5]),stn(parsed[6]),stn(parsed[7]),parsed[8],parsed[9],parsed[10],parsed[11]);
+}
+else if(parsed[0]=="viewpoint" and parsed.length()>1)
+{
+if(parsed[1]!="outside" and parsed[1]!="inside") continue;
+viewpoint=parsed[1];
+}
+else if(parsed[0]=="travelpoint" and parsed.length()>10)
+{
+string re="";
+int re_a=-1;
+if(parsed.length()>12) {
+re=parsed[11];
+re_a=stn(parsed[12]);
+if(re_a<=0) re_a=1;
+}
+create_travelpoint(stn(parsed[1]),stn(parsed[2]),stn(parsed[3]),stn(parsed[4]),stn(parsed[5]),stn(parsed[6]),stn(parsed[7]),stn(parsed[8]),stn(parsed[9]),parsed[10], re, re_a);
+}
+else if(parsed[0]=="sign" and parsed.length()>4)
+{
+string ztext;
+for(uint i=4; i<parsed.length(); i++)
+{
+ztext+=parsed[i]+" ";
+}
+spawn_sign(stn(parsed[1]),stn(parsed[2]),stn(parsed[3]),ztext);
+}
+else if(parsed[0]=="zone" and parsed.length()>7)
+{
+string ztext;
+for(uint i=7; i<parsed.length(); i++)
+{
+ztext+=parsed[i]+" ";
+}
+spawn_zone(stn(parsed[1]),stn(parsed[2]),stn(parsed[3]),stn(parsed[4]),stn(parsed[5]),stn(parsed[6]),ztext);
+}
+else if(parsed[0]=="beacon" and parsed.length()>7)
+{
+string ztext;
+for(uint i=7; i<parsed.length(); i++)
+{
+ztext+=parsed[i]+" ";
+}
+create_beacon(stn(parsed[1]),stn(parsed[2]),stn(parsed[3]),stn(parsed[4]),stn(parsed[5]),stn(parsed[6]),ztext);
+}
+else if(parsed[0]=="name" and parsed.length()>1)
+{
+mapname=parsed[1];
+}
+else if(parsed[0]=="maxx" and parsed.length()>1)
+{
+maxx=stn(parsed[1]);
+}
+else if(parsed[0]=="maxy" and parsed.length()>1)
+{
+maxy=stn(parsed[1]);
+}
+else if(parsed[0]=="hazard" and parsed.length()==8) {
+spawn_hazard(stn(parsed[1]), stn(parsed[2]), stn(parsed[3]), stn(parsed[4]), stn(parsed[5]), stn(parsed[6]), parsed[7]);
+}
+else if(parsed[0]=="source")
+{
+if(parsed.length()>8)
+{
+spawn_source(stn(parsed[1]),stn(parsed[2]),stn(parsed[3]),stn(parsed[4]),stn(parsed[5]),stn(parsed[6]),parsed[7],stn(parsed[8]));
+}
+else if(parsed.length()>7)
+{
+spawn_source(stn(parsed[1]),stn(parsed[2]),stn(parsed[3]),stn(parsed[4]),stn(parsed[5]),stn(parsed[6]),parsed[7]);
+}
+}
+else if(parsed[0]=="url")
+{
+spawn_url_source(parsed[7], stn(parsed[1]),stn(parsed[2]),stn(parsed[3]),stn(parsed[4]),stn(parsed[5]),stn(parsed[6]), 2);
+}
+else
+{
+continue;
+}
+}
+speak("Load complete.");
+p.destroy_sound(loading);
+p.play_stationary("loadstop.ogg",false);
+mapload=false;
+send("checkmsounds",0);
+send("location "+loc,0);
+if(viewpoint=="inside" and raining)
+{
+rnloop.stop();
+rnloop.volume=rnendvol;
+rnloop.stream("rain_int.ogg");
+rnloop.volume=rnendvol;
+rnloop.play_looped();
+}
+if(viewpoint=="outside" and raining)
+{
+rnloop.stop();
+rnloop.stream("rain_ext.ogg");
+rnloop.volume=rnendvol;
+rnloop.play_looped();
+}
+
+}
+class binput
+{
+string[] indata;
+string[] innames;
+binput(string[] names, string[] input)
+{
+indata=input;
+innames=names;
+}
+int num(string val)
+{
+int ix=innames.find(val);
+if(ix>-1) return stn(indata[ix]);
+return -1;
+}
+string str(string val)
+{
+int ix=innames.find(val);
+if(ix>-1) return indata[ix];
+return "";
+}
+}
+binput@ builder_input(string spec)
+{
+if(spec=="") return null;
+string[] items=delinear(spec);
+string[] names,vals;
+for(uint i=0; i<items.length(); i++)
+{
+string[] p=string_split(items[i],"=",false);
+names.insert_last(p[0]);
+string tmp=txt.input(p[1],true);
+if(tmp=="")
+{
+speak("canceled");
+return null;
+}
+vals.insert_last(tmp);
+}
+binput res(names,vals);
+return res;
+}
+string platlist="
+air
+carpet
+carpet2
+carpet3
+carpet4
+carpet5
+carpet6
+carpet7
+cement
+cement2
+cement3
+chair
+concrete
+concrete2
+concrete3
+concrete4
+concrete5
+concrete6
+concrete7
+concrete8
+concrete9
+concrete10
+concrete11
+concrete12
+concrete13
+concrete14
+concrete15
+concrete16
+concrete17
+concrete18
+concrete19
+concrete20
+concrete21
+concrete22
+concrete23
+concrete24
+concrete25
+concrete26
+concrete27
+concrete28
+dirt
+dirt2
+grass
+grass2
+hardwood
+hardwood2
+hardwood3
+marble
+metal
+metal2
+metal3
+pavement
+sand
+sand2
+sand3
+snow
+stairs
+stairs2
+steel
+steel2
+steel3
+steel4
+steel5
+stone
+tile
+water
+water2
+wood
+wood2
+wood3
+wallbank
+wallbarrel
+wallbigmetal
+wallborder
+wallbranch
+wallbrick
+wallbuilding
+wallcar
+wallcar2
+wallcardboard
+wallchain
+wallcloth
+wallclothing
+wallcone
+wallcontainer
+wallcounter
+wallcrate
+walldebris
+walldebris2
+walldebris3
+walldirt
+walldirt2
+walldoor
+walldrown
+wallfence
+wallgeneric
+wallgeneric2
+wallglass
+wallmedal2
+wallmedal3
+wallmedal4
+wallmetal
+wallobject
+wallplastic
+wallpole
+wallrail
+wallrocks
+wallrocks2
+wallrocks3
+wallstone
+walltable
+wallunderwater
+wallwood";
+string srclist="
+birds1
+birds2
+birds3
+birds4
+birds5
+birds6
+birds7
+birds8
+birds9
+birds10
+birds11
+birds12
+birds13
+birds14
+birds15
+birds16
+birds17
+birds18
+birds19
+birds20
+birds21
+birds22
+birds23
+birds24
+birds25
+birds26
+birds27
+birds28
+birds29
+birds30
+birds31
+construction1
+creek1
+creek2
+crowd1
+crowd2
+desert1
+desert2
+desert3
+electricity
+elevator1open
+elevator1close
+elevator2open
+elevator2close
+elevatorloop1
+elevatorloop2
+field
+fire
+flies1
+flies2
+flies3
+flies4
+flies5
+forest1
+gasloop
+generator
+harbor
+lake1
+lake2
+callofduty_zombies
+music1
+music2
+music3
+music4
+music5
+music6
+music7
+music8
+musicmisc1
+musicmisc2
+musicmisc3
+musicmisc4
+musicmisc5
+river1
+river2
+river3
+roomtone1
+roomtone2
+tunnel1
+vent1
+vent2
+vent3
+warehouse
+waterfall1
+waterfall2
+waves1
+waves2
+waves3
+waves4
+waves5
+wind1
+wind2
+wind3
+wind4
+wind5
+wind6
+wind7
+wind8
+";
+string musiclist="
+callofduty_zombies
+music1
+music2
+music3
+music4
+music5
+music6
+music7
+music8
+musicmisc1
+musicmisc2
+musicmisc3
+musicmisc4
+musicmisc5
+";
+string doorslist="
+door1
+door2
+door3
+door4
+door5
+door6
+door7
+door8
+door9
+door10
+door11
+door12
+elevator1open
+elevator1close
+elevator2open
+elevator2close
+elevatorloop1
+elevatorloop2
+";

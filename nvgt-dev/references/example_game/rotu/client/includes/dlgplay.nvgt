@@ -1,0 +1,24 @@
+sound dlgaudio;
+void dlgplay(string dlgsound, bool dlgfade=false, int fadespeed=30)
+{
+while(key_down(KEY_RETURN) or key_down(KEY_SPACE))
+{
+wait(5);
+}
+dlgaudio.load(dlgsound);
+dlgaudio.volume = 0;
+dlgaudio.play();
+while(dlgaudio.playing)
+{
+wait(5);
+if(key_pressed(KEY_RETURN)||key_pressed(KEY_SPACE))
+{
+if (dlgfade==true)
+{
+fade(dlgaudio, -50, fadespeed);
+}
+dlgaudio.stop();
+break;
+}
+}
+}

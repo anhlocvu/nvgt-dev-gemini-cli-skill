@@ -1,0 +1,30 @@
+#include "bgt_compat.nvgt"
+
+void main()
+{
+    print("Opening sounds.dat...");
+    pack_file p;
+    if (!p.open("sounds.dat")) {
+        print("Failed to open sounds.dat");
+        return;
+    }
+    
+    string[] files = p.list_files();
+    print("Found " + files.length() + " files in sounds.dat.");
+    
+    if (!directory_exists("sounds")) {
+        directory_create("sounds");
+    }
+    
+    for (uint i = 0; i < files.length(); i++) {
+        string fname = files[i];
+        string outpath = "sounds/" + fname;
+        if (!file_exists(outpath)) {
+            p.extract_file(fname, outpath);
+        }
+        if (i % 100 == 0) {
+            print("Extracted " + i + " / " + files.length() + " files...");
+        }
+    }
+    print("Sound extraction complete!");
+}

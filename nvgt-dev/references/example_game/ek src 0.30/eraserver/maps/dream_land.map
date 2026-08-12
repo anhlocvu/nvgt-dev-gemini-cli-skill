@@ -1,0 +1,8 @@
+mapname:dream_land
+maxx:20
+maxy:20
+maxz:20
+tile:0:20:0:20:0:0:0
+zone:0:20:0:20:0:20:dream_land
+tile:0:20:0:20:0:20:shortgrass
+robots:20:20:20:20:0:0:14:1400:person1,person2,person3,person4,person5,rabit

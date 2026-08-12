@@ -1,0 +1,13 @@
+fightingstate:0
+mapname:best_fm
+maxx:0
+maxy:0
+maxz:0
+tile:0:0:0:0:0:0:carpet2
+zone:0:0:0:0:0:0:best_fm
+disable_camera:1
+disable_courdinates:1
+zone:0:0:0:0:0:0:enjoy! if you press t, you will redirect radios room!
+travelpoint:0:0:0:0:0:0:radios_room:20:0:0:welcome back!
+url:http://46.20.7.126/bestfmmp3
+fightingstate:0

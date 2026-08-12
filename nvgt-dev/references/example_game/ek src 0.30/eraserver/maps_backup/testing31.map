@@ -1,0 +1,16 @@
+mapname:testing31
+maxx:10
+maxy:10
+maxz:10
+tile:0:10:0:10:0:0:carpet
+zone:0:10:0:10:0:10:testing31
+blockage:0:0:1:1:0:10:Can't go further!
+sign:0:0:0:hi %name , you are at %x , %y , and %z of the %map  map
+
+dialog:1:0:0:Fuck you!
+safezone:2:2:0:0:0:10
+music:music11.ogg
+noitems:4:4:0:0:0:10:invisibility_shield:shield
+jump:5:5:0:0:0:10:0
+jplayer:6:0:0
+randtravelpoint:10:10:10:10:0:10:safe_zone:0:100:0:100:0:0:Go!:0

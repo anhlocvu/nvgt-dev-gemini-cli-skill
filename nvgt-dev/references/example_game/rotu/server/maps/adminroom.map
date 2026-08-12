@@ -1,0 +1,87 @@
+name adminroom
+maxx 100
+maxy 51
+platform 0 50 0 50 0 0 carpet4
+platform 0 0 0 51 0 15 wallwood
+platform 51 51 0 51 0 15 wallwood
+platform 0 51 0 0 0 15 wallwood
+platform 0 51 51 51 0 15 wallwood
+platform 0 51 0 51 15 15 wallcar2
+safezone 0 50 0 50 -20 50
+zone 0 50 0 50 0 50 adminroom
+source 0 50 0 50 0 10 warehouse.ogg -15
+platform 10 35 10 35 0 0 marble
+zone 10 35 10 35 0 15 Conferencing area
+platform 16 29 16 29 0 2 walltable
+platform 16 29 16 29 3 3 hardwood
+zone 16 29 16 29 3 10 Conferencing table
+platform 19 19 15 15 0 2 metal2
+platform 19 19 15 15 2 2 carpet5
+zone 19 19 15 15 0 8 Conner's Chair
+platform 21 21 15 15 0 2 metal2
+platform 21 21 15 15 2 2 carpet5
+platform 23 23 15 15 0 2 metal2
+platform 23 23 15 15 2 2 carpet5
+platform 27 27 15 15 0 2 metal2
+platform 27 27 15 15 2 2 carpet5
+platform 0 2 0 2 -20 15 wallrail
+platform 0 51 0 51 16 16 wood2
+zone 0 51 0 51 15 30 On the roof of the admin room
+platform 0 4 0 20 -20 -20 metal
+platform 5 5 0 20 -20 -5 wallchain
+zone 0 5 0 20 -20 -10 Jail cell hallway
+zone 1 1 1 1 -20 20 Stairs leading up and down
+platform 0 2 0 2 0 0 carpet2
+zone 0 4 20 20 -20 -15 To continue into the jail cell, press Shift Enter
+travelpoint 0 4 20 20 -20 -15 5 5 13 jail
+platform 0 5 21 21 -20 -10 wallmedal4
+travelpoint 0 0 0 0 0 5 222 430 0 main
+platform 0 50 0 50 -19 -1 wallrail
+zone 1 1 1 1 0 0 a staircase that leads up and down, here it is the main floor
+platform 0 2 0 2 1 5 air
+platform 1 1 1 1 -20 16 wood3
+platform 29 29 15 15 0 2 metal2
+platform 29 29 15 15 2 2 carpet5
+platform 30 30 17 17 0 1 metal2
+platform 30 30 17 17 2 2 carpet5
+zone 30 30 17 17 0 10 Dillon's chair
+platform 15 15 17 17 0 2 metal2
+platform 15 15 17 17 2 2 carpet5
+viewpoint inside
+beacon 0 0 0 0 0 0 press shifte enter to exit
+platform 15 15 19 19 0 2 metal2
+platform 15 15 19 19 2 2 carpet5
+platform 52 100 0 51 0 0 sand3
+platform 60 90 10 40 0 0 sand2
+platform 70 80 20 30 0 0 sand
+zone 52 100 0 51 0 50 the adminroom fighting area
+source 52 100 0 51 0 10 desert2.ogg
+platform 51 51 25 25 0 5 walldoor
+door 50 25 0 52 25 0 500 none.ogg none.ogg elevator2open.ogg elevator2close.ogg
+door 52 25 0 50 25 0 500 none.ogg none.ogg elevator2open.ogg elevator2close.ogg
+zone 50 52 25 25 0 5 the adminroom fighting area door
+platform 75 75 25 25 0 40 dirt2
+platform 70 80 20 30 40 40 wood3
+platform 75 75 25 25 20 40 gravel
+beacon 51 51 25 25 0 0 adminroom fighting area
+platform 51 51 0 51 16 18 wallrail
+platform 51 51 0 51 19 19 metal
+zone 21 21 15 15 0 4 Jonathan's chair
+platform 17 17 15 15 0 2 metal2
+platform 17 17 15 15 2 2 carpet5
+zone 17 17 15 15 0 15 Flamulous's chair
+platform 30 30 20 20 0 1 metal2
+zone 30 30 20 20 0 10 eric104's chair
+platform 30 30 20 20 2 2 carpet5
+zone 27 27 15 15 0 2 kevin's chair
+source 23 23 23 23 3 3 waterflow27.ogg 3
+zone 23 23 23 23 3 10 a small cristal bowl sits here, with water flowing through some crystal leaves at the top and trickleing into a bigger bowl at the bottom.
+platform 23 23 23 23 0 3 glass3
+platform 23 23 23 23 0 2 underwater
+zone 15 15 17 17 0 10 blades overstuffed lazy boy chair
+zone 23 23 23 23 0 2 inside of the bowl
+zone 23 23 23 23 0 0 This is where admins store the notes, a golden light protects it from the water, an inscription reads, tuch not, want not
+zone 15 15 19 19 0 10 Kerry's chair
+platform 69 69 0 0 0 69 beam
+zone 69 69 0 0 0 75 the 69 tower for all your 69 needs
+platform 69 69 0 0 0 69 metal

@@ -1,0 +1,14 @@
+mapname:safe_zone
+maxx:100
+maxy:100
+maxz:100
+tile:0:100:0:100:0:0:carpet
+zone:0:100:0:100:0:100:safe_zone
+src:0:100:0:100:0:100:calm.ogg:0:100
+tile:25:40:25:40:0:0:marble2
+menus:0:20:0:20:0:20
+zone:25:40:25:40:0:30:safezone menu:trackme
+music:md51.ogg
+safezone:0:100:0:100:0:100
+zone:0:0:0:0:0:0:activity manager blindboy:trackme
+noitems:0:1000000:0:1000000:0:1000000:helicopter:nuclear_bomb:suicide_bomb:teleporter:friendship_sphere:death_free_card:the_magical_flower:tasing_small_projectile:arena_card:wood:stun_grenade:grenade:guided_missile:missile_interceptor:motion_bomb:fight_inviter

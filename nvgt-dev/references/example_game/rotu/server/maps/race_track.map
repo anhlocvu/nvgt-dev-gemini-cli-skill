@@ -1,0 +1,114 @@
+name race_track
+maxx 400
+maxy 500
+platform 0 400 0 500 0 0 concrete
+zone 0 400 0 500 0 50 the race track
+safezone 0 25 0 1000 0 100
+platform 0 0 0 500 0 10 wallborder
+platform 0 400 0 0 0 10 wallborder
+platform 400 400 0 500 0 10 wallborder
+platform 0 400 500 500 0 10 wallborder
+platform 26 374 26 474 0 10 wallrail
+platform 1 25 250 250 0 0 wood2
+zone 0 25 250 250 0 5 the starting arch
+platform 1 25 250 250 6 6 wallcloth
+zone 1 25 249 249 0 5 start your cars here
+platform 1 25 249 249 0 0 gravel
+platform 1 25 230 230 0 0 wood2
+zone 1 25 230 230 0 5 the ending arch
+platform 1 25 248 248 0 10 wallobject
+zone 1 25 231 248 0 5 slow down , end here
+zone 1 25 220 229 0 5 10 tiles to go
+zone 1 25 210 219 0 5 20 tiles to go
+zone 1 25 200 209 0 5 30 tiles to go
+zone 1 25 445 474 0 5 approaching corner
+zone 1 25 475 499 0 10 corner turning right
+zone 35 49 475 499 0 10 approaching corner
+zone 50 75 475 499 0 10 corner turning right
+zone 475 500 1 25 0 10 corner turning right
+zone 475 500 26 55 0 10 approaching corner
+zone 1 25 1 25 0 10 corner turning right
+zone 26 35 1 25 0 10 approaching corner
+zone 1 25 26 199 0 10 the final run
+source 0 75 0 500 5 10 tunnel1.ogg
+platform 0 75 0 500 6 6 wallmedal4
+platform 50 75 26 474 0 0 concrete
+platform 76 76 0 500 0 10 wallrail
+platform 50 75 300 300 0 10 wallrail
+zone 50 75 300 325 0 10 corner turning left
+zone 50 75 326 350 0 10 approaching corner
+platform 76 100 301 325 0 0 concrete
+zone 76 100 300 325 0 0 approaching corner
+zone 101 125 300 325 0 0 corner turning left
+platform 101 125 301 499 0 0 concrete
+platform 100 100 475 500 0 10 wallrail
+zone 101 125 475 499 0 0 corner turning right
+zone 101 125 450 474 0 0 approaching corner
+zone 375 400 475 500 0 0 turn right
+zone 350 374 475 500 0 0 approaching corner
+platform 375 400 449 449 0 10 wallrail
+zone 375 400 450 473 0 10 turn right again
+platform 150 374 450 473 0 0 concrete
+platform 200 300 450 460 0 0 wallrail
+platform 200 300 465 475 0 0 wallrail
+zone 200 300 460 465 0 0 narrow area
+zone 301 350 450 473 0 0 approaching narrow area, find the opening
+zone 150 180 450 473 0 0 approaching corner
+platform 127 149 450 473 0 0 concrete
+zone 127 149 450 473 0 0 corner turning left
+platform 125 149 200 449 0 0 concrete
+platform 126 126 200 450 0 10 wallrail
+platform 150 175 200 225 0 0 concrete
+zone 126 150 200 225 0 0 corner turning left
+zone 127 150 226 255 0 0 approaching corner
+zone 150 175 200 225 0 0 corner turning right
+platform 150 175 160 200 0 0 concrete
+zone 150 175 160 185 0 0 corner turning right
+zone 150 175 186 199 0 0 approaching corner
+platform 125 149 160 185 0 0 concrete
+zone 125 149 160 185 0 0 corner turning left
+platform 125 149 125 160 0 0 concrete
+zone 125 149 125 150 0 0 corner turning left
+zone 125 149 151 159 0 0 approaching corner
+platform 150 475 125 150 0 0 concrete
+zone 445 474 125 150 0 0 approaching corner
+platform 25 75 26 26 0 10 wallrail
+platform 375 400 151 151 0 10 wallrail
+platform 400 400 0 500 0 10 wallborder
+zone 375 400 125 150 0 10 corner turning right
+zone 345 374 125 150 0 0 approaching corner
+zone 375 400 0 25 0 10 corner turning right
+zone 375 400 26 55 0 10 approaching corner
+platform 76 76 1 25 0 0 concrete
+zone 200 340 350 373 0 0 the race track
+platform 200 300 450 473 0 0 concrete
+zone 300 350 350 373 0 10 the race track
+safezone 0 400 0 500 0 10
+zone 1 25 247 247 0 10 press shifte enter to go back to main
+travelpoint 1 25 147 147 0 10 222 430 0 main
+travelpoint 1 25 247 247 0 10 222 430 0 main
+zone 200 350 450 473 0 10 the race track
+zone 1 25 249 249 0 10 start here and face north
+zone 0 1 249 249 0 10 racetrack exit
+beacon 0 1 249 249 0 10 race track exit at the start of the track
+travelpoint 0 1 249 249 0 0 225 245 0 main
+beacon 12 12 247 247 0 0 the exit at the end of the track
+platform 1 25 230 259 6 6 carpet4
+platform 0 26 229 260 7 11 wallpole
+platform 1 25 230 259 7 10 air
+door 10 246 6 10 248 6 200 none.ogg none.ogg new_account.ogg microwavebeep.ogg
+door 10 248 6 10 250 6 50 none.ogg none.ogg flagdrop.ogg microwavebeep.ogg
+door 10 250 6 10 251 6 50 none.ogg none.ogg flagget.ogg microwavebeep.ogg
+door 10 251 6 10 246 6 50 none.ogg none.ogg microwavebeeplong.ogg notify.ogg
+zone 1 25 230 259 6 10 referee's section
+zone 10 10 246 246 6 6 press shift+enter to start the count down
+zone 10 10 248 248 6 6 press shift+enter to do the second count down sound
+zone 10 10 250 250 6 6 press shift+enter to play the third count down sound
+zone 10 10 251 251 6 6 press shift+enter to end the count down.
+door 9 230 6 10 230 10 100 none.ogg none.ogg flagon.ogg ban.ogg
+zone 9 9 230 230 6 6 press shift enter to tell the players they were not third or higher
+door 11 230 6 10 230 10 100 none.ogg none.ogg flagoff.ogg golddraw.ogg
+zone 11 11 230 230 6 6 press shift enter to tell the players that they have come third place or higher
+
+sign 12 249 0 Welcome! There are only two rules to this race: 1: don't start your car until the admin says so: and 2: no other rules. Enjoy your stay i mean death
+viewpoint inside

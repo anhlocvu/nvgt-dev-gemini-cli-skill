@@ -1,0 +1,140 @@
+#include "bgt_compat.nvgt"
+#pragma namespace sound upcoming
+#pragma plugin king_audio_engine
+#include "includes/sound_pool.nvgt"
+tts_voice voice;
+joystick stick;
+const string soundkey="9AqWQmxXIEP3U9Y03440ENx7xOnxhkVtUKtyYkHWkNKdxFcYfMDES7ndHL0J";
+sound_pool p;
+king_pack pack;
+void main()
+{
+if (pack.open("sounds.dat", soundkey)) {
+    @p.pack_file = @pack;
+}
+show_game_window("Joystick Setup, 1.1");
+p.play_stationary("online.ogg",false);
+voice.speak_wait("Welcome to Joystick setup.");
+speak("Press T to try out the buttons on a joystick connected to your system. Press I to find out how many controls exist on your joystick. Press H to hear this message again, or Escape to cancel.");
+while(true)
+{
+wait(5);
+if(key_pressed(KEY_ESCAPE))break;
+if(key_pressed(KEY_H))
+{
+p.play_stationary("keyboard2return.ogg",false);
+speak("Press T to try out the buttons on a joystick connected to your system. Press I to find out how many buttons exist on your joystick. Press H to hear this message again, or Escape to cancel.");
+}
+if(key_pressed(KEY_I))
+{
+p.play_stationary("keyboard2return.ogg",false);
+infojoy();
+}
+if(key_pressed(KEY_T))
+{
+p.play_stationary("keyboard2return.ogg",false);
+tryjoy();
+}
+}
+exit();
+}
+void tryjoy()
+{
+if(stick.joysticks==0)
+{
+error("Oh no. It looks like there were no joysticks detected at this time. Please try again later.");
+exit();
+}
+if(stick.joysticks>1)
+{
+error("Please attach only one joystick for the best testing experience.");
+exit();
+}
+stick.set(0);
+if(stick.active==false)
+{
+error("The joystick couldn't be loaded.");
+exit();
+}
+speak("Try to press or use a control on your joystick to see what it does. If it doesn't do anything, its likely a stick, point of view control, or an unsupported feature. When you are done, hit Escape.");
+int[] buttonlist;
+while(!key_pressed(KEY_ESCAPE))
+{
+wait(5);
+buttonlist=stick.buttons_pressed();
+for(int i=0;i<buttonlist.length();i++)
+{
+if(i==0) speak(buttonlist[i],true);
+else speak(buttonlist[i]);
+}
+}
+main();
+}
+void infojoy()
+{
+if(stick.joysticks==0)
+{
+error("Oh no. It looks like there were no joysticks detected at this time. Please try again later.");
+exit();
+}
+if(stick.joysticks>1)
+{
+error("Please attach only one joystick for the best testing experience.");
+exit();
+}
+stick.set(0);
+if(stick.active==false)
+{
+error("The joystick couldn't be loaded.");
+exit();
+}
+error("Joystick name: "+stick.name+".\r\nThere are "+stick.buttons+" buttons, "+stick.sliders+" sliders, and "+stick.povs+" point-of-view controls.\r\nOther details:\r\nHas x-axis: "+(stick.has_x?"yes":"no")+".\r\nHas y-axis: "+(stick.has_y?"yes":"no")+".\r\nHas z-axis: "+(stick.has_z?"yes":"no")+".\r\nHas rotational x-axis: "+(stick.has_r_x?"yes":"no")+".\r\nHas rotational y-axis: "+(stick.has_r_y?"yes":"no")+".\r\nHas rotational z-axis: "+(stick.has_r_z?"yes":"no")+".");
+main();
+}
+
+//Speech.
+int found_reader=0;
+bool speak(string text, bool interrupt=false)
+{
+if(found_reader==0)
+found_reader=auto_select_screen_reader();
+if(found_reader==0)
+{
+
+// We cannot find a running screen reader, so we use a global tts_voice object.
+if(interrupt)
+voice.speak_interrupt(text);
+else
+voice.speak(text);
+}
+
+if(interrupt)
+screen_reader_speak_interrupt(found_reader, text);
+else
+screen_reader_speak(found_reader, text);
+return true;
+}
+
+int auto_select_screen_reader()
+{
+for(int i=1;i<=4;i++)
+{
+if(screen_reader_is_running(i)==false)
+continue;
+return i;
+}
+return 0;
+}
+
+void error(string text)
+{
+p.play_stationary("lostconnection.ogg",false);
+speak(text,true);
+while (true)
+{
+wait(5);
+if(key_pressed(KEY_LEFT) or key_pressed(KEY_RIGHT) or key_pressed(KEY_UP) or key_pressed(KEY_DOWN)) speak(text,true);
+if(key_pressed(KEY_RETURN))break;
+}
+}
+

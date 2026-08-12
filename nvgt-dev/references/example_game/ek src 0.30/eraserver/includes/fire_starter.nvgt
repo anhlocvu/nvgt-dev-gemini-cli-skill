@@ -1,0 +1,65 @@
+fire_starter@[] starters;
+class fire_starter
+{
+int x,y,z;
+string map,mid,tile;
+double health =50;
+string name="fire";
+timer lifetimer,healthtimer,checktimer;
+bool dead=false;
+fire_starter(int x, int y, int z, string map)
+{
+this.x=x;this.y=y;this.z=z;this.map=map;
+this.tile="fire";
+this.mid=spawn_moving_sound("fire_starterloop.ogg",x,y,z,map);
+}
+void loop(int i)
+{
+if(starters[i].checktimer.elapsed>2000)
+{
+starters[i].checktimer.restart();
+for(int o=0; o<objs.length(); o++)
+{
+if(starters[i].x==objs[o].x and starters[i].y==objs[o].y and starters[i].z==objs[o].z and starters[i].map==objs[o].map)
+{
+starters[i].health+=random(1,objs[o].amount);
+play("fireburn"+random(1,5),starters[i].x,starters[i].y,starters[i].z,starters[i].map);
+objs.remove_at(o);
+}
+}
+}
+if(starters[i].health<1)
+{
+destroy_moving_sound(starters[i].mid);
+play("fire_starterstop",starters[i].x,starters[i].y,starters[i].z,starters[i].map);
+send_reliable(0,"remove_platform "+starters[i].x+" "+starters[i].x+" "+starters[i].y+" "+starters[i].y+" "+starters[i].z+" "+starters[i].z+" "+starters[i].map,0);
+starters.remove_at(i);
+return;
+}
+if(starters[i].healthtimer.elapsed>=1000)
+{
+starters[i].healthtimer.restart();
+starters[i].health-=1;
+}
+}
+}
+void starterloop()
+{
+for(uint i=0; i<starters.length(); i++)
+{
+starters[i].loop(i);
+}
+}
+void spawn_starter(int x, int y, int z, string map)
+{
+fire_starter h1(x,y,z,map);
+starters.insert_last(h1);
+send_reliable(0,"spawn_platform "+x+" "+x+" "+y+" "+y+" "+z+" "+z+" "+map+" fire",0);
+//play("fire_starter_loop",starters[x].x,starters[x].y,starters[x].z,starters[x].map);
+}
+bool starter_exist_on(int x, int y, int z, string map)
+{
+for(uint i=0; i<starters.length(); i++)
+if(starters[i].x==x and starters[i].y==y and starters[i].z==z and starters[i].map==map) return true;
+return false;
+}

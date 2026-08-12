@@ -1,0 +1,26 @@
+mapname:demon_realm_level3
+maxx:200
+maxy:200
+maxz:300
+tile:0:200:0:200:-100:-100:hardwood
+cmusic:0:200:0:200:-85:-100:demon realm3.ogg:-12:100
+
+
+
+tile:0:200:0:200:-150:-150:hardwood
+tile:200:200:200:200:-150:-101:ladder3
+zone:0:200:0:200:-100:-90:the lower you go down, the more extreme the conditions become. already it is becoming hard to breathe, your breaths coming in short, desperate gasps. there is something seriously wrong with the air, and unfortunitly its not the only thing. the weather seems to be changing at the wims of this place. sometimes it is so hot that you think you might burn alive, other times you feel like you'll freez to death. a great physical exhertion falls upon you, and you realise that you will not be able to continue on for long
+zone:200:200:200:200:-100:-100:ladder leading down to the next level@trackme@
+
+tile:199:199:200:200:-150:-101:wallwood9
+tile:200:200:199:199:-150:-101:wallwood9
+tile:199:199:199:199:-150:-101:wallwood9
+cmusic:0:200:0:200:-135:-150:demon realm3.ogg
+zone:150:150:150:150:-150:-150:press shift plus enter to go to the next level@trackme@
+zone:200:200:200:200:-149:-50:ladder going down to the next level
+cmusic:0:200:0:200:-140:-140:chasm2.ogg
+travelpoint:150:150:150:150:-150:-150:demon_realm_level4:0:0:-150:one way or another, it all will be over soon
+noitems:0:3000:0:3000:-55550:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb
+noitems:0:3000:0:3000:-55550:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+robots:0:200:0:200:-100:-100:4:1000:doom_hunter,gargoyle,gladiator,hell_knight
+tile:0:200:0:200:-150:-150:hardwood

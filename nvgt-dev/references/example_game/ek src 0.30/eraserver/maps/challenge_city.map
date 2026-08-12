@@ -1,0 +1,25 @@
+mapname:challenge_city
+maxx:200
+maxy:0
+maxz:200
+tile:0:200:0:0:0:0:concrete
+src:0:200:0:0:20:200:md20.ogg
+zone:0:200:0:0:0:200:Challenge maps, search for map to complete, then get the items.
+travelpoint:0:0:0:0:0:10:safe_zone:100:100:0:done
+zone:0:0:0:0:0:10:go back to safe zone:trackme
+tile:30:30:0:0:0:0:ledge
+zone:30:30:0:0:0:10:Crossing the fire, upon completion you will get a number of health_box:trackme
+tile:60:60:0:0:0:0:ledge
+zone:60:60:0:0:0:10:The scary map.:trackme
+tile:90:90:0:0:0:0:ledge
+zone:90:90:0:0:0:10:The dangerous road.:trackme
+tile:120:120:0:0:0:0:ledge
+zone:120:120:0:0:0:10:Danger to strength.:trackme
+tile:150:150:0:0:0:0:ledge
+zone:150:150:0:0:0:10:Fly the copter.:trackme
+tile:180:180:0:0:0:0:ledge
+zone:180:180:0:0:0:10:Golden challenge.:trackme
+fightingstate:0
+noitems:0:200:0:200:-200:200:wirebomb:nuclear_bomb:mine:stun_dart:security_bomb:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:rocket_launcher:bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censor_bomb:stone:fire_starter:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:guided_missile:missile_interceptor:mine:hors:boat:tasing_small_projectile:small_projectile:elecboat:censor_bomb:frequency_scrambler:helicopter:fire_extinguisher:wood:sound_grenade:air_canister:gas_mask:shield:motion_bomb:police_motorcycle:speed_drink:arena_card:tank:aircraft:police_car:police_car_super:dogan_slx:sorento:old_car
+safezone:0:705032704:0:705032704:0:705032704
+//tile:151:151:0:0:0:20:wallair

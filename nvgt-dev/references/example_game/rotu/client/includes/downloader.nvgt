@@ -1,0 +1,63 @@
+#include "beep_percentage.nvgt"
+#include "functions.nvgt"
+#include "readable_size.nvgt"
+#include "speech.nvgt"
+bool spk=false;
+	string download_status;
+	http@ downloader;
+	string download_file(string url, string filename,bool quiet=false,string msg="Downloading. Press Space for percentage,1 2 and 3 keys for detailed progress, or escape to cancel. Press m to mute or unmute progress beeps. Press h to hear this message again.", bool s=false) {
+		@downloader=http();
+		downloader.get(spec::uri(url));
+		if (!quiet) speak(msg, spk);
+		float last_percentage=0;
+		int progbeeps=1;
+		while (downloader.running) {
+			wait(5);
+			check_status(s);
+			if (downloader.progress-last_percentage>=0.01) {
+				if (progbeeps==1 and downloader.progress>0) beep_percentage(downloader.progress*100);
+				last_percentage=downloader.progress;
+			}
+			if (key_pressed(KEY_ESCAPE)) {
+				download_status="canceled";
+				speak(download_status, spk);
+				downloader.reset();
+				return "";
+			}
+			if (key_pressed(KEY_1)) {
+				speak("File size: "+readable_size(downloader.response_headers.content_length), spk);
+			}
+			if (key_pressed(KEY_2)) {
+				speak("Total downloaded: "+readable_size(downloader.progress*downloader.response_headers.content_length), spk);
+			}
+			if (key_pressed(KEY_3)) {
+				speak("Total remaining: "+readable_size(downloader.response_headers.content_length-downloader.progress*downloader.response_headers.content_length), spk);
+			}
+			if (key_pressed(KEY_H)) {
+				speak(msg);
+			}
+			if (key_pressed(KEY_M)) {
+				if (progbeeps==1) {
+					progbeeps=0;
+					speak("Progress beeps muted.", spk);
+				} else {
+					progbeeps=1;
+					speak("Progress beeps unmuted.", spk);
+				}
+			}
+			if (key_pressed(KEY_SPACE)) {
+				if (downloader.progress>=0) {
+					speak(round(downloader.progress*100, 2)+" percent downloaded ("+readable_size(downloader.progress*downloader.response_headers.content_length)+" of "+readable_size(downloader.response_headers.content_length)+")", spk);
+				}
+			}
+		}
+		if (downloader.complete) {
+		file f;
+		f.open(filename, "wb");
+			f.write(downloader.response_body);
+			f.close();
+			download_status="finished";
+			speak(download_status);
+		}
+		return download_status;
+	}

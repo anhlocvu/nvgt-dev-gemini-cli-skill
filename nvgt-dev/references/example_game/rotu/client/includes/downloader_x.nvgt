@@ -1,0 +1,5 @@
+void download(string url, int hidden=0)
+{
+string params=url+" "+hidden;
+run("downloader.exe","Doh "+params,true,false);
+}

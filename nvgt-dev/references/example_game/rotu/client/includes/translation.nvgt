@@ -1,0 +1,24 @@
+string translate(string lang,string text)
+{
+string ret=text;
+if(lang=="English") return text;
+else{
+if(!file_exists("translations/"+lang+".txt")) return text;
+file f;
+f.open("translations/"+lang+".txt","rb");
+string transdata=f.read();
+f.close();
+string[]trans=string_split(transdata,"\r\n",false);
+for(uint i=0; i<trans.length(); i++)
+{
+string[]tr=string_split(trans[i],"=",false);
+tr[0]=string_replace(tr[0],"%u",username,true);
+if(tr.length()>1) tr[1]=string_replace(tr[1],"%u",username,true);
+if(string_contains(ret,tr[0],1)>-1 and ret.length()>1)
+{
+ret=string_replace(ret,tr[0],tr[1],true);
+}
+}
+}
+return ret;
+}

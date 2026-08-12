@@ -1,0 +1,17 @@
+name wendigo
+health 45000000
+defence 24000
+speed 400
+damage 8000000
+shieldhits 5000,5000
+shieldchance 0
+shoot 1000
+distance 20
+aggro 1000
+spread 6
+angle 360
+steps 0
+loot explosion
+amount 10
+voices 2
+xp 500000,600000

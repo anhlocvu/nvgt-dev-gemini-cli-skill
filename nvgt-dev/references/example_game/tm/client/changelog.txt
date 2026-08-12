@@ -1,0 +1,196 @@
+new in version 3.4:
+increased the timers on disasters. now they won't be as frequent as before.
+now you'll be able to track creatures up to fifty tiles rather than twenty.
+added natural disasters. these disasters can randomly occur anywhere. if a player is caught in such disasters they will die automaticly, as well as lose some items.
+demon kings can now hit other demon kings. in short it means that now if you launch the demon kings they won't just target the playrs, but will target their demon kings as well.
+added a creature arena! this arena is a lot different than the previous two arenas. while you can fight other players, your main goal remains to hunt a creature called the eoraptor and kill it. the player who first kills it completes the hunt, and wins a resurrection.
+decreased the range of the wand spells to fifty. now you only can use the spells on other players if they are fifty tiles away from you. a few unique spells are excluded from this however.
+added arena gifts! now, if you win ten times in the arena, the creature arena or the melee arena, a menu will pop up in front of you, from which you will be able to select a gift! current gifts are bomb defuser, mega missile, demention bomb, restoration orb, sourcerer's crown, and crystal teleporters.
+added an item called the sourcerer's crown. by using it the wand gets disabled on the entire server for thirty minutes. during this time only the person who used the crown can use the wand, leaving the other players helpless.
+added a bomb defuser. allows you to defuse all bombs on a map.
+added an item called mega missile. it has the ability to travel from one map to another, and to kill every player on the selected map. in other words, you can do target killing on the game now!
+added an item called the restoration orb. instently charges your wand energy to 100%.
+added demention bombs. once you activate them everyone on the game dies.
+added crystal teleporters. they allow you to be teleported throughout the maps of crystal city.
+fixed a strange bug which was causing a player to be stuck in multiple maps at the same time.
+stores are back to their previous form for the time being.
+removed dollar boxes as well as the bank, as after the termination of the two billian limit they don't play a role anyway.
+new in 3.3.1
+the final update of today. finally fixed everything.
+new in version 3.3
+fixed minor bugs.
+
+new in version 3.2:
+fixed stores
+new in version 3.1:
+recoded stores! made them a lot cooler then before. now it is possible to buy multiple items at the same time. you can also press shift plus enter to select a specific amount to buy. this system is also kapeable of using multiple currencies for payment. in the future as the game updates we may decide to create stores accepting payment such as gold, coins, or even items.
+recoded the character creation, loging in, and the settings menu to ad forms to them.
+New in version 3.0.5:
+Added help! Now when you type /help you will have several useful topics on the game at your disposal to be read! Currently, we have the topics of maps, quests, as well as some general topics. More topics will be coming soon. You can also request if you want a topic to be included.
+Fixed virtualiser. Now you can switch layouts while in a chatbox or menus.
+Added a command to check if double or custom xp is enabled or not. Type /xpstatus to check.
+Fixed the aura shield. Now the robots won’t stop finding you if you activate it.
+New in version 3.0.4.
+Changed the server for now.
+added the option to change your password! now you don't need to wait to ask the developers to change it. you can change it all by yourself. open the settings menu with f7, hit enter on change password. you will be asked to provide your old password, then type your new password, finally being asked to confirm your new password. if you do all three steps correctly your password will be changed.
+due to people forgetting their passwords the admins are now permitted to change a player's password if the player desires so. simply contact an admin if you are having trouble changing your password and they will take care of all the complicated stuff for you. after an admin changes your password a small dialogue will pop up before you, alerting you to your password being changed as well as providing you your new password.
+The look and trust system is back. we have fixed all the bugs which we were aware of, however we request that if you find something wrong with the system you report it to us, as it is a complicated system and we might have overlooked something which needs to be fixed. the commands are as follows. /look playername to watch a player, /stoplooking to stop watching the player, /trust to trust a player and /untrust to discard them from your trust list, and finally, /trustlist to see a list of people you trust.
+Fixed shelters. now you can access the shelter menu from the shelter manager, located inside your shelters. With this menu you can choose whom to allow inside, as well as make your shelter an alliance shelter, plus removing the players you do not wish to remain inside or able to enter.
+New in version 3.0.3:
+Fixed piano.
+Fixed all the voice chat bugs.
+Now, to turn off combat mode, press d.
+
+New in version 3.0:
+Okay, never expected to say this, but the entire game got recoded. Everything, from weapons to creatures has been recoded, and is improved and bug free now. The changes will be mentioned below.
+Voicechat is in the game now! Hold down the v key, record your message, release the key and boom! Your message will be heard by people in the range of 50 tiles.
+Now you can easily switch layouts! To do this, press alt shift. Yes, now the keyboard layouts are switched in a system way, that is, you will have such layouts that are installed in your system!
+added weapon slots on the number keys. now if you draw a weapon from your inventory, you will be able to draw it again from the number keys. this way you will have a bunch of weapons ready to be used without going through inventory or favorite items.
+Increased security.
+M116 death bringer is back! However now, it requires bullets.
+Added multi navigation menus. Now you can browse through the menus quickly to get to a certain item.
+Removed look and trust system for now. It’ll be back as soon as the lazy developers can fix it.
+Removed the two billion limit. Now you can collect as much items as you can. Due to this, dollar boxes are removed from the game. But don't worry! The boxes you have in your inventory already will not be removed!
+Added guided missiles! It is an item which you can use to target specific players, or specific coordinates.
+Added missile interceptors.
+Added the resurrection system. Now when your levels go above 1500, they will automatically be reset to one. In addition, you will gain a permanent +one million health. For example, a person gaining a rez for the first time would get his health from 50 million to 51 million, which would be permanent. Credit goes to the game constant battle, from which the idea has been taken. 
+Alert. All the levels of the players have been reset to 1, so that the rez system may work without any bugs.
+Added music volume control. Yes, we had a volume control before, but now we have two of them. One for controlling the volume of the music, the other to control the volumes of ambiences. Keys are f5 and f6, as well as shift f5 and shift f6.
+Recoded the favorite item system. Now, you use the favorite items with alt and the number keys. Putting favorite items is still on shift and numbers. The normal numbers work with your weapons. Whenever you draw a weapon from your inventory, it automatically gets on a number so you may use it quickly.
+Added stereo typing! Press f4 to enable or disable it while in the chatbox!
+Now when you open a chatbox you can navigate through words by pressing control with left or right arrow keys.
+Now alliances members can be hurt by each other if in arena.
+Added vanishing platforms! These platforms will only be there on map for a specific duration, and then they will disappear! So be careful!
+Added checkpoints to the builder menu. If you encounter a checkpoint and die afterwards, you'll be revived back at the checkpoint's location.
+Added clocks and calendars.
+Recoded the backup system. Now instead of backing up inventories the game will automatically back up all the players.
+Recoded health boosters. Now you can use only ten of them in a single life. After that they stop working. To use them again you must use /suicide or someone must kill you.
+Fixed the bgt runtime errors with creatures. Here’s to hoping the server won't crash so frequently now.
+Finally, finally! The bgt runtime error has been fixed! Now when you enter in to the maps the game will not crash randomly.
+Fixed the bug where shift enter failed to respond at some moments. In other words, fixed the legendary door bug!
+Fixed camera. Now it cannot go through walls.
+Added the commands for the staff to enable and disable weapons and bombs on the entire server.
+Recoded the sound sources. Now the administrators and managers can adjust the volume, as well as the pitch of the tracks on the game.
+Changed the key for checking air from alt a to alt r.
+Added the key to join the arena. Now when it’s opened you can use alt a to join it. Note, this doesn't apply to melee arena.
+Added a key to join the melee arena. Press alt +m to join whenever the melee arena is opened. Of course, this doesn't apply to the normal arena.
+Removed the alliance menu from the settings menu, bringing it to the shift u keys.
+Removed the f key from camera. now if you want to check on which coordinates your camera is, press v. this will not only tell you the coordinates but will also play the sound for the tile on which the camera is focused.
+Added new sounds for the wand menu. Also added some ambiences to be used on different maps.
+From now on, the keys for replying to the last message are changed. To reply to the last message now you will press shift r.
+Added the options to enable or disable fighting spells on maps for the staff.
+The stores in the shelters are back.
+New in version 2.5.
+Alert, alert! Piano is in the game! Yes, you heard correctly, piano is now in the game! You can play the piano, as if you were a professional pianist getting ready for your next performance! For now you may find the piano in your shelters. A music room will also be created for this. Enjoy!
+Added energy to wand. Now after casting each spell your wand will have to recharge its energy. To check the wand's energy press shift plus x.
+Added chests. Open them and get random items! These chests will be spawned in the battlefield at random times. To track them press m, and when near them, press k to open!
+Added brand new seven spells, with great and interesting things! Spells added are energy manipulator, crono cut, merlin’s defense, metal enhancer, mortality ascension, invisibility reverser, and wand blocker!
+Added a combat system. Now you can use the numpad keys as well as the top numbers to use different combos. Punching, kicking, smashing, we have it all! To turn the combat mode on, press the key d. please note that when you turn this on you will not be able to use the favorite item feature, neither the functions with alt and shift enter. However as soon as you turn off the combat mode those features will be back. To turn off the mode press backspace.
+The doors, signs, as well as travelpoints will work with shift enter from now on. No need for different keys.
+Fixed the sky 429 laser shotgun. Now it actually works..Yeah, it took us four updates to fix a single gun...apologies for that demonstration of stupidity in 2.0.
+Fixed the shelter menu. Now when you try to point your alliance to your shelter, it actually works instead of doing nothing.
+Modified the pacifist system. Now when you go offline or if the server reboots, your pacifist status will remain the same, only changing when you want it to.
+Recoded jump drinks. Now you can jump ten feet high after using them.
+Added creature mode. With this mode enabled you can fight different creatures without people disturbing you. In other words, when this is enabled you cannot attack players, neither can they attack you. To turn on this mode type /cfighton, to turn off type /cfightoff.
+Recoded weapon fire sounds playing. Maybe now the weapons will not lag that much.
+
+New in version 2.4.
+Fixed some bugs, nothing new really.
+New in version 2.3.
+Upgraded the server.
+Added an automatic backup system, as well as an automatic cleaning system. Now after every fifteen minutes the garbage will be collected automatically, the maps being rebooted all by themselves. Furthermore, every hour the backups will be taken automatically, of all the alliances, inventories, shelters and other server data.
+New in version 2.2.
+Rewrote the sound pool! The sound quality has improved, moving a little bit to the advanced side!
+Added the radio system! You can press alt page up to increase the radio stream volume and alt page down to decrease
+Buffer system has been rewritten!
+Recoded the buffers in such a way that if there are no messages in a buffer the buffer will not show. For example when you come online, the buffer for private message will not show, because that time you wouldn't have chatted with anyone.
+Added commands to take map backups! The staff can take backups of the entire game's map, so there is no chance of losing any data! Also added commands to delete the maps which mostly are spam or out of use so as to reduce the load on the server.
+Removed the old and useless spam player killing system, replacing it with a new one!
+Now you can check the ping for players! To do this, enter /ping <player name>
+For game staff, now the sound sources menu has become much faster.
+Added the sound source volume control! Use the f5 and f6 key to adjust the volume according to your choice! Have fun!
+Added bigdoors.
+Recoded the doors. Now for the staff members, there is an option to lock them with passwords. If a door is locked you will need to find its password, and then type it so it can be unlocked.
+Added signs in the build menu for staff. To read the signs posted at different places press alt plus enter. While the staff will create signs you can enjoy reading them.
+Added the warp box.
+Now the wand spells do not hit the alliance members!
+Added a map editor for the game staff. No need to use notepad for editing maps now!
+Added a buffer for local chats.
+Edited the connection menu. Now it’s faster than before.
+Now you can check the server's peak! To do this, enter /peak
+Added inventory’s backup system
+Now it is not necessary to enter email when creating an account, and if you want, you can specify your email in the settings menu that opens on f7
+new in version 2.1
+security updates.
+New in version 2.0.
+Added an item which everyone has been requesting since the launch of the game! Yes, yes! It’s the wand! The wand is officially in the game now! Use it to fight with others and reduce them to dust! It is a huge achievement and accomplishment of the massacre developers, as the massacre is the first 3d audio game having wand spells which can actually damage the players! Current spells are ultimate health, invisibility, supershield, freezing wave, aura shield, thunderstorm, shield smasher, acid curse, draconic fury, hell tunnel, reality warp, and aura blast! More spells will be added as the game updates.
+The story mode has been added! For now it contains five missions. More will be added as the game updates. The players completing the story mode get the wand as their ultimate reward!
+The vehicles now allow the use of weapons! Yes, you heard right! All the weapons have been enabled in vehicles. So yeah...now while piloting your aircraft or spaceship, you can shoot at someone from the sky, or shoot down someone from the sky...all the choices!
+Created the time system! Now the game time will be following the real-time. Meaning when it’s nighttime in actual life, it'll be the same in the game! All the malls/shops/markets will be closed in at night, opening back in the morning. Maps like the demon realm will only be open at nighttime, so as to increase and create a horrifying environment to suit the demon realm
+Added the status system to the game! Now you can type a short message as your status, and other players will be able to read it. To set your status, go to the settings menu and hit enter on status menu.
+Finally added a train system! Use the train to travel to different places!
+Added a brand new bomb, called the cosmic bomb! This bomb kills every single player on the map, however, it does not damage the player who launches it
+Restricted the use of links in the public chat. Now if your message includes a link you won't be able to send it. Link sharing is not allowed on the game anyway. The only people doing it are hackers and crashers, and honestly speaking nobody wants them around. Here’s to hoping these guys realize they can't stop the game through their pathetic attempts!
+Added the land of the sealed. Another place where the fantasies become true! The creatures here include dinosaurs, ancient birds, Greek creatures, and all sorts of other powerful and interesting creatures!
+Added a total of 65 new creatures. Find different ones through exploring the game!
+Added the demon realm. Can be accessed through the new city. Fair warning, it scared the daylights out of all the staff, so be careful while entering!
+Now the alliance members will not be damaged by each other's weapons. Note that this does not apply to bombs or any other explosive devices, because yeah...it’s an alliance, not a super hero club. Everyone dies when its boomtime
+The battlefield now has bomb towers! If you climb on a tower and press shift plus enter, a bomb will be launched automatically! To launch a bomb from the tower, it is not necessary to have bombs in your inventory!
+Added the look and trust system, a 100% bug free look and trust system to be exact! The commands are as follows. /trust player name to trust, /look player name to look, and /lookstop to stop looking. Have fun!
+Added an item called deception mist. It lets you fake you your own death. When you use it the entire server receives the death message of you dying, however in reality you do not die at all
+Added a melee arena. It’s similar to the normal arena, the prime difference being that you can only use melee weapons here. Of course a melee arena would be totally useless without melee weapons, so added 11 new melee weapons! Have fun guys!
+The prices of items, weapons, and almost everything have been reduced drastically. Now you don't have to pay a crazy amount for a weapon which you're only gonna use for a week and then replace it with a newer one.
+Shelters are back! Gonna be honest here. Currently they don't have any bugs, but if something goes wrong with them in the future they'll be disabled. Putting a huge amount of your stuff or your entire inventory in the shelters is not advised.
+Added a new city to the game. It got all sorts of new and interesting things, so don't forget to check it out
+Added three new challenges
+The report and request commands have been modified to be a little easier and effective. Now if you want to request something or wish to report a bug, use semicolon and shift semicolon to do so. Note that as soon as you report or request anything the admins and developers will be notified, so you will receive a reply to your messages at a quicker speed. 
+Added a shop called the seller's corner. Through its services you can sell the items you no longer require anymore
+Added three new machineguns.
+Added two new lasers.
+On the request of players, we have brought back the sky 429 laser shotgun! Its powerful, it’s reliable, and it’s high in demand!
+Added skateboards in the stores! Enjoy!
+Added an item called explosion in the mall. It is a bomb which explodes as soon as you use it... no timer at all.
+Added fist and feet to the game. Use the grave key to shift between them and beat the stuffing out of everyone. Fistfights rule!
+Added poison and burn cure to the pharmacy. These items can be used to heal yourself if you are poisoned or burnt
+Added a baseball bat in the weapon stores. Have fun beating the stuffing out of one another.
+Completely rewrote the player menu that opens on shift t. Now, you can press f1 on the player to see which map they are on, F2, to find out their level and rank, F3, to find out how many deaths and kills they have, F4, to find out which language channel they are in, Alt m, to add the player to the mute list, alt u, to remove the player from the mute list, Enter, to write a private message, and Ctrl c, to copy the player's nickname to the clipboard!
+Added fishing to the game! Enjoy at the different fishing spots in the cities! Have a fantastic time!
+Added throwing knives to the game. Personally, the staff likes it very much, and would love to hear your opinions!
+Added a new weapon. The throwing star
+Added sensor bombs to the game! These bombs explode when people are nearby.
+Added mines. Place them on different areas of the map and they will explode if someone steps on them. Note that you can place five mines on a tile.
+Added teleporters. Buy them from the mall and travel to any map you desire in just a few seconds!
+You were missing those sword fights in which everyone was smashed over and over with a blade? Well, so were we! Added sword in the game, with complete new sounds! Expect some great tournaments and sword fighting events from now on!
+Added a bow to the weapons collection in the mall. Use it to become the best archer around!
+Added sat bombs and their remote. It’s really a cool item, being a remote bomb which you can detonate whenever you want...yeah, that's gonna spread some major chaos out there.
+Added two new pistols. They can be bought from the mall
+Added jump drinks to the game!
+
+new in 1.7.5
+Security updates
+New in 1.7.3
+Redesigned level system!
+In the notifications menu, options have been added to enable and disable level up alerts, and death messages
+Fixed some bugs with level up sounds
+Messages about killing robots have been removed, because it is very annoying
+Added sound updater
+
+new in 1.7.1
+Fixed admintell
+New in 1.7.1
+Fixed admintell
+New in 1.7.
+Changed the server
+Added arena in the game. Now you can earn money through the various fights!
+You can press shift a, to find out how many people are in the arena
+Recoded buffers.
+Added new buffers for local and private chats, connection and disconnection, notifications, and admintell.
+Added script keys! Press alt f2 to enable or disable scripting!
+The bug of game freezing has been fixed. Now if you press f7 the game will not freeze.
+Changed the tracking system. Now if you press w it only tells you the coordinates and not the zones, as the zones are really descriptive.
+Fixed some map bugs
+New in 1.6
+Added speed drinks!
+Fixed the client lag
+New in 1.5
+Relaunched the game after that entire crashing fiasco. Script kitties aren’t gonna stop this game.

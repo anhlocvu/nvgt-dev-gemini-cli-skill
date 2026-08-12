@@ -1,0 +1,22 @@
+mapname:final_path
+maxx:300
+maxy:300
+maxz:300
+tile:0:300:0:300:0:0:hardwood
+tile:0:300:0:300:-250:-250:hardwood
+cmusic:0:300:0:300:-230:-200:demonic_chanting.ogg:-12:100
+zone:0:300:0:300:-300:-200:on the other side of this path waits the demon king. the strongest fow you have yet to face, his power exceeds anything you can imagine. heal your health. rest. because once you cross the threshold, you can only leave if you have killed the demon king. chant your prayers. say your farewells to your friends, because in a fight like this? the chances of you achieving victory are very, very slim
+src:0:300:0:300:-245:-50:chasm2.ogg:-10:100
+zone:300:300:300:300:-500:-250:ladder leading down to the entrence to the king's lair
+zone:300:300:300:300:-250:-300:ladder leading down to the entrence of the kings lair@trackme@
+tile:300:300:300:300:-300:-250:ladder3
+src:0:300:0:300:-300:-300:chasm2.ogg:-10:100
+tile:299:299:299:299:-300:-249:wallwood9
+tile:299:299:300:300:-300:-249:wallwood9
+tile:300:300:299:299:-300:-249:wallwood9
+zone:300:300:300:300:-300:-300:press shift plus enter to begin the fight@trackme@
+travelpoint:300:300:300:300:-300:-300:the_kings_lair:0:0:-300:do your best!
+noitems:0:3000:0:3000:-55550:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb
+noitems:0:3000:0:3000:-55550:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+
+tile:0:300:0:300:-300:-300:hardwood2

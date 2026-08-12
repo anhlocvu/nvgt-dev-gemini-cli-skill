@@ -1,0 +1,15 @@
+mapname:the_mechanic's_shop
+maxx:100
+maxy:0
+maxz:100
+tile:0:100:0:100:0:0:carpet
+zone:0:100:0:100:0:100:different spair parts are scattered here and there. the noise is very loude here. people can be seen in side the shop, waiting for their turn so their vehicles can be repaired
+zone:100:100:0:0:0:100:press shift plus enter to buy repairing items so you can repair your vehicles by yourself@trackme@
+zone:0:0:0:0:0:100:go back to the city@trackme@
+fightingstate:0
+
+tile:0:100:0:100:0:0:cement
+travelpoint:0:0:0:0:0:0:evermore_city:500:500:0:welcome!
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb

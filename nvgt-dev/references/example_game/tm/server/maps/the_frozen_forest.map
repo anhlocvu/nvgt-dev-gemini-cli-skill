@@ -1,0 +1,31 @@
+mapname:the_frozen_forest
+maxx:500
+maxy:500
+maxz:500
+tile:0:500:0:500:0:0:snow_wet
+zone:0:500:0:500:0:500:the grass is frozen beneath your feet, ice covering the entire forest in a cold blanket.
+src:0:500:0:500:0:500:anime174.ogg:-10:100
+door:300:400:300:400:0:0:450:450:0:30:none.ogg:none.ogg:none.ogg:none.ogg:wit beyond mesure, is man's greatest tresure
+tile:0:500:401:449:0:50:wallrocks2
+tile:401:449:0:500:0:50:wallrocks2
+sign:10:10:0:the area to the far end has been seeled. you will need the correct phraize, meaning the passcode to unseel it. different signs are scattered here and there. each of them have a short phraize, but only one is the correct one.
+sign:60:60:10:tosser
+sign:28:28:0:power corrupts. absolute power corrupts absolutely
+zone:10:10:10:10:0:0:a small sign. press alt enter to read it@trackme@
+zone:28:28:28:28:0:0:a fallen piece of paper. press alt enter to read it@trackme@
+sign:40:40:0:evil does not arise from darkness. humanity is the harbenger for it.
+zone:40:40:40:40:0:0:small, ancient simbles seemed to be carved on this part of the ground. press alt enter to have a closer look@trackme@
+zone:100:100:100:100:0:0:another sign. press alt enter to read it@trackme@
+sign:150:150:0:when things are uncertain, look around. hope can come from anywhere
+zone:150:150:150:150:0:0:one more sign@trackme@
+sign:250:250:0:power is a mere tool. choices however, change the world.
+zone:250:250:250:250:0:0:the last sign@trackme@
+zone:300:400:300:400:0:0:press alt enter to activate the door@trackme@
+zone:500:500:500:500:0:0:press shift plus enter to continue@trackme@
+travelpoint:500:500:500:500:0:0:volcano:0:0:0:beware and be careful!
+travelpoint:0:0:0:0:0:0:crystal_city:150:150:0:you might want to try later
+fightingstate:0
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb:throwing_star:kings_statue:demon_king
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+
+sign:100:100:0:wit beyond mesure, is man's greatest tresure

@@ -1,0 +1,65 @@
+mapname:hidden_cave
+maxx:500
+maxy:450
+maxz:500
+zone:0:500:0:500:0:500:hidden Cave.
+tile:0:500:0:500:0:0:cave
+tile:0:500:20:40:0:20:cave
+tile:0:500:45:60:22:40:cave
+tile:0:500:61:80:42:60:cave
+tile:0:500:85:100:60:60:cave
+tile:0:500:105:120:63:70:cave
+src:0:500:0:500:0:500:cave.ogg
+tile:0:500:125:130:70:80:cave
+tile:0:500:135:140:80:80:cave
+tile:0:500:145:150:82:90:cave
+tile:0:500:155:170:80:90:cave
+tile:0:500:175:180:75:75:cave
+tile:0:500:185:190:60:70:cave
+tile:0:500:195:200:60:60:cave
+tile:0:500:207:210:62:65:cave
+tile:0:500:217:220:55:55:cave
+tile:0:500:227:227:45:45:cave
+tile:0:500:237:237:45:45:cave
+tile:0:500:247:250:40:42:cave
+tile:0:500:260:265:30:35:cave
+tile:0:500:270:270:20:20:cave
+tile:0:500:280:280:15:20:cave
+tile:0:500:285:285:0:15:cave
+tile:0:500:290:320:-25:0:water
+tile:0:500:289:289:-25:-1:wallunderwater
+tile:0:500:321:321:-25:-1:wallunderwater
+src:0:500:290:320:-25:-10:underwater.ogg
+src:0:500:290:320:0:30:stream2.ogg
+zone:0:500:290:320:0:30:A small river:trackme
+zone:0:500:290:320:-25:-1:Underwater:trackme
+robots:0:500:290:320:0:0:5:2000:bear
+tile:0:500:300:300:-10:50:wallstone2
+zone:0:500:299:299:-10:50:uups! Here the passage is blocked! maybe you should do something else?:trackme
+tile:0:500:320:320:-25:0:water
+zone:0:500:320:320:-25:-1:A staircase, the only one way to go up.:trackme
+zone:0:500:301:301:-10:50:Uups! Here the passage is blocked! maybe you should do something else?:trackme
+tile:0:500:350:400:-25:0:water
+tile:0:500:349:349:-25:-1:wallunderwater
+tile:0:500:401:401:-25:-1:wallunderwater
+src:0:500:350:400:-25:-10:underwater.ogg
+src:0:500:350:400:0:30:stream2.ogg
+zone:0:500:350:400:0:30:A small river:trackme
+zone:0:500:350:400:-25:-1:Underwater:trackme
+tile:0:500:360:360:-10:50:wallstone2
+zone:0:500:359:359:-10:50:Uups! Here the passage is blocked! maybe you should do something else?:trackme
+tile:0:500:400:400:-25:0:water
+zone:0:500:400:400:-25:-1:A staircase, the only one way to go up.:trackme
+tile:0:50:330:350:-25:-25:water:trackme
+tile:0:50:330:330:-25:-20:wallsofa
+zone:0:50:330:350:-25:-15:underwater:trackme
+tile:16:16:320:350:-15:-15:water
+zone:16:16:320:330:-15:-5:tunnel:trackme
+tile:0:50:324:328:-5:-20:wallcorpse
+tile:0:500:401:500:0:0:concrete14
+tile:16:16:331:331:-20:0:wallstone2
+tile:16:16:330:350:-10:0:wallwoodcrate
+travelpoint:0:50:450:450:0:0:mountain:25:200:0:After a long adventure full of challenges, finally you arrive at the hend, and you came back at the starting point!
+zone:0:50:450:450:0:10:The only one travelpoint in this cave that allows you to come back at the beginning!:trackme
+tile:0:500:290:320:-25:-1:underwater
+noitems:0:500:0:500:0:500:elecboat

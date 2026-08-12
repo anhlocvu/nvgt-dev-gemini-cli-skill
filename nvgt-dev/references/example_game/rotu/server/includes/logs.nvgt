@@ -1,0 +1,18 @@
+file logger;
+void log_entry(string logname,string logdata,bool has_path=false,string path="")
+{
+if(!directory_exists("logs")) directory_create("logs");
+if(!has_path or path=="")
+{
+logger.open("logs/"+logname+".log","ab");
+logger.write(logdata+" : "+get_current_date()+"\r\n");
+logger.close();
+}
+else
+{
+if(!directory_exists(path)) directory_create(path);
+logger.open(path+"/"+logname+".log","ab");
+logger.write(logdata+" : "+get_current_date()+"\r\n");
+logger.close();
+}
+}

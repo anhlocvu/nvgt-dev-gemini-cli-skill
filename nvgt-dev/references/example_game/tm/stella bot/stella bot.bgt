@@ -1,0 +1,478 @@
+#include"includes/virtualizer.bgt"
+#include"includes/dateandtime.bgt"
+#include"sound_pool.bgt";
+#include"includes/sounds.dat"
+#include"includes/m_pro.bgt"
+#include"includes/commands.dat"
+#include"includes/sd.bgt"
+#include"includes/buffer.bgt"
+string state="";
+string key="+-loltrytodecryptthis..";
+sound_pool p;
+int hide=0;
+int debug=0;
+key_hold kPERIOD(KEY_PERIOD,300,30);
+key_hold kCOMMA(KEY_COMMA,300,30);
+network@ n;
+network_event e;
+const string netaddress="darkserver.ru";
+int netport=15151;
+timer connecttimer;
+vector me;
+bool connected=false;
+bool prior_connected=false;
+int connecttime=10000;
+string mapname="admin_area";
+bool admin=false;
+uint peer_id=0;
+string netver="3.0.4";
+int mres;
+dynamic_menu_pro menu;
+string[] lines;
+string[][] commands;
+int counter=0;
+int[] lc;
+string[][] final;
+int default_lines_length=0;
+savedata sd("botconfig.dat","youwillneverdecryptthis");
+file f;
+bool shouldispeak=true;
+string logname;
+virtualizer v;
+network tempnet;
+network t;
+void cmenu()
+{
+menu.enable_up_and_down=true;
+menu.enable_multi_letter_navigation=true;
+menu.wrap=false;
+menu.repeat_items_at_edges=true;
+menu.enable_home_and_end=true;
+menu.speak_position_information=false;
+for(int i=0; i<contents.length(); i++)
+{
+if(contents[i]=="\n")
+{
+if(lines.length()==0)
+{
+final.insert_last(string_split(contents, "\r\n", false));
+lines.insert_last(final[0][0]);
+final.resize(0);
+}
+else
+{
+final.insert_last(string_split(contents, "\r\n", false));
+lines.insert_last(final[0][counter]);
+final.resize(0);
+}
+counter++;
+}
+else
+{
+continue;
+}
+}
+default_lines_length=lines.length();
+for(int i=0; i<lines.length(); i++)
+{commands.insert_last(string_split(lines[i], "=", true));
+lc.insert_last(i);
+}
+commands.resize(lines.length());
+for(int i=0; i<lines.length(); i++)
+{
+menu.add_item_tts(commands[i][0],"command"+i);
+}
+menu.add_item_tts("back to bot ui", "back");
+mres=menu.run("bot commands dialog", true);
+string item=menu.get_item_name(mres);
+if(item=="back" or mres==0)
+{
+game();
+}
+if(item=="command"+lc[menu.menu_position-1])
+{
+send(0,commands[menu.menu_position-1][1],1);
+menu.reset(false);
+commands.resize(0);
+lines.resize(0);
+lc.resize(0);
+counter=0;
+}
+}
+void login()
+{
+if(connected==false and prior_connected==false)
+{
+speak("connecting to server");
+if(n.active)
+reset_network();
+n.setup_client(20, 500);
+n.connect(netaddress, netport);
+if(get_last_error()!=0)
+{
+alert("error","network failed to initialize. Error code: "+get_last_error());
+exit();
+}
+}
+if(connected==true or prior_connected==true)
+{
+e=n.request();
+send(0, "login stella stella "+netver+" X5yk327jmFjT2vPI8WcwHWwUbHw", 0);
+}
+connecttimer.restart();
+while(true)
+{
+wait(5);
+e=n.request();
+if (key_pressed(KEY_ESCAPE))
+{
+exit();
+}
+if(e.type==event_connect and connected==false)
+{
+peer_id=e.peer_id;
+speakwrite("server has accepted connection. Sending login prompt...");
+send(0, "login stella stella "+netver+" X5yk327jmFjT2vPI8WcwHWwUbHw", 0);
+connected=true;
+p.play_stationary("connect.ogg",false);
+}
+else if(e.type==event_receive and get_event_message()=="loggedin")
+{
+checkall();
+}
+else if(e.type==event_receive and string_contains(get_event_message(),"Error",1)>-1)
+{
+alert("error",get_event_message());
+f.write("server returned an error: "+get_event_message());
+exit();
+}
+if(connecttimer.elapsed>=connecttime)
+{
+alert("Error","Oops, i can't connect to the server.");
+exit();
+}
+else if(e.type==event_receive)
+{
+string[] parsed=string_split(get_event_message(), " ", false);
+if(parsed.length()>1)
+{
+if(parsed[0]=="x")
+{
+me.x=string_to_number(parsed[1]);
+}
+else if(parsed[0]=="y")
+{
+me.y=string_to_number(parsed[1]);
+}
+else if(parsed[0]=="z")
+{
+me.z=string_to_number(parsed[1]);
+}
+else if(parsed[0]=="mapname")
+{
+mapname=parsed[1];
+}
+}
+}
+}
+}
+void speakwrite(string data)
+{
+if(shouldispeak) speak(data);
+fwrite(data);
+}
+void fwrite(string data)
+{
+f.open(logname,"ab");
+f.write(data+"\r\n");
+f.close();
+}
+void main()
+{
+state="connecting...";
+create_buffer("all");
+create_buffer("chat");
+create_buffer("misc");
+create_buffer("kills");
+create_buffer("pm");
+create_buffer("ADM");
+set_sound_storage("*");
+set_sound_decryption_key("stellaflasdjfslkfjdfifusdapiufydsauifyadhd", true);
+show_game_window("tm stella bot, "+state);
+@n=tempnet;
+@n=t;
+logname=DIRECTORY_MY_DOCUMENTS+"/tm stella bot logs/"+string_replace(get_date(true,false),"/","-",true)+" - "+string_replace(get_time(true,false),":"," ",true)+".txt";
+fwrite("program started. Connecting to server...");
+login();
+}
+void exitgame()
+{
+send(0, "close", 0);
+p.play_stationary("exit.ogg",false);
+atd();
+wait(1000);
+exit();
+}
+void checkall()
+{
+rfd();
+speakwrite("connected!");
+send(0, "newplayer "+me.x+" "+me.y+" "+me.z+" "+mapname+" stella "+netver+" X5yk327jmFjT2vPI8WcwHWwUbHw", 0);
+send(0,"admincheck",0);
+if(hide==0)
+{
+send(0,"stellacheck",0);
+}
+game();
+}
+void game()
+{
+state="connected!";
+show_game_window("tm stella bot, "+state);
+while(true)
+{
+netloop();
+if(key_pressed(KEY_F1))
+{
+menu.reset(false);
+commands.resize(0);
+lines.resize(0);
+lc.resize(0);
+counter=0;
+cmenu();
+}
+if(key_pressed(KEY_F2))
+{
+if(hide==0)
+{
+hide=1;
+send(0,"/hideme",1);
+speak("done");
+atd();
+}
+else
+{
+hide=0;
+send(0,"/unhideme",1);
+speak("done");
+atd();
+}
+}
+if(key_pressed(KEY_F3))
+{
+if(debug==0)
+{
+debug=1;
+speak("debug mode enabled");
+atd();
+}
+else
+{
+debug=0;
+speak("debug mode disabled");
+atd();
+}
+}
+if(key_pressed(KEY_F4))
+{
+speak("Copyed");
+copy_buffer_item();
+}
+if (key_up(KEY_LSHIFT) and key_up(KEY_RSHIFT))
+{
+if (key_pressed(KEY_LBRACKET))
+{
+if (key_down(KEY_LSHIFT) or key_down(KEY_RSHIFT))
+{
+firstbuffer();
+}
+else
+{
+bufferleft();
+}
+}
+if (key_pressed(KEY_RBRACKET))
+{
+if (key_down(KEY_LSHIFT) or key_down(KEY_RSHIFT))
+{
+lastbuffer();
+}
+else
+{
+bufferright();
+}
+}
+if (kCOMMA.pressing())
+{
+prevbufferitem();
+}
+if (kPERIOD.pressing())
+{
+nextbufferitem();
+}
+}
+if (key_down(KEY_LSHIFT) or key_down(KEY_RSHIFT))
+{
+if (key_pressed(KEY_COMMA))
+{
+topbufferitem();
+}
+if (key_pressed(KEY_PERIOD))
+{
+bottombufferitem();
+}
+}
+if(key_pressed(KEY_ESCAPE))
+{
+speak("exiting");
+fwrite("program exited - "+get_date(true,false)+" - "+get_time());
+exitgame();
+}
+if(key_pressed(KEY_SPACE))
+{
+if(shouldispeak)
+{
+shouldispeak=false;
+speak("speech off");
+}
+else
+{
+shouldispeak=true;
+speak("speech on");
+}
+}
+if(key_pressed(KEY_RETURN))
+{
+if(key_up(KEY_RSHIFT)&&key_up(KEY_LSHIFT))
+{
+string temp=v.input("type your message to be sent over chat");
+if(temp!="") send(0,temp,1);
+}
+else
+{
+string temp=v.input("type your message to be sent over the event channel");
+if(temp!="") send(0,temp,0);
+}
+}
+wait(5);
+}
+}
+void netloop()
+{
+e=n.request();
+if(e.type==event_receive&&e.channel==1)
+{
+add_buffer_item("chat",get_event_message());
+speakwrite("chat: "+get_event_message());
+p.play_stationary("chat.ogg",false);
+}
+else if(e.type==event_receive&&e.channel==2)
+{
+add_buffer_item("misc",get_event_message());
+speakwrite("misc: "+get_event_message());
+p.play_stationary("misc.ogg",false);
+}
+else if(e.type==event_receive&&e.channel==0)
+{
+if(debug==1)
+{
+speakwrite("all: "+get_event_message());
+}
+add_buffer_item("all",get_event_message());
+string[] parsed=string_split(get_event_message()," ",true);
+if(parsed[0]=="online")
+{
+string who;
+for (uint i=2; i<parsed.length(); i++)
+{
+who+=parsed[i]+" ";
+}
+string mes=who+" came online.";
+speakwrite(mes);
+p.play_stationary("online.ogg",false);
+}
+else if(parsed[0]=="offline")
+{
+string who;
+for (uint i=2; i<parsed.length(); i++)
+{
+who+=parsed[i]+" ";
+}
+string mes=who+" went offline.";
+speakwrite(mes);
+p.play_stationary("offline.ogg",false);
+}
+else if(parsed[0]=="adm")
+{
+string msg;
+msg=string_replace(get_event_message(),"adm ","",false);
+speakwrite(msg);
+p.play_stationary("adm.ogg",false);
+add_buffer_item("ADM",msg);
+}
+else if(parsed[0]=="isadmin")
+{
+admin=true;
+}
+else if(parsed[0]=="playerdeath")
+{
+string msg=string_replace(get_event_message(),"playerdeath ","",true);
+speakwrite("Kills: "+msg);
+p.play_stationary("kills.ogg",false);
+add_buffer_item("kills",msg);
+}
+else if(parsed[0]=="pm")
+{
+string msg=get_event_message();
+msg=string_replace(msg, "/reply ", "", false);
+msg=string_replace(msg, "/r ", "", false);
+speakwrite(msg);
+p.play_stationary("pm.ogg",false);
+add_buffer_item("pm",msg);
+}
+}
+}
+void reset_network(){ 
+n.disconnect_peer(0);
+connecttimer.restart();
+peer_id=0;
+n.destroy();
+prior_connected=false;
+connected=false;
+@n=null;
+network t;
+@n=t;
+}
+void rfd()
+{
+sd.load();
+if(sd.d.exists("hide"))
+{
+hide=sd.readn("hide");
+}
+if(sd.d.exists("debug"))
+{
+debug=sd.readn("debug");
+}
+}
+void atd()
+{
+sd.add("hide",hide);
+sd.add("debug",debug);
+sd.save();
+}
+void send(uint peer, string mess, uint channel)
+{
+mess=string_encrypt(mess, key);
+n.send_reliable(peer, mess, channel);
+}
+string get_event_message()
+{
+string r=e.message;
+if(r=="")
+{
+return "";
+}
+r=string_decrypt(r, key);
+return r;
+}

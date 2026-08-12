@@ -1,0 +1,27 @@
+mapname:the__redentra_desert
+maxx:50
+maxy:50
+maxz:50
+tile:0:50:0:50:0:0:grass
+zone:0:50:0:50:0:50:redentra_desert
+tile:0:50:0:50:0:0:sand2
+src:0:50:0:50:0:50:Desert Wind Day.ogg
+travelpoint:50:50:50:50:0:0:the_temerial_sea:1500:0:0:the temerial sea
+zone:50:50:50:50:0:0:the_temerial city sea:trackme
+travelpoint:0:0:50:50:0:0:the_gates:300:0:0:the_gates
+zone:0:0:50:50:0:0:the castle gates:trackme
+travelpoint:0:0:0:0:0:10:the_redentra_desert:0:4000:0:done
+zone:0:0:0:0:0:10:the_redentra_desert:trackme
+noitems:0:50:0:50:0:50:wirebomb:motion_bomb:nuclear_bomb:mine:stun_dart:remote_timebomb:security_bomb:remote_gun:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:rocket_launcher,bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:wood:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censorbomb:stone:fire_starter:censor_bomb:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:ford
+fightingstate:0
+noitems:0:50:0:50:0:50:elecboat
+noitems:0:50:0:50:0:100:police_motorcycle
+
+travelpoint:50:50:0:0:0:0:the__redentra_desert_gate:0:0:0:the redentra desert gate
+zone:50:50:0:0:0:0:the_redentra_desert_gate:trackme
+noitems:0:50:0:50:0:50:hors:boat
+noitems:0:50:0:50:0:10:arena_card
+noitems:0:50:0:50:0:10:helicopter
+noitems:0:50:0:50:0:10:tasing_small_projectile
+noitems:0:50:0:50:0:10:small_projectile
+jump:0:50:0:50:0:4:0

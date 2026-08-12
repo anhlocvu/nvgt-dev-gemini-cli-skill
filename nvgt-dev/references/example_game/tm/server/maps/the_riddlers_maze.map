@@ -1,0 +1,86 @@
+mapname:the_riddlers_maze
+maxx:5000
+maxy:5000
+maxz:5000
+zone:0:11111:0:11111:0:11111: at first glance, it seems a normal cave, with different pathways. however those who have spent a long time here, they know that it is nothing but normal. it is a long and twisting maze, with nothing at all being what it seems. there are various traps to confuse the mind, and you will need all your cunning and tact to get out of this one.
+tile:0:300:0:300:0:0:carpet
+
+tile:0:300:0:300:0:0:cave
+tile:51:51:0:100:0:50:wallrocks3
+tile:50:50:80:80:-10:-1:gravel4
+travelpoint:50:50:80:80:-10:-10:the_riddlers_maze:100:100:0:hmm. you managed to find this travelpoint. but let's see what you can do next.
+zone:50:50:80:80:-10:-10:press shift enter hear
+tile:100:200:100:200:0:0:cave
+tile:100:200:99:99:0:100:wallrocks2
+tile:99:99:99:150:0:100:wallrocks2
+tile:99:200:151:151:0:100:wallrocks3
+tile:201:201:100:150:0:100:wallrocks2
+tile:180:180:130:130:-10:-1:cave
+zone:180:190:130:140:-10:-10:a path leading to multiple locations. however nothing is what it seems, as most of them are not the correct ones. choose wisely, as only a single one leads to the right location. press shift plus enter when you stand on one of the paths
+tile:179:179:130:140:-10:-1:wallrocks
+tile:180:200:130:150:-10:-10:concrete28
+tile:179:190:141:141:-10:-10:wallrocks
+tile:191:191:130:141:-10:-1:wallrockdirt
+tile:179:190:129:129:-10:-1:wallrocks
+tile:2000:3000:2000:3000:0:0:fi
+tile:180:180:130:130:-9:-1:ladder2
+travelpoint:185:185:130:130:-10:-10:the_riddlers_maze:2000:2000:200:you chos the rong one, tosser. now die
+zone:185:185:130:130:-10:-10:path 1
+zone:180:180:135:135:-10:-10:another path
+travelpoint:180:180:135:135:-10:-10:the_riddlers_maze:2000:2000:150:die again!
+travelpoint:180:180:140:140:-10:-10:the_riddlers_maze:2000:2000:140:die again
+zone:180:180:140:140:-10:-10:another way
+tile:185:185:140:140:-10:-10:cave
+zone:185:185:140:140:-10:-10:another way
+zone:190:190:135:135:-10:-10:another way or path. whatever. because it can be your death so
+zone:185:185:135:135:-10:-10:another path
+travelpoint:185:185:135:135:-10:-10:the_riddlers_maze:500:500:100:awsome. you managed to find the right way. good luck for the next challenges
+tile:500:1000:500:1000:100:100:cave
+tile:499:499:500:600:100:150:wallrocks2
+tile:500:600:499:499:0:150:wallrocks2
+tile:601:601:500:600:0:150:wallrocks2
+tile:500:600:601:601:100:150:wallrocks3
+tile:501:600:500:600:100:100:fi
+tile:500:500:501:600:100:100:fi
+tile:502:502:510:510:100:100:cave
+tile:510:510:510:510:100:100:cave
+tile:510:510:525:525:100:100:cave
+tile:520:520:525:525:100:100:cave
+tile:525:525:530:530:100:100:cave
+tile:533:533:534:534:100:100:cave
+tile:535:535:545:545:100:100:cave
+tile:550:550:545:545:100:100:cave
+tile:550:550:545:550:101:120:concrete27
+tile:550:550:550:550:100:100:cave
+tile:560:560:554:554:100:100:cave
+tile:565:565:562:562:100:100:cave
+tile:565:565:576:576:100:100:cave
+tile:570:570:580:580:100:100:cave
+tile:573:573:588:588:100:100:cave
+tile:582:582:592:592:100:100:cave
+tile:559:595:593:593:100:100:cave
+tile:595:600:593:600:115:115:cave
+tile:595:595:593:593:100:115:cave
+zone:590:600:590:600:115:115:the last challenge. choos the right path or take the gift. or. just take the rong one and die! 
+travelpoint:600:600:595:595:115:115:the_riddlers_maze:2000:2000:150:hahahahahahhaa! you chos the rong one. now die!
+zone:600:600:595:595:115:120:path 2
+travelpoint:595:595:595:595:115:115:the_riddlers_maze:2000:2000:150:hahahahahahahaha! you chos the rong one! now die!
+zone:595:595:595:595:115:115:path1
+travelpoint:600:600:600:600:115:115:the_riddlers_maze:2000:2000:150:bad luk, tosser, die
+zone:600:600:600:600:115:115:path3
+zone:595:595:600:600:115:115:path4
+
+src:0:2000:0:2000:15:60:amb16.ogg:0:100
+cmusic:0:4000:0:4000:0:80:anime66.ogg:100
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+fightingstate:0
+tile:594:594:590:600:115:150:wallrocks3
+tile:595:600:590:592:114:150:wallrocks3
+tile:590:700:601:640:114:150:wallrocks
+tile:0:100:101:110:0:50:wallrocks3
+
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+noitems:0:55555:0:55555:0:55555:warp_box
+noitems:0:55555:0:55555:0:55555:throwing_star

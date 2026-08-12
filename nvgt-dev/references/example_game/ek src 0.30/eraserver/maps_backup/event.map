@@ -1,0 +1,9 @@
+mapname:event
+maxx:500
+maxy:500
+maxz:1000
+tile:0:500:0:500:0:0:concrete
+zone:0:500:0:500:0:1000:event
+src:0:500:0:500:0:1000:park3.ogg
+zone:0:500:0:500:0:1000:event
+noitems:0:100:0:100:-100:100:wirebomb:nuclear_bomb:mine:stun_dart:security_bomb:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censor_bomb:stone:fire_starter:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:guided_missile:missile_interceptor:mine:hors:boat:tasing_small_projectile:small_projectile:elecboat:censor_bomb:frequency_scrambler:helicopter:fire_extinguisher:sound_grenade:air_canister:gas_mask:shield:motion_bomb:rocket_launcher:rpg7:sky_429_laser_shotgun:knife:stp:ak47:taser:bazooka:m_234_minigun:elecboatpolice_motorcycle:fuel_tank:toolbox:arena_card:invisibility_shield:wood:fire_extinguisher:fire_starter:timebomb:motion_bomb:grenade:stun_grenade:m24_sniper_rifle:grenade_launcher:chocolate:the_magical_flower:air_canister:concussive_grenade:sat_bomb_remote:grenade:apple:fire_starter:speed_drink:guided_missile:missile_interceptor:cola:empty_pack:wood:empty_apple_juice:opened_apple_juice:arena_card:wirebomb:cairrier_missile:raisin:the_legendary_sword:metal:hors:boat:jplayer:music_box:music_player:helicopterbulet_bomb:stone:health_healer:berry:suicide_bomb:apple_juice:m234minigun:fight_inviter:nuclear_bomb:sat_bombmilk:invisibility_shield:barricade_bomb:police_car_super:censor_bomb:mine:bitcoin:gold:stun_grenade:aircraft:shield:kalashnikov_rifle:empty_beer_bottle:beer_bottle:open_beer_bottle:Storm_Sniper:Storm_Sniper_ammo_pack

@@ -1,0 +1,11 @@
+mapname:sewer
+maxx:50
+maxy:50
+maxz:50
+tile:0:50:0:50:0:0:sewer
+zone:0:50:0:50:0:50:sewer
+src:0:50:0:50:0:50:sewer.ogg
+zone:0:0:0:0:0:0:tunnel entrance:trackme
+travelpoint:0:0:0:0:0:0:tunnel:25:55:0:welcome
+src:0:50:0:50:0:10:sewer3.ogg
+noitems:0:50:0:50:0:50:elecboat

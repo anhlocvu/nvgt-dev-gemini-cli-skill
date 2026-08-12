@@ -1,0 +1,17 @@
+void main()
+{
+string ret;
+show_game_window("sound count");
+string param1=input_box("Enter sound name","");
+if(param1=="") exit();
+string param2=input_box("Enter amount","");
+if(param2=="") exit();
+int count=string_to_number(param2);
+for(uint i=0; i<count; i++)
+{
+ret+=param1+i+"\r\n";
+}
+clipboard_copy_text(ret);
+alert("Done","");
+exit();
+}

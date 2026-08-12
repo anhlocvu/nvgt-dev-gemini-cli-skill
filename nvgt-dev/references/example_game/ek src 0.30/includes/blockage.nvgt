@@ -1,0 +1,49 @@
+/*
+blockage class.
+by technology production
+A blockage is simply a wall that speaks the text you want it to speak, when you either bump into it, or are within its boundaries.
+again, please do not use this scrypt in your project If you do not agree the rules below.
+rules:
+1. make sure not to decide to remove the credits or other files partof in this script. If we found you that you are doing so, we may not give you access to use this script anymore. If you do not accept this rule, do not use this script into your project.
+2. this is not allowed, repeat, this is not allowed to remove credits or using credit yourself, this is not allowed under any circumstances. also do not use this script If you do not accept this rule.
+3. If you modified the codes from this script, we will not take that responsibility for any you may of rong. If you have modified the codes, you need to take responsibility for yourself for using it. don't share anyone elses that file that you have modified, because we said that we will not take that responsibility for everything, accept modified by us.
+*/
+blockage@[] blos;
+class blockage
+{
+double minx,maxx,miny,maxy,minz,maxz; //coordinates
+string text; //the text to speak.
+blockage(double a,double b,double c,double d,double e,double f,string t)
+{
+minx=a;
+maxx=b;
+miny=c;
+maxy=d;
+minz=e;
+maxz=f;
+text=t;
+}
+}
+void blockagecheck()
+{
+for(uint i=0; i<blos.length(); i++)
+{
+if((blos[i].minx<=mr.x and blos[i].maxx>=mr.x) and (blos[i].miny<=mr.y and blos[i].maxy>=mr.y) and (blos[i].minz<=me.z and blos[i].maxz>=me.z))
+{
+speak(blos[i].text);
+}
+}
+}
+void spawn_blockage(double a,double b,double c,double d,double e,double f,string t)
+{
+blockage s1(a,b,c,d,e,f,t);
+blos.insert_last(s1);
+}
+void destroy_blockage(int d)
+{
+blos.remove_at(d);
+}
+void destroy_all_blos()
+{
+blos.resize(0);
+}

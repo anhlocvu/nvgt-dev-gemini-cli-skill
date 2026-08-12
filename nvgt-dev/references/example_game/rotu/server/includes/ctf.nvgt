@@ -1,0 +1,339 @@
+ctf@[]ctfs(0);
+class ctf{
+string[]red_members,green_members;
+flag@[]flags(0);
+int redscore=0,greenscore=0;
+string name;
+bool redhasflag=false;
+bool greenhasflag=false;
+bool started=false;
+ctf(string nm){
+red_members.insert_last(nm);
+name=nm+"_CTF";
+int index=get_player_index_from(red_members[0]);
+if(index>-1)
+{
+send(players[index].peer_id,"Event created! Please wait for players to join.",0);
+}
+flag red(50,25,0,"red",name);
+flag green(50,125,0,"green",name);
+flags.insert_last(green);
+flags.insert_last(red);
+map temp(name);
+maps.insert_last(temp);
+file f;
+f.open("maps/"+name+".map","wb");
+f.write("name "+name+"
+maxx 100
+maxy 150
+music music6.ogg
+platform 0 100 0 150 0 0 dirt
+platform 15 85 15 135 0 0 concrete
+zone 0 100 0 150 0 50 Capture the flag map
+platform 40 60 15 35 0 0 wood
+zone 40 60 15 35 0 25 Red zone
+platform 50 50 25 25 0 0 metal
+zone 45 55 20 30 0 10 Near the flag holder
+zone 50 50 25 25 0 10 Flag holder
+platform 40 60 115 135 0 0 wood
+zone 40 60 115 135 0 25 Green zone
+platform 50 50 125 125 0 0 metal
+zone 45 55 120 130 0 10 Near the flag holder
+zone 50 50 125 125 0 10 Flag holder
+platform 35 35 15 20 0 10 walldebris3
+platform 35 35 25 35 0 10 walldebris3
+platform 65 65 15 20 0 10 walldebris3
+platform 65 65 25 35 0 10 walldebris3
+platform 35 45 40 40 0 10 walldebris3
+platform 45 60 40 40 0 10 walldebris3
+platform 35 45 10 10 0 10 walldebris3
+platform 45 60 10 10 0 10 walldebris3
+platform 35 35 115 120 0 10 walldebris3
+platform 35 35 125 135 0 10 walldebris3
+platform 65 65 115 120 0 10 walldebris3
+platform 65 65 125 135 0 10 walldebris3
+platform 35 45 140 140 0 10 walldebris3
+platform 45 60 140 140 0 10 walldebris3
+platform 35 45 110 110 0 10 walldebris3
+platform 45 60 110 110 0 10 walldebris3
+platform 0 100 47 47 0 10 wallfence
+zone 0 100 46 48 0 15 a large fence blocking your way, there are two towers at each end. A red striped flag hangs on it
+platform 10 20 42 53 0 20 wallstone
+platform 80 90 42 53 0 20 wallstone
+zone 9 21 41 54 0 30 the western tower for the red team's base
+zone 79 91 41 54 0 30 the eastern tower for the red team's base
+platform 81 89 43 52 0 0 hardwood3
+platform 81 89 43 52 1 19 air
+door 85 41 0 85 43 0 500 none.ogg none.ogg door5.ogg door6.ogg
+door 85 43 0 85 41 0 500 none.ogg none.ogg door5.ogg door6.ogg
+zone 85 85 41 43 0 5 a small door at the back of the tower
+platform 0 9 47 47 10 10 metal
+platform 21 79 47 47 10 10 metal
+platform 91 100 47 47 10 10 metal
+platform 83 88 53 53 1 3 air
+platform 83 88 53 53 1 1 concrete
+zone 83 88 52 54 0 4 a wide small hole in the wall is here, you need to jump through
+source 0 100 0 150 0 100 birds30.ogg
+platform 70 70 47 60 0 10 wallfence
+platform 70 70 47 60 10 10 metal
+platform 70 100 60 60 0 10 wallfence
+platform 70 100 60 60 10 10 metal
+platform 100 100 59 59 0 10 metal
+platform 100 100 61 61 0 10 metal
+zone 100 100 59 61 0 20 a narrow ladder is leant up against the fence here, it doesn't look very safe
+platform 27 27 47 47 0 0 concrete
+zone 27 27 46 48 0 0 a small hole has been blasted in the fence here, hurry through
+platform 11 19 43 51 0 0 hardwood3
+platform 11 19 43 51 1 19 air
+door 15 41 0 15 43 0 500 none.ogg none.ogg door5.ogg door6.ogg
+door 15 43 0 15 41 0 500 none.ogg none.ogg door5.ogg door6.ogg
+zone 15 15 41 43 0 5 a small door at the back of the tower
+platform 12 16 52 52 1 3 air
+platform 12 16 52 52 1 1 concrete
+zone 12 16 51 53 0 4 a wide small hole in the wall is here, you need to jump through
+
+platform 0 100 65 85 0 10 walldirt
+platform 0 100 65 65 0 10 dirt
+platform 0 100 65 85 10 10 dirt
+platform 0 100 85 85 0 10 dirt
+zone 0 100 65 85 0 20 a small hill across the middle of the battle field
+source 10 10 65 70 10 20 fire.ogg
+source 23 23 75 75 10 11 fire.ogg
+platform 0 100 104 104 0 10 wallfence
+zone 0 100 103 105 0 15 a large fence blocking your way, there are two towers at each end. A green striped flag hangs on it
+platform 10 20 98  109 0 20 wallstone
+platform 80 90 98 109 0 20 wallstone
+zone 9 21 97 110 0 30 the eastern tower for the green team's base
+zone 79 91 97 110 0 30 the western tower for the green team's base
+platform 81 89 99 108 0 0 hardwood3
+platform 81 89 99 108 1 19 air
+door 85 97 0 85 99 0 500 none.ogg none.ogg door5.ogg door6.ogg
+door 85 99 0 85 97 0 500 none.ogg none.ogg door5.ogg door6.ogg
+zone 85 85 97 99 0 5 a small door at the back of the tower
+platform 0 9 104 104 10 10 metal
+platform 21 79 104 104 10 10 metal
+platform 91 100 104 104 10 10 metal
+platform 83 88 109 109 1 3 air
+platform 83 88 109 109 1 1 concrete
+zone 83 88 108 110 0 4 a wide small hole in the wall is here, you need to jump through
+platform 70 70 104 117 0 10 wallfence
+platform 70 70 104 117 10 10 metal
+platform 70 100 117 117 0 10 wallfence
+platform 70 100 117 117 10 10 metal
+platform 100 100 116 116 0 10 metal
+platform 100 100 118 118 0 10 metal
+zone 100 100 116 118 0 20 a narrow ladder is leant up against the fence here, it doesn't look very safe
+platform 27 27 104 104 0 0 concrete
+zone 27 27 103 105 0 0 a small hole has been blasted in the fence here, hurry through
+platform 11 19 99 108 0 0 hardwood3
+platform 11 19 99 108 1 19 air
+door 15 97 0 15 99 0 500 none.ogg none.ogg door5.ogg door6.ogg
+door 15 99 0 15 97 0 500 none.ogg none.ogg door5.ogg door6.ogg
+zone 15 15 97 99 0 5 a small door at the back of the tower
+platform 12 16 109 109 1 3 air
+platform 12 16 109 109 1 1 concrete
+zone 12 16 108 110 0 4 a wide small hole in the wall is here, you need to jump through");
+}
+}
+void ctfloop()
+{
+for(uint i=0; i<ctfs.length(); i++)
+{
+if(ctfs.length()==0) break;
+if(ctfs[i].red_members.length()<=0 and ctfs[i].green_members.length()<=0)
+{
+delete_map(ctfs[i].name);
+@ctfs[i]!=null;
+ctfs.remove_at(i);
+return;
+}
+if(ctfs[i].started==false)
+{
+if(ctfs[i].greenscore!=0) ctfs[i].greenscore=0;
+if(ctfs[i].redscore!=0) ctfs[i].redscore=0;
+}
+if(ctfs[i].started)
+{
+for(uint x=0; x<players.length(); x++)
+{
+if(players[x].map!=ctfs[i].name and players[x].cf==ctfs[i].name)
+{
+int[]redside={50,25,0};
+int[]greenside={50,125,0};
+players[x].health=5000;
+if(players[x].incar) players[x].carcom="getout";
+if(players[x].ctfteam=="red") changemap(players[x],get_map_handle(ctfs[i].name),redside);
+if(players[x].ctfteam=="green") changemap(players[x],get_map_handle(ctfs[i].name),greenside);
+}
+}
+}
+
+if(ctfs[i].redscore>=10)
+{
+for(uint x=0; x<players.length(); x++)
+{
+if(players[x].map==ctfs[i].name)
+{
+if(players[x].ctfteam=="red")
+{
+players[x].give("gold",random(75,200));
+send(players[x].peer_id,"You have just beat the green team "+ctfs[i].redscore+" to "+ctfs[i].greenscore+"!",2);
+}
+if(players[x].ctfteam=="green")
+{
+send(players[x].peer_id,"You have just lost to the red team "+ctfs[i].greenscore+" to "+ctfs[i].redscore+"!",2);
+}
+players[x].cf="";
+players[x].ctfteam="";
+int[]newpos={223,434,0};
+changemap(players[x],get_map_handle("main"),newpos);
+}
+}
+delete_map(ctfs[i].name);
+@ctfs[i]!=null;
+ctfs.remove_at(i);
+return;
+}
+if(ctfs[i].greenscore>=10)
+{
+for(uint x=0; x<players.length(); x++)
+{
+if(players[x].map==ctfs[i].name)
+{
+if(players[x].ctfteam=="green")
+{
+players[x].give("gold",random(25,100));
+send(players[x].peer_id,"You have just beat the red team "+ctfs[i].greenscore+" to "+ctfs[i].redscore+"!",2);
+}
+if(players[x].ctfteam=="red")
+{
+send(players[x].peer_id,"You have just lost to the green team "+ctfs[i].redscore+" to "+ctfs[i].greenscore+"!",2);
+}
+players[x].cf="";
+players[x].ctfteam="";
+int[]newpos={223,434,0};
+changemap(players[x],get_map_handle("main"),newpos);
+}
+}
+delete_map(ctfs[i].name);
+@ctfs[i]!=null;
+ctfs.remove_at(i);
+return;
+}
+}
+}
+void add_ctf_member(string ctfname,string color,string membername)
+{
+bool success=false;
+int index=get_ctf_index(ctfname);
+if(index>-1)
+{
+if(color=="red" and ctfs[index].red_members.find(membername)<=-1 and ctfs[index].green_members.find(membername)<=-1)
+{
+ctfs[index].red_members.insert_last(membername);
+success=true;
+}
+else if(color=="green" and ctfs[index].green_members.find(membername)<=-1 and ctfs[index].red_members.find(membername)<=-1)
+{
+ctfs[index].green_members.insert_last(membername);
+success=true;
+}
+}
+int index2=get_player_index_from(membername);
+if(index2>-1)
+{
+send(players[index2].peer_id,(success?"You have joined the event!":"Error. Something went wrong. Either you are already on a team, or there was a different error."),2);
+}
+}
+void rem_ctf_member(string ctfname,string color,string membername)
+{
+bool success=false;
+int index=get_ctf_index(ctfname);
+if(index>-1)
+{
+if(color=="red" and ctfs[index].red_members.find(membername)>-1)
+{
+int memdex=ctfs[index].red_members.find(membername);
+ctfs[index].red_members.remove_at(memdex);
+success=true;
+}
+else if(color=="green" and ctfs[index].green_members.find(membername)>-1)
+{
+int memdex=ctfs[index].green_members.find(membername);
+ctfs[index].green_members.remove_at(memdex);
+success=true;
+}
+}
+int index2=get_player_index_from(membername);
+if(index2>-1)
+{
+send(players[index2].peer_id,(success?"You left the event.":"Error. Something went wrong."),2);
+}
+}
+int get_ctf_index(string ctfname)
+{
+for(uint i=0; i<ctfs.length(); i++)
+{
+if(ctfs[i].name==ctfname) return i;
+}
+return -1;
+}
+class flag{
+double x,y,z;
+string color,map;
+flag(double fx,double fy,double fz,string fc,string fm)
+{
+x=fx;
+y=fy;
+z=fz;
+color=fc;
+map=fm;
+}
+}
+bool create_ctf(string name)
+{
+if(get_ctf_index(name)<=-1)
+{
+ctf ctf1(name);
+ctfs.insert_last(ctf1);
+return true;
+}
+else return false;
+}
+string ret_leader(string ctfname)
+{
+for(uint i=0; i<ctfs.length(); i++)
+{
+if(ctfs[i].name==ctfname) return string_trim_right(ctfs[i].name,4);
+}
+return "";
+}
+void ctf_notify(string ctfname,string message)
+{
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].cf==ctfname) send(players[i].peer_id,message,2);
+}
+}
+void cancel_ctf(string name)
+{
+for(uint i=0; i<ctfs.length(); i++)
+{
+if(ctfs[i].name==name)
+{
+ctf_notify(ctfs[i].name,"The event has been canceled.");
+for(uint i2=0; i2<players.length(); i2++)
+{
+if(players[i2].cf==name)
+{
+players[i2].cf="";
+players[i2].ctfteam="";
+}
+}
+delete_map(ctfs[i].name);
+@ctfs[i]!=null;
+ctfs.remove_at(i);
+return;
+}
+}
+}

@@ -1,0 +1,13 @@
+mapname:forest_exit
+maxx:100
+maxy:100
+maxz:100
+tile:0:100:0:100:0:0:grass3
+travelpoint:0:0:0:0:0:0:magical_forest:600:600:0:no...he's too strong.
+cmusic:0:100:0:100:15:100:dbz12.ogg:-10:100
+zone:0:100:0:100:0:100:fight with all you have, for if you fail, the history of the plannet will take a very dark turn. the unseelers are the harbengers of doom itself. you must stop them at all causts!
+zone:100:100:100:100:0:100:press shift plus enter to complete this quest@trackme@
+tile:51:51:0:99:0:100:wallbrush
+tile:0:99:51:51:0:100:wallbrush
+noitems:0:5555:0:5555:0:6666:stp429:grenade
+robots:0:100:0:100:0:0:1:1000:unseelers_commander

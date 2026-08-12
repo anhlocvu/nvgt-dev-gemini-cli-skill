@@ -1,0 +1,146 @@
+bool speak_chars=true;
+string chat(string h, string t="") {
+int cursor=0;
+string []ms;
+speak(h);
+string message;
+get_characters();
+if(t!="") {
+for(int i=0; i<t.length(); i++) {
+ms.insert_last(t[i]);
+cursor++;
+}
+speak(t);
+}
+while(true) {
+wait(5);
+main_loop();
+netloop();
+string char=get_characters();
+if(char!="") {
+
+ms.insert_at(cursor, char);
+cursor++;
+speak_char(ms[cursor-1], speak_chars);
+}
+if(ms.length()>2048) {
+//speak("Превышено максимальное количество символов.", true);
+for(int i=ms.length(); i>2048; i--) {
+ms.remove_last();
+cursor--;
+}
+}
+if(key_pressed(KEY_F2)) {
+if(speak_chars==true) {
+speak_chars=false;
+speak("character repeat off.");
+}
+else {
+speak_chars=true;
+speak("character repeat on.");
+}
+}
+if(key_down(KEY_LCONTROL) or key_down(KEY_RCONTROL)) {
+if(key_pressed(KEY_C)) {
+string c;
+for(int i=0; i<ms.length(); i++)
+c+=ms[i];
+if(c.length()>0) {
+clipboard_copy_text(c);
+speak("text copied to clipboard.");
+}
+else
+speak("null.");
+}
+if(key_pressed(KEY_V)) {
+string v=clipboard_read_text();
+if(v=="")
+speak("no text on clipboard.");
+else {
+for(int i=0; i<v.length(); i++) {
+ms.insert_last(v[i]);
+cursor++;
+}
+speak("text pasted from clipboard.");
+}
+}
+}
+if(key_pressed(KEY_END)) {
+if(ms.length()>0) {
+cursor=ms.length();
+speak_char("blank");
+}
+else
+speak_char("blank");
+}
+if(key_pressed(KEY_HOME)) {
+if(ms.length()>0) {
+cursor=0;
+speak_char(ms[cursor]);
+}
+else
+speak_char("blank");
+}
+if(key_pressed(KEY_BACK) and ms.length()>0 and cursor>0) {
+speak_char(ms[cursor-1]);
+ms.remove_at(cursor-1);
+cursor--;
+}
+if(key_pressed(KEY_DELETE)) {
+if(cursor<ms.length()-1)
+speak_char(ms[cursor+1]);
+else
+speak("blank");
+if(ms.length()>0 and cursor<ms.length())
+ms.remove_at(cursor);
+}
+if(key_pressed(KEY_LEFT)) {
+if(ms.length()>0) {
+if(cursor>0)
+cursor--;
+speak_char(ms[cursor], true);
+}
+else
+speak_char("blank");
+}
+if(key_pressed(KEY_RIGHT)) {
+if(cursor<ms.length() and ms.length()>0) {
+cursor++;
+if(cursor>=ms.length())
+speak_char("blank");
+else {
+speak_char(ms[cursor], true);
+}
+}
+else
+speak_char("blank");
+}
+if(key_pressed(KEY_UP) or key_pressed(KEY_DOWN)) {
+string a;
+for(int i=0; i<ms.length(); i++) {
+a+=ms[i];
+}
+if(a!="")
+speak_char(a);
+else
+speak("blank");
+}
+if(key_pressed(KEY_ESCAPE))
+break;
+if(key_pressed(KEY_RETURN)) {
+for(int i=0; i<ms.length(); i++) {
+message+=ms[i];
+}
+return message;
+}
+}
+return "";
+}
+void speak_char(string c, bool sp=true) {
+if(sp==true) {
+if(c==" ")
+speak("blank");
+else
+speak(c);
+}
+}

@@ -1,0 +1,54 @@
+void onactionmenu() {
+string[] menuItems;
+menuItems.insert_last("");
+menuItems.insert_last("");
+menuItems.insert_last("");
+
+int counter = 0;
+speak("action menu, you can see the statistics with up and down arrows");
+
+while (true) {
+wait(5);
+ek_loop();
+netloop();
+
+bool keyAction = false;
+
+if (key_pressed(KEY_UP) && counter > 0) {
+counter--;
+p.play_stationary("menumove.ogg", false);
+keyAction = true;
+}
+
+if (key_pressed(KEY_DOWN) && counter < menuItems.length() - 1) {
+counter++;
+p.play_stationary("menumove.ogg", false);
+keyAction = true;
+}
+
+if (keyAction) {
+switch (counter) {
+case 0: {
+send_reliable(0, "whoonline", 0);
+break;
+}
+case 1: {
+send_reliable(0, "serverstats", 0);
+break;
+}
+case 2: {
+if (!pinging) {
+pinging = true;
+send_reliable(0, "ping", 0);
+pingpongtimer.restart();
+}
+break;
+}
+}
+}
+
+if (key_pressed(KEY_ESCAPE)) {
+break;
+}
+}
+}

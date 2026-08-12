@@ -1,0 +1,11 @@
+mapname:green_forest
+maxx:100
+maxy:100
+maxz:0
+tile:0:100:0:100:0:0:grass3
+src:0:150:0:150:0:0:birds8.ogg
+zone:0:150:0:150:0:6:green_forest
+zone:26:26:32:32:0:10:go back to bff_city, press t:trackme
+travelpoint:26:26:32:32:0:0:bff_city:71:888:0:welcome back
+robots:0:150:0:150:0:0:3:3:person1,person2,person3,person4,person5,rabit
+noitems:0:100:0:100:0:100:nuclear_bomb:suivide_bomb:tasing_small_projectile:elecboat:grenade

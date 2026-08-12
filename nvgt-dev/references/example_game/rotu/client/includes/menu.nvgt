@@ -1,0 +1,1211 @@
+int wrapping=1;
+int speakpos=0;
+int catgr=0;
+string[] invcategories;
+void setupmenu(bool music=true)
+{
+m.reset(false);
+m.enable_first_letter_navigation=true;
+m.enable_multi_letter_navigation=false;
+if(music) m.add_music("menumusic.ogg");
+if(!music) m.add_music("");
+m.click_sound="menuclick.ogg";
+if(speakpos==0) m.speak_position_information=false;
+if(speakpos==1) m.speak_position_information=true;
+m.enter_sound="menuenter.ogg";
+m.enable_home_and_end=true;
+m.letters_autoactivate=false;
+m.wrap=false;
+m.edge_sound="menuedge.ogg";
+m.wrap_sound="menuwrap.ogg";
+m.open_sound="menuopen.ogg";
+m.enable_up_and_down=true;
+}
+void menu()
+{
+while(true)
+{
+setupmenu(true);
+m.add_item_tts("Login menu","accmenu");
+m.add_item_tts("Test speakers","speakertest");
+m.add_item_tts("Learn game sounds","lgs");
+m.add_item_tts("Music Box","mbox");
+m.add_item_tts("Settings","settings");
+m.add_item_tts("Check for updates","up");
+m.add_item_tts("Restart","restart");
+m.add_item_tts("Exit game","exit");
+mres=m.run("Main menu. Use your arrow keys to select an option, then press the Enter key to activate that option.",true);
+string mname=m.get_item_name(mres);
+if(mres<=0 or mname=="exit")
+{
+m.fade_music(15);
+exit();
+return;
+}
+if(mname=="accmenu")
+{
+accmenu();
+}
+else if(mname=="mbox")
+{
+m.fade_music(10);
+dlg("Welcome to the music box. Here, you are allowed to listen to the music tracks which are used in the game. Enjoy. Press Enter to continue.");
+string mtype=mustypemenu();
+}
+else if(mname=="lgs")
+{
+speak("Learn game sounds menu. Select an option with the up and down arrow keys, and then press Enter to hear what the option's sound is",true);
+m.fade_music(10);
+lgsmenu();
+}
+else if(mname=="up")
+{
+m.fade_music(0);
+check_for_updates("rotu",true);
+}
+else if(mname=="restart"){ 
+m.fade_music(15);
+restart();
+return;
+}
+else if(mname=="settings")
+{
+m.fade_music(15);
+prefsmenu();
+}
+else if(mname=="speakertest")
+{
+m.fade_music(15);
+dlgplay("speakertest.ogg",false);
+}
+}
+}
+void setup_account_form()
+{
+audio_form f;
+f.create_window("Setup an account", false, true);
+int f_username = f.create_input_box("Username", username, "", 100);
+int f_password = f.create_input_box("Password", password, "*", 100);
+int f_setup = f.create_button("Setup", true);
+int f_cancel = f.create_button("Cancel", false, true);
+f.focus(f_username);
+
+while(f.active) {
+wait(5);
+f.monitor();
+if (f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE)) {
+speak("Canceled.");
+break;
+}
+if (f.is_pressed(f_setup)) {
+string user = f.get_text(f_username);
+string pass = f.get_text(f_password);
+if (user == "") {
+speak("Please enter your username.");
+f.focus(f_username);
+continue;
+}
+if (pass == "") {
+speak("Please enter your password.");
+f.focus(f_password);
+continue;
+}
+username = user;
+password = pass;
+addprefs();
+dlg("Success.");
+break;
+}
+}
+}
+void accmenu()
+{
+while(true)
+{
+setupmenu(true);
+if(username!=""){ 
+m.add_item_tts("Login as "+username,"login");
+}
+m.add_item_tts("Setup an account","accsetup");
+m.add_item_tts("Create new account","createacc");
+m.add_item_tts("Go back","back");
+mres=m.run("Login menu",true);
+string mname=m.get_item_name(mres);
+if(mres<=0 or mname=="back")
+{
+return;
+}
+if(mname=="login")
+{
+m.fade_music(15);
+login();
+}
+else if(mname=="createacc")
+{
+m.fade_music(15);
+create_acc();
+}
+else if(mname=="accsetup")
+{
+setup_account_form();
+}
+}
+}
+int yesno(string intro,string option1,string option2)
+{
+setupmenu(false);
+m.enable_first_letter_navigation=true;
+m.letters_autoactivate=true;
+m.add_item_tts(option1,option1);
+m.add_item_tts(option2,option2);
+mres=m.run(intro,true);
+if(m.get_item_name(mres)==option1) return 1;
+else if(m.get_item_name(mres)==option2) return 2;
+else return 0;
+}
+int yesno_online(string intro,string option1,string option2)
+{
+setupmenu(false);
+m.set_callback(menunet, "");
+m.enable_first_letter_navigation=true;
+m.letters_autoactivate=true;
+m.add_item_tts(option1,option1);
+m.add_item_tts(option2,option2);
+mres=m.run(intro,true);
+if(m.get_item_name(mres)==option1) return 1;
+else if(m.get_item_name(mres)==option2) return 2;
+else return 0;
+}
+int yesno_extended(string intro,string[]options={"Yes","No"})
+{
+setupmenu(false);
+m.enable_first_letter_navigation=true;
+m.letters_autoactivate=true;
+for(uint i=0; i<options.length(); i++)
+{
+m.add_item_tts(options[i],options[i]);
+}
+mres=m.run(intro,true);
+if(options.find(m.get_item_name(mres))>-1)
+{
+int result=options.find(m.get_item_name(mres));
+return (result+1);
+}
+else return 0;
+}
+dictionary player_info_cache;
+
+void player_options_menu(string target_player)
+{
+    while(true) {
+        setupmenu(false);
+        m.enable_first_letter_navigation = true;
+        m.add_item_tts("Send private message", "pm");
+        m.add_item_tts("View player information", "info");
+        m.add_item_tts("View gang information", "gang_info");
+        m.add_item_tts("Transfer Gold", "gold");
+        m.add_item_tts("Transfer Items", "items");
+        m.add_item_tts("Mute this player", "mute");
+        m.add_item_tts("Unmute this player", "unmute");
+        m.add_item_tts("Look at player perspective", "look");
+
+        // Gang interactions
+        bool in_gang = (mygang != "" and mygang.is_empty() == false);
+        if (in_gang) {
+            m.add_item_tts("Invite to gang", "gang_invite");
+            m.add_item_tts("Kick from gang", "gang_kick");
+        }
+
+        // Staff Tools
+        bool is_staff = (global_is_dev || global_is_admin || global_is_mod || global_is_builder);
+        if (is_staff) {
+            m.add_item_tts("--- Staff Options ---", "staff_header");
+            m.add_item_tts("Go to player", "staff_goto");
+            m.add_item_tts("Locate player (where)", "staff_where");
+            m.add_item_tts("Kick player", "staff_kick");
+            m.add_item_tts("Mute player feature", "staff_mute");
+            m.add_item_tts("Unmute player feature", "staff_unmute");
+            m.add_item_tts("Jail player", "staff_jail");
+            m.add_item_tts("Unjail player", "staff_unjail");
+            m.add_item_tts("Ban player", "staff_ban");
+            m.add_item_tts("Temp-ban player", "staff_tempban");
+        }
+
+        m.add_item_tts("Go Back", "back");
+
+        int res = m.run("Options for " + target_player, true);
+        string opt = m.get_item_name(res);
+        if (opt == "back" or res <= 0) {
+            break;
+        }
+        else if (opt == "pm") {
+            show_pm_form(target_player);
+        }
+        else if (opt == "info") {
+            string full_info = "";
+            player_info_cache.get(target_player, full_info);
+            if (full_info == "") {
+                speak("No cached information available for this player.");
+            } else {
+                dlg("Information for " + target_player + ":\n" + full_info);
+            }
+        }
+        else if (opt == "gang_info") {
+            timer t;
+            last_player_gang_info = "WAITING";
+            send("gang_get_player_gang " + target_player, 0);
+            while (last_player_gang_info == "WAITING" and t.elapsed < 3000) {
+                wait(5);
+                netloop();
+            }
+            if (last_player_gang_info == "WAITING") {
+                speak("Failed to retrieve gang information. Timeout.");
+            }
+            else if (last_player_gang_info == "none") {
+                dlg(target_player + " is a lone wolf.");
+            }
+            else {
+                dlg(target_player + " is in gang " + last_player_gang_info + ".");
+            }
+        }
+        else if (opt == "gold") {
+            show_transfer_gold_form(target_player);
+        }
+        else if (opt == "items") {
+            show_transfer_item_menu(target_player);
+        }
+        else if (opt == "mute") {
+            send("/mute " + target_player, 1);
+        }
+        else if (opt == "unmute") {
+            send("/unmute " + target_player, 1);
+        }
+        else if (opt == "look") {
+            send("/look " + target_player, 1);
+        }
+        else if (opt == "gang_invite") {
+            send("gang_invite " + target_player, 0);
+        }
+        else if (opt == "gang_kick") {
+            send("gang_kick " + target_player, 0);
+        }
+        else if (opt == "staff_goto") {
+            send("/gotoplayer " + target_player, 1);
+        }
+        else if (opt == "staff_where") {
+            send("/where " + target_player, 1);
+        }
+        else if (opt == "staff_kick") {
+            string reason = txt.input("Enter kick reason", true);
+            if (reason != "") send("/kick " + target_player + " " + reason, 1);
+        }
+        else if (opt == "staff_mute") {
+            string feature = txt.input("Enter feature to mute (e.g. chat, voice, PM)", true);
+            if (feature != "") send("/mute " + target_player + " " + feature, 1);
+        }
+        else if (opt == "staff_unmute") {
+            string feature = txt.input("Enter feature to unmute (e.g. chat, voice, PM)", true);
+            if (feature != "") send("/unmute " + target_player + " " + feature, 1);
+        }
+        else if (opt == "staff_jail") {
+            string time_str = txt.input("Enter jail duration (e.g., 10m, 1h)", true);
+            if (time_str != "") {
+                string reason = txt.input("Enter jail reason", true);
+                if (reason != "") send("/jail " + target_player + " " + time_str + " " + reason, 1);
+            }
+        }
+        else if (opt == "staff_unjail") {
+            send("/unjail " + target_player, 1);
+        }
+        else if (opt == "staff_ban") {
+            string reason = txt.input("Enter ban reason", true);
+            if (reason != "") send("/ban " + target_player + " " + reason, 1);
+        }
+        else if (opt == "staff_tempban") {
+            string hrs_str = txt.input("Enter ban duration in hours (number only)", true);
+            if (hrs_str != "") {
+                string reason = txt.input("Enter ban reason", true);
+                if (reason != "") send("/tempban " + target_player + " " + hrs_str + " " + reason, 1);
+            }
+        }
+    }
+}
+
+void show_pm_form(string target_player)
+{
+    audio_form f;
+    f.create_window("Send Private Message to " + target_player, false, true);
+    int txt_msg = f.create_input_box("Message to " + target_player, "", "", 200);
+    int btn_send = f.create_button("Send", true);
+    int btn_cancel = f.create_button("Cancel", false, true);
+    f.focus(txt_msg);
+    
+    while(f.active) {
+        wait(5);
+        f.monitor();
+        if (f.is_pressed(btn_cancel) || key_pressed(KEY_ESCAPE)) {
+            speak("Canceled.");
+            break;
+        }
+        if (f.is_pressed(btn_send)) {
+            string msg = f.get_text(txt_msg);
+            if (msg == "") {
+                speak("Please enter your message.");
+                f.focus(txt_msg);
+                continue;
+            }
+            send("/pm " + target_player + " " + msg, 1);
+            break;
+        }
+    }
+}
+
+void show_transfer_gold_form(string target_player)
+{
+    audio_form f;
+    f.create_window("Transfer Gold to " + target_player, false, true);
+    int txt_amt = f.create_input_box("Amount of gold", "", "0123456789", 50);
+    int btn_send = f.create_button("Transfer", true);
+    int btn_cancel = f.create_button("Cancel", false, true);
+    f.focus(txt_amt);
+    
+    while(f.active) {
+        wait(5);
+        f.monitor();
+        if (f.is_pressed(btn_cancel) || key_pressed(KEY_ESCAPE)) {
+            speak("Canceled.");
+            break;
+        }
+        if (f.is_pressed(btn_send)) {
+            string amt_str = f.get_text(txt_amt);
+            if (amt_str == "") {
+                speak("Please enter amount of gold.");
+                f.focus(txt_amt);
+                continue;
+            }
+            int amt = stn(amt_str);
+            if (amt <= 0) {
+                speak("Amount must be greater than 0.");
+                f.focus(txt_amt);
+                continue;
+            }
+            send("/transfer " + target_player + " gold " + amt, 1);
+            break;
+        }
+    }
+}
+
+void show_transfer_item_menu(string target_player)
+{
+    if(gameinv.items.length() == 0)
+    {
+        speak("You have no items to transfer.");
+        return;
+    }
+    setupmenu(false);
+    m.enable_up_and_down = true;
+    m.enable_home_and_end = true;
+    m.allow_escape = true;
+    for(uint i = 0; i < gameinv.items.length(); i++) {
+        m.add_item_tts(gameinv.items[i].name + ": You have " + gameinv.items[i].amount, gameinv.items[i].name);
+    }
+    int mres = m.run("Select item to transfer to " + target_player, true);
+    string item_name = m.get_item_name(mres);
+    if(mres <= 0 or item_name == "") {
+        speak("Canceled.");
+        return;
+    }
+    
+    string amt_str = txt.input("Enter amount of " + item_name + " to transfer", true);
+    if (amt_str == "") {
+        speak("Canceled.");
+        return;
+    }
+    int amt = stn(amt_str);
+    if (amt <= 0) {
+        speak("Amount must be greater than 0.");
+        return;
+    }
+    send("/transfer " + target_player + " " + item_name + " " + amt, 1);
+}
+
+void serverside_menu(string sndtxt, string menu, string menuitems)
+{
+    setupmenu(false);
+    m.set_callback(mcb,"");
+    
+    m.enable_first_letter_navigation=true;
+    if(menuitems=="")
+        return;
+    string[] items=string_split(menuitems,"[]",false);
+    if(sndtxt == "playerselect") {
+        player_info_cache.delete_all();
+    }
+    for(uint i=0; i<items.length(); i++)
+    {
+        string[] parsed=string_split(items[i],"{}",false);
+        m.add_item_tts(parsed[0],parsed[1], string_to_lower_case(string_left(parsed[0], 1)));
+        if(sndtxt == "playerselect") {
+            player_info_cache.set(parsed[1], parsed[0]);
+        }
+    }
+    int mres=m.run(menu,true);
+    if(m.get_item_name(mres)=="back" or mres==0)
+        send(sndtxt+" back",0);
+    else
+    {
+        if(sndtxt == "playerselect") {
+            string selected_player = m.get_item_name(mres);
+            player_options_menu(selected_player);
+        } else {
+            send(sndtxt+" "+m.get_item_name(mres),0);
+        }
+    }
+}
+void servermenu(string title,string items,bool interactable=false,string actions="")
+{
+setupmenu(false);
+m.set_callback(menunet,"");
+m.enable_first_letter_navigation=true;
+if(interactable==true)
+{
+string[] itm=string_split(items,"\r\n",true);
+string[] actm=string_split(actions,"-_",true);
+for(uint i=0; i<itm.length(); i++)
+{
+m.add_item_tts(itm[i],itm[i]);
+}
+int mres=m.run(title,true);
+m.set_callback(null,"");
+for(uint i=0; i<itm.length(); i++)
+{
+if(m.get_item_name(mres)==itm[i])
+{
+int acitem=actm.find(itm[i]);
+send(actm[i],0);
+}
+}
+}
+else
+{
+string[] itm=string_split(items,"\r\n",true);
+for(uint i=0; i<itm.length(); i++)
+{
+m.add_item_tts(itm[i],itm[i]);
+}
+int mres=m.run(title,true);
+for(uint i=0; i<itm.length(); i++)
+{
+if(m.get_item_name(mres)==itm[i]) return;
+}
+}
+}
+int menunet(dynamic_menu_pro@d,string a="")
+{
+netloop();
+return 0;
+}
+
+int searchcall(dynamic_menu_pro@test, string data) {
+netloop();
+if(key_pressed(KEY_SPACE)) {
+string stext=txt.input("Enter item  name", true);
+if(stext=="") {
+speak("ok");
+}
+else {
+int search=gameinv.search_inv(stext);
+if(search==-1) {
+speak("No items found matching your search keywords");
+}
+else {
+m.menu_position=search;
+m.play_click_sound();
+speak(m.item_list[search].option);
+}
+}
+}
+return 0;
+}
+int mcb(dynamic_menu_pro@ d,string a="")
+{
+netloop();
+if ((key_down(KEY_LCONTROL) or key_down(KEY_RCONTROL)) and key_pressed(KEY_C))
+{
+speak("copied");
+clipboard_copy_text(m.get_item_name(m.menu_position));
+}
+return 0;
+}
+void prefsmenu()
+{
+int old_bpd = bpd;
+
+audio_form f;
+f.create_window("Settings", false, true);
+
+int tab_general_idx = 0;
+int tab_display_idx = 1;
+int tab_gameplay_idx = 2;
+int tab_host_idx = (SCRIPT_COMPILED == false) ? 3 : -1;
+
+int tab_panel = f.create_tab_panel("");
+f.add_list_item(tab_panel, "General");
+f.add_list_item(tab_panel, "Display");
+f.add_list_item(tab_panel, "Gameplay");
+if (SCRIPT_COMPILED == false) {
+    f.add_list_item(tab_panel, "Host");
+}
+
+// General Tab Controls
+int chk_fsapi = f.create_checkbox("Forced SAPI", fsapi == 1);
+int btn_sapi_config = f.create_button("Customize SAPI settings...");
+int chk_cfu = f.create_checkbox("Check for updates at startup", cfuasu == 1);
+int chk_rctrl = f.create_checkbox("Right Control key fires selected weapon (otherwise does nothing / mutes speech)", rcontrolfires == 1);
+int btn_reset = f.create_button("Reset all settings to factory defaults");
+
+// Display Tab Controls
+int btn_lang = f.create_button("Select game language, currently " + language);
+int chk_logo = f.create_checkbox("Play logo at startup", plogo == 1);
+int chk_wrap = f.create_checkbox("Menu wrapping", wrapping == 1);
+int chk_pos = f.create_checkbox("Menu positional information", speakpos == 1);
+int chk_kbd = f.create_checkbox("Keyboard typing sounds in input boxes", kbd == 1);
+int btn_kbd_theme = f.create_button("Select keyboard sound theme, currently " + keyboard_name);
+
+// Gameplay Tab Controls
+int chk_mouse = f.create_checkbox("Mouse support", usemouse == 1);
+int btn_joystick = -1;
+if (stick.joysticks > 0) {
+    btn_joystick = f.create_button("Configure joystick");
+}
+int chk_blog = f.create_checkbox("Buffer logging", bufflog == 1);
+int chk_bbeep = f.create_checkbox("Buffer beeping", buffbeeps == 1);
+int chk_sign = f.create_checkbox("Sign sounds", signsounds == 1);
+int chk_dist = f.create_checkbox("Distance sounds", distsounds == 1);
+int chk_bpd = f.create_checkbox("Behind pitch decrease on map sound sources", bpd == 1);
+
+// Host Tab Controls
+int lst_host = -1;
+int txt_custom_host = -1;
+if (SCRIPT_COMPILED == false) {
+    lst_host = f.create_list("Select host");
+    f.add_list_item(lst_host, "Main server (example.com)");
+    f.add_list_item(lst_host, "Local server (localhost)");
+    f.add_list_item(lst_host, "Custom host");
+    
+    txt_custom_host = f.create_input_box("Custom host address", netaddress);
+    
+    if (netaddress == "example.com") {
+        f.set_list_position(lst_host, 0);
+    } else if (netaddress == "localhost") {
+        f.set_list_position(lst_host, 1);
+    } else {
+        f.set_list_position(lst_host, 2);
+    }
+}
+
+// Action Buttons
+int btn_apply = f.create_button("Apply", true);
+int btn_cancel = f.create_button("Cancel", false, true);
+
+int last_tab = -1;
+int last_host_sel = -1;
+
+f.focus(tab_panel);
+
+while(true)
+{
+wait(5);
+f.monitor();
+
+if (f.is_pressed(btn_cancel) || (!f.active)) {
+    speak("Settings cancelled.");
+    return;
+}
+
+if (f.is_pressed(btn_apply)) {
+    fsapi = f.is_checked(chk_fsapi) ? 1 : 0;
+    ::s.set_speech_mode(fsapi);
+    
+    cfuasu = f.is_checked(chk_cfu) ? 1 : 0;
+    rcontrolfires = f.is_checked(chk_rctrl) ? 1 : 0;
+    plogo = f.is_checked(chk_logo) ? 1 : 0;
+    wrapping = f.is_checked(chk_wrap) ? 1 : 0;
+    speakpos = f.is_checked(chk_pos) ? 1 : 0;
+    kbd = f.is_checked(chk_kbd) ? 1 : 0;
+    
+    usemouse = f.is_checked(chk_mouse) ? 1 : 0;
+    bufflog = f.is_checked(chk_blog) ? 1 : 0;
+    buffbeeps = f.is_checked(chk_bbeep) ? 1 : 0;
+    signsounds = f.is_checked(chk_sign) ? 1 : 0;
+    distsounds = f.is_checked(chk_dist) ? 1 : 0;
+    bpd = f.is_checked(chk_bpd) ? 1 : 0;
+    
+    if (SCRIPT_COMPILED == false) {
+        int host_sel = f.get_list_position(lst_host);
+        if (host_sel == 0) {
+            netaddress = "example.com";
+        } else if (host_sel == 1) {
+            netaddress = "localhost";
+        } else if (host_sel == 2) {
+            netaddress = f.get_text(txt_custom_host);
+        }
+    }
+    
+    addprefs();
+    speak("Options saved.", true);
+    
+    if (bpd != old_bpd) {
+        dlg("For this setting to take full effect, the game must restart. Press Enter to continue.");
+        restart();
+        return;
+    }
+    
+    return;
+}
+
+if (f.is_pressed(btn_sapi_config)) {
+    ttsvoicemenu(true);
+    f.focus(btn_sapi_config);
+}
+
+if (f.is_pressed(btn_reset)) {
+    int conf = yesno("Are you sure you would like to reset your settings?", "Reset settings", "Cancel");
+    if (conf == 1) {
+        file_delete(savedir + "/data.dat");
+        dlg("Settings reset. In order for the change to take full effect, the game must restart. Press Enter to restart.");
+        restart();
+        return;
+    } else {
+        f.focus(btn_reset);
+    }
+}
+
+if (f.is_pressed(btn_lang)) {
+    langmenu(true);
+    f.set_caption(btn_lang, "Select game language, currently " + language);
+    f.focus(btn_lang);
+}
+
+if (f.is_pressed(btn_kbd_theme)) {
+    selectkbmenu(true);
+    f.set_caption(btn_kbd_theme, "Select keyboard sound theme, currently " + keyboard_name);
+    f.focus(btn_kbd_theme);
+}
+
+if (btn_joystick != -1 && f.is_pressed(btn_joystick)) {
+    joymenu(true);
+    f.focus(btn_joystick);
+}
+
+int current_tab = f.get_list_position(tab_panel);
+int current_host_sel = (lst_host != -1) ? f.get_list_position(lst_host) : -1;
+
+if (current_tab != last_tab || current_host_sel != last_host_sel) {
+    last_tab = current_tab;
+    last_host_sel = current_host_sel;
+    
+    bool is_general = (current_tab == tab_general_idx);
+    f.set_state(chk_fsapi, is_general, is_general);
+    f.set_state(btn_sapi_config, is_general, is_general);
+    f.set_state(chk_cfu, is_general, is_general);
+    f.set_state(chk_rctrl, is_general, is_general);
+    f.set_state(btn_reset, is_general, is_general);
+    
+    bool is_display = (current_tab == tab_display_idx);
+    f.set_state(btn_lang, is_display, is_display);
+    f.set_state(chk_logo, is_display, is_display);
+    f.set_state(chk_wrap, is_display, is_display);
+    f.set_state(chk_pos, is_display, is_display);
+    f.set_state(chk_kbd, is_display, is_display);
+    f.set_state(btn_kbd_theme, is_display, is_display);
+    
+    bool is_gameplay = (current_tab == tab_gameplay_idx);
+    f.set_state(chk_mouse, is_gameplay, is_gameplay);
+    if (btn_joystick != -1) {
+        f.set_state(btn_joystick, is_gameplay, is_gameplay);
+    }
+    f.set_state(chk_blog, is_gameplay, is_gameplay);
+    f.set_state(chk_bbeep, is_gameplay, is_gameplay);
+    f.set_state(chk_sign, is_gameplay, is_gameplay);
+    f.set_state(chk_dist, is_gameplay, is_gameplay);
+    f.set_state(chk_bpd, is_gameplay, is_gameplay);
+    
+    if (tab_host_idx != -1) {
+        bool is_host = (current_tab == tab_host_idx);
+        f.set_state(lst_host, is_host, is_host);
+        
+        bool is_custom = (is_host && current_host_sel == 2);
+        f.set_state(txt_custom_host, is_custom, is_custom);
+    }
+}
+}
+}
+string plattypemenu()
+{
+string plattype;
+setupmenu(false);
+platflist();
+m.set_callback(plm,"");
+netloop();
+mres=m.run("select platform type. Press Space to preview platform.", true);
+if (mres==0)
+{
+return"";
+}
+else
+{
+plattype=m.get_item_name(mres);
+return plattype;
+}
+}
+int plm(dynamic_menu_pro@ test, string data)
+{
+if (key_down(KEY_SPACE) and walktimer.elapsed>=walktime)
+{
+walktimer.restart();
+if(string_left(m.get_item_name(m.menu_position),4)=="wall") p.play_stationary(m.get_item_name(m.menu_position)+".ogg", false);
+else p.play_stationary(m.get_item_name(m.menu_position)+"step"+random(1, 5)+".ogg", false);
+}
+netloop();
+if (key_pressed(KEY_J))
+{
+p.play_stationary(m.get_item_name(m.menu_position)+"land.ogg", false);
+}
+if (key_pressed(KEY_J) and shift_is_down())
+{
+p.play_stationary(m.get_item_name(m.menu_position)+"fall1.ogg", false);
+}
+return 0;
+}
+string srctypemenu()
+{
+string srctype;
+setupmenu(false);
+srcmlist();
+m.set_callback(slm,"");
+netloop();
+mres=m.run("select sound source. Press Space to hear the sound title.", true);
+if (mres==0)
+{
+return"";
+}
+else
+{
+srctype=m.get_item_name(mres);
+return srctype;
+}
+}
+string mustypemenu()
+{
+string mustype;
+setupmenu(false);
+musmlist();
+m.set_callback(mlm,"");
+netloop();
+mres=m.run("select music.", true);
+if (mres==0)
+{
+return"";
+}
+else
+{
+mustype=m.get_item_name(mres);
+return mustype;
+}
+}
+int mlm(dynamic_menu_pro@ test, string data)
+{
+if (key_pressed(KEY_SPACE))
+{
+speak(m.get_item_name(m.menu_position));
+}
+netloop();
+return 0;
+}
+
+int slm(dynamic_menu_pro@ test, string data)
+{
+if (key_pressed(KEY_SPACE))
+{
+speak(m.get_item_name(m.menu_position));
+}
+netloop();
+return 0;
+}
+void platflist()
+{
+string[] platformslist=string_split(platlist,"\r\n",false);
+for(uint i=0; i<platformslist.length(); i++)
+{
+m.add_item_tts(platformslist[i],platformslist[i]);
+}
+}
+void srcmlist()
+{
+string[] soundslist=string_split(srclist,"\r\n",false);
+for(uint i=0; i<soundslist.length(); i++)
+{
+m.add_item(soundslist[i]+".ogg",soundslist[i]+".ogg");
+}
+}
+void musmlist()
+{
+string[] soundslist=string_split(musiclist,"\r\n",false);
+for(uint i=0; i<soundslist.length(); i++)
+{
+m.add_item(soundslist[i]+".ogg",soundslist[i]+".ogg");
+}
+}
+void langmenu(bool called_from_form = false)
+{
+setupmenu(false);
+string[]langs=find_files("translations/*.txt");
+if(langs.length()==0)
+{
+alert("Error","There were no language files detected. If you believe this is an error please redownload the game. Using English for now.");
+language="English";
+return;
+}
+m.add_item_tts("English (default)","English");
+for(uint i=0; i<langs.length(); i++)
+{
+m.add_item_tts(langs[i],string_replace(langs[i],".txt","",false));
+}
+mres=m.run("Select the language file to use, or choose English to use no language file.",true);
+string ln=m.get_item_name(mres);
+if(ln!="")
+{
+language=ln;
+dlg("You are now using "+language+" as the game's default language.");
+addprefs();
+return;
+}
+else
+if(language==""){ 
+alert("Error!","You need to pick a language!");
+exit();
+}
+else{ 
+speak("Language unchanged.");
+if (called_from_form) return;
+prefsmenu();
+}
+}
+void invmenu()
+{
+if(gameinv.items.length()==0)
+{
+speak("No items");
+return;
+}
+m.reset(true);
+m.enable_up_and_down=true;
+m.enable_home_and_end=true;
+m.wrap=false;
+m.enable_multi_letter_navigation=true;
+m.allow_escape=true;
+m.click_sound="invcycle.ogg";
+m.enter_sound="invclose.ogg";
+m.open_sound="invopen.ogg";
+m.set_callback(searchcall,"");
+for(uint i=0; i<gameinv.items.length(); i++)
+{
+m.add_item_tts(gameinv.items[i].name+": You have "+gameinv.items[i].amount+".",gameinv.items[i].name);
+}
+int mres=m.run("Inventory menu. You have "+gameinv.items.length()+" items.",true);
+if(mres==0)
+{
+m.play_enter_sound();
+return;
+}
+else
+{
+gameinv.invpos=gameinv.get_item_index(m.get_item_name(mres));
+return;
+}
+}
+void beaconmenu()
+{
+setupmenu(false);
+m.set_callback(mcb,"");
+for(uint i=0; i<beacons.length(); i++)
+{
+m.add_item_tts(beacons[i].text,beacons[i].text);
+}
+m.add_item_tts("Cancel","cancel");
+mres=m.run("There are "+beacons.length()+" beacons on this map. Select the beacon to track.",true);
+string b=m.get_item_name(mres);
+if(b!="" and b!="cancel")
+{
+for(uint trk=0; trk<beacons.length(); trk++){
+if(beacons[trk].text==b)
+{
+tb.x=round((beacons[trk].minx+beacons[trk].maxx)/2,0);
+tb.y=round((beacons[trk].miny+beacons[trk].maxy)/2,0);
+tb.z=round((beacons[trk].minz+beacons[trk].maxz)/2,0);
+
+}
+}
+trackbeacon=true;
+speak("Tracking");
+}
+else
+if(trackbeacon){
+speak("Stopped tracking");
+tb.x=-1;
+tb.y=-1;
+tb.z=-1;
+trackbeacon=false;
+}
+else speak("Canceled");
+}
+string drtypemenu(string title)
+{
+string drtype;
+setupmenu(false);
+drmlist();
+m.set_callback(dlm,"");
+netloop();
+mres=m.run(title, true);
+if (mres==0)
+{
+return"";
+}
+else
+{
+drtype=m.get_item_name(mres);
+return drtype;
+}
+}
+int dlm(dynamic_menu_pro@ test, string data)
+{
+netloop();
+return 0;
+}
+void drmlist()
+{
+string[] drslist=string_split(doorslist,"\r\n",false);
+m.add_item_tts("none","none.ogg");
+for(uint i=0; i<drslist.length(); i++)
+{
+m.add_item(drslist[i]+".ogg",drslist[i]+".ogg");
+}
+}
+
+void lgsmenu()
+{
+l.speak_boundaries=false;
+l.allow_escape=true;
+l.add_item("A notification from the server","notify.ogg");
+l.add_item("A very important notification from the server","important_notice.ogg");
+l.add_item("An administrator or developer has enabled their flag","flagon.ogg");
+l.add_item("An administrator or developer has disabled their flag","flagoff.ogg");
+l.add_item("A developer just came online","developer.ogg");
+l.add_item("The Server Message has been changed","newmotd.ogg");
+l.add_item("A player just came online","online.ogg");
+l.add_item("A player just went offline","offline.ogg");
+l.add_item("A chat message was just sent by a player","chat.ogg");
+l.add_item("You received a private message from a player","pm.ogg");
+l.add_item("A beacon signifying that a player is allied with you","beacon1.ogg");
+l.add_item("A beacon signifying that a player is not allied with you","beacon2.ogg");
+l.add_item("You have discovered 1 or more items within a 35 tile radius","itemfind.ogg");
+l.add_item("There are no more items within a 35 tile radius","itemdisappear.ogg");
+l.add_item("You or a player has leveled up","event.ogg");
+l.add_item("An undead animal has appeared from the alternate world","appear.ogg");
+l.add_item("An undead animal vanishes back into the world of the dead","disappear.ogg");
+l.add_item("The Gholion, a skeletal lion","gholion1.ogg");
+l.add_item("The Ghostkey, the monkey who had been locked in a cage for years, with no food or water","ghostkey1.ogg");
+l.add_item("The Agawolf, a wolf who had been chained and tortured to death","agawolf2.ogg");
+l.add_item("The Giabear, a gigantic reanimation of a black bear","giabear1.ogg");
+l.add_item("The Seaghoul, a very creepy seagull, taken from its home and placed out in the forest","seaghoul1.ogg");
+l.add_item("The Graven, simply put, a raven from the grave","graven1.ogg");
+l.add_item("The sound of a sign","sign.ogg");
+l.add_item("A sign has been read by you or another player","signpress.ogg");
+l.add_item("You are tracking a map beacon","mapbeacon.ogg");
+l.add_item("A map has started loading","loadstart.ogg");
+l.add_item("A map is in the process of loading","loading.ogg");
+l.add_item("A map has finished loading","loadstop.ogg");
+int lres=l.run(" ");
+return;
+}
+void ttsvoicemenu(bool called_from_form = false)
+{
+int vcounter=sapivoice;
+speak("Use the (up) and (down) arrow keys to select a voice. Use the (Left) and (Right) arrow keys to adjust the speech rate, and the (A) and (D) keys to adjust the rate. When you are satisfied, hit (Enter) to save your selection. To cancel, hit (Escape).",true);
+string[]vnames=tts.get_voice_names();
+while(true)
+{
+wait(5);
+if(key_pressed(KEY_UP))
+{
+if(vcounter<=0)
+{
+spool.play_stationary("menuedge.ogg", false);
+}
+else
+{
+vcounter--;
+tts.set_current_voice(vcounter);
+speak(vnames[vcounter],true,true);
+}
+}
+if(key_pressed(KEY_DOWN))
+{
+if(vcounter>=vnames.length()-1)
+{
+spool.play_stationary("menuedge.ogg", false);
+}
+else
+{
+vcounter++;
+tts.set_current_voice(vcounter);
+speak(vnames[vcounter],true,true);
+}
+}
+if(key_pressed(KEY_LEFT) and tts.pitch>-10)
+{
+tts.pitch=tts.pitch-1;
+speak("Pitch "+tts.pitch,true,true);
+}
+if(key_pressed(KEY_RIGHT) and tts.pitch<10)
+{
+tts.pitch=tts.pitch+1;
+speak("Pitch "+tts.pitch,true,true);
+}
+if(key_pressed(KEY_A) and tts.rate>-10)
+{
+tts.rate=tts.rate-1;
+speak("rate "+tts.rate,true,true);
+}
+if(key_pressed(KEY_D) and tts.rate<10)
+{
+tts.rate=tts.rate+1;
+speak("rate "+tts.rate,true,true);
+}
+if(key_pressed(KEY_ESCAPE))break;
+if(key_pressed(KEY_RETURN))
+{
+sapivoice=vcounter;
+sapirate=tts.rate;
+sapipitch=tts.pitch;
+configure_tts();
+speak("Saved TTS settings",true,true);
+addprefs();
+if (called_from_form) return;
+prefsmenu();
+}
+}
+tts.rate=sapirate;
+tts.pitch=sapipitch;
+tts.set_current_voice(sapivoice);
+configure_tts();
+if (called_from_form) return;
+prefsmenu();
+}
+void selectkbmenu(bool called_from_form = false)
+{
+setupmenu(false);
+m.add_item_tts("keyboard1 (default)","keyboard1");
+m.add_item_tts("keyboard2","keyboard2");
+m.add_item_tts("Go back","back");
+mres=m.run("Select a theme.",true);
+string kbname=m.get_item_name(mres);
+if(kbname!="" and kbname!="back")
+{
+keyboard_name=kbname;
+speak("Now using "+keyboard_name+".");
+if (called_from_form) return;
+prefsmenu();
+}
+else {
+if (called_from_form) return;
+prefsmenu();
+}
+}
+void joymenu(bool called_from_form = false)
+{
+if(stick.joysticks==0)
+{
+dlg("Error. There were no joysticks detected on your system. Please ensure that your joystick is connected properly, then try again.");
+if (called_from_form) return;
+prefsmenu();
+}
+if(stick.joysticks==1)
+{
+dlg("There is only one joystick on your system.");
+int qt=yesno("Would you like to use that joystick as your main one?","Yes","No");
+if(qt==1)
+{
+my_stick=0;
+stick.set(my_stick);
+if(stick.active==false)
+{
+my_stick=-1;
+alert("Error","Something went wrong. Try again.");
+}
+if(stick.active==true)
+{
+dlg("Success.");
+addprefs();
+}
+if (called_from_form) return;
+prefsmenu();
+}
+else {
+if (called_from_form) return;
+prefsmenu();
+}
+}
+string[]joylist=stick.list_joysticks();
+m.add_item_tts("Refresh list","refresh");
+for(uint i=0; i<joylist.length(); i++)
+{
+m.add_item_tts(joylist[i],i);
+}
+mres=m.run("Select joystick.",true);
+string j=m.get_item_name(mres);
+if(j!="" and j!="refresh")
+{
+int j2=stn(j);
+my_stick=j2;
+stick.set(my_stick);
+if(stick.active==false)
+{
+alert("Error","Something wentw rong. TRy again.");
+my_stick=-1;
+}
+if(stick.active==true)
+{
+dlg("Success.");
+}
+addprefs();
+if (called_from_form) return;
+prefsmenu();
+}
+else if(j=="refresh"){
+stick.refresh_joystick_list();
+joymenu(called_from_form);
+}
+else {
+if (called_from_form) return;
+prefsmenu();
+}
+}
+void select_host_menu()
+{
+setupmenu(false);
+m.add_item_tts("Local server (localhost)","localhost");
+m.add_item_tts("Main server (example.com)","example.com");
+m.add_item_tts("Go back","back");
+mres=m.run("Select host.",true);
+string host=m.get_item_name(mres);
+if(host!="" and host!="back")
+{
+netaddress=host;
+speak("Now using "+netaddress+" as host.");
+addprefs();
+prefsmenu();
+}
+else prefsmenu();
+}

@@ -1,0 +1,13 @@
+mapname:bff_farm
+maxx:250
+maxy:250
+maxz:250
+tile:0:250:0:250:0:0:grass2
+zone:0:250:0:250:0:50:farm
+robots:0:250:0:250:0:0:5:2000:goat,horse
+zone:0:10:0:0:0:0:bff_city entrance:trackme
+travelpoint:0:0:0:0:0:0:bff_city:233:143:0:welcome back
+tile:0:250:0:250:0:0:grass3
+tile:0:250:0:250:0:0:grass3
+src:0:250:0:250:0:250:birds2.ogg
+noitems:0:250:0:250:0:250:nuclear_bomb:suicide_bomb:grenade:tasing_small_projectile:elecboat

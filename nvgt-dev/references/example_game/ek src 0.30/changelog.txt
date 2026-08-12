@@ -1,0 +1,97 @@
+new in version 0.30!
+Fix the jumping problem.
+fixt: The sound of the continuously played after accepting the rules
+changed: now when you lose your internet connection, instead of a dialogue that takes you out of the game, the game will connect you to the server again
+changed: the logo of the game
+Removed: The feature of listening to game documents voice. I can add it again if desired
+Removed: Story System
+new in version 0.29!
+Game music is now being played on the server. In this way, the size of the game has decreased to approximately 550 MB
+Some step sounds have been changed. Even almost all. New step sounds added
+Some ambiences have been changed, new ambiances have been added
+new in version 0.28!
+fixed travel point problem
+To jump, you now need to press ALT+Space.
+new in version 0.27!
+The game is now converted to nvgt
+The game now has a sound updater.
+new in version 0.26.1!
+Key sounds work for general chat and local chat.
+Control and space keys must now be used together to jump.
+Fixed the problem of ping stop sound not playing
+Fixed a problem in the translator
+buffer menu, and actions menu have been removed.
+updater now has a extractor
+new in version 0.26!
+added bike
+VIP and VIP features have been added, you can talk to an administrator for details.
+The translation feature has been added, you can create your own translation in the lang folder, see the lank readme to learn how to use it.
+The buffer system has been changed, click on the slash for map chat and main chat or to read messages.
+Toxic substance system has been added, an explosion occurs in the sky and the substances spread throughout the city, stay away from the main map!
+NPC system added, a little explanation, these are placed on the maps by the administrators, for example, say hello to our first developed NPC, Blind Boy! Manages in-game activities!
+added new safezone map, and safezone menu.
+added weapon ak48
+added weapon ak49
+Added new weapon BDA-9X.
+Added new heavy sniper Valkyrie S7.
+glock19 added.
+desert_eagle added.
++Now you have to complete in-game stories in order to use some of your skills, the features of the stories may change, some sections are text-based, some sections are audio-only, the game may ask you for something as a task in the stories.
+Note, there is story level 1 for now, we will see other levels in other versions.
+New in version 0.25.1!
+Fixed the problem of not being able to pick up items spawned on the ground
+New in version 0.25!
+The documents have been uploaded to our site so that you can access the documents within the game and we can make quick changes; That is: you can access documents both within the game and from the game folder.
+dlg system changed: dialogs now have a title and a button; note; This system is in beta: if you find problems with it, feel free to report it.
+A little note about spam protector; When you send something to one chat, it affects other departments; private chat; localchat; generall chat; and command
+There is now a spam protector for sending messages: you can only send a message every 4 seconds: otherwise the chat will not open
+Options menu will be opened with `O` instead of `Alt + O`: . Bid sending button has been removed: now the options menu will be opened with `O`.
+To send commands faster, a key for using commands without using / was added: y: allows you to use commands
+version drop: new in version 0.24 mini.
+40 new music!
+Now only admins, builders and developers can access the builder menu.
+same goes for create map
+a few keys have been moved, check it out
+changed a few sounds
+inventory changed
+now, when you press n, it just says current location
+added thirst and hunger
+removed turkey server
+host server folder removed
+removed manuel server port, and, netaddress
+Added new sounds to dialog
+added jump building to disable or enable by coordinates.
+added signs. press shift+enter on a sign to read the text containing in that sign. the sign loop ding ding ding sound is what you'll hear.
+added dialog building. press shift+enter on a dialog to read the text.
+fixed walking.
+added blockage building. A blockage is simply a wall that speaks the text, when you either bump into it, or are within its boundaries.
+disabling jump will no longer be stucked.
+the source and ambience can now be set its volume.
+the first navigation letter is not enough, so we added multi letter navigation for menus.
+the settings menu is now with checkboxes. to use them, press tab or shift+tab to navigate, the space or enter to activate.
+you can now open options menu with alt+o in the game without leaving the game. however, some of things cannot be changed from the game.
+added some notifications toggle in settings menu of the game that opens with f7.
+changed the exit menu If you have enabled confirmation to exit. now, you may press either y or enter key to exit, or n or escape to cancel.
+fixed the camera bug. and, the camera will no longer go through the walls!
+added audioforms! report bugs If there are any. chat, map chat, and some other boxes were changed to audioform input box. note: you will not here keyboard sounds in audioform, to reduce lags.
+added musics on the map. press shift+home/end to increase or decrease them!
+fixed zone track, and you can now track with j again. the suicide key has been removed.
+the /changes menu has been modified.
+the language menu has been modified and it is now moved. press shift+f1 to choose one!.
+added notifications buffer.
+server features
+1, private server, now open your private server and play the latest version with your friends
+2, public server lists, this list contains servers approved by developers
+
+you can now commit suicide with the j key
+
+Added moderator system
+
+music box can no longer be spammed
+Added death_free_card
+Added new features for admins
+
+by the way now you can change the port
+
+many bugs have been fixed, however, please note this is just a patch
+Information of old versions has been deleted, it starts from here!

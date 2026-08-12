@@ -1,0 +1,37 @@
+src:0:55:0:55:0:100:room4.ogg
+music:menumus19.ogg
+mapname:team_lobby
+maxx:55
+maxy:39
+maxz:55
+tile:0:55:0:55:0:0:marble3
+zone:0:55:0:55:0:55:team_lobby
+dlg:0:0:0:hey welcome, this is a little intro to a small team lobby, well then, start browsing your new room
+dialog:0:0:0:hey welcome, this is a little intro to a small team lobby, well then, start browsing your new room, and may the war always be with you, do not be afraid of bloodshed, dear warrior
+zone:0:0:0:0:0:55:this crazy team has a crazy login logo written by the team leader, press enter for read:trackme
+tile:12:26:12:26:0:2:walltable
+tile:12:26:12:26:2:2:hardwood3
+zone:12:26:12:26:2:12:the team table, the leader and his members are meeting here, maybe there is something like a computer on the table:trackme
+tile:15:15:11:11:0:1:metal6
+zone:15:15:11:11:0:7:the leader's chair is here:trackme
+tile:15:15:11:11:1:1:cloth
+tile:17:17:11:11:0:1:metal6
+zone:17:17:11:11:0:7:chair:trackme
+tile:20:20:11:11:0:1:metal6
+zone:20:20:11:11:0:7:chair:trackme
+tile:23:23:11:11:0:1:metal6
+zone:23:23:11:11:0:7:chair:trackme
+tile:26:26:11:11:0:1:metal6
+zone:26:26:11:11:0:7:chair:trackme
+tile:27:27:13:13:0:1:metal6
+zone:27:27:13:13:0:7:chair:trackme
+tile:27:27:16:16:0:1:metal6
+zone:27:27:16:16:0:7:chair:trackme
+tile:27:27:19:19:0:1:metal6
+zone:27:27:19:19:0:7:chair:trackme
+tile:0:55:0:10:0:0:carpet
+tile:0:15:39:55:0:2:wallcloth
+tile:0:15:39:55:2:2:cloth
+zone:0:15:39:55:2:12:big couch, you can sleep there or sit with your friends:trackme
+
+zone:12:12:0:0:0:22:press enter to exit this cute beautiful place:trackme

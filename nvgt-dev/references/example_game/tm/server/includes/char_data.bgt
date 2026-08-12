@@ -1,0 +1,441 @@
+void scd(int ie)
+{
+string charfolder="chars/"+players[ie].name;
+/*
+for(uint i=0; i<guns.length(); i++)
+{
+int a=players[ie].get_ammo_count_from(guns[i]);
+if(a>0)
+{
+players[ie].give("ammo_"+guns[i],a);
+}
+}
+players[ie].ammo.delete_all();
+*/
+fl.open(charfolder+"/achievements.usr","wb");
+fl.write(players[ie].a.achieve);
+fl.close();
+write_to(players[ie].name,"storestage.usr",players[ie].storestage);
+write_to(players[ie].name,"storetimer.usr",players[ie].storetimer.elapsed);
+write_to(players[ie].name,"dfc.usr",players[ie].deathfreecards);
+fl.open(charfolder+"/vs.usr","wb");
+fl.write(players[ie].aircraftfuel+"\r\n"+players[ie].aircrafthealth+"\r\n"+players[ie].pcfuel+"\r\n"+players[ie].pchealth);
+fl.close();
+fl.open(charfolder+"/x.usr","wb");
+fl.write(round(players[ie].x,0));
+fl.close();
+fl.open(charfolder+"/y.usr","wb");
+fl.write(round(players[ie].y,0));
+fl.close();
+fl.open(charfolder+"/facing.usr","wb");
+fl.write(players[ie].facing);
+fl.close();
+fl.open(charfolder+"/z.usr","wb");
+fl.write(round(players[ie].z,0));
+fl.close();
+if(players[ie].is_paid())
+write_to(players[ie].name,"paid.usr",players[ie].paid);
+write_to(players[ie].name,"compid.usr",players[ie].compid);
+write_to(players[ie].name,"air.usr",players[ie].air);
+write_to(players[ie].name,"food.usr",players[ie].food);
+write_to(players[ie].name,"muted.usr",players[ie].muted);
+write_to(players[ie].name,"trustlist.usr",players[ie].trusted);
+write_to(players[ie].name,"pallow1.usr",players[ie].pallow1);
+write_to(players[ie].name,"pallow2.usr",players[ie].pallow2);
+write_to(players[ie].name,"pallow3.usr",players[ie].pallow3);
+write_to(players[ie].name,"pallow4.usr",players[ie].pallow4);
+write_to(players[ie].name,"mate.usr",players[ie].mate);
+write_to(players[ie].name,"pmreceiving.usr",players[ie].pmreceiving);
+write_to(players[ie].name,"super.usr",players[ie].super);
+write_to(players[ie].name,"lang.usr",players[ie].langchan);
+write_to(players[ie].name,"jailtitle.usr",players[ie].ptitle);
+write_to(players[ie].name,"status.usr",players[ie].status);
+write_to(players[ie].name,"nickname.usr",players[ie].nickname);
+if(players[ie].newb==1)
+write_to(players[ie].name,"newb.usr","1");
+write_to(players[ie].name,"chats.usr",players[ie].chats);
+write_to(players[ie].name,"voted.usr",players[ie].voted);
+write_to(players[ie].name,"playtime.usr",players[ie].playtimer.elapsed);
+fl.open(charfolder+"/map.usr","wb");
+fl.write(players[ie].map);
+fl.close();
+fl.open(charfolder+"/trustlist.usr","w");
+fl.write(players[ie].trusted);
+fl.close();
+fl.open(charfolder+"/mate.usr","w");
+fl.write(players[ie].mate);
+fl.close();
+fl.open(charfolder+"/pallow1.usr","w");
+fl.write(players[ie].pallow1);
+fl.close();
+fl.open(charfolder+"/pallow2.usr","w");
+fl.write(players[ie].pallow2);
+fl.close();
+fl.open(charfolder+"/pallow3.usr","w");
+fl.write(players[ie].pallow3);
+fl.close();
+fl.open(charfolder+"/pallow4.usr","w");
+fl.write(players[ie].pallow4);
+fl.close();
+fl.open(charfolder+"/level.usr","w");
+fl.write(players[ie].level);
+fl.close();
+fl.open(charfolder+"/bone_level.usr","w");
+fl.write(players[ie].bone_level);
+fl.close();
+fl.open(charfolder+"/re.usr","w");
+fl.write(players[ie].re);
+fl.close();
+fl.open(charfolder+"/xp.usr","w");
+fl.write(players[ie].xp);
+fl.close();
+fl.open(charfolder+"/points.usr","w");
+fl.write(players[ie].points);
+fl.close();
+fl.open(charfolder+"/xprequired.usr","w");
+fl.write(players[ie].xprequired);
+fl.close();
+fl.open(charfolder+"/health.usr","wb");
+fl.write(players[ie].health);
+fl.close();
+fl.open(charfolder+"/invinsible_status.usr","wb");
+fl.write(players[ie].invinsible_status);
+fl.close();
+fl.open(charfolder+"/arenacount.usr","wb");
+fl.write(players[ie].arenacount);
+fl.close();
+fl.open(charfolder+"/creaturearenacount.usr","wb");
+fl.write(players[ie].creaturearenacount);
+fl.close();
+fl.open(charfolder+"/meleecount.usr","wb");
+fl.write(players[ie].meleecount);
+fl.close();
+fl.open(charfolder+"/energycount.usr","wb");
+fl.write(players[ie].energycount);
+fl.close();
+fl.open(charfolder+"/sourcererstatus.usr","wb");
+fl.write(players[ie].sourcererstatus);
+fl.close();
+fl.open(charfolder+"/junglecount.usr","wb");
+fl.write(players[ie].junglecount);
+fl.close();
+fl.open(charfolder+"/junglecount2.usr","wb");
+fl.write(players[ie].junglecount2);
+fl.close();
+fl.open(charfolder+"/maxhealth.usr","wb");
+fl.write(players[ie].maxhealth);
+fl.close();
+fl.open(charfolder+"/kills.usr","wb");
+fl.write(players[ie].kills);
+fl.close();
+fl.open(charfolder+"/deaths.usr","wb");
+fl.write(players[ie].deaths);
+fl.close();
+if(players[ie].adminable()) write_to(players[ie].name, "adminflag.usr", players[ie].adminflag);
+if(players[ie].itemtesting==false)
+{
+fl.open(charfolder+"/inv.usr","wb");
+fl.write(players[ie].get_inv());
+fl.close();
+}
+write_to(players[ie].name,"registered.usr",players[ie].registered);
+write_to(players[ie].name,"shields.usr",players[ie].shieldshots);
+}
+void load_char_data(int index, bool forced=false)
+{
+if(index>-1)
+{
+string charfolder="chars/"+players[index].name;
+string data;
+file c;
+c.open(charfolder+"/achievements.usr","rb");
+players[index].a.achieve=c.read();
+c.close();
+c.open(charfolder+"/status.usr","rb");
+players[index].status=c.read();
+c.close();
+c.open(charfolder+"/level.usr","r");
+players[index].level=stn(c.read());
+c.close();
+c.open(charfolder+"/bone_level.usr","r");
+players[index].bone_level=stn(c.read());
+c.close();
+c.open(charfolder+"/points.usr","r");
+players[index].points=stn(c.read());
+c.close();
+c.open(charfolder+"/re.usr","r");
+players[index].re=stn(c.read());
+c.close();
+c.open(charfolder+"/xp.usr","r");
+players[index].xp=stn(c.read());
+c.close();
+c.open(charfolder+"/xprequired.usr","r");
+players[index].xprequired=stn(c.read());
+c.close();
+players[index].xprequired=(25*(players[index].level*(players[index].level*5)));
+if(file_exists(charfolder+"/storestage.usr"))
+{
+players[index].storestage=stn(get_char_val(players[index].name,"storestage"));
+}
+if(file_exists(charfolder+"/adminflag.usr")) players[index].adminflag=stn(get_char_val(players[index].name, "adminflag"));
+if(file_exists(charfolder+"/storetimer.usr"))
+{
+double sttimer=stn(get_char_val(players[index].name,"storetimer"));
+players[index].storetimer.force(sttimer);
+}
+if(file_exists(charfolder+"/cheater.usr"))
+{
+send(players[index].peer_id,"play_s warn5.ogg",0);
+send(players[index].peer_id,"stopmoving",0);
+players[index].cheatertimer.restart();
+players[index].cheater=1;
+}
+if(file_exists(charfolder+"/dfc.usr"))
+{
+c.open(charfolder+"/dfc.usr","rb");
+players[index].deathfreecards=stn(c.read());
+c.close();
+}
+c.open(charfolder+"/disabled.usr","rb");
+players[index].ds=setdisables(c.read());
+c.close();
+if(file_exists(charfolder+"/food.usr"))
+{
+c.open(charfolder+"/food.usr","rb");
+players[index].food=stn(c.read());
+c.close();
+}
+else players[index].food=random(1000, 3000);
+c.open(charfolder+"/muted.usr","rb");
+players[index].muted=c.read();
+c.close();
+c.open(charfolder+"/mate.usr","rb");
+players[index].mate=c.read();
+c.close();
+c.open(charfolder+"/pallow1.usr","rb");
+players[index].pallow1=c.read();
+c.close();
+c.open(charfolder+"/pallow2.usr","rb");
+players[index].pallow2=c.read();
+c.close();
+c.open(charfolder+"/pallow3.usr","rb");
+players[index].pallow3=c.read();
+c.close();
+c.open(charfolder+"/pallow4.usr","rb");
+players[index].pallow4=c.read();
+c.close();
+c.open(charfolder+"/trustlist.usr","rb");
+players[index].trusted=c.read();
+c.close();
+c.open(charfolder+"/air.usr","rb");
+players[index].air=stn(c.read());
+c.close();
+c.open(charfolder+"/pmreceiving.usr","rb");
+players[index].pmreceiving=c.read();
+c.close();
+c.open(charfolder+"/super.usr","rb");
+players[index].super=c.read();
+c.close();
+c.open(charfolder+"/invinsible_status.usr","rb");
+data=c.read();
+players[index].invinsible_status=string_to_number(data);
+c.close();
+c.open(charfolder+"/energycount.usr","rb");
+data=c.read();
+players[index].energycount=string_to_number(data);
+c.close();
+c.open(charfolder+"/sourcererstatus.usr","rb");
+data=c.read();
+players[index].sourcererstatus=string_to_number(data);
+c.close();
+c.open(charfolder+"/junglecount2.usr","rb");
+data=c.read();
+players[index].junglecount2=string_to_number(data);
+c.close();
+c.open(charfolder+"/junglecount.usr","rb");
+data=c.read();
+players[index].junglecount=string_to_number(data);
+c.close();
+c.open(charfolder+"/arenacount.usr","rb");
+data=c.read();
+players[index].arenacount=string_to_number(data);
+c.close();
+c.open(charfolder+"/creaturearenacount.usr","rb");
+data=c.read();
+players[index].creaturearenacount=string_to_number(data);
+c.close();
+
+c.open(charfolder+"/meleecount.usr","rb");
+data=c.read();
+players[index].meleecount=string_to_number(data);
+c.close();
+c.open(charfolder+"/health.usr","rb");
+data=c.read();
+players[index].health=string_to_number(data);
+c.close();
+if(file_exists(charfolder+"/maxhealth.usr"))
+{
+c.open(charfolder+"/maxhealth.usr","rb");
+data=c.read();
+players[index].maxhealth=string_to_number(data);
+c.close();
+}
+else
+{
+if(players[index].re>0)
+{
+players[index].maxhealth=50000000+players[index].re*10000000;
+}
+}
+if(file_exists(charfolder+"/lang.usr"))
+{
+c.open(charfolder+"/lang.usr","rb");
+players[index].langchan=c.read();
+c.close();
+}
+if(file_exists(charfolder+"/jailtitle.usr"))
+{
+c.open(charfolder+"/jailtitle.usr","rb");
+players[index].ptitle=c.read();
+c.close();
+}
+c.open(charfolder+"/deaths.usr","rb");
+players[index].deaths=stn(c.read());
+c.close();
+c.open(charfolder+"/voted.usr","rb");
+players[index].voted=stn(c.read());
+c.close();
+c.open(charfolder+"/kills.usr","rb");
+players[index].kills=string_to_number(c.read());
+c.close();
+c.open(charfolder+"/chats.usr","rb");
+players[index].chats=stn(c.read());
+c.close();
+c.open(charfolder+"/shields.usr","rb");
+players[index].shieldshots=stn(c.read());
+c.close();
+c.open(charfolder+"/map.usr","rb");
+data=c.read();
+if(data=="") data="this:map/does.not\\exist";
+players[index].map=data;
+c.open(charfolder+"/playtime.usr","rb");
+players[index].playtimer.force(stn(c.read()));
+c.close();
+c.close();
+c.open(charfolder+"/nickname.usr","rb");
+data=c.read();
+if(data=="")
+{
+players[index].nickname=players[index].name;
+}
+else
+players[index].nickname=data;
+c.close();
+int x=-5000,y=-5000,z=-5000;
+if(forced)
+{
+x=players[index].x;
+y=players[index].y;
+z=players[index].z;
+}
+c.open(charfolder+"/x.usr","rb");
+data=c.read();
+if(data=="") data=""+random(0,500);
+players[index].x=stn(data);
+c.close();
+c.open(charfolder+"/y.usr","rb");
+data=c.read();
+if(data=="") data=""+random(0,500);
+players[index].y=stn(data);
+c.close();
+c.open(charfolder+"/z.usr","rb");
+data=c.read();
+if(data=="") data="0";
+players[index].z=stn(data);
+c.close();
+if(!map_exists(players[index].map) and !shelter_exists(players[index].map))
+{
+players[index].map="main";
+players[index].x=random(0,500);
+players[index].y=random(0,500);
+players[index].z=0;
+}
+if(x!=players[index].x||y!=players[index].y||z!=players[index].z) move_player(players[index],players[index].map,players[index].x,players[index].y,players[index].z,false, false, get_shelter_index(players[index].map));
+if(file_exists(charfolder+"/vs.usr"))
+{
+c.open(charfolder+"/vs.usr","rb");
+string[] data=string_split(c.read(),"\r\n",false);
+c.close();
+if(data.length()>=2)
+{
+players[index].aircraftfuel=stn(data[0]);
+players[index].aircrafthealth=stn(data[1]);
+}
+if(data.length()>=4)
+{
+players[index].pcfuel=stn(data[2]);
+players[index].pchealth=stn(data[3]);
+}
+c.open(charfolder+"/bones.usr", "r");
+string wtr=c.read();
+if(wtr=="")
+{
+c.close();
+c.open(charfolder+"/bones.usr", "wb");
+c.write("none");
+c.close();
+}
+if(players[index].bone_level>0 and wtr!="none")
+{
+string[] temp=string_split(wtr, ":", true);
+for(int i=0; i<temp.length(); i++)
+{
+players[index].broken_bones.insert_last(players[index].bones[string_to_number(temp[i])]);
+}
+c.close();
+}
+else
+{
+c.close();
+}
+}
+if(file_exists(charfolder+"/warning.usr")) players[index].warning=file_get_contents(charfolder+"/warning.usr");
+if(file_exists(charfolder+"/warnlevel.usr")) players[index].warnlevel=stn(file_get_contents(charfolder+"/warnlevel.usr"));
+if(forced) players[index].send_negated_inv();
+players[index].send_inv();
+}
+}
+string get_char_val(string name, string value)
+{
+string cf="chars/"+name;
+string ret;
+file c;
+c.open(cf+"/"+value+".usr","rb");
+ret=c.read();
+c.close();
+return ret;
+}
+void clear_charstuff(string n)
+{
+for(uint i=0; i<motion_bombs.length(); i++)
+{
+if(motion_bombs[i].owner==n)
+motion_bombs.remove_at(i);
+}
+for(uint i=0; i<remote_timebombs.length(); i++)
+{
+if(remote_timebombs[i].owner==n)
+{
+remote_timebombs.remove_at(i);
+}
+}
+}
+string unencrypt_password(string username)
+{
+string charfolder="chars/"+username;
+file p;
+p.open(charfolder+"/password.usr","rb");
+string pass=p.read();
+p.close();
+return string_decrypt(pass,"");
+}

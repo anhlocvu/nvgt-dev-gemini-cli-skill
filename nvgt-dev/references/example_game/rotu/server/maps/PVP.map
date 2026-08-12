@@ -1,0 +1,23 @@
+name PVP
+maxx 25
+maxy 25
+platform 0 25 0 25 0 0 dirt
+zone 0 25 0 25 0 50 PVP
+
+source 0 25 0 25 0 50 wind7.ogg
+
+platform 0 25 0 25 11 11 carpet5
+zone 0 25 0 25 11 21 Spectators platform
+safezone 0 25 0 25 11 50
+music music1.ogg
+platform 0 75 0 75 5 5 metal3
+zone 0 75 0 75 5 10 the partisapents waiting area
+safezone 0 75 0 75 5 10
+platform 0 25 0 25 4 4 wallWait
+platform 0 25 0 25 10 10 wallWait
+
+
+travelpoint 12 13 12 13 0 20 222 430 0 main
+zone 12 13 12 13 0 20 press shift enter to leave the map
+beacon 12 12 12 12 0 20 exit the map
+

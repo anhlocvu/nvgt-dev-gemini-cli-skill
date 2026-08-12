@@ -1,0 +1,7 @@
+mapname:room
+maxx:44
+maxy:44
+maxz:66
+tile:0:44:0:44:0:0:carpet
+zone:0:44:0:44:0:66:room
+music:md3.ogg

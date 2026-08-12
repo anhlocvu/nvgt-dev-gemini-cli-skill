@@ -1,0 +1,56 @@
+Admin commands:
+Player related commands:
+/itemtesting. This new command is used for testing items out. If you type this command, you can test any item in the game out by giving it to yourself. In this mode, your items won't be saved. Note. when using or testing items, make sure you are clear by a developer. You can not test items on players. Just because you turn this mode on, it does not give you the ability to freely give out or use items to kill players.
+/varset <param> <value>. Changes a setting in the server. Contact a developer for information about these settings, as these can change from server updates, etc.
+/invforce <playername>. Force the invinsibility of a player, stunning them and making them untrackable or shootable. This is good for stopping the player and making them listen to you. Once the situation has been resolved, you can type this command again to disable it.
+/mp. Moves one player to another player. Example. /moveplayer x0 ivan, moves x0 to ivan.
+/m playername x y z, moves playername to coordinates x y z. Example, /move ivan 0 0 0. This command may optionally take a map to move them too after the coordinates, example /move ivan 10 20 0 store
+/cm playername mapname. Changes a player to a specified map. Note this moves them to 0 0 0, and was superceeded by /move gaining the optional ability to take a map.
+/hideme. Hides you from other players. Note. you need to log off and log in again to take affect.
+/follow <playername>. Starts following that player. You need to type /stopfollow to stop following them. This command only works with hidden enabled.
+/ip <playername>. Gets the IP address of a player.
+/compinfo <playername>. Gets information about someone's computer such as the scriptpath they are running the game from. This is useful for detecting players making secondary accounts.
+/stopfollow. Stops following the selected player.
+/blockfeature <playername> <feature>. Blocks a feature from a player. example. /blockfeature nikita-k chat. Blocks nikita-k from sending chats.
+/where playername. Tells you where a player is, including some stats like if they are in a vehicle, or invinsible, etc.
+/inv. Toggles your invinsibility status. This begins with a beepy countdown so you can't do it mid fight. This mode is designed for if you have to do admin related things where you must type a lot etc without getting killed mid-message. While in this mode, you cannot use items, you cannot fire, and players cannot track you in any form.
+/cdata playername value. This command returns the player's value. For example. /cdata ivan level. returns the level of the player ivan. This can be any file in their char folder, examples are location and nickname. Some values update in realtime, such as inv, shields, and health. Health also returns a vehicle's health and it's type if they are in one at the time of execution.
+/warn playername level message. Warns a player of something. Levels are indicated to what this person is doing. For example. /warn ivan 5 You are speedhacking! Levels are 1 through 5. It is good admin practice to warn players before taking serious actions, generally how many times you do it depends on the level and it should increase.
+/settitle playername title. Sets a player's title to something. I.E. /settitle ivan master.
+/cleartitle playername. clears a player's title, removing anything that was there. For example. /cleartitle ivan removes ivan's title, which is probably developer, so it just says ivan.
+/kick <playername>. Kics a player from the server.
+/ban. Bans a player.
+/banned. Returns a list of all banned players on the server.
+/tempban <playername> <minutes>. Bans someone for a certain amount of time. example. /tempban ivan 20. bans ivan for 20 minutes.
+/tempbans. Tells you the temp bans on the server and how long they have until an unban.
+/unban. Unbans a player.
+
+Server commands
+/garbage. Starts a garbage collect cycle. This may lag the server but frees server lag.
+/adminlog. Views the admin log.
+/addalog. Writes to the admin log.
+/eventhelp. Copies the guide on how to create events to clipboard.
+*** note. This admin log is only used for messages about bans, warnings, or anything you think all admins should know about.
+map related commands:
+/maps. Gives you a list of maps and their sizes. Note that shelters also generate maps.
+/intmaps. Gives you a list of maps currently loaded into RAM by the server. This can be used to make sure that a map is not missing from RAM after being created.
+/rawmap. Copies the text of the current map to your clipboard.
+/rawdata data. Sets your current map's data to data, this should be pasted from your clipboard. Do not! Do this to main! Don't build on main at all until a dev gives you permission to do so. Note that if the mapname attribute does not match the map's actual filename, this command will terminate with an error.
+/newmap name x y z tile. Creates a new map. The x, y and z parameters are the maximum values put at the top of the file, they can be changed later. The tile is a surface to put on the entire bottom of the map so when you go to it you don't fall into nothingness.
+
+item related commands:
+/give <playername> <item> <amount>. Gives the amount of items to the given playername. Warning! Using this command to give yourself or your friends free items to cheat this game will not be allowed! This command is only used when giving back items a player has lost, I.E. server crashes and inventory was not saved, etc.
+/spawn_obj x y z map item amount. Spawns an object of type item, containing amount of this item, at x y z on map. For example. /spawn_obj 0 0 0 store coin 1000
+/killobjs. Nukes all items on the map.
+/killremguns. Kills all remote guns on the server. Please note that this sends a notification to the server showing how many remguns were cleared.
+/mbclear. Clears all motion bombs. This sends a notification just to you of how many were killed.
+/mineclear. Clears mines.
+/shockwave. Clears all bombs by making them detinate.
+/countbombs. Tells you how many bombs are active and how many of each type. Useful for tracking down lag.
+/fireoutall. Kills all fires.
+
+misc commands:
+/adtomotd. Adds to the existing message of the day.
+/newmotd. Sets the message of the day to something you want. for example. /newmotd hi, thank you for trying out the game.
+/notify message. Sends out a notification to the server. example. /notify this server is going to be updated in 30 minutes.
+Have fun!";

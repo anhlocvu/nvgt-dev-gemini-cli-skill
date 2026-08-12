@@ -1,0 +1,59 @@
+bool add_to_royale(string participant)
+{
+if(royale_participants.find(participant)>-1) return false;
+int index=get_player_index_from(participant);
+if(index>-1)
+{
+royale_participants.insert_last(participant);
+int[]changepos={325,625,80};
+changemap(index,get_map_index("battle_royale"),changepos);
+@players[index].inv=players[index].inventories[1];
+players[index].inv.id=players[index].peer_id;
+send(0,players[index].name+" has joined the battle.",2);
+return true;
+}
+return false;
+}
+
+bool remove_from_royale(string participant)
+{
+if(royale_participants.find(participant)<=-1) return false;
+int r=royale_participants.find(participant);
+if(r>-1)
+{
+royale_participants.remove_at(r);
+int index=get_player_index_from(participant);
+if(index>-1)
+{
+send(0,players[index].name+" has left the battle.",2);
+int[] changepos={223,434,0};
+changemap(index,get_map_index("main"),changepos);
+@players[index].inv=players[index].inventories[0];
+players[index].inv.id=players[index].peer_id;
+}
+return true;
+}
+return false;
+}
+void start_royale()
+{
+for(uint i=0; i<royale_participants.length(); i++)
+{
+int i2=get_player_index_from(royale_participants[i]);
+if(i2<=-1) remove_from_royale(royale_participants[i]);
+else{
+send(players[i2].peer_id,"move "+random(0,2000)+" "+random(0,2000)+" 10",0);
+}
+}
+send(0,"play_s important_notice.ogg",6);
+send(0,"The battle royale has begun! Participants: "+lister(royale_participants)+"! Good luck to all!",2);
+royalestarted=true;
+royale=true;
+}
+void stop_royale()
+{
+notify("The royale has been stopped.");
+royale_participants.resize(0);
+royalestarted=false;
+royale=false;
+}

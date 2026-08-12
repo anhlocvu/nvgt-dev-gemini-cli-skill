@@ -1,0 +1,63 @@
+class uncheatable_int
+{
+int rand=random(15,9483);
+int val;
+uncheatable_int(int a)
+{
+val=rand+a;
+}
+uncheatable_int()
+{
+val=rand;
+}
+void opAddAssign(int e)
+{
+val+=e;
+}
+void opPostInc()
+{
+val++;
+}
+void opPostDec()
+{
+val--;
+}
+void opSubAssign(int e)
+{
+val-=e;
+}
+void opMulAssign(int e)
+{
+int a=val-rand;
+a*=e;
+a+=rand;
+val=a;
+}
+void opAssign(int a)
+{
+rand=random(15,9483);
+val=rand+a;
+}
+void reset(int value=0)
+{
+rand=random(15,9483);
+val=rand+value;
+}
+int get()
+{
+return val-rand;
+}
+bool opEquals(int a)
+{
+return this.get()==a;
+}
+int opCmp(int a)
+{
+if(this.get() == a)
+return 0;
+else if(this.get() < a)
+return -1;
+else
+return 1;
+}
+}

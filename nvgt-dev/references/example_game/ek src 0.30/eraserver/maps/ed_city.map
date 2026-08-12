@@ -1,0 +1,37 @@
+mapname:ed_city
+maxx:300
+maxy:300
+maxz:300
+tile:0:300:0:300:0:0:concrete8
+tile:0:300:0:100:0:0:grass2
+zone:0:300:0:100:0:100:grassy area of the city
+src:0:300:0:100:0:100:birds5.ogg
+tile:37:37:27:27:0:20:branch
+zone:37:37:27:27:0:30:a little tree
+tile:0:300:101:199:0:0:dirt2
+zone:0:300:101:199:0:100:second part of the city
+src:0:300:101:199:0:100:birds7.ogg
+tile:60:60:40:40:0:30:branch
+tile:100:100:80:80:0:35:branch
+tile:0:300:200:300:0:0:concrete14
+tile:120:120:105:105:0:40:branch2
+zone:0:300:200:300:0:100:inside of the street
+tile:0:0:60:60:0:45:branch2
+src:0:300:200:300:0:100:street.ogg
+tile:130:190:10:50:0:0:deepwater
+src:130:190:10:50:0:65:stream8.ogg
+zone:130:190:10:50:0:10:a deep lake
+tile:123:129:10:55:0:0:mud
+tile:123:195:4:9:0:0:mud
+tile:191:195:10:55:0:0:mud
+tile:130:190:51:55:0:0:mud
+tile:129:129:25:25:0:70:wood6
+tile:130:190:10:50:70:70:bridge2
+tile:191:191:25:25:0:70:wood6
+zone:191:191:25:25:0:70:stairs to a bridge
+zone:130:190:10:50:70:100:a bridge
+zone:129:129:25:25:0:70:stairs to a bridge
+travelpoint:150:155:25:25:70:70:whitehouse:0:32:-5:You enter a luxury house, belonging to Deborah and Erfan. Nice to see you here as guest!
+zone:150:155:25:25:70:80:A nice house is on this tall bridge. Guess who is the owner? He's really rich!
+src:0:300:0:100:0:100:birds4.ogg
+robots:0:300:0:300:0:0:3:2000:person1,person2,person3,person4,person5

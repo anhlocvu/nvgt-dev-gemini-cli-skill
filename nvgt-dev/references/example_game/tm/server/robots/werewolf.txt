@@ -1,0 +1,17 @@
+name werewolf
+health 47000000
+defence 25000
+speed 400
+damage 8500000
+shieldhits 5000,5000
+shieldchance 0
+shoot 1000
+distance 20
+aggro 1000
+spread 6
+angle 360
+steps 0
+loot dollar
+amount 900000
+hits 4
+xp 500000,600000

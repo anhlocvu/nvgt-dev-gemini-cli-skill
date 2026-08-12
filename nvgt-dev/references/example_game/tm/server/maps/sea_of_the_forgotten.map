@@ -1,0 +1,19 @@
+mapname:sea_of_the_forgotten
+maxx:500
+maxy:500
+maxz:500
+tile:0:500:0:500:0:0:shallow
+tile:0:500:0:500:-500:-1:underwater
+amb:0:500:0:500:-500:-1:underwater.ogg:1:100
+zone:0:500:0:500:0:500:the water looks calm. you cannot see a single soul around. however, past experience have taught you that nothing is what it seems on this place. the water might be calm at the serfice, but what about below? the dept of the ocean calls to you. the urge to go underwater is so strong that you think it might be a spell or compultion of some sort. will you take the risk and go down underwater? or will you go back
+zone:0:500:0:500:-500:-1:underwater
+
+zone:0:500:0:500:-140:-140:the ruens of a drown city, destroied beyond repair@trackme@
+zone:0:500:0:500:-500:-140:the ruens of a drown city, destroied beyond repair. you wonder what could have done something like this, and what it could do to you if its still around
+robots:0:500:0:500:-500:-140:5:1000:hydra,leviathan,water_giant
+src:0:500:0:500:5:555:ocean5.ogg:0:100
+cmusic:0:500:0:500:-25555:5555:sea of the forgotten.ogg:-10:100
+travelpoint:0:0:0:0:0:0:fantasy_island:500:500:0:.
+zone:0:0:0:0:0:10:go back@trackme@
+noitems:0:5555:0:5555:0:55555:grenade
+noitems:0:5555:0:5555:-4444:55555:grenade:grenade_launcher:bazooka:stp429:thunderstorm

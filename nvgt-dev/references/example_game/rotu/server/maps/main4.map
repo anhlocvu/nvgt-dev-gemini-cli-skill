@@ -1,0 +1,103 @@
+name main4
+maxx 100
+maxy 140
+spawn
+platform 0 100 0 100 0 0 metal2
+platform 0 75 101 101 0 10 wallbrick
+zone 0 100 0 100 0 50 main5
+zone 0 100 0 100 0 50 An abandoned warehouse
+source 0 100 0 100 0 50 warehouse.ogg -5
+zone 0 24 1 99 0 15 Warehouse Section A
+zone 26 49 1 99 0 15 Warehouse Section B
+zone 51 74 1 99 0 15 Warehouse Section C
+zone 75 100 1 99 0 15 Warehouse Section D
+zone 0 100 100 100 0 15 Northern path between Warehouse Sections
+zone 0 100 0 0 0 15 Southern path between Warehouse Sections
+platform 0 15 15 25 0 10 wallobject
+zone 0 16 14 26 0 10 A tall shelf
+
+platform 25 25 1 99 0 10 wallmetal
+platform 50 50 1 99 0 10 wallmetal
+platform 75 75 1 99 0 10 wallmetal
+platform 0 100 0 0 0 0 wood2
+platform 0 100 100 100 0 0 wood2
+platform 25 25 0 0 0 0 wood
+platform 50 50 0 0 0 0 wood
+platform 75 75 0 0 0 0 wood
+platform 25 25 100 100 0 0 wood
+platform 50 50 100 100 0 0 wood
+platform 75 75 100 100 0 0 wood
+platform
+platform 19 24 15 30 0 10 wallobject
+zone 18 24 14 31 0 10 a tall shelf
+platform 0 10 29 50 0 10 wallobject
+zone 0 11 28 51 0 10 a tall shelf
+platform 14 24 34 42 0 10 wallobject
+zone 13 24 33 43 0 10 a tall shelf
+platform 14 14 29 30 0 10 wallobject
+zone 13 15 28 31 0 10 a tall shelf
+platform 20 23 46 60 0 10 wallobject
+zone 19 24 45 61 0 10 a tall shelf
+platform 2 16 54 64 0 10 wallobject
+zone 0 17 53 71 0 10 a tall shelf
+platform 1 16 66 70 0 10 wallobject
+platform 20 24 64 97 0 10 wallobject
+zone 19 24 63 98 0 10 a tall shelf
+platform 0 16 74 95 0 10 wallobject
+zone 0 17 74 96 0 10 a tall shelf
+platform 0 100 0 100 10 10 wallmedal3
+platform 25 25 0 0 0 0 concrete
+platform 50 50 0 0 0 0 concrete
+platform 75 75 0 0 0 0 concrete
+platform 75 75 100 100 0 0 concrete
+platform 50 50 100 100 0 0 concrete
+platform 25 25 100 100 0 0 concrete
+platform 26 36 15 25 0 10 wallmedal2
+zone 26 37 14 26 0 10 A tall metal barrel
+platform 45 50 15 25 0 6 walltable
+zone 44 50 14 26 0 10 A small wooden barrel
+platform 26 45 30 40 0 10 wallplastic
+zone 26 46 29 41 0 15 A very massive shelf, filled with very heavy bags
+platform 47 49 43 63 0 12 wallbigmetal
+zone 46 49 42 64 0 10 A longer but smaller shelf
+platform 27 31 50 60 0 10 walltable
+zone 26 32 49 61 0 10 Another small wooden barrel
+platform 90 100 1 50 0 0 marble
+zone 90 100 1 50 0 15 Quality control
+platform 76 79 5 9 0 6 wallcrate
+zone 76 80 4 10 0 10 A stack of crates
+platform 76 79 15 19 0 6 wallcrate
+zone 76 80 14 20 0 10 A stack of crates
+platform 76 79 25 29 0 6 wallcrate
+zone 76 80 24 30 0 10 A stack of crates
+platform 76 79 35 39 0 6 wallcrate
+zone 76 80 34 40 0 10 A stack of crates
+platform 76 79 45 49 0 6 wallcrate
+zone 76 80 44 50 0 10 A stack of crates
+platform 76 79 55 59 0 6 wallcrate
+zone 76 80 54 60 0 10 A stack of crates
+platform 76 79 65 69 0 6 wallcrate
+zone 76 80 64 70 0 10 A stack of crates
+platform 76 79 75 79 0 6 wallcrate
+zone 76 80 74 80 0 10 A stack of crates
+platform 76 79 85 89 0 6 wallcrate
+zone 76 80 84 90 0 10 A stack of crates
+platform 76 100 101 140 0 0 wood
+platform 75 75 101 140 0 15 wallstone
+source 76 100 101 140 0 15 wind3.ogg
+zone 76 100 101 140 0 15 Loading dock
+beacon 0 0 0 0 0 0 Southern entrance into Section A
+beacon 26 26 0 0 0 0 Southern entrance into Section B
+beacon 51 51 0 0 0 0 Southern entrance into Section C
+beacon 76 76 0 0 0 0 Southern entrance into Section D
+beacon 0 0 100 100 0 0 Northern entrance into Section A
+beacon 26 26 100 100 0 0 Northern entrance into Section B
+beacon 51 51 100 100 0 0 Northern entrance into Section C
+beacon 76 76 100 100 0 0 Northern entrance into Section D
+beacon 90 100 1 50 0 0 Quality control
+beacon 76 100 101 101 0 0 Loading dock
+zone 80 90 140 140 0 10 Back to main1
+beacon 80 90 140 140 0 0 Back to main1
+travelpoint 80 90 140 140 0 10 499 300 0 main
+viewpoint inside
+no_fights

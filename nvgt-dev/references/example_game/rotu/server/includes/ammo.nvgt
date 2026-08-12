@@ -1,0 +1,49 @@
+class ammo{
+dictionary amd;
+ammo()
+{
+}
+void import_ammo(string dicdata)
+{
+amd=deserialize(dicdata);
+}
+string export_ammo()
+{
+return serialize(amd);
+}
+int ammo_exists(string ammotype)
+{
+int d=0;
+if(amd.exists(ammotype))
+{
+amd.get(ammotype,d);
+return d;
+}
+return -1;
+}
+bool ammotake(string ammotype,int amount)
+{
+if(amd.exists(ammotype))
+{
+int d;
+int a;
+amd.get(ammotype,a);
+amd.set(ammotype,a-amount);
+return true;
+}
+return false;
+}
+void ammogive(string ammotype,int amount)
+{
+bool d=amd.exists(ammotype);
+if(d==true)
+{
+int a;
+amd.get(ammotype,a);
+amd.set(ammotype,a+amount);
+}
+else {
+amd.set(ammotype,amount);
+}
+}
+}

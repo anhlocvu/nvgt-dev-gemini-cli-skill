@@ -1,0 +1,83 @@
+mapname:magical_forest
+maxx:600
+maxy:600
+maxz:300
+tile:0:600:0:600:0:0:grass3
+
+src:0:600:0:600:0:30:src14.ogg:0:100
+src:0:600:0:600:0:100:thunder_roll_with_rain.ogg:0:100
+src:0:700:0:600:0:40:emb16.ogg:0:100
+src:0:600:0:600:21:30:emb10.ogg:0:100
+fightingstate:0
+tile:51:51:0:52:0:49:wallbrush
+tile:0:52:51:51:0:49:wallbrush
+tile:50:50:50:50:0:50:clay
+tile:0:100:0:100:50:50:clay
+tile:101:101:0:101:5:59:wallbrush
+tile:0:101:101:101:5:59:wallbrush
+tile:100:100:100:100:0:49:clay
+tile:126:126:0:126:0:7:wallbrushtangle
+tile:0:126:126:126:0:9:wallbrushtangle
+tile:149:149:0:149:0:7:wallbushleaves
+tile:0:1544:149:149:0:7:wallbushleaves4
+tile:149:149:0:1568:0:7:wallbrush2
+tile:164:200:155:200:0:0:icef
+tile:164:164:155:200:0:0:icef
+tile:164:200:155:155:0:0:icef
+tile:150:200:164:164:0:0:icef
+tile:164:200:150:200:0:0:icef
+tile:150:200:155:200:0:0:icef
+tile:173:173:150:150:0:0:shortgrass
+tile:176:176:155:155:0:0:shortgrass
+tile:177:177:164:164:0:0:shortgrass
+tile:182:182:173:173:0:0:shortgrass
+tile:184:184:183:183:0:0:shortgrass
+tile:194:194:188:188:0:0:shortgrass
+tile:190:190:187:187:0:0:shortgrass
+tile:196:196:193:193:0:0:shortgrass
+tile:200:200:200:200:0:0:shortgrass
+tile:201:201:0:201:0:7:wallbrush2
+tile:0:201:201:201:0:8:wallbrush
+zone:0:600:0:600:0:60:it is a beautiful, huge forest. the rane further ads to its beauty. the grass is soft and wet beneath your feet, the air full with the smell of rain. usually you would not be so alurt in a place such as this, but the enemies which you tale are ruthless enough you're certain, that they would not have hesitated to set traps before they left, even if it meant destroying this gift of nature
+zone:125:125:125:125:0:11:press shift plus enter to continue ahead
+zone:200:200:200:200:0:10:excelent! now press shift enter again
+tile:250:300:250:300:0:0:suicide
+tile:210:300:250:300:0:0:suicide
+tile:250:300:210:300:0:0:suicide
+tile:201:201:201:5555:0:8:wallbrushtangle
+tile:201:5555:201:201:0:8:wallbrush
+tile:250:300:202:300:0:0:suicide
+tile:202:300:250:300:0:0:suicide
+tile:351:351:0:352:0:49:wallbrush
+tile:0:352:351:351:0:49:wallbrush
+tile:350:350:350:350:5:50:gravel3
+tile:350:350:350:350:51:51:icef
+tile:350:400:350:400:50:50:clay
+tile:401:401:0:402:12:57:wallbrush
+tile:0:402:401:401:12:57:wallbrush2
+tile:400:400:400:400:0:10:icef
+tile:400:400:400:400:11:49:clay
+zone:450:450:450:450:0:10:almost there, keep it up! shift enter to go onwards
+tile:451:451:0:600:0:7:wallbushleaves
+tile:0:600:451:451:0:8:wallbushleaves
+tile:526:526:0:5271:0:8:wallbushleaves3
+tile:0:5271:526:526:0:8:wallbrush2
+zone:525:525:525:525:0:7:fantastic! now shift enter again. after this just one more's left!
+tile:526:600:526:600:0:0:shortgrass
+zone:600:600:600:600:0:10:heal your health, and press shift plus enter to begin the fight@trackme@
+cmusic:0:600:0:600:0:100:melody57.ogg:-10:100
+tile:0:1000:426:426:0:5000:wallfoliage
+tile:526:526:526:526:0:10:wallbrush2
+tile:450:450:425:449:0:0:shortgrass
+zone:150:163:150:150:0:6:the right path starts from 163, 150, 0. use this clue wisely, as this is the only one you'll get
+travelpoint:600:600:600:600:0:0:forest_exit:0:0:0:defend yourself!
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter
+
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+zone:0:0:0:0:0:0:go back@trackme@
+noitems:0:55555:0:55555:0:55555:0
+noitems:0:55555:0:55555:0:55555:skateboard
+noitems:0:55555:0:55555:0:55555:warp_box

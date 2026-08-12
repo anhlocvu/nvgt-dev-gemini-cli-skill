@@ -1,0 +1,20 @@
+mapname:the_ocean_cave
+maxx:200
+maxy:300
+maxz:600
+tile:0:200:0:300:0:0:grass
+tile:0:200:0:300:0:0:cave
+tile:75:75:0:300:0:99:wallstone
+tile:75:79:0:300:0:99:wallstone
+tile:74:74:300:300:0:100:ladder2
+tile:75:79:300:300:100:100:concrete2
+tile:80:80:300:300:0:100:ladder2
+tile:200:200:300:300:0:150:ladder2
+zone:0:200:0:300:0:600:the_ocean_cave
+src:0:200:0:300:0:300:cave.ogg:-8
+travelpoint:200:200:300:300:150:1500:the_other_side_of_the_ocean:1000:0:-300:done
+travelpoint:0:0:0:0:0:10:the_ocean:1000:1000:-300:done
+zone:0:0:0:0:0:10:press t to go back to the_ocean
+robots:0:200:0:300:0:0:5:1000:dragon
+zone:200:200:300:300:150:150:the_other_side_of_the_ocean:trackme
+noitems:0:300:0:300:0:300:arena_card:hors:boat:elecboat:police_motorcycle:tasing_small_projectile:guided_missile

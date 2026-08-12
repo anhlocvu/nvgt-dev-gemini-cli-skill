@@ -1,0 +1,142 @@
+j_player@[]jplayers(0);
+class j_player
+{
+bool jstarted=false;
+int dollars,extradollars;
+int stime;
+string musicloop;
+int x,y,z;
+string map;
+timer songtimer;
+timer stimer;
+j_player(int jx,int jy,int jz,string jmap)
+{
+x=jx;
+y=jy;
+z=jz;
+map=jmap;
+}
+void start(bool restarttimer=true)
+{
+destroy_moving_sound(musicloop);
+int rand=random(1,39);
+if(restarttimer==true)
+{
+stimer.restart();
+songtimer.restart();
+}
+stime=get_loop_ms(rand);
+jstarted=true;
+musicloop=spawn_moving_sound("jloop"+rand+".ogg",x,y,z,map);
+}
+}
+void jplayerloop()
+{
+for(uint i=0; i<jplayers.length(); i++)
+{
+if(jplayers[i].jstarted==true)
+{
+if(jplayers[i].stimer.elapsed>=60000*5)
+{
+jplayers[i].jstarted=false;
+destroy_moving_sound(jplayers[i].musicloop);
+jplayers[i].extradollars+=jplayers[i].dollars;
+jplayers[i].dollars=0;
+jplayers[i].start(true);
+}
+if(jplayers[i].songtimer.elapsed>=jplayers[i].stime)
+{
+jplayers[i].songtimer.restart();
+jplayers[i].start(false);
+}
+}
+}
+}
+void spawn_jplayer(int x,int y,int z,string map)
+{
+j_player jp(x,y,z,map);
+jplayers.insert_last(jp);
+}
+int get_jplayer_index(int x,int y, int z, string map)
+{
+for(uint i=0; i<jplayers.length(); i++)
+{
+if(jplayers[i].x==x and jplayers[i].y==y and jplayers[i].z==z and jplayers[i].map==map)
+{
+return i;
+}
+}
+return -1;
+}
+void remove_jplayer(int index)
+{
+if(index>-1)
+{
+jplayers[index].jstarted=false;
+destroy_moving_sound(jplayers[index].musicloop);
+@jplayers[index]=null;
+jplayers.remove_at(index);
+}
+}
+void destroy_all_jplayers()
+{
+for(uint i=0; i<jplayers.length(); i++)
+{
+jplayers[i].jstarted=false;
+destroy_moving_sound(jplayers[i].musicloop);
+@jplayers[i]=null;
+jplayers.remove_at(i);
+continue;
+}
+}
+void clear_jplayers_on_map(string mapname)
+{
+for(uint i=0; i<jplayers.length(); i+=1)
+{
+if(jplayers[i].map==mapname) remove_jplayer(i);
+}
+}
+int get_loop_ms(int songindex)
+{
+if(songindex==1) return 184250;
+if(songindex==2) return 163249;
+if(songindex==3) return 186315;
+if(songindex==4) return 198329;
+if(songindex==5) return 173158;
+if(songindex==6) return 178812;
+if(songindex==7) return 192221;
+if(songindex==8) return 259733;
+if(songindex==9) return 243584;
+if(songindex==10) return 171897;
+if(songindex==11) return 168409;
+if(songindex==12) return 265178;
+if(songindex==13) return 164450;
+if(songindex==14) return 178609;
+if(songindex==15) return 198572;
+if(songindex==16) return 137926;
+if(songindex==17) return 209009;
+if(songindex==18) return 192581;
+if(songindex==19) return 179056;
+if(songindex==20) return 235594;
+if(songindex==21) return 210453;
+if(songindex==22) return 215488;
+if(songindex==23) return 206699;
+if(songindex==24) return 287260;
+if(songindex==25) return 272713;
+if(songindex==26) return 172461;
+if(songindex==27) return 212492;
+if(songindex==28) return 194420;
+if(songindex==29) return 183857;
+if(songindex==30) return 167367;
+if(songindex==31) return 180484;
+if(songindex==32) return 201532;
+if(songindex==33) return 200190;
+if(songindex==34) return 207609;
+if(songindex==35) return 232569;
+if(songindex==36) return 222434;
+if(songindex==37) return 204930;
+if(songindex==38) return 238471;
+if(songindex==39) return 194961;
+else
+return -1;
+}

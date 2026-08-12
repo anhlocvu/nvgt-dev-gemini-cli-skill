@@ -1,0 +1,20 @@
+mapname:land_of_the_seeled
+maxx:300
+maxy:300
+maxz:300
+tile:0:300:0:300:0:0:shortgrass
+fightingstate:0
+cmusic:0:300:0:300:0:120:tears of life.ogg:-10:100
+zone:0:300:0:300:0:300:it is a beautiful place. surrounded by trees of different sizes, you stand in the middle of a large forest. the cool air caresses your face, the song of different birds echoing in your ears. not for the first time, you're left speechless at the beauty of nature. the fact that such a beautiful place has been made in to a prison for the creatures of nature itself stabs at your heart with a sharp pain, however you realise that it is better for everyone's survival, including these creatures. far from civilization, these creatures can enjoy a peaceful life, while the humans and other creatures of the plannet can remain protected from the overwelming power these prehistoric creatures possess
+zone:100:100:100:100:0:6:press shift plus enter to go through the ancient seel@trackme@
+zone:200:200:200:200:0:6:press shift plus enter to go through the mythical seel@trackme@
+src:0:300:0:300:5:20:src19.ogg
+travelpoint:100:100:100:100:0:0:the_ancient_seel:0:0:0:beware. the creatures here can be deadly
+travelpoint:200:200:200:200:0:0:mythical_seel:0:0:0:don't let your guard down
+travelpoint:300:300:300:300:0:0:prehistoric_seel:0:0:0:be very cautias.
+zone:300:300:300:300:0:6:press shift plus enter to go to the prehistoric seel@trackme@
+zone:0:0:0:0:0:0:go back@trackme@
+
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb:throwing_star:kings_statue
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+tile:0:500:0:500:0:0:grass3

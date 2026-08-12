@@ -1,0 +1,14 @@
+mapname:unseelers_base_second_floor
+maxx:300
+maxy:300
+maxz:300
+tile:0:300:0:300:0:0:carpet
+zone:0:300:0:300:0:300:unseelers base, 2nd floor
+tile:0:300:0:300:0:0:concrete4
+zone:300:300:300:300:0:50:stairs leading to the 3rd floor@trackme@
+zone:300:300:300:300:50:50:press shift plus enter to continue
+tile:300:300:300:300:0:50:stairs
+travelpoint:300:300:300:300:50:50:unseelers_base_third_floor:0:0:0:onwards you go
+cmusic:0:300:0:300:0:25:anime175.ogg:-10:100
+robots:0:300:0:300:0:0:5:500:assasson,lacky,fistfighter
+noitems:0:5555:0:5555:0:5555:stp429:grenade

@@ -1,0 +1,5 @@
+Title: Collect Herbs for the Healer
+Description: Gather various herbs for the village healer to make potions.
+EndDate: 2024-10-15
+Item: Healing Potion
+Quantity: 10

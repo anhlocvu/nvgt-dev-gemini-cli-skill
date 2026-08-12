@@ -1,0 +1,64 @@
+/*
+dialog class
+by technology production.
+this is the dialog function. this is not the best function, therefore, only recommended for those who needed.
+*/
+dialog@[] dialogs(0);
+
+class dialog
+{
+    double x, y, z;
+    string title;
+    string message;
+    string button;
+    
+    dialog(double dlgx, double dlgy, double dlgz, string t, string m, string b)
+    {
+        x = dlgx;
+        y = dlgy;
+        z = dlgz;
+        title = t;
+        message = m;
+        button = b;
+    }
+}
+
+void dialogcheck()
+{
+    for(uint i = 0; i < dialogs.length(); i++)
+    {
+        if(mr.x == dialogs[i].x && mr.y == dialogs[i].y && me.z == dialogs[i].z)
+        {
+            string[] messages = string_split(dialogs[i].message, "[===]", true);
+            for(uint i2 = 0; i2 < messages.length(); i2++)
+            {
+                p.play_stationary("toggleon.ogg", false);
+                dlg(dialogs[i].title, messages[i2], dialogs[i].button);
+                p.play_stationary("toggleoff.ogg", false);
+            }
+        }
+    }
+}
+
+void destroy_all_dialogs()
+{
+    dialogs.resize(0);
+}
+
+void spawn_dialog(double x, double y, double z, string title, string message, string button)
+{
+    dialog d1(x, y, z, title, message, button);
+    dialogs.insert_last(d1);
+}
+
+string get_dialog_details()
+{
+    string title = input("title", "Type the title of the dialog", "", "", 0, false, true, "&next", "cancel", true);
+    string message = input("message", "Type the text of the dialog", "", "", 0, false, true, "&next", "cancel", true);
+    string button = input("button", "Type the text of the button", "", "", 0, false, true, "&finish", "cancel", true);
+
+    // Replace new lines with "[===]" for message text
+    message = string_replace(message, "\r\n", "[===]", true);
+    
+    return title + "\n" + message + "\n" + button;
+}

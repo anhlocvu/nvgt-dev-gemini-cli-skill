@@ -1,0 +1,545 @@
+class spawnpoint {
+int minx, maxx, miny, maxy, minz, maxz, spawntime, min_spawntime, max_spawntime, limit;
+string[] spawnables;
+string map;
+string id;
+timer spawntimer;
+spawnpoint(int minx, int maxx, int miny, int maxy, int minz, int maxz, int min_spawntime, int max_spawntime, int limit, string map, string[] spawnables) {
+this.minx=minx;
+this.maxx=maxx;
+this.miny=miny;
+this.maxy=maxy;
+this.minz=minz;
+this.maxz=maxz;
+this.min_spawntime=min_spawntime;
+this.max_spawntime=max_spawntime;
+this.limit=limit;
+this.spawnables=spawnables;
+this.map=map;
+this.spawntime=random(min_spawntime, max_spawntime);
+}
+bool is_in_area(double x, double y, double z, string mapname)
+{
+if(minx<=x and maxx>=x and miny<=y and maxy>=y and minz<=z and maxz>=z)
+{
+if(map==mapname)
+{
+return true;
+}
+}
+return false;
+}
+undead@[]get_undead_in_area() {
+undead@[]ret(0);
+for(uint i=0; i<unds.length(); i+=1) {
+if(is_in_area(unds[i].x, unds[i].y, unds[i].z, unds[i].mymap.name)) ret.insert_last(unds[i]);
+}
+return ret;
+}
+void loop() {
+if(this.spawntimer.elapsed>=this.spawntime) {
+this.spawntimer.restart();
+this.spawntime=random(this.min_spawntime, this.max_spawntime);
+string t=this.spawnables[random(0, this.spawnables.length()-1)];
+if(t=="undead") {
+if(this.get_undead_in_area().length()<this.limit) {
+undead_appear(random(this.minx, this.maxx), random(this.miny, this.maxy), random(this.minz, this.maxz), undtypes[random(0, undtypes.length()-1)], this.map);
+}
+}
+}
+}
+}
+map_data@[] maps(0);
+class map_data {
+double maxx,maxy;
+platform@[]platforms(0);
+safezone@[]safezones(0);
+spawnpoint@[]spawnpoints(0);
+safezone@ main;
+bool fights=true;
+string name;
+string rawdata;
+string invtype;
+bool can_have_items = false;
+string viewpoint="outside";
+// empty constructor
+map_data()
+{
+}
+
+map_data(string nm)
+{
+file f;
+f.open("maps/"+nm+".map", "rb");
+mapload(f.read());
+f.close();
+}
+
+~map_data()
+{
+this.spawnpoints.resize(0);
+}
+
+player@[] get_players()
+{
+player@[] ret(0);
+for(int i=0; i<players.length(); i++)
+{
+if(players[i].map == name)
+ret.insert_last(players[i]);
+}
+return ret;
+}
+undead@[]get_undead_on_map(vector positional, int min_distance=50) {
+undead@[]ret(0);
+int len=unds.length();
+for(uint i=0; i<len; i+=1) {
+if(unds[i].mymap.name==this.name) {
+if(positional.x==-1 or positional.y==-1 or positional.z==-1) {
+ret.insert_last(unds[i]);
+}
+else {
+int dist=get_3d_distance(unds[i].x, unds[i].y, unds[i].z, positional.x, positional.y, positional.z);
+if(dist<=min_distance)
+ret.insert_last(unds[i]);
+}
+}
+}
+return ret;
+}
+void loop() {
+for(uint x=0; x<this.spawnpoints.length(); x+=1) this.spawnpoints[x].loop();
+}
+string get_data_at(int position)
+{
+string[]lines=string_split(rawdata,"\r\n",false);
+if(position<0 or position>lines.length()-1) return "";
+return lines[position];
+}
+string update_entry(string entry, string val, string newval)
+{
+if(string_contains(rawdata, entry, 1)>-1)
+rawdata = string_replace(rawdata, entry+" "+val, entry+" "+newval, false);
+else
+rawdata += entry+" "+newval+"\r\n";
+return newval;
+}
+
+bool remove_entry(string entry)
+{
+if(string_contains(rawdata, entry, 1)>-1)
+{
+rawdata=string_replace(rawdata,entry,"",false);
+return true;
+}
+return false;
+}
+
+void set_invtype(string type)
+{
+if(type!="battle" and type!="main") return;
+else invtype=update_entry("invtype", invtype, type);
+}
+void set_viewpoint(string view)
+{
+if(view!="inside" and view!="outside") return;
+else viewpoint=update_entry("viewpoint",viewpoint,view);
+}
+void set_name(string mapname)
+{
+name = update_entry("name", name, mapname);
+}
+
+void add_string(string str)
+{
+rawdata += str +"\r\n";
+}
+
+void set_maxx(int x)
+{
+maxx = stn(update_entry("maxx", maxx, x));
+//send(0, rawdata, 2);
+}
+
+void set_maxy(int y)
+{
+maxy = stn(update_entry("maxy", maxy, y));
+//send(0, rawdata, 2);
+}
+
+void add_platform(int minx, int maxx, int miny, int maxy, int minz, int maxz, string type, bool vanish=false, int vanishtime=-1, int appeartime=-1)
+{
+platform p(minx, maxx, miny, maxy, minz, maxz, type, vanish, vanishtime, (appeartime>-1?appeartime:vanishtime));
+platforms.insert_last(p);
+rawdata += p.to_string();
+}
+
+void add_safezone(int minx, int maxx, int miny, int maxy, int minz, int maxz, bool main_sz=false)
+{
+safezone sz(minx, maxx, miny, maxy, minz, maxz);
+safezones.insert_last(sz);
+if(main_sz) @main = sz;
+rawdata += sz.to_string();
+}
+ 
+bool is_sz(int x, int y, int z)
+{
+for(uint i=0; i<safezones.length(); i++)
+{
+if(safezones[i].minx<=x and safezones[i].maxx>=x and safezones[i].miny<=y and safezones[i].maxy>=y and safezones[i].minz<=z and safezones[i].maxz>=z) return true;
+}
+return false;
+}
+
+bool has_main_safezone()
+{
+return @main != null;
+}
+
+bool has_any_safezone()
+{
+return safezones.length() > 0;
+}
+
+
+void mapload(string data) {
+string[] lines=string_split(data, "\r\n", false);
+rawdata = "";
+invtype = "main";
+spawnpoints.resize(0);
+for(uint i=0; i<lines.length(); i++)
+{
+string[]md=string_split(lines[i]," ",false);
+if(md[0]=="name" and md.length()>1)
+{
+set_name(md[1]);
+}
+else if(md[0]=="safezone" and md.length()>6)
+{
+bool is_main = (md.length() >=8 and md[7]=="main");
+add_safezone(stn(md[1]), stn(md[2]), stn(md[3]), stn(md[4]), stn(md[5]), stn(md[6]), is_main);
+}
+else if(md[0]=="spawnpoint" and md.length()>9) {
+int minx=stn(md[1]);
+int maxx=stn(md[2]);
+int miny=stn(md[3]);
+int maxy=stn(md[4]);
+int minz=stn(md[5]);
+int maxz=stn(md[6]);
+int min_spawntime=stn(md[7]);
+int max_spawntime=stn(md[8]);
+int limit=stn(md[9]);
+string[] ix;
+for(uint x=10; x<md.length(); x+=1) {
+ix.insert_last(md[x]);
+}
+spawnpoints.insert_last(spawnpoint(minx, maxx, miny, maxy, minz, maxz, min_spawntime, max_spawntime, limit, this.name, ix));
+add_string(string_join(@md, " "));
+}
+else if(md[0]=="viewpoint" and md.length()>1) set_viewpoint(md[1]);
+else if(md[0]=="no_fights") 
+{
+fights=false;
+rawdata += "no_fights\r\n";
+}
+else if(md[0]=="spawn")
+{
+if(!can_have_items)
+{
+can_have_items = true;
+rawdata += "spawn\r\n";
+public.insert_last(name);
+}
+}
+else if(md[0]=="invtype" and md.length()>1)
+set_invtype(md[1]);
+else if(md[0]=="maxx" and md.length()>1)
+{
+set_maxx(stn(md[1]));
+}
+else if(md[0]=="maxy" and md.length()>1)
+{
+set_maxy(stn(md[1]));
+}
+else if(md[0]=="platform" and md.length()>7)
+{
+bool will_vanish=false;
+int vanishtime, appeartime;
+if(md.length()>8) {
+vanishtime=stn(md[8]);
+if(md.length()>9) appeartime=stn(md[9]);
+else appeartime=stn(md[8]);
+will_vanish=true;
+}
+add_platform(stn(md[1]),stn(md[2]),stn(md[3]),stn(md[4]),stn(md[5]),stn(md[6]),md[7], will_vanish, vanishtime, appeartime);
+}
+else if(md[0]=="hazard") add_string(string_join(@md, " "));
+else
+add_string(string_join(@md, " "));
+}
+if(in_array(name, @public) and !can_have_items)
+{
+public.remove_at(public.find(name));
+}
+}
+
+void save()
+{
+if(!name.is_empty())
+{
+if(rawdata.is_empty())
+{
+rawdata = "name "+name+"\r\nmaxx "+maxx+"\r\nmaxy "+maxy+"\r\n"+rawdata;
+if(!fights) rawdata += "no_fights\r\n";
+for(int i=0; i<platforms.length(); i++)
+{
+rawdata += platforms[i].to_string();
+}
+for(int i=0; i<safezones.length(); i++)
+{
+rawdata += safezones[i].to_string();
+}
+}
+file f;
+f.open("maps/"+name+".map", "wb");
+f.write(rawdata);
+f.close();
+}
+}
+
+string get_tile_at(int x, int y, int z)
+{
+for(int i=platforms.length()-1; i>=0; i--)
+{
+if(platforms[i].minx<=x and platforms[i].maxx>=x and platforms[i].miny<=y and platforms[i].maxy>=y and platforms[i].minz<=z and platforms[i].maxz>= z)
+return platforms[i].type;
+}
+return "";
+}
+}
+
+string get_tile_at(int x, int y, int z,string mapname)
+{
+int i=get_map_index(mapname);
+if(i<0) return "";
+return maps[i].get_tile_at(x, y, z);
+}
+
+class platform{
+double minx,maxx,miny,maxy,minz,maxz;
+string type;
+bool vanish=false;
+int vanishtime, appeartime;
+platform(double mx,double mx2, double my,double my2, double mz,double mz2,string pt, bool v=false, int vtime=-1, int aptime=-1)
+{
+minx=mx;
+maxx=mx2;
+miny=my;
+maxy=my2;
+minz=mz;
+maxz=mz2;
+type=pt;
+vanish=v;
+vanishtime=vtime;
+if(aptime>-1) appeartime=aptime;
+else
+appeartime=vanishtime;
+}
+
+string to_string()
+{
+return "platform "+minx+" "+maxx+" "+miny+" "+maxy+" "+minz+" "+maxz+" "+type+""+(this.vanish?" "+this.vanishtime+" "+(this.appeartime>-1?this.appeartime:this.vanishtime):"")+"\r\n";
+}
+
+}
+
+int get_map_index(string map)
+{
+for(uint i=0; i<maps.length(); i++)
+{
+if(maps[i].name==map) return i;
+}
+return -1;
+}
+
+void load_all_maps()
+{
+string[]mapnames=find_files("maps/*.map");
+for(uint i=0; i<mapnames.length(); i++)
+{
+string real_name=string_replace(mapnames[i],".map","",true);
+map_data temp(real_name);
+maps.insert_last(temp);
+}
+}
+
+map_data@get_map_handle(string mapname)
+{
+for(uint i=0; i<maps.length(); i++)
+{
+if(maps[i].name==mapname) return maps[i];
+}
+return null;
+}
+
+string generate_mapdata(string name,int maxx,int maxy,string surface)
+{
+return "name "+name+"
+maxx "+maxx+"
+maxy "+maxy+"
+platform 0 "+maxx+" 0 "+maxy+" 0 0 "+surface+"
+zone 0 "+maxx+" 0 "+maxy+" 0 50 "+name;
+}
+
+bool delete_map(string mapname)
+{
+if(in_array(mapname, @public))
+{
+int x = public.find(mapname);
+public.remove_at(x);
+}
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].map==mapname)
+{
+changemap_safe(i, get_map_index("main"));
+send(players[i].peer_id, "The map you were on was deleted. You have been moved to the main safe zone.", 0);
+}
+}
+for(int i=unds.length()-1; i>=0; i--)
+{
+if(@unds[i].mymap != null and unds[i].mymap.name==mapname)
+{
+@unds[i]=null;
+unds.remove_at(i);
+}
+}
+if(file_exists("maps/"+mapname+".map"))
+{
+file_delete("maps/"+mapname+".map");
+for(uint i=0; i<maps.length(); i++)
+{
+if(maps[i].name==mapname)
+{
+if(in_array(maps[i].name, @public))
+{
+int x = public.find(maps[i].name);
+public.remove_at(x);
+}
+maps.remove_at(i);
+break;
+}
+}
+return true;
+}
+else if(!file_exists("maps/"+mapname+".map") and get_map_index(mapname)>-1)
+{
+for(uint i=0; i<maps.length(); i++)
+{
+if(maps[i].name==mapname)
+{
+maps.remove_at(i);
+}
+}
+return true;
+}
+else return false;
+}
+
+class safezone{
+double minx,maxx,miny,maxy,minz,maxz;
+safezone(double mx,double mx2,double my,double my2,double mz,double mz2)
+{
+minx=mx;
+maxx=mx2;
+miny=my;
+maxy=my2;
+minz=mz;
+maxz=mz2;
+}
+
+string to_string()
+{
+return "safezone "+minx+" "+maxx+" "+miny+" "+maxy+" "+minz+" "+maxz+"\r\n";
+}
+
+}
+
+bool is_sz(double x,double y,double z,string map)
+{
+int idx = get_map_index(map);
+if(idx == -1) return false;
+map_data@m = maps[idx];
+if(@m!=null)
+{
+return m.is_sz(x, y, z);
+}
+return false;
+}
+
+void refresh_map(string mapname)
+{
+int index=get_map_index(mapname);
+if(index>-1)
+{
+@maps[index]=null;
+maps.remove_at(index);
+}
+map_data temp(mapname);
+maps.insert_last(temp);
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].map==mapname)
+{
+@players[i].mymap = temp;
+send(players[i].peer_id,"mapdata "+get_mapdata(temp.name),0);
+send(players[i].peer_id,"Map updated.",0);
+}
+}
+for(uint i=0; i<unds.length(); i++)
+{
+if(@unds[i].mymap != null and unds[i].mymap.name==mapname)
+{
+@unds[i].mymap = temp;
+}
+}
+}
+
+string get_mapdata(string map)
+{
+int idx = get_map_index(map);
+if(idx == -1) return "";
+map_data@ m = maps[idx];
+if(@m != null)
+return m.rawdata;
+return "";
+}
+
+
+// auxiliary functions to move in the future in a file like utils.bgt
+string string_join(string[]@ arr, string delimiter=" ")
+{
+if(arr.length()<=0 or delimiter.is_empty()) return "";
+string val;
+for(int i=0; i<arr.length()-1; i++)
+{
+val += arr[i]+delimiter;
+}
+val += arr[arr.length()-1];
+return val;
+}
+
+bool in_array(string elem, string[]@ arr)
+{
+return arr.find(elem) > -1;
+}
+
+bool map_exists(string name)
+{
+return @(get_map_handle(name)) != null;
+}
+void maploop() {
+for(uint i=0; i<maps.length(); i+=1) {
+maps[i].loop();
+}
+}

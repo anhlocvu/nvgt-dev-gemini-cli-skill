@@ -1,0 +1,61 @@
+quest@[]quests(0);
+class quest {
+string title;
+string description;
+int minlevel=1;
+string rewarded_item="coin";
+int rewarded_item_amount=1;
+int type=-1;
+int exp=100;
+dictionary needed, needed2;
+quest(string title, string description, int min_level=1, string rewarded_item="coin", int rewarded_item_amount=1, int type=-1, int exp=100) {
+this.title=title;
+this.description=description;
+this.minlevel=min_level;
+this.rewarded_item=rewarded_item;
+this.rewarded_item_amount=rewarded_item_amount;
+if(type>-1) this.type=type;
+this.exp=exp;
+}
+}
+void add_quests() {
+quest q("stealthy_killing", "You decided to train yourself in killing with out making a lot of noise as to not attract any undead", 1, "gold", 1500, 1, 500);
+q.needed.set("axe", 15);
+q.needed.set("shotgun", 10);
+quests.insert_last(q);
+quest q2("long_ranger", "You need some training to kill from a distance. Kill undead with your rifle", 5, "gold", 3500, 1, 1200);
+q2.needed.set("rifle", 200);
+quests.insert_last(q2);
+quest q3("Bomb expert", "You are a bomb expert, or so you think", 10, "gold", 5000, 2000);
+q3.needed.set("cannon", 300);
+q3.needed.set("hand_grenade", 500);
+quests.insert_last(q3);
+quest q4("guard_station", "We want to make sure that you are well fitted to take care if players if something happens", 15, "gold", 7500, 1, 3000);
+q4.needed.set("rifle", 100);
+q4.needed.set("barrett_sniper_rifle", 75);
+quests.insert_last(q4);
+quest q5("quiet hour", "You've heard for a while that undead can actually hear sound and will come out if you fire loud weapons. You must practice to kill undead quickly using the kyle's_crossbow and your axe", 25, "gold", 15000, 1, 10000);
+q5.needed.set("kyle's_crossbow", 150);
+q5.needed.set("axe", 60);
+quest q6("The Apprentice", "It is time that you learn the weapons and the Rotu concepts", 1, "gold", 500, 1, 80);
+q6.needed.set("pistol", 20);
+q6.needed.set("axe", 10);
+q6.needed.set("shotgun", 5);
+
+quests.insert_at(1, q6);
+}
+void load_quest_from_file(string filename) {
+if(!file_exists("quests/"+filename)) return;
+string data=file_get_contents("quests/"+filename);
+if(data.is_empty()) return;
+string[] lines=string_split(data, "\n", false);
+if(lines.length()==0) return;
+//will finish later.
+}
+int get_quest(string title) {
+int q=-1;
+for(uint i=0; i<quests.length(); i+=1) {
+if(quests[i].title==title) q=i;
+}
+return q;
+}

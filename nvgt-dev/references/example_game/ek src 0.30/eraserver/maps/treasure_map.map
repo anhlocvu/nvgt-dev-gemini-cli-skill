@@ -1,0 +1,14 @@
+mapname:treasure_map
+maxx:50
+maxy:50
+maxz:50
+tile:0:50:0:50:0:0:grass3
+zone:0:50:0:50:0:50:treasure_map
+src:0:50:0:50:2:50:birds12.ogg
+src:0:50:0:50:25:50:md67.ogg
+travelpoint:0:0:0:0:0:0:land:400:400:500:done
+zone:0:0:0:0:0:10:press t to go back to the land:trackme
+ispawn:0:50:0:50:0:0:1000:6:1,5:air_canister:air_canister:gas_mask:gas_mask:invisibility_shield:frequency_scrambler:item_grabber:wood_pack:bitcoin:bitcoin:friendship_sphere:teleporter
+fightingstate:0
+noitems:0:50:0:50:0:50wood:wood:concussive_grenade:elecboat:wirebomb:motion_bomb:nuclear_bomb:mine:stun_dart:remote_timebomb:security_bomb:remote_gun:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:rocket_launcher,bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:wood:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censorbomb:stone:fire_starter:censor_bomb:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:ford:mine:guided_missile:missile_interceptor:police_motorcycle:hors:boat:small_projectile:tasing_small_projectile:poisoned_small_projectile:speed_drink:tank:Sorento:police_car:arena_card:helicopter
+safezone:0:10000:0:10000:-10000:10000

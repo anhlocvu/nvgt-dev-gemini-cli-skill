@@ -1,0 +1,79 @@
+void rulesmenu() {
+string content;
+string[] lines;
+file f;
+if (f.open("rules.txt", "rb")) {
+content = f.read();
+f.close();
+lines = splitContent(content, "\n");
+} else {
+speak("Unable to read the rules file.");
+return;
+}
+int counter = 0;
+int buttonCounter = 0;
+string[] buttons = { "Accept Rules", "Decline Rules" };
+speak("hello, read the rules with the arrow keys and find what you need with the tab and activate the button with enter. When you accept these rules, you will have to comply with them. If you do not accept your responsibilities here; you can press decline and leave here");
+while (true) {
+wait(5);
+if (key_pressed(KEY_UP) && counter > 0) {
+counter--;
+speak(lines[counter]);
+}
+if (key_pressed(KEY_DOWN) && counter < lines.length() - 1) {
+counter++;
+speak(lines[counter]);
+}
+if (key_pressed(KEY_TAB)) {
+buttonCounter = (buttonCounter + 1) % buttons.length();
+speak(buttons[buttonCounter]);
+}
+if (key_pressed(KEY_RETURN)) {
+if (buttonCounter == 0) {
+speak("Accepted.");
+p.play_stationary("welcome.ogg",false);
+rules = 1;
+return;
+} else if (buttonCounter == 1) {
+speak("Declined.");
+exit();
+}
+}
+}
+}
+string[] splitContent(string content, string delimiter) {
+string[] result;
+int start = 0;
+int end = findFirst(content, delimiter, start);
+while (end != -1) {
+result.insert_last(midSubstring(content, start, end - start));
+start = end + delimiter.length();
+end = findFirst(content, delimiter, start);
+}
+result.insert_last(midSubstring(content, start, content.length() - start));
+return result;
+}
+int findFirst(string content, string delimiter, int start) {
+int contentLen = content.length();
+int delimLen = delimiter.length();
+for (int i = start; i <= contentLen - delimLen; i++) {
+bool found = true;
+for (int j = 0; j < delimLen; j++) {
+if (content[i + j] != delimiter[j]) {
+found = false;
+break;
+}
+}
+if (found) {
+return i;
+}
+}
+return -1;
+}
+string midSubstring(string content, int start, int length) {
+string result = "";
+for (int i = start; i < start + length && i < content.length(); i++) {
+result = result + content[i];
+}
+return result;
+}

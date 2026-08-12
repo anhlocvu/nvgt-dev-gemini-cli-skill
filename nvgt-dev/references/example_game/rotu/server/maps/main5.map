@@ -1,0 +1,29 @@
+name main5
+maxx 200
+maxy 200
+spawn
+platform 0 200 0 200 0 0 grass2
+zone 0 200 0 200 0 50 main6
+
+source 0 200 0 200 0 100 field.ogg
+zone 0 200 0 200 0 100 a large grave yard with long wavy grass covering the tombs
+platform 5 15 5 15 0 10 wallrocks2
+zone 4 16 4 16 0 10 A large headstone. The enscription reads: John Derwing. April 28th, 1985. May you rest in peace
+platform 50 60 5 15 0 10 wallrocks2
+zone 49 61 4 16 0 10 A large headstone. The enscription reads: Richard Everglade. September 19th, 1994. Flowers and various plants surround the stone
+platform 105 115 5 15 0 10 wallrocks2
+zone 104 116 4 16 0 10 A large headstone. The enscription reads: Ruby Everglade, sister of Richard Everglade. November 4th, 2007. Flowers and various plants surround the stone, just like Richard's, except Ruby's pile of flowers and plants is much higher
+platform 150 160 5 15 0 10 wallrocks2
+zone 149 161 4 16 0 10 A large headstone. The enscription reads: Lara Ann Berthack. October 31, 2003. The date of Halloween. That seems very creepy
+platform 5 15 50 60 0 10 wallrocks2
+zone 4 16 49 61 0 10 A large headstone. The enscription reads: Emily Sparrow, sister of Kyle Sparrow. There is no date on this stone, in fact there doesn't even seem to be an actual grave here
+platform 50 60 50 60 0 10 wallrocks2
+zone 49 61 49 61 0 10 A large headstone. The enscription reads: Lisa Sparrow, wife of Kyle sparrow. October 13th, 2002. May you rest in peace. The grave is drenched in flowers, candles, and other grave-specific items
+platform 105 115 50 60 0 10 wallrocks2
+zone 104 116 49 61 0 10 A large headstone. The enscription reads: Jason Sparrow, son of Kyle Sparrow and Lisa Sparrow. February 24th, 2006. There are also several flowers littered around the grave, and a small candle lying on its side
+platform 150 160 50 60 0 10 wallrocks2
+zone 149 161 49 61 0 10 A large headstone. The enscription reads: Elizabeth Sparrow, daughter of Kyle Sparrow and Lisa Sparrow. February 24, 2006. An assortment of flowers, candles, and crucifixes surround the grave
+zone 0 0 0 0 0 10 Back to main2
+beacon 0 0 0 0 0 0 Go back to main2
+travelpoint 0 0 0 0 0 10 50 498 0 main2
+no_fights

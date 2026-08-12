@@ -1,0 +1,242 @@
+void objectsmenu(string[] items)
+{
+get_characters();
+double counter=0;
+speak("items menu");
+key_hold ku(KEY_UP,350,70);
+key_hold kd(KEY_DOWN,350,70);
+string char,multichar,test;
+while(true)
+{
+wait(5);
+ek_loop();
+if(counter<0) counter=0;
+if(counter>items.length()-1) counter=items.length()-1;
+if (mulnav==1 and firstnav==0)
+{
+if(navtime.elapsed>1000 and multichar!="")
+multichar="";
+string c=translate_text(string_to_lower_case(get_characters()));
+if(c!="" and multichar!=c)
+{
+navtime.restart();
+multichar+=c;
+}
+if(multichar!="" and c!="")
+{
+multichar=string_to_lower_case(multichar);
+bool found=false;
+for (uint i=counter; i<items.length(); i++)
+{
+if(i==counter) continue;
+test=items[i];
+test=translate_text(string_to_lower_case(test));
+if (string_left(test, multichar.length())==multichar)
+{
+if(translate_text(string_to_lower_case(string_left(items[counter],multichar.length())))==multichar and multichar.length()>1)
+{
+found=true;
+break;
+}
+if (counter<i)
+counter=i;
+else if (counter>i)
+counter=i;
+double x=0,y=0,z=0;
+string data=items[counter];
+if(items[counter]!="stop tracking")
+{
+string[] pro=string_split(items[counter],"[]",true);
+if(pro.length()>0 and data!=pro[0]) data=pro[0];
+if(pro.length()>1 and x!=parse_float(pro[1])) x=parse_float(pro[1]);
+if(pro.length()>2 and y!=parse_float(pro[2])) y=parse_float(pro[2]);
+if(pro.length()>3 and z!=parse_float(pro[3])) z=parse_float(pro[3]);
+}
+speak(objitem(data,x,y,z));
+found=true;
+break;
+}
+}
+if (found==false)
+{
+multichar=string_to_lower_case(multichar);
+for (uint i=0; i<items.length(); i++)
+{
+test=items[i];
+test=translate_text(string_to_lower_case(test));
+if (string_left(test, multichar.length())==multichar)
+{
+if(translate_text(string_to_lower_case(string_left(items[counter],multichar.length())))==multichar and multichar.length()>1)
+{
+found=true;
+break;
+}
+if (counter<i)
+counter=i;
+else if (counter>i)
+counter=i;
+double x=0,y=0,z=0;
+string data=items[counter];
+if(items[counter]!="stop tracking")
+{
+string[] pro=string_split(items[counter],"[]",true);
+if(pro.length()>0 and data!=pro[0]) data=pro[0];
+if(pro.length()>1 and x!=parse_float(pro[1])) x=parse_float(pro[1]);
+if(pro.length()>2 and y!=parse_float(pro[2])) y=parse_float(pro[2]);
+if(pro.length()>3 and z!=parse_float(pro[3])) z=parse_float(pro[3]);
+}
+speak(objitem(data,x,y,z));
+found=true;
+break;
+}
+}
+}
+if(!found)
+{
+speak("no such item exists");
+}
+}
+}
+else if(firstnav==1 and mulnav==0)
+{
+char=translate_text(string_to_lower_case(char));
+if(char!="" and char!=" ")
+{
+char=string_to_lower_case(char);
+bool found=false;
+for (uint i=counter; i<items.length(); i++)
+{
+if(i==counter) continue;
+test=items[i][0];
+test=translate_text(string_to_lower_case(test));
+if (test==char)
+{
+if (counter<i)
+counter=i;
+else if (counter>i and test==char)
+counter=i;
+double x=0,y=0,z=0;
+string data=items[counter];
+if(items[counter]!="stop tracking")
+{
+string[] pro=string_split(items[counter],"[]",true);
+if(pro.length()>0 and data!=pro[0]) data=pro[0];
+if(pro.length()>1 and x!=parse_float(pro[1])) x=parse_float(pro[1]);
+if(pro.length()>2 and y!=parse_float(pro[2])) y=parse_float(pro[2]);
+if(pro.length()>3 and z!=parse_float(pro[3])) z=parse_float(pro[3]);
+}
+speak(objitem(data,x,y,z));
+found=true;
+break;
+}
+}
+if (found==false)
+{
+for (uint i=0; i<items.length(); i++)
+{
+test=items[i][0];
+test=translate_text(string_to_lower_case(test));
+if (test==char)
+{
+if (counter<i)
+counter=i;
+else if (counter>i and test==char)
+counter=i;
+double x=0,y=0,z=0;
+string data=items[counter];
+if(items[counter]!="stop tracking")
+{
+string[] pro=string_split(items[counter],"[]",true);
+if(pro.length()>0 and data!=pro[0]) data=pro[0];
+if(pro.length()>1 and x!=parse_float(pro[1])) x=parse_float(pro[1]);
+if(pro.length()>2 and y!=parse_float(pro[2])) y=parse_float(pro[2]);
+if(pro.length()>3 and z!=parse_float(pro[3])) z=parse_float(pro[3]);
+}
+speak(objitem(data,x,y,z));
+found=true;
+break;
+}
+}
+}
+if(!found)
+{
+speak("no such item exists");
+}
+}
+}
+if(ku.pressing)
+{
+if(counter>0) counter--;
+double x=0,y=0,z=0;
+string data=items[counter];
+if(items[counter]!="stop tracking")
+{
+string[] pro=string_split(items[counter],"[]",true);
+if(pro.length()>0 and data!=pro[0]) data=pro[0];
+if(pro.length()>1 and x!=parse_float(pro[1])) x=parse_float(pro[1]);
+if(pro.length()>2 and y!=parse_float(pro[2])) y=parse_float(pro[2]);
+if(pro.length()>3 and z!=parse_float(pro[3])) z=parse_float(pro[3]);
+}
+speak(objitem(data,x,y,z));
+}
+if(kd.pressing)
+{
+if(counter<items.length()-1) counter++;
+double x=0,y=0,z=0;
+string data=items[counter];
+if(items[counter]!="stop tracking")
+{
+string[] pro=string_split(items[counter],"[]",true);
+if(pro.length()>0 and data!=pro[0]) data=pro[0];
+if(pro.length()>1 and x!=parse_float(pro[1])) x=parse_float(pro[1]);
+if(pro.length()>2 and y!=parse_float(pro[2])) y=parse_float(pro[2]);
+if(pro.length()>3 and z!=parse_float(pro[3])) z=parse_float(pro[3]);
+}
+speak(objitem(data,x,y,z));
+}//down arrow
+if(key_pressed(KEY_RETURN)||key_pressed(KEY_NUMPADENTER))
+{
+double x=0,y=0,z=0;
+string data=items[counter];
+if(items[counter]!="stop tracking")
+{
+string[] pro=string_split(items[counter],"[]",true);
+if(pro.length()>0 and data!=pro[0]) data=pro[0];
+if(pro.length()>1 and x!=parse_float(pro[1])) x=parse_float(pro[1]);
+if(pro.length()>2 and y!=parse_float(pro[2])) y=parse_float(pro[2]);
+if(pro.length()>3 and z!=parse_float(pro[3])) z=parse_float(pro[3]);
+trackix=x;
+trackiy=y;
+trackiz=z;
+trackitem=true;
+tell_where(trackix,trackiy,trackiz,"loctrack");
+return;
+}
+trackitem=false;
+trackix=-1;
+trackiy=-1;
+trackiz=-1;
+speak("stopped tracking");
+return;
+}
+if(key_pressed(KEY_ESCAPE))
+{
+speak("canceled");
+return;
+}//escaped
+}//while
+}//complete
+string objitem(string data,string ox,string oy,string oz,string nospeak="stop tracking")
+{
+double x=parse_float(ox),y=parse_float(oy),z=parse_float(oz);
+string m=data;
+if(data!=nospeak)
+{
+double dist=get_3d_distance(mr.x,mr.y,me.z,x,y,z);
+string add;
+if(me.z>z) add="below";
+else if(me.z<z) add="above";
+m+=" is "+(add!=""?add+", ":"")+""+calculate_x_y_string(calculate_x_y_angle(mr.x,mr.y,x,y,facing))+", "+dist+" tiles away, at "+x+", "+y+", "+z;
+}
+return m;
+}

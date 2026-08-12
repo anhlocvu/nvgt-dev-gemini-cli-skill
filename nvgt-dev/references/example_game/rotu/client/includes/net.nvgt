@@ -1,0 +1,383 @@
+string netaddress="example.com";
+int netport=33335;
+timer timeouttimer;
+int timeouttime=20000;
+const network_event@ e;
+network@ n = network();
+uint peer_id=0;
+bool connected=false;
+bool prior_connected=false;
+void create_acc()
+{
+resetnet();
+audio_form f;
+f.create_window("Create a new account", false, true);
+int f_username = f.create_input_box("Username", "", "", 100);
+int f_email = f.create_input_box("Email address", "", "", 150);
+int f_password = f.create_input_box("Password", "", "*", 100);
+int f_confirm_password = f.create_input_box("Confirm password", "", "*", 100);
+int f_create = f.create_button("Create account", true);
+int f_cancel = f.create_button("Cancel", false, true);
+f.focus(f_username);
+
+while(f.active) {
+wait(5);
+f.monitor();
+if (f.is_pressed(f_cancel) || key_pressed(KEY_ESCAPE) || (!f.active)) {
+speak("Canceled.");
+return;
+}
+if (f.is_pressed(f_create)) {
+string usn = f.get_text(f_username);
+string email = f.get_text(f_email);
+string pw = f.get_text(f_password);
+string cpw = f.get_text(f_confirm_password);
+
+if (validate_nickname(usn) != "") {
+dlg("Error. Invalid username. Reason: " + validate_nickname(usn));
+f.focus(f_username);
+continue;
+}
+if (email == "" || string_contains(email, "@", 1) == -1 || string_contains(email, ".", 1) == -1) {
+dlg("Error. Please enter a valid email address.");
+f.focus(f_email);
+continue;
+}
+if (pw.length() < 6) {
+dlg("Your password must be at least 6 characters long.");
+f.focus(f_password);
+continue;
+}
+if (pw != cpw) {
+dlg("Error. The passwords do not match.");
+f.focus(f_confirm_password);
+continue;
+}
+
+newacc(usn, pw, email);
+return;
+}
+}
+}
+void newacc(string user,string pass,string email)
+{
+if(connected==false and prior_connected==false)
+{
+speak("Connecting to "+netaddress,true);
+if(n.active)
+resetnet();
+n.setup_client(20, 500);
+n.connect((shift_is_down() or file_exists("localhost.txt")?"localhost":netaddress), netport);
+if(get_last_error()!=0)
+{
+alert("Fatal error","network failed to initialize. Error code: "+get_last_error());
+resetnet();
+return;
+}
+}
+send(0,"createplayer "+user+" "+pass+" "+email+" "+generate_ban_id(),0);
+if(connected==true or prior_connected==true)
+{
+@e=n.request();
+}
+timeouttimer.restart();
+while(true)
+{
+wait(5);
+//p.play_stationary_extended("packet.ogg", false, 0, random(-30, 30) , -10, random(95, 105));
+@e=n.request();
+if (key_pressed(KEY_ESCAPE))
+{
+resetnet();
+return;
+}
+if(e.type==event_connect and connected==false)
+{
+speak("Creating account...");
+peer_id=e.peer_id;
+send(0,"createplayer "+user+" "+pass+" "+email+" "+generate_ban_id(),0);
+connected=true;
+}
+else if(e.type==event_receive and get_event_message()=="created")
+{
+dlg("success! Account created!");
+username=user;
+password=pass;
+addprefs();
+resetnet();
+int yn=yesno("Now that your account has been successfully created, would you like to login? You can always do this later from the login menu.","Yes, log me in!","No, not right now.");
+if(yn==1) login();
+else
+{
+dlg("Okay. Press Enter to return to the main menu.");
+return;
+}
+}
+else if(e.type==event_receive and get_event_message()=="error" or(timeouttimer.elapsed>=timeouttime))
+{
+dlg("Error while trying to connect to the server. Please try again");
+resetnet();
+return;
+}
+else if(e.type==event_receive)
+{
+string[] parsed=string_split(get_event_message(), " ", false);
+if(parsed[0]=="dlgblock")
+{
+dlg(string_trim_left(get_event_message(),9));
+resetnet();
+return;
+}
+}
+}
+}
+void login()
+{
+if(username==""||password=="")
+{
+dlg("Error. Invalid account. Please create a new account, or setup an existing one under Options.");
+return;
+}
+if(connected==false and prior_connected==false)
+{
+speak("Connecting to "+netaddress,true);
+if(n.active)
+resetnet();
+n.setup_client(20, 500);
+if(control_is_down() and not SCRIPT_COMPILED) debug_packets=1;
+n.connect((shift_is_down() or file_exists("localhost.txt")?"localhost":netaddress), netport);
+if(get_last_error()!=0)
+{
+alert("Fatal error","network failed to initialize. Error code: "+get_last_error());
+resetnet();
+return;
+}
+}
+send(0, "login "+username+" "+password+" "+version+" "+generate_ban_id(),0);
+if(connected==true or prior_connected==true)
+{
+@e=n.request();
+}
+timeouttimer.restart();
+while(true)
+{
+wait(5);
+//p.play_stationary_extended("packet.ogg", false, 0, random(-30, 30) , -10, random(95, 105));
+netloop();
+//@e=n.request();
+if (key_pressed(KEY_ESCAPE))
+{
+resetnet();
+return;
+}
+if(e.type==event_connect and connected==false)
+{
+speak("logging in as "+username);
+peer_id=e.peer_id;
+send(0, "login "+username+" "+password+" "+version+" "+generate_ban_id(),0);
+connected=true;
+}
+else if(e.type==event_receive and get_event_message()=="loggedin")
+{
+speak("success");
+game();
+resetnet();
+return;
+}
+else if(e.type==event_receive and get_event_message()=="char_wait")
+{
+char_wait();
+if (connected == false) return;
+}
+else if(e.type==event_receive and get_event_message()=="require_email")
+{
+int yn=yesno("Your email address has not been updated. Would you like to update it now?","Yes, update now!","No, later");
+if(yn==1)
+{
+audio_form f;
+f.create_window("Update Email Address", false, true);
+int f_email = f.create_input_box("Enter your email address", "", "", 150);
+int f_ok = f.create_button("Update", true);
+int f_cancel = f.create_button("Cancel", false, true);
+f.focus(f_email);
+while(f.active)
+{
+wait(5);
+f.monitor();
+if(f.is_pressed(f_cancel) or key_pressed(KEY_ESCAPE))
+{
+speak("Canceled.");
+resetnet();
+return;
+}
+if(f.is_pressed(f_ok))
+{
+string email=f.get_text(f_email);
+if(email=="" or string_contains(email, "@", 1)==-1 or string_contains(email, ".", 1)==-1)
+{
+dlg("Error. Please enter a valid email address.");
+f.focus(f_email);
+continue;
+}
+send(0,"update_email "+email,0);
+speak("Updating email...");
+break;
+}
+}
+}
+else
+{
+dlg("You must update your email address to continue playing.");
+resetnet();
+return;
+}
+}
+else if(e.type==event_receive and get_event_message()=="alreadyplaying")
+{
+dlg("sorry: "+username+" is already logged in. ");
+resetnet();
+return;
+}
+else if(e.type==event_receive and get_event_message()=="error" or(timeouttimer.elapsed>=timeouttime))
+{
+dlg("Error while trying to connect to the server. Please try again");
+resetnet();
+return;
+}
+
+else if(e.type==event_receive)
+{
+timeouttimer.restart();
+string[] parsed=string_split(get_event_message(), " ", false);
+if(parsed[0]=="dlgblock")
+{
+dlg(string_trim_left(get_event_message(),9));
+resetnet();
+return;
+}
+else if(parsed[0]=="edit_box")
+{
+string title,answer;
+int answerchannel=0;
+string[] boxsettings=string_split(get_event_message(),"**",true);
+for(uint i=1; i<boxsettings.length(); i++)
+{
+string[] set=string_split(boxsettings[i],"=",true);
+if(set[0]=="title")
+{
+title=set[1];
+}
+else if(set[0]=="answer")
+{
+answer=set[1];
+}
+else if(set[0]=="answer_channel")
+{
+answerchannel=stn(set[1]);
+}
+}
+string box=txt.input(title,true);
+if(box!="") send(answer+" "+box,answerchannel);
+else speak("Canceled.");
+}
+else if(parsed[0]=="server_menu")
+{
+if (not m.is_running()) {
+string[] menudata=string_split(get_event_message(),"{;}",true);
+setupmenu(false);
+m.enable_first_letter_navigation=true;
+m.allow_escape=true;
+string intro;
+bool audiointro;
+bool allow_copy=false;
+string response;
+int chan=0;
+for (uint i=1; i<menudata.length(); i++)
+{
+string[] a=string_split(menudata[i],"=",true);
+if (a[0]=="clicksound" and a.length()>1)
+m.click_sound=a[1];
+else if (a[0]=="edgesound" and a.length()>1)
+m.edge_sound=a[1];
+else if (a[0]=="opensound" and a.length()>1)
+m.open_sound=a[1];
+else if (a[0]=="entersound" and a.length()>1)
+m.enter_sound=a[1];
+if (a[0]=="response") {
+response=a[1];
+string[] b=string_split(a[1], ":", true);
+if (b.length()>=2) {
+chan=stn(b[1]);
+response=string_replace(response, ":"+chan, "", false);
+}
+}
+else if (a[0]=="intro" and a.length()>1)
+{
+intro=a[1];
+audiointro=false;
+}
+else if (a[0]=="audiointro" and a.length()>1)
+{
+intro=a[1];
+audiointro=true;
+}
+else if (a[0]=="option" and a.length()>1)
+{
+string[] o=string_split(a[1],":",true);
+if(o.length()>1)
+m.add_item_tts(o[0],o[1], (o.length()>=3?o[2]:""));
+}
+else if (a[0]=="audiooption")
+{
+string[] o=string_split(a[1],":",true);
+if(o.length()>1)
+m.add_item(o[0],o[1], (o.length()>=3?o[2]:""));
+}
+else if (a[0]=="autoactivate")
+m.letters_autoactivate=(a[1]=="1"?true:false);
+else if (a[0]=="copy")
+allow_copy=(a[1]=="1"?true:false);
+}
+//m.set_callback(mcb, "");
+int result;
+if (audiointro==false)
+result=m.run(intro,true);
+else
+result=m.run(intro,false);
+if (result<=0)
+send(response+" [cncel]",chan);
+else
+{
+send(response+" "+m.get_item_name(result),chan);
+}
+}
+}
+else if(parsed[0]=="launchmenu")
+{
+string i=string_replace(parsed[1],"[SPCE]"," ",true);
+string t=string_replace(parsed[2], "[SPCE]", " ", true);
+string items=string_replace(get_event_message(),parsed[0]+" "+parsed[1]+" "+parsed[2]+" ","",true);
+serverside_menu(t,i,items);
+}
+else if(parsed[0]=="svrmenu")
+{
+string meitems;
+string[] stuff=string_split(get_event_message(),":",false);
+for(uint i=1; i<stuff.length(); i++)
+{
+meitems+=stuff[i];
+}
+servermenu(string_trim_left(stuff[0],7),meitems);
+}
+}
+}
+}
+void resetnet()
+{
+if (@n != null) n.disconnect_peer(0);
+timeouttimer.restart();
+peer_id=0;
+if (@n != null) n.destroy();
+prior_connected=false;
+connected=false;
+}

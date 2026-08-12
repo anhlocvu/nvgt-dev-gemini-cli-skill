@@ -1,0 +1,44 @@
+
+ice-master (ice-master) sent / 12-7-2024, 9:04:05 AM
+ice-master (ice-master) sent / 12-7-2024, 9:04:09 AM
+ice-master (ice-master) sent /go 25 25 0 12-7-2024, 9:04:30 AM
+ice-master (ice-master) sent / 12-7-2024, 9:05:09 AM
+ice-master (ice-master) sent /garbage 12-7-2024, 9:05:30 AM
+ice-master (ice-master) sent /giveall ak47 1 12-7-2024, 9:05:59 AM
+ice-master (ice-master) sent /giveall ak47_ammo 100000000 12-7-2024, 9:06:17 AM
+ice-master (ice-master) sent /giveall ak47_ammo_pack 100 12-7-2024, 9:06:42 AM
+ice-master (ice-master) sent /maps 12-7-2024, 9:15:58 AM
+ice-master (ice-master) sent /maps 12-7-2024, 9:16:09 AM
+ice-master (ice-master) sent /maps 12-7-2024, 9:16:34 AM
+ice-master (ice-master) sent /maps 12-7-2024, 9:17:41 AM
+ice-master (ice-master) sent / 12-7-2024, 9:18:01 AM
+ice-master (ice-master) sent / 12-7-2024, 9:18:04 AM
+ice-master (ice-master) sent /maps 12-7-2024, 9:18:06 AM
+ice-master (ice-master) sent / 12-7-2024, 9:18:31 AM
+ice-master (ice-master) sent /maps 12-7-2024, 9:18:56 AM
+ice-master (ice-master) sent /giveall death_free_card 100000000 12-7-2024, 9:21:03 AM
+ice-master (ice-master) sent /adminroom 12-7-2024, 9:22:36 AM
+ice-master (ice-master) sent /rawdata mapname:admin_room
+maxx:100
+maxy:100
+maxz:200
+tile:0:100:0:100:0:0:carpet2
+zone:0:100:0:100:-100000:100000:admin room
+fightingstates:1
+music:0:100:0:100:-18:-18:md20.ogg
+zone:0:0:0:0:0:10:press t to go back to safe zone:trackme
+travelpoint:0:0:0:0:0:0:safe_zone:50:50:0:moved you, go safely!
+safezone:0:100:0:100:0:100
+noitems:0:1000:0:1000:-1000:1000:wirebomb:mine:stun_dart:security_bomb:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censor_bomb:stone:fire_starter:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:guided_missile:missile_interceptor:mine:hors:boat:tasing_small_projectile:small_projectile:elecboat:censor_bomb:frequency_scrambler:helicopter:fire_extinguisher:sound_grenade:air_canister:shield:motion_bomb:helicopter:wood:police_car_super:tank:aircraft:item_grabber:fight_inviter
+ 12-7-2024, 9:22:51 AM
+ice-master (ice-master) sent / 12-7-2024, 9:23:21 AM
+ice-master (ice-master) sent /move ice-master 0 0 0 0 safezone 12-7-2024, 9:23:31 AM
+ice-master (ice-master) sent /move ice-masster 0 0 0 0 safe_zone 12-7-2024, 9:23:43 AM
+ice-master (ice-master) sent /move ice-master 0 0 0 safe_zone 12-7-2024, 9:23:55 AM
+ice-master (ice-master) sent /go 25 25 0 12-7-2024, 9:23:59 AM
+ice-master (ice-master) sent /garbage 12-7-2024, 9:24:23 AM
+ice-master (ice-master) sent /chartrash 12-7-2024, 9:24:26 AM
+ice-master (ice-master) sent / 12-7-2024, 9:24:49 AM
+ice-master (ice-master) sent /giveall bike 111 12-7-2024, 9:24:55 AM
+ice-master (ice-master) sent /maps 12-7-2024, 9:25:10 AM
+ice-master (ice-master) sent /move ice-master 0 0 0 ek_main 12-7-2024, 9:25:20 AM

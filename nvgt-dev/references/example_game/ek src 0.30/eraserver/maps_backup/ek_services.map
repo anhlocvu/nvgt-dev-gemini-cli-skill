@@ -1,0 +1,50 @@
+mapname:ek_services
+maxx:100
+maxy:100
+maxz:100
+tile:0:100:0:100:0:0:grass
+tile:60:100:5:45:0:4:wallstone2
+tile:61:100:6:44:5:5:grass
+tile:60:100:5:5:0:7:wallstone2
+tile:60:60:5:45:0:7:wallstone2
+tile:60:100:45:45:0:7:wallstone2
+tile:60:100:45:45:8:8:concrete
+tile:60:60:5:45:8:8:concrete
+tile:60:100:5:5:8:8:concrete
+tile:60:60:0:4:0:5:concrete
+tile:100:100:0:0:4:4:wallstone2
+tile:61:100:0:4:0:4:wallstone2
+tile:61:100:0:4:5:5:concrete
+tile:60:60:0:4:0:5:cement
+tile:41:59:0:100:0:0:concrete
+randtravelpoint:100:100:0:0:5:5:ek_hospital:0:100:0:100:0:0:ek hospital
+tile:60:100:55:95:0:4:wallstone2
+tile:61:100:56:94:5:5:grass
+tile:60:100:55:55:0:7:wallstone2
+tile:60:60:55:95:0:7:wallstone2
+tile:60:100:55:55:0:7:wallstone2
+tile:60:60:55:95:8:8:concrete
+tile:60:100:55:55:8:8:concrete
+tile:60:60:46:54:0:5:concrete
+tile:61:100:46:54:0:4:wallstone2
+tile:61:100:46:54:5:5:concrete
+tile:60:60:46:54:0:5:cement
+tile:60:60:96:100:0:5:cement
+tile:61:100:96:100:0:4:wallstone2
+tile:61:100:96:100:5:5:concrete
+tile:60:100:95:95:0:7:wallstone2
+tile:60:100:95:95:8:8:concrete
+tile:0:40:0:100:0:100:wallstone2
+randtravelpoint:100:100:50:50:5:5:ek_bank:0:100:0:100:0:0:ek bank
+zone:0:100:0:100:0:100:ek services
+zone:100:100:50:50:5:5:ek bank:trackme
+zone:100:100:0:0:5:5:ek_hospital:trackme
+travelpoint:50:50:0:0:0:0:ek_main:0:0:0:main
+zone:50:50:0:0:0:10:main map:trackme
+src:0:100:0:100:0:100:b2.ogg
+fightingstate:0
+noitems:0:100:0:100:-100:100:wirebomb:nuclear_bomb:mine:stun_dart:security_bomb:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:rocket_launcher:bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censor_bomb:stone:fire_starter:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:guided_missile:missile_interceptor:mine:hors:boat:tasing_small_projectile:small_projectile:elecboat:censor_bomb:frequency_scrambler:helicopter:fire_extinguisher:sound_grenade:air_canister:gas_mask:shield:motion_bomb:item_grabber
+noitems:0:500:0:500:0:500:wood
+jplayer:41:0:0
+safezone:0:10000:0:10000:0:10000
+music:38.ogg

@@ -1,0 +1,426 @@
+void setingsmenu()
+{
+m.reset(true);
+m.edge_sound="settingsmenuedge.ogg";
+m.click_sound="settingsmenumove.ogg";
+m.open_sound="settingsmenuopen.ogg";
+m.enter_sound="settingsmenuenter.ogg";
+m.speak_letter=true;
+m.letters_autoactivate=false;
+m.repeat_items_at_edges=false;
+m.enable_first_letter_navigation=true;
+m.allow_escape=true;
+m.wrap=false;
+m.enable_home_and_end=true;
+m.enable_up_and_down=true;
+//m.enable_left_and_right=true;
+m.set_callback(netclb,"");
+if(SCRIPT_COMPILED==false) 
+{
+m.add_item_tts("developer menu","devmenu");
+m.add_item_tts("reconnect","reconnect");
+}
+//m.add_item_tts("reconnect","reconnect");
+m.add_item_tts("team menu","tmenu");
+//m.add_item_tts("select your gender","gender");
+m.add_item_tts("select language Channel","lchannel");
+m.add_item_tts("Notifications menu","note");
+m.add_item_tts("turn beacon on or off!","beacon");
+m.add_item_tts("pacifist mode","sf");
+m.add_item_tts("commands menu","cmenu");
+int mres=m.run("Settings menu. Please select an option with the up / down arrows and press enter if you want to activate.",true);
+if (m.get_item_name(mres)=="devmenu")
+{
+developermenu();
+}
+if (m.get_item_name(mres)=="reconnect")
+{
+dlg("The game now will be reconnecting you to the server, press enter to continue.");
+ereboot=true;
+}
+if (m.get_item_name(mres)=="tmenu")
+{
+teammenu();
+}
+if (m.get_item_name(mres)=="gender")
+{
+gendermenu();
+}
+if (m.get_item_name(mres)=="lchannel")
+{
+send_reliable(0,"lchannel",0);
+}
+else if (m.get_item_name(mres)=="note")
+{
+alertmenu();
+}
+else if (m.get_item_name(mres)=="beacon")
+{
+send_reliable(0,"/beacon",1);
+}
+else if (m.get_item_name(mres)=="sf")
+{
+send_reliable(0,"/sf",1);
+}
+if (m.get_item_name(mres)=="cmenu")
+{
+commandmenu();
+}
+}
+void developermenu()
+{
+m.reset(true);
+m.edge_sound="settingsmenuedge.ogg";
+m.click_sound="settingsmenumove.ogg";
+m.open_sound="settingsmenuopen.ogg";
+m.enter_sound="settingsmenuenter.ogg";
+m.speak_letter=true;
+m.letters_autoactivate=false;
+m.repeat_items_at_edges=false;
+m.enable_first_letter_navigation=true;
+m.allow_escape=true;
+m.wrap=false;
+m.enable_home_and_end=true;
+m.enable_up_and_down=true;
+//m.enable_left_and_right=true;
+m.set_callback(netclb,"");
+m.add_item_tts("Garbage clean, collect's server garbage and free some lag.","garbage");
+m.add_item_tts("Char trash, delete's unknown chars from the server.","chartrash");
+m.add_item_tts("Clear all robots on the server.","killrobots");
+m.add_item_tts("Destroy all bombs on the server.","shockwave");
+m.add_item_tts("Enable or disable your developer flag.","flag");
+m.add_item_tts("View all characters on the server.","serverchars");
+m.add_item_tts("Reboot the server.","reboot");
+m.add_item_tts("Reboot the map system.","initmaps");
+m.add_item_tts("Send a notification to players who are in the game.","notify");
+m.add_item_tts("Jail a player.","jail");
+m.add_item_tts("Unjail a player.","unjail");
+m.add_item_tts("Get computer info of a player.","compinfo");
+m.add_item_tts("Get IP address of a player.","IP");
+int mres=m.run("Developer menu. Select a command with up/down arrows, and press enter to activate it.",true);
+if (m.get_item_name(mres)=="garbage")
+send_reliable(0,"/garbage",1);
+if (m.get_item_name(mres)=="chartrash")
+send_reliable(0,"/chartrash",1);
+if (m.get_item_name(mres)=="killrobots")
+send_reliable(0,"/killrobots",1);
+if (m.get_item_name(mres)=="shockwave")
+send_reliable(0,"/shockwave",1);
+if (m.get_item_name(mres)=="flag")
+send_reliable(0,"/flag",1);
+if (m.get_item_name(mres)=="serverchars")
+send_reliable(0,"/serverchars",1);
+if (m.get_item_name(mres)=="reboot")
+send_reliable(0,"/reboot",1);
+else if (m.get_item_name(mres)=="initmaps")
+send_reliable(0,"/initmaps",1);
+else if (m.get_item_name(mres)=="notify")
+{
+string cmessage =v.input("Please write here the notification you want to send to players online in the game.",true);
+if(cmessage!="")
+send_reliable(0,"/notify "+cmessage,1);
+}
+else if (m.get_item_name(mres)=="jail")
+{
+string cmessage =v.input("Type the name of the player you would like to jail.",true);
+if(cmessage!="")
+send_reliable(0,"/jail "+cmessage,1);
+}
+else if (m.get_item_name(mres)=="unjail")
+{
+string cmessage =v.input("Type the name of the player you would like to unjail.",true);
+if(cmessage!="")
+send_reliable(0,"/unjail "+cmessage,1);
+}
+else if (m.get_item_name(mres)=="compinfo")
+{
+string cmessage =v.input("Type the name of the player you would like to get computer info of.",true);
+if(cmessage!="")
+send_reliable(0,"/compinfo "+cmessage,1);
+}
+else if (m.get_item_name(mres)=="IP")
+{
+string cmessage =v.input("Type the name of the player you would like to get IP address of.",true);
+if(cmessage!="")
+send_reliable(0,"/ip "+cmessage,1);
+}
+}
+void teammenu()
+{
+m.reset(true);
+m.edge_sound="settingsmenuedge.ogg";
+m.click_sound="settingsmenumove.ogg";
+m.open_sound="settingsmenuopen.ogg";
+m.enter_sound="settingsmenuenter.ogg";
+m.speak_letter=true;
+m.letters_autoactivate=false;
+m.repeat_items_at_edges=false;
+m.enable_first_letter_navigation=true;
+m.allow_escape=true;
+m.wrap=false;
+m.enable_home_and_end=true;
+m.enable_up_and_down=true;
+//m.enable_left_and_right=true;
+m.set_callback(netclb,"");
+m.add_item_tts("all teams","all");
+m.add_item_tts("create a new team","create");
+m.add_item_tts("Join a team","join");
+m.add_item_tts("who in your team?","who");
+m.add_item_tts("leave the team","exit");
+m.add_item_tts("remove player from the team","remove");
+m.add_item_tts("Change the team password","pass");
+m.add_item_tts("delete your team","delete");
+int mres=m.run("team menu",true);
+if (m.get_item_name(mres)=="all")
+{
+send_reliable(0,"/teams",1);
+}
+if (m.get_item_name(mres)=="create")
+{
+send_reliable(0,"/teamcreate",1);
+}
+else if (m.get_item_name(mres)=="join")
+{
+string jmessage =v.input("Type the name of the team you want to join, then type the password for the team. ",true);
+if(jmessage!="")
+send_reliable(0,"/jointeam "+jmessage,1);
+}
+else if (m.get_item_name(mres)=="who")
+{
+send_reliable(0,"/members",1);
+}
+else if (m.get_item_name(mres)=="exit")
+{
+int e;
+e=yesno("Are you sure you want to leave the team?");
+if(e==1)
+{
+send_reliable(0,"/teamleave",1);
+}
+}
+else if (m.get_item_name(mres)=="remove")
+{
+string jmessage =v.input("Type the name of the player you want to remove from the team, note, that you must be the leader of the  Team.",true);
+if(jmessage!="")
+send_reliable(0,"/teamremove "+jmessage,1);
+}
+else if (m.get_item_name(mres)=="pass")
+{
+string jmessage =v.input("Type the new password.",true);
+if(jmessage!="")
+send_reliable(0,"/teampass "+jmessage,1);
+}
+else if (m.get_item_name(mres)=="delete")
+{
+int e;
+e=yesno("Are you sure you want to leave and delete the team?");
+if(e==1)
+{
+send_reliable(0,"/teamcancel",1);
+}
+}
+}
+void gendermenu()
+{
+m.reset(true);
+m.edge_sound="settingsmenuedge.ogg";
+m.click_sound="settingsmenumove.ogg";
+m.open_sound="settingsmenuopen.ogg";
+m.enter_sound="settingsmenuenter.ogg";
+m.speak_letter=true;
+m.letters_autoactivate=false;
+m.repeat_items_at_edges=false;
+m.enable_first_letter_navigation=true;
+m.allow_escape=true;
+m.wrap=false;
+m.enable_home_and_end=true;
+m.enable_up_and_down=true;
+//m.enable_left_and_right=true;
+m.set_callback(netclb,"");
+m.add_item_tts("male","male");
+m.add_item_tts("female","female");
+int mres=m.run("gender menu",true);
+if (m.get_item_name(mres)=="male")
+{
+int e;
+e=yesno("Are you sure you want to change your gender? Note, you cannot change it again?");
+if(e==1)
+{
+gender=1;
+send_reliable(0,"/gender male",1);
+}
+}
+if (m.get_item_name(mres)=="female")
+{
+int e;
+e=yesno("Are you sure you want to change your gender? Note, you cannot change it again?");
+if(e==1)
+{
+gender=0;
+send_reliable(0,"/gender female",1);
+}
+}
+}
+void alertmenu()
+{
+m.reset(true);
+m.edge_sound="settingsmenuedge.ogg";
+m.click_sound="settingsmenumove.ogg";
+m.open_sound="settingsmenuopen.ogg";
+m.enter_sound="settingsmenuenter.ogg";
+m.speak_letter=true;
+m.letters_autoactivate=false;
+m.repeat_items_at_edges=false;
+m.enable_first_letter_navigation=true;
+m.allow_escape=true;
+m.wrap=false;
+m.enable_home_and_end=true;
+m.enable_up_and_down=true;
+//m.enable_left_and_right=true;
+m.set_callback(netclb,"");
+m.add_item_tts("turn read messages on or off!","messages");
+m.add_item_tts("turn pm messages on or off!","pm");
+m.add_item_tts("turn online and offline messages on or off!","online");
+m.add_item_tts("turn level alerts on or off!","level");
+int mres=m.run("notifications menu",true);
+if (m.get_item_name(mres)=="messages")
+{
+if(readmessages==0)
+{
+speak("Messages will be read");
+p.play_stationary("toggleon.ogg",false);
+readmessages=1;
+writeprefs();
+}
+else if(readmessages==1)
+{
+speak("Messages will no longer be read");
+p.play_stationary("toggleoff.ogg",false);
+readmessages=0;
+writeprefs();
+}
+}
+else if (m.get_item_name(mres)=="pm")
+{
+send_reliable(0,"/pmreceive",1);
+}
+else if (m.get_item_name(mres)=="online")
+{
+if(speakonlinemsgs==0)
+{
+speak("Online and offline messages enabled");
+speakonlinemsgs=1;
+p.play_stationary("toggleon.ogg",false);
+writeprefs();
+}
+else
+{
+speak("online and offline messages disabled");
+speakonlinemsgs=0;
+p.play_stationary("toggleoff.ogg",false);
+writeprefs();
+}
+}
+else if (m.get_item_name(mres)=="level")
+{
+if(levelsound==0)
+{
+speak("Level alerts enabled.");
+p.play_stationary("toggleon.ogg",false);
+levelsound=1;
+writeprefs();
+}
+else if(levelsound==1)
+{
+speak("Level alerts disabled.");
+p.play_stationary("toggleoff.ogg",false);
+levelsound=0;
+writeprefs();
+}
+}
+}
+void commandmenu()
+{
+m.reset(true);
+m.edge_sound="settingsmenuedge.ogg";
+m.click_sound="settingsmenumove.ogg";
+m.open_sound="settingsmenuopen.ogg";
+m.enter_sound="settingsmenuenter.ogg";
+m.speak_letter=true;
+m.letters_autoactivate=false;
+m.repeat_items_at_edges=false;
+m.enable_first_letter_navigation=true;
+m.allow_escape=true;
+m.wrap=false;
+m.enable_home_and_end=true;
+m.enable_up_and_down=true;
+//m.enable_left_and_right=true;
+m.set_callback(netclb,"");
+m.add_item_tts("change your nickname","nickname");
+m.add_item_tts("change your password","changepass");
+m.add_item_tts("change your account email","email");
+m.add_item_tts("send a message to admins who are online","sendadmin");
+m.add_item_tts("send a report to the developers","report");
+m.add_item_tts("make a request to the developers about the game","request");
+m.add_item_tts("add a new status message","setst");
+m.add_item_tts("see another player's status message","seest");
+m.add_item_tts("clear your status message","clearst");
+int mres=m.run("Game commands menu. Please select an option with the up / down arrows and press enter if you want to activate.",true);
+if (m.get_item_name(mres)=="nickname")
+{
+string cmessage =v.input("type your new nickname",true);
+if(cmessage!="")
+send_reliable(0,"/nickname "+cmessage,1);
+}
+if (m.get_item_name(mres)=="changepass")
+{
+string cmessage =v.input("type your new password ",true);
+if(cmessage!="")
+send_reliable(0,"/changepass "+cmessage,1);
+}
+if (m.get_item_name(mres)=="email")
+{
+string cmessage =v.input("type your new email",true);
+if(cmessage!="")
+send_reliable(0,"/setemail "+cmessage,1);
+}
+if (m.get_item_name(mres)=="report")
+{
+string cmessage =v.input("Please write your report here, warning, you can send a report every 15 seconds.",true);
+if(cmessage!="")
+send_reliable(0,"/report "+cmessage,1);
+}
+if (m.get_item_name(mres)=="request")
+{
+string cmessage =v.input("Please write your request here, warning, you can send a request every 15 seconds.",true);
+if(cmessage!="")
+send_reliable(0,"/request "+cmessage,1);
+}
+if (m.get_item_name(mres)=="sendadmin")
+{
+string cmessage =v.input("Type your message to the admins.",true);
+if(cmessage!="")
+send_reliable(0,"/admintell "+cmessage,1);
+}
+if (m.get_item_name(mres)=="setst")
+{
+string cmessage =v.input("Please enter your new status message here. Your status message must contain a maximum of 500 characters.",true);
+if(cmessage!="")
+send_reliable(0,"/setstatus "+cmessage,1);
+}
+if (m.get_item_name(mres)=="seest")
+{
+string cmessage =v.input("Please enter the name of the player whose status message you want to see.",true);
+if(cmessage!="")
+send_reliable(0,"/status "+cmessage,1);
+}
+if (m.get_item_name(mres)=="clearst")
+{
+int e;
+e=yesno("Are you sure you want to clear your status message?");
+if(e==1)
+{
+send_reliable(0,"/setstatus",1);
+}
+}
+}

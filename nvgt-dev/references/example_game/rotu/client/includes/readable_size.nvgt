@@ -1,0 +1,10 @@
+string readable_size(float bytes, int precision = 2)
+{
+	string[] unit = {"B", "KB", "MB", "GB", "TB", "PB"};
+	int i = 0;
+	while (bytes >= 1024 && i < unit.length() - 1) {
+		bytes /= 1024.0;
+		i++;
+	}
+	return round(bytes, precision)+" "+unit[i];
+}

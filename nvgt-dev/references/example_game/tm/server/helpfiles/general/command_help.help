@@ -1,0 +1,31 @@
+Command help
+/mute playername. Mutes a player. Example, /mute guardian.
+/unmute playername. Unmutes a player. Example, /unmute guardian
+/mutelist. Check your mute list.
+/events. Sends you a message with all the events on the server.
+/joinevent ID. Joins an event in progress. Example, joinevent 1234
+/leaveevent. Leaves the current event if you joined any.
+/nickfind nickname. Finds players (if any) with that nickname. Not case sensitive. Prints out each player on its own packet in the misc. buffer, since multiple people can have the same nickname. Example, /nickfind guardian. This will search if any player has the nickname guardian and will report to you.
+/nickname nickname, will change your nickname to what you type. Example, /nickname guardian, will set your nickname to guardian.
+/beacon. Toggles whether you hear player beacons or not.
+/me. Sends a me message, called emotes on some games.
+/give playername item amount. Transfer amount of item to playername. Example, /give guardian dollar 1. This will give 1 dollar to guardian.
+/auction amount item name minimum bid. This will auction an item with its amount and the minimum bid. Example, /auction 12 suicide_bomb 1000000. This will auction 12 suicide bombs, for an amount of 1000000
+/bid number. Bids number of coins on an active auction. If the bid is too low it will tell you.
+/cancelbid. Cancels your previous bid, mainly useful if you added one too many digits or whatever. It will revert to the state it was previously in.
+/deleteme. Deletes your character. Note that once you do this even we developers can't get it back!
+/pm. Write a message to the player example /pm 1 how are you doing?
+/r. Reply to the player's message example /re yes I know
+/look playername. Used to watch someone. Example, /look guardian will enable you to watch guardian.
+/stoplooking playername. Will stop will move you back to your old map and disable watching. Example, /stoplooking guardian
+/trust playername. Will add the player to your trust list. Example, /trust guardian.
+/untrust playername. Will remove the player from your trust list. Example, /untrust guardian.
+/trustlist. Will show you a list of the people you trust.
+/cfighton. Will enable creature mode. With this mode enabled you can hunt the creatures without being attacked or attacking players.
+/cfightoff. Will disable the creature mode.
+/staff. View all administrators and developers of the game.
+/xpstatus. See if some xp bonus is enabled.
+/ping playername. See the ping of the player.
+/peak. See the players peak.
+/stats playername. Look the player's stats.
+/info. Will check how meny items, maps, creatures, shelters and alliances on the server.

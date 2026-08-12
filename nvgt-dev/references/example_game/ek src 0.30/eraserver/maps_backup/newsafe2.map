@@ -1,0 +1,102 @@
+mapname:newsafe2
+maxx:200
+maxy:200
+maxz:200
+tile:0:200:0:200:0:0:concrete4
+//zone:0:200:0:200:0:200:newsafe2
+zone:0:200:0:200:0:200:safe zone
+//tile:0:51:0:51:0:0:marble2
+tile:0:51:0:51:0:0:marble3
+zone:0:50:0:50:0:20:Inside the safe zone.
+amb:0:51:0:51:0:20:calm.ogg
+tile:0:100:52:100:0:0:shortgrass2
+zone:0:100:52:100:0:20:Safe zone garden.
+amb:0:100:52:100:0:20:birds2.ogg
+tile:0:0:0:0:0:0:glass
+zone:0:0:0:0:0:10:An introduction sign contains information about the game. Press shift+enter to read it.:trackme
+sign:0:0:0:Hello and welcome to the Era of knights.
+tile:0:101:0:50:20:20:wallbuilding
+tile:0:100:51:51:0:20:wallbuilding
+tile:20:30:51:51:0:10:walldoor
+zone:0:101:52:52:0:20:Near to the safe zone.
+zone:102:102:0:52:0:20:Near to the safe zone.
+tile:51:51:0:51:0:20:wallbuilding
+tile:0:100:75:85:0:0:gravel2
+tile:24:26:52:75:0:0:pavement
+zone:24:26:52:75:0:20:Path to the safe zone.
+zone:20:30:50:52:0:20:To leave and enter the safe zone, press, D:trackme
+door:20:50:0:20:52:0:2500:silence.ogg:silence.ogg:dooropen62.ogg:doorclose62.ogg
+door:21:50:0:21:52:0:2500:silence.ogg:silence.ogg:dooropen62.ogg:doorclose62.ogg
+door:22:50:0:22:52:0:2500:silence.ogg:silence.ogg:dooropen62.ogg:doorclose62.ogg
+door:23:50:0:23:52:0:2500:silence.ogg:silence.ogg:dooropen62.ogg:doorclose62.ogg
+door:24:50:0:24:52:0:2500:silence.ogg:silence.ogg:dooropen62.ogg:doorclose62.ogg
+door:25:50:0:25:52:0:2500:silence.ogg:silence.ogg:dooropen62.ogg:doorclose62.ogg
+door:26:50:0:26:52:0:2500:silence.ogg:silence.ogg:dooropen62.ogg:doorclose62.ogg
+door:27:50:0:27:52:0:2500:silence.ogg:silence.ogg:dooropen62.ogg:doorclose62.ogg
+door:28:50:0:28:52:0:2500:silence.ogg:silence.ogg:dooropen62.ogg:doorclose62.ogg
+door:29:50:0:29:52:0:2500:silence.ogg:silence.ogg:dooropen62.ogg:doorclose62.ogg
+door:30:50:0:30:52:0:2500:silence.ogg:silence.ogg:dooropen62.ogg:doorclose62.ogg
+door:20:52:0:20:50:0:2500:silence.ogg:silence.ogg:dooropen62.ogg:doorclose62.ogg
+door:21:52:0:21:50:0:2500:silence.ogg:silence.ogg:dooropen62.ogg:doorclose62.ogg
+door:22:52:0:22:50:0:2500:silence.ogg:silence.ogg:dooropen62.ogg:doorclose62.ogg
+door:23:52:0:23:50:0:2500:silence.ogg:silence.ogg:dooropen62.ogg:doorclose62.ogg
+door:24:52:0:24:50:0:2500:silence.ogg:silence.ogg:dooropen62.ogg:doorclose62.ogg
+door:25:52:0:25:50:0:2500:silence.ogg:silence.ogg:dooropen62.ogg:doorclose62.ogg
+door:26:52:0:26:50:0:2500:silence.ogg:silence.ogg:dooropen62.ogg:doorclose62.ogg
+door:27:52:0:27:50:0:2500:silence.ogg:silence.ogg:dooropen62.ogg:doorclose62.ogg
+door:28:52:0:28:50:0:2500:silence.ogg:silence.ogg:dooropen62.ogg:doorclose62.ogg
+door:29:52:0:29:50:0:2500:silence.ogg:silence.ogg:dooropen62.ogg:doorclose62.ogg
+door:30:52:0:30:50:0:2500:silence.ogg:silence.ogg:dooropen62.ogg:doorclose62.ogg
+//tile:52:100:0:50:0:0:carpet
+tile:52:100:0:50:0:0:marble4
+tile:51:51:25:25:0:10:wallglass5
+tile:101:101:0:51:0:20:wallbuilding
+zone:52:100:0:50:0:20:A small relaxation room with tables and chairs.
+amb:52:100:0:50:0:20:room5.ogg
+amb:52:100:0:50:0:20:md64.ogg
+//door:50:25:0:52:25:0:3000:silence.ogg:carpetstep2.ogg:dooropen8.ogg:doorclose8.ogg
+//door:52:25:0:50:25:0:3000:silence.ogg:carpetstep2.ogg:dooropen8.ogg:doorclose8.ogg
+door:50:25:0:52:25:0:3000:silence.ogg:marble4step2.ogg:dooropen8.ogg:doorclose8.ogg
+door:52:25:0:50:25:0:3000:silence.ogg:marble4step2.ogg:dooropen8.ogg:doorclose8.ogg
+zone:50:52:25:25:0:20:A small glass door leading in and out to the relaxation room.:trackme
+tile:70:80:22:28:0:4:walltable
+tile:70:80:22:28:4:4:hardwood
+zone:69:81:21:29:0:10:Near the table.
+zone:70:80:22:28:0:10:A big and wide table, comfortable chairs in front and behind.
+tile:70:80:19:19:0:4:wallcloth
+tile:70:80:19:19:5:5:cloth
+tile:70:80:20:20:0:2:wallcloth
+//tile:70:80:20:20:0:2:chair
+//tile:70:80:20:20:3:3:carpet2
+tile:70:80:20:20:3:3:cloth
+zone:69:81:19:20:0:10:Chairs.
+tile:69:69:19:20:0:3:wallcloth
+tile:69:69:19:20:4:4:cloth
+tile:81:81:19:20:0:3:wallcloth
+tile:81:81:19:20:4:4:cloth
+tile:70:80:31:31:0:4:wallcloth
+tile:70:80:31:31:5:5:cloth
+tile:70:80:30:30:0:2:wallcloth
+//tile:70:80:30:30:0:2:chair
+//tile:70:80:30:30:3:3:carpet2
+tile:70:80:30:30:3:3:cloth
+zone:69:81:30:31:0:10:Chairs.
+tile:69:69:30:31:0:3:wallcloth
+tile:69:69:30:31:4:4:cloth
+tile:81:81:30:31:0:3:wallcloth
+tile:81:81:30:31:4:4:cloth
+tile:100:100:25:25:0:0:ceramic2
+zone:100:100:25:25:0:0:VendingMachine:trackme
+vending_machine:100:25:0
+tile:96:100:30:30:0:10:wallsofa
+tile:96:100:20:20:0:10:wallsofa
+tile:96:96:20:30:0:10:wallsofa
+door:95:25:0:97:25:0:100:silence.ogg:silence.ogg:dooropen7.ogg:doorclose6.ogg
+zone:95:95:25:25:0:0:Door. Press D to Open
+door:97:25:0:95:25:0:100:silence.ogg:silence.ogg:dooropen6.ogg:doorclose6.ogg
+zone:97:97:25:25:0:0:Door. Press D to Go out
+fightingstate:0
+noitems:0:1000:0:1000:-1000:1000:wirebomb:mine:stun_dart:security_bomb:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censor_bomb:stone:fire_starter:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:guided_missile:missile_interceptor:mine:hors:boat:tasing_small_projectile:small_projectile:elecboat:censor_bomb:frequency_scrambler:helicopter:fire_extinguisher:sound_grenade:air_canister:shield:motion_bomb:helicopter:wood:police_car_super:tank:aircraft:item_grabber:fight_inviter
+//url:http://fenomen.listenfenomen.com/fenomen/128/icecast.audio
+//url:http://kralpopwmp.radyotvonline.com:80/;
+//url:https://playerservices.streamtheworld.com/api/livestream-redirect/VIRGIN_RADIO.mp3

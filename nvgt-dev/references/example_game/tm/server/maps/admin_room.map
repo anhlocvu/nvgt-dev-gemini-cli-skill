@@ -1,0 +1,61 @@
+mapname:admin_room
+maxx:500
+maxy:500
+maxz:6000000
+tile:0:500:0:500:0:0:carpet
+zone:0:500:0:500:0:50:AdminRoom
+travelpoint:0:0:0:0:0:1000:safe_zone:0:0:0:ueah, run away scared you tosser
+travelpoint:50:50:50:50:0:100:evermore_city:0:0:0:you're a tosser if you're using my secret travelpoint to run away
+tile:0:50:0:50:500:500:wood7
+tile:51:51:0:51:500:550:wallbranch
+zone:0:50:0:50:500:550:killer's tree house
+tile:25:25:0:0:1:500:branch
+zone:25:25:0:0:0:550:clyme to the tree house of killer@trackme@
+src:0:50:0:50:520:550:updating.ogg
+src:0:50:0:50:510:550:b1.ogg
+tile:20:20:20:20:500:503:bridge2
+travelpoint:10:10:10:10:0:0:ideas:0:0:0:0
+tile:0:50:0:50:0:0:suicide
+zone:10:10:10:10:0:0:pres shift enter to go the blaster's map@trackme@
+tile:10:10:10:10:0:0:carpet
+tile:0:50:0:50:0:0:carpet
+tile:0:0:0:0:600000:600000:bridge
+tile:40:50:40:50:3:3:carpet3
+tile:40:50:39:39:0:2:wallbody
+tile:39:39:40:50:0:5:wallbody
+zone:40:50:40:50:0:20:killer's bed@trackme@
+tile:20:20:40:40:0:3:carpet2
+zone:20:20:40:40:0:3:killer's chair@trackme@
+tile:50:50:50:50:-5:0:carpet3
+tile:5:5:5:5:-50:-5:dirt
+tile:0:0:0:0:44444:44444:air
+travelpoint:50:50:50:50:0:0:admin_room:5:5:-20:running to save your life
+travelpoint:5:5:5:5:0:6:admin_room:5:5:-15:balls to guardiani 
+tile:0:50:0:50:-50:-50:concrete2
+tile:50:50:50:50:-200:-55:concrete18
+tile:0:100:0:100:-200:-200:carpet2
+travelpoint:50:50:50:50:-50:-50:admin_room:50:50:-200:ultimate balls are sucking you in
+zone:0:100:0:100:-220:-40:hydeout
+src:0:100:0:100:-60:-220:amb12.ogg
+tile:20:30:45:50:-196:-196:carpet3
+tile:6:6:0:20:-50:-10:wallcontainer
+travelpoint:0:0:0:0:-200:-200:safe_zone:0:0:0:the playce is kicking your ass so you are running, aaaaaaaaaaaaaaaa
+zone:0:0:0:0:-200:-200:to runn and save your ass, press enter
+travelpoint:10:10:10:10:-200:-200:fantasy_island:0:0:0:happy dieing
+zone:10:10:10:10:-200:-200:if you want to die, then press enter here, and go to some creachers  who can give you a death like hell
+tile:49:49:40:50:-199:-55:wallstone2
+tile:50:50:49:49:-200:-55:wallstone2
+tile:0:0:0:0:99:200:concrete13
+travelpoint:50:50:0:0:0:0:tm_house:50:50:5:ok
+tile:10:10:10:10:0:0:carpet
+tile:0:2:10:20:0:2:wallcloth
+tile:0:2:10:20:3:3:carpet2
+zone:0:2:10:20:0:10:krish's sofa@trackme@
+tile:3:7:10:20:0:4:walltable
+tile:3:7:10:20:5:5:wood4
+zone:3:7:10:20:0:11:krish's table@trackme@
+noitems:0:500:0:500:0:500:explosion
+travelpoint:0:0:0:0:0:0:safe_zone:1:0:0:balls to you
+travelpoint:0:0:0:0:0:0:safe_zone:0:0:0:balls
+piano:2:2:0
+//tile:0:0:0:0:0:0:suicide

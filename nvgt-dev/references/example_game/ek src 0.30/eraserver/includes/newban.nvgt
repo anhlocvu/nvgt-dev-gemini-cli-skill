@@ -1,0 +1,99 @@
+string@[]bans(0);
+class controlled_release {
+string username;
+int play_duration;
+int ban_duration;
+int repeat_count;
+int current_count = 0;
+timer releasetimer;
+timer bantimer;
+controlled_release(string un, int play_time, int ban_time, int repeats) {
+username = un;
+play_duration = play_time;
+ban_duration = ban_time;
+repeat_count = repeats;
+}
+}
+controlled_release@[]controlled_bans(0);
+void controlled_release_loop() {
+for (uint i = 0; i < controlled_bans.length(); i++) {
+auto cban = controlled_bans[i];
+if (cban.current_count >= cban.repeat_count) {
+send_reliable(0, "notify Controlled release cycle completed for " + cban.username + "!", 0);
+@controlled_bans[i] = null;
+controlled_bans.remove_at(i);
+continue;
+}
+if (cban.releasetimer.elapsed > cban.play_duration * 60000) {
+send_reliable(0, "notify " + cban.username + " play period ended. Re-applying ban.", 0);
+cban.bantimer.restart();
+cban.current_count++;
+continue;
+}
+if (cban.bantimer.elapsed > cban.ban_duration * 60000) {
+send_reliable(0, "notify " + cban.username + " ban period ended. Allowing play.", 0);
+cban.releasetimer.restart();
+}
+}
+}
+bool is_banned(string user) {
+for (uint i = 0; i < bans.length(); i++) {
+if (bans[i] == user) return true;
+}
+return false;
+}
+bool is_controlled_banned(string user) {
+for (uint i = 0; i < controlled_bans.length(); i++) {
+if (controlled_bans[i].username == user) return true;
+}
+return false;
+}
+void ban_offline_user(string username, string reason, string admin) {
+if (!user_exists(username)) {
+send_reliable(0, "User " + username + " does not exist in the system.", 0);
+return;
+}
+if (is_banned(username)) {
+send_reliable(0, "User " + username + " is already banned.", 0);
+return;
+}
+bans.insert_last(username);
+save_bans();
+log_action("Offline ban", admin, username, reason);
+send_reliable(0, "Admin " + admin + " banned offline user " + username + " for reason: " + reason, 0);
+}
+void save_bans() {
+string data;
+for (uint i = 0; i < bans.length(); i++) {
+data += bans[i] + "\r\n";
+}
+file_put_contents("prefs/bans.svr", data, 250);
+}
+void load_bans() {
+file banfile;
+if (!banfile.open("prefs/bans.svr", "rb")) return;
+string ban_data = banfile.read();
+banfile.close();
+string[] ban_list = string_split(ban_data, "\r\n", false);
+for (uint i = 0; i < ban_list.length(); i++) {
+if (ban_list[i] != "") {
+bans.insert_last(ban_list[i]);
+}
+}
+}
+bool user_exists(string username) {
+return file_exists("chars/" + username + "/");
+}
+void log_action(string action, string admin, string target, string reason = "No reason provided") {
+string log_entry = timestamp() + " | " + action + " | Admin: " + admin + " | User: " + target + " | Reason: " + reason + "\r\n";
+file_append("logs/actions.log", log_entry, 250);
+}
+void add_controlled_ban(string user, int play_time, int ban_time, int repeats, string admin) {
+if (!user_exists(user)) {
+send_reliable(0, "User " + user + " does not exist. Cannot apply controlled release.", 0);
+return;
+}
+controlled_release cb(user, play_time, ban_time, repeats);
+controlled_bans.insert_last(cb);
+send_reliable(0, "Admin " + admin + " has applied controlled release to user " + user + ".", 0);
+}

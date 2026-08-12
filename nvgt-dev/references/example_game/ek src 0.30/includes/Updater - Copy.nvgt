@@ -1,0 +1,95 @@
+#include"dlfile.bgt"
+#include"hip.bgt"
+void cfu(string name, string zipname, bool silent)
+{
+sound updating;
+//speak("Checking game and sounds version...");
+speak("Checking for updates...");
+string latest=url_get("http://www.engelsiz-productions.tk/version.txt");
+double lv=string_to_number(latest);
+//string description=url_get("http://engelsiz-productions.tk/update_description.txt");
+string[] yourversion=string_split(ver," ",true);
+double yv=string_to_number(yourversion[0]);
+if (yv>lv and silent==false)
+{
+dlg("Oops! There was an error checking for updates!. This could be because you are running a beta, or the server was not contacted!. Version: "+ver+". Latest: "+latest);
+}
+else if (yv==lv and silent==false)
+{
+dlg("No updates were found at this time! "+ver+" Is the newest version!");
+}
+else if (yv<lv)
+{
+//string description=get_from_url("http://www.engelsiz-productions.tk/update_description.txt");
+updatemus.stream("updating2.ogg");
+//updatemus.volume=-10;
+updatefound.stream("up_date.ogg");
+updatefound.volume=-5;
+updatedone.stream("updated.ogg");
+p.play_stationary("update.ogg",false);
+wait(5000);
+updatefound.play_wait();
+dlg("A new update for era of knights has been detected! Your version: "+ver+": Required version: "+latest+": You can choose whether to download or not by pressing enter.");
+int e;
+e=yesno("Do you like to download it now?");
+if(e==1)
+{
+speak("Starting update process.");
+sound updatestarting; updatestarting.stream("update_starting.ogg"); updatestarting.play_wait();
+updatemus.play_looped();
+string status=dl_file("http://www.engelsiz-productions.tk/ek.zip","ek.zip");
+if(status=="finished")
+{
+updatemus.stop();
+updatedone.play_wait();
+alert("update completed","era of knights "+latest+" has been downloaded. Press enter to continue.");
+run("replacer.exe","",true,true);
+//run("unzip.exe","-o -qq "+zipname,false,false);
+exit();
+}
+}
+}
+}
+/*
+void clientupdate()
+{
+string status=dl_file("http://www.engelsiz-productions.tk/ek.exe","ek.exe",false,"Downloading new client version, press Space for percentage, 1 2 and 3 keys for detailed progress, or escape to cancel, you can turn the update beep sound on or off with the m key.");
+if (status=="finished")
+file_copy("ek1.exe","ek.exe",true);
+{
+if(!SCRIPT_COMPILED)
+run("c:\\windows\\explorer.exe","\""+get_script_path()+"\"",false,false);
+else
+run(get_script_path(),"",false,false);
+exit();
+}
+}
+*/
+/*
+void sndcheck()
+{
+string latest=url_get("http://www.engelsiz-productions.tk/soundver.txt");
+double lv=string_to_number(latest);
+string[] yourversion=string_split(sndver," ",true);
+double yv=string_to_number(yourversion[0]);
+if (yv<lv or !file_exists("sounds.dat"))
+{
+//dlg("New sounds available. Press enter to choose what do you want to do.");
+dlg("A sound update is now available. Your version: "+yv+": Required version is, "+lv+": Press enter to choose what do you want to do.");
+int e;
+e=yesno("Do you like to download it now?");
+if(e==1)
+{
+string status=dl_file("http://www.engelsiz-productions.tk/sounds.dat","sounds.dat",false,"Downloading new sounds version "+lv+", press Space for percentage, 1 2 and 3 keys for detailed progress, or escape to cancel, you can turn the update beep sound on or off with the m key.");
+if (status=="finished")
+{
+if(!SCRIPT_COMPILED)
+run("c:\\windows\\explorer.exe","\""+get_script_path()+"\"",false,false);
+else
+run(get_script_path(),"",false,false);
+exit();
+}
+}
+}
+}
+*/

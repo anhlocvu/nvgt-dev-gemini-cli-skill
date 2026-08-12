@@ -1,0 +1,41 @@
+mapname:ammo_challenge
+maxx:200
+maxy:200
+maxz:210
+tile:0:200:0:200:0:0:fi
+zone:0:200:0:200:0:210:ammo challenge.
+tile:0:0:0:0:0:10:marble
+tile:11:15:0:2:9:15:marble
+tile:21:21:9:15:15:20:marble2
+tile:26:26:23:23:20:25:pavement
+tile:31:31:30:30:25:30:cave
+tile:37:37:37:37:30:35:broken_glass
+tile:42:42:42:42:35:45:concrete28
+tile:50:50:50:50:45:50:cement2
+tile:65:70:50:50:50:50:bridge
+tile:86:86:61:61:50:55:marble
+tile:90:100:70:100:55:100:marble
+amb:90:100:70:100:55:100:md68.ogg
+tile:110:110:100:100:100:100:ash
+tile:110:110:110:110:100:100:ash2
+amb:0:99:0:99:0:99:emb14.ogg
+amb:0:99:0:99:0:99:emb25.ogg
+zone:0:0:0:0:0:0:it is raining all arround you, just you need to find a safe  place to save your self, then you will move on to the next level if it happens you will get a ammonation pack:trackme
+zone:90:100:70:100:50:100:hay dear!  this is the place wich you are looking for! all you need to do is just find a dore wich can move you to the next level, all the best 
+tile:100:100:100:100:0:0:marble
+tile:108:108:105:105:0:5:ash
+tile:113:113:113:113:5:10:ash
+tile:120:120:120:120:10:15:ash2
+tile:129:129:125:125:15:20:bare
+tile:134:134:134:134:20:25:bathtub
+tile:142:142:142:142:25:30:beam
+tile:150:150:150:150:25:50:bleacher
+tile:159:159:150:150:50:55:broken_glass
+tile:159:159:158:158:55:60:broken_glass
+tile:159:159:167:167:60:66:cave
+tile:167:167:167:167:66:75:cement
+amb:101:200:101:200:0:199:menumus18.ogg
+tile:175:175:175:175:65:75:cement
+zone:175:175:175:175:65:80:there is a big rope! wich can help you 1out, find it
+tile:180:180:180:180:79:200:rope
+tile:190:200:190:200:200:200:bridge2

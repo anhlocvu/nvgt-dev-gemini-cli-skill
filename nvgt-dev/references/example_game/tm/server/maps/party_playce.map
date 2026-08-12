@@ -1,0 +1,30 @@
+mapname:party_playce
+maxx:200
+maxy:200
+maxz:200
+zone:0:5555:0:5555:0:55:the noise is loud, but plezent to listen to. people are having a fun time here. there's food, music, and a bunch of joyful people. you feel your mood changing, as you mingle and enjoy with the rest of the people,
+tile:0:200:0:200:0:0:carpet2
+ispawn:0:100:0:100:0:0:1000:7:chips:beer_bottle:cola
+cmusic:0:200:0:200:0:500:anime58.ogg:-5:100
+tile:0:200:0:200:0:0:carpet
+tile:20:20:0:0:0:3:carpet2
+tile:20:25:3:8:5:5:glass
+zone:20:20:0:0:0:10:a chair to relax and enjoy the party@trackme@
+zone:20:25:3:8:5:10:a table@trackme@
+tile:25:30:0:0:0:4:carpet2
+zone:25:30:0:0:0:10:a big chair@trackme@
+travelpoint:0:0:0:0:0:0:safe_zone:0:0:0:after enjoying the awsome party. now you came back to safe zone
+tile:25:30:3:10:5:5:glass
+zone:25:30:3:10:5:10:another table. or maybe not normal? a big big big big  table. okay it is just an table. fldsjljslfkajfds@trackme@
+tile:0:10:40:44:3:3:carpet3
+tile:0:10:39:39:0:10:wallcloth
+zone:0:10:40:44:0:10:a sofa, make sure to remove your dirty shooes before going up on it@trackme@t
+tile:0:40:50:60:5:5:glass
+zone:0:40:50:60:5:10:a huuuuuuuuuuuuuuuge. big ass table. why not to sleap on it. yeah go do it@trackme@
+fightingstate:0
+tile:0:40:47:47:0:0:metal6
+zone:0:40:47:47:0:10:a bench@trackme@
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+zone:0:0:0:0:0:10:go back to the safe zone@trackme@

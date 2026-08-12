@@ -1,0 +1,40 @@
+itembeep@[]itembeeps(0);
+class itembeep
+{
+double x,y,z;
+int itmsound;
+string id;
+itembeep(double ix,double iy,double iz,string iid)
+{
+x=ix;
+y=iy;
+z=iz;
+id=iid;
+itmsound=p.play_3d("item.ogg",me.x,me.y,me.z,x,y,z,dir,true);
+}
+}
+void destroy_item_beep(string id)
+{
+for(uint i=0; i<itembeeps.length(); i++)
+{
+if(itembeeps[i].id==id)
+{
+p.destroy_sound(itembeeps[i].itmsound);
+itembeeps.remove_at(i);
+return;
+}
+}
+}
+void destroy_all_item_beeps()
+{
+for(uint i=0; i<itembeeps.length(); i++)
+{
+p.destroy_sound(itembeeps[i].itmsound);
+}
+itembeeps.resize(0);
+}
+void create_item_beep(double x,double y,double z,string id)
+{
+itembeep itb1(x,y,z,id);
+itembeeps.insert_last(itb1);
+}

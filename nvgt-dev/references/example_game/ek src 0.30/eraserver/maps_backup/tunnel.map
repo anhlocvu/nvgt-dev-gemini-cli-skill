@@ -1,0 +1,27 @@
+mapname:tunnel
+maxx:500
+maxy:500
+maxz:500
+tile:0:500:0:500:0:0:metal3
+tile:0:20:2:2:0:500:wallmetal19
+tile:24:24:0:30:0:500:wallmetal19
+tile:0:20:4:50:0:500:wallmetal12
+tile:26:50:0:60:0:500:wallmetal7
+tile:0:100:60:64:0:500:wallmetal19
+tile:23:23:28:48:0:500:wallmetal12
+tile:25:25:56:100:0:0:metal
+tile:27:27:50:120:0:500:wallmetal18
+tile:0:23:70:120:0:500:wallmetal16
+tile:0:500:80:80:0:0:broken_glass
+tile:30:500:0:500:0:0:broken_glass
+tile:0:22:100:500:0:500:wallmetal6
+tile:28:500:100:100:0:50:wallwoodcrate
+tile:0:500:140:140:0:500:wallwoodcrate
+travelpoint:500:500:135:135:0:0:hidden_cave:0:0:0:welcome
+zone:500:500:135:135:0:500:travelpoint: where it goes?
+zone:0:500:0:134:0:500:tunnel
+zone:0:500:136:500:0:500:tunnel
+src:0:500:0:500:0:500:calm.ogg
+travelpoint:25:25:55:55:0:0:sewer:25:50:50:falling down...
+src:25:25:55:55:0:10:sewer2.ogg
+zone:0:499:135:135:0:500:tunnel

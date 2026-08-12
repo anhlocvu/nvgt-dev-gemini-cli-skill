@@ -1,0 +1,36 @@
+mapname:music_room
+maxx:50
+maxy:50
+maxz:50
+tile:0:50:0:50:0:0:carpet2
+zone:0:500:0:500:0:500:a large hall, filled to the top with people. melodious, soft music echoes in your ears, as different people play various tones and melodies according to their mode. maybe you want to join in the fun? different pianos are located here. go to one of them and start playing
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb:throwing_star:kings_statue:demon_king
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb:warp_box
+tile:0:5:0:5:0:3:chair
+zone:0:10:7:12:0:15:a table, you can see some pianos here. you can play them by sitting on the chairs in front of them.@trackme@
+zone:0:5:0:5:0:3:a big chair, you can sit here, and play the piano.@trackme@
+tile:0:10:7:12:5:5:wood4
+tile:0:10:7:12:0:4:walltable
+tile:7:10:0:5:0:3:chair
+zone:0:5:7:12:5:5:a piano@trackme@
+zone:7:10:7:12:5:5:another piano@trackme@
+zone:0:5:5:5:3:3:press shift enter  to play the piano which is in front of you@trackme@
+
+zone:7:10:0:5:0:3:another big chair, you can see another piano here in front of this chair.@trackme@
+zone:7:10:5:5:3:3:press shift enter to play the piano which is in front of you@trackme@
+tile:0:5:7:12:5:5:glass
+tile:7:10:7:12:5:5:glass2
+piano:0:5:3
+piano:1:5:3
+piano:2:5:3
+piano:3:5:3
+piano:4:5:3
+piano:5:5:3
+piano:7:5:3
+piano:8:5:3
+piano:9:5:3
+piano:10:5:3
+fightingstate:0
+travelpoint:0:0:0:0:0:0:safe_zone:0:0:5:done
+zone:0:0:0:0:0:0:press shift enter to go back@trackme@
+cmusic:5:5:5:5:0:0:melody62.ogg.ogg:1:100

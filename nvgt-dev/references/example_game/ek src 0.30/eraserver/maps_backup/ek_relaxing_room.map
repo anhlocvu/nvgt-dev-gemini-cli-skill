@@ -1,0 +1,85 @@
+mapname:ek_relaxing_room
+maxx:50
+maxy:50
+maxz:200
+tile:0:50:0:50:0:0:carpet2
+zone:0:50:0:50:0:200:Relaxing room.
+src:0:50:0:50:20:50:md64.ogg
+src:0:50:0:50:15:50:water2.ogg
+src:0:50:0:50:10:50:b1.ogg
+src:0:50:0:50:10:50:background1.ogg
+tile:0:0:0:0:0:0:wood4
+travelpoint:0:0:0:0:0:0:ek_main:0:50:0:Done, you are back from to the main.
+zone:0:0:0:0:0:10:Entrance to the main.:trackme
+tile:10:20:10:20:4:4:wood8
+zone:9:21:9:21:0:10:near a big table:trackme
+zone:10:20:10:20:0:3:under the table:trackme
+zone:10:20:10:20:4:10:a big table:trackme
+tile:10:10:9:9:0:3:wood4
+zone:10:10:9:9:0:10:some chair for sitting, relaxing, etc
+tile:13:13:9:9:0:3:wood4
+zone:13:13:9:9:0:10:some chair for sitting, relaxing, etc
+tile:16:16:9:9:0:3:wood4
+zone:16:16:9:9:0:10:some chair for sitting, relaxing, etc
+tile:19:19:9:9:0:3:wood4
+zone:19:19:9:9:0:10:some chair for sitting, relaxing, etc
+tile:10:10:21:21:0:3:wood4
+zone:10:10:21:21:0:10:some chair for sitting, relaxing, etc
+tile:13:13:21:21:0:3:wood4
+zone:13:13:21:21:0:10:some chair for sitting, relaxing, etc
+tile:16:16:21:21:0:3:wood4
+zone:16:16:21:21:0:10:some chair for sitting, relaxing, etc
+tile:19:19:21:21:0:3:wood4
+zone:19:19:21:21:0:10:some chair for sitting, relaxing, etc
+tile:9:9:12:12:0:3:wood4
+zone:9:9:12:12:0:10:some chair for sitting, relaxing, etc
+tile:9:9:15:15:0:3:wood4
+zone:9:9:15:15:0:10:some chair for sitting, relaxing, etc
+tile:9:9:18:18:0:3:wood4
+zone:9:9:18:18:0:10:some chair for sitting, relaxing, etc
+tile:21:21:12:12:0:3:wood4
+zone:21:21:12:12:0:10:some chair for sitting, relaxing, etc
+tile:21:21:15:15:0:3:wood4
+zone:21:21:15:15:0:10:some chair for sitting, relaxing, etc
+tile:21:21:18:18:0:3:wood4
+zone:21:21:18:18:0:10:some chair for sitting, relaxing, etc
+tile:0:50:0:50:100:100:concrete18
+zone:0:50:0:50:100:150:Second floor, music room.
+tile:25:25:25:25:100:105:metal6
+zone:25:25:25:25:100:115:Music box.:trackme
+jplayer:25:25:105
+tile:35:35:0:0:100:100:metalpipe
+vending_machine:35:0:100
+zone:35:35:0:0:100:110:Press T to buy from the vending machine.:trackme
+tile:45:50:45:50:0:0:marble2
+tile:45:50:45:50:100:100:marble2
+zone:45:50:45:50:0:150:Elevator.
+tile:45:45:45:50:0:110:wallbarrel
+tile:45:50:45:45:0:110:wallbarrel
+door:48:44:0:48:46:0:1000:silence.ogg:silence.ogg:dooropen114.ogg:doorclose114.ogg
+door:48:46:0:48:44:0:1000:silence.ogg:silence.ogg:dooropen114.ogg:doorclose114.ogg
+door:48:44:100:48:46:100:1000:silence.ogg:silence.ogg:dooropen114.ogg:doorclose114.ogg
+door:48:46:100:48:44:100:1000:silence.ogg:silence.ogg:dooropen114.ogg:doorclose114.ogg
+zone:48:48:44:46:0:110:Press D to open the elevator door.:trackme
+tile:50:50:45:50:0:110:wallbarrel
+tile:46:47:50:50:0:110:wallbarrel
+tile:48:49:49:50:0:0:metal6
+tile:48:49:49:50:100:100:metal6
+zone:48:49:49:50:0:110:Control panel.
+tile:49:49:50:50:1:99:wallair
+zone:49:49:50:50:0:110:Press d to go up and down to the music room.:trackme
+door:49:50:0:49:50:100:50:silence.ogg:doormove12.ogg:dooropen77.ogg:doorclose77.ogg
+door:49:50:100:49:50:0:50:silence.ogg:doormove12.ogg:dooropen77.ogg:doorclose77.ogg
+tile:45:50:45:50:110:110:wallbarrel
+tile:50:50:20:20:100:150:stairs
+zone:0:50:0:50:150:160:terrace
+zone:50:50:20:20:100:150:stairs, up and down terrace floor:trackme
+tile:0:50:0:50:150:150:concrete
+tile:50:50:20:20:150:149:stairs
+amb:0:50:0:50:150:160:birds12.ogg
+tile:49:49:20:20:101:149:wallbeaulon
+tile:49:49:20:20:101:149:wallbeaulon
+tile:49:50:19:19:101:149:wallbeaulon
+fightingstate:0
+noitems:0:100:0:100:-200:200:wirebomb:nuclear_bomb:mine:stun_dart:security_bomb:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:rocket_launcher:bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censor_bomb:stone:fire_starter:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:guided_missile:missile_interceptor:mine:hors:boat:tasing_small_projectile:small_projectile:elecboat:censor_bomb:frequency_scrambler:helicopter:fire_extinguisher:wood:sound_grenade:arena_card:police_motorcycle:police_car:police_car_super:bike:armored_tank:aircraft:item_grabber:invisibility_shield:the_magical_flower:motion_bomb:
+safezone:0:100000:0:100000:0:100000

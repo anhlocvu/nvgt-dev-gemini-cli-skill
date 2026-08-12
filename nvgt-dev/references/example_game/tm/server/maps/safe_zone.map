@@ -1,0 +1,35 @@
+mapname:safe_zone
+maxx:150
+maxy:150
+maxz:100
+zone:0:1500:0:1500:0:150:a place for those who want to take a break from the adventures and fighting going around. the air is peaceful and soothing here, and you feel yourself relaxing
+zone:10:10:10:10:0:6:story mode@trackme@
+zone:25:25:25:25:0:50:quest of the ultra pack! by crossing the map you get the best and the most popular pack in the game!@trackme@
+zone:50:50:50:50:0:50:evermore city. the main place for all the activities and adventures. press shift plus enter to go inside@trackme@
+tile:0:1500:0:1500:0:0:concrete11
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb:throwing_star:demon_king
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+tile:145:145:150:150:0:100:stairs
+zone:145:145:150:150:0:99:a wooden staircase, leading up to the second floor@trackme@
+zone:145:145:150:150:100:100:stares leading down to the first floor: trackme
+tile:150:150:150:150:10:97:concrete3
+zone:150:150:150:150:0:99:elevator leading to the second floor@trackme@
+zone:150:150:150:150:100:100:elevator leading down to the first floor@trackme@
+travelpoint:0:0:50:50:100:100:party_playce:0:0:0:have a good time
+zone:0:0:50:50:100:110:party playce@trackme@
+tile:145:145:149:149:1:99:wallbeaulon
+tile:146:146:150:150:1:99:wallbeaulon
+tile:144:144:150:150:1:99:wallbeaulon
+tile:0:0:0:0:1000:1000:air
+tile:144:144:149:149:1:99:wallbeaulon
+tile:146:146:149:149:1:99:wallbeaulon
+travelpoint:10:10:10:10:0:0:story_mode:0:0:0:the adventure begins!
+tile:0:150:0:150:100:100:carpet
+noitems:0:500:0:500:0:500:warp_box
+travelpoint:0:0:50:50:0:0:music_room:0:0:3:done
+zone:0:0:50:50:0:0:to go to the music room, press shift enter@trackme@
+noitems:0:55555:0:55555:0:55555:demon_king
+noitems:0:55555:0:55555:0:55555:kings_statue
+travelpoint:0:0:0:0:0:0:safe_zone:50:50:0:balls
+fightingstate:0
+cmusic:0:500:0:500:0:500:anime25.ogg:0:100

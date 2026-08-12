@@ -1,0 +1,15 @@
+mapname:the_tower
+maxx:200
+maxy:200
+maxz:2005:dbz2.ogg
+tile:0:200:0:200:0:0:carpet
+tile:0:200:0:200:0:0:concrete14
+tile:0:200:0:200:0:0:hardwood2
+tile:200:200:200:200:0:100:stairs
+travelpoint:200:200:200:200:100:100:tower_second_floor:0:0:100:keep going!
+src:0:200:0:200:20:75:dbz3.ogg:-10:100
+zone:0:200:0:200:0:6:this is it. your final stand against the unseelers, one last attempt to stop them in their tracks, one last battle of epic proportions. if you can clime to the top of the tower and defeat the unseelers leader, it will all be over. everything will be back to normal. good luck!
+zone:200:200:200:200:0:100:stairs to the next floor@trackme@
+zone:200:200:200:200:100:106:press shift enter to continue
+robots:0:200:0:200:0:0:4:500:mass_murderess,bossboy,fighter
+noitems:0:5555:0:5555:0:5555:stp429:grenade

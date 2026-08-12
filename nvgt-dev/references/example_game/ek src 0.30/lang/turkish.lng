@@ -1,0 +1,167 @@
+*burasý hala tam deðil, biri geliþtirirse bana telegramdan @icemasterr ulaþabilir ve dosyayý gönderebilir, teþekkürler!
+Main Menu=ana menü
+
+character options=karakter seçenekleri
+
+character settings; you can find many options for your character here, or create a new player account!=karakter ayarlarý; Karakteriniz için birçok seçeneði burada bulabilir veya yeni bir oyuncu hesabý oluþturabilirsiniz!
+log in as %name=%name olarak oturum açýn
+Logging in as %name, with version=%name olarak oturum açýlýyor, sürüm 
+loading map, please wait=harita yükleniyor, lütfen bekleyin
+load complete=yükleme tamamlandý
+really exit? press enter or y for yes. otherwise, escape or n for no=gerçekten çýkmak istiyormusunuz? evet için y, hayýr için n.
+Find the option you want in the tab, press escape to close the menu, not to activate the chat, for example, press any letter on the main chat="Ýstediðiniz seçeneði bulmak için sekme ile gezin, menüyü kapatmak için Escape tuþuna basýn; sohbeti etkinleþtirmek için üzerine gelip bir harfe basýn."
+The category you are in does not have any items to display=Bulunduðunuz kategoride görüntülenecek öðe yok
+Send message to main chat=Ana sohbete mesaj gönder
+Send message to map chat=Harita sohbetine mesaj gönder
+chat history.=sohbet geçmiþi.
+History=geçmiþ
+Hi %name, welcome to the Era of knights! Have a nice day, and have fun!=Merhaba %name, þövalyeler çaðýna hoþ geldiniz! Ýyi günler ve iyi eðlenceler!
+game message=oyun mesajý
+Super Experience is now enabled! Enjoy before it ends!=Süper Deneyim artýk etkin! Bitmeden tadýný çýkarýn!
+it's night, the time is 1 o clock!=gece oldu, saat 1!
+the day is starting!=gün baþlýyor!
+The sun is rising from the back of the mountain, since it is 6 o'clock in the morning=Saat sabahýn 6'sý olduðundan güneþ daðýn arkasýndan doðuyor
+The sun has reached the middle of the sky, indicating that it is noon!=Güneþin gökyüzünün ortasýna ulaþmasý öðle vaktinin geldiðini gösteriyor!
+all=tümü
+chats=sohbetler
+notifications=bildirimler
+kills=ölümler
+misc=çeþitli
+private messages=özel mesajlar
+category=kategori
+items=öðeler
+of=arasýnda
+action menu, you can see the statistics with up and down arrows=Ýþlem menüsü, yukarý ve aþaðý ok tuþlarý ile istatistikleri görebilirsiniz.
+
+Only you are online right now=Þu anda yalnýzca siz çevrimiçisiniz.
+The server has been running for=sunucu þu süreden beri çalýþýyor
+days=gün
+minutes=dakika
+seconds=saniye
+the lag is=gecikme
+ms=milisaniye
+Settings menu=Ayarlar menüsü
+Team menu=Takým menüsü
+Select Language Channel=Dil Kanalýný Seçin
+Notifications menu=Bildirimler menüsü
+Turn Beacon On/Off=Ýþaretçiyi Açma/Kapatma
+Pacifist Mode=Pasifist Modu
+View Documentation=Belgeleri Görüntüle
+Help=yardým
+game actions=oyun içi iþlemler
+
+connecting to=baðlanýlýyor
+connecting...=baðlanýlýyor...
+
+Setup an existing account=mevcut bir hesaba giriþ yapýn
+username Dialog=kullanýcý adý Ýletiþim Kutusu
+type the username you want to set Edit blank=Ayarlamak istediðiniz kullanýcý adýný yazýn, düzenlenebilir boþ
+blank=boþ
+Space=aralýk
+next Button ALT+n=ileri Düðmesi ALT+n
+
+password Dialog=þifre Ýletiþim Kutusu
+type the password of the username %name Edit protected blank="%name kullanýcýsýnýn þifresini yazýn." düzenlenebilir, korumalý, boþ
+Star=yýldýz
+finish Button ALT+f=bitir Düðmesi ALT+f
+system message=sistem mesajý
+Success!=baþarýlý!
+copy title and message Button=baþlýðý ve mesajý kopyala Düðmesi
+copy only title Button=yalnýzca baþlýðý kopyala Düðme
+copy only message Button=yalnýzca mesajý kopyala Düðmesi
+ok Button=tamam Düðmesi
+Create a new account=Yeni bir hesap oluþtur
+type the account name you want to display in the game, no spaces are allowed Edit=oyunda görüntülenmesini istediðiniz hesap adýný yazýn, boþluk býrakýlamaz düzenlenebilir
+type the password containing 8 letters, no spaces are allowed Edit protected=8 harften oluþan þifreyi yazýn, boþluk býrakýlamaz düzenlenebilir korunuyor
+email Dialog=e-posta Ýletiþim Kutusu
+type the email for this account's forgetting passwords to change etc Edit=lütfen bir mail girin, bu: hesabýnýzýn þifresini vb deðiþtirebilmek için gereklidir düzenlenebilir
+select your gender(required)=cinsiyetinizi seçin(gerekli)
+female=kadýn
+
+male=erkek
+
+try to connect: please wait=baðlanýlýyor; lütfen bekleyin.
+
+complete unfinished stories=tamamlanmamýþ hikayeleri tamamla
+You can complete the story by selecting the story you want to complete below=Aþaðýda tamamlamak istediðiniz hikayeyi seçerek hikayeyi tamamlayabilirsiniz.
+
+Go back=geri dön
+
+change game settings=oyun ayarlarýný deðiþtir
+
+check for updates=güncellemeleri kontrol et
+Checking for updates...=Güncellemeler kontrol ediliyor...
+%ver Is the newest version!=%ver En yeni sürüm!
+No updates were found at this time!=Þu anda herhangi bir güncelleme bulunamadý!
+
+test speakers=hoparlör testi
+
+select your speaker testing=hoparlör testi yönteminizi seçin
+by audio=sesli
+Use the left and right arrows to check the position of the speakers manually. Press up and down arrows to change it's volume, And press page up and page down to change it's pitch.=Hoparlörlerin konumunu manuel olarak kontrol etmek için sol ve sað oklarý kullanýn. Sesini deðiþtirmek için yukarý ve aþaðý oklara basýn ve perdesini deðiþtirmek için sayfa yukarý ve sayfa aþaðý tuþlarýna basýn.
+by default=varsayýlan
+testing speakers=hoparlörleri test ediyorsunuz
+
+by text=metin
+test your speakers by pressing left and right arrows=sol ve sað oklara basarak hoparlörlerinizi test edin
+left=sol
+center=orta
+right=Sað
+
+listen to game documentation with audio=oyun belgelerini sesli olarak dinle
+Welcome, select the file you want to listen to and press enter.=Hoþ geldiniz, dinlemek istediðiniz dosyayý seçin ve enter tuþuna basýn.
+listen the rules=kurallarý dinleyin
+listen the readme in turkish.=Benioku'yu türkçe dinleyin.
+listen the readme=beni okuyu dinleyin
+Listen the rules in turkish.=Kurallarý türkçe dinleyin.
+
+back to mainmenu=ana menüye dön
+Exiting buffer menu.=Tampon menüsünden çýkýlýyor.
+Exit=Çýkýþ
+
+options Dialog=seçenekler Ýletiþim Kutusu
+
+canceled=iptal edildi
+
+enable menu sidescrolling Check box not checked=menü yan kaydýrmayý etkinleþtir Onay kutusu iþaretli deðil
+Not Checked=iþaretli deðil
+Checked=iþaretli
+enable menu wrapping Check box not checked=menü kaydýrmayý etkinleþtir Onay kutusu iþaretli deðil
+enable menu wrapping Check box checked=menü kaydýrmayý etkinleþtir Onay kutusu iþaretli
+ask before exiting Check box checked=çýkmadan önce sor Onay kutusu iþaretli
+ask before exiting Check box not checked=çýkmadan önce sor Onay kutusu iþaretli deðil
+enable right control detection Check box not checked=sað kontrol algýlamayý etkinleþtir Onay kutusu iþaretli deðil
+enable right control detection Check box checked=sað kontrol algýlamayý etkinleþtir Onay kutusu iþaretli
+enable speech interrupt Check box not checked=konuþma kesintisini etkinleþtir Onay kutusu iþaretli deðil
+enable speech interrupt Check box checked=konuþma kesintisini etkinleþtir Onay kutusu iþaretli
+play logo on startup Check box checked=baþlangýçta logoyu oynat Onay kutusu iþaretli
+play logo on startup Check box not checked=baþlangýçta logoyu oynat Onay kutusu iþaretli deðil
+enable chec for updates on startup Check box checked=Baþlangýçta güncellemelerin kontrolünü etkinleþtir Onay kutusu iþaretlendi
+enable chec for updates on startup Check box not checked=Baþlangýçta güncellemelerin kontrolünü etkinleþtir Onay kutusu iþaretli deðil
+enable UI translator Check box checked ALT+U=kullanýcý arayüzü çeviricisini etkinleþtir Onay kutusu iþaretlendi ALT+U
+enable UI translator Check box not checked ALT+U=kullanýcý arayüzü çeviricisini etkinleþtir Onay kutusu iþaretli deðil ALT+U
+select language Button ALT+l=bir dil seç Düðme ALT+l
+Select your language=Dilinizi seçin
+No action will be taken=Hiçbir iþlem yapýlmadý
+play the updated sounds Check box checked=güncellenen sesleri çal Onay kutusu iþaretlendi
+play the updated sounds Check box not checked=güncellenen sesleri çal Onay kutusu iþaretli deðil
+enable sign loop sounds Check box checked=iþaret döngüsü seslerini etkinleþtir Onay kutusu iþaretlendi
+enable sign loop sounds Check box not checked=iþaret döngüsü seslerini etkinleþtir Onay kutusu iþaretli deðil
+enable buffer logging Check box not checked=ara bellek günlüðünü etkinleþtir Onay kutusu iþaretli deðil
+enable buffer logging Check box checked=ara bellek günlüðünü etkinleþtir Onay kutusu iþaretlendi
+enable buffer beeping Check box checked=arabellek bip sesini etkinleþtir Onay kutusu iþaretlendi
+enable buffer beeping Check box not checked=arabellek bip sesini etkinleþtir Onay kutusu iþaretli deðil
+select output device Button=çýkýþ cihazýný seç Düðme
+Select output device.=Çýkýþ cihazýný seçin.
+Go back=geri dön
+select the speech mode Button=konuþma modunu seçin Düðme
+Speech mode menu=Konuþma modu menüsü
+set game volume Button=oyun ses seviyesini ayarla Düðmesi
+select your volume.=ses seviyenizi seçin.
+Go back=geri dön
+
+save Button ALT+s=Kaydet Düðmesi ALT+s
+options saved=seçenekler kaydedildi
+pressed=basýlý
+cancel Button=Ýptal Düðmesi
+enable menu sidescrolling Check box checked=menü yan kaydýrmayý etkinleþtir Onay kutusu iþaretli

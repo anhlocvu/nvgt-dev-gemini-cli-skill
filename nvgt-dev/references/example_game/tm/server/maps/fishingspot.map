@@ -1,0 +1,31 @@
+mapname:fishingspot
+maxx:200
+maxy:200
+maxz:200
+zone:0:200:0:200:0:10:the most famous fishingspot around, it bussels with people. the smell of fresh air is in the air, the sounds of nature plezent to the ears. in the distance water can be scene, where a number of people are fishing to their heart's content
+tile:0:0:0:200:0:0:200
+tile:0:50:0:50:0:0:concrete2
+tile:0:200:0:99:0:0:grass3
+tile:10:10:10:10:0:3:metal6
+tile:10:14:12:14:3:3:wood
+zone:10:14:12:15:3:3:a table@trackme@
+zone:10:10:10:10:0:3:chair@trackme@
+tile:15:15:10:10:0:3:metal6
+zone:15:15:10:10:0:3:chair@trackme@
+tile:50:200:50:100:0:0:grass3
+tile:20:20:20:20:0:10:tree
+zone:20:20:20:20:0:15:a tree@trackme@
+tile:0:200:100:110:0:0:water2
+tile:0:200:111:200:0:0:shallow
+src:0:200:100:200:5:50:stream.ogg:0:100
+src:0:200:0:200:10:100:b1.ogg:-10
+travelpoint:0:0:0:0:0:0:crystal_city:100:100:0:you came back to the city
+zone:0:0:0:0:0:7:go back @trackme@
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+src:0:200:0:200:0:50:emb2.ogg
+noitems:0:3000:0:3000:0:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb
+noitems:0:3000:0:3000:0:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+fightingstate:0
+noitems:0:55555:0:55555:0:55555:throwing_star
+noitems:0:200:0:200:0:200:kings_statue

@@ -1,0 +1,44 @@
+mapname:crystal_city
+maxx:2000
+maxy:2000
+maxz:2000
+tile:0:2000:0:2000:0:0:dirt4
+zone:0:2000:0:2000:0:2000:crystal city, while being peaceful, is beautiful as well. everywhere you look you see frozen crystals. from buildings to the ground, the city seems to be decurated with these ice crystals. each building, from small to big, is designed in such a way so as to look artistic. it seems both art and ice are important to these people, as the entire city represents the two
+zone:100:100:100:100:0:7:fishingspot@trackme@
+travelpoint:100:100:100:100:0:0:fishingspot:0:0:0:enjoy!
+
+zone:150:150:150:150:0:0:the frozen forest@trackme@
+zone:200:200:200:200:0:7:the sellers corner. people sell here different items which they no longer need @trackme@
+zone:300:300:300:300:0:7:the road of nightmares. a road filled with hurdels, which if you cross you can get one thousand aura@trackme@
+travelpoint:300:300:300:300:0:0:the_road_of_nightmares:0:0:0:be careful!
+cmusic:0:2000:0:2000:0:30:anime110.ogg:-14:100
+zone:400:400:400:400:0:6:crystal mall. the place where all the necessaties can be perchased@trackme@
+zone:500:500:500:500:0:6:the library@trackme@
+travelpoint:500:500:500:500:0:0:the_library:0:0:0:welcome
+zone:600:600:600:600:0:6:the unseelers base@trackme@
+zone:700:700:700:700:0:6:the riddlers maze@trackme@
+zone:800:800:800:800:0:6:the train station. the trains depart to evermore city from here@trackme@
+travelpoint:800:800:800:800:0:0:crystal_train_station:0:0:0:welcome
+zone:900:900:900:900:0:6:the abandoned factory@trackme@
+zone:1000:1000:1000:1000:0:6:the magical forest@trackme@
+zone:1100:1100:1100:1100:0:6:the tower@trackme@
+zone:1200:1200:1200:1200:0:6:the land of the seeled, home to many mythical creatures. press shift plus enter to go in@trackme@
+zone:1300:1300:1300:1300:0:7:inferno challenge@trackme@
+zone:1400:1400:1400:1400:0:6:crystal superstore@trackme@
+travelpoint:1400:1400:1400:1400:0:0:crystal_superstore:0:0:0:welcome!
+zone:1500:1500:1500:1500:0:7:a ladder leading down to a darkened, mesterious area. checking it out might be a good idea@trackme@
+tile:1500:1500:1500:1500:-15:0:ladder3
+tile:1499:1499:1500:1500:-15:-1:wallwood9
+tile:1500:1500:1499:1499:-15:-1:wallwood9
+tile:1499:1499:1499:1499:-15:-1:wallwood9
+tile:1500:1500:1501:1501:-15:-1:wallwood9
+tile:1501:1501:1499:1499:-15:-1:wallwood9
+tile:1501:1501:1500:1500:-15:-1:wallwood9
+tile:1501:1501:1501:1501:-15:-1:wallwood9
+tile:1499:1499:1501:1501:-15:-1:wallwood9
+zone:1500:1500:1500:1500:-15:-1:you wonder what could be down here. it feels strange, like the place down below is calling to you
+zone:1500:1500:1500:1500:-15:-15:press shift plus enter to enter@trackme@
+noitems:0:33333:0:33333:0:33333:elecboat
+
+
+travelpoint:150:150:150:150:0:0:the_frozen_forest:0:0:0:welcome

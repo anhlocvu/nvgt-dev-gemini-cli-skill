@@ -1,0 +1,213 @@
+tasing_small_projectile=5000=like a little projectile, but it can only stun it when it touches the player=weapon_store
+small_projectile=3000=a small small projectile, maybe you can hurt players if you throw it=weapon_store
+helicopter=2500=A helicopter.=weapon_store
+ak47=1000000= weapon=weapon_store
+barrett_m82_sniper_rifle=7000000= weapon=weapon_store
+bazooka=2000000=A bazooka.=weapon_store
+cyanide_pistol=1300000=weapon=weapon_store
+kalashnikov_rifle=50000=a weapon=weapon_store
+knife=10000= weapon=weapon_store
+m24_sniper_rifle=6000000=weapon=weapon_store
+m234minigun=4956000=weapon=weapon_store
+mlk_207_combat_rifle=2500000=weapon=weapon_store
+rocket_launcher=15000000= weapon=weapon_store
+rpg7=450000=rpg7=weapon_store
+ruger_security_6_revolver=3000000=weapon =weapon_store
+sky_429_laser_shotgun=1270000=weapon=weapon_store
+stp=2000000= weapon=weapon_store
+s&w_model66_revolver=2000000= weapon=weapon_store
+taser=150000=A taser.=weapon_store
+pack_of_100_stone=5000=pack for 100 stone, =weapon_store
+ammo_ak47=4=Ammo for ak47=ammo_store
+ammo_barrett_m82_sniper_rifle=3500=Ammo for your barrett_m82_sniper_rifle=ammo_store
+ammo_bazooka=200=Ammo for your bazooka.=ammo_store
+ammo_kalashnikov_rifle=5=Ammo for kalashnikov_rifle=ammo_store
+ammo_m24_sniper_rifle=2000=Ammo for your m24_sniper_rifle=ammo_store
+ammo_m234minigun=150=ammo=ammo_store
+ammo_mlk_207_combat_rifle=40=Ammo for your mlk_207_combat_rifle=ammo_store
+ammo_rpg7=450=Ammo for your rpg7=ammo_store
+ammo_stp=7=Ammo for stp=ammo_store
+ammo_taser=150=Ammo for your taser=ammo_store
+pack_of_10_ammo_cyanide_pistol=600=a pack of ammo for a cyanide pistol=ammo_store
+pack_of_10_ammo_rocket_launcher=500=Ammo for rocket_launcher=ammo_store
+pack_of_10_ammo_ruger_security_6_revolver=300=Ammo for the ruger_security_6_revolver=ammo_store
+pack_of_10_ammo_s&w_model66_revolver=100=Ammo for the s&w_model66_revolver=ammo_store
+timebomb=2500=a bomb with a beeping timer on it.=explosive_store
+motion_bomb=2000=A powerful bomb that detects motion=explosive_store
+grenade=5500=grenade=explosive_store
+stun_grenade=15000=Stun grenade.=explosive_store
+elecboat=20000000=elec boat =vehicle_store
+police_motorcycle=1000000=police_motorcycle=vehicle_store
+fuel_tank=500=A fuel tank =vehicle_store
+toolbox=10000=A very useful item needed for repairing vehicles=vehicle_store
+metal_pack=2500=a pack full of metal for vehicle repairs=vehicle_store
+arena_card=60000=This is an arena card, with this you can join the arena and try your luck, remember, you have to join the arena with an arena card every time you die.=misc_store
+fire_extinguisher=1000=go to buy=misc_store
+fire_starter=45=fire starter=misc_store
+frequency_scrambler=100000=go to buy=misc_store
+invisibility_shield=20000=go to buy=misc_store
+wood=50=go to buy=misc_store
+kiwi=75=froot=healthy_store
+raisin=22=raisin=healthy_store
+raisin_pack=383=a pack of 20 raisin's=healthy_store
+chocolate=95=chocolate=healthy_store
+apple_juice=93=apple_juce=healthy_store
+milk=30=milk=healthy_store
+cola=105=cola=healthy_store
+health_healer=10200=heal your health eazia and fast by this thing=healthy_store
+health_box=70000=heal your health eazia and fast by this thing=healthy_store
+apple=16=froot=store
+kiwi=32=froot=store
+raisin_pack=300=a pack of 20 raisin's=store
+raisin=12=raisin=store
+chocolate=42=chocolate=store
+apple_juice=52=apple_juce=store
+milk=10=milk=store
+cola=70=cola=store
+fire_starter=45=fire starter=store
+jump_drink=650=when you stucks in a wall use it and then you can jump again=store
+health_healer=10000=heal your health eazia and fast by this thing=store
+health_box=70000=health box=store
+grenade=5500=grenade=store
+stone=1000=stone=store
+dagger=12500=weapon=store
+d23dagger=14250=dagger=store
+hook=10000=weapon=store
+iron_shovel=7800=weapon=store
+knife=4000=weapon=store
+machete=15000=weapon=store
+small_dagger=8500=weapon=store
+spear=6500=weapon=store
+spiked_iron_mace=16740=weapon=store
+sword=12300=weapon=store
+wip=19600=weapon=store
+ak9automatic_machinegun=82000=weapon=store
+ak47assault_rifle=55000=weapon=store
+ar15machinegun=62000=weapon=store
+b96machinegun=86000=weapon=store
+barett_m1500sniper_rifle=138300=weapon=store
+blz5machinegun=98000=weapon=store
+bow=25000=weapon=store
+browning_m2heavy_machinegun=340000=weapon=store
+chainsaw=46000=weapon=store
+crossbow=48350=weapon=store
+crt15shotgun=89000=weapon=store
+erf115machinegun=131331=weapon=store
+fn2000pistol=63300=weapon=store
+fnm_pistol=65000=weapon=store
+g36pistol=63941=weapon=store
+gouse_pistol=60001=weapon=store
+hk_machinegun=91650=weapon=store
+kalashnikov_rifle=1254993=weapon=store
+lr12pistol=59990=weapon=store
+m9pistol=61650=weapon=store
+m10machinegun=88000=weapon=store
+m16machinegun=132000=weapon=store
+m28mini_machinegun=107000=weapon=store
+m90machinegun=111000=weapon=store
+m125assault_rifle=119000=weapon=store
+m152minigun=89009=weapon=store
+m155minigun=172000=weapon=store
+m234minigun=4956000=weapon=store
+m560sniper_rifle=130003=weapon=store
+mb93machinegun=102070=weapon=store
+mg4machinegun=94070=weapon=store
+mhd82laser_machinegun=160000=weapon=store
+missile_launcher=1286504=weapon=store
+mj420machinegun=96504=weapon=store
+mk_long_machinegun=106430=weapon=store
+mk52assault_rifle=113000=weapon=store
+mk215machinegun=99030=weapon=store
+mkv43machinegun=101003=weapon=store
+ml7rifle=94500=weapon=store
+ml15rifle=99700=weapon=store
+mlk290rifle=174003=weapon=store
+mlr_assault_rifle=96540=weapon=store
+mp5machinegun=78000=weapon=store
+mp12machinegun=83300=weapon=store
+msb530shotgun=69230=weapon=store
+pcs_handgun=92000=weapon=store
+pst500shotgun=1350000=weapon=store
+qt_machinegun=105000=weapon=store
+rpg_launcher=650000=weapon=store
+rpg7=450000=weapon=store
+ruga22revolver=95000=weapon=store
+s55assault_rifle=111003=weapon=store
+s110assault_rifle=115000=weapon=store
+sfx12machinegun=1395400=weapon=store
+sp3heavy_machinegun=3895400=weapon=store
+sp5shotgun=89540=weapon=store
+sp150shotgun=107004=weapon=store
+stp15rifle=136500=weapon=store
+stp420long_barreled_rifle=176500=weapon=store
+str301machinegun=98000=weapon=store
+tac50rifle=103000=weapon=store
+taser=70000=weapon=store
+tsp_grenade_launcher=800000=weapon=store
+ump45machinegun=67000=weapon=store
+uzi_machinegun=54000=weapon=store
+ammo_ak9automatic_machinegun=36=ammo=store
+ammo_ak47assault_rifle=38=ammo=store
+ammo_ar15machinegun=50=weapon=store
+ammo_b96machinegun=70=weapon=store
+ammo_barett_m1500sniper_rifle=240=ammo=store
+ammo_blz5machinegun=78=ammo=store
+ammo_bow=24=ammo=store
+ammo_browning_m2heavy_machinegun=300=ammo=store
+ammo_chainsaw=32=ammo=store
+ammo_crossbow=33=ammo=store
+ammo_crt15shotgun=86=weapon=store
+ammo_erf115machinegun=131=weapon=store
+ammo_fn2000pistol=52=ammo=store
+ammo_fnm_pistol=55=ammo=store
+ammo_g36pistol=53=ammo=store
+ammo_gouse_pistol=50=ammo=store
+ammo_hk_machinegun=79=ammo=store
+ammo_kalashnikov_rifle=1200=ammo=store
+ammo_lr12pistol=59=ammo=store
+ammo_m9pistol=56=ammo=store
+ammo_m10machinegun=82=ammo=store
+ammo_m16machinegun=89=ammo=store
+ammo_m28mini_machinegun=70=ammo=store
+ammo_m90machinegun=77=ammo=store
+ammo_m125assault_rifle=97=ammo=store
+ammo_m152minigun=89=ammo=store
+ammo_m155minigun=152=ammo=store
+ammo_m234minigun=150=ammo=store
+ammo_m560sniper_rifle=113=ammo=store
+ammo_mb93machinegun=61=ammo=store
+ammo_mg4machinegun=91=ammo=store
+ammo_mhd82laser_machinegun=72=ammo=store
+ammo_missile_launcher=800=ammo=store
+ammo_mj420machinegun=86=ammo=store
+ammo_mk_long_machinegun=106=ammo=store
+ammo_mk52assault_rifle=103=ammo=store
+ammo_mk215machinegun=90=weapon=store
+ammo_mkv43machinegun=101=ammo=store
+ammo_ml7rifle=94=ammo=store
+ammo_ml15rifle=93=ammo=store
+ammo_mlk290rifle=148=ammo=store
+ammo_mlr_assault_rifle=96=ammo=store
+ammo_mp5machinegun=78=ammo=store
+ammo_mp12machinegun=83=ammo=store
+ammo_msb530shotgun=79=ammo=store
+ammo_pcs_handgun=72=ammo=store
+ammo_pst500shotgun=1020=ammo=store
+ammo_qt_machinegun=45=ammo=store
+ammo_rpg_launcher=750=ammo=store
+ammo_rpg7=450=ammo=store
+ammo_ruga22revolver=95=weapon=store
+ammo_s55assault_rifle=111=ammo=store
+ammo_s110assault_rifle=115=ammo=store
+ammo_sfx12machinegun=840=ammo=store
+ammo_sp3heavy_machinegun=1180=ammo=store
+ammo_sp5shotgun=89=ammo=store
+ammo_sp150shotgun=107=ammo=store
+ammo_stp15rifle=120=ammo=store
+ammo_stp420long_barreled_rifle=150=ammo=store
+ammo_str301machinegun=98=ammo=store
+ammo_tac50rifle=132=ammo=store
+ammo_taser=70=ammo=store
+ammo_tsp_grenade_launcher=70=ammo=store
+ammo_ump45machinegun=56=ammo=store
+ammo_uzi_machinegun=54=ammo=store

@@ -1,0 +1,16 @@
+name thunderbird
+health 48000000
+defence 12000
+speed 400
+damage 9000000
+shieldhits 5000,5000
+shieldchance 0
+shoot 1000
+distance 20
+aggro 1000
+spread 6
+angle 360
+steps 0
+loot health_booster
+amount 2
+xp 70000,80000

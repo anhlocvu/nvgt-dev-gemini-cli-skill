@@ -1,0 +1,41 @@
+pkarea@[] pkareas(0);
+class pkarea
+{
+double minx,maxx,miny,maxy,minz,maxz;
+bool enable=false;
+pkarea(double a,double b,double c,double d,double e,double f,bool en)
+{
+minx=a;
+maxx=b;
+miny=c;
+maxy=d;
+minz=e;
+maxz=f;
+enable=en;
+}
+}
+void pkareacheck()
+{
+for(uint i=0; i<pkareas.length(); i++)
+{
+if((pkareas[i].minx<=mr.x and pkareas[i].maxx>=mr.x) and (pkareas[i].miny<=mr.y and pkareas[i].maxy>=mr.y) and (pkareas[i].minz<=me.z and pkareas[i].maxz>=me.z))
+{
+wait(5);
+if(pk!=bool_to_int(pkareas[i].enable))
+{
+pk=bool_to_int(pkareas[i].enable);
+send_reliable(0,"setpkfast "+pk,0);
+speak("your pk is now turned "+(pk==0?"off":"on"));
+}
+}
+}
+}
+void destroy_all_pkareas()
+{
+pkareas.resize(0);
+}
+void spawn_pkarea(double a,double b,double c,double d,double e,double f,bool en)
+{
+pkarea p1(a,b,c,d,e,f,en);
+pkareas.insert_last(p1);
+}

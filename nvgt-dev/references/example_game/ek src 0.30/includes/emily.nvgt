@@ -1,0 +1,210 @@
+void emily() {
+    string npc_name = "Emily"; // NPC'nin ismi
+ek_loop();
+netloop();
+    uyari("As you wander through the lush forest, the dappled sunlight dances on the ground, illuminating the path ahead.");
+    uyari("The air is fragrant with the earthy aroma of moss and wildflowers, a soothing balm for your senses.");
+
+    uyari("Suddenly, a rustle in the underbrush catches your attention. Curiosity piqued, you move closer, drawn to the source.");
+    uyari("There, sitting on a fallen log, is a girl with long, flowing hair that cascades over her shoulders like a waterfall of silk.");
+    uyari("She's wearing a light summer dress that clings to her curves, accentuating her figure as she sketches in a notebook.");
+
+    uyari("As you approach, she looks up, her bright eyes meeting yours. A warm smile spreads across her face, inviting and genuine.");
+    uyari(npc_name + ": 'Oh! I didn't expect anyone to be here. This place is like a secret hideaway, don't you think?'");
+
+    uyari(name + ": 'It truly is. I love the quiet and the beauty of nature. What brings you here?'");
+
+    uyari(npc_name + ": 'I come here to capture the essence of this forest. It inspires me.'");
+    uyari("You can't help but admire how the sunlight catches her hair, framing her face beautifully.");
+
+    uyari(name + ": 'That's amazing! You have a real talent for seeing beauty in the world.'");
+
+    uyari(npc_name + ": 'Thank you! I feel like art allows me to express what I can't say with words.'");
+    uyari("Her voice is soft and melodic, drawing you in closer, making you want to know more about her.");
+
+    uyari("You take a seat beside her on the log, feeling the cool wood beneath you. The proximity sends a thrill through your body.");
+    uyari("The dress she wears sways slightly as she shifts, revealing glimpses of her sun-kissed skin. You can see the delicate curve of her waist and the smoothness of her arms.");
+
+    uyari(npc_name + ": 'Would you like to see what I’m working on?'");
+
+    int e;
+    e = yesno("Do you want to look at her sketch?");
+    if (e == 1) {
+        uyari("You lean closer, intrigued. The drawing is beautiful, capturing the essence of the forest and its tranquility.");
+        uyari(name + ": 'It's wonderful! You have a real gift for bringing this place to life on paper.'");
+
+        uyari(npc_name + ": 'Thanks! It’s my way of connecting with nature. But sitting here with you is even more inspiring.'");
+
+        uyari("Your heart races at her words, feeling a magnetic pull between you two.");
+        
+        uyari(npc_name + ": 'Do you ever feel like you want to share these moments with someone special?'");
+
+        int choice;
+        choice = yesno("Do you want to express your interest in a deeper connection?");
+        if (choice == 1) {
+            uyari("You take a deep breath, your pulse quickening. 'I do, actually. I feel like we have a connection.'");
+            uyari("Emily's cheeks flush a light pink as she leans in slightly, her gaze locked onto yours.");
+            uyari(npc_name + ": 'I’ve felt it too. There’s something about being here with you that feels right.'");
+
+            uyari("You notice her lips, soft and inviting, and the urge to close the distance between you grows stronger.");
+            uyari(npc_name + ": 'Would you like to go somewhere a bit more private? I know a place that’s perfect for a moment like this.'");
+
+            int further_choice;
+            further_choice = yesno("Do you want to follow her to a more secluded spot?");
+            if (further_choice == 1) {
+                uyari("You nod, feeling excitement bubbling inside you. 'Lead the way.'");
+                uyari("Emily stands up, her dress swaying gently with her movements. You can't help but admire the way she carries herself.");
+                uyari("As you walk, you notice the sun casting golden rays on her, enhancing her beauty even more.");
+                uyari("After a few moments, you arrive at a small clearing surrounded by thick trees, where sunlight pours in, creating a warm glow.");
+
+                uyari("You turn to her, feeling a surge of anticipation. 'This is beautiful.'");
+                uyari(npc_name + ": 'It really is... I feel like we can really be ourselves here.'");
+
+                uyari("As she says this, you step closer, the air thick with unspoken desire.");
+                uyari("Your eyes lock onto hers, and you can see the warmth and longing reflected in her gaze.");
+                
+                int intimacy_choice;
+                intimacy_choice = yesno("Do you want to take the next step in your relationship with her?");
+                if (intimacy_choice == 1) {
+                    uyari("You reach out, brushing a strand of hair behind her ear. 'I've been thinking about this since we met.'");
+                    uyari("Emily's breath hitches, her lips parting slightly as she gazes up at you, her eyes filled with longing.");
+                    uyari(npc_name + ": 'I want this too. I’ve felt drawn to you from the moment we started talking.'");
+
+                    uyari("You lean in, closing the distance between you two. Your lips meet in a gentle, hesitant kiss at first, testing the waters.");
+                    uyari("But as the kiss deepens, you feel the world around you fade away, leaving just the two of you in that moment.");
+                    uyari("Her hands find their way to your waist, pulling you closer as the kiss ignites a fire within you.");
+
+                    uyari("You wrap your arms around her, feeling the softness of her body against yours. The sensation is intoxicating.");
+                    uyari("The forest seems to hold its breath, witnessing the connection between you two, a blend of passion and tenderness.");
+                    
+                    uyari("You feel her fingers tracing along your back, sending shivers down your spine, heightening the intimacy of the moment.");
+                    uyari("As you pull away slightly, you gaze into her eyes, seeing the desire reflected back at you.");
+                    uyari(npc_name + ": 'I’ve never felt this way before. It’s like we were meant to find each other here.'");
+
+                    uyari("You feel the tension in the air shift as she leans closer, her body pressing against yours.");
+                    uyari("You whisper, 'Would you like to explore this further? I want to know you more deeply.'");
+
+                    int exploration_choice;
+                    exploration_choice = yesno("Do you want to engage in intimate activities with her?");
+                    if (exploration_choice == 1) {
+                        uyari("Emily nods, her eyes sparkling with excitement. 'Yes, I’d love that.'");
+                        uyari("You gently take her hand, leading her to a more secluded part of the clearing, hidden from prying eyes.");
+
+                        uyari("Once there, you can feel the heat radiating from her body. You turn to face her, your hearts racing in unison.");
+                        uyari("As the moment intensifies, you pull her close, your lips crashing together with a passionate fervor.");
+                        uyari("Her hands roam over your back, pulling you even closer, deepening the kiss.");
+
+                        uyari("You break the kiss, looking into her eyes. 'What do you want to do now?'");
+                        uyari(npc_name + ": 'I want to feel you closer to me, to explore each other.'");
+
+                        uyari("You nod, feeling a rush of excitement as you guide her to the ground, where soft grass cushions you.");
+                        uyari("You lay down together, the sunlight filtering through the trees, creating a warm halo around you.");
+
+                        uyari("As you lay together, you take a moment to admire her beauty, her skin glowing in the light.");
+                        uyari("You lean in, kissing her neck softly, eliciting a soft gasp from her lips.");
+                        uyari(npc_name + ": 'That feels amazing... keep going.'");
+
+                        uyari("You trail kisses down her collarbone, feeling her shudder beneath your touch.");
+                        uyari("Your hands explore her curves, savoring the softness of her skin beneath your fingers.");
+                        uyari("You can feel her body responding to your every touch, the heat building between you.");
+
+                        uyari("With a sudden rush of desire, you sit up slightly, your eyes locking onto hers.");
+                        uyari("You ask, 'What do you want to try first?'");
+
+                        int action_choice;
+                        action_choice = yesno("Do you want to take off her dress?");
+                        if (action_choice == 1) {
+                            uyari("With a gentle smile, you reach for the hem of her dress, slowly lifting it over her head.");
+                            uyari("Her bare skin is exposed to the warm sunlight, and you can't help but admire her beauty.");
+                            uyari(npc_name + ": 'You make me feel so alive...'");
+
+                            uyari("You lean in again, capturing her lips with yours as your hands explore her body freely.");
+                            uyari("You feel the heat radiating between you, igniting your passion as you explore each other's bodies.");
+
+                            uyari("With every kiss, every caress, you become more lost in the moment, your bodies entwined in a dance of desire.");
+                            uyari("You whisper softly, 'You’re beautiful, Emily. I can’t get enough of you.'");
+
+                            uyari("She gazes back at you, her eyes filled with a mix of shyness and eagerness.");
+                            uyari(npc_name + ": 'I want you to touch me everywhere. I want to feel all of you.'");
+
+                            uyari("The anticipation in her voice drives you wild. You decide to take your time, to savor every moment.");
+                            uyari("You trail kisses down her body, taking your time to explore every inch of her soft skin.");
+                            uyari("With each gentle touch, you feel her shudder with pleasure, her breaths coming in soft gasps.");
+
+                            uyari("As you reach her stomach, you pause, looking up at her with a teasing smile.");
+                            uyari(name + ": 'How does this feel?'");
+
+                            uyari(npc_name + ": 'It feels amazing. Please... don't stop.'");
+                            uyari("You smile, encouraged by her words, and continue your exploration.");
+
+                            uyari("Your hands glide down her thighs, gently squeezing as you kiss your way lower.");
+                            uyari("You can feel her body arch towards you, desperate for more contact, more pleasure.");
+
+                            uyari("You glance up to see her biting her lip, a look of pure desire in her eyes.");
+                            uyari(name + ": 'You want me to go further?'");
+
+                            uyari(npc_name + ": 'Yes... I want you to take me... please.'");
+                            uyari("Her voice is breathy, filled with longing, and you can feel your heart racing in response.");
+
+                            uyari("You nod, feeling a wave of excitement wash over you as you prepare to give in to the moment.");
+                            uyari("You kiss her softly, then shift your position, finding a comfortable place for both of you.");
+
+                            uyari("As you begin to explore her more intimately, the world around you fades, leaving just the two of you.");
+                            uyari("You focus on her reactions, the way her body responds to every touch, every kiss.");
+
+                            uyari("With each passing moment, the connection between you deepens, both physically and emotionally.");
+                            uyari("You whisper sweet nothings into her ear, your breath hot against her skin, amplifying her pleasure.");
+
+                            uyari("As you both succumb to the overwhelming sensations, you lose track of time, enveloped in each other's warmth.");
+                            uyari("The forest around you becomes a sanctuary, a secret world where nothing else matters but the two of you.");
+
+                            uyari("Every moment feels electric, every sigh and moan a melody that resonates in the air.");
+                            uyari("The intimacy builds, and you feel an urgency that can't be ignored.");
+
+                            uyari("Finally, after what feels like hours lost in each other, you both reach the pinnacle of ecstasy together.");
+                            uyari("You hold her close, your bodies entwined, as you savor the aftermath of your shared passion.");
+
+                            uyari("The world slowly comes back into focus as you lay together in the grass, breathing heavily.");
+                            uyari(npc_name + ": 'That was incredible... I never imagined it would be like this.'");
+
+                            uyari(name + ": 'Neither did I. I’m so glad we found each other here.'");
+
+                            uyari("You both share a soft laugh, the joy of the moment lingering in the air.");
+                            uyari("As you lay there, wrapped in each other’s embrace, you realize that this encounter has changed everything.");
+
+                            uyari("You look into her eyes, knowing that this is only the beginning of something special.");
+                            uyari(npc_name + ": 'I hope we can meet again. This feels too special to be a one-time thing.'");
+
+                            uyari(name + ": 'I want that too. Let’s make this a memory we can cherish.'");
+
+                            uyari("With a shared smile, you both know that your connection will remain in your hearts long after this day.");
+
+                            uyari("As the sun begins to set, casting a golden hue over the forest, you both reluctantly begin to dress.");
+                            uyari("But deep down, you know this is not the end, just a beautiful beginning.");
+                        } else {
+                            uyari("You decide to take it slow for now, focusing on the intimacy of the moment.");
+                            uyari("You explore her body with your hands, letting the sensations guide you both.");
+                            uyari("As you continue to kiss and hold her, you savor the beauty of the moment, knowing that this connection is special.");
+                        }
+                    } else {
+                        uyari("You choose to take it slow, enjoying the closeness and connection without rushing into anything.");
+                        uyari("You kiss her deeply, savoring the taste of her lips, feeling her body warm against yours.");
+                    }
+                } else {
+                    uyari("You decide not to engage further, but instead, you cherish the moment of intimacy you’ve shared.");
+                    uyari("You both smile at each other, knowing that this moment will linger in your hearts.");
+                }
+            } else {
+                uyari("You politely decline, feeling that the moment is not quite right yet.");
+                uyari("Emily nods, understanding. 'It’s okay, I really enjoy just being here with you.'");
+            }
+        } else {
+            uyari("You decide to take things slow, wanting to get to know her better before diving deeper.");
+            uyari("You continue talking, sharing stories and laughter, deepening your connection in this serene forest setting.");
+        }
+    } else {
+        uyari("You choose not to look at her sketch, opting to continue the conversation instead.");
+        uyari("You discuss your favorite spots in the forest, learning more about each other as the sun sets.");
+    }
+    uyari("As the evening unfolds, you feel a bond growing between you, one that promises more adventures to come.");
+}

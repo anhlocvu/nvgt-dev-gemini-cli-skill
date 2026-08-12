@@ -1,0 +1,49 @@
+mapname:level3
+maxx:100
+maxy:100
+maxz:200
+tile:0:100:0:100:0:0:grass
+fightingstate:0
+zone:0:100:0:100:0:200:level3
+tile:0:100:0:100:0:0:water3
+tile:0:100:0:100:0:0:icef
+tile:5:5:0:99:0:100:wallrocks
+tile:0:4:0:20:0:0:concrete8
+tile:0:5:20:20:0:5:wallbranch
+tile:0:4:0:0:0:0:icef
+tile:4:6:15:15:0:5:concrete8
+tile:3:3:22:22:0:50:rope
+
+tile:4:4:25:25:49:49:ash
+tile:4:4:30:30:50:50:ash2
+door:4:30:50:6:30:50:1000:silence.ogg:doormove15.ogg:silence.ogg:silence.ogg
+tile:6:6:30:30:50:50:bare
+zone:4:4:30:30:50:50:press d. to crack the wall
+tile:0:4:31:31:0:60:wallmetal18
+tile:11:11:35:35:50:50:ash
+tile:11:11:35:35:45:45:smallwood
+tile:13:13:38:38:40:40:concrete
+tile:13:13:48:55:40:40:wood
+tile:13:13:56:60:40:42:teleport
+tile:13:13:56:56:43:43:wood9
+tile:18:18:56:56:44:44:balloon
+tile:21:21:58:58:30:30:beam
+travelpoint:21:21:58:58:30:30:level3:100:100:100:good luck! 
+tile:0:0:0:100:100:100:cement4
+tile:100:100:100:100:100:100:sand
+
+door:100:100:100:0:100:100:10:silence.ogg:doormove12.ogg:silence.ogg:silence.ogg
+tile:0:0:0:99:100:200:stun
+tile:0:0:100:100:50:100:wood10
+tile:4:4:96:96:40:40:ash
+door:4:96:40:100:100:0:10:silence.ogg:doormove15.ogg:silence.ogg:silence.ogg
+travelpoint:4:4:96:96:40:40:level3:100:100:-1:gooooooood
+zone:4:4:96:96:40:40:press t
+tile:100:100:100:100:0:50:metal16
+tile:3:3:19:19:3:5:gravel2
+noitems:0:1000:0:1000:-1000:1000:wirebomb:mine:stun_dart:security_bomb:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censor_bomb:stone:fire_starter:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:guided_missile:missile_interceptor:mine:hors:boat:tasing_small_projectile:small_projectile:elecboat:censor_bomb:frequency_scrambler:helicopter:fire_extinguisher:sound_grenade:air_canister:shield:motion_bomb:helicopter:wood:police_car_super:tank:aircraft:item_grabber:fight_inviter
+src:0:100:0:100:0:200:amb16.ogg
+amb:0:500:0:500:0:500:horror.ogg
+amb:0:500:0:500:0:500:Research Facility.ogg
+
+amb:100:100:100:100:50:50:alarm3.ogg

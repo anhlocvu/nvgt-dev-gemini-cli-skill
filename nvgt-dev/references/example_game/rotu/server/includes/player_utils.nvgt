@@ -1,0 +1,126 @@
+void emote(string action,int number_of_times=1)
+{
+if(number_of_times>3) return;
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].emotes==1)
+{
+for(uint n=1; n<number_of_times; n++)
+{
+send(players[i].peer_id,"play_s me"+action+".ogg",6);
+}
+}
+}
+}
+
+void player_event(string message,string soundname="",int index=-1)
+{
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].plevents==1)
+{
+/*
+if(index>-1)
+{
+if(players[index].hidden) continue;
+else send(players[i].peer_id,message,2);
+if(!soundname.is_empty()) send(players[i].peer_id,"play_s "+soundname,6);
+}
+else*/ send(players[i].peer_id,message,2);
+if(!soundname.is_empty()) send(players[i].peer_id,"play_s "+soundname,6);
+}
+}
+}
+
+void beacons()
+{
+for(uint i=0; i<players.length(); i++)
+{
+}
+}
+
+
+/* a variant of changemap
+this function will just try to place the player in the safezone of a map
+it will attempt to detect if the map has a main safezone
+if it doesn't, then it will place it in a random safezone present on the map
+if the map has no safezones, then the player will be sent to main
+*/
+void changemap_safe(int index, int map_index=-1)
+{
+if(index > -1)
+{
+int x = 222;
+int y = 430;
+int z = 2;
+string map = players[index].map;
+if(map_index<=-1 or map_index>=int(maps.length()))
+{
+map_index = get_map_index("main");
+}
+if(map_index<=-1 or map_index>=int(maps.length()))
+{
+if(maps.length() > 0) map_index = 0;
+}
+if(maps[map_index].name == "main")
+{
+x = 222;
+y = 430;
+z = 2;
+}
+else if(maps[map_index].has_main_safezone())
+{
+x = random(maps[map_index].main.minx, maps[map_index].main.maxx);
+y = random(maps[map_index].main.miny, maps[map_index].main.maxy);
+z = random(maps[map_index].main.minz, maps[map_index].main.minz+2);
+}
+else if(maps[map_index].has_any_safezone())
+{
+safezone@ sz = maps[map_index].safezones[random(0, maps[map_index].safezones.length()-1)];
+x = random(sz.minx, sz.maxx);
+y = random(sz.miny, sz.maxy);
+z = random(sz.minz, sz.minz+2);
+}
+else
+{
+map_index = get_map_index("main");
+x = 222;
+y = 430;
+z = 2;
+}
+int[]xyz={x,y,z};
+changemap(index, map_index, xyz);
+}
+}
+
+
+void changemap(int p, int newmap,int[] position={0, 0, 0})
+{
+if(p>-1 and newmap>-1 and newmap < int(maps.length())) {
+players[p].map=maps[newmap].name;
+players[p].x=position[0];
+players[p].y=position[1];
+players[p].z=position[2];
+send(players[p].peer_id,"mapdata "+maps[newmap].rawdata,0);
+send(players[p].peer_id,"move "+players[p].x+" "+players[p].y+" "+players[p].z,0);
+@players[p].mymap=maps[newmap];
+if(players[p].mymap.invtype=="battle")
+{
+if(@players[p].inv!=@players[p].inventories[1])
+{
+@players[p].inv=players[p].inventories[1];
+players[p].inv.id=players[p].peer_id;
+send(players[p].peer_id,"The map that you are currently on has forced your inventory to the battle inventory. To change this, ask an available admin or developer.",2);
+}
+}
+else
+{
+if(@players[p].inv!=@players[p].inventories[0])
+{
+@players[p].inv=players[p].inventories[0];
+players[p].inv.id=players[p].peer_id;
+send(players[p].peer_id, "Your inventory has been restored to your main inventory.", 2);
+}
+}
+}
+}

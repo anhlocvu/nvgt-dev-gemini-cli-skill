@@ -1,0 +1,24 @@
+string realprojname="Revenge of the Undead";
+sound upmus;
+#include"downloader_x.nvgt"
+void check_for_updates(string projectname,bool say_no_updates=false)
+{
+string new_ver=url_get("http://blindgamers.caturria.ca/games/rotu/version.txt");
+string verdescription=url_get("http://blindgamers.caturria.ca/games/rotu/description.txt");
+if(version<new_ver)
+{
+int showdescs=0;
+dlg("A new update for "+realprojname+" was just detected. Your version: "+version+". Required version: "+new_ver+". Description: "+(verdescription=="" or showdescs==0?"This update doesn't have a description.":verdescription));
+int upd=yesno("Update now?","Download update","Don't download");
+if(upd==1)
+{
+download("https://ims-productions.com/downloads/rotu.zip");
+wait(500);
+exit();
+}
+else
+{
+return;
+}
+}
+}

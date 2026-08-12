@@ -1,0 +1,355 @@
+void fbmenu(int id)
+{
+server_menu m;
+file f;
+f.open("feedbacks.txt","rb");
+string[]feedbacks=string_split(f.read(),"\r\n",false);
+f.close();
+m.intro="Viewing feedback list. Contains "+feedbacks.length()+" items.";
+m.initial_packet="feedbacks";
+for(uint i=0; i<feedbacks.length(); i++)
+{
+m.add("#"+(i+1)+". "+(string_contains(feedbacks[i],"*",1)==0?"(completed by developer) "+string_replace(feedbacks[i],"*","",false):feedbacks[i]),feedbacks[i]);
+}
+m.send(id);
+}
+
+void storemenu(int id)
+{
+int nd=get_player_index(id);
+if(nd==-1) return;
+server_menu m;
+m.initial_packet="purchase";
+m.intro="Store. Select an option.";
+string[]stitems=string_split(get_file("store.dat"),"\r\n",false);
+for(uint i=0; i<stitems.length(); i++)
+{
+string[] itms=string_split(stitems[i],":",false);
+bool will_added=true;
+if(itms.length()==5) {
+if(itms[4]=="*" and players[nd].paid==0) will_added=false;
+}
+if(stn(itms[3])<=players[nd].lvl and will_added)
+{
+int price=stn(itms[1]);
+if(players[nd].paid==1 and price>=25) price-=price*0.25;
+m.add(itms[0]+" for "+price+" gold",itms[0]);
+}
+else continue;
+}
+m.send(id);
+}
+
+void chansmenu(int id)
+{
+int ind=get_player_index(id);
+string[]chans=string_split(get_file("languages.lng"),"\r\n",false);
+server_menu m;
+m.intro="Channels list. There are "+chans.length()+" channels available.";
+m.initial_packet="chanselect";
+m.add("Disable chat","disable");
+if((ind>-1) and players[ind].admin or players[ind].dev) m.add("Admin chat","Admin chat");
+for(uint i=0; i<chans.length(); i++)
+{
+m.add(chans[i],chans[i]);
+}
+m.send(id);
+}
+
+void playersmenu(int id)
+{
+server_menu m;
+m.intro="Viewing "+(players.length()-1)+" players. Press Control plus C to copy their names to your clipboard.";
+m.initial_packet="playerselect";
+int ind=get_player_index(id);
+
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].name!=players[ind].name)
+{
+m.add((players[i].afk?"AFK ":"")+(players[i].dev?"Developer ":"")+(players[i].admin and !players[i].dev?"Admin ":"")+players[i].exprank+" "+players[i].char+(players[i].char!=players[i].name?" ("+players[i].name+")":"")+": "+(players[i].channel!=players[ind].channel?(players[i].channel==""?"Chat disabled. ":players[i].channel+" channel. "):"")+"on "+players[i].map+". "+players[i].kills+" kills, "+players[i].deaths+" deaths.",players[i].name);
+}
+}
+m.send(id);
+}
+
+void questmenu(int index=-1) {
+if(index==-1) return;
+server_menu m;
+m.intro="Choose a quest to accept, escape to cancel";
+m.initial_packet="accept_quest";
+for(uint i=0; i<quests.length(); i+=1) {
+m.add(quests[i].title+", description: "+quests[i].description+".\nYou must be level "+quests[i].minlevel+" to do this quest. For completing this quest, you will receive "+quests[i].rewarded_item_amount+" "+quests[i].rewarded_item+" and "+quests[i].exp+" experience", quests[i].title);
+}
+m.add("Cancel", "back");
+m.send(players[index].peer_id);
+}
+void szmenu(int id)
+{
+int index=get_player_index(id);
+server_menu m;
+m.intro="Safe zone menu";
+m.initial_packet="szselect";
+//m.add("Unequip armor","uneq");
+if(index>-1)
+{
+/*
+if(players[index].cf=="" and players[index].ctfteam=="" and players[index].prisoner==false)
+{
+m.add("Create a CTF event","createctf");
+m.add("Join a CTF event","joinctf");
+}
+if(players[index].cf!="" and players[index].ctfteam!="" and players[index].prisoner==false)
+{
+if(players[index].name==ret_leader(players[index].cf))
+{
+m.add("Start CTF event","startctf");
+m.add("Cancel CTF event","cancelctf");
+}
+m.add("Switch team, currently "+players[index].ctfteam,"switchctf");
+}
+*/
+}
+if(@players[index].myquest==null)
+m.add("Accept a quest", "accquest");
+m.add("Close","close");
+m.send(id);
+}
+
+/*
+void joinctfmenu(int id)
+{
+server_menu m;
+int startcounter=0;
+for(uint i=0; i<ctfs.length(); i++)
+{
+if(ctfs[i].started==true) startcounter++;
+}
+
+m.intro="There are "+ctfs.length()+" CTF's running, with "+(ctfs.length()-startcounter)+" available and "+startcounter+" unavailable. Select a CTF to join.";
+m.initial_packet="ctfselect";
+for(uint i2=0; i2<ctfs.length(); i2++)
+{
+if(ctfs[i2].started==false) m.add(ctfs[i2].name+". Red members: "+(ctfs[i2].red_members.length()>0?lister(ctfs[i2].red_members):"empty")+". Green members: "+(ctfs[i2].green_members.length()>0?lister(ctfs[i2].green_members):"empty")+".",ctfs[i2].name);
+}
+m.send(id);
+}
+*/
+void buildermenu(int id)
+{
+int index=get_player_index(id);
+if(index<=-1) return;
+map_data@m2=get_map_handle(players[index].map);
+if(@m2==null)
+{
+send(e.peer_id,"This map is damaged, does not exist, or an error occured.",0);
+return;
+}
+server_menu m;
+m.intro="Builder menu";
+m.initial_packet="build";
+m.add("surface","surface");
+m.add("source","source");
+m.add("url source", "url");
+m.add("music","music");
+m.add("travelpoint","travelpoint");
+m.add("door","door");
+m.add("zone","zone");
+m.add("sign","sign");
+m.add("beacon","beacon");
+m.add("hazard", "hazard");
+m.add("spawnpoint","spawnpoint");
+m.add("safezone","safezone");
+m.add("PVP is "+(m2.fights?"allowed":"disallowed")+" on this map. Press Enter to change.","fights");
+m.add("Map viewpoint, controls how weather is heard on the map. Current viewpoint is "+m2.viewpoint+". Press Enter to change.","view");
+m.add("Undead auto-spawning is "+(m2.can_have_items?"enabled":"disabled")+" on this map. Press Enter to change.","itemspawn");
+m.add("Inventory type is currently "+m2.invtype+". Press Enter to change.","invtype");
+m.add("Map Max X is "+m2.maxx+". Press Enter to change.","editmaxx");
+m.add("Map Max Y is "+m2.maxy+". Press Enter to change.","editmaxy");
+m.add("Add a line","addline");
+m.add("Edit an existing line","editline");
+m.add("Remove a line","remline");
+m.add("Create a new map","newmap");
+m.add("Delete this map","delmap");
+m.send(id);
+}
+
+void trackmenu(int id)
+{
+int index=get_player_index(id);
+if(index>-1){
+server_menu m;
+m.intro="Player track menu";
+m.initial_packet="trackselect";
+if(players[index].trackingplayer)
+{
+m.add("Stop tracking","stoptracking");
+}
+for(uint i=0; i<players.length(); i++)
+{
+if(players[i].map==players[index].map and players[i].name!=players[index].name)
+{
+m.add(players[i].name,players[i].name);
+}
+}
+m.send(id);
+}
+}
+
+
+void mapsmenu(int id)
+{
+server_menu m;
+m.intro="Maps list";
+m.initial_packet="mapselect";
+string[]mapfiles=find_files("maps/*.map");
+for(uint i=0; i<mapfiles.length(); i++)
+{
+string replacer=string_replace(mapfiles[i],".map","",true);
+int load=get_map_index(replacer);
+m.add(replacer+(load>-1?" (loaded)":""),replacer);
+}
+m.send(id);
+}
+
+void throwmenu(int id)
+{
+server_menu m;
+m.intro="Select how you would like to throw this grenade.";
+m.initial_packet="grenadethrow";
+m.add("level","0");
+m.add("downward","-1");
+m.add("upward","1");
+m.send(id);
+}
+
+void mpadmenu(int id)
+{
+int nd=get_player_index(id);
+server_menu m;
+m.intro=(players[nd].mpad?"The pad reawakens as your finger touchs the screen.":"The tablet lights up, and the home screen appears.")+" Select an option.";
+m.initial_packet="mpadselect";
+double calcpercent=round((9000000*players[nd].mpadbat)/60,0);
+m.add("Digital clock: "+get_sayable_time(),get_sayable_time());
+m.add("mPad battery level: "+players[nd].mpadbat+" percent, "+ms_to_readable_time(calcpercent)+" remaining","mpadbattery");
+m.add("Item Transfer status: "+(players[nd].mtrans==1?"on":"off"),"itemtrans");
+if(players[nd].paid==1) m.add("Online Store","quickbuy");
+m.add("Walkie Talkie"+(players[nd].wtchannel!=0?" (on channel "+players[nd].wtchannel+")":""),"mradio");
+m.add("Gold Flip","__goldflip__");
+m.add("iRoll","__iroll__");
+m.add("Power off","off");
+m.send(id);
+}
+
+void viewallplayers(int id)
+{
+server_menu m;
+string[]dirs=find_directories("players/*");
+m.intro="Viewing "+dirs.length()+" players in the database.";
+m.initial_packet="playerget";
+for(uint i=0; i<dirs.length(); i++)
+{
+string[] charlist=find_directories("players/"+dirs[i]+"/*");
+m.add(dirs[i]+" with "+charlist.length()+" characters",dirs[i]);
+}
+m.send(id);
+}
+
+void wtmenu(int id)
+{
+server_menu m;
+m.initial_packet="wtchanselect";
+m.intro="A list of available transmission channels fills the screen. Select the desired channel.";
+m.add("Disable walkie talkie","disable");
+for(uint i=1; i<100; i++)
+{
+m.add(i,i);
+}
+m.send(id);
+}
+
+
+void smsboard(int id)
+{
+server_menu m;
+string[]posts=string_split(motd,"\r\n",false);
+if(posts.length()<2) {
+send(id, motd, 2);
+return;
+}
+m.intro="Viewing message board. Contains "+posts.length()+" items.";
+m.initial_packet="bruh";
+for(uint i=0; i<posts.length(); i++)
+{
+m.add("#"+(i+1)+": "+posts[i],posts[i]);
+}
+m.send(id);
+}
+void charmenu(int id)
+{
+int index=get_player_index(id);
+if(index<=-1){
+ send(id,"dlgblock Error. Something went wrong.",0);
+return;
+}
+server_menu m;
+m.intro="Character menu.";
+m.initial_packet="char_option";
+string[]mychars=find_directories("players/"+players[index].name+"/*");
+for(uint i=0; i<mychars.length(); i++)
+{
+m.add(mychars[i],mychars[i]);
+}
+int max=2;
+if(players[index].paid==1) max=10;
+if(mychars.length()<max) m.add("Create new character","createchar");
+//m.add("remove a character", "removechar");
+m.send(id);
+}
+void gendermenu(int id)
+{
+server_menu m;
+m.intro="Select gender.";
+m.initial_packet="genderset";
+m.add("Male","Male");
+m.add("Female","Female");
+m.send(id);
+}
+void itemsmenu(int id)
+{
+int nd=get_player_index(id);
+server_menu m;
+m.intro="Game Objects menu. Select an object to track.";
+m.initial_packet="itemtrack";
+m.add("Stop tracking","stoptrack");
+for(uint i=0; i<items.length(); i++)
+{
+int dist=get_3d_distance(items[i].x,items[i].y,items[i].z,players[nd].x,players[nd].y,players[nd].z);
+if(dist<35 and items[i].map==players[nd].map)
+{
+string ab;
+if(items[i].z>players[nd].z) ab="above";
+if(items[i].z<players[nd].z) ab="below";
+m.add(items[i].amount+" "+items[i].type+" is "+(ab!=""?ab+", ":"")+calculate_x_y_string(calculate_x_y_angle(players[nd].x,players[nd].y,items[i].x,items[i].y,players[nd].dir))+", "+dist+" tiles away.",items[i].x+":"+items[i].y+":"+items[i].z);
+}
+}
+m.send(id);
+}
+void linemenu(int id,string action="")
+{
+if(action=="") return;
+server_menu m;
+if(action=="remove") m.initial_packet="remove_line";
+if(action=="edit") m.initial_packet="edit_line";
+m.intro="Select line.";
+int index=get_player_index(id);
+if(index<=-1) return;
+map_data@mp=get_map_handle(players[index].map);
+if(@mp==null) return;
+string[]lines=string_split(mp.rawdata,"\r\n",true);
+for(uint i=0; i<lines.length(); i++)
+{
+m.add(lines[i],i);
+}
+m.send(id);
+}

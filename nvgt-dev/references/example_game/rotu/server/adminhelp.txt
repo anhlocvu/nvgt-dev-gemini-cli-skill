@@ -1,0 +1,39 @@
+These are admin commands. Misuse of these commands will result in you being demoted.
+If you would like to talk to fellow admins or the developer about private matters, admins are expected to use the Admin chat channel, found by hitting F5.
+The following commands can be used by both moderators and admins.
+/notify message: Sends a notification to the entire server.
+/flag: Toggles your rank flag on and off. When your flag is on the word '(rank_goes_here)' will be displayed in front of your name. You only need to use this when its necessary.
+/setmotd message: Sets the Message of the Day. NOTE: You shouldn't really need to use this unless you need to announce something really important.
+/addmotd message: Add to the existing message of the day.
+/garbage: Collects garbage to free lag. Please note, that even though this command is meant to free lag, it may cause more lag if used frequently.
+/spamkill: Activates the spam kill system to kill spam players.
+/serverclear: Clears all items, undead, and bullets off the server.
+/clearvotes: Clears all votes.
+/voting: This command works in two different ways. If you add text to it, for example, /voting Do you like cheeseburgers? Voting will be enabled to ask this question. If you type /voting with no text at all while voting is enabled, voting will be disabled.
+/cm playername mapname x y z: Moves a player to a different map, as well as a different set of cordinates. For example, /changemap tunmi safe_zone 0 0 0. Please keep in mind that map names are case sensitive.
+/move playername x y z: Moves a player to a different set of cordinates.
+/give playername itemname amount: Gives the player the specified item. NOTE: Do not use this for cheating purposes.
+/changeinv playername inventory_type: Changes the player's invnetory to the specified type. Available types are main (the player's default inventory), and battle (an inventory for events and such).
+/royale: Enables the battle royale. If the royale is already enabled, stops the royale.
+/royalestart: Starts the royale.
+/roaylestop: If the royale has already begun, use this command instead to force stop.
+/royalekick playername: Kicks a player from the royale.
+/jail playername reason: Jails a specified player with a specified reason. For example, /jail tunmi You were spamming the chat after we told you several times to not do so.
+/unjail playername: Unjails a player.
+/kick playername: kicks the specified player.
+/setxp playername: Sets the experience of the specified player. Do not use this for cheating purposes or your rank will be removed.
+/delete playername: Deletes a player.
+/rawmap: Retrieves the data of a map.
+/rawdata: Pastes the data of the map.
+/newmap mapname max_x max_y platform: Creates a map with the specified platform, for example, /newmap forest 500 500 grass.
+/delmap mapname: Deletes a map.
+/mapslist: Brings up a menu containing all maps. Pressing Enter on a map in the list will spawn you on that map.
+/gettells: Retrieves the admintell logs.
+/tempban playername minutes: Bans a player temporarily for the specified amount of minutes.
+/untempban playername: Revokes a temporary ban of a player.
+The following commands can only be used by actual admins, not moderators.
+/getchats playername: Retrieves chat logs of a player, regardless of whether they are online or offline. Abuse of this command will have your rank removed. It should only be used for investigational purposes.
+/ban playername: Bans a player from the server.
+/ban2 playername: Bans a player from the server when they are offline.
+/unban playername: Unbans a player from the server.
+/bans: View the ban list.

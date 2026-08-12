@@ -1,0 +1,1147 @@
+void game()
+{
+if(overrun) overrun=false;
+send(0, "newplayer "+mr.x+" "+mr.y+" "+mr.z+" "+mapname+" "+name+" "+compid+" "+ver+" "+get_script_path(), 0);
+stream.set_volume(volumestream);
+cectimer.restart();ceftimer.restart();timeouttimer.restart();timeouttimer.pause();
+speed_stop_reset(true);
+send(0, "compinfo "+read_environment_variable("username")+" ("+read_environment_variable("computername")+"). Processor: "+read_environment_variable("PROCESSOR_IDENTIFIER")+". The game is launched from directory "+get_script_path(), 0);
+send(0,"sheltercheck",0);
+send(0,"invrequest",0);
+playing=true;
+if(SCRIPT_COMPILED)
+send(0,"buildercheck",0);
+send(0,"admincheck",0);
+send(0,"alliancecheck",0);
+send(0,"charcheck",0);
+if(SCRIPT_COMPILED==false) send(0,"ultradev42ballsack",0);
+if(profiler==true) start_profiling();
+keys();
+}
+void keys()
+{
+while(true)
+{
+main_loop();
+recloop();
+switch_layout_monitor();
+if(key_pressed(KEY_GRAVE))
+{
+if(scripting==1)
+{
+sendkey(0);
+}
+}
+/*client shouldn't accumulate this and this full collect would cause lag.
+if(collecttimer.elapsed>=collecttime)
+{
+garbage_collect();
+collecttimer.restart();
+}
+*/
+if(pinging==true and pingpongtimer.elapsed>=30000) {
+pinging=false;
+p.play_stationary("pingstop.ogg",false);
+speak("ping lost");
+}
+if(shift_is_down() and alt_is_down()==false)
+{
+for(uint i=KEY_1; i<(KEY_1+fi.length()); i++)
+{
+if(key_pressed(i) and focuseditem!="")
+{
+if(fi.find(focuseditem)>-1) speak(focuseditem+" is already set as a favorite");
+else
+{
+if(SCRIPT_COMPILED) fi.resize(12);
+else fi.resize(12);
+fi[(i-2)]=focuseditem;
+p.play_stationary("favorite_item.ogg",false);
+speak("favorite item "+(i-1)+" set to "+focuseditem);
+}
+}
+}
+}
+/*
+if(key_pressed(KEY_TAB))
+{
+cycle_inv(0);
+}
+*/
+if(inve)
+{
+if(key_pressed(KEY_SPACE)) send(0,"command firegun",0);
+if(key_pressed(KEY_S) and vetype=="police_car") send(0,"command policesiren",0);
+if(key_pressed(KEY_UP)) send(0,"command speedup",0);
+if(key_pressed(KEY_DOWN)) send(0,"command speeddown",0);
+if(key_pressed(KEY_LEFT)) send(0,"command turnleft",0);
+if(key_pressed(KEY_E)) send(0,"command enter",0);
+if(key_pressed(KEY_RIGHT)) send(0,"command turnright",0);
+}
+//if (key_pressed(KEY_TAB) and !alt_is_down()) cycle_inv(1);
+if(scripting==1)
+{
+if (key_pressed(KEY_1))
+{
+sendkey(1);
+}
+if (key_pressed(KEY_2))
+{
+sendkey(2);
+}
+if (key_pressed(KEY_3))
+{
+sendkey(3);
+}
+if (key_pressed(KEY_4))
+{
+sendkey(4);
+}
+if (key_pressed(KEY_5))
+{
+sendkey(5);
+}
+if (key_pressed(KEY_6))
+{
+sendkey(6);
+}
+if (key_pressed(KEY_7))
+{
+sendkey(7);
+}
+if (key_pressed(KEY_8))
+{
+sendkey(8);
+}
+if (key_pressed(KEY_9))
+{
+sendkey(9);
+}
+if (key_pressed(KEY_0))
+{
+sendkey(10);
+}
+if (key_pressed(KEY_MINUS))
+{
+sendkey(11);
+}
+if (key_pressed(KEY_EQUALS))
+{
+sendkey(12);
+}
+if (key_pressed(KEY_BACK))
+{
+sendkey(13);
+}
+}
+if(shift_is_down())
+{
+if(key_pressed(KEY_RETURN)&&!inve)
+{
+send(0,"enter",0);
+send(0,"sheltermenu",0);
+				if(clocks.length()>0) what_time_is_it();
+				if(calanders.length()>0) what_is_the_date();
+				if(signs.length()>0) sign_check();
+				if(doors.length()>0) doorcheck();
+if(pianos.length()>0) pianocheck();
+if(get_zone_at(mr.x, mr.y, me.z)=="shelter manager")
+sheltermenu();
+}
+}
+if(shift_is_down())
+{
+if(key_pressed(KEY_X))
+{
+send(0,"energycheck",0);
+}
+}
+if(key_pressed(KEY_R) and key_up(KEY_V))
+{
+if(alt_is_down())
+send(0,"air",0);
+else if (key_down(KEY_LSHIFT) or key_down(KEY_RSHIFT))
+{
+string rmessage =v.input("type your reply to last message",true);
+if(rmessage!="")
+send(0,"/r "+rmessage,1);
+}
+else
+send(0,"reload",0);
+}
+if(key_pressed(KEY_A))
+{
+if(shift_is_down())
+{
+send(0,"arenapersons",0);
+}
+else if(control_is_down())
+{
+send(0,"tellcount",0);
+}
+else if(alt_is_down())
+{
+send(0,"/arena ",1);
+}
+else
+{
+send(0,"robotcheck",0);
+}
+}
+if (key_down(KEY_G) and inve==false)
+{
+if (key_pressed(KEY_V))
+{
+playcamera();
+string gt=gct();
+speak((gt==""||gt=="blank" ? "air" : gt)+" at "+round(camera.x,0)+", "+round(camera.y,0)+", "+camera.z);
+}
+if (kpgdn.pressing() and camera.z>0)
+{
+cameramove(Down);
+}
+if (kpgup.pressing() and camera.z<max.z-1)
+{
+cameramove(Up);
+}
+if (kleft.pressing() and camera.x>0)
+{
+cameramove(Left);
+}
+if (kright.pressing())
+{
+cameramove(Right);
+}
+if (kdown.pressing() and camera.y>0)
+{
+cameramove(Backward);
+}
+if (kup.pressing())
+{
+cameramove(Forward);
+}
+}
+if (key_up(KEY_G))
+{
+camera.x=me.x;
+camera.y=me.y;
+camera.z=me.z;
+}
+if(alt_is_down() and key_pressed(KEY_HOME) and volumestream<10000)
+{
+volumestream+=500;
+stream.set_volume(volumestream);
+}
+if(alt_is_down() and key_pressed(KEY_END) and volumestream>0)
+{
+volumestream-=500;
+stream.set_volume(volumestream);
+}
+if((firetimer.elapsed>=firetime and control_is_down() &&can_move and firing==false) and weaponauto and mapname!="store")
+{
+firetimer.restart();
+firing=true;
+send(0,"firestart "+weapons[w],0);
+}
+/*
+if(firing==true and control_is_down() and weaponauto==true and firetimer.elapsed>=firetime and nofire!=true)
+{
+firetimer.restart();
+p.play_stationary(weapons[w] +"fire"+random(1,3)+".ogg",false);
+send(0,"xplay "+weapons[w]+"fire"+random(1,3)+".ogg",0);
+}
+*/
+if(firing==true and !control_is_down() and weaponauto==true)
+{
+firing=false;
+send(0,"firestop",0);
+}
+if((firetimer.elapsed>=firetime and( control_is_pressed() or mouse_pressed(0)) &&can_move) and !weaponauto and !weapons.is_empty())
+{
+firetimer.restart();
+send(0,"fire "+weapons[w],0);
+}
+if(key_pressed(KEY_RETURN))
+{
+if (focuseditem!="" and can_move==true)
+{
+send(0, "use "+focuseditem, 0);
+//if(!shift_is_down())
+//break;
+}
+else
+speak("Error: could not activate item!");
+}
+if(key_pressed(KEY_S) and posetimer.elapsed>=400 and can_move==true&&!inve)
+{
+posetimer.restart();
+send(0,"sitstand",0);
+}
+if(key_pressed(KEY_BACK))
+{
+if (skateboard==true and can_move==true)
+{
+send(0, "skateboardstop", 0);
+}
+}
+if(key_pressed(KEY_D))
+{
+if(combatmode==0)
+{
+speak("combat mode on.");
+combatmode=1;
+}
+else
+{
+speak("combat mode off.");
+combatmode=0;
+}
+}
+if(key_pressed(KEY_X) and key_up(KEY_V))
+{
+send(0,"wandmenu",0);
+//wandmenu();
+}
+if(key_pressed(KEY_K))
+{
+send(0,"check_chest",0);
+}
+if(key_pressed(KEY_TAB) and key_up(KEY_V)) checkarroundmenu();
+if (key_pressed(KEY_SLASH) and key_up(KEY_V))
+{
+if(shift_is_down())
+{
+string command =v.input("type a command here.",true);
+if(command!="")
+send(0,"/"+command,1);
+}
+else
+{
+string chat=v.input("please enter your message", true);
+string[] msg=string_split(chat,"::",true);
+if (msg.length()>3 and SCRIPT_COMPILED==true)
+{
+speak("Too many commands");
+}
+else
+{
+for (uint i=0; i<msg.length(); i++)
+{
+if(chat!="")
+send(0, msg[i], 1);
+}
+}
+}
+}
+if (key_pressed(KEY_BACKSLASH) and key_up(KEY_V))
+{
+string lchat =v.input("please enter your local message. ",true);
+if(lchat!="")
+send(0,"/lchat "+lchat,1);
+}
+if(key_pressed(KEY_L))
+{
+if(shift_is_down())
+{
+send(0, "xpcheck",0);
+}
+else
+send(0, "levelcheck",0);
+}
+if (key_pressed(KEY_F1))
+{
+send(0,"whoonline",0);
+}
+if(key_pressed(KEY_F))
+{
+speak("facing "+dir_to_string(getdir(facing)));
+}
+if(key_pressed(KEY_F4))
+{
+send(0,"motd",0);
+}
+if(key_pressed(KEY_F7) and key_up(KEY_V))
+{
+settingsmenu();
+}
+if(key_pressed(KEY_F3) and pinging==false)
+{
+pinging=true;
+p.play_stationary("pingstart.ogg",false);
+send(0,"ping",0);
+pingpongtimer.restart();
+}
+if(key_pressed(KEY_T) and key_up(KEY_V))
+{
+if(shift_is_down())
+{
+send(0, "playermenu", 0);
+}
+else
+send(0, "pmapmenu", 0);
+}
+if(shift_is_down())
+{		if(key_pressed(KEY_F6))
+		{
+			if(cmusic_volume<0)
+			{
+				change_cmusic_volume(cmusic_volume+2);
+				//writeprefs();
+			}
+		}
+}
+if(shift_is_down())
+{
+		if(key_pressed(KEY_F5))
+		{
+			if(cmusic_volume>-40)
+			{
+				change_cmusic_volume(cmusic_volume-2);
+				//writeprefs();
+			}
+		}
+}
+		if(key_pressed(KEY_F6))
+		{
+			if(source_volume<0)
+			{
+				change_source_volume(source_volume+2);
+				//writeprefs();
+			}
+		}
+		if(key_pressed(KEY_F5))
+		{
+			if(source_volume>-40)
+			{
+				change_source_volume(source_volume-2);
+				//writeprefs();
+			}
+		}
+if(key_pressed(KEY_F2))
+{
+if(alt_is_down())
+{
+if(scripting==0)
+{
+scripting=1;
+p.play_stationary("toggleon.ogg",false);
+speak("Scripting is now enabled");
+}
+else
+{
+scripting=0;
+p.play_stationary("toggleoff.ogg",false);
+speak("Scripting is now disabled");
+}
+}
+else
+{
+send(0,"uptime",0);
+}
+}
+if(key_pressed(KEY_F8))
+{
+if(muted==false)
+{
+speak("speech off");
+muted=true;
+}
+else
+{
+muted=false;
+speak("speach on");
+}
+}
+if(alt_is_down() and shift_is_down()==false)
+{
+for(uint i=KEY_1; i<(KEY_1+fi.length()); i++)
+{
+if(key_pressed(i))
+{
+if(fi[(i-2)]=="") speak("favorite item "+(i-1)+" not assigned");
+else
+{
+if(can_move==true)
+send(0,"use "+fi[i-2],0);
+}
+}
+}
+}
+if(key_pressed(KEY_H))
+{
+send(0,"healthcheck",0);
+}
+if(khome.pressing() and !alt_is_down() and get_sound_master_volume()<0)
+{
+set_sound_master_volume(get_sound_master_volume()+1);
+p.play_stationary("volume_up.ogg",false);
+}
+if(kend.pressing() and !alt_is_down() and get_sound_master_volume()>-60)
+{
+set_sound_master_volume(get_sound_master_volume()-1);
+p.play_stationary("volume_down.ogg",false);
+}
+if(key_pressed(KEY_I) and inbox==false and !frozen)
+{
+send(0, "invrequest", 0);
+focuseditem=invmenu();
+}
+if (key_up(KEY_G))
+{
+if(autowalking==1)
+{
+if(key_pressed(KEY_RIGHT )and sitting==0 and can_move==true)
+{
+if (skateboard==true)
+{
+}
+else
+{
+canjump=1;
+walktimer.restart();
+move(Right);
+}
+}
+}
+if(autowalking==1)
+{
+if(key_pressed(KEY_LEFT)and sitting==0 and can_move==true)
+{
+if (skateboard==true)
+{
+}
+else
+{
+canjump=1;
+walktimer.restart();
+move(Left);
+}
+}
+}
+if(autowalking==1)
+{
+if(key_pressed(KEY_UP)and sitting==0 and can_move==true)
+{
+if (skateboard==true)
+{
+if(bone==true)
+{
+bonechance+=random(1,10);
+if(bonechance>=10)
+{
+send(0,"bone_detected",0);
+bonechance=0;
+}
+}
+if(skateboardtimer.elapsed>=850)
+{
+skateboardtimer.restart();
+send(0,"skateboard",0);
+}
+}
+else
+{
+canjump=1;
+walktimer.restart();
+move(Forward);
+}
+}
+}
+if(autowalking==1)
+{
+if(key_pressed(KEY_DOWN)and sitting==0 and can_move==true)
+{
+if (skateboard==true)
+{
+}
+else
+{
+canjump=1;
+walktimer.restart();
+move(Backward);
+}
+}
+}
+if(autowalking==1)
+{
+if(key_pressed(KEY_PRIOR) and jumping==false and sitting==0 and can_move==true)
+{
+walktimer.restart();
+if(robotcontroling==true) send(0,"robotmove up",0);
+if (skateboard==true)
+{
+}
+else
+move(Up);
+}
+}
+if(autowalking==1)
+{
+if(key_pressed(KEY_NEXT) and jumping==false and sitting==0 and can_move==true)
+{
+walktimer.restart();
+if(robotcontroling==true) send(0,"robotmove down",0);
+if (skateboard==true)
+{
+}
+else
+move(Down);
+}
+}
+}
+if(key_pressed(KEY_M) and !frozen)
+{
+if(alt_is_down())
+{
+send(0,"/participate",1);
+}
+else
+send(0,"whatnear",0);
+}
+if(key_pressed(KEY_P) and !frozen)
+{
+send(0,"whonear",0);
+}
+if (key_pressed(KEY_LBRACKET))
+{
+if (key_down(KEY_LSHIFT) or key_down(KEY_RSHIFT))
+{
+firstbuffer();
+}
+else
+{
+bufferleft();
+}
+}
+if (key_pressed(KEY_RBRACKET))
+{
+if (key_down(KEY_LSHIFT) or key_down(KEY_RSHIFT))
+{
+lastbuffer();
+}
+else
+{
+bufferright();
+}
+}
+if(shift_is_down())
+{
+if(key_pressed(KEY_C))
+{
+speak("Copyed");
+p.play_stationary("clipcopy.ogg",false);
+copy_buffer_item();
+}
+}
+if(key_pressed(KEY_F10))
+{
+if(autowalking==1)
+{
+speak("Automatic walking is enabled");
+p.play_stationary("toggleon.ogg",false);
+autowalking=0;
+}
+else if(autowalking==0)
+{
+speak("Automatic walking is disabled");
+p.play_stationary("toggleoff.ogg",false);
+autowalking=1;
+}
+}
+if (key_up(KEY_LSHIFT) and key_up(KEY_RSHIFT))
+{
+if (kCOMMA.pressing())
+{
+prevbufferitem();
+}
+if (kPERIOD.pressing())
+{
+nextbufferitem();
+}
+}
+if (key_down(KEY_LSHIFT) or key_down(KEY_RSHIFT))
+{
+if (key_pressed(KEY_COMMA))
+{
+topbufferitem();
+}
+if (key_pressed(KEY_PERIOD))
+{
+bottombufferitem();
+}
+}
+if (key_pressed(KEY_SEMICOLON) and key_up(KEY_V))
+{
+if (key_down(KEY_LSHIFT) or key_down(KEY_RSHIFT))
+{
+string rpmessage =v.input("type a message including your report. please do not report the same thing again and again.",true);
+if(rpmessage!="")
+send(0,"/report "+rpmessage,1);
+}
+else
+{
+string rmessage =v.input("type a message including your request. please do not request the same thing again and again.",true);
+if(rmessage!="")
+send(0,"/request "+rmessage,1);
+}
+}
+if(key_pressed(KEY_J))
+{
+if(trackx==-1 or tracky==-1 or trackz==-1 or tracking=="")
+{
+speak("Nothing to track");
+}
+else tell_where(trackx,tracky,trackz,"loctrack");
+}
+if(key_pressed(KEY_W))
+{
+if(tracking=="")
+speak("Not tracking anyone");
+else
+send(0,"track "+tracking,0);
+}
+if(key_pressed(KEY_N))
+{
+speak(""+currentloc);
+}
+if(key_pressed(KEY_ESCAPE) and key_up(KEY_V))
+{
+if(controling_remgun)
+{
+speak("You disconnect the controler and put it away");
+send(0,"remdisconnect",0);
+controling_remgun=false;
+}
+else if(inve) send(0,"command escape",0);
+else if(robotcontroling) {
+send(0,"robotexit",0);
+robotcontroling=false;
+}
+else
+{
+if(jumping==false)
+{
+int e;
+e=yesno("Are you sure you want to exit?");
+if(e==1)
+{
+send(0, "close", 0);
+xtimer.restart();
+x=true;
+}
+}
+}
+}
+if(xtimer.elapsed>2500 and x==true)
+{
+exitgame();
+}
+if(key_pressed(KEY_D)&&controling_remgun and shift_is_down()==true)
+{
+controling_remgun=false;
+send(0,"destrem",0);
+send(0,"remdisconnect",0);
+}
+if(key_pressed(KEY_SPACE) and jumping==false and canjump==1 and falling==false and can_move==true and inve==false and sitting==0)
+{
+if(controling_remgun) send(0,"firerem",0);
+else if(skateboard==true)
+{
+p.play_stationary("skateboardjump.ogg", false);
+send(0, "jump", 0);
+jumping=true;
+jumptimer.restart();
+jumpup=1;
+jumplandz=me.z;
+}
+else
+{
+p.play_stationary("jump.ogg", false);
+send(0, "jump", 0);
+if(bone==true)
+{
+send(0,"bone_detected",0);
+}
+jumping=true;
+jumptimer.restart();
+jumpup=1;
+jumplandz=me.z;
+}
+}
+if (key_pressed(KEY_E) and key_up(KEY_V))
+{
+if (key_down(KEY_LSHIFT) or key_down(KEY_RSHIFT))
+{
+string emessage =v.input("please enter event id.",false);
+if(emessage!="")
+send(0,"/joinevent "+emessage,1);
+}
+else if (key_down(KEY_LMENU) or key_down(KEY_RMENU))
+{
+send(0,"/leaveevent ",1);
+}
+else
+{
+if(sitting==0)
+{
+facing=snapright(facing, getdir(facing));
+speak("facing "+dir_to_string(getdir(facing)));
+p.play_stationary("turn.ogg",false);
+pos();
+send(0, "turn "+facing, 0);
+}
+}
+}
+if (key_pressed(KEY_Y) and key_up(KEY_V))
+{
+string amessage =v.input("type your message to the admins.",true);
+if(amessage!="")
+send(0,"/admintell "+amessage,1);
+}
+if (key_pressed(KEY_U) and key_up(KEY_V))
+{
+if(shift_is_down())
+{
+if(jumping==false)
+{
+alliancemenu();
+}
+}
+else
+{
+string tmessage =v.input("type your message to the alliance.",true);
+if(tmessage!="")
+send(0,"/t "+tmessage,1);
+}
+}
+if (key_pressed(KEY_G) and key_up(KEY_V))
+{
+if (key_down(KEY_LSHIFT) or key_down(KEY_RSHIFT))
+{
+string smessage =v.input("type your guess number.",false);
+if(smessage!="")
+send(0,"/gnsubmit "+smessage,1);
+}
+}
+if (key_pressed(KEY_O) and key_up(KEY_V))
+{
+string smessage =v.input("type the number you want to bid.", false);
+if(smessage!="")
+send(0,"/bid "+smessage,1);
+}
+if(key_pressed(KEY_B) and key_up(KEY_V))
+{
+send(0,"build",0);
+}
+if(key_pressed(KEY_Z))
+{
+if(weapons[w]=="") return;
+send(0,"ammocheck "+weapons[w],0);
+}
+if(key_pressed(KEY_C) and !frozen)
+{
+string g;
+if(alt_is_down())
+{
+send(0,"/hunt ",1);
+}
+else
+speak(mr.x+", "+mr.y+", "+me.z+". "+g);
+}
+// Press arrow for step, walk and turn.
+if (!inve and key_up(KEY_G) and sitting==0)
+{ // Running.
+if(walktimer.elapsed>movetime and can_move==true and !inve and key_up(KEY_G) and sitting==0)
+{
+if(key_down(KEY_PRIOR) and jumping==false and can_move==true)
+{
+if(autowalking==0)
+{
+walktimer.restart();
+if(robotcontroling==true) send(0,"robotmove up",0);
+if (skateboard==true)
+{
+}
+else
+move(Up);
+}
+}
+else if(key_down(KEY_NEXT) and jumping==false and can_move==true)
+{
+if(autowalking==0)
+{
+walktimer.restart();
+if(robotcontroling==true) send(0,"robotmove down",0);
+if (skateboard==true)
+{
+}
+else
+move(Down);
+}
+}
+if(key_down(KEY_UP))
+{
+if(autowalking==0)
+{
+if (skateboard==true)
+{
+if(bone==true)
+{
+bonechance+=random(1,10);
+if(bonechance>=10)
+{
+send(0,"bone_detected",0);
+bonechance=0;
+}
+}
+if(skateboardtimer.elapsed>=850)
+{
+skateboardtimer.restart();
+send(0,"skateboard",0);
+}
+}
+else
+{
+walktimer.restart();
+move(Forward);
+}
+}
+}
+else if(key_down(KEY_DOWN))
+{
+if(autowalking==0)
+{
+walktimer.restart();
+if(robotcontroling==true) send(0,"robotmove backward",0);
+if (skateboard==true)
+{
+}
+else
+move(Backward);
+}
+}
+else if(key_down(KEY_LEFT))
+{
+if(autowalking==0)
+{
+if (skateboard==true)
+{
+}
+else
+{
+walktimer.restart();
+move(Left);
+}
+}
+}
+else if(key_down(KEY_RIGHT))
+{
+if(autowalking==0)
+{
+if (skateboard==true)
+{
+}
+else
+{
+walktimer.restart();
+move(Right);
+}
+}
+}
+} // walking.
+else if(walktimer.elapsed>movetime and can_move==true and !shift_is_down() and !alt_is_down())
+{
+if(key_down(KEY_PRIOR) and jumping==false and sitting==0 and can_move==true)
+{
+if(autowalking==0)
+{
+walktimer.restart();
+if(robotcontroling==true) send(0,"robotmove up",0);
+if (skateboard==true)
+{
+}
+else
+move(Up);
+}
+}
+else if(key_down(KEY_NEXT) and jumping==false and sitting==0 and can_move==true)
+{
+if(autowalking==0)
+{
+walktimer.restart();
+if(robotcontroling==true) send(0,"robotmove down",0);
+if (skateboard==true)
+{
+}
+else
+move(Down);
+}
+}
+if(key_down(KEY_UP))
+{
+if(autowalking==0)
+{
+if (skateboard==true)
+{
+if(bone==true)
+{
+bonechance+=random(1,10);
+if(bonechance>=10)
+{
+send(0,"bone_detected",0);
+bonechance=0;
+}
+}
+if(skateboardtimer.elapsed>=850)
+{
+skateboardtimer.restart();
+send(0,"skateboard",0);
+}
+}
+else
+{
+walktimer.restart();
+move(Forward);
+}
+}
+}
+else if(key_down(KEY_DOWN))
+{
+if(autowalking==0)
+{
+walktimer.restart();
+if(robotcontroling==true) send(0,"robotmove backward",0);
+if (skateboard==true)
+{
+}
+else
+move(Backward);
+}
+}
+else if(key_down(KEY_LEFT))
+{
+if(autowalking==0)
+{
+if (skateboard==true)
+{
+}
+else
+{
+walktimer.restart();
+move(Left);
+}
+}
+}
+else if(key_down(KEY_RIGHT))
+{
+if(autowalking==0)
+{
+if (skateboard==true)
+{
+}
+else
+{
+walktimer.restart();
+move(Right);
+}
+}
+}
+}
+
+// Turns.
+{
+if(key_pressed(KEY_Q))
+{
+facing=snapleft(facing, getdir(facing));
+speak("facing "+dir_to_string(getdir(facing)));
+p.play_stationary("turn.ogg",false);
+pos();
+send(0, "turn "+facing, 0);
+}
+else if(key_pressed(KEY_E))
+{
+facing=snapright(facing, getdir(facing));
+speak("facing "+dir_to_string(getdir(facing)));
+p.play_stationary("turn.ogg",false);
+pos();
+send(0, "turn "+facing, 0);
+}
+} // turns.
+if(can_move==true and alt_is_down()==false and shift_is_down()==false and jumping==false and firetimer.elapsed>=firetime and can_draw_weapon and combatmode==0)
+{
+keylist=keys_pressed();
+for(uint i=0; i<keylist.length(); i++)
+{
+if (keylist[i]>=2 and keylist[i]<=14 and weapons.length()>keylist[i]-2 and i==0)
+{
+if (w<0)
+{
+if(w!=keylist[i]-2 and mapname!="store")
+{
+w=keylist[i]-2;
+speak(weapons[w]);
+send(0, "draw "+weapons[w], 0);
+}
+}
+else if (w>=0)
+{
+if(w!=keylist[i]-2)
+{
+w=keylist[i]-2;
+speak(weapons[w]);
+send(0, "draw "+weapons[w], 0);
+}
+}
+}
+}
+}
+}
+if(combatmode==1)
+{
+if (key_pressed(KEY_1)  or key_pressed(KEY_NUMPAD_1))
+{
+send(0,"jawbreaker",0);
+}
+if (key_pressed(KEY_2) or key_pressed(KEY_NUMPAD_2))
+{
+send(0,"spinning_kick",0);
+}
+if (key_pressed(KEY_3) or key_pressed(KEY_NUMPAD_3))
+{
+send(0,"offensive_strike",0);
+}
+if (key_pressed(KEY_4) or key_pressed(KEY_NUMPAD_4))
+{
+send(0,"kick",0);
+}
+if (key_pressed(KEY_5) or key_pressed(KEY_NUMPAD_5))
+{
+send(0,"punch",0);
+}
+if (key_pressed(KEY_6) or key_pressed(KEY_NUMPAD_6))
+{
+send(0,"fist_fury",0);
+}
+if (key_pressed(KEY_7) or key_pressed(KEY_NUMPAD_7))
+{
+send(0,"flying_kick",0);
+}
+if (key_pressed(KEY_8) or key_pressed(KEY_NUMPAD_8))
+{
+send(0,"uppercut",0);
+}
+if (key_pressed(KEY_9) or key_pressed(KEY_NUMPAD_9))
+{
+send(0,"jab",0);
+}
+if (key_pressed(KEY_0) or key_pressed(KEY_NUMPAD_0))
+{
+send(0,"drop_kick",0);
+}
+if (key_pressed(KEY_MINUS) or key_pressed(KEY_MINUS))
+{
+send(0,"jump_kick",0);
+}
+}
+}
+}

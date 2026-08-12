@@ -1,0 +1,33 @@
+mapname:Tower-of-Hell
+maxx:100
+maxy:100
+maxz:6000
+src:0:100:0:100:0:4985:chasm.ogg:-100
+src:0:100:0:100:0:4985:windindoors.ogg:-100
+src:0:100:0:100:0:4975:fire.ogg
+tile:0:20:10:20:5000:5000:ladder3
+tile:30:40:10:20:5000:5000:glass3
+tile:45:60:20:40:5000:5000:metal4
+tile:0:30:30:50:5000:5000:glass2
+tile:0:30:60:80:5000:5000:metal5
+tile:0:30:85:100:5000:5000:metal1
+tile:45:60:50:70:5000:5000:deck
+zone:0:100:0:100:0:6000:tower of hell
+tile:45:60:80:100:5000:5000:metal4
+tile:70:100:20:40:5000:5000:warehouse
+tile:70:100:50:70:5000:5000:roof2
+tile:70:100:80:100:5000:5000:metal7
+tile:0:10:0:0:5000:5000:ladder3
+tile:20:30:0:0:5000:5000:ladder3
+tile:40:50:0:0:5000:5000:ladder3
+tile:60:70:0:0:5000:5000:ladder3
+tile:75:100:0:0:5000:5000:ladder3
+ispawn:0:100:0:100:5000:5000:1000:4:1,5:suicide_bomb:nuclear_bomb:censor_bomb:Storm_Sniper:Storm_Sniper_ammo_pack:Storm_Sniper_ammo_pack:suicide_bomb:nuclear_bomb:censor_bomb
+fightingstate:0
+tile:0:100:0:100:0:4900:fi
+tile:35:35:30:30:5000:5000:broken_glass
+noitems:0:100:0:100:0:6000:tasing_small_projectile:police_motorcycle:hors:boat:wirebomb:motion_bomb:nuclear_bomb:mine:stun_dart:remote_timebomb:security_bomb:remote_gun:timebomb:warp_box:barricade_bomb:health_dart:suicide_bomb:mass_bomb:grenade:concussive_grenade:rocket_launcher,bottle_bomb:missile_interceptor:impact_bomb:aircraft:bomb_defuser:wood:guided_missile:tank:police_car:ultrabomb:tank:bottle_bomb:carrier_missile:bullet_bomb:stone:stun_grenade:sticky_bomb:censorbomb:stone:fire_starter:censor_bomb:empty_apple_juice:nuclear_bomb:fight_inviter:nuclear_bomb:ford:mine:guided_missile:missile_interceptor:elecboat:small_projectile:helicopter
+randtravelpoint:100:100:100:100:5000:5000:safe_zone:0:100:0:100:0:0:Done.
+zone:100:100:100:100:5000:5010:Go to the safe zone, press t.:trackme
+tile:0:100:0:100:5000:5000:dirt8
+safezone:-100:100000:-100:100000:-10000:1000000

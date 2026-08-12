@@ -1,0 +1,9 @@
+mapname:mini_arena
+maxx:0
+maxy:60
+maxz:60
+tile:0:0:0:60:0:0:60
+zone:0:0:0:60:0:60:mini_arena
+
+tile:0:60:0:60:0:0:marble3
+tile:0:60:0:60:0:1:shortgrass2

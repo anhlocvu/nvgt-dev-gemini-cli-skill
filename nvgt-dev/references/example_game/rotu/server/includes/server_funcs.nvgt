@@ -1,0 +1,154 @@
+void login_continue(int index)
+{
+if(index>-1)
+{
+if(devlist.find(players[index].name)>-1)
+{
+player_event(players[index].name+" is a developer of Revenge of the Undead!","developer.ogg",index);
+//send(0,"play_s developer.ogg",0);
+players[index].dev=true;
+players[index].admin=true;
+}
+if(file_exists("players/"+players[index].name+"/admin.card") and players[index].dev==false)
+{
+player_event(players[index].name+" is an admin.",index);
+players[index].admin=true;
+}
+if(file_exists("players/"+players[index].name+"/moderator.card") and players[index].dev==false and players[index].admin==false)
+{
+player_event(players[index].name+" is a moderator.",index);
+players[index].mod=true;
+players[index].admin=true;
+}
+if(!players[index].admin and players[index].dev==false and file_exists("players/"+players[index].name+"/builder.card"))
+{
+player_event(players[index].name+" is a builder.",index);
+players[index].builder=true;
+}
+send(0,"spawnplayer "+players[index].x+" "+players[index].y+" "+players[index].z+" "+players[index].map+" "+players[index].name,0);
+if(players.length()>0)
+{
+for(uint i=0; i<players.length(); i++)
+{
+send(players[index].peer_id,"spawnplayer "+players[i].x+" "+players[i].y+" "+players[i].z+" "+players[i].map+" "+players[i].name,0);
+}
+}
+send(players[index].peer_id,"play_s welcome.ogg",6);
+send(players[index].peer_id,"Version "+altversion+". Type /changes for the server's changelog. Server Message: "+motd,2);
+if(raining) send(players[index].peer_id,"startrain "+startvol+" "+endvol,0);
+if(file_exists("players/"+players[index].name+"/offline_pm's.txt"))
+{
+string[]pms=string_split(get_file("players/"+players[index].name+"/offline_pm's.txt"),"\r\n",false);
+send(players[index].peer_id,"PM from server: Hello there "+players[index].name+". While you were away from the game, you received some private messages. I will now send them to you.",4);
+send(players[index].peer_id,"play_s pm.ogg",6);
+for(uint i=0; i<pms.length(); i++)
+{
+send(players[index].peer_id,pms[i],4);
+send(players[index].peer_id,"play_s pm.ogg",6);
+}
+file_delete("players/"+players[index].name+"/offline_pm's.txt");
+}
+if(get_jail_index(players[index].name)>-1)
+{
+send(players[index].peer_id,"You are in jail. You have "+ms_to_readable_time(jails[get_jail_index(players[index].name)].ms-jails[get_jail_index(players[index].name)].jailtimer.elapsed)+" until you get out.",2);
+players[index].prisoner=true;
+}
+if(doublegold) send(players[index].peer_id,"The double gold and experience event is active.",2);
+if(voting==1) send(players[index].peer_id,"Voting is currently enabled for the following: "+votemsg,2);
+if(anevent)
+{
+send(players[index].peer_id,"An event is currently active! Event Item: "+eventitem+". Description: "+eventdescription+". End date: "+eventdate+". When the event is over, you can type /submit to submit what you have collected.",2);
+send(players[index].peer_id,"play_s event.ogg",6);
+}
+/*send(players[index].peer_id,"mapdata "+get_mapdata(players[index].map),0);
+send(players[index].peer_id,"move "+players[index].x+" "+players[index].y+" "+players[index].z,0);
+@players[index].mymap=get_map_handle(players[index].map);*/
+charmenu(players[index].peer_id);
+}
+}
+void login(string username,string password,uint peer_id,string version,string banid,bool hide_me=false)
+{
+if(!is_valid_username(username))
+{
+send(peer_id,"dlgblock Error. Invalid username. Only alphanumeric characters and underscores are allowed (3-15 characters).",0);
+return;
+}
+if(!directory_exists("players/"+username))
+{
+send(peer_id,"dlgblock Error. This account does not exist.",0);
+return;
+}
+file f;
+f.open("players/"+username+"/pw.dat","rb");
+string passcheck=f.read();
+f.close();
+if(version<minver)
+{
+send(peer_id,"dlgblock Your client is incompatible. You require at least version "+minver+", and you are on "+version+". Please get the newest client at http://ims-productions.com/downloads/rotu.zip, or use the in-game updater.",0);
+return;
+}
+else if(is_banned(banid,n.get_peer_address(peer_id)))
+{
+send(peer_id,"dlgblock Error. You have been banned.",0);
+return;
+}
+else if(tempbancheck(username))
+{
+int tb=get_tempban_index(username);
+send(peer_id,"dlgblock Error. You have been temporarily banned. Please try again in "+ms_to_readable_time(tempbans[tb].ms-tempbans[tb].tempbantimer.elapsed),0);
+return;
+}
+else if(!verify_password(password, passcheck))
+{
+send(peer_id,"dlgblock Error. This password is incorrect.",0);
+return;
+}
+else if(get_player_index(peer_id)>-1 or get_player_index_from(username)>-1)
+{
+send(peer_id,"dlgblock Error. This player is already logged in.",0);
+return;
+}
+else
+{
+spawn_player(username,peer_id,banid);
+int index=get_player_index_from(username);
+if(index>-1)
+{
+bool has_email=false;
+string pdir="players/"+username;
+if(file_exists(pdir+"/email.dat"))
+{
+file ef;
+ef.open(pdir+"/email.dat","rb");
+string email_content=ef.read();
+ef.close();
+if(email_content!="")
+{
+has_email=true;
+}
+}
+if(!has_email)
+{
+send(peer_id,"require_email",0);
+return;
+}
+send(peer_id,"char_wait",0);
+log_entry("onoffs",username+" logged in.");
+player_event(username+" just came online.","online.ogg",index);
+cons+=1;
+login_continue(index);
+}
+}
+}
+
+
+string generate_advertisement()
+{
+ads=string_split(get_file("advertisements.txt"),"-----",true);
+return ads[random(0,ads.length()-1)];
+}
+
+bool verify_password(string password, string hash)
+{
+return string_hash(password, 2, false) == hash;
+}

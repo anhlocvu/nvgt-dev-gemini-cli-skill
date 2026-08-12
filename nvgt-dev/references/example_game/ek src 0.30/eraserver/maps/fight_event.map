@@ -1,0 +1,15 @@
+mapname:fight-event
+maxx:100
+maxy:100
+maxz:100
+tile:0:100:0:100:0:0:tile
+zone:0:100:0:100:0:100:fight-event
+zone:0:100:0:100:0:6:fight
+tile:0:100:0:100:0:0:grate
+src:0:100:0:100:0:100:sewer.ogg
+tile:0:100:0:100:20:20:carpet2
+tile:0:100:0:100:30:30:carpet2
+tile:0:100:0:100:40:40:carpet2
+tile:0:100:0:100:50:50:carpet2
+tile:0:100:0:100:60:60:carpet2
+zone:0:100:0:100:20:100:Wait your turn

@@ -1,0 +1,28 @@
+mapname:demon_realm_level1
+maxx:200
+maxy:200
+maxz:500
+tile:0:200:0:200:0:0:hardwood
+
+cmusic:0:200:0:200:8:500:chasm2.ogg:1:100
+cmusic:0:200:0:200:8:500:demon_realm1.ogg:-1:100
+zone:0:200:0:200:0:300:a place you thought only existed in imaginations, a legend used to intertain the crowd with horror stories. however standing here, shivers of terror go down your spine, as you realise that it as real as much as you are...the demon realm, consisting of 5 levels...the lower you go, the stronger the demons become. to the deapest, lowest depts, there slumbers the demon king...undefeatable and unconqurable.
+tile:200:200:200:200:-50:0:ladder3
+tile:199:199:200:200:-50:-1:wallwood9
+tile:200:200:199:199:-50:-1:wallwood9
+
+tile:195:195:185:200:-50:-50:hardwood
+tile:0:196:0:196:-50:-50:hardwood
+tile:0:198:0:198:-50:-50:concrete19
+tile:0:200:0:200:-50:-50:hardwood
+tile:199:199:200:200:-50:-50:wallwood9
+tile:200:200:199:199:-50:-50:wallwood9
+zone:200:200:200:200:-50:0:a ladder going down to the next level@trackme@
+zone:150:150:150:150:-50:-50:heal your health. this could get pretty ugly. when you're prepared press shift plus enter to go to the 2nd level@trackme@
+tile:199:199:199:199:-50:-1:wallwood9
+cmusic:0:200:0:200:-55:-50:chasm2.ogg
+travelpoint:150:150:150:150:-50:-50:demon_realm_level2:0:0:-50:with terror coursing through your veigns, you enter the second level
+noitems:0:3000:0:3000:-55550:5555:health_dart:sound_grenade:fire_starter:stone:elecboat:bazooka:guided_missile:suicide_bomb:nuclear_bomb:motion_bomb:timebomb:ultrabomb:stp429:pipe_bomb:mlk_203_combat_pistol:aircraft:tank:police_car:police_car_super:Truck:armored_tank:wood:mine:rocketlauncher:helicopter:cannon:stun_dart:stun_grenade:concussive_grenade:remotegun:remote_gun:remote_gun_controller:mass_bomb:ultimate_griffin:hand_cannon:ultimate_bomb:grenade:hand_grenade:sound_grenade:stun_grenade:spaceship:sorento:ford:dogan_slx:fight_inviter:mine:sat_bomb:explosion:censor_bomb
+noitems:0:3000:0:3000:-55550:15000:ultimate_bomb:poison_dart:mine:cosmic_bomb
+robots:0:200:0:200:0:0:4:1000:arachnotron,archvile,barron_of_hell,carcass
+tile:0:200:0:200:-50:-50:hardwood2

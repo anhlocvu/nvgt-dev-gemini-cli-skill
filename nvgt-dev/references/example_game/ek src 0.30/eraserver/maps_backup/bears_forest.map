@@ -1,0 +1,11 @@
+mapname:bears_forest
+maxx:400
+maxy:400
+maxz:400
+tile:0:400:0:400:0:0:grass3
+zone:0:400:0:400:0:400:bears forest
+randtravelpoint:0:0:0:0:0:0:ek_main:0:500:0:500:0:0:ek main
+zone:0:0:0:0:0:10:ek main:trackme
+noitems:0:400:0:400:0:400:elecboat:hors:boat
+robots:0:400:0:400:0:0:5:2000:bear
+src:0:400:0:400:0:400:background2.ogg

@@ -1,0 +1,14 @@
+void rebootmaster()
+{
+speak("The game is now restarting, please wait.");
+wait(1000);
+run("C:\\Program Files (x86)\\bgt\\bgt.exe","ek.bgt",false,false);
+exit();
+}
+void reboot()
+{
+speak("The game is now restarting, please wait.");
+wait(1000);
+run("ek.exe","",false,false);
+exit();
+}

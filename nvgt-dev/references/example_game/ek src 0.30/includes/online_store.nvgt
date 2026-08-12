@@ -1,0 +1,25 @@
+//string amessage;
+void onlinestore()
+{
+setupmenu();
+m.set_callback(netclb,"");
+m.add_item_tts("buy items for your account","buy);
+m.add_item_tts("Which payment method does he use?","how");
+m.add_item_tts("How many people have bought from this site now?","how2");
+m.add_item_tts("report a problem with payment, my credits have not come, too much credit, I can't pay, there is a problem with the site, or more","problem");
+int mres=m.run("Welcome to our online store, dear "+name+", I see that your gender is "+gender+", you can buy dresses, features, or items that fit both genders according to your gender, thank you again for visiting our store, dear "+name+"",true);
+if (m.get_item_name(mres)=="how")
+{
+dlg("hello dear "+name+" we use stripe as payment method, as far as we know this payment method supports cards from most countries, if it doesn't support any card in your country, feel free to let us know");
+}
+if (m.get_item_name(mres)=="buy")
+{
+speak("no items");
+}
+if (m.get_item_name(mres)=="problem")
+{
+if(amessage!="")
+send_reliable(0,"/admintell #stripe,1);
+}
+//}
+//}

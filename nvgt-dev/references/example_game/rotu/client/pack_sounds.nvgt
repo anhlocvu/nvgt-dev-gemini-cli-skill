@@ -1,0 +1,68 @@
+#pragma namespace sound upcoming
+#pragma plugin king_audio_engine
+
+const string soundkey = "9AqWQmxXIEP3U9Y03440ENx7xOnxhkVtUKtyYkHWkNKdxFcYfMDES7ndHL0J";
+king_pack pack;
+
+void main()
+{
+    show_window("King Audio Sound Packer");
+    
+    // Ask the user before packaging
+    int ans = question("King Audio Sound Packer", "Do you want to package sounds/ directory into sounds.dat for King Audio?");
+    if (ans != 1)
+    {
+        exit();
+    }
+    
+    // Scan all files in sounds/ directory
+    string[] files;
+    scan_directory("sounds", files);
+    
+    if (files.length() == 0)
+    {
+        alert("Error", "No files found in sounds/ directory!");
+        exit();
+    }
+    
+    alert("Info", "Starting to pack " + files.length() + " files. This might take a few moments. Press Enter to begin.");
+    
+    bool ok = pack.open("sounds.dat", soundkey);
+    if (!ok)
+    {
+        alert("Error", "Failed to open sounds.dat for writing!");
+        exit();
+    }
+    
+    for (uint i = 0; i < files.length(); i++)
+    {
+        string relative_path = files[i];
+        string pack_path = relative_path;
+        if (relative_path.substr(0, 7) == "sounds/")
+        {
+            pack_path = relative_path.substr(7);
+        }
+        pack.add_file(relative_path, pack_path);
+    }
+    
+    pack.close();
+    alert("Success", "sounds.dat created successfully for King Audio with " + files.length() + " files!");
+    exit();
+}
+
+void scan_directory(string path, string[]&out files)
+{
+    // Find files in the current directory
+    string[] local_files = find_files(path + "/*");
+    for (uint i = 0; i < local_files.length(); i++)
+    {
+        files.insert_last(path + "/" + local_files[i]);
+    }
+    
+    // Recurse into subdirectories
+    string[] subdirs = find_directories(path + "/*");
+    for (uint i = 0; i < subdirs.length(); i++)
+    {
+        scan_directory(path + "/" + subdirs[i], files);
+    }
+}

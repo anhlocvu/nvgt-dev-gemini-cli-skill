@@ -1,0 +1,39 @@
+mapname:mountain
+maxx:500
+maxy:400
+maxz:500
+tile:0:500:0:500:0:0:dirt2
+zone:0:500:0:500:0:500:Mountain
+zone:0:500:0:20:0:20:The climb starts here!:trackme
+travelpoint:0:0:0:0:0:0:the_world_of_the_magical_flower:80:48:0:Welcome back to the magical world
+zone:0:0:0:0:0:10:Press t to go back the magical world.:trackme
+tile:0:500:15:20:0:30:dirt
+tile:0:500:21:30:30:30:dirt
+tile:0:500:33:40:30:60:dirt2
+tile:0:500:21:21:0:29:wallbushleaves
+tile:0:500:41:45:60:60:dirt2
+tile:0:500:49:55:60:80:dirt3
+tile:0:500:60:70:80:100:dirt4
+tile:0:500:71:80:100:100:dirt4
+tile:0:500:80:90:100:120:dirt5
+tile:0:500:90:100:120:150:mountain
+tile:0:500:101:120:150:150:mountain
+tile:0:500:121:130:150:180:mountain
+tile:0:500:135:145:180:200:mountain
+tile:0:500:145:150:200:220:mountain
+tile:0:500:151:200:220:225:ice
+tile:0:500:201:210:180:225:mountain
+tile:0:500:211:220:150:180:gravel4
+tile:0:500:221:230:120:150:dirt6
+tile:0:500:231:240:100:115:dirt6
+tile:0:500:245:260:80:95:dirt5
+tile:0:500:265:270:50:75:dirt6
+tile:0:500:275:280:25:45:dirt2
+tile:0:500:281:300:0:25:dirt6
+travelpoint:0:30:400:400:0:0:dragon_city:0:0:0:After a long adventure, climbing the hard mountain, you arrive to a new map... guess... what can you find here?
+tile:0:500:280:280:0:24:wallbushleaves2
+zone:0:30:400:400:0:10:A passage leading somewhere... press enter to enter this misterious place!:trackme
+src:0:500:0:400:0:80:birds2.ogg
+src:0:500:0:400:0:500:mountain.ogg
+travelpoint:20:30:200:200:0:0:hidden_cave:0:0:0:You enter a very idden cave, full of adventures to make you have fun!
+zone:20:30:200:200:0:10:An hidden passage... guess where can it lead...

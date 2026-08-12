@@ -1,0 +1,49 @@
+string changes="
+# New in version 6.2.
+
+*Fixed a bug related to being a pacifist in the arena. Now you will not be able to join the arena while activating pacifist mode on any map other than the arena.
+*Fixed a bug that allowed health_healer to increase your health from 10000000.
+*A lot of robot and animal bugs have been fixed. And also robots and animals has a death message.
+*The /mv command was turned off for a fair battle in the arena, like death_free_card. But it works on other maps.
+*Now when the server data is reset, some options will not be turned off automatically. For example, chat, local chat, automatic gift giving and guess the number auto starter will not be turned off after the server data is reset.
+*You will no longer be able to spam xp_box by pressing enter quickly on xp_box! The reason for this is that when we use xp_box very fast, the server gives bgt runtime.
++Event commands has been added to the /help command.
+*The terrible level sound and notification problem has been fixed! Now you can use xp_box as much as you want! Roflflf.
+*The death_free_card item will no longer work in the arena for a fair and good battle. But the death_free_card item still works on all other maps! While you have the death_free_card in your inventory, you can fight on other maps, (For example, main city).
++Now you will be able to see that a player is a builder, admin or developer in the F1 online players list. The rank of the player will be spoken before the player's name.
+*You won't be able to spam by pressing enter on the music box and playing a lot of music.
+*The /movemyself and /givemyself commands have been shortened. You can use the /mv command instead of /movemyself, /gv instead of /givemyself. The /movemyself and /givemyself commands still work, they have been shortened just for convenience.
+*Now, when the server shuts down or receives a bgt runtime, it will automatically turn on. If the server does not turn on, do not hesitate to notify the developers.
++The death_free_card item has been temporarily activated for the event! It will be removed after the event is over.
++Added a sound to the /givemyself and /movemyself commands.
++Added the event commands /givemyself and /movemyself.
+*The server backup was taken due to the event.
++Now, admins can now enable and disable the automatic starting of the guess the number minigame with /gnstart_auto command.
+*Fixed some bugs with the guess the number minigame.
+*The gift system has been rewritten due to some bugs.
++Mega gift command has been added for admins, it will give 10 gifts to the server, don't use this often, it may cause serious lags of the server.
++Now admins will only give 1 gift when they send a gift command to the server.
++If a player dies while using magical flower, he or she will not be teleported to the magical flower map.
++2 language channels have been added to the languages menu.
++Helicopter has been added to the weapons store.
++Some texts have been replaced with new ones. For example, istek is part of the bff team has been replaced to istek is a member of the bff team.
++Bitcoin converter machine has been added to the EK bank map.
++The health of the shark animal has been increased from 500000 to 5000000.
++Now, pacifist players can use weapons and kill animals while pacifist. But in the new update, I will recode this system and make it more good.
++From now on, when you receive a private message or reply message from a player, the player's rank will not be shown to you.
++Now, when you type an option other than yes or no when using the /vote command, the server will now warn you.
++Added Burmese language channel.
+*Fixed a bug related to Pacifist mode, before, when a player was pacifist, an animal could hit the player, but that was supposed to happen, thanks to banana for telling it.
+*Some notifications have been shortened, for example, the status message has been changed to status only.
+*Some useless unused codes have been deleted from the server.
+*Fixed a bug related to the teleporter. When you press enter on the teleporter, if you open the teleporter menu and close without using it, one teleporter was going out of your inventory, it won't go anymore!
++Now, the weapon barrett_m82_sniper_rifle's ammo has been added to the ammo store. I'm sorry I didn't notice it.
+*You will no longer stay on the wall when leaving the safe zone to the main map.
++The levels, kills and death counts of players have been removed from the F1 online players list. You can find out this information using the F6 all players menu then pressing F3 on a player.
+*Fixed a bug in the changes menu.
++In the f6 all players menu, some minor changes have been made to the player's informations on the keys from f1 to f4.
+*Fixed a bug where the game does not asking you to select your gender when you logged in to the server.
++When if a player send a message to admintalk, admintell, or devtell, they automaticaly adds commands such as /at, /admintell typed by the players at the beginning of the messages while saving the messages to the logs. This bug has been fixed.
++Now the server will ask you to choose your gender if you have not selected a gender when you log in to the game.
++Adds the /changes command to view latest changes in the server.
+";
