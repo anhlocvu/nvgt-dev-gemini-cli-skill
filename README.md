@@ -27,10 +27,10 @@ So the final path of the skill will be:
 
 ### For Freebuff / Codebuff CLI
 Copy the `nvgt-dev` folder into your global Freebuff or Codebuff skills directory:
-`C:\Users\<Your_Username>\.freebuff\skills` (or `.codebuff\skills`)
+`C:\Users\<Your_Username>\.agents\skills` (or `.codebuff\skills`)
 
 So the final path of the skill will be:
-`C:\Users\<Your_Username>\.freebuff\skills\nvgt-dev` (or `C:\Users\<Your_Username>\.codebuff\skills\nvgt-dev`)
+`C:\Users\<Your_Username>\.agents\skills\nvgt-dev` (or `C:\Users\<Your_Username>\.codebuff\skills\nvgt-dev`)
 
 ## Automatic Installation
 
